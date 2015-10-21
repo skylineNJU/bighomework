@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class Worker implements Serializable{
+public class WorkerPo implements Serializable{
 	/**
 	 * 
 	 */
@@ -48,7 +48,7 @@ public class Worker implements Serializable{
 	
 	//----------------------
 	//¹¹Ôìº¯Êý
-	public Worker(String na,String po,String be,int ag){
+	public WorkerPo(String na,String po,String be,int ag){
 		this.name=na;
 		this.position=po;
 		this.belong=be;
