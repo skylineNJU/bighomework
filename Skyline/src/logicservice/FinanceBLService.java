@@ -24,4 +24,7 @@ public interface FinanceBLService {
 	
 	//显示指定月份的支出信息
 	public ArrayList<CostVO> showCostList(String date);
+	
+	//中转中心业务员填写收款单信息，系统显示收款单
+	public ArrayList<EarnVO> writeEarnList(ArrayList<EarnVO> earn);
 }
