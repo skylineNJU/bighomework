@@ -3,22 +3,22 @@ package po;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class ClearingPo implements Serializable{
+public class ClearingPO implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private LinkedList<CollectionPo> collection=new LinkedList<CollectionPo>();
+	private LinkedList<CollectionPO> collection=new LinkedList<CollectionPO>();
 	private String date;
-	public ClearingPo(String da){
+	public ClearingPO(String da){
 		date=da;
 	}
-	public void add(CollectionPo co){
+	public void add(CollectionPO co){
 		collection.add(co);
 	}
 	
-	public LinkedList<CollectionPo> get(){
+	public LinkedList<CollectionPO> get(){
 		return collection;
 	}
 	public String getDate() {

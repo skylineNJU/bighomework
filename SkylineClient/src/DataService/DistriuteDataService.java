@@ -1,4 +1,4 @@
-package DataService;
+package dataservice;
 
 //ÈÎÎñ·ÖÅä
 public interface DistriuteDataService {

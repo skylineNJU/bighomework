@@ -1,6 +1,6 @@
+package po;
+
 import java.io.Serializable;
-
-
 
 public class DriverInfoPO  implements Serializable{
 	int driverID;//Ë¾»ú±àºÅ

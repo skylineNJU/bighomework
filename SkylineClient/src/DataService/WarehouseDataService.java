@@ -1,4 +1,4 @@
-package DataService;
+package dataservice;
 
 //²Ö¿â
 public interface WarehouseDataService {

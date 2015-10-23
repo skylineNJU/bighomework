@@ -1,4 +1,4 @@
-package DataService;
+package dataservice;
 
 //货物接收
 public interface ReceiveDataService {

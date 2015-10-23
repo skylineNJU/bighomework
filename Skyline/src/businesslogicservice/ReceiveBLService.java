@@ -1,4 +1,4 @@
-package logicservice;
+package businesslogicservice;
 
 import vo.LobbyReceptionVO;
 import vo.OrderVO;

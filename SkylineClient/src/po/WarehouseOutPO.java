@@ -1,9 +1,9 @@
 package po;
 import java.io.Serializable;
 
-public class WarehouseOut implements Serializable{
+public class WarehouseOutPO implements Serializable{
 /*
- * 快递编号、出库日期、目的地、装运形式（火车、飞机、汽车）、中转单编号或者汽运编号
+ * 快�?�编号�?�出库日期�?�目的地、装运形式（火车、飞机�?�汽车）、中转单编号或�?�汽运编�?
  */
 	
 	String bar;
@@ -17,7 +17,7 @@ public class WarehouseOut implements Serializable{
 	Type type;
 	String transferCode;
 	String vehicleCode;
-	public WarehouseOut(String a,String b,String c,Type t,String d,String e){
+	public WarehouseOutPO(String a,String b,String c,Type t,String d,String e){
 		bar=a;
 		outDate =b;
 		destination = c;

@@ -1,4 +1,4 @@
-package logicservice;
+package businesslogicservice;
 
 import vo.TransType;
 import vo.TransVO;

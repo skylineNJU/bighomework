@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class AccountPo implements Serializable{
+public class AccountPO implements Serializable{
 
 	/**
 	 * 
@@ -12,7 +12,7 @@ public class AccountPo implements Serializable{
 	private String code;
 	private Rights right;
 	
-	public AccountPo(String id,String co,Rights ri){
+	public AccountPO(String id,String co,Rights ri){
 		ID=id;
 		code=co;
 		right=ri;

@@ -1,4 +1,4 @@
-package DataService;
+package dataservice;
 
 import State.RightType;
 

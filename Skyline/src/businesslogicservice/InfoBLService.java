@@ -1,4 +1,4 @@
-package logicservice;
+package businesslogicservice;
 
 import vo.DriverVO;
 import vo.InstitutionVO;

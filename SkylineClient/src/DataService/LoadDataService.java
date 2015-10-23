@@ -1,4 +1,4 @@
-package DataService;
+package dataservice;
 
 import java.util.List;
 

@@ -1,3 +1,4 @@
+package po;
 import java.io.Serializable;
 //车辆装车管理
 public class LoadingInfoPO  implements Serializable {

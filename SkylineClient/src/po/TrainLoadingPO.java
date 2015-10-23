@@ -1,4 +1,4 @@
-
+package po;
 import java.io.Serializable;
 public class TrainLoadingPO  implements Serializable{
 	String loadingDate;//装运日期

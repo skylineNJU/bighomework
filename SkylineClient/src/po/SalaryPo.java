@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class SalaryPo implements Serializable{
+public class SalaryPO implements Serializable{
 
 	/**
 	 * 

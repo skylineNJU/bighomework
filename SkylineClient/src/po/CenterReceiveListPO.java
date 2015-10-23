@@ -1,4 +1,4 @@
-package PO;
+package po;
 
 //中转中心接收单
 public class CenterReceiveListPO {

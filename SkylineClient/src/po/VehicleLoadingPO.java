@@ -1,3 +1,4 @@
+package po;
 import java.io.Serializable;
 public class VehicleLoadingPO  implements Serializable{
 	String loadingDate;//装运日期

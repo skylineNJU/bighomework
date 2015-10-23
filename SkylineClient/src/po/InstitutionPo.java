@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class InstitutionPo implements Serializable{
+public class InstitutionPO implements Serializable{
 
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class InstitutionPo implements Serializable{
 	private String ID;
 	private String name;
 	
-	public InstitutionPo(String ki,String si,String id,String na){
+	public InstitutionPO(String ki,String si,String id,String na){
 		this.kinds=ki;
 		this.situation=si;
 		this.ID=id;
