@@ -1,18 +1,20 @@
 package DataService;
 
+import java.util.List;
+
 //任务分配
 public interface DistriuteDataService {
 	
-	//分配任务
-	//这个方法的参数为完全，表示不会写
-	public orderOP distributeTask();
+    //存储快递员的任务
+	//account是快递员的账户，list表示该快递员的配送任务
+	public boolean saveTask(List<OrderPO> orderpo);
 	
 	//输入快递员的账户
 	//数据库返回其需要分配的订单
-	public List<orderOP> lookTask(String account);
+	public List<OrderPO> lookTask(String[] code);
 	
 	//增加收件信息
 	//数据库保存其订单信息
-	public void inputOrder(orderOP orderop);
+	public void inputOrder(ReceivePO receivePO);
 	
 }
