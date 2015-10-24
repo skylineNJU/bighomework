@@ -1,7 +1,7 @@
 package po;
 
 //中转中心接收单
-public class CenterReceivePO {
+public class CenterReceiveListPO {
 	
 	private int receiveYear;//接收年份
 	private int receiveMonth;//接收月份
@@ -9,7 +9,7 @@ public class CenterReceivePO {
 	private int centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	
-	public CenterReceivePO(int receiveYear,int receiveMonth,int receiveDay,int centerNumber,String bar){
+	public CenterReceiveListPO(int receiveYear,int receiveMonth,int receiveDay,int centerNumber,String bar){
 		this.receiveYear = receiveYear;
 		this.receiveMonth = receiveMonth;
 		this.receiveDay = receiveDay;

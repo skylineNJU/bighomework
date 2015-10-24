@@ -5,7 +5,7 @@ import java.util.List;
 import State.expressType;
 
 //营业厅收到快递后生产的一条收件单信息
-public class LobbyReceivePO {
+public class LobbyReceiveListPO {
 	
 	private int receiveYear;//营业厅接收时间 
 	private int receiveMonth;//营业厅接收时间 
@@ -13,7 +13,7 @@ public class LobbyReceivePO {
 	private int lobbyNumber;//营业厅编号
 	private String expressBar;//expressBar表示订单
 	
-	public LobbyReceivePO(int receiveYear,int receiveMonth,int receiveDay,int lobbyNumber,String expressBar){
+	public LobbyReceiveListPO(int receiveYear,int receiveMonth,int receiveDay,int lobbyNumber,String expressBar){
 		this.receiveYear = receiveYear;
 		this.receiveMonth = receiveMonth;
 		this.receiveDay = receiveDay;

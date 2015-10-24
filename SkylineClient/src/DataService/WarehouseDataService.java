@@ -1,4 +1,8 @@
-package DataService;
+package dataservice;
+
+import po.InventoryPO;
+import po.WarehouseInPO;
+import po.WarehouseOutPO;
 
 //²Ö¿â
 public interface WarehouseDataService {

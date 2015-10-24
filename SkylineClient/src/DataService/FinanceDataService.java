@@ -1,10 +1,10 @@
-package DataService;
+package dataservice;
 
 import java.util.List;
 
-import PO.BankAccountPO;
-import PO.CollectionPO;
-import PO.CostPO;
+import po.BankAccountPO;
+import po.CollectionPO;
+import po.CostPO;
 
 //财务管理
 public interface FinanceDataService {

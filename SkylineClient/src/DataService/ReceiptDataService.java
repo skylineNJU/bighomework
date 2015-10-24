@@ -1,7 +1,7 @@
-package DataService;
+package dataservice;
 
-import PO.ApprovalPO;
-import PO.StaffReceiptPO;
+import po.ApprovalPO;
+import po.StaffReceiptPO;
 
 //
 public interface ReceiptDataService {

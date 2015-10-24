@@ -1,6 +1,9 @@
-package DataService;
+package dataservice;
 
-import PO.LobbyReceivePO;
+import po.CenterReceivePO;
+import po.DistributePO;
+import po.OrderPO;
+import po.LobbyReceivePO;
 
 //货物接收
 //中转接收单 CenterReceivePO
@@ -8,11 +11,11 @@ public interface ReceiveDataService {
 	
 	//存储新的订单信息
 	//将订单信息存储进数据库
-	public void writeOrder(orderPO orderpo);
+	public void writeOrder(OrderPO orderpo);
 	
 	//查看订单信息
 	//orderBar为订单条形码
-	public opderPO readOrder(String orderBar);
+	public OrderPO readOrder(String orderBar);
 	
 	//删除订单信息
 	//orderBar表示订单条形码
@@ -20,7 +23,7 @@ public interface ReceiveDataService {
 	
 	//修改订单信息
 	//orderBar表示订单条形码
-	public opderPO modifiyOrder(orderPO orderpo);
+	public OrderPO modifiyOrder(OrderPO orderpo);
 	
 	//存储新的中转接收单单信息
 	//将订单信息存储进数据库

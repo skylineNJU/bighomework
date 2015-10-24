@@ -1,6 +1,9 @@
-package DataService;
+package dataservice;
 
 import java.util.List;
+
+import po.OrderPO;
+import po.ReceivePO;
 
 //ÈÎÎñ·ÖÅä
 public interface DistriuteDataService {
