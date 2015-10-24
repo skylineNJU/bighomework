@@ -1,5 +1,6 @@
 package DataService;
 
+import po.AccountPO;
 import State.RightType;
 
 //权限管理数据接口
@@ -16,7 +17,7 @@ public interface RightDataService {
 	//增加权限
 	//权限应该设置为枚举类型
 	//rightType为需要增加的权限
-	public boolean changeRight(RightPO rightPO);
+	public boolean changeRight(AccountPO accpuntPO);
 	
 	//从数据库中读取该账户的权限
 	public RightType readRight(String accpunt);
