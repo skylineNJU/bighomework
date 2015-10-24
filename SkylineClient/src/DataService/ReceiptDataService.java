@@ -1,7 +1,7 @@
-package dataservice;
+package DataService;
 
-import po.ApprovalPO;
-import po.StaffReceiptPO;
+import PO.ApprovalPO;
+import PO.StaffReceiptPO;
 
 //
 public interface ReceiptDataService {
@@ -13,7 +13,7 @@ public interface ReceiptDataService {
 	public boolean delReceiptCode(String account,String code);
 	
 	public ApprovalPO getApprovalPO();
-	
+	//........
 	public boolean removeApprovalPO(String code);
 	
 }

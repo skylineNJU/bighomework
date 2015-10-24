@@ -1,4 +1,4 @@
-package po;
+package PO;
 
 //一项收入的收款单PO
 public class CollectionPO {

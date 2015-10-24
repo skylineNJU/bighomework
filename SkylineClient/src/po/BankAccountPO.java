@@ -1,4 +1,4 @@
-package po;
+package PO;
 
 //银行账户信息
 public class BankAccountPO {
