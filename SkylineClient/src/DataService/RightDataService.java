@@ -20,5 +20,5 @@ public interface RightDataService {
 	public boolean changeRight(AccountPO accountPO);
 	
 	//从数据库中读取该账户的权限
-	public RightType readRight(String accpunt);
+	public RightType readRight(String account);
 }

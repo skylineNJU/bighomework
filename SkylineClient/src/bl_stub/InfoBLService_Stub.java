@@ -22,7 +22,7 @@ public class InfoBLService_Stub implements InfoBLService{
 	public boolean deleteInstitution() {
 		// TODO Auto-generated method stub
 		System.out.println("这个B我给十分");
-		return false;
+		return true;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class InfoBLService_Stub implements InfoBLService{
 	public boolean deleteVehicle() {
 		// TODO Auto-generated method stub
 		System.out.println("我有以友屌似卿");
-		return false;
+		return true;
 	}
 
 	@Override
@@ -107,7 +107,7 @@ public class InfoBLService_Stub implements InfoBLService{
 	public boolean deleteDriver() {
 		// TODO Auto-generated method stub
 		System.out.println("吾有一友屌似卿");
-		return false;
+		return true;
 	}
 
 	@Override
