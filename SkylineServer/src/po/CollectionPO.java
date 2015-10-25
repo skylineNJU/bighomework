@@ -4,14 +4,14 @@ package po;
 public class CollectionPO {
 	
 	private int collectionYear;//收入年份
-	private int collectionMonth;//收入月份
-	private int collectionDay;//收入天
-	private int unit;//收款单位，即编号
+	private String collectionMonth;//收入月份
+	private String collectionDay;//收入天
+	private String unit;//收款单位，即编号
 	private String account;//收款人账户
 	private int money;//收款金额
 	private String remark;//备注
 	
-	public CollectionPO(int collectionYear,int collectionMonth,int collectionDay,int unit,String account,int money,String remark){
+	public CollectionPO(int collectionYear,String collectionMonth,String collectionDay,String unit,String account,int money,String remark){
 		this.collectionYear = collectionYear;
 		this.collectionMonth = collectionMonth;
 		this.collectionDay = collectionDay;
@@ -25,15 +25,15 @@ public class CollectionPO {
 		return collectionYear;
 	}
 
-	public int getCollectionMonth() {
+	public String getCollectionMonth() {
 		return collectionMonth;
 	}
 
-	public int getCollectionDay() {
+	public String getCollectionDay() {
 		return collectionDay;
 	}
 
-	public int getUnit() {
+	public String getUnit() {
 		return unit;
 	}
 

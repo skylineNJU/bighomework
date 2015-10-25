@@ -11,7 +11,7 @@ public interface ReceiveDataService {
 	
 	//存储新的订单信息
 	//将订单信息存储进数据库
-	public void writeOrder(OrderPO orderpo);
+	public boolean writeOrder(OrderPO orderpo);
 	
 	//查看订单信息
 	//orderBar为订单条形码

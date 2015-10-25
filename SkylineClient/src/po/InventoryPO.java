@@ -2,22 +2,22 @@ package po;
 import java.io.Serializable;
 
 public class InventoryPO implements Serializable{
-/*		
- * 出/入库数量，出入库货物的订单号，损坏情况，分区号排号架号位号，到达日期,目的地
+/*	飩�	
+ * 鍑�/鍏ュ簱鏁伴噺锛屽嚭鍏ュ簱璐х墿鐨勮鍗曞彿锛屾崯鍧忔儏鍐碉紝鍒嗗尯鍙锋帓鍙锋灦鍙蜂綅鍙凤紝鍒拌揪鏃ユ湡,鐩殑鍦�
  * 
 */
 	 	int inNum;
 	 	int outNum;
 	 	String orderCode;
 	 	String damageCondition;
-	 	String area;
+	 	char area;
 		int row;
 		int shelf;
 		int position;
 		String destination;
 		String arriveDate;
 		
-		public InventoryPO(int a,int b,String c,String d,String e,int f,int g,int h,String i,String j){
+		public InventoryPO(int a,int b,String c,String d,char e,int f,int g,int h,String i,String j){
 			inNum=a;
 			outNum=b;
 			orderCode=c;
@@ -46,7 +46,7 @@ public class InventoryPO implements Serializable{
 			return damageCondition;
 		}
 
-		public String getArea() {
+		public char getArea() {
 			return area;
 		}
 

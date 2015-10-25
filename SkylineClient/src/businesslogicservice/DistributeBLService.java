@@ -10,5 +10,5 @@ public interface DistributeBLService {
 	public ArrayList<DistributeVO> showDistributeList();
 	
 	//收件单中填写收件编码，收件人姓名，收件日期，系统显示填写的信息
-	public RecipientVO writeReceiveMessage(String code,String name,String date);
+	public RecipientVO writeReceiveMessage(String code,String ID,String date,String name);
 }

@@ -3,13 +3,15 @@ import java.io.Serializable;
 
 
 public class OrderPO implements Serializable{
-	/*		寄件人姓名、住址、单位、电话、手机；
-		收件人姓名、住址、单位、电话、手机
-		托运货物信息（原件数、实际重量、体积、内件品名、尺寸）
-		包装费（纸箱(5元)、木箱(10元)、快递袋(1元)、其它）
-		费用合计
-		订单条形码号（10位数）
-		经济快递、标准快递、特快
+	/*	寄件人姓名、住址、单位、电话、手机；
+	             收件人姓名、住址、单位、电话、手机
+	托运货物信息（原件数、实际重量、体积、内件品名、尺寸）
+	包装费（纸箱、木箱、快递袋、其它）
+	费用合计
+	订单条形码号（10位数）
+	经济快递、标准快递、特快
+
+
 */
 	 	String senderName;
 		String senderAddress;
@@ -34,16 +36,21 @@ public class OrderPO implements Serializable{
 		PackageCost packageCost;
 		Type type;
 		
-		int num;
-		int weight;
-		int volume;
-		String cargoName;
-		double size;
-		int orderCode;
-		int sum;
+		int num;//原件数
+		double weight;//实际重量
+		double volume;//体积
+		String cargoName;//内部品名
+		
+		public enum Size{
+			large,medium,small;	
+		}//尺寸
+		
+		Size size;
+		String orderCode;//订单条形码
+		int sum;//费用合计
 
 		public OrderPO(String a,String b,String c,String d,String e,String f,String g ,String h,String i,String j,
-		 PackageCost pC,Type t,int k,int l,int m,String n,double o,int p,int q){
+		 PackageCost pC,Type t,int k,double l,double m,String n,Size s,String p,int q){
 			 senderName = a;
 			 senderAddress = b;
 			 senderCom = c;
@@ -63,7 +70,7 @@ public class OrderPO implements Serializable{
 			 weight = l;
 			 volume = m;
 			 cargoName = n;
-			 size = o;
+			 size = s;
 			 orderCode = p;
 			 sum = q;	
 		}
@@ -172,19 +179,19 @@ public class OrderPO implements Serializable{
 			this.num = num;
 		}
 
-		public int getWeight() {
+		public double getWeight() {
 			return weight;
 		}
 
-		public void setWeight(int weight) {
+		public void setWeight(double weight) {
 			this.weight = weight;
 		}
 
-		public int getVolume() {
+		public double getVolume() {
 			return volume;
 		}
 
-		public void setVolume(int volume) {
+		public void setVolume(double volume) {
 			this.volume = volume;
 		}
 
@@ -196,19 +203,19 @@ public class OrderPO implements Serializable{
 			this.cargoName = cargoName;
 		}
 
-		public double getSize() {
+		public Size getSize() {
 			return size;
 		}
 
-		public void setSize(double size) {
+		public void setSize(Size size) {
 			this.size = size;
 		}
 
-		public int getOrderCode() {
+		public String getOrderCode() {
 			return orderCode;
 		}
 
-		public void setOrderCode(int orderCode) {
+		public void setOrderCode(String orderCode) {
 			this.orderCode = orderCode;
 		}
 

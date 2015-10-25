@@ -10,7 +10,7 @@ public interface LoadBLService {
 	 * 系统显示车辆装车单
 	 */
 	
-	public VehicleLoadingVO loadVehicle(String  date,String vehiclecode,String from,String to,
+	public VehicleLoadingVO loadVehicle(String id,String  date,String vehiclecode,String from,String to,
 			String monitor,String escort,String[] ordercode,double fee);
 	
 	/*
@@ -19,7 +19,7 @@ public interface LoadBLService {
 	 * 系统显示装运单（运输方式以type决定）
 	 */
 	
-	public TransVO intermidateLoading(TransType type,String Transcode,String Vehiclecode,
+	public TransVO intermidateLoading(String id,TransType type,String Transcode,String Vehiclecode,
 			String from,String to,String compartment,String monitor,String[] ordercode);
 	
 }

@@ -3,6 +3,7 @@ package businesslogicservice;
 import vo.InventoryVO;
 import vo.WarehouseInVO;
 import vo.WarehouseOutVO;
+import vo.WarehouseOutVO.Type;
 
 public interface WarehouseBLService {
 	/*仓库管理人员输入
@@ -16,11 +17,11 @@ public interface WarehouseBLService {
 	 * 快递编号、出库日期、目的地、装运形式（火车、飞机、汽车）、中转单编号或者汽运编号
 	 * 系统显示出库单
 	 */
-	public WarehouseOutVO WarehouseOut(String code,String date,String to,int transport,String TransitCode);
+	public WarehouseOutVO WarehouseOut(String code,String date,String to,Type transport,String TransitCode,String vehicleCode);
 	
 	/*
 	 * 系统显示库存信息
 	 */
 	
-	public InventoryVO shouInventory();
+	public InventoryVO showInventory(int inNum, int outNum, String orderCode, String damageCondition,char area,int row,int shelf,int position,String destination,String arriveDate);
 }

@@ -3,11 +3,11 @@ import java.io.Serializable;
 
 public class DistributePO implements Serializable{
 /*
- * 到达日期、托运订单条形码号、派送员
+ * 鍒拌揪鏃ユ湡銆佹墭杩愯鍗曟潯褰㈢爜鍙枫�佹淳閫佸憳
  */
-	String arriveDate;
-	String bar;
-	String courrierName;
+	String arriveDate;//到达日期
+	String bar;//派件单号
+	String courrierName;//派送员姓名
 	
 	public DistributePO(String a,String b,String c){
 		 arriveDate=a;

@@ -6,14 +6,14 @@ import java.util.List;
 public class CostPO {
 	private String costItem;//成本项目，如租金、工资等
 	private int costYear;//支出年份
-	private int costMonth;//支出月份
-	private int costDay;//支出天
+	private String costMonth;//支出月份
+	private String costDay;//支出天
 	private int money;//支出金额
 	private String count;//支出人账户
 	private String unit;//支出单位
 	private String remark;//支出备注
 
-	public CostPO(String costItem,int costYear,int costMonth,int costDay,int money,String count,String remark,String unit){
+	public CostPO(String costItem,int costYear,String costMonth,String costDay,int money,String count,String remark,String unit){
 		this.costItem = costItem;
 		this.costYear = costYear;
 		this.costMonth = costMonth;
@@ -48,19 +48,19 @@ public class CostPO {
 		this.costYear = costYear;
 	}
 
-	public int getCostMonth() {
+	public String getCostMonth() {
 		return costMonth;
 	}
 
-	public void setCostMonth(int costMonth) {
+	public void setCostMonth(String costMonth) {
 		this.costMonth = costMonth;
 	}
 
-	public int getCostDay() {
+	public String getCostDay() {
 		return costDay;
 	}
 
-	public void setCostDay(int costDay) {
+	public void setCostDay(String costDay) {
 		this.costDay = costDay;
 	}
 

@@ -16,28 +16,28 @@ public interface LoadDataService {
 	
 	//填写装运表到数据库
 	//centerNumber表示出发的中转中心
-	public void writeVehicleLoadBase(List<VehicleLoadingPO> loadList,String centerNumber);
+	public boolean writeVehicleLoadBase(List<VehicleLoadingPO> loadList,String centerNumber);
 	
 	//从数据库读取装运信息  LoadList是装运信息
 	public List<VehicleLoadingPO> readVehicleLoadBase();
 	
 	//删除数据库里的装运信息  loadList为要删除的装运信息
-	public void delVehicleLoadBase(List<VehicleLoadingPO> loadList);
+	public boolean delVehicleLoadBase(List<VehicleLoadingPO> loadList);
 	
-	public void writeTrainLoadBase(List<TrainLoadingPO> loadList,String centerNumber);
+	public boolean writeTrainLoadBase(List<TrainLoadingPO> loadList,String centerNumber);
 	
 	//从数据库读取装运信息  LoadList是装运信息
 	public List<TrainLoadingPO> readTrainLoadBase();
 	
 	//删除数据库里的装运信息  loadList为要删除的装运信息
-	public void delTrainLoadBase(List<TrainLoadingPO> loadList);
+	public boolean delTrainLoadBase(List<TrainLoadingPO> loadList);
 	
 	
-	public void writePlaneLoadBase(List<PlaneLoadingPO> loadList,String centerNumber);
+	public boolean writePlaneLoadBase(List<PlaneLoadingPO> loadList,String centerNumber);
 	
 	//从数据库读取装运信息  LoadList是装运信息
 	public List<PlaneLoadingPO> readPlaneLoadBase();
 	
 	//删除数据库里的装运信息  loadList为要删除的装运信息
-	public void delPlaneLoadBase(List<PlaneLoadingPO> loadList);
+	public boolean delPlaneLoadBase(List<PlaneLoadingPO> loadList);
 }
