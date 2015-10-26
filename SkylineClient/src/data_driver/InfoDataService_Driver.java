@@ -1,6 +1,6 @@
 package data_driver;
 
-<<<<<<< HEAD
+
 import dataservice.InfoDataService;
 import po.DriverInfoPO;
 import po.InstitutionPO;
@@ -75,8 +75,4 @@ public class InfoDataService_Driver {
 			System.out.println("---------- modify success----------");
 		}
 	}
-=======
-public class InfoDataService_Driver {
-
->>>>>>> origin/master
 }

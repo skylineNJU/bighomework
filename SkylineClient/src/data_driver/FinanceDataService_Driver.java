@@ -1,6 +1,6 @@
 package data_driver;
 
-<<<<<<< HEAD
+
 import dataservice.FinanceDataService;
 import po.BankAccountPO;
 import po.CollectionPO;
@@ -51,8 +51,4 @@ public class FinanceDataService_Driver {
 			System.out.println("-----------delete success---------");
 		}
 	}
-=======
-public class FinanceDataService_Driver {
-
->>>>>>> origin/master
 }

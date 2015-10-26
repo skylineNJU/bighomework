@@ -163,11 +163,9 @@ public class OrderPO extends Message implements Serializable{
 			this.packageCost = packageCost;
 		}
 
-<<<<<<< HEAD
+
 		public Type getOrderType() {
-=======
-		public Type getType1() {
->>>>>>> origin/master
+
 			return type;
 		}
 

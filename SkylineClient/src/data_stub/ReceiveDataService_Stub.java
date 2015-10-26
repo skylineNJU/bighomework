@@ -7,7 +7,7 @@ import po.LobbyReceivePO;
 import po.OrderPO;
 import po.OrderPO.PackageCost;
 import po.OrderPO.Size;
-import po.OrderPO.Type;
+import po.Type;
 
 
 public class ReceiveDataService_Stub implements ReceiveDataService {
@@ -23,7 +23,7 @@ public class ReceiveDataService_Stub implements ReceiveDataService {
 	//orderBar为订单条形码
 	public OrderPO readOrder(String orderBar){
 		OrderPO orderPO = new OrderPO("张三","北京市三里屯","无","64227112","13242199875","李四","南京市和园" ,
-				"无","62238765","19876244534",PackageCost.paperBox,Type.normal,1,14.5,30,"衣服",Size.small,orderBar,8);
+				"无","62238765","19876244534",PackageCost.paperBox,po.Type.normal,1,14.5,30,"衣服",Size.small,orderBar,8);
 		System.out.println("Succeed!/n");
 		return orderPO;
 	}
