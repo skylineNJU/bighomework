@@ -1,9 +1,10 @@
 package data_stub;
 
+import dataservice.WarehouseDataService;
 import po.InventoryPO;
 import po.WarehouseInPO;
 import po.WarehouseOutPO;
-import dataservice.WarehouseDataService;
+
 
 public class WarehouseDataService_Stub implements WarehouseDataService{
 	

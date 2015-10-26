@@ -1,6 +1,6 @@
 package po;
 import java.io.Serializable;
-public class PlaneLoadingPO  implements Serializable{
+public class PlaneLoadingPO  extends Message implements Serializable{
 	String loadingDate;//装机日期
 	String flightNum;//中转中心航运编号
 	String planeNum;//航班号

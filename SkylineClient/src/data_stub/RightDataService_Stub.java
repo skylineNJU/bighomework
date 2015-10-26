@@ -1,8 +1,8 @@
 package data_stub;
 
 import po.AccountPO;
-import dataservice.RightDataService;
 import State.RightType;
+import dataservice.RightDataService;
 
 public class RightDataService_Stub implements RightDataService {
 	

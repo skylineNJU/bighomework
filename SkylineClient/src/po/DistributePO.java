@@ -1,7 +1,11 @@
 package po;
 import java.io.Serializable;
 
-public class DistributePO implements Serializable{
+public class DistributePO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /*
  * 鍒拌揪鏃ユ湡銆佹墭杩愯鍗曟潯褰㈢爜鍙枫�佹淳閫佸憳
  */

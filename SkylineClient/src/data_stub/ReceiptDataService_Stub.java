@@ -3,9 +3,10 @@ package data_stub;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataservice.ReceiptDataService;
 import po.ApprovalPO;
 import po.StaffReceiptPO;
-import dataservice.ReceiptDataService;
+
 
 public class ReceiptDataService_Stub implements ReceiptDataService {
 	

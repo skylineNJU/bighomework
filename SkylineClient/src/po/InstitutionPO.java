@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class InstitutionPO implements Serializable{
+public class InstitutionPO extends Message implements Serializable{
 
 	/**
 	 * 

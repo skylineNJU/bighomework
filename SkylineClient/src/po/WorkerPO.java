@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class WorkerPO implements Serializable{
+public class WorkerPO extends Message implements Serializable{
 	/**
 	 * 
 	 */

@@ -2,7 +2,11 @@ package po;
 import java.io.Serializable;
 
 
-public class OrderPO implements Serializable{
+public class OrderPO extends Message implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*	寄件人姓名、住址、单位、电话、手机；
 	             收件人姓名、住址、单位、电话、手机
 	托运货物信息（原件数、实际重量、体积、内件品名、尺寸）

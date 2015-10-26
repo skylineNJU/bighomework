@@ -1,8 +1,12 @@
 package po;
 
 //中转中心接收单
-public class CenterReceivePO {
+public class CenterReceivePO extends Message{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int receiveYear;//接收年份
 	private int receiveMonth;//接收月份
 	private int receiveDay;//接收天

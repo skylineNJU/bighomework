@@ -1,7 +1,11 @@
 package po;
 
 //银行账户信息
-public class BankAccountPO {
+public class BankAccountPO extends Message{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String account;//银行账户ID
 	private int money;//余额
 	

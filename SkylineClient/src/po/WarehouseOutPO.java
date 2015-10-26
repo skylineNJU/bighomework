@@ -1,7 +1,11 @@
 package po;
 import java.io.Serializable;
 
-public class WarehouseOutPO implements Serializable{
+public class WarehouseOutPO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /*
  * 快�?�编号�?�出库日期�?�目的地、装运形式（火车、飞机�?�汽车）、中转单编号或�?�汽运编�?
  */

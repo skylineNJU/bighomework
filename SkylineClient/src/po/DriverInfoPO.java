@@ -2,7 +2,11 @@ package po;
 
 import java.io.Serializable;
 
-public class DriverInfoPO  implements Serializable{
+public class DriverInfoPO extends Message implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int driverID;//司机编号
 	String name;//姓名
 	String birthDay;//出生日期

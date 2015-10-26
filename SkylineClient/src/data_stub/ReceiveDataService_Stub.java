@@ -1,5 +1,6 @@
 package data_stub;
 
+import dataservice.ReceiveDataService;
 import po.CenterReceivePO;
 import po.DistributePO;
 import po.LobbyReceivePO;
@@ -7,7 +8,7 @@ import po.OrderPO;
 import po.OrderPO.PackageCost;
 import po.OrderPO.Size;
 import po.OrderPO.Type;
-import dataservice.ReceiveDataService;
+
 
 public class ReceiveDataService_Stub implements ReceiveDataService {
 
@@ -83,7 +84,7 @@ public class ReceiveDataService_Stub implements ReceiveDataService {
 	//查看接收单单信息
 	//orderBar为订单条形码
 	public LobbyReceivePO readLobbyReceiveOrder(String orderBar){
-		LobbyReceivePO lobbyReceivePO = new LobbyReceivePO(5649, 2626, 233, 56, orderBar);
+		LobbyReceivePO lobbyReceivePO = new LobbyReceivePO(5649, 2626, 233,56,"NULL", orderBar);
 		System.out.println("Succeed!/n");
 		return lobbyReceivePO;
 	}
@@ -98,7 +99,7 @@ public class ReceiveDataService_Stub implements ReceiveDataService {
 	//修改接收单单信息
 	//orderBar表示订单条形码
 	public LobbyReceivePO modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
-		LobbyReceivePO lobbyReceivePO1 = new LobbyReceivePO(45, 78, 12, 23, "asdsad");
+		LobbyReceivePO lobbyReceivePO1 = new LobbyReceivePO(45, 78, 12, 23,"null", "asdsad");
 		System.out.println("Succeed!/n");
 		return lobbyReceivePO1;
 	}

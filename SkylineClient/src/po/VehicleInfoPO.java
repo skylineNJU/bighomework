@@ -3,7 +3,11 @@ package po;
 import java.io.Serializable;
 
 
-public class VehicleInfoPO implements Serializable{
+public class VehicleInfoPO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 int carID;//³µÁ¾´úºÅ
 int engineID;//µ×ÅÌ´úºÅ
 int carNum;//³µÁ¾ºÅ

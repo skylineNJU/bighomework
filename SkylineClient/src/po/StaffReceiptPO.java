@@ -3,7 +3,11 @@ package po;
 import java.util.List;
 
 //记录每个人写过的单据的编码
-public class StaffReceiptPO {
+public class StaffReceiptPO extends Message{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String account;
 	List<String> code;
 	

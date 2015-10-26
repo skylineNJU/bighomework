@@ -1,8 +1,12 @@
 package po;
 import java.io.Serializable;
 //接收单
-public class ReceivePO implements Serializable{
+public class ReceivePO extends Message implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*
  * 中转中心接收单号，收件人姓名，收件日期
  */
