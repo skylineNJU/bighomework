@@ -7,7 +7,7 @@ public class WarehouseOutPO extends Message implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 /*
- * 蹇?掔紪鍙枫?佸嚭搴撴棩鏈熴?佺洰鐨勫湴銆佽杩愬舰寮忥紙鐏溅銆侀鏈恒?佹苯杞︼級銆佷腑杞崟缂栧彿鎴栬?呮苯杩愮紪鍙?
+ * 快递编号、出库日期、目的地、装运形式（火车、飞机、汽车）、中转单编号或者汽运编号
  */
 	
 	String bar;

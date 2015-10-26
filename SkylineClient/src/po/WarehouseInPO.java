@@ -7,7 +7,7 @@ public class WarehouseInPO extends Message implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 /*
- * 蹇�掔紪鍙枫�佸叆搴撴棩鏈熴�佺洰鐨勫湴銆佸尯鍙枫�佹帓鍙枫�佹灦鍙枫�佷綅鍙�
+ * 快递编号、入库日期、目的地、区号、排号、架号、位号
  */
 	String bar;
 	String inDate;
