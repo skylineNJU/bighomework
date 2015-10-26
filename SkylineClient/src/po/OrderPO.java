@@ -167,7 +167,7 @@ public class OrderPO extends Message implements Serializable{
 			this.packageCost = packageCost;
 		}
 
-		public Type getType() {
+		public Type getType1() {
 			return type;
 		}
 
