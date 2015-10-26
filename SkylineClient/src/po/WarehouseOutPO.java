@@ -35,7 +35,7 @@ public class WarehouseOutPO extends Message implements Serializable{
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	public Type getType() {
+	public Type getType1() {
 		return type;
 	}
 	public void setType(Type type) {

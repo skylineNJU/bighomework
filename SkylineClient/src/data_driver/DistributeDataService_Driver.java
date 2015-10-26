@@ -1,5 +1,6 @@
 package data_driver;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,4 +30,8 @@ public class DistributeDataService_Driver {
 		
 		service.inputOrder(receive);
 	}
+=======
+public class DistributeDataService_Driver {
+
+>>>>>>> origin/master
 }
