@@ -33,10 +33,6 @@ public class OrderPO extends Message implements Serializable{
 			paperBox ,woodBox ,plasticPackage;
 		}
 		
-		public enum Type{
-			 fast,normal,cheap;
-		}	  
-		
 		PackageCost packageCost;
 		Type type;
 		
@@ -167,7 +163,7 @@ public class OrderPO extends Message implements Serializable{
 			this.packageCost = packageCost;
 		}
 
-		public Type getType() {
+		public Type getOrderType() {
 			return type;
 		}
 

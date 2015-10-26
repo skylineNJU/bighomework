@@ -8,8 +8,7 @@ import po.OrderPO;
 import po.OrderPO.Size;
 import po.ReceivePO;
 import po.OrderPO.PackageCost;
-import po.OrderPO.Type;
-
+import po.Type;
 
 public class DistributeDataService_Stub implements DistributeDataService{
 	List<OrderPO> orderlist =new ArrayList<OrderPO>();
