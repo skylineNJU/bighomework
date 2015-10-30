@@ -19,6 +19,9 @@ public class FrameMain extends JFrame{
 	
 	}
 	
+	public static FrameMain getFrame(){
+		return frame;
+	}
 	public static void init(){
 		frame.setSize((int)((double)scrSize.getHeight()*3/4/490*724),(int)((double)scrSize.getHeight()*3/4));
 		frame.setLocation((int)(scrSize.getWidth()/2-(int)((double)scrSize.getHeight()*3/4/490*724/2))
@@ -26,13 +29,12 @@ public class FrameMain extends JFrame{
 		frame.setUndecorated(true);
 		frame.setResizable(false);
 		System.out.println(frame.getHeight());
-		exit.setSize(30,25);
+		exit.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		hide.setSize(30,25);
-		title.setSize(frame.getWidth()-exit.getWidth()-hide.getWidth(),25);
+		title.setSize(frame.getWidth()-(int)((double)frame.getWidth()*18/490)*2,(int)((double)frame.getHeight()*22/490));
 		title.setLocation(0,0);
 		exit.setLocation(frame.getWidth()-exit.getWidth(),0);
 		hide.setLocation(frame.getWidth()-2*hide.getWidth(),0);
-		System.out.println(exit.getWidth());
 		frame.add(panel);
 		panel.setLayout(null);
 		panel.add(exit);
@@ -40,7 +42,7 @@ public class FrameMain extends JFrame{
 		panel.add(title);
 		frame.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {  //按下（mousePressed 不是点击，而是鼠标被按下没有抬起）
-            	 if(e.getY()<=30){
+            	 if(e.getY()<=(int)((double)frame.getHeight()*22/490)){
             		 move=true;
             	origin.x = e.getX();  //当鼠标按下的时候获得窗口当前的位置
                 origin.y = e.getY();
@@ -89,13 +91,20 @@ public class FrameMain extends JFrame{
 		});
 		frame.setVisible(true);
 	}
-	public static void createFrame(){
+	public static FrameMain createFrame(){
 		frame=new FrameMain();
+		return frame;
 	}
 	
+	public static JPanel getContentPanel(){
+		return panel;
+	}
 	public static void main(String args[]){
-		FrameMain.createFrame();
+		FrameMain frame=FrameMain.createFrame();
 		FrameMain.init();
+		GuidePanel panel=new GuidePanel();
+		frame.getContentPanel().add(panel);
+		
 	}
 		
 
