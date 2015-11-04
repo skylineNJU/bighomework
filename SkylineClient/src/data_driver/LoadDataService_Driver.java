@@ -1,8 +1,5 @@
 package data_driver;
 
-import java.util.List;
-
-import po.VehicleLoadingPO;
 import dataservice.LoadDataService;
 
 public class LoadDataService_Driver {

@@ -4,14 +4,12 @@ import po.CenterReceivePO;
 import po.DistributePO;
 import po.LobbyReceivePO;
 import po.OrderPO;
-import presentation.mainui.MainFrame;
 import socketservice.Client;
 import po.MessageType;
 
 public class ReceiveDataServiceImpl implements ReceiveDataService{
     private Client client;
 	public ReceiveDataServiceImpl(){
-		client=MainFrame.getClient();
     }
 	@Override
 	public boolean writeOrder(OrderPO orderpo) {

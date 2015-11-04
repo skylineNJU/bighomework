@@ -19,7 +19,7 @@ public class WarehouseBLService_Driver {
 		}
 		
 	
-		InventoryVO inventory = warehouseBLService.showInventory(100, 20, "0100210002","0",'A',1,2,3,"…œ∫£","20010201");
+		InventoryVO inventory = warehouseBLService.showInventory("","");
 		if(inventory!= null){
 			System.out.println("--------------Inventory Showing-------------");
 		}

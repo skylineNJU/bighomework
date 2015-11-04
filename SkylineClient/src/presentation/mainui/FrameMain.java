@@ -99,13 +99,7 @@ public class FrameMain extends JFrame{
 	public static JPanel getContentPanel(){
 		return panel;
 	}
-	public static void main(String args[]){
-		FrameMain frame=FrameMain.createFrame();
-		FrameMain.init();
-		GuidePanel panel=new GuidePanel();
-		frame.getContentPanel().add(panel);
-		
-	}
+	
 		
 
 }

@@ -23,5 +23,7 @@ public interface WarehouseBLService {
 	 * 系统显示库存信息
 	 */
 	
-	public InventoryVO showInventory(int inNum, int outNum, String orderCode, String damageCondition,char area,int row,int shelf,int position,String destination,String arriveDate);
+	public InventoryVO showInventory(String startdate,String enddate);
+	
+	public InventoryVO checkInventory();
 }

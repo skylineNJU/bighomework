@@ -35,4 +35,16 @@ public class WarehouseBLService_Stub implements WarehouseBLService{
 		return inventoryVO;
 	}
 
+	@Override
+	public InventoryVO showInventory(String startdate, String enddate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryVO checkInventory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
