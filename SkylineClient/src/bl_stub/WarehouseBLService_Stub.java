@@ -26,14 +26,7 @@ public class WarehouseBLService_Stub implements WarehouseBLService{
 		return warehouseOutVO;
 	}
 
-	@Override
-	//库存信息
-	public InventoryVO showInventory(int inNum, int outNum, String orderCode, String damageCondition,char area,
-				int row,int shelf,int position,String destination,String arriveDate) {
-		// TODO Auto-generated method stub
-		InventoryVO inventoryVO = new InventoryVO(100, 20,"0100210002","0",'A',1,2,3,"上海","20010201");
-		return inventoryVO;
-	}
+
 
 	@Override
 	public InventoryVO showInventory(String startdate, String enddate) {

@@ -16,7 +16,6 @@ public class LoginPanel {
 	private JLabel back=new JLabel("返回");
 	private FrameMain frame;
 	private JPanel panel;
-	
 	public LoginPanel(){
 		frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
@@ -42,6 +41,44 @@ public class LoginPanel {
 				remove();
 				panel.repaint();
 				MainController.jumpToGuestui(Guestui.Search);
+			}
+		});
+		confirm.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				String username=userName.getText();
+				String Code=code.getText();
+				switch(username){
+				case "141250029":    //快递员账号
+					if(Code.equals(username)){
+						remove();
+						panel.repaint();
+						MainController.goToCourierui();
+					}
+					break;
+				case "141250028":    //营业厅业务员账号
+					if(Code.equals(username));
+					
+					break;
+					
+				case "141250027":    //中转中心业务员账号 
+					if(Code.equals(username));
+					break;
+					
+				case "141250026":    //中转仓库管理人员账号
+					if(Code.equals(username));
+					break;
+					
+				case "141250025":    //财务管理人员账号
+					if(Code.equals(username));
+					break;
+					
+				case "141250024":    //总经理账号
+					if(Code.equals(username));
+					break;
+				case "141250023":    //账户管理人员账号
+					if(Code.equals(username));
+					break;
+				}
 			}
 		});
 		panel.repaint();

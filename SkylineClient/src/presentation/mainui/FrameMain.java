@@ -28,14 +28,13 @@ public class FrameMain extends JFrame{
 				,(int)(scrSize.getHeight()/2-(int)((double)scrSize.getHeight()*3/4/2)));
 		frame.setUndecorated(true);
 		frame.setResizable(false);
-		System.out.println(frame.getHeight());
 		exit.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		hide.setSize(30,25);
 		title.setSize(frame.getWidth()-(int)((double)frame.getWidth()*18/490)*2,(int)((double)frame.getHeight()*22/490));
 		title.setLocation(0,0);
 		exit.setLocation(frame.getWidth()-exit.getWidth(),0);
 		hide.setLocation(frame.getWidth()-2*hide.getWidth(),0);
-		frame.add(panel);
+		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.add(exit);
 		panel.add(hide);
