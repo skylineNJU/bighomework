@@ -61,7 +61,11 @@ public class LoginPanel {
 					break;
 					
 				case "141250027":    //中转中心业务员账号 
-					if(Code.equals(username));
+					if(Code.equals(username)){
+						remove();
+						panel.repaint();
+						MainController.goToIntermediateStaffui();
+					}
 					break;
 					
 				case "141250026":    //中转仓库管理人员账号
@@ -76,7 +80,13 @@ public class LoginPanel {
 					if(Code.equals(username));
 					break;
 				case "141250023":    //账户管理人员账号
-					if(Code.equals(username));
+					if(Code.equals(username))
+						
+					{
+					remove();
+					panel.repaint();
+					MainController.goToRightAdminStaffui();
+					}
 					break;
 				}
 			}

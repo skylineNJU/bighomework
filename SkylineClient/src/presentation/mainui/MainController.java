@@ -3,6 +3,7 @@ package presentation.mainui;
 
 import presentation.guestui.Guestui;
 import presentation.guestui.GuestuiController;
+import presentation.loadui.LoaduiController;
 import presentation.receiveui.ReceiveController;
 import presentation.receiveui.Receiveui;
 import presentation.rightui.Rightui;
@@ -14,8 +15,11 @@ public class MainController {
 	private static GuestuiController guestui=new GuestuiController();
 	private static RightuiController rightui=new RightuiController();
 	private static ReceiveController receiveui=new ReceiveController();
+	private static LoaduiController loadui=new LoaduiController();
 	private static CourierPanel courierpanel;
 	private static WritePanel writepanel;
+	private static IntermediateStaffPanel intermediateStaffPanel;
+	private static RightAdminStaffPanel rightAdminStaffPanel;
 	public static void start(){
 		frame=FrameMain.createFrame();
 		FrameMain.init();
@@ -39,6 +43,20 @@ public class MainController {
 		courierpanel.init();
 		FrameMain.getContentPanel().add(writepanel);
 		jumpToReceiveui(Receiveui.OrderInput);
+	}
+	
+	public static void goToRightAdminStaffui(){
+		rightAdminStaffPanel=new RightAdminStaffPanel();
+		rightAdminStaffPanel.init();
+		FrameMain.getContentPanel().add(writepanel);
+		jumpToRightui(Rightui.RightAdmin);
+	}
+	public static void goToIntermediateStaffui(){
+		intermediateStaffPanel=new IntermediateStaffPanel();
+		intermediateStaffPanel.init();
+		FrameMain.getContentPanel().add(writepanel);
+		
+	
 	}
 
 	public static WritePanel getWritepanel() {
