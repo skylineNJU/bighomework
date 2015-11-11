@@ -5,10 +5,10 @@ import vo.RightVO;
 
 public interface RightBLService {
 	//用户输入账户名称，密码来登录,系统根据返回的权限来跳转页面
-	public RightVO login(String AccountName,String code);
+	public boolean login(String AccountName,String code,RightVO rightInfo);
 	
 	//账户管理人员创建新的账户，系统显示账户信息
-	public AccountVO createNewAccount(String ID,String code,RightVO right);
+	public boolean createNewAccount(AccountVO accountInfo);
 	
 	//公司职工修改账户密码，需输入旧的密码和新的密码
 	public boolean modifyCode(String oldCode,String newCode);
