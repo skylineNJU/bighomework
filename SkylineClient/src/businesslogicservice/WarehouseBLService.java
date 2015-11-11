@@ -22,8 +22,8 @@ public interface WarehouseBLService {
 	/*
 	 * 系统显示库存信息
 	 */
-	
-	public InventoryVO showInventory(String startdate,String enddate);
-	
-	public InventoryVO checkInventory();
+	//库存盘点
+	public InventoryVO checkInventory(String startdate,String enddate);
+	//库存查看
+	public InventoryVO showInventory();
 }
