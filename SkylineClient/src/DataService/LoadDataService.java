@@ -1,4 +1,4 @@
-package dataservice;
+package dataService;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface LoadDataService {
 	public boolean writeVehicleLoadBase(List<VehicleLoadingPO> loadList,String centerNumber);
 	
 	//从数据库读取装运信息  LoadList是装运信息
-	public List<VehicleLoadingPO> readVehicleLoadBase();
+	public boolean readVehicleLoadBase(List<VehicleLoadingPO> vehicleLoadingPOList);
 	
 	//删除数据库里的装运信息  loadList为要删除的装运信息
 	public boolean delVehicleLoadBase(List<VehicleLoadingPO> loadList);
@@ -26,7 +26,7 @@ public interface LoadDataService {
 	public boolean writeTrainLoadBase(List<TrainLoadingPO> loadList,String centerNumber);
 	
 	//从数据库读取装运信息  LoadList是装运信息
-	public List<TrainLoadingPO> readTrainLoadBase();
+	public boolean readTrainLoadBase(List<TrainLoadingPO> trainLoadingPOList);
 	
 	//删除数据库里的装运信息  loadList为要删除的装运信息
 	public boolean delTrainLoadBase(List<TrainLoadingPO> loadList);
@@ -35,7 +35,7 @@ public interface LoadDataService {
 	public boolean writePlaneLoadBase(List<PlaneLoadingPO> loadList,String centerNumber);
 	
 	//从数据库读取装运信息  LoadList是装运信息
-	public List<PlaneLoadingPO> readPlaneLoadBase();
+	public boolean readPlaneLoadBase(List<PlaneLoadingPO> planeLoadingPOList);
 	
 	//删除数据库里的装运信息  loadList为要删除的装运信息
 	public boolean delPlaneLoadBase(List<PlaneLoadingPO> loadList);

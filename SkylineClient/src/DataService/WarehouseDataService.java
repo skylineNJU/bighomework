@@ -1,4 +1,6 @@
-package dataservice;
+package dataService;
+
+import java.util.ArrayList;
 
 import po.InventoryPO;
 import po.WarehouseInPO;
@@ -16,5 +18,5 @@ public interface WarehouseDataService {
 	
 	//将相应仓库里的订单号全部读取出来 
 	//warehouseNumber表示仓库编号
-	public InventoryPO readWarehouse(String warehouseNumber);
+	public boolean readWarehouse(String warehouseNumber,ArrayList<InventoryPO> inventoryPOList);
 }

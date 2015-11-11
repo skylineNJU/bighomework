@@ -1,4 +1,4 @@
-package dataservice;
+package dataService;
 
 import po.CenterReceivePO;
 import po.DistributePO;
@@ -15,7 +15,7 @@ public interface ReceiveDataService {
 	
 	//查看订单信息
 	//orderBar为订单条形码
-	public OrderPO readOrder(String orderBar);
+	public boolean readOrder(String orderBar,OrderPO orderPO);
 	
 	//删除订单信息
 	//orderBar表示订单条形码
@@ -23,7 +23,7 @@ public interface ReceiveDataService {
 	
 	//修改订单信息
 	//orderBar表示订单条形码
-	public OrderPO modifiyOrder(OrderPO orderpo);
+	public boolean modifiyOrder(OrderPO orderpo);
 	
 	//存储新的中转接收单单信息
 	//将订单信息存储进数据库
@@ -31,7 +31,7 @@ public interface ReceiveDataService {
 	
 	//查看中转接收单单信息
 	//orderBar为订单条形码
-	public CenterReceivePO readCenterOrder(String orderBar);
+	public boolean readCenterOrder(String orderBar,CenterReceivePO centerReceivePO);
 	
 	//删除中转接收单单信息
 	//orderBar表示订单条形码
@@ -39,7 +39,7 @@ public interface ReceiveDataService {
 	
 	//修改中转接收单单信息
 	//orderBar表示订单条形码
-	public CenterReceivePO modifiyCenterOrder(CenterReceivePO centerReceivePO);
+	public boolean modifiyCenterOrder(CenterReceivePO centerReceivePO);
 	
 	//存储新的接收单单信息
 	//将订单信息存储进数据库
@@ -47,7 +47,7 @@ public interface ReceiveDataService {
 	
 	//查看接收单单信息
 	//orderBar为订单条形码
-	public LobbyReceivePO readLobbyReceiveOrder(String orderBar);
+	public boolean readLobbyReceiveOrder(String orderBar,LobbyReceivePO lobbyReceivePO);
 	
 	//删除接收单单信息
 	//orderBar表示订单条形码
@@ -55,7 +55,7 @@ public interface ReceiveDataService {
 	
 	//修改接收单单信息
 	//orderBar表示订单条形码
-	public LobbyReceivePO modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO);
+	public boolean modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO);
 	
 	//存储新的派送单信息
 	//将订单信息存储进数据库
@@ -63,7 +63,7 @@ public interface ReceiveDataService {
 	
 	//查看派送单单信息
 	//orderBar为订单条形码
-	public DistributePO readDistributeOrder(String orderBar);
+	public boolean readDistributeOrder(String orderBar,DistributePO distributePO);
 	
 	//删除派送单单信息
 	//orderBar表示订单条形码
@@ -71,6 +71,6 @@ public interface ReceiveDataService {
 	
 	//修改派送单单信息
 	//orderBar表示订单条形码
-	public DistributePO modifiyDistributeOrder(DistributePO distributePO);
+	public boolean modifiyDistributeOrder(DistributePO distributePO);
 	
 }

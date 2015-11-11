@@ -1,19 +1,19 @@
-package dataservice;
+package dataService;
 
 import po.ApprovalPO;
 import po.StaffReceiptPO;
 
-//
+
 public interface ReceiptDataService {
 	
 	public boolean saveReceiptCode(String account,String code);
 	
-	public StaffReceiptPO getStaffReceipt(String account);
+	public boolean getStaffReceipt(String account,StaffReceiptPO staffReceiptPO);
 	
 	public boolean delReceiptCode(String account,String code);
 	
-	public ApprovalPO getApprovalPO();
-	//........
+	public boolean getApprovalPO(ApprovalPO approvalPO);
+
 	public boolean removeApprovalPO(String code);
 	
 }

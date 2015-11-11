@@ -1,4 +1,4 @@
-package dataservice;
+package dataService;
 
 import po.CenterReceivePO;
 import po.DistributePO;
@@ -18,9 +18,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public OrderPO readOrder(String orderBar) {
+	public boolean readOrder(String orderBar,OrderPO orderPO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -30,9 +30,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public OrderPO modifiyOrder(OrderPO orderpo) {
+	public boolean modifiyOrder(OrderPO orderpo) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public CenterReceivePO readCenterOrder(String orderBar) {
+	public boolean readCenterOrder(String orderBar,CenterReceivePO centerReceivePO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -54,9 +54,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public CenterReceivePO modifiyCenterOrder(CenterReceivePO centerReceivePO) {
+	public boolean modifiyCenterOrder(CenterReceivePO centerReceivePO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -68,9 +68,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public LobbyReceivePO readLobbyReceiveOrder(String orderBar) {
+	public boolean readLobbyReceiveOrder(String orderBar,LobbyReceivePO lobbyReceivePO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -80,9 +80,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public LobbyReceivePO modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
+	public boolean modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -92,9 +92,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public DistributePO readDistributeOrder(String orderBar) {
+	public boolean readDistributeOrder(String orderBar,DistributePO distributePO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 	@Override
@@ -104,9 +104,9 @@ public class ReceiveDataServiceImpl implements ReceiveDataService{
 	}
 
 	@Override
-	public DistributePO modifiyDistributeOrder(DistributePO distributePO) {
+	public boolean modifiyDistributeOrder(DistributePO distributePO) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 }

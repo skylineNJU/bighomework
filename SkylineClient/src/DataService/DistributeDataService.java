@@ -1,4 +1,4 @@
-package dataservice;
+package dataService;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ public interface DistributeDataService {
 	
 	//输入快递员的账户
 	//数据库返回其需要分配的订单
-	public List<OrderPO> lookTask(String[] code);
+	public boolean lookTask(String[] code,List<OrderPO> orderPO);
 	
 	//增加收件信息
 	//数据库保存其订单信息
-	public void inputOrder(ReceivePO receivePO);
+	public boolean inputOrder(ReceivePO receivePO);
 	
 }
