@@ -1,6 +1,6 @@
 package data_driver;
 
-import dataservice.LoadDataService;
+import dataService.LoadDataService;
 
 public class LoadDataService_Driver {
 public void drive(LoadDataService loadDataService){

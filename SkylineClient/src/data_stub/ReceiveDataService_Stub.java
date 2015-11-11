@@ -1,6 +1,6 @@
 package data_stub;
 
-import dataservice.ReceiveDataService;
+import dataService.ReceiveDataService;
 import po.CenterReceivePO;
 import po.DistributePO;
 import po.LobbyReceivePO;

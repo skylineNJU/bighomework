@@ -1,6 +1,6 @@
 package businesslogic.receivebl;
 
-import dataservice.ReceiveDataServiceImpl;
+import dataService.ReceiveDataServiceImpl;
 import po.LobbyReceivePO;
 
 public class LobbyReceive {

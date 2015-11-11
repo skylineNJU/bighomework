@@ -1,7 +1,7 @@
 package data_driver;
 
+import dataService.RightDataService;
 import po.AccountPO;
-import dataservice.RightDataService;
 
 public class RightDataService_Driver {
 

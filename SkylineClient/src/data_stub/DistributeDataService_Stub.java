@@ -3,16 +3,16 @@ package data_stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataservice.DistributeDataService;
+import dataService.DistributeDataService;
 import po.OrderPO;
 import po.OrderPO.Size;
 import po.ReceivePO;
 import po.OrderPO.PackageCost;
 import po.Type;
 
-public class DistributeDataService_Stub implements DistributeDataService{
+public class DistributeDataService_Stub implements DistributeDataService {
 	List<OrderPO> orderlist =new ArrayList<OrderPO>();
-	@Override
+	
 	//存储快递员的任务
 	//account是快递员的账户，list表示该快递员的配送任务
 	public boolean saveTask(List<OrderPO> orderpo) {
@@ -20,8 +20,6 @@ public class DistributeDataService_Stub implements DistributeDataService{
 		System.out.println("------------------Save Success!------------------");
 		return true;
 	}
-	@Override
-
 	public List<OrderPO> lookTask(String[] code) {
 		// TODO Auto-generated method stub
 		OrderPO looktask = new OrderPO("张三","北京市三里屯","无","64227112","13242199875","李四","南京市和园" ,
@@ -31,7 +29,7 @@ public class DistributeDataService_Stub implements DistributeDataService{
 		return orderlist;
 	}
 
-	@Override
+	
 	//增加收件信息
 	//数据库保存其订单信息
 	public void inputOrder(ReceivePO receivePO) {

@@ -1,6 +1,6 @@
 package data_stub;
 
-import dataservice.WarehouseDataService;
+import dataService.WarehouseDataService;
 import po.InventoryPO;
 import po.WarehouseInPO;
 import po.WarehouseOutPO;
