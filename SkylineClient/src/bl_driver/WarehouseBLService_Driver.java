@@ -19,7 +19,7 @@ public class WarehouseBLService_Driver {
 		}
 		
 	
-		InventoryVO inventory = warehouseBLService.showInventory("","");
+		InventoryVO inventory = warehouseBLService.checkInventory("","");
 		if(inventory!= null){
 			System.out.println("--------------Inventory Showing-------------");
 		}
