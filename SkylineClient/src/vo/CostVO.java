@@ -31,10 +31,10 @@ public class CostVO extends ReceiptVO{
 	public void setPs(String ps) {
 		this.ps = ps;
 	}
-	public CostType getType() {
+	public CostType getCostType() {
 		return type;
 	}
-	public void setType(CostType type) {
+	public void setCostType(CostType type) {
 		this.type = type;
 	}
 	

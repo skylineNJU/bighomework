@@ -5,6 +5,7 @@ public class ReceiptVO {
 	private String ID;
 	private String date;
 	private String code;
+	private ReceiptType type;
 	
 	public ReceiptVO(String id,String da,String co){
 		ID=id;
@@ -29,6 +30,12 @@ public class ReceiptVO {
 
 	public String getCode() {
 		return code;
+	}
+	public ReceiptType getType() {
+		return type;
+	}
+	public void setType(ReceiptType type) {
+		this.type = type;
 	}
 
 	
