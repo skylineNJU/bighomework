@@ -1,6 +1,5 @@
 package businesslogicservice;
 
-import vo.TransType;
 import vo.TransVO;
 import vo.VehicleLoadingVO;
 
@@ -10,8 +9,7 @@ public interface LoadBLService {
 	 * 系统显示车辆装车单
 	 */
 	
-	public VehicleLoadingVO loadVehicle(String id,String  date,String vehiclecode,String from,String to,
-			String monitor,String escort,String[] ordercode,double fee);
+	public boolean loadVehicle(VehicleLoadingVO vehicleLoadingInfo);
 	
 	/*
 	 * 中转中心管理员
@@ -19,7 +17,6 @@ public interface LoadBLService {
 	 * 系统显示装运单（运输方式以type决定）
 	 */
 	
-	public TransVO intermidateLoading(String id,TransType type,String Transcode,String Vehiclecode,
-			String from,String to,String compartment,String monitor,String[] ordercode);
+	public boolean intermidateLoading(TransVO transInfo);
 	
 }
