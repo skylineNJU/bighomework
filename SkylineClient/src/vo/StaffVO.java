@@ -1,5 +1,7 @@
 package vo;
 
+import businesslogic.infobl.Staff;
+
 public class StaffVO {
 	private String name;
 	private String job;
@@ -13,6 +15,15 @@ public class StaffVO {
 		unit=un;
 		workage=wo;
 		code=co;
+	}
+	
+	public boolean writeStaffInfo(Staff staffInfo){
+		this.name=staffInfo.getName();
+		this.job=staffInfo.getJob();
+		this.unit=staffInfo.getUnit();
+		this.workage=staffInfo.getWorkage();
+		this.code=staffInfo.getCode();
+		return true;
 	}
 	
 	public String getName() {

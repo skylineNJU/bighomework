@@ -10,14 +10,15 @@ public class WorkerPO extends Message implements Serializable{
 	private String name;
 	private String position;
 	private String belong;
-	private int age;
+	private String age;
+	private String code;
 	
 	//-------------------
 	//获取和修改职工的年龄
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	
@@ -53,5 +54,11 @@ public class WorkerPO extends Message implements Serializable{
 		this.position=po;
 		this.belong=be;
 		this.age=ag;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

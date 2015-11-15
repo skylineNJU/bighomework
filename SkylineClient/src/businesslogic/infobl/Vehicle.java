@@ -1,34 +1,50 @@
-package vo;
+package businesslogic.infobl;
 
-import businesslogic.infobl.Vehicle;
+import po.VehicleInfoPO;
+import vo.VehicleVO;
 
-public class VehicleVO {
+public class Vehicle {
 	private int carID;//车辆代号
 	private int engineID;//底盘代号
 	private int carNum;//车辆号
 	private int underpanID;//底盘号
 	private String boughtTime;//购买时间
 	private int usedTime;//服役时间
-
-	public VehicleVO(int i,int j,int k,int m,String n,int p){
-		carID=i;
-		engineID=j;
-		carNum=k;
-		underpanID=m;
-		boughtTime=n;
-		usedTime=p;
+	private VehicleInfoPO po;
+	public Vehicle(VehicleVO vo){
+		this.carID=vo.getCarID();
+		this.engineID=vo.getEngineID();
+		this.carNum=vo.getCarNum();
+		this.underpanID=vo.getUnderpanID();
+		this.boughtTime=vo.getBoughtTime();
+		this.usedTime=vo.getUsedTime();
 	}
 	
-	public boolean writeVehicleInfo(Vehicle ve){
-		this.carID=ve.getCarID();
-		this.carNum=ve.getCarNum();
-		this.engineID=ve.getEngineID();
-		this.underpanID=ve.getUnderpanID();
-		this.usedTime=ve.getUsedTime();
-		this.boughtTime=ve.getBoughtTime();
+	public Vehicle(String vehicleCode){
+		if(inquire(vehicleCode)){
+			this.carID=po.getCarID();
+			this.engineID=po.getEngineID();
+			this.carNum=po.getCarNum();
+			this.underpanID=po.getUnderpanID();
+			this.boughtTime=po.getBoughtTime();
+			this.usedTime=po.getUsedTime();
+		}
+	}
+	public boolean inquire(String vehicleCode){
 		return true;
 	}
-
+	
+	public boolean saveInfo(){
+		return true;
+	}
+	
+	public boolean modify(){
+		return true;
+	}
+	
+	public static boolean delete(String vehicleCode){
+		return true;
+	}
 	public int getCarID() {
 		return carID;
 	}

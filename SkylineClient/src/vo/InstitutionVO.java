@@ -1,5 +1,7 @@
 package vo;
 
+import businesslogic.infobl.Institution;
+
 public class InstitutionVO {
 	private String Category;
 	private String name;
@@ -10,6 +12,14 @@ public class InstitutionVO {
 		name=na;
 		position=po;
 		code=co;
+	}
+	
+	public boolean writeInstitutionVO(Institution ins){
+		this.Category=ins.getCategory();
+		this.name=ins.getName();
+		this.code=ins.getCode();
+		this.position=ins.getPosition();
+		return true;
 	}
 	public String getCategory() {
 		return Category;

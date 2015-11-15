@@ -1,4 +1,4 @@
-package dataService;
+package dataservice;
 
 import po.CenterReceivePO;
 import po.DistributePO;

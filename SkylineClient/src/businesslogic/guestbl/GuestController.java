@@ -5,10 +5,15 @@ import vo.HistoryVO;
 
 public class GuestController implements GuestBLService {
 
+	
 	@Override
-	public HistoryVO showHistory(String code) {
+	public boolean showHistory(String code, HistoryVO history) {
 		// TODO Auto-generated method stub
-		return null;
+		History his=new History(code);
+		
+		return false;
 	}
+
+	
 
 }

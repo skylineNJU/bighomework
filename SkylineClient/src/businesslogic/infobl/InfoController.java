@@ -9,101 +9,113 @@ import vo.VehicleVO;
 public class InfoController implements InfoBLService {
 
 	@Override
-	public InstitutionVO createNewInstitution(String Category, String name, String position, String code) {
+	public boolean createNewInstitution(InstitutionVO institutionInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Institution ins=new Institution(institutionInfo);
+		return ins.saveInfo();
 	}
 
 	@Override
-	public boolean deleteInstitution() {
+	public boolean deleteInstitution(String institutionCode) {
 		// TODO Auto-generated method stub
-		return false;
+		return Institution.delete(institutionCode);
 	}
 
 	@Override
-	public InstitutionVO inquireInstitution(String code) {
+	public boolean inquireInstitution(String code, InstitutionVO institutionInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Institution ins=new Institution(code);
+		return institutionInfo.writeInstitutionVO(ins);
 	}
 
 	@Override
-	public InstitutionVO modifyInstitution(String Category, String name, String position, String code) {
+	public boolean modifyInstitution(InstitutionVO institutionInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Institution ins=new Institution(institutionInfo);
+		return ins.modify();
 	}
 
 	@Override
-	public StaffVO createNewStaff(String name, String job, String unit, String workage, String code) {
+	public boolean createNewStaff(StaffVO staffInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Staff staff=new Staff(staffInfo);
+		return staff.saveInfo();
 	}
 
 	@Override
-	public boolean deleteStaff() {
+	public boolean deleteStaff(String staffCode) {
 		// TODO Auto-generated method stub
-		return false;
+		return Staff.delete(staffCode);
 	}
 
 	@Override
-	public StaffVO inquireStaff(String code) {
+	public boolean inquireStaff(String staffCode,StaffVO staffInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Staff staff=new Staff(staffCode);
+		return staffInfo.writeStaffInfo(staff);
 	}
 
 	@Override
-	public StaffVO modifyStaff(String name, String job, String unit, String workage, String code) {
+	public boolean modifyStaff(StaffVO staffInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Staff staff=new Staff(staffInfo);
+		return staff.modify();
 	}
 
 	@Override
-	public VehicleVO createNewVehicle(String name, String code, String age) {
+	public boolean createNewVehicle(VehicleVO vehicleInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Vehicle vehicle=new Vehicle(vehicleInfo);
+		return vehicle.saveInfo();
 	}
 
 	@Override
-	public boolean deleteVehicle() {
+	public boolean deleteVehicle(String vehicleCode) {
 		// TODO Auto-generated method stub
-		return false;
+		return Vehicle.delete(vehicleCode);
 	}
 
 	@Override
-	public VehicleVO inquireVehicle(String code) {
+	public boolean inquireVehicle(String code, VehicleVO vehicleInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Vehicle vehicle=new Vehicle(code);
+		return vehicleInfo.writeVehicleInfo(vehicle);
 	}
 
 	@Override
-	public VehicleVO modifyVehicle(String name, String code, String age) {
+	public boolean modifyVehicle(VehicleVO vehicleInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Vehicle vehicle=new Vehicle(vehicleInfo);
+		return vehicle.modify();
 	}
 
 	@Override
-	public DriverVO createNewDriver(String name, String code, String age, String IDcode, String phoneNumber, String sex,
-			String limit) {
+	public boolean createNewDriver(DriverVO driverInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Driver driver=new Driver(driverInfo);
+		return driver.saveInfo();
 	}
 
 	@Override
-	public boolean deleteDriver() {
+	public boolean deleteDriver(String driverCode) {
 		// TODO Auto-generated method stub
-		return false;
+		return Driver.delete(driverCode);
 	}
 
 	@Override
-	public DriverVO inquireDriver(String code) {
+	public boolean inquireDriver(String code, DriverVO driverInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Driver driver=new Driver(code);
+		return driverInfo.writeDriverInfo(driver);
 	}
 
 	@Override
-	public DriverVO modifyDriver(String name, String code, String age, String IDcode, String phoneNumber, String sex,
-			String limit) {
+	public boolean modifyDriver(DriverVO driverInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Driver driver=new Driver(driverInfo);
+		return driver.modify();
 	}
+
+	
 
 }

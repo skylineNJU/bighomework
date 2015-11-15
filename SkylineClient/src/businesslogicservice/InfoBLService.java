@@ -25,7 +25,7 @@ public interface InfoBLService {
 	public boolean deleteStaff(String staffCode);
 	
 	//查询职工，输入职工编号，系统显示职工信息
-	public boolean inquireStaff(String staffCode);
+	public boolean inquireStaff(String staffCode,StaffVO staffInfo);
 	
 	//修改职工信息，系统显示修改后的职工信息
 	public boolean modifyStaff(StaffVO staffInfo);

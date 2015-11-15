@@ -1,8 +1,9 @@
-package vo;
+package businesslogic.infobl;
 
-import businesslogic.infobl.Driver;
+import po.DriverInfoPO;
+import vo.DriverVO;
 
-public class DriverVO {
+public class Driver {
 	private String name;
 	private String code;
 	private String age;
@@ -10,18 +11,9 @@ public class DriverVO {
 	private String phoneNumber;
 	private String sex;
 	private String limit;
+	private DriverInfoPO po;
 	
-	public DriverVO(String na,String co,String ag,String id,String ph,String se,String li ){
-		name=na;
-		code=co;
-		age=ag;
-		IDcode=id;
-		phoneNumber=ph;
-		sex=se;
-		limit=li;
-	}
-	
-	public boolean writeDriverInfo(Driver dr){
+	public Driver(DriverVO dr){
 		this.age=dr.getAge();
 		this.code=dr.getCode();
 		this.IDcode=dr.getIDcode();
@@ -29,6 +21,34 @@ public class DriverVO {
 		this.name=dr.getName();
 		this.phoneNumber=dr.getPhoneNumber();
 		this.sex=dr.getSex();
+	}
+	
+	public Driver(String driverCode){
+		if(inquire(driverCode)){
+			this.age=po.getBirthDay();
+			this.code=po.getDriverID();
+			this.IDcode=po.getIdCard();
+			this.limit=po.getDueDate();
+			this.name=po.getName();
+			this.phoneNumber=po.getPhoneNum();
+			this.sex=po.getSex();
+		}
+	}
+	
+	public boolean saveInfo(){
+		return true;
+	}
+	
+	public boolean modify(){
+		return true;
+	}
+	private boolean inquire(String driverCode){
+		
+		return true;
+		
+	}
+	
+	public static boolean delete(String driverCode){
 		return true;
 	}
 	public String getName() {
