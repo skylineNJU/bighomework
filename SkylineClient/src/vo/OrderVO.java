@@ -129,10 +129,10 @@ public class OrderVO extends ReceiptVO{
 	public void setPackageCost(PackageCost packageCost) {
 		this.packageCost = packageCost;
 	}
-	public Type getType() {
+	public Type getSpeedType() {
 		return type;
 	}
-	public void setType(Type type) {
+	public void setSpeedType(Type type) {
 		this.type = type;
 	}
 	public Size getSize() {

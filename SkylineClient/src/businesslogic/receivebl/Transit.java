@@ -1,5 +1,5 @@
 package businesslogic.receivebl;
 
-public class TransitReceive {
+public class Transit {
 
 }

@@ -22,10 +22,10 @@ public class TransVO extends ReceiptVO{
 		this.ordercode=ordercode;
 		// TODO Auto-generated constructor stub
 	}
-	public TransType getType() {
+	public TransType getTransType() {
 		return type;
 	}
-	public void setType(TransType type) {
+	public void setTransType(TransType type) {
 		this.type = type;
 	}
 	public String getTranscode() {
