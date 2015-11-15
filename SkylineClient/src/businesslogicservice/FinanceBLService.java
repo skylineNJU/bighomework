@@ -8,7 +8,7 @@ import vo.EarnVO;
 
 public interface FinanceBLService {
 	//输入开始日期和结束日期，显示所有该日期内的所有收款单信息
-	public boolean showStatisticsList(String date1,String date2,ArrayList<EarnVO> earnList);
+	public boolean showStatisticsList(String date1,String date2,ArrayList<EarnVO> earnList,ArrayList<CostVO> costList);
 	
 	//输入日期，查看当天所有的收款单
 	public boolean showEarnListDependsOnDay(String date,ArrayList<EarnVO> earnList);
@@ -25,6 +25,8 @@ public interface FinanceBLService {
 	//显示指定月份的支出信息
 	public boolean showCostList(String date,ArrayList<CostVO> costList);
 	
-	//中转中心业务员填写收款单信息，系统显示收款单
+	//填写收款单信息，系统显示收款单
 	public boolean writeEarnList(ArrayList<EarnVO> earnList);
+	
+	public boolean writeCostList(ArrayList<CostVO> costList);
 }
