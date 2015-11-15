@@ -18,6 +18,21 @@ public class Transit {
 		this.bar=tr.getBar();
 	}
 
+	
+	public boolean saveInfo(){
+		return true;
+	}
+	
+	public boolean modify(){
+		return true;
+	}
+//	public static boolean delete(String institutionCode){
+//		return true;
+//	}
+//	private boolean inquireInfo(String code){
+//		return true;
+//	}
+	
 	public int getReceiveYear() {
 		return receiveYear;
 	}

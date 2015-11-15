@@ -14,7 +14,6 @@ public class Order {
 	//private String receivortel;
 	private String receivorMobile;
 	private OrderVO po;
-	//
 	public Order(OrderVO or){
 		this.senderName=or.getName1();//¼Ä¼þÈË
 		this.senderAddress=or.getPosition1();
@@ -25,6 +24,20 @@ public class Order {
 		this.receivorCom=or.getUnit2();
 		this.receivorMobile=or.getPhoneNumber2();	
 	}
+	
+	public boolean saveInfo(){
+		return true;
+	}
+	
+	public boolean modify(){
+		return true;
+	}
+//	public static boolean delete(String institutionCode){
+//		return true;
+//	}
+//	private boolean inquireInfo(String code){
+//		return true;
+//	}
 	public String getSenderName() {
 		return senderName;
 	}

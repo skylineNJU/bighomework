@@ -14,22 +14,22 @@ public class ReceiveController implements ReceiveBLService {
 	public boolean createNewOrder(OrderVO orderInfo) {
 		// TODO Auto-generated method stub
 		Order order=new Order(orderInfo);
-		return null;
+		return order.saveInfo();
 	}
 
 	@Override
-	public TransitReceptionVO createNewTransitReception(String CenterCode, String date, String ReceiptCode, String from,
-			int condition) {
+	public boolean createNewTransitReception(TransitReceptionVO transitReceptionInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Transit transit=new Transit(transitReceptionInfo);
+		
+		return transit.saveInfo();
 	}
-
 	@Override
-	public LobbyReceptionVO createNewLobbyReception(String date, String code, String from, int condition) {
+	public boolean createNewLobbyReception(LobbyReceptionVO lobbyReceptionInfo) {
 		// TODO Auto-generated method stub
-		Lobby lobby=new Lobby(date,code,from,condition,this.receiptcode);
-		lobby.write();
-		return null;
+		Lobby lobby=new Lobby( lobbyReceptionInfo);
+		
+		return lobby.saveInfo();
 	}
 
 }
