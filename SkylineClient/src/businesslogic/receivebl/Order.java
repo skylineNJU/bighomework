@@ -15,7 +15,7 @@ public class Order {
 	private String receivortel;
 	private String receivorMobile;
 	private OrderVO po;
-	
+	//
 	public Order(OrderVO or){
 		this.senderName=or.get
 	}
