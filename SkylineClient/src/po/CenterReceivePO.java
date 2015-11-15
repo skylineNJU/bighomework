@@ -10,10 +10,10 @@ public class CenterReceivePO extends Message{
 	private int receiveYear;//接收年份
 	private int receiveMonth;//接收月份
 	private int receiveDay;//接收天
-	private int centerNumber;//中转中心编号
+	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	
-	public CenterReceivePO(int receiveYear,int receiveMonth,int receiveDay,int centerNumber,String bar){
+	public CenterReceivePO(int receiveYear,int receiveMonth,int receiveDay,String centerNumber,String bar){
 		this.receiveYear = receiveYear;
 		this.receiveMonth = receiveMonth;
 		this.receiveDay = receiveDay;
@@ -33,7 +33,7 @@ public class CenterReceivePO extends Message{
 		return receiveDay;
 	}
 
-	public int getCenterNumber() {
+	public String getCenterNumber() {
 		return centerNumber;
 	}
 

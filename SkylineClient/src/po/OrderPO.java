@@ -20,13 +20,13 @@ public class OrderPO extends Message implements Serializable{
 	 	String senderName;
 		String senderAddress;
 		String senderCom;
-		String sendertel;
+		//String sendertel;
 		String senderMobile;
 		
 		String receivorName;
 		String receivorAddress;
 		String receivorCom;
-		String receivortel;
+		//String receivortel;
 		String receivorMobile;
 		
 		public enum PackageCost{
@@ -49,18 +49,18 @@ public class OrderPO extends Message implements Serializable{
 		String orderCode;//订单条形码
 		int sum;//费用合计
 
-		public OrderPO(String a,String b,String c,String d,String e,String f,String g ,String h,String i,String j,
+		public OrderPO(String a,String b,String c,String e,String f,String g ,String h,String j,
 		 PackageCost pC,Type t,int k,double l,double m,String n,Size s,String p,int q){
 			 senderName = a;
 			 senderAddress = b;
 			 senderCom = c;
-			 sendertel = d;
+			// sendertel = d;
 			 senderMobile = e;
 			
 			 receivorName = f;
 			 receivorAddress = g;
 			 receivorCom = h;
-		     receivortel = i;
+		     //receivortel = i;
 			 receivorMobile = j;
 			
 		     packageCost = pC;
@@ -99,13 +99,13 @@ public class OrderPO extends Message implements Serializable{
 			this.senderCom = senderCom;
 		}
 
-		public String getSendertel() {
-			return sendertel;
-		}
-
-		public void setSendertel(String sendertel) {
-			this.sendertel = sendertel;
-		}
+//		public String getSendertel() {
+//			return sendertel;
+//		}
+//
+//		public void setSendertel(String sendertel) {
+//			this.sendertel = sendertel;
+//		}
 
 		public String getSenderMobile() {
 			return senderMobile;
@@ -139,13 +139,13 @@ public class OrderPO extends Message implements Serializable{
 			this.receivorCom = receivorCom;
 		}
 
-		public String getReceivortel() {
-			return receivortel;
-		}
-
-		public void setReceivortel(String receivortel) {
-			this.receivortel = receivortel;
-		}
+//		public String getReceivortel() {
+//			return receivortel;
+//		}
+//
+//		public void setReceivortel(String receivortel) {
+//			this.receivortel = receivortel;
+//		}
 
 		public String getReceivorMobile() {
 			return receivorMobile;
