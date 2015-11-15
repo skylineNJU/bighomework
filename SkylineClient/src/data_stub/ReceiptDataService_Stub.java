@@ -3,7 +3,7 @@ package data_stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataService.ReceiptDataService;
+import dataservice.ReceiptDataService;
 import po.ApprovalPO;
 import po.StaffReceiptPO;
 

@@ -9,29 +9,28 @@ import businesslogicservice.WarehouseBLService;
 public class WarehouseController implements WarehouseBLService {
 
 	@Override
-	public WarehouseInVO WarehouseIn(String code, String date, String to,
-			char area, int row, int shelf, int position) {
+	public boolean WarehouseIn(WarehouseInVO warehouseInInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public WarehouseOutVO WarehouseOut(String code, String date, String to,
-			Type transport, String TransitCode, String vehicleCode) {
+	public boolean WarehouseOut(WarehouseOutVO warehouseOutInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public InventoryVO checkInventory(String startdate, String enddate) {
+	public boolean showInventory(String startdate, String enddate,
+			InventoryVO inventoryInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public InventoryVO showInventory() {
+	public boolean checkInventory(InventoryVO inventoryInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

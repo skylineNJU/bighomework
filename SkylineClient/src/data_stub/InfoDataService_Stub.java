@@ -1,6 +1,6 @@
 package data_stub;
 
-import dataService.InfoDataService;
+import dataservice.InfoDataService;
 import po.DriverInfoPO;
 import po.InstitutionPO;
 import po.VehicleInfoPO;

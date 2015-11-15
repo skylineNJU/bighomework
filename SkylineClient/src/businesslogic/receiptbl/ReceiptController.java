@@ -8,9 +8,9 @@ import vo.ReceiptVO;
 public class ReceiptController implements ReceiptBLService {
 
 	@Override
-	public ArrayList<ReceiptVO> showReceiptList() {
+	public boolean showReceiptList(ArrayList<ReceiptVO> receiptList) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
@@ -20,9 +20,9 @@ public class ReceiptController implements ReceiptBLService {
 	}
 
 	@Override
-	public ArrayList<ReceiptVO> inquireReceiptList() {
+	public boolean inquireReceiptList(ArrayList<ReceiptVO> receiptList) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
@@ -32,9 +32,17 @@ public class ReceiptController implements ReceiptBLService {
 	}
 
 	@Override
-	public boolean submitReceipt(ReceiptVO receipt) {
+	public boolean submitReceipt(String receiptCode) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean save(String receiptCode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 
 }

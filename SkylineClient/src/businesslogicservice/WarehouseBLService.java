@@ -22,16 +22,10 @@ public interface WarehouseBLService {
 	/*
 	 * 系统显示库存信息
 	 */
-<<<<<<< HEAD
-	
+	//库存查看
 	public boolean showInventory(String startdate,String enddate,InventoryVO inventoryInfo);
 	
 	//库存盘点
 	public boolean checkInventory(InventoryVO inventoryInfo);
-=======
-	//库存盘点
-	public InventoryVO checkInventory(String startdate,String enddate);
-	//库存查看
-	public InventoryVO showInventory();
->>>>>>> origin/master
+	
 }

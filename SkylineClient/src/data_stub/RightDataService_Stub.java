@@ -1,6 +1,6 @@
 package data_stub;
 
-import dataService.RightDataService;
+import dataservice.RightDataService;
 import po.AccountPO;
 import State.RightType;
 
