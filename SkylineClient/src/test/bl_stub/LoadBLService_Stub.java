@@ -1,9 +1,9 @@
-package bl_stub;
+package test.bl_stub;
 
-import businesslogicservice.LoadBLService;
-import vo.TransType;
-import vo.TransVO;
-import vo.VehicleLoadingVO;
+import  main.businesslogicservice.LoadBLService;
+import  main.vo.TransType;
+import  main.vo.TransVO;
+import  main.vo.VehicleLoadingVO;
 
 public class LoadBLService_Stub implements LoadBLService{
 	VehicleLoadingVO vehl;

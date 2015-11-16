@@ -1,10 +1,10 @@
-package bl_driver;
+package test.bl_driver;
 
-import vo.InventoryVO;
-import vo.WarehouseInVO;
-import vo.WarehouseOutVO;
-import vo.WarehouseOutVO.Type;
-import businesslogicservice.WarehouseBLService;
+import  main.vo.InventoryVO;
+import  main.vo.WarehouseInVO;
+import  main.vo.WarehouseOutVO;
+import main.State.TransType;
+import  main.businesslogicservice.WarehouseBLService;
 
 public class WarehouseBLService_Driver {
 	public void drive(WarehouseBLService warehouseBLService){
@@ -13,7 +13,7 @@ public class WarehouseBLService_Driver {
 			System.out.println("--------------WarehouseInOrder Showing-------------");
 		}
 		
-		WarehouseOutVO warehouseOutVO = warehouseBLService.WarehouseOut("10101", "20010101", "上海", Type.plane,"0101010","025000001");
+		WarehouseOutVO warehouseOutVO = warehouseBLService.WarehouseOut("10101", "20010101", "上海", TransType.PLANE,"0101010","025000001");
 		if(warehouseOutVO != null){
 			System.out.println("--------------WarehouseOutOrder Showing--------------");
 		}

@@ -1,11 +1,11 @@
-package data_stub;
+package test.data_stub;
 
 import java.util.ArrayList;
 
-import dataservice.WarehouseDataService;
-import po.InventoryPO;
-import po.WarehouseInPO;
-import po.WarehouseOutPO;
+import main.dataservice.WarehouseDataService;
+import main.po.InventoryPO;
+import main.po.WarehouseInPO;
+import main.po.WarehouseOutPO;
 
 
 public class WarehouseDataService_Stub implements WarehouseDataService{

@@ -1,9 +1,10 @@
-package bl_driver;
+package test.bl_driver;
 
-import vo.TransType;
-import vo.TransVO;
-import vo.VehicleLoadingVO;
-import businesslogicservice.LoadBLService;
+
+import  main.vo.TransVO;
+import  main.vo.VehicleLoadingVO;
+import main.State.TransType;
+import  main.businesslogicservice.LoadBLService;
 
 public class LoadBLService_Driver {
 	public void drive(LoadBLService LoadBLService){
@@ -13,7 +14,7 @@ public class LoadBLService_Driver {
 			System.out.println("---------Loading Success!-------------");
 		}
 		
-		TransVO trans =LoadBLService.intermidateLoading("10101", TransType.plane, "1102010", "2010101010", "nanjing", "shanghai", "2", "2", code);
+		TransVO trans =LoadBLService.intermidateLoading("10101", TransType.PLANE, "1102010", "2010101010", "nanjing", "shanghai", "2", "2", code);
 		if(trans!= null){
 			System.out.println("---------IntermidateLoading Success!-------------");
 		}

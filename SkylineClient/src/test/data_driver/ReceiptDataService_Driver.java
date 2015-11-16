@@ -1,6 +1,6 @@
-package data_driver;
+package test.data_driver;
 
-import dataService.ReceiptDataService;
+import main.dataservice.ReceiptDataService;
 
 public class ReceiptDataService_Driver {
 public void drive(ReceiptDataService receiptDataService){

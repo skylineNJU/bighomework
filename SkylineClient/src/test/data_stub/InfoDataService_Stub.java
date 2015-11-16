@@ -1,10 +1,10 @@
-package data_stub;
+package test.data_stub;
 
-import dataservice.InfoDataService;
-import po.DriverInfoPO;
-import po.InstitutionPO;
-import po.VehicleInfoPO;
-import po.WorkerPO;
+import  main.dataservice.InfoDataService;
+import  main.po.DriverInfoPO;
+import  main.po.InstitutionPO;
+import  main.po.VehicleInfoPO;
+import  main.po.WorkerPO;
 
 
 public class InfoDataService_Stub implements InfoDataService{

@@ -1,12 +1,12 @@
-package bl_driver;
+package test.bl_driver;
 
-import vo.LobbyReceptionVO;
-import vo.OrderVO;
-import vo.OrderVO.PackageCost;
-import vo.OrderVO.Size;
-import vo.OrderVO.Type;
-import vo.TransitReceptionVO;
-import businesslogicservice.ReceiveBLService;
+import  main.vo.LobbyReceptionVO;
+import  main.vo.OrderVO;
+import  main.vo.OrderVO.PackageCost;
+import  main.vo.OrderVO.Size;
+import  main.vo.OrderVO.Type;
+import  main.vo.TransitReceptionVO;
+import  main.businesslogicservice.ReceiveBLService;
 
 public class ReceiveBLService_Driver {
 	public void drive(ReceiveBLService receiveBLService){

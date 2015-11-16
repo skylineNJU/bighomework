@@ -1,8 +1,8 @@
-package bl_stub;
+package test.bl_stub;
 
-import vo.AccountVO;
-import vo.RightVO;
-import businesslogicservice.RightBLService;
+import  main.vo.AccountVO;
+import  main.vo.RightVO;
+import  main.businesslogicservice.RightBLService;
 
 public class RightBLService_Stub implements RightBLService{
 

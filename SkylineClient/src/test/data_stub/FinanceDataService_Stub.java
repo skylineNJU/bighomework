@@ -3,7 +3,7 @@ package test.data_stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.DataService.FinanceDataService;
+import main.dataservice.FinanceDataService;
 import main.po.BankAccountPO;
 import main.po.CollectionPO;
 import main.po.CostPO;
