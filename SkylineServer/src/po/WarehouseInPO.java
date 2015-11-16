@@ -1,19 +1,23 @@
 package po;
 import java.io.Serializable;
 
-public class WarehouseInPO implements Serializable{
+public class WarehouseInPO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /*
  * 快递编号、入库日期、目的地、区号、排号、架号、位号
  */
 	String bar;
 	String inDate;
 	String destination;
-	String area;
+	char area;
 	int row;
 	int shelf;
 	int position;
 	
-	public WarehouseInPO(String a,String b,String c,String d,int e,int f,int g){
+	public WarehouseInPO(String a,String b,String c,char d,int e,int f,int g){
 		bar = a;
 		inDate = b;
 		destination = c;
@@ -31,11 +35,11 @@ public class WarehouseInPO implements Serializable{
 		this.destination = destination;
 	}
 
-	public String getArea() {
+	public char getArea() {
 		return area;
 	}
 
-	public void setArea(String area) {
+	public void setArea(char area) {
 		this.area = area;
 	}
 

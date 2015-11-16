@@ -1,23 +1,25 @@
 package po;
 import java.io.Serializable;
 
-public class WarehouseOutPO implements Serializable{
+import State.TransType;
+
+public class WarehouseOutPO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /*
- * 蹇?掔紪鍙枫?佸嚭搴撴棩鏈熴?佺洰鐨勫湴銆佽杩愬舰寮忥紙鐏溅銆侀鏈恒?佹苯杞︼級銆佷腑杞崟缂栧彿鎴栬?呮苯杩愮紪鍙?
+ * 快递编号、出库日期、目的地、装运形式（火车、飞机、汽车）、中转单编号或者汽运编号
  */
 	
 	String bar;
 	String outDate;
 	String destination;
 	
-	public enum Type{
-		train,plane,bus;
-	}
-	
-	Type type;
+	TransType type;
 	String transferCode;
 	String vehicleCode;
-	public WarehouseOutPO(String a,String b,String c,Type t,String d,String e){
+	public WarehouseOutPO(String a,String b,String c,TransType t,String d,String e){
 		bar=a;
 		outDate =b;
 		destination = c;
@@ -31,10 +33,10 @@ public class WarehouseOutPO implements Serializable{
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	public Type getType() {
+	public TransType getTType() {
 		return type;
 	}
-	public void setType(Type type) {
+	public void setTType(TransType type) {
 		this.type = type;
 	}
 	public String getVehicleCode() {

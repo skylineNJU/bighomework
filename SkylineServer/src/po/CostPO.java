@@ -3,7 +3,11 @@ package po;
 import java.util.List;
 
 //成本单，一项成本信息
-public class CostPO {
+public class CostPO extends Message{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String costItem;//成本项目，如租金、工资等
 	private int costYear;//支出年份
 	private String costMonth;//支出月份

@@ -1,7 +1,11 @@
 package po;
 import java.io.Serializable;
 //车辆装车管理
-public class LoadingInfoPO  implements Serializable {
+public class LoadingInfoPO  extends Message implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String loadingDate;//装车日期
 	String autoMobileNum;//营业厅汽运编号
 	String departure;//出发地

@@ -3,8 +3,12 @@ package po;
 import java.util.List;
 
 //审批未通过单号
-public class ApprovalPO {
+public class ApprovalPO extends Message{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	List<String> code;
 
 	public ApprovalPO(List<String> code) {

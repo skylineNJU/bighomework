@@ -1,7 +1,11 @@
 package po;
 import java.io.Serializable;
 
-public class InventoryPO implements Serializable{
+public class InventoryPO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 /*	飩�	
  * 鍑�/鍏ュ簱鏁伴噺锛屽嚭鍏ュ簱璐х墿鐨勮鍗曞彿锛屾崯鍧忔儏鍐碉紝鍒嗗尯鍙锋帓鍙锋灦鍙蜂綅鍙凤紝鍒拌揪鏃ユ湡,鐩殑鍦�
  * 

@@ -2,7 +2,7 @@ package po;
 
 import java.io.Serializable;
 
-public class WorkerPO implements Serializable{
+public class WorkerPO extends Message implements Serializable{
 	/**
 	 * 
 	 */
@@ -10,14 +10,15 @@ public class WorkerPO implements Serializable{
 	private String name;
 	private String position;
 	private String belong;
-	private int age;
+	private String age;
+	private String code;
 	
 	//-------------------
 	//获取和修改职工的年龄
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	
@@ -48,10 +49,16 @@ public class WorkerPO implements Serializable{
 	
 	//----------------------
 	//构造函数
-	public WorkerPO(String na,String po,String be,int ag){
+	public WorkerPO(String na,String po,String be,String ag){
 		this.name=na;
 		this.position=po;
 		this.belong=be;
 		this.age=ag;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 }

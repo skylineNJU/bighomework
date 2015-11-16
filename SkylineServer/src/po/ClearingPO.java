@@ -3,7 +3,7 @@ package po;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-public class ClearingPO implements Serializable{
+public class ClearingPO extends Message implements Serializable{
 
 	/**
 	 * 

@@ -3,13 +3,17 @@ package po;
 import java.io.Serializable;
 
 
-public class VehicleInfoPO implements Serializable{
-int carID;//车辆代号
-int engineID;//底盘代号
-int carNum;//车辆号
-int underpanID;//底盘号
-String boughtTime;//购买时间
-int usedTime;//服役时间
+public class VehicleInfoPO extends Message implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int carID;//车辆代号
+	private int engineID;//底盘代号
+    private int carNum;//车辆号
+    private int underpanID;//底盘号
+    private String boughtTime;//购买时间
+    private int usedTime;//服役时间
 
 public VehicleInfoPO(int i,int j,int k,int m,String n,int p){
 	carID=i;

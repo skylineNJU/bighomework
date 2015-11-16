@@ -2,32 +2,34 @@ package po;
 
 import java.io.Serializable;
 
-public class DriverInfoPO  implements Serializable{
-	int driverID;//司机编号
+public class DriverInfoPO extends Message implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String driverID;//司机编号
 	String name;//姓名
 	String birthDay;//出生日期
 	String idCard;//身份证号
 	String phoneNum;//电话号码
-	String firm;//单位
 	String sex;//性别
 	String dueDate;//行驶证期限
 	
-	public DriverInfoPO(int i,String j,String k,String m,String n,String o,String p,String q){
+	public DriverInfoPO(String i,String j,String k,String m,String n,String o,String p,String q){
 		driverID=i;
 		name=j;
 		birthDay=k;
 		idCard=m;
 		phoneNum=n;
-		firm=o;
 		sex=p;
 		dueDate=q;
 	}
 
-	public int getDriverID() {
+	public String getDriverID() {
 		return driverID;
 	}
 
-	public void setDriverID(int driverID) {
+	public void setDriverID(String driverID) {
 		this.driverID = driverID;
 	}
 
@@ -61,14 +63,6 @@ public class DriverInfoPO  implements Serializable{
 
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
-	}
-
-	public String getFirm() {
-		return firm;
-	}
-
-	public void setFirm(String firm) {
-		this.firm = firm;
 	}
 
 	public String getSex() {

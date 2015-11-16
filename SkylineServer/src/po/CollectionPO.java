@@ -1,8 +1,12 @@
 package po;
 
 //一项收入的收款单PO
-public class CollectionPO {
+public class CollectionPO extends Message{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int collectionYear;//收入年份
 	private String collectionMonth;//收入月份
 	private String collectionDay;//收入天
