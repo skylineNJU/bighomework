@@ -1,11 +1,11 @@
-package businesslogic.rightbl.mocktest;
+package main.businesslogic.rightbl.mocktest;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import vo.AccountVO;
-import businesslogic.rightbl.Account;
+import main.vo.AccountVO;
+
 
 public class RightControllerTest {
 @Test
