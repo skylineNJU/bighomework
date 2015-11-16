@@ -1,24 +1,25 @@
 package businesslogic.loadbl;
 
 import businesslogicservice.LoadBLService;
-import vo.TransType;
 import vo.TransVO;
 import vo.VehicleLoadingVO;
 
 public class LoadController implements LoadBLService {
 
 	@Override
-	public VehicleLoadingVO loadVehicle(String id, String date, String vehiclecode, String from, String to,
-			String monitor, String escort, String[] ordercode, double fee) {
+	public boolean loadVehicle(VehicleLoadingVO vehicleLoadingInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Load load=new Load();
+		return load.loadVehicle(vehicleLoadingInfo);
 	}
 
 	@Override
-	public TransVO intermidateLoading(String id, TransType type, String Transcode, String Vehiclecode, String from,
-			String to, String compartment, String monitor, String[] ordercode) {
+	public boolean intermidateLoading(TransVO transInfo) {
 		// TODO Auto-generated method stub
-		return null;
+		Load load=new Load();
+		return load.intermidateLoading(transInfo);
 	}
+
+	
 
 }
