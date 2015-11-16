@@ -37,7 +37,9 @@ public class ReceiptVO {
 	public void setType(ReceiptType type) {
 		this.type = type;
 	}
-
-	
-	
+	public void write(String id,String date,String code){
+		this.ID = id;
+		this.date = date;
+		this.code = code;
+	}
 }

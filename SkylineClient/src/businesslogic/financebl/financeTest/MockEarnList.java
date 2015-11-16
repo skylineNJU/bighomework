@@ -2,9 +2,10 @@ package businesslogic.financebl.financeTest;
 
 import java.util.ArrayList;
 
+import businesslogic.financebl.EarnList;
 import vo.EarnVO;
 
-public class EarnListTester {
+public class MockEarnList extends EarnList{
 	
 	EarnVO earnVO = new EarnVO("253156", "2015/03/15", "15168168");
 	

@@ -2,10 +2,11 @@ package businesslogic.financebl.financeTest;
 
 import java.util.ArrayList;
 
+import businesslogic.financebl.CostList;
 import vo.CostType;
 import vo.CostVO;
 
-public class CostListTester {
+public class MockCostList extends CostList{
 	
 	CostVO costVO = new CostVO("3153", "2015/03/15", "65165", "刘钦", 20.6, "好人一生平安", CostType.reward);
 	
@@ -22,7 +23,6 @@ public class CostListTester {
 		return true;
 	}
 	public boolean writeCostList(ArrayList<CostVO> costList) {
-		System.out.println("write succeed!");
 		return true;
 	}
 }

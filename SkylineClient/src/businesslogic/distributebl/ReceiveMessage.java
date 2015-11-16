@@ -7,7 +7,7 @@ import vo.RecipientVO;
 public class ReceiveMessage {
 
 	//写到数据库里面
-	public void writeReceviceMessage(RecipientVO recipentVO){
-		
+	public boolean writeReceviceMessage(RecipientVO recipentVO){
+		return true;
 	}
 }

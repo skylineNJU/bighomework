@@ -1,7 +1,6 @@
 package businesslogic.infobl.mocktest;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import vo.DriverVO;

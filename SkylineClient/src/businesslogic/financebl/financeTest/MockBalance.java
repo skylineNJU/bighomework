@@ -1,12 +1,11 @@
 package businesslogic.financebl.financeTest;
 
 import vo.AccountVO;
+import businesslogic.financebl.Balance;
 
-public class BalanceTester {
+public class MockBalance extends Balance{
 	
 	public boolean readBalance(String name, AccountVO account){
-		account.setBalance(52005.5);
 		return true;
 	}
-
 }
