@@ -8,7 +8,8 @@ import main.vo.DistributeVO;
 public class MockDistributeList extends DistributeList{
 	
 	public boolean writeDistribute(ArrayList<DistributeVO> distributeList){
-		
+		DistributeVO distributeVO = new DistributeVO("123456", "ÁõÇÕ", "ÄÏ¾©", "12345678", "12356");
+		distributeList.add(distributeVO);
 		return true;
 	} 
 }

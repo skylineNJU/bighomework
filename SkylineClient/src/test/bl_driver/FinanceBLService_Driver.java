@@ -3,7 +3,7 @@ package test.bl_driver;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
 
@@ -11,7 +11,7 @@ public class FinanceBLService_Driver {
 	
 	ArrayList<EarnVO> earnlist;
 	ArrayList<CostVO> costlist;
-	AccountVO account;
+	BankAccountVO account;
 	
 	public void drive(FinanceBLService financeBLService){
 		boolean show =financeBLService.showStatisticsList("20130201", "20130212", earnlist, costlist);

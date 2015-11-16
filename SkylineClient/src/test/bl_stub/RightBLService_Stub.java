@@ -1,6 +1,6 @@
 package test.bl_stub;
 
-import  main.vo.AccountVO;
+import  main.vo.BankAccountVO;
 import  main.vo.RightVO;
 import  main.businesslogicservice.RightBLService;
 
@@ -14,9 +14,9 @@ public class RightBLService_Stub implements RightBLService{
 	}
 
 	@Override
-	public AccountVO createNewAccount(String ID, String code, RightVO right) {
+	public BankAccountVO createNewAccount(String ID, String code, RightVO right) {
 		// TODO Auto-generated method stub
-		AccountVO accountVO = new AccountVO(ID,12);
+		BankAccountVO accountVO = new BankAccountVO(ID,12);
 		return accountVO;
 	}
 

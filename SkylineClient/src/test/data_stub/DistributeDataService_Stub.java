@@ -1,10 +1,9 @@
 package test.data_stub;
 
-import java.awt.Window.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.dataservice.DistributeDataService;
+import main.DataService.DistributeDataService;
 import main.po.OrderPO;
 import main.po.OrderPO.Size;
 import main.po.ReceivePO;

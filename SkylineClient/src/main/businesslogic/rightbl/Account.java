@@ -1,7 +1,7 @@
 package main.businesslogic.rightbl;
 import main.po.AccountPO;
 import main.po.Rights;
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.RightVO;
 public class Account {
 
@@ -10,7 +10,7 @@ public class Account {
 	private RightVO right;//х╗оч
 	private AccountPO po;
 	private String initCode="000000";
-	public Account(AccountVO ac){
+	public Account(BankAccountVO ac){
 		this.ID=ac.getAccountName();
 		this.code=ac.getCode();
 		this.right=ac.getRight();	

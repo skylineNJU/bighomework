@@ -2,8 +2,7 @@ package main.businesslogic.financebl.financeTest;
 
 import java.util.ArrayList;
 
-import main.vo.AccountVO;
-import main.vo.CostType;
+import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
 import static org.junit.Assert.*;
@@ -12,7 +11,6 @@ import main.businesslogic.financebl.FinanceController;
 public class FinanceTester extends FinanceController{
 
 	String name = "50163046831";
-	AccountVO accountVO = new AccountVO(this.name, 20122.2);
 	
 	public boolean showStatisticsList(String date1, String date2,
 			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
@@ -20,6 +18,7 @@ public class FinanceTester extends FinanceController{
 		MockCostList cost = new MockCostList();
 		earn.readEarnList(date1, date2, earnList);
 		cost.readCostList(date1, date2, costList);
+		System.out.println();
 		assertEquals("СѕЧе", costList.get(0).getID());
 		assertEquals("15168168",earnList.get(0).getCode());
 		return false;
@@ -40,11 +39,10 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
-	public boolean showBalance(String name, AccountVO account) {
-		account = accountVO;
+	public boolean showBalance(String name, BankAccountVO account) {
 		MockBalance balance = new MockBalance();
 		balance.readBalance(name, account);
-		assertEquals(this.name,account.getAccountName());
+		assertEquals("2609059",account.getBalance(name));
 		return false;
 	}
 
