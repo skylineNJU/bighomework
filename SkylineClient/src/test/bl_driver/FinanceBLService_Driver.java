@@ -1,58 +1,46 @@
-package bl_driver;
+package test.bl_driver;
 
 import java.util.ArrayList;
 
-import vo.AccountVO;
-import vo.CostVO;
-import vo.EarnVO;
-import businesslogicservice.FinanceBLService;
+import main.businesslogicservice.FinanceBLService;
+import main.vo.AccountVO;
+import main.vo.CostVO;
+import main.vo.EarnVO;
 
 public class FinanceBLService_Driver {
 	
 	ArrayList<EarnVO> earnlist;
 	ArrayList<CostVO> costlist;
+	AccountVO account;
 	
 	public void drive(FinanceBLService financeBLService){
-		earnlist.clear();
-		earnlist =financeBLService.showStatisticsList("20130201", "20130212");
-		if(earnlist != null){
+		boolean show =financeBLService.showStatisticsList("20130201", "20130212", earnlist, costlist);
+		if(show){
 			System.out.println("---------Earnlist Showing!-------------");
 		}
 		
-		earnlist.clear();
-		earnlist =financeBLService.showEarnListDependsOnDay("20120203");
-		if(earnlist != null){
+		if(financeBLService.showEarnListDependsOnDay("20120203", earnlist)){
 			System.out.println("---------Earnlist Showing!-------------");
 		}
 		
-		
-		earnlist.clear();
-		earnlist =financeBLService.showEarnListDependsOnInstitution("110210000001", "20091002", "22091102");
-		if(earnlist != null){
+		if(financeBLService.showEarnListDependsOnInstitution("110210000001", "20091002", "22091102", earnlist)){
 			System.out.println("---------Earnlist Showing!-------------");
 		}
 		
-		AccountVO account =financeBLService.showBalance("A");
-		if(account != null){
+		if(financeBLService.showBalance("A", account)){
 			System.out.println("---------Balance Showing!-------------");
 		}
 		
-		costlist.clear();
-	    costlist = financeBLService.showCostList();
-		if(costlist != null){
+		if(financeBLService.showCostList(costlist)){
 			System.out.println("---------Costlist Showing!-------------");
 		}
 		
-		costlist.clear();
-		costlist = financeBLService.showCostList("20010101");
-		if(costlist != null){
+		if(financeBLService.showCostList("20010101",costlist)){
 			System.out.println("---------Costlist Showing!-------------");
 		}
 		
-		earnlist.clear();
 		ArrayList<EarnVO> earn = new ArrayList<EarnVO>();
-		earnlist =financeBLService.writeEarnList(earn);
-		if(costlist != null){
+		if(financeBLService.writeEarnList(earn)){
 			System.out.println("-----------Write Success!-------------");
 		}
 		

@@ -14,7 +14,7 @@ public interface DistributeDataService {
 	
 	//输入快递员的账户
 	//数据库返回其需要分配的订单
-	public boolean lookTask(String[] code,List<OrderPO> orderPO);
+	public boolean lookTask(String code,List<OrderPO> orderPO);
 	
 	//增加收件信息
 	//数据库保存其订单信息

@@ -1,10 +1,10 @@
-package data_driver;
+package test.data_driver;
 
 
-import dataService.FinanceDataService;
-import po.BankAccountPO;
-import po.CollectionPO;
-import po.CostPO;
+import main.DataService.FinanceDataService;
+import main.po.BankAccountPO;
+import main.po.CollectionPO;
+import main.po.CostPO;
 
 public class FinanceDataService_Driver {
 	CostPO readCost=new CostPO("null",1,"null","null",1,"null","null","null");
@@ -17,29 +17,29 @@ public class FinanceDataService_Driver {
 		
 		service.delCost(readCost);
 		
-		if(service.modifiyCost(readCost)!=null){
+		if(service.modifiyCost(readCost)){
 			System.out.println("--------modifiCost success-------");
 		}
 		
-		if(service.readCollection()!=null){
+		if(service.readCollection(null)){
 			System.out.println("----------read success--------");
 		}
 		
-		if(service.readCollection(null)!=null){
+		if(service.readCollection(null)){
 			System.out.println("----------read success--------");
 		}
 		
-		if(service.readCollection(null, null)!=null){
+		if(service.readCollection(null, null)){
 			System.out.println("----------read success----------");
 		}
 		
 		service.writeCollection(collection);
 		
-		if(service.modifiyCollection(collection)!=null){
+		if(service.modifiyCollection(collection)){
 			System.out.println("----------modifiy success---------");
 		}
 		
-		if(service.readBankAccount(null)!=null){
+		if(service.readBankAccount(null, bankAccount)){
 			System.out.println("---------read success---------");
 		}
 		

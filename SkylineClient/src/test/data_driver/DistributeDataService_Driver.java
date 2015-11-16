@@ -1,19 +1,19 @@
-package data_driver;
+package test.data_driver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dataService.DistributeDataService;
-import po.OrderPO;
-import po.OrderPO.PackageCost;
-import po.OrderPO.Size;
-import po.ReceivePO;
-import po.Type;
+import main.DataService.DistributeDataService;
+import main.po.OrderPO;
+import main.po.OrderPO.PackageCost;
+import main.po.OrderPO.Size;
+import main.po.ReceivePO;
+import main.po.Type;
 
 public class DistributeDataService_Driver {
-	OrderPO order=new OrderPO("null","null","null","null","null","null","null","null","null","null",PackageCost.paperBox,
+	OrderPO order=new OrderPO("null","null","null","null","null","null","null","null",PackageCost.paperBox,
 			Type.fast,1,1,1,"null",Size.small,"null",1);
-	String[] code={"1341324","1341324"};
+	String code = "1341324";
 	List<OrderPO> orderpo;
 	ReceivePO receive=new ReceivePO("null","null","null");
 	public void drive(DistributeDataService service){
@@ -23,7 +23,7 @@ public class DistributeDataService_Driver {
 			System.out.println("------------------save success--------------");
 		}
 		
-		if(service.lookTask(code)!=null){
+		if(service.lookTask(code,orderpo)){
 			System.out.println("------------look success------------");
 		}
 		

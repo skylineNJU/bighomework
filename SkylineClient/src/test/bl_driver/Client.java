@@ -1,4 +1,4 @@
-package bl_driver;
+package test.bl_driver;
 
 public class Client {
 

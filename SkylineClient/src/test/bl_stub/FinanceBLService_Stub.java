@@ -1,76 +1,81 @@
-package bl_stub;
+package test.bl_stub;
 
 import java.util.ArrayList;
 
-import businesslogicservice.FinanceBLService;
-import vo.AccountVO;
-import vo.CostVO;
-import vo.EarnVO;
+import main.businesslogicservice.FinanceBLService;
+import main.vo.AccountVO;
+import main.vo.CostVO;
+import main.vo.EarnVO;
 
 public class FinanceBLService_Stub implements FinanceBLService{
 	ArrayList<EarnVO> earn=new ArrayList<EarnVO>();
 	AccountVO account;
 	ArrayList<CostVO> cost=new ArrayList<CostVO>();
 	@Override
-	public ArrayList<EarnVO> showStatisticsList(String date1, String date2) {
-		// TODO Auto-generated method stub
+	public boolean showStatisticsList(String date1, String date2,ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
 		earn.clear();
 		EarnVO ea=new EarnVO("141250029",date1,"1234567890");
 		EarnVO eaa=new EarnVO("141250029",date2,"1234567891");
 		earn.add(ea);
 		earn.add(eaa);
-		return earn;
+		return true;
 	}
 
 	@Override
-	public ArrayList<EarnVO> showEarnListDependsOnDay(String date) {
+	public boolean showEarnListDependsOnDay(String date,ArrayList<EarnVO> earnList) {
 		// TODO Auto-generated method stub
 		earn.clear();
 		EarnVO ea=new EarnVO("141250029",date,"123456789021");
 		EarnVO eaa=new EarnVO("141250029",date,"123456789121");
 		earn.add(ea);
 		earn.add(eaa);
-		return earn;
+		return true;
 	}
 
 	@Override
-	public ArrayList<EarnVO> showEarnListDependsOnInstitution(String code, String date1, String data2) {
+	public boolean showEarnListDependsOnInstitution(String code, String date1, String data2,ArrayList<EarnVO> earnList) {
 		// TODO Auto-generated method stub
 		earn.clear();
 		EarnVO ea=new EarnVO("123456789121",date1,code);
 		earn.add(ea);
-		return null;
+		return true;
 	}
 
 	@Override
-	public AccountVO showBalance(String name) {
+	public boolean showBalance(String name,AccountVO account) {
 		// TODO Auto-generated method stub
 		account=new AccountVO(name,100000.0);
-		return account;
+		return true;
 	}
 
 	@Override
-	public ArrayList<CostVO> showCostList() {
+	public boolean showCostList(ArrayList<CostVO> costList) {
 		// TODO Auto-generated method stub
 		CostVO co=new CostVO("1235123512","2014/1/1","123456789211","24212341234132", 0, null, null);
 		cost.clear();
 		cost.add(co);
-		return cost;
+		return true;
 	}
 
 	@Override
-	public ArrayList<CostVO> showCostList(String date) {
+	public boolean showCostList(String date,ArrayList<CostVO> costList) {
 		// TODO Auto-generated method stub
 		CostVO co=new CostVO("1235123512",date,"123456789211","24212341234132", 0, null, null);
 		cost.clear();
 		cost.add(co);
-		return cost;
+		return true;
 	}
 
 	@Override
-	public ArrayList<EarnVO> writeEarnList(ArrayList<EarnVO> earn) {
-		// TODO Auto-generated method stub
-		return earn;
+	public boolean writeEarnList(ArrayList<EarnVO> earn) {
+		
+		return true;
+	}
+
+	@Override
+	public boolean writeCostList(ArrayList<CostVO> costList) {
+		
+		return false;
 	}
 
 }

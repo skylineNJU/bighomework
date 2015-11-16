@@ -1,21 +1,21 @@
-package bl_driver;
+package test.bl_driver;
 
 import java.util.ArrayList;
 
-import vo.DistributeVO;
-import vo.RecipientVO;
-import businesslogicservice.DistributeBLService;
+import main.vo.DistributeVO;
+import main.vo.RecipientVO;
+import main.businesslogicservice.DistributeBLService;
 
 public class DistributeBLService_Driver {
 	public void drive(DistributeBLService distributeBLService){
-		
-		ArrayList<DistributeVO> distributelist = distributeBLService.showDistributeList();
-		if(distributelist != null){
+		ArrayList<DistributeVO> distributelist = new ArrayList<DistributeVO>();
+		if(distributeBLService.showDistributeList(distributelist)){
 			System.out.println("---------Distributelist Showing!-------------");
 			}
 		
-		RecipientVO  recipient = distributeBLService.writeReceiveMessage("101111", "1", "20010201", "张三");
-		if(recipient != null){
+		RecipientVO  recipient = new RecipientVO(null, null, null);
+		recipient.write("101111", "1", "20010201", "张三","5+5+5266");
+		if(distributeBLService.writeReceiveMessage(recipient)){
 			System.out.println("-------------Write Success!-------------");
 		}
 	

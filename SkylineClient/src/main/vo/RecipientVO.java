@@ -18,16 +18,12 @@ public class RecipientVO extends ReceiptVO{
 	
 	/**
 	 * ÖØÐ´
-	 * @param id
-	 * @param date
-	 * @param code
-	 * @param sendee
-	 * @param sendeePhone
 	 */
-	public void write(String id, String date, String code,
+	public boolean write(String id, String date, String code,
 			String sendee, String sendeePhone) {
 		super.write(id,date,code);
 		this.name = sendee;
 		this.sendeePhone = sendeePhone;
+		return true;
 	}
 }
