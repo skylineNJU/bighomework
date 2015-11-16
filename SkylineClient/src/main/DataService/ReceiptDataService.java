@@ -1,4 +1,4 @@
-package main.DataService;
+package main.dataservice;
 
 import main.po.ApprovalPO;
 import main.po.StaffReceiptPO;
