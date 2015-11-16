@@ -55,6 +55,7 @@ public class Inventory {
 	public boolean modify(){
 		return true;
 	}
+	
 	private boolean inquire(String driverCode){
 		
 		return true;
