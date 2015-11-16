@@ -26,12 +26,12 @@ public class Lobby {
 	public boolean modify(){
 		return true;
 	}
-//	public static boolean delete(String institutionCode){
-//		return true;
-//	}
-//	private boolean inquireInfo(String code){
-//		return true;
-//	}
+	public static boolean delete(String expressBar){
+		return true;
+	}
+	public boolean inquireInfo(String expressBar){
+		return true;
+	}
 	
 	public String getReceiveYear() {
 		return receiveYear;
