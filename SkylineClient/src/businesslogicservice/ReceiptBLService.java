@@ -23,4 +23,6 @@ public interface ReceiptBLService {
 	public boolean submitReceipt(String receiptCode);
 	
 	public boolean save(String receiptCode);
+
+	boolean delete(String[] receiptCode);
 }
