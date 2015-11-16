@@ -14,11 +14,8 @@ public class FinanceTester extends FinanceController{
 	
 	public boolean showStatisticsList(String date1, String date2,
 			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
-		MockEarnList earn = new MockEarnList();
-		MockCostList cost = new MockCostList();
-		earn.readEarnList(date1, date2, earnList);
-		cost.readCostList(date1, date2, costList);
-		System.out.println();
+		MockStatisticsList statisticsList = new MockStatisticsList();
+		statisticsList.showStatisticsList(date1, date2, earnList, costList);
 		assertEquals("СѕЧе", costList.get(0).getID());
 		assertEquals("15168168",earnList.get(0).getCode());
 		return false;

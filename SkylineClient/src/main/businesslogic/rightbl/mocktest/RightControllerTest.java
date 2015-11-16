@@ -25,7 +25,7 @@ public void deleteAccount(){
 }
 @Test
 public void createNewAccount(){
-	BankAccountVO vo=new BankAccountVO("141250029", null, null);
+	BankAccountVO vo=new BankAccountVO("141250029", null);
 	MockAccount mock=new MockAccount(vo);
 	assertEquals("141250029",mock.getID());
 	assertEquals(true,mock.saveInfo());

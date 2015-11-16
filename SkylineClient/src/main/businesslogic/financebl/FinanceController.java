@@ -12,10 +12,8 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public boolean showStatisticsList(String date1, String date2,
 			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.readEarnList(date1, date2, earnList);
-		costArrayList.readCostList(date1, date2, costList);
+		StatisticsList statisticsList = new StatisticsList();
+		statisticsList.showStatisticsList(date1, date2, earnList, costList);
 		return false;
 	}
 
