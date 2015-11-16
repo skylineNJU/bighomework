@@ -5,24 +5,25 @@ import vo.RightVO;
 
 public class RightController {
 	public boolean login(String AccountName,String code,RightVO rightInfo){
-		Account account=new Account("141250029","131313",rightInfo);
+		Account account=new Account(AccountName,code,rightInfo);
 		
-		return false;
+		return account.saveInfo();
 	
 	}
 	public boolean createNewAccount(AccountVO accountInfo){
+		Account account=new Account(accountInfo);
 		
-		return false;
+		return account.saveInfo();
 	}
 	
 	public boolean modifyCode(String oldCode,String newCode){//–ﬁ∏ƒ√‹¬Î
-		
-		return false;
+		Account account=new Account(oldCode,newCode);
+		return account.saveInfo();
 	}
 	
 	public boolean initCode(String ID){//√‹¬Î≥ı ºªØ
+		Account account=new Account(ID);
 		
-		
-		return false;
+		return account.saveInfo();
 	}
 }

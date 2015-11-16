@@ -6,11 +6,14 @@ public class AccountVO {
 	private String accountName;
 	//private double balance;
 	private String code;
-	private Rights right;
-	public AccountVO(String name,String code,Rights right){
+	private RightVO right;
+	public AccountVO(String name,String code,RightVO right){
 		this.accountName=name;
 		this.code=code;
 		this.right=right;
+	}
+	public AccountVO(String name, double d) {
+		// TODO Auto-generated constructor stub
 	}
 	public String getAccountName() {
 		return accountName;
@@ -24,11 +27,15 @@ public class AccountVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public Rights getRight() {
+	public RightVO getRight() {
 		return right;
 	}
-	public void setRight(Rights right) {
+	public void setRight(RightVO right) {
 		this.right = right;
+	}
+	public void setBalance(double d) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
