@@ -1,31 +1,49 @@
-package vo;
+package businesslogic.warehousebl;
 
-import businesslogic.warehousebl.WarehouseOut;
+
 import State.TransType;
+import po.WarehouseOutPO;
+import vo.WarehouseOutVO;
 
-public class WarehouseOutVO extends ReceiptVO{
-
+public class WarehouseOut {
 	private String destination;
 	private TransType type;
 	private String outDate;
 	private String transferCode;
 	private String vehicleCode;
+	private WarehouseOutPO po;
 	
-	public WarehouseOutVO(String id, String da, String co,String c,String k,TransType t,String d,String e){
-		super(id, da, co);//outdata
-		destination = c;
-		outDate =k;
-		type = t;
-		transferCode = d;
-		vehicleCode = e;
-	}
-	
-	public boolean writeWarehouseOutInfo(WarehouseOut who){
+	public WarehouseOut(WarehouseOutVO who){
 		this.destination=who.getDestination();
 		this.outDate = who.getOutDate();
 		this.type=who.getTransType();
 		this.transferCode=who.getTransferCode();
 		this.vehicleCode=who.getVehicleCode();
+	}
+	
+	public WarehouseOut(String code){
+		if(inquire(code)){
+		this.destination=po.getDestination();
+		this.outDate = po.getOutDate();
+		this.type=po.getTType();
+		this.transferCode=po.getTransferCode();
+		this.vehicleCode=po.getVehicleCode();
+		}
+	}
+	
+	public boolean saveInfo(){
+		return true;
+	}
+	
+	public boolean modify(){
+		return true;
+	}
+	
+	private boolean inquire(String Code){
+		return true;	
+	}
+		
+	public static boolean delete(String Code){
 		return true;
 	}
 	public String getOutDate() {
@@ -59,5 +77,7 @@ public class WarehouseOutVO extends ReceiptVO{
 	public String getTransferCode() {
 		return transferCode;
 	}
+	
+	
 	
 }

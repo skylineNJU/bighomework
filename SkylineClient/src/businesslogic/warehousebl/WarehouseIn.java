@@ -1,30 +1,20 @@
-package vo;
+package businesslogic.warehousebl;
 
-import businesslogic.warehousebl.WarehouseIn;
+import po.WarehouseInPO;
+import vo.WarehouseInVO;
 
-
-public class WarehouseInVO extends ReceiptVO {
-
-// TODO Auto-generated constructor stub
+public class WarehouseIn {
 	private String bar;//入库单编号
 	private String destination;//目的地
 	private String inDate;//入库日期
-	private char area;//区号
+	private char area;//区号 ,
 	private int row;//排号
 	private int shelf;//架号
 	private int position;//位号
+	private WarehouseInPO po;
+
 	
-	public WarehouseInVO(String id,String da,String co,String a,String b,String c,char d,int e,int f,int g){
-		super(id, da, co);
-		bar = a;
-		inDate=b;
-		destination = c;
-		area = d;
-		row = e;
-		shelf = f;
-		position = g;
-	}
-	public boolean writeWarehouseInInfo(WarehouseIn whi){
+	public WarehouseIn(WarehouseInVO whi){
 		this.bar=whi.getBar();
 		this.destination=whi.getDestination();
 		this.inDate=whi.getInDate();
@@ -32,6 +22,36 @@ public class WarehouseInVO extends ReceiptVO {
 		this.row=whi.getRow();
 		this.shelf=whi.getShelf();
 		this.position=whi.getPosition();
+	}
+	public WarehouseIn(String code){
+		if(inquire(code)){
+		this.bar=po.getBar();
+		this.destination=po.getDestination();
+		this.inDate=po.getInDate();
+		this.area=po.getArea();
+		this.row=po.getRow();
+		this.shelf=po.getShelf();
+		this.position=po.getPosition();
+		}
+	}
+	//库存盘点
+	public boolean check(){
+		return true;
+	}
+	
+	public boolean saveInfo(){
+		return true;
+	}
+	
+	public boolean modify(){
+		return true;
+	}
+	
+	private boolean inquire(String Code){
+		return true;	
+	}
+		
+	public static boolean delete(String Code){
 		return true;
 	}
 

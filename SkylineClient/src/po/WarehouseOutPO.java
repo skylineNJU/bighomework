@@ -1,6 +1,8 @@
 package po;
 import java.io.Serializable;
 
+import State.TransType;
+
 public class WarehouseOutPO extends Message implements Serializable{
 /**
 	 * 
@@ -14,14 +16,10 @@ public class WarehouseOutPO extends Message implements Serializable{
 	String outDate;
 	String destination;
 	
-	public enum Type{
-		train,plane,bus;
-	}
-	
-	Type type;
+	TransType type;
 	String transferCode;
 	String vehicleCode;
-	public WarehouseOutPO(String a,String b,String c,Type t,String d,String e){
+	public WarehouseOutPO(String a,String b,String c,TransType t,String d,String e){
 		bar=a;
 		outDate =b;
 		destination = c;
@@ -35,10 +33,10 @@ public class WarehouseOutPO extends Message implements Serializable{
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	public Type getType1() {
+	public TransType getTType() {
 		return type;
 	}
-	public void setType(Type type) {
+	public void setTType(TransType type) {
 		this.type = type;
 	}
 	public String getVehicleCode() {

@@ -1,5 +1,7 @@
 package data_stub;
 
+import java.util.ArrayList;
+
 import dataservice.WarehouseDataService;
 import po.InventoryPO;
 import po.WarehouseInPO;
@@ -23,10 +25,11 @@ public class WarehouseDataService_Stub implements WarehouseDataService{
 	
 	//将相应仓库里的订单号全部读取出来 
 	//warehouseNumber表示仓库编号
-	public InventoryPO readWarehouse(String warehouseNumber){
+	public boolean readWarehouse(String warehouseNumber,ArrayList<InventoryPO> inventoryPOList){
 		InventoryPO inventoryPO = new InventoryPO(10, 5, "6767676767", "如此厚颜无耻之徒", 'A',10, 5, 6, warehouseNumber, warehouseNumber);
+		inventoryPOList.add(inventoryPO);
 		System.out.println("Succeed!/n");
-		return inventoryPO;
+		return true;
 		
 	}
 }

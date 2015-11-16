@@ -12,12 +12,12 @@ public class WarehouseInPO extends Message implements Serializable{
 	String bar;
 	String inDate;
 	String destination;
-	String area;
+	char area;
 	int row;
 	int shelf;
 	int position;
 	
-	public WarehouseInPO(String a,String b,String c,String d,int e,int f,int g){
+	public WarehouseInPO(String a,String b,String c,char d,int e,int f,int g){
 		bar = a;
 		inDate = b;
 		destination = c;
@@ -35,11 +35,11 @@ public class WarehouseInPO extends Message implements Serializable{
 		this.destination = destination;
 	}
 
-	public String getArea() {
+	public char getArea() {
 		return area;
 	}
 
-	public void setArea(String area) {
+	public void setArea(char area) {
 		this.area = area;
 	}
 

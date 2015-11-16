@@ -1,9 +1,9 @@
 package businesslogic.warehousebl;
 
+
 import vo.InventoryVO;
 import vo.WarehouseInVO;
 import vo.WarehouseOutVO;
-import vo.WarehouseOutVO.Type;
 import businesslogicservice.WarehouseBLService;
 
 public class WarehouseController implements WarehouseBLService {
@@ -11,26 +11,30 @@ public class WarehouseController implements WarehouseBLService {
 	@Override
 	public boolean WarehouseIn(WarehouseInVO warehouseInInfo) {
 		// TODO Auto-generated method stub
-		return false;
+		WarehouseIn warehouseIn = new WarehouseIn(warehouseInInfo);
+		return warehouseIn.saveInfo();
 	}
 
 	@Override
 	public boolean WarehouseOut(WarehouseOutVO warehouseOutInfo) {
 		// TODO Auto-generated method stub
-		return false;
+		WarehouseOut warehouseOut = new WarehouseOut(warehouseOutInfo);
+		return warehouseOut.saveInfo();
 	}
 
 	@Override
 	public boolean showInventory(String startdate, String enddate,
 			InventoryVO inventoryInfo) {
 		// TODO Auto-generated method stub
-		return false;
+		Inventory showinventory = new Inventory(inventoryInfo);
+		return showinventory.show();
 	}
 
 	@Override
-	public boolean checkInventory(InventoryVO inventoryInfo) {
+	public boolean checkInventory(WarehouseInVO checkinventoryInfo) {
 		// TODO Auto-generated method stub
-		return false;
+		WarehouseIn checkinventory = new WarehouseIn(checkinventoryInfo);
+		return checkinventory.check();
 	}
 
 }

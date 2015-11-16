@@ -49,7 +49,7 @@ public class WorkerPO extends Message implements Serializable{
 	
 	//----------------------
 	//¹¹Ôìº¯Êý
-	public WorkerPO(String na,String po,String be,int ag){
+	public WorkerPO(String na,String po,String be,String ag){
 		this.name=na;
 		this.position=po;
 		this.belong=be;

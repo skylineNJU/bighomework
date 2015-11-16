@@ -1,5 +1,7 @@
 package vo;
 
+import State.TransType;
+
 public class TransVO extends ReceiptVO{
 	private TransType type;
 	private String Transcode;

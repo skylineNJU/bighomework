@@ -1,5 +1,8 @@
 package vo;
 
+import businesslogic.infobl.Driver;
+import businesslogic.warehousebl.Inventory;
+
 public class InventoryVO {
 	int inNum;
  	int outNum;
@@ -23,6 +26,21 @@ public class InventoryVO {
 		position=h;
 		destination=i;
 		arriveDate=j;
+	}
+	
+	
+	public boolean writeInentoryInfo(Inventory it){
+		this.inNum=it.getInNum();
+		this.outNum=it.getOutNum();
+		this.orderCode=it.getOrderCode();
+		this.damageCondition=it.getDamageCondition();
+		this.area=it.getArea();
+		this.row=it.getRow();
+		this.shelf=it.getShelf();
+		this.position=it.getPosition();
+		this.destination=it.getDestination();
+		this.arriveDate=it.getArriveDate();
+		return true;
 	}
 
 	public int getInNum() {

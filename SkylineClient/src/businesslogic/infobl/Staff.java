@@ -19,7 +19,7 @@ public class Staff {
 	}
 
 	public Staff(String code){
-		if(inquire()){
+		if(inquire(code)){
 			this.name=po.getName();
 			this.job=po.getPosition();
 			this.unit=po.getBelong();
@@ -28,7 +28,7 @@ public class Staff {
 		}
 	}
 	
-	private boolean inquire(){
+	private boolean inquire(String code){
 		return true;
 	}
 	public boolean saveInfo(){

@@ -11,15 +11,15 @@ public class Load {
 	
 	public boolean intermidateLoading(TransVO transInfo){
 		switch(transInfo.getTransType()){
-		case car:
+		case BUS:
 			VehicleLoading vehicle=new VehicleLoading(transInfo);
 			vehicle.saveLoading();
 			break;
-		case train:
+		case TRAIN:
 			TrainLoading train=new TrainLoading(transInfo);
 			train.saveLoading();
 			break;
-		case plane:
+		case PLANE:
 			PlaneLoading plane=new PlaneLoading(transInfo);
 			plane.saveLoading();
 			break;

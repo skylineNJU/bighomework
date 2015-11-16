@@ -3,7 +3,7 @@ package businesslogicservice;
 import vo.InventoryVO;
 import vo.WarehouseInVO;
 import vo.WarehouseOutVO;
-import vo.WarehouseOutVO.Type;
+
 
 public interface WarehouseBLService {
 	/*仓库管理人员输入
@@ -22,10 +22,10 @@ public interface WarehouseBLService {
 	/*
 	 * 系统显示库存信息
 	 */
-	//库存查看
+	//库存查看 
 	public boolean showInventory(String startdate,String enddate,InventoryVO inventoryInfo);
 	
-	//库存盘点
-	public boolean checkInventory(InventoryVO inventoryInfo);
+	//库存盘点 通过入库单得到
+	public boolean checkInventory(WarehouseInVO checkinventoryInfo);
 	
 }
