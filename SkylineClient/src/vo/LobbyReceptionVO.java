@@ -1,9 +1,9 @@
 package vo;
 
 public class LobbyReceptionVO extends ReceiptVO{
-	private String receiveYear;//营业厅接收时间 
-	private String receiveMonth;//营业厅接收时间 
-	private String receiveDay;//营业厅接收时间 
+	private String receiveYear;//营业厅接收年份 
+	private String receiveMonth;//营业厅接收月份 
+	private String receiveDay;//营业厅接收日期
 	private int condition;//货物到达状态
 	private String expressBar;//expressBar表示订单
 	private String receiptCode;
