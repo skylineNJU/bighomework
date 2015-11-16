@@ -37,15 +37,15 @@ public class Account {
 	public boolean modify(){
 		return true;
 	}
-//	private boolean inquire(String driverCode){
-//		
-//		return true;
-//		
-//	}
-//	
-//	public static boolean delete(String driverCode){
-//		return true;
-//	}
+	public boolean inquire(String ID){
+		
+		return true;
+		
+	}
+	
+	public static boolean delete(String ID){
+		return true;
+	}
 	public String getID() {
 		return ID;
 	}
