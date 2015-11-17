@@ -17,7 +17,7 @@ public class CourierPanel extends GuidePanel {
 	private JLabel back=new JLabel("×¢Ïú");
 	private JPanel panel;
 	public CourierPanel(){
-		panel=FrameMain.getContentPanel();
+		panel = FrameMain.getContentPanel();
 		this.setLayout(null);
 	}
 	
