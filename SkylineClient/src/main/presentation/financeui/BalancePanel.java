@@ -22,15 +22,16 @@ public class BalancePanel {
 	
 	public void init(){
 		title();
-		JButton button = new JButton("成功了吗？！");
-		button.setBounds(100, 100, 100, 100);
+		JButton button = new JButton("银行账户界面");
+		button.setBounds(100, 100, 200, 80);
 		panel.add(button);
 		panel.repaint();
 	}
 	
 	public void title(){
-		title = new JLabel("账户管理");
+		title = new JLabel("银行账户");
 		title.setBounds(panelWidth/3, 20, panelWidth/6, 40);
 		panel.add(title);
 	}
+
 }

@@ -55,14 +55,38 @@ public class FinanceStaffPanel extends GuidePanel{
 		StatisticsManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*4);
 		back.setLocation(this.getWidth()/8, this.getHeight()/4*1 + this.getHeight()/10*5);
 		
-		//设置按钮组件的监听
+		//------设置按钮组件的监听--------
+		
+		//------跳至成本管理界面-------
 		costManager.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
 				financeuiControl.select(Financeui.CostListui);
 			}
 		});
+		//-------跳至收益管理界面-------
+		earnManager.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				financeuiControl.select(Financeui.EarnListui);
+			}
+		});
+		//-------跳至银行账户界面-------
+		bankAccountManager.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				financeuiControl.select(Financeui.Balanceui);
+			}
+		});
+		//-------跳至统计报表界面-------
+		StatisticsManager.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				financeuiControl.select(Financeui.StatisticsListui);
+			}
+		});
 		
+		//-------返回登陆界面---------
 		back.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				remove();

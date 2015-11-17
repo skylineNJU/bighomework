@@ -21,8 +21,8 @@ public class CostListPanel {
 	
 	public void init(){
 		title();
-		JButton button = new JButton("终于成功了！！！");
-		button.setBounds(100, 100, 100, 100);
+		JButton button = new JButton("成本管理界面！");
+		button.setBounds(100, 100, 200, 80);
 		panel.add(button);
 		panel.repaint();
 	}
