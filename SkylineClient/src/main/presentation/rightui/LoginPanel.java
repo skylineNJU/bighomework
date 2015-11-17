@@ -10,8 +10,8 @@ import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 
 public class LoginPanel {
-	private JTextField userName=new JTextField("请输入账户名");
-	private JTextField passWord=new JTextField("请输入密码");
+	private JTextField userName=new JTextField("141250025");
+	private JTextField passWord=new JTextField("141250025");
 	private JLabel confirm=new JLabel("确定");
 	private JLabel back=new JLabel("返回");
 	private FrameMain frame;

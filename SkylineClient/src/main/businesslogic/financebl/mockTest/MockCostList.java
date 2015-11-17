@@ -1,4 +1,4 @@
-package main.businesslogic.financebl.financeTest;
+package main.businesslogic.financebl.mockTest;
 
 import java.util.ArrayList;
 
