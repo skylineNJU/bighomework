@@ -63,6 +63,7 @@ public class LoginPanel {
 					if(password.equals(username)){
 						remove();
 						panel.repaint();
+						//panel.add(FrameMain.getContentPanel());
 						MainController.goToIntermediateStaffui();
 					}
 					break;
@@ -84,7 +85,6 @@ public class LoginPanel {
 					break;
 				case "141250023":    //账户管理人员账号
 					if(password.equals(username))
-						
 					{
 					remove();
 					panel.repaint();

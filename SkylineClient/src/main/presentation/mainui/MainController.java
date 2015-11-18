@@ -7,6 +7,9 @@ import main.presentation.financeui.Financeui;
 import main.presentation.financeui.FinanceuiControl;
 import main.presentation.guestui.Guestui;
 import main.presentation.guestui.GuestuiController;
+import main.presentation.loadui.LoadVehiclePanel;
+import main.presentation.loadui.Loadui;
+import main.presentation.loadui.LoaduiController;
 import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
@@ -20,7 +23,9 @@ public class MainController {
 	private static RightuiController rightuiControl=new RightuiController();
 	private static ReceiveController receiveuiControl=new ReceiveController();
 	private static FinanceuiControl financeuiControl = new FinanceuiControl();
+	private static LoaduiController loaduiControl=new LoaduiController();
 	
+	private static LoadVehiclePanel loadVehicle;
 	private static CourierPanel courierpanel;
 	private static FinanceStaffPanel financeStaffPanel;
 	private static WritePanel writepanel;
@@ -51,6 +56,9 @@ public class MainController {
 	public static void jumpToReceiveui(Receiveui ui){
 		receiveuiControl.select(ui);
 	}
+	public static void jumpToLoadui(Loadui ui){
+		loaduiControl.select(ui);
+	}
 	
 	public static void goToCourierui(){
 		courierpanel=new CourierPanel();
@@ -76,6 +84,7 @@ public class MainController {
 		intermediateStaffPanel=new IntermediateStaffPanel();
 		intermediateStaffPanel.init();
 		FrameMain.getContentPanel().add(writepanel);
+		jumpToLoadui(Loadui.LOADVEHICLE);
 	}
 
 	public static WritePanel getWritepanel() {
