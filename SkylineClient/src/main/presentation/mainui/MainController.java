@@ -7,6 +7,8 @@ import main.presentation.financeui.Financeui;
 import main.presentation.financeui.FinanceuiControl;
 import main.presentation.guestui.Guestui;
 import main.presentation.guestui.GuestuiController;
+import main.presentation.receiptui.Receiptui;
+import main.presentation.receiptui.ReceiptuiControl;
 import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
@@ -20,7 +22,7 @@ public class MainController {
 	private static RightuiController rightuiControl=new RightuiController();
 	private static ReceiveController receiveuiControl=new ReceiveController();
 	private static FinanceuiControl financeuiControl = new FinanceuiControl();
-	
+	private static ReceiptuiControl receiptuiControl = new ReceiptuiControl();
 	private static CourierPanel courierpanel;
 	private static FinanceStaffPanel financeStaffPanel;
 	private static WritePanel writepanel;
@@ -46,6 +48,9 @@ public class MainController {
 	}
 	public static void jumpToRightui(Rightui ui){
 		rightuiControl.select(ui);
+	}
+	public static void jumpToReceiptui(Receiptui ui){
+		receiptuiControl.select(ui);
 	}
 	
 	public static void jumpToReceiveui(Receiveui ui){

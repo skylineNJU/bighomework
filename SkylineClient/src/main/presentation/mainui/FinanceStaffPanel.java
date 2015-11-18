@@ -56,7 +56,7 @@ public class FinanceStaffPanel extends GuidePanel{
 		back.setLocation(this.getWidth()/8, this.getHeight()/4*1 + this.getHeight()/10*5);
 		
 		//------设置按钮组件的监听--------
-		
+		//修改密码
 		modifyKeyWord.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();

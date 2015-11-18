@@ -9,12 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.presentation.distributeui.Distributeui;
+import main.presentation.receiptui.Receiptui;
+import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
 
 @SuppressWarnings("serial")
 
 public class CourierPanel extends GuidePanel {
+	private ReceiveController receiveController;
 	private JButton modifyPassWordButton = new JButton("修改密码");
 	private JButton orderInput=new JButton("订单输入");
 	private JButton receiveInput=new JButton("收件信息输入");
@@ -25,6 +28,7 @@ public class CourierPanel extends GuidePanel {
 	public CourierPanel(){
 		panel = FrameMain.getContentPanel();
 		this.setLayout(null);
+		receiveController = new ReceiveController();
 	}
 	
 	public void init(){
@@ -56,6 +60,14 @@ public class CourierPanel extends GuidePanel {
 		back.setLocation((this.getWidth()-orderInput.getWidth())/2
 				,showTask.getY()+showTask.getHeight()*3/2);
 		
+		//修改密码界面
+		modifyPassWordButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				panel.repaint();
+				receiveController.select(Receiveui.ModifyPassWord);
+			}
+		});
 		//跳至订单输入的界面
 		orderInput.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
@@ -77,6 +89,7 @@ public class CourierPanel extends GuidePanel {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
 				panel.repaint();
+				MainController.jumpToReceiptui(Receiptui.AllOrderui);
 			}
 		});
 		//查看被分配任务
@@ -110,7 +123,7 @@ public class CourierPanel extends GuidePanel {
 		panel.remove(MainController.getWritepanel());
 	}
 	//跳转到模块其他界面前，移除所有的组件
-		public void removeAllComponent(){
-			MainController.getWritepanel().removeAll();
-		}
+	public void removeAllComponent(){
+		MainController.getWritepanel().removeAll();
+	}
 }

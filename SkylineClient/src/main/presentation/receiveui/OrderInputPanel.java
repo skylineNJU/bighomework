@@ -158,7 +158,6 @@ public class OrderInputPanel {
 		
 		cargoInfo.add(length);
 		cargoInfo.add(width);
-		cargoInfo.add(height);
-		
+		cargoInfo.add(height);		
 	}
 }
