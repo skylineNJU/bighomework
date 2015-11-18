@@ -1,6 +1,5 @@
 package test.data_stub;
 
-import java.awt.Window.Type;
 import java.util.ArrayList;
 import java.util.List;
 

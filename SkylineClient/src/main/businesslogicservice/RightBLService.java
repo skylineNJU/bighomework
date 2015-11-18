@@ -1,6 +1,6 @@
 package main.businesslogicservice;
 
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.RightVO;
 
 public interface RightBLService {
@@ -8,7 +8,7 @@ public interface RightBLService {
 	public boolean login(String AccountName,String code,RightVO rightInfo);
 	
 	//账户管理人员创建新的账户，系统显示账户信息
-	public boolean createNewAccount(AccountVO accountInfo);
+	public boolean createNewAccount(BankAccountVO accountInfo);
 	
 	//公司职工修改账户密码，需输入旧的密码和新的密码
 	public boolean modifyCode(String oldCode,String newCode);

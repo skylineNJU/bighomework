@@ -1,8 +1,8 @@
-package data_stub;
+package test.data_stub;
 
-import dataservice.RightDataService;
-import po.AccountPO;
-import State.RightType;
+import  main.dataservice.RightDataService;
+import  main.po.AccountPO;
+import  main.State.RightType;
 
 public class RightDataService_Stub implements RightDataService {
 	

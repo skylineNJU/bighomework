@@ -1,7 +1,7 @@
-package data_driver;
+package test.data_driver;
 
-import dataService.RightDataService;
-import po.AccountPO;
+import main.dataservice.RightDataService;
+import main.po.AccountPO;
 
 public class RightDataService_Driver {
 

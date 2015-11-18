@@ -1,11 +1,11 @@
-package data_stub;
+package test.data_stub;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import dataservice.ReceiptDataService;
-import po.ApprovalPO;
-import po.StaffReceiptPO;
+import  main.dataservice.ReceiptDataService;
+import  main.po.ApprovalPO;
+import  main.po.StaffReceiptPO;
 
 
 public class ReceiptDataService_Stub implements ReceiptDataService {

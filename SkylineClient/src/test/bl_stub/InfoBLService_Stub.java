@@ -1,10 +1,10 @@
-package bl_stub;
+package test.bl_stub;
 
-import businesslogicservice.InfoBLService;
-import vo.DriverVO;
-import vo.InstitutionVO;
-import vo.StaffVO;
-import vo.VehicleVO;
+import  main.businesslogicservice.InfoBLService;
+import  main.vo.DriverVO;
+import  main.vo.InstitutionVO;
+import  main.vo.StaffVO;
+import  main.vo.VehicleVO;
 
 public class InfoBLService_Stub implements InfoBLService{
 	InstitutionVO institution;

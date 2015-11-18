@@ -1,9 +1,9 @@
-package bl_stub;
+package test.bl_stub;
 
 import java.util.ArrayList;
 
-import businesslogicservice.ReceiptBLService;
-import vo.ReceiptVO;
+import  main.businesslogicservice.ReceiptBLService;
+import  main.vo.ReceiptVO;
 
 public class ReceiptBLService_Stub implements ReceiptBLService{
 	ArrayList<ReceiptVO> receipt=new ArrayList<ReceiptVO>();

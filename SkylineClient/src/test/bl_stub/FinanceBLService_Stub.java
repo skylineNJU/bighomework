@@ -3,13 +3,13 @@ package test.bl_stub;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
 
 public class FinanceBLService_Stub implements FinanceBLService{
 	ArrayList<EarnVO> earn=new ArrayList<EarnVO>();
-	AccountVO account;
+	BankAccountVO account;
 	ArrayList<CostVO> cost=new ArrayList<CostVO>();
 	@Override
 	public boolean showStatisticsList(String date1, String date2,ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
@@ -42,9 +42,9 @@ public class FinanceBLService_Stub implements FinanceBLService{
 	}
 
 	@Override
-	public boolean showBalance(String name,AccountVO account) {
+	public boolean showBalance(String name,BankAccountVO account) {
 		// TODO Auto-generated method stub
-		account=new AccountVO(name,100000.0);
+		account=new BankAccountVO(name,100000.0);
 		return true;
 	}
 

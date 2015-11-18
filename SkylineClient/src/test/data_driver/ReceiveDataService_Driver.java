@@ -1,12 +1,12 @@
-package data_driver;
+package test.data_driver;
 
-import dataService.ReceiveDataService;
-import po.CenterReceivePO;
-import po.DistributePO;
-import po.LobbyReceivePO;
-import po.OrderPO;
-import po.OrderPO.Size;
-import po.OrderPO.PackageCost;
+import main.dataservice.ReceiveDataService;
+import main.po.CenterReceivePO;
+import main.po.DistributePO;
+import main.po.LobbyReceivePO;
+import main.po.OrderPO;
+import main.po.OrderPO.Size;
+import main.po.OrderPO.PackageCost;
 
 public class ReceiveDataService_Driver {
 	

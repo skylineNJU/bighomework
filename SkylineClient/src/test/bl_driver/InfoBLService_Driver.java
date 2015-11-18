@@ -1,10 +1,10 @@
-package bl_driver;
+package test.bl_driver;
 
-import vo.DriverVO;
-import vo.InstitutionVO;
-import vo.StaffVO;
-import vo.VehicleVO;
-import businesslogicservice.InfoBLService;
+import  main.vo.DriverVO;
+import  main.vo.InstitutionVO;
+import  main.vo.StaffVO;
+import  main.vo.VehicleVO;
+import  main.businesslogicservice.InfoBLService;
 
 public class InfoBLService_Driver {
 	

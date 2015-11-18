@@ -1,6 +1,6 @@
 package main.businesslogic.rightbl;
 
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.RightVO;
 
 public class RightController {
@@ -10,7 +10,7 @@ public class RightController {
 		return account.saveInfo();
 	
 	}
-	public boolean createNewAccount(AccountVO accountInfo){
+	public boolean createNewAccount(BankAccountVO accountInfo){
 		Account account=new Account(accountInfo);
 		
 		return account.saveInfo();

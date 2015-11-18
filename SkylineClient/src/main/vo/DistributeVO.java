@@ -9,8 +9,8 @@ public class DistributeVO {
 	public DistributeVO(){
 		
 	}
-	public DistributeVO(String or,String na,String ad,String pN,String id){
-		orderCode=or;
+	public DistributeVO(String orderCode,String na,String ad,String pN,String id){
+		this.orderCode=orderCode;
 		name=na;
 		adress=ad;
 		phoneNumber=pN;

@@ -1,10 +1,10 @@
 package main.businesslogic.financebl;
 
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 
 public class Balance {
 	
-	public boolean readBalance(String name, AccountVO account){
+	public boolean readBalance(String name, BankAccountVO account){
 		//TODO
 		return true;
 	}

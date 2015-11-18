@@ -1,9 +1,9 @@
-package bl_driver;
+package tets.bl_driver;
 
 import java.util.ArrayList;
 
-import vo.ReceiptVO;
-import businesslogicservice.ReceiptBLService;
+import  main.vo.ReceiptVO;
+import  main.businesslogicservice.ReceiptBLService;
 
 public class ReceiptBLService_Driver {
 	

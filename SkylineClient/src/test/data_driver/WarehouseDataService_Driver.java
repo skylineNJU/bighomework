@@ -1,12 +1,12 @@
-package data_driver;
+package test.data_driver;
 
 import java.util.ArrayList;
 
-import businesslogic.warehousebl.Inventory;
-import dataservice.WarehouseDataService;
-import po.InventoryPO;
-import po.WarehouseInPO;
-import po.WarehouseOutPO;
+import main.businesslogic.warehousebl.Inventory;
+import main.dataservice.WarehouseDataService;
+import main.po.InventoryPO;
+import main.po.WarehouseInPO;
+import main.po.WarehouseOutPO;
 
 public class WarehouseDataService_Driver {
  

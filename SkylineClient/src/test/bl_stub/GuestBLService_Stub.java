@@ -1,7 +1,7 @@
-package bl_stub;
+package test.bl_stub;
 
-import businesslogicservice.GuestBLService;
-import vo.HistoryVO;
+import  main.businesslogicservice.GuestBLService;
+import  main.vo.HistoryVO;
 
 public class GuestBLService_Stub implements GuestBLService{
 	HistoryVO history;

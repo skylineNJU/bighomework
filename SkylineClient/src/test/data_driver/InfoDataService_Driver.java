@@ -1,11 +1,11 @@
-package data_driver;
+package test.data_driver;
 
 
-import dataService.InfoDataService;
-import po.DriverInfoPO;
-import po.InstitutionPO;
-import po.VehicleInfoPO;
-import po.WorkerPO;
+import main.dataservice.InfoDataService;
+import main.po.DriverInfoPO;
+import main.po.InstitutionPO;
+import main.po.VehicleInfoPO;
+import main.po.WorkerPO;
 
 public class InfoDataService_Driver {
 	InstitutionPO institution=new InstitutionPO("","","","");

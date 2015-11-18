@@ -1,8 +1,8 @@
-package bl_driver;
+package test.bl_driver;
 
-import vo.AccountVO;
-import vo.RightVO;
-import businesslogicservice.RightBLService;
+import  main.vo.BankAccountVO;
+import main. vo.RightVO;
+import  main.businesslogicservice.RightBLService;
 
 public class RightBLService_Driver {
 	public void drive(RightBLService rightBLService){
@@ -11,7 +11,7 @@ public class RightBLService_Driver {
 			System.out.println("-----------Login Success!-------------");
 		}
 		
-		AccountVO account =rightBLService.createNewAccount("101020", "199102", RightVO.Lobby); 
+		BankAccountVO account =rightBLService.createNewAccount("101020", "199102", RightVO.Lobby); 
 		if(account != null){
 			System.out.println("----------CreatingNewAccount Success!------------");
 		}

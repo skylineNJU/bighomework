@@ -2,7 +2,11 @@ package main.presentation.receiveui;
 
 import java.awt.Color;
 
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import main.presentation.mainui.MainController;
 

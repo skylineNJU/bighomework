@@ -1,13 +1,13 @@
-package data_stub;
+package test.data_stub;
 
-import dataservice.ReceiveDataService;
-import po.CenterReceivePO;
-import po.DistributePO;
-import po.LobbyReceivePO;
-import po.OrderPO;
-import po.OrderPO.PackageCost;
-import po.OrderPO.Size;
-import po.Type;
+import  main.dataservice.ReceiveDataService;
+import  main.po.CenterReceivePO;
+import  main.po.DistributePO;
+import  main.po.LobbyReceivePO;
+import  main.po.OrderPO;
+import  main.po.OrderPO.PackageCost;
+import  main.po.OrderPO.Size;
+import  main.po.Type;
 
 
 public class ReceiveDataService_Stub implements ReceiveDataService {

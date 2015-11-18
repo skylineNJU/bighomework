@@ -1,7 +1,7 @@
-package bl_driver;
+package test.bl_driver;
 
-import vo.HistoryVO;
-import businesslogicservice.GuestBLService;
+import  main.vo.HistoryVO;
+import  main.businesslogicservice.GuestBLService;
 
 public class GuestBLService_Driver {
 	
