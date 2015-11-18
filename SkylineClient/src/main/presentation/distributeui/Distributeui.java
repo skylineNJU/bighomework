@@ -1,5 +1,5 @@
 package main.presentation.distributeui;
 
-public class Distributeui {
-
+public enum Distributeui {
+	DistributeListui,ReceiveMessageui
 }

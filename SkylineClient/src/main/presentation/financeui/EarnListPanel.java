@@ -35,6 +35,7 @@ public class EarnListPanel {
 	private JScrollPane scrollPane;
 	private JButton delButton;
 	private JButton saveButton;
+	private JButton ensureButton;//确认选择时间完毕
 	
 	public EarnListPanel(){
 		panel = MainController.getWritepanel();
@@ -68,6 +69,8 @@ public class EarnListPanel {
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
 		dayLabel = new JLabel("日");
+		ensureButton = new JButton("确认");
+		
 		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
 		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
@@ -82,6 +85,9 @@ public class EarnListPanel {
 		dayBox = new JComboBox<String>(dayString);
 		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
 		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10, panelWidth/10, panelHeight/20);
+		
+		panel.add(ensureButton);
 		panel.add(timeLabel);
 		panel.add(yearLabel);
 		panel.add(monthLabel);

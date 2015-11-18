@@ -1,6 +1,8 @@
 package main.presentation.mainui;
 
 
+import main.presentation.distributeui.Distributeui;
+import main.presentation.distributeui.DistributeuiControl;
 import main.presentation.financeui.Financeui;
 import main.presentation.financeui.FinanceuiControl;
 import main.presentation.guestui.Guestui;
@@ -13,6 +15,7 @@ import main.presentation.rightui.RightuiController;
 public class MainController {
 	@SuppressWarnings("unused")
 	private static FrameMain frame;
+	private static DistributeuiControl distributeuiControl = new DistributeuiControl();
 	private static GuestuiController guestuiControl=new GuestuiController();
 	private static RightuiController rightuiControl=new RightuiController();
 	private static ReceiveController receiveuiControl=new ReceiveController();
@@ -28,6 +31,10 @@ public class MainController {
 		FrameMain.init();
 		writepanel=new WritePanel();
 		jumpToGuestui(Guestui.Search);
+	}
+	
+	public static void jumpToDistributeui(Distributeui ui){
+		distributeuiControl.select(ui);
 	}
 	
 	public static void jumpToGuestui(Guestui ui){
@@ -74,5 +81,4 @@ public class MainController {
 	public static WritePanel getWritepanel() {
 		return writepanel;
 	}
-
 }
