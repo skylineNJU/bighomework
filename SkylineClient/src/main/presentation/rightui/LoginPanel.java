@@ -64,6 +64,7 @@ public class LoginPanel {
 					if(password.equals(username)){
 						remove();
 						panel.repaint();
+						//panel.add(FrameMain.getContentPanel());
 						MainController.goToIntermediateStaffui();
 					}
 					break;
