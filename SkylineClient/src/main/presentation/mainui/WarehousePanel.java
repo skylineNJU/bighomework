@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import main.presentation.rightui.Rightui;
+import main.presentation.warehouseui.Warehouseui;
 
 @SuppressWarnings("serial")
 public class WarehousePanel extends GuidePanel{
@@ -46,6 +47,41 @@ public class WarehousePanel extends GuidePanel{
 				,showInventory.getY()+showInventory.getHeight()*3/2);
 		back.setLocation((this.getWidth()-addWarehouseInReceipt.getWidth())/2
 				,checkInventory.getY()+checkInventory.getHeight()*3/2);
+		
+		
+		addWarehouseInReceipt.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				remove();
+				panel.repaint();
+				MainController.jumpToWarehouseui(Warehouseui.AddWarehouseInReceipt);
+			}
+		});
+		
+		addWarehouseOutReceipt.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				remove();
+				panel.repaint();
+				MainController.jumpToWarehouseui(Warehouseui.AddWarehouseOutReceipt);
+			}
+		});
+		
+		showInventory.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				remove();
+				panel.repaint();
+				MainController.jumpToWarehouseui(Warehouseui.ShowInventory);
+			}
+		});
+		
+		checkInventory.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				remove();
+				panel.repaint();
+				MainController.jumpToWarehouseui(Warehouseui.CheckInventory);
+			}
+		});
+		
+		
 		
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
