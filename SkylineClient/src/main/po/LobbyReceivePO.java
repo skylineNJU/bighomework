@@ -3,7 +3,7 @@ package main.po;
 import java.io.Serializable;
 
 //营业厅收到快递后生产的一条收件单信息
-public class LobbyReceivePO extends Message implements Serializable{
+public class LobbyReceivePO extends Receipt implements Serializable{
 	
 	/**
 	 * 

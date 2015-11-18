@@ -1,7 +1,7 @@
 package main.po;
 import java.io.Serializable;
 
-public class WarehouseInPO extends Message implements Serializable{
+public class WarehouseInPO extends Receipt implements Serializable{
 /**
 	 * 
 	 */

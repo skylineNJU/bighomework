@@ -1,7 +1,10 @@
 package main.po;
 
+import main.vo.ReceiptVO;
+import main.vo.TransitReceptionVO;
+
 //中转中心接收单
-public class CenterReceivePO extends Message{
+public class CenterReceivePO extends Receipt{
 	
 	/**
 	 * 
@@ -21,6 +24,16 @@ public class CenterReceivePO extends Message{
 		this.bar = bar;
 	}
 
+	
+	public void convert(ReceiptVO vo){
+		TransitReceptionVO trans=(TransitReceptionVO)vo;
+		trans.setReceiveYear(receiveYear);
+		trans.setReceiveMonth(receiveMonth);
+		trans.setReceiveYear(receiveYear);
+		trans.setCenterNumber(centerNumber);
+		trans.setBar(bar);
+	}
+	
 	public int getReceiveYear() {
 		return receiveYear;
 	}

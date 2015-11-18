@@ -2,8 +2,9 @@ package main.businesslogic.financebl.financeTest;
 
 import java.util.ArrayList;
 
+import org.junit.Test;
+
 import main.vo.AccountVO;
-import main.vo.CostType;
 import main.vo.CostVO;
 import main.vo.EarnVO;
 import static org.junit.Assert.*;
@@ -14,6 +15,7 @@ public class FinanceTester extends FinanceController{
 	String name = "50163046831";
 	AccountVO accountVO = new AccountVO(this.name, 20122.2);
 	
+	@Test
 	public boolean showStatisticsList(String date1, String date2,
 			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
 		MockEarnList earn = new MockEarnList();
@@ -25,6 +27,7 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
+	@Test
 	public boolean showEarnListDependsOnDay(String date,ArrayList<EarnVO> earnList) {
 		MockEarnList earn = new MockEarnList();
 		earn.readEarnList(date, earnList);
@@ -32,6 +35,7 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
+	@Test
 	public boolean showEarnListDependsOnInstitution(String code, String date1,
 			String data2, ArrayList<EarnVO> earnList) {
 		MockEarnList earn = new MockEarnList();
@@ -40,6 +44,7 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
+	@Test
 	public boolean showBalance(String name, AccountVO account) {
 		account = accountVO;
 		MockBalance balance = new MockBalance();
@@ -48,6 +53,7 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
+	@Test
 	public boolean showCostList(ArrayList<CostVO> costList) {
 		MockCostList cost = new MockCostList();
 		cost.readCostList(costList);
@@ -55,6 +61,7 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
+	@Test
 	public boolean showCostList(String date, ArrayList<CostVO> costList) {
 		MockCostList cost = new MockCostList();
 		cost.readCostList(date, costList);
@@ -62,12 +69,14 @@ public class FinanceTester extends FinanceController{
 		return false;
 	}
 
+	@Test
 	public boolean writeEarnList(ArrayList<EarnVO> earnList) {
 		MockEarnList earn = new MockEarnList();
 		assertEquals(true,earn.writeEarn(earnList));
 		return false;
 	}
 
+	@Test
 	public boolean writeCostList(ArrayList<CostVO> costList) {
 		MockCostList cost = new MockCostList();
 		assertEquals(true,cost.writeCostList(costList));
