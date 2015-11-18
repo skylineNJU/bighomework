@@ -1,6 +1,5 @@
 package main.vo;
 
-import main.businesslogic.infobl.Driver;
 import main.businesslogic.warehousebl.Inventory;
 
 public class InventoryVO {

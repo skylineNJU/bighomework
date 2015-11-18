@@ -3,7 +3,7 @@ package main.businesslogic.financebl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
 
@@ -12,10 +12,8 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public boolean showStatisticsList(String date1, String date2,
 			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.readEarnList(date1, date2, earnList);
-		costArrayList.readCostList(date1, date2, costList);
+		StatisticsList statisticsList = new StatisticsList();
+		statisticsList.showStatisticsList(date1, date2, earnList, costList);
 		return false;
 	}
 
@@ -36,7 +34,7 @@ public class FinanceController implements FinanceBLService {
 	}
 
 	@Override
-	public boolean showBalance(String name, AccountVO account) {
+	public boolean showBalance(String name, BankAccountVO account) {
 		Balance balance = new Balance();
 		balance.readBalance(name, account);
 		return false;

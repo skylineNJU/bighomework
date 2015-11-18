@@ -1,7 +1,7 @@
 package main.businesslogic.rightbl.mocktest;
 
 import main.businesslogic.rightbl.Account;
-import main.vo.AccountVO;
+import main.vo.BankAccountVO;
 import main.vo.RightVO;
 
 
@@ -22,7 +22,7 @@ public MockAccount(String iD2) {
 		// TODO Auto-generated constructor stub
 	}
 
-public MockAccount(AccountVO ac) {
+public MockAccount(BankAccountVO ac) {
 	super(ac);
 	// TODO Auto-generated constructor stub
 	}

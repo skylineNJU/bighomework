@@ -2,7 +2,7 @@ package main.po;
 import java.io.Serializable;
 
 
-public class OrderPO extends Message implements Serializable{
+public class OrderPO extends Receipt implements Serializable{
 	/**
 	 * 
 	 */

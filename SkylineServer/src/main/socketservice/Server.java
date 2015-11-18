@@ -1,24 +1,24 @@
 package main.socketservice;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import main.po.LobbyReceivePO;
+import java.util.ArrayList;
 
 public class Server {
 	ServerSocket ss;
-	ServerHander hander=new ServerHander();
-	public Server(){
+	ClientController hander=new ClientController();
+	ArrayList<Thread> threadList=new ArrayList<Thread>();
+	public void start(){
 		try {
 			ss=new ServerSocket(12345);
 			System.out.println("server start");
 			while(true){
 			Socket socket=ss.accept();
-			ObjectInputStream ois=new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
-			run(socket,ois);
+			Thread clientThread=new Thread(new ClientHander(socket));
+			threadList.add(clientThread);
+			clientThread.start();
+			System.out.println("got a connection");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -26,21 +26,8 @@ public class Server {
 		}
 	}
 	
-	public void run(Socket socket,ObjectInputStream ois){
-		try {
-			Object po=ois.readObject();
-			hander.analysis(po);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			
-		
-	}
 	public static void main(String args[]){
 		Server se=new Server();
+		se.start();
 	}
 }
