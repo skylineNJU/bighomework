@@ -57,6 +57,12 @@ public class FinanceStaffPanel extends GuidePanel{
 		
 		//------设置按钮组件的监听--------
 		
+		modifyKeyWord.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				financeuiControl.select(Financeui.ModifyPassWordui);
+			}
+		});
 		//------跳至成本管理界面-------
 		costManager.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){

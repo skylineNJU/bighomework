@@ -2,7 +2,6 @@ package main.presentation.financeui;
 
 import java.awt.Dimension;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -47,6 +46,7 @@ public class BalancePanel {
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setDragEnabled(false);
+		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		table.setVisible(true);
 		scrollPane = new JScrollPane(table);
 		if(bankAccountMessage.length>4){

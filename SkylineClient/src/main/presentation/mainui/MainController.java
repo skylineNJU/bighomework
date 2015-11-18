@@ -69,8 +69,6 @@ public class MainController {
 		intermediateStaffPanel=new IntermediateStaffPanel();
 		intermediateStaffPanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-		
-	
 	}
 
 	public static WritePanel getWritepanel() {

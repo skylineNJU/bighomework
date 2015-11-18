@@ -106,7 +106,9 @@ public class CostListPanel {
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setRowHeight(panelWidth/20);//设置列宽
+		table.setDragEnabled(false);//设置不可拖动
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
+		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		if(tableData.length<=9){
 			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
 		}else{

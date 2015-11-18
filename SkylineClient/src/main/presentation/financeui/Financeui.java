@@ -1,5 +1,5 @@
 package main.presentation.financeui;
 
 public enum Financeui {
-	Balanceui,CostListui,EarnListui,StatisticsListui
+	Balanceui,CostListui,EarnListui,StatisticsListui,ModifyPassWordui
 }
