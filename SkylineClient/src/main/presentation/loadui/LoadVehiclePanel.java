@@ -3,6 +3,7 @@ package main.presentation.loadui;
 import java.awt.Color;
 import java.awt.TextField;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,9 @@ public class LoadVehiclePanel {
 	private JPanel carLoadInfo;
 	private JPanel planeLoadInfo;
 	private JPanel trainLoadInfo;
+	private JLabel loadDateLabel;
+	private JTextField loadDate;
+	private JButton searchFromDate;//根据日期查询
 	public LoadVehiclePanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
@@ -46,9 +50,8 @@ public class LoadVehiclePanel {
 		tabbedPane.addTab("火车装运",trainLoadInfo);
 		tabbedPane.addTab("汽车装运",carLoadInfo);
 		
-		tabbedPane.setSize(panel.getWidth()/4*3,panel.getHeight()/4*3);
-		
-		tabbedPane.setLocation(panel.getWidth()/8,panel.getHeight()/8);
+		tabbedPane.setSize(panel.getWidth()/6*5+43,panel.getHeight()/6*5);
+		tabbedPane.setLocation(panel.getWidth()/18,panel.getHeight()/12);
 		panel.add(tabbedPane);
 		planeLoadConpo();
 		trainLoadConpo();
@@ -60,12 +63,12 @@ public class LoadVehiclePanel {
 		
 	}
 	public void planeLoadConpo(){
-		transmitCenterNumberLabel=new JLabel("中转中心编号");
-		transmitCenterNumber=new JTextField("请输入中转中心编号");
-		transmitCenterNumberLabel.setBounds(100,100,50,50);
-		transmitCenterNumber.setBounds(100, 100, 100, 100);
-		panel.add( transmitCenterNumber);
-		panel.add(transmitCenterNumberLabel);
+		loadDateLabel=new JLabel("装运日期");
+		loadDate=new JTextField("请输入装运日期");
+		loadDateLabel.setBounds(panel.getWidth()/20,panel.getHeight()/2,panel.getWidth()/20+66,panel.getHeight()/3+20);
+		//loadDate.setBounds(panel.getHeight()/20, panel.getWidth()/3+20, panel.getHeight()/20+66, panel.getWidth()/2);
+		//panel.add( loadDate);
+		panel.add(loadDateLabel);
 	}
 	
 	public void trainLoadConpo(){
