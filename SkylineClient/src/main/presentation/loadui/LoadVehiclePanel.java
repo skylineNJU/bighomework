@@ -91,10 +91,10 @@ public class LoadVehiclePanel {
 		saveButton=new JButton("保存");
 		timeLabel=new JLabel("装运日期");
 		
-		timeLabel.setSize(75,20);
-        timeLabel.setLocation(panelWidth/12,panelHeight*4/85);
+	
      	
-     	//setTime(planeLoadInfo);
+     	setTime(tabbedPane,planeLoadInfo);
+     	
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20, panelHeight*72/85);
      	saveButton.setSize(75,35);
@@ -115,10 +115,8 @@ public class LoadVehiclePanel {
 		saveButton=new JButton("保存");
 		timeLabel=new JLabel("装运日期");
 		
-		timeLabel.setSize(75,20);
-        timeLabel.setLocation(panelWidth/12,panelHeight*4/85);
-     	
-     	//setTime(planeLoadInfo);
+	
+     	setTime(tabbedPane ,trainLoadInfo);
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20, panelHeight*72/85);
      	saveButton.setSize(75,35);
@@ -138,10 +136,8 @@ public class LoadVehiclePanel {
 		saveButton=new JButton("保存");
 		timeLabel=new JLabel("装运日期");
 		
-		timeLabel.setSize(75,20);
-        timeLabel.setLocation(panelWidth/12,panelHeight*4/85);
      	
-     	//setTime(planeLoadInfo);
+     	setTime(tabbedPane ,carLoadInfo);
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20, panelHeight*72/85);
      	saveButton.setSize(75,35);
@@ -154,13 +150,13 @@ public class LoadVehiclePanel {
 	}
 	
 	
-	public void setTime(JPanel panel){
+	public void setTime(JTabbedPane panel,JPanel panel2){
 		int panelWidth=panel.getWidth();
 		int panelHeight=panel.getHeight();
 		
 		Calendar calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
-		timeLabel = new JLabel("时间");
+		timeLabel = new JLabel("装运日期");
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
 		dayLabel = new JLabel("日");
@@ -182,14 +178,14 @@ public class LoadVehiclePanel {
 		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
 		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10, panelWidth/10, panelHeight/20);
 		
-		panel.add(ensureButton);
-		panel.add(timeLabel);
-		panel.add(yearLabel);
-		panel.add(monthLabel);
-		panel.add(dayLabel);
-		panel.add(yearBox);
-		panel.add(monthBox);
-		panel.add(dayBox);
+		panel2.add(ensureButton);
+		panel2.add(timeLabel);
+		panel2.add(yearLabel);
+		panel2.add(monthLabel);
+		panel2.add(dayLabel);
+		panel2.add(yearBox);
+		panel2.add(monthBox);
+		panel2.add(dayBox);
 	}
 }
 
