@@ -2,17 +2,23 @@ package main.presentation.loadui;
 
 import java.awt.Color;
 import java.awt.TextField;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import main.presentation.mainui.MainController;
 
 public class LoadVehiclePanel {
+	int year;
+	private String[] yearString;
+	private String[] monthString;
+	private String[] dayString;//31天
 	private JPanel panel;
 	private JTabbedPane tabbedPane;//选择飞机/火车/汽车
 	private JTextField transmitCenterNumber;//中转中心编号输入框
@@ -24,9 +30,24 @@ public class LoadVehiclePanel {
 	private JPanel carLoadInfo;
 	private JPanel planeLoadInfo;
 	private JPanel trainLoadInfo;
-	private JLabel loadDateLabel;
-	private JTextField loadDate;
+	private JLabel timeLabel;//装运日期
+	private JComboBox<String> yearBox;//表示年份的组合框
+	private JComboBox<String> monthBox;//表示月份的组合框
+	private JComboBox<String> dayBox;//表示天的组合框
 	private JButton searchFromDate;//根据日期查询
+	private JTable planeTable;//飞机表格
+	private JTable trainTable;
+	private JTable carTable;
+	private JButton ensureButton;
+	private JLabel yearLabel;
+	private JLabel monthLabel;
+	private JLabel dayLabel;
+	private String[] tableTitle;
+	private String[][] tableData;
+	private JButton delButton;
+	private JButton saveButton;
+	int panelWidth=0;
+	int panelHeight=0;
 	public LoadVehiclePanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
@@ -63,20 +84,112 @@ public class LoadVehiclePanel {
 		
 	}
 	public void planeLoadConpo(){
-		loadDateLabel=new JLabel("装运日期");
-		loadDate=new JTextField("请输入装运日期");
-		loadDateLabel.setBounds(panel.getWidth()/20,panel.getHeight()/2,panel.getWidth()/20+66,panel.getHeight()/3+20);
-		//loadDate.setBounds(panel.getHeight()/20, panel.getWidth()/3+20, panel.getHeight()/20+66, panel.getWidth()/2);
-		//panel.add( loadDate);
-		panel.add(loadDateLabel);
+		panelWidth=tabbedPane.getWidth();
+    	panelHeight=tabbedPane.getHeight();
+		
+		delButton=new JButton("删除");
+		saveButton=new JButton("保存");
+		timeLabel=new JLabel("装运日期");
+		
+		timeLabel.setSize(75,20);
+        timeLabel.setLocation(panelWidth/12,panelHeight*4/85);
+     	
+     	//setTime(planeLoadInfo);
+     	delButton.setSize(75,35);//删除与保存按钮的初始化
+     	delButton.setLocation(panelWidth*13/20, panelHeight*72/85);
+     	saveButton.setSize(75,35);
+		saveButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
+     	
+		
+		
+		planeLoadInfo.add(timeLabel);
+     	planeLoadInfo.add(delButton);
+        planeLoadInfo.add(saveButton);
 	}
 	
 	public void trainLoadConpo(){
+		panelWidth=tabbedPane.getWidth();
+    	panelHeight=tabbedPane.getHeight();
 		
+		delButton=new JButton("删除");
+		saveButton=new JButton("保存");
+		timeLabel=new JLabel("装运日期");
+		
+		timeLabel.setSize(75,20);
+        timeLabel.setLocation(panelWidth/12,panelHeight*4/85);
+     	
+     	//setTime(planeLoadInfo);
+     	delButton.setSize(75,35);//删除与保存按钮的初始化
+     	delButton.setLocation(panelWidth*13/20, panelHeight*72/85);
+     	saveButton.setSize(75,35);
+		saveButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
+		
+		
+		trainLoadInfo.add(timeLabel);
+     	trainLoadInfo.add(delButton);
+        trainLoadInfo.add(saveButton);
 	}
 	
 	public void carLoadConpo(){
+		panelWidth=tabbedPane.getWidth();
+    	panelHeight=tabbedPane.getHeight();
 		
+		delButton=new JButton("删除");
+		saveButton=new JButton("保存");
+		timeLabel=new JLabel("装运日期");
+		
+		timeLabel.setSize(75,20);
+        timeLabel.setLocation(panelWidth/12,panelHeight*4/85);
+     	
+     	//setTime(planeLoadInfo);
+     	delButton.setSize(75,35);//删除与保存按钮的初始化
+     	delButton.setLocation(panelWidth*13/20, panelHeight*72/85);
+     	saveButton.setSize(75,35);
+		saveButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
+		
+		
+		carLoadInfo.add(timeLabel);
+     	carLoadInfo.add(delButton);
+        carLoadInfo.add(saveButton);
+	}
+	
+	
+	public void setTime(JPanel panel){
+		int panelWidth=panel.getWidth();
+		int panelHeight=panel.getHeight();
+		
+		Calendar calendar = Calendar.getInstance();
+		year = calendar.get(Calendar.YEAR);
+		timeLabel = new JLabel("时间");
+		yearLabel = new JLabel("年");
+		monthLabel = new JLabel("月");
+		dayLabel = new JLabel("日");
+		ensureButton = new JButton("确认");
+		
+		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
+		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
+		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
+		yearBox = new JComboBox<String>(yearString);
+		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		yearLabel.setBounds(yearBox.getX()+panelWidth/10+10, panelHeight/10, panelWidth/20, panelHeight/20);
+		monthBox = new JComboBox<String>(monthString);
+		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		monthLabel.setBounds(monthBox.getX()+panelWidth/10+10, panelHeight/10, panelWidth/20, panelHeight/20);
+		dayBox = new JComboBox<String>(dayString);
+		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
+		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10, panelWidth/10, panelHeight/20);
+		
+		panel.add(ensureButton);
+		panel.add(timeLabel);
+		panel.add(yearLabel);
+		panel.add(monthLabel);
+		panel.add(dayLabel);
+		panel.add(yearBox);
+		panel.add(monthBox);
+		panel.add(dayBox);
 	}
 }
 

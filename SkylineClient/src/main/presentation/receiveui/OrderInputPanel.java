@@ -33,7 +33,6 @@ public class OrderInputPanel {
 	private JTextField height;
 	private ButtonGroup trans;
 	private ButtonGroup packge;
-	
 	public OrderInputPanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
