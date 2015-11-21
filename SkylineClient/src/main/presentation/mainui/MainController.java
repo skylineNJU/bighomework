@@ -9,6 +9,8 @@ import main.presentation.guestui.GuestuiController;
 import main.presentation.loadui.LoadVehiclePanel;
 import main.presentation.loadui.Loadui;
 import main.presentation.loadui.LoaduiController;
+import main.presentation.loadui.ReceiveListPanel;
+import main.presentation.loadui.TransmitReceivePanel;
 import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
@@ -29,6 +31,8 @@ public class MainController {
 	private static LoaduiController loaduiControl=new LoaduiController();
 	
 	private static LoadVehiclePanel loadVehicle;
+	private static ReceiveListPanel receiveList;
+	private static TransmitReceivePanel transmitReceive;
 	private static CourierPanel courierpanel;
 	private static FinanceStaffPanel financeStaffPanel;
 	private static WritePanel writepanel;

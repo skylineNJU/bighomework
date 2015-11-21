@@ -12,7 +12,7 @@ public class PasswordInitPanel {
 	private JPanel panel;
 	private JLabel accountNameLabel;
 	private JLabel newPasswordLabel;
-	private JLabel newPasswordConfirmLabel;
+	private JLabel newPasswordConfirmLabel;//‘Ÿ ‰»Î“ª±È√‹¬Î
 	private JTextField accountName;
 	private JTextField newPassword;
 	private JTextField newPasswordConfirm;
