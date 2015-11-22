@@ -74,17 +74,9 @@ public class CostListPanel {
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
 		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
 		yearBox = new JComboBox<String>(yearString);
-		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		yearLabel.setBounds(yearBox.getX()+panelWidth/10+10, panelHeight/10, panelWidth/20, panelHeight/20);
 		monthBox = new JComboBox<String>(monthString);
-		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		monthLabel.setBounds(monthBox.getX()+panelWidth/10+10, panelHeight/10, panelWidth/20, panelHeight/20);
 		dayBox = new JComboBox<String>(dayString);
-		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
-		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10, panelWidth/10, panelHeight/20);
 		
 		panel.add(ensureButton);
 		panel.add(timeLabel);
@@ -94,6 +86,17 @@ public class CostListPanel {
 		panel.add(yearBox);
 		panel.add(monthBox);
 		panel.add(dayBox);
+		
+		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
+		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		yearLabel.setBounds(yearBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		monthLabel.setBounds(monthBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
+		dayLabel.setBounds(dayBox.getX()+panelWidth/40+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/10, panelHeight/20);
+		
+		panel.repaint();
 	}
 	//成本管理列表
 	public void initTable(){
@@ -113,7 +116,7 @@ public class CostListPanel {
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.setDragEnabled(false);//设置不可拖动
-		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
+		table.getTableHeader().setPreferredSize(new Dimension(10000, panelWidth/20));//设置表头高度
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		if(tableData.length<=9){
 			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());

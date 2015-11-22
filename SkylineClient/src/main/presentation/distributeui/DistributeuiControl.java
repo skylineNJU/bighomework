@@ -14,6 +14,7 @@ public class DistributeuiControl {
 			receivePanel = new ReceiveMessagePanel();
 			receivePanel.init();
 			break;
+		
 		default:
 			break;
 		}

@@ -1,163 +1,191 @@
 package main.presentation.receiveui;
 
-import java.awt.Color;
-
 import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import main.presentation.mainui.MainController;
 
 public class OrderInputPanel {
 	private JPanel panel;
-	private JTabbedPane tabbedPane;
-	private JPanel senderInfo;
-	private JPanel receiverInfo;
-	private JPanel cargoInfo;
-	private JTextField senderName;
-	private JTextField senderPhoneNumber;
-	private JTextField senderAdress;
-	private JTextField receiverName;
-	private JTextField receiverPhoneNumber;
-	private JTextField receiverAdress;
-	private JCheckBox cheap;
-	private JCheckBox normal;
-	private JCheckBox fast;
-	private JCheckBox paper;
-	private JCheckBox wood;
-	private JCheckBox plastic;
-	private JTextField length;
-	private JTextField width;
-	private JTextField height;
-	private ButtonGroup trans;
-	private ButtonGroup packge;
+	private JLabel title;
+	private int panelWidth;
+	private int panelHeight;
+	
+	private JLabel name1;//1表示寄件人，2表示收件人
+	private JLabel phone1;//
+	private JLabel address1;
+	private JLabel name2;//1表示寄件人，2表示收件人
+	private JLabel phone2;//
+	private JLabel address2;
+	private JLabel kind;
+	private JLabel packageKind;
+	private JLabel size;
+	private JLabel feeLabel;
+	private JButton cancleButton;
+	private JButton saveButton;
+	private JTextField nameText1;
+	private JTextField phoneText1;
+	private JTextField addressText1;
+	private JTextField nameText2;
+	private JTextField phoneText2;
+	private JTextField addressText2;
+	private ButtonGroup kindGroup;
+	private JRadioButton kindRadio1;
+	private JRadioButton kindRadio2;
+	private JRadioButton kindRadio3;
+	private ButtonGroup packageGroup;
+	private JRadioButton packageRadio1;
+	private JRadioButton packageRadio2;
+	private JRadioButton packageRadio3;
+	private JTextField widthSizeText;
+	private JTextField heightSizeText;
+	private JTextField highSizeText;
+	private JTextField feeText;
+	private JLabel widthLabel;
+	private JLabel heightLabel;
+	private JLabel highLabel;
+	private JLabel weight;
+	private JTextField weightText;
 	
 	public OrderInputPanel(){
-		panel=MainController.getWritepanel();
+		panel = MainController.getWritepanel();
 		panel.setLayout(null);
+		panelWidth = panel.getWidth();
+		panelHeight = panel.getHeight();
 	}
-	
+
 	public void init(){
-		tabbedPane=new JTabbedPane(JTabbedPane.TOP);
-		senderInfo=new JPanel();
-		receiverInfo=new JPanel();
-		cargoInfo=new JPanel();
-		
-		senderInfo.setBackground(Color.red);
-		receiverInfo.setBackground(Color.pink);
-		cargoInfo.setBackground(Color.orange);
-		
-		senderInfo.setLayout(null);
-		receiverInfo.setLayout(null);
-		cargoInfo.setLayout(null);
-		
-		
-		
-		tabbedPane.addTab("收件人信息",senderInfo);
-		tabbedPane.addTab("寄件人信息",receiverInfo);
-		tabbedPane.addTab("货物信息",cargoInfo);
-		
-		tabbedPane.setSize(panel.getWidth()/4*3,panel.getHeight()/4*3);
-		
-		tabbedPane.setLocation(panel.getWidth()/8,panel.getHeight()/8);
-		panel.add(tabbedPane);
-		senderAddConpo();
-		receiverAddConpo();
-		cargoAddConpo();
-		tabbedPane.repaint();
+		initTitle();
+		initPanel();
 		panel.repaint();
 	}
-	
-	public void senderAddConpo(){
-		senderName=new JTextField("寄件人名称");
-		senderPhoneNumber=new JTextField("寄件人手机号码");
-		senderAdress=new JTextField("寄件人住址");
-		
-		senderName.setSize(tabbedPane.getWidth()/2,tabbedPane.getHeight()/9);
-		senderPhoneNumber.setSize(tabbedPane.getWidth()/2,tabbedPane.getHeight()/9);
-		senderAdress.setSize(tabbedPane.getWidth()/2,tabbedPane.getHeight()/9);
-		
-		senderName.setLocation(tabbedPane.getWidth()/4,tabbedPane.getHeight()/6);
-		senderPhoneNumber.setLocation(tabbedPane.getWidth()/4,senderName.getY()+senderName.getHeight()*2);
-		senderAdress.setLocation(tabbedPane.getWidth()/4,senderPhoneNumber.getY()+senderPhoneNumber.getHeight()*2);
-		
-		senderInfo.add(senderName);
-		senderInfo.add(senderPhoneNumber);
-		senderInfo.add(senderAdress);
+
+	public void initTitle(){
+		title = new JLabel("订单输入");
+		panel.add(title);
+		title.setBounds(panelWidth*2/5, panelHeight/60, panelWidth/5, panelHeight/30);
 	}
-	
-	public void receiverAddConpo(){
-		this.receiverName=new JTextField("收件人名称");
-		this.receiverPhoneNumber=new JTextField("收件人手机");
-		this.receiverAdress=new JTextField("收件人住址");
+	public void initPanel(){
+		name1 = new JLabel("寄件人姓名");
+		phone1 = new JLabel("寄件人手机号");//
+		address1 = new JLabel("寄件人地址");
+		name2 = new JLabel("收件人姓名");//1表示寄件人，2表示收件人
+		phone2 = new JLabel("收件人手机号");//
+		address2 = new JLabel("收件人地址");
+		kind = new JLabel("快递种类");
+		packageKind = new JLabel("包装种类");
+		size = new JLabel("快递尺寸");
+		feeLabel = new JLabel("总费用");
+		cancleButton = new JButton("取消");
+		saveButton = new JButton("保存");
+		nameText1 = new JTextField();
+		phoneText1 = new JTextField();
+		addressText1 = new JTextField();
+		nameText2 = new JTextField();
+		phoneText2 = new JTextField();
+		addressText2 = new JTextField();
+		kindGroup = new ButtonGroup();
+		kindRadio1 = new JRadioButton("经济");
+		kindRadio2 = new JRadioButton("普通");
+		kindRadio3 = new JRadioButton("特快");
+		packageGroup = new ButtonGroup();
+		packageRadio1 = new JRadioButton("纸箱");
+		packageRadio2 = new JRadioButton("木箱");
+		packageRadio3 = new JRadioButton("包装袋");
+		widthSizeText = new JTextField();
+		heightSizeText = new JTextField();
+		highSizeText = new JTextField();
+		feeText = new JTextField();
+		widthLabel = new JLabel("长");
+		heightLabel = new JLabel("宽");
+		highLabel = new JLabel("高");
+		weight = new JLabel("快递总重量");
+		weightText = new JTextField();
 		
-		receiverName.setSize(tabbedPane.getWidth()/2,tabbedPane.getHeight()/9);
-		receiverPhoneNumber.setSize(tabbedPane.getWidth()/2,tabbedPane.getHeight()/9);
-		receiverAdress.setSize(tabbedPane.getWidth()/2,tabbedPane.getHeight()/9);
+		kindGroup.add(kindRadio1);
+		kindGroup.add(kindRadio2);
+		kindGroup.add(kindRadio3);
+		packageGroup.add(packageRadio1);
+		packageGroup.add(packageRadio2);
+		packageGroup.add(packageRadio3);
 		
-		receiverName.setLocation(tabbedPane.getWidth()/4,tabbedPane.getHeight()/6);
-		receiverPhoneNumber.setLocation(tabbedPane.getWidth()/4,receiverName.getY()+receiverName.getHeight()*2);
-		receiverAdress.setLocation(tabbedPane.getWidth()/4,receiverPhoneNumber.getY()+receiverPhoneNumber.getHeight()*2);
+		panel.add(name1);
+		panel.add(phone1);
+		panel.add(address1);
+		panel.add(name2);
+		panel.add(phone2);
+		panel.add(address2);
+		panel.add(kind);
+		panel.add(packageKind);
+		panel.add(size);
+		panel.add(feeLabel);
+		panel.add(cancleButton);
+		panel.add(saveButton);
+		panel.add(nameText1);
+		panel.add(phoneText1);
+		panel.add(addressText1);
+		panel.add(nameText2);
+		panel.add(phoneText2);
+		panel.add(addressText2);
+		panel.add(kindRadio1);
+		panel.add(kindRadio2);
+		panel.add(kindRadio3);
+		panel.add(packageRadio1);
+		panel.add(packageRadio2);
+		panel.add(packageRadio3);
+		panel.add(widthSizeText);
+		panel.add(heightSizeText);
+		panel.add(highSizeText);
+		panel.add(widthLabel);
+		panel.add(heightLabel);
+		panel.add(highLabel);
+		panel.add(feeText);
+		panel.add(weight);
+		panel.add(weightText);
 		
-		receiverInfo.add(receiverName);
-		receiverInfo.add(receiverPhoneNumber);
-		receiverInfo.add(receiverAdress);
-	}
-	
-	public void cargoAddConpo(){
-		trans=new ButtonGroup();
-		packge=new ButtonGroup();
-		cheap=new JCheckBox("经济");
-		normal=new JCheckBox("普通");
-		fast=new JCheckBox("快速");
-		paper=new JCheckBox("纸箱");
-		wood=new JCheckBox("木箱");
-		plastic=new JCheckBox("快递袋");
-		width=new JTextField("宽度");
-		height=new JTextField("高度");
-		length=new JTextField("长度");
+		final int INTER = panelHeight/16;
+		name1.setBounds(panelWidth/20, panelHeight/10, panelWidth*3/20, panelHeight/20);
+		phone1.setBounds(name1.getX(), name1.getY()+name1.getHeight()+INTER, name1.getWidth(), name1.getHeight());
+		address1.setBounds(name1.getX(), phone1.getY()+phone1.getHeight()+INTER, name1.getWidth(), name1.getHeight());
+		nameText1.setBounds(panelWidth/5, name1.getY(), panelHeight*3/10, name1.getHeight());
+		phoneText1.setBounds(nameText1.getX(), phone1.getY(), nameText1.getWidth(), nameText1.getHeight());
+		addressText1.setBounds(nameText1.getX(), address1.getY(), nameText1.getWidth(), nameText1.getHeight());
 		
-		trans.add(cheap);
-		trans.add(normal);
-		trans.add(fast);
+		name2.setBounds(panelWidth/2, panelHeight/10, panelWidth*3/20, panelHeight/20);
+		phone2.setBounds(name2.getX(), name2.getY()+name2.getHeight()+INTER, name2.getWidth(), name2.getHeight());
+		address2.setBounds(name2.getX(), phone2.getY()+phone2.getHeight()+INTER, name2.getWidth(), name2.getHeight());
+		nameText2.setBounds(panelWidth*13/20, name2.getY(), panelHeight*3/10, name2.getHeight());
+		phoneText2.setBounds(nameText2.getX(), phone2.getY(), nameText2.getWidth(), nameText2.getHeight());
+		addressText2.setBounds(nameText2.getX(), address2.getY(), nameText2.getWidth(), nameText2.getHeight());
 		
-		packge.add(paper);
-		packge.add(wood);
-		packge.add(plastic);
+		kind.setBounds(panelWidth/20, addressText1.getY()+addressText1.getHeight()+INTER, name1.getWidth(), name1.getHeight());
+		kindRadio1.setBounds(panelWidth/4, kind.getY(), panelWidth/10, name1.getHeight());
+		kindRadio2.setBounds(panelWidth*2/4, kind.getY(), panelWidth/10, name1.getHeight());
+		kindRadio3.setBounds(panelWidth*3/4, kind.getY(), panelWidth/10, name1.getHeight());
 		
-		cheap.setBounds(tabbedPane.getWidth()/8,tabbedPane.getHeight()/10
-				,tabbedPane.getWidth()/4,tabbedPane.getHeight()/10);
-		normal.setBounds(tabbedPane.getWidth()/8,cheap.getY()+cheap.getHeight()*2
-				,tabbedPane.getWidth()/4,tabbedPane.getHeight()/10);
-		fast.setBounds(tabbedPane.getWidth()/8,normal.getY()+normal.getHeight()*2
-				,tabbedPane.getWidth()/4,tabbedPane.getHeight()/10);
+		packageKind.setBounds(panelWidth/20, kind.getY()+kind.getHeight()+INTER, name1.getWidth(), name1.getHeight());
+		packageRadio1.setBounds(panelWidth/4, packageKind.getY(), panelWidth/10, name1.getHeight());
+		packageRadio2.setBounds(panelWidth*2/4, packageKind.getY(), panelWidth/10, name1.getHeight());
+		packageRadio3.setBounds(panelWidth*3/4, packageKind.getY(), panelWidth/10, name1.getHeight());
 		
-		cargoInfo.add(cheap);
-		cargoInfo.add(normal);
-		cargoInfo.add(fast);
+		size.setBounds(panelWidth/20, packageKind.getY()+packageKind.getHeight()+INTER, name1.getWidth(), name1.getHeight());
+		widthSizeText.setBounds(panelWidth/4, size.getY(), panelWidth/10, name1.getHeight());
+		heightSizeText.setBounds(panelWidth*2/4, size.getY(), panelWidth/10, name1.getHeight());
+		highSizeText.setBounds(panelWidth*3/4, size.getY(), panelWidth/10, name1.getHeight());
+		widthLabel.setBounds(panelWidth/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
+		heightLabel.setBounds(panelWidth*2/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
+		highLabel.setBounds(panelWidth*3/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
 		
-		paper.setBounds(tabbedPane.getWidth()/8*5,tabbedPane.getHeight()/10
-				,tabbedPane.getWidth()/4,tabbedPane.getHeight()/10);
-		wood.setBounds(tabbedPane.getWidth()/8*5,paper.getY()+paper.getHeight()*2
-				,tabbedPane.getWidth()/4,tabbedPane.getHeight()/10);
-		plastic.setBounds(tabbedPane.getWidth()/8*5,wood.getY()+wood.getHeight()*2
-				,tabbedPane.getWidth()/4,tabbedPane.getHeight()/10);
+		feeLabel.setBounds(panelWidth*13/20, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		feeText.setBounds(panelWidth*3/4, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		weight.setBounds(size.getX(), size.getY()+size.getHeight()+INTER,panelWidth/10, name1.getHeight());
+		weightText.setBounds(panelWidth/4, weight.getY(), panelWidth/10, name1.getHeight());
 		
-		cargoInfo.add(paper);
-		cargoInfo.add(wood);
-		cargoInfo.add(plastic);
-		
-		length.setBounds(tabbedPane.getWidth()/6,plastic.getY()+plastic.getHeight()*3/2
-				,tabbedPane.getWidth()/8,tabbedPane.getHeight()/10);
-		width.setBounds(length.getX()+length.getWidth()*2,plastic.getY()+plastic.getHeight()*3/2
-				,tabbedPane.getWidth()/8,tabbedPane.getHeight()/10);
-		height.setBounds(width.getX()+width.getWidth()*2,plastic.getY()+plastic.getHeight()*3/2
-				,tabbedPane.getWidth()/8,tabbedPane.getHeight()/10);
-		
-		cargoInfo.add(length);
-		cargoInfo.add(width);
-		cargoInfo.add(height);		
+		cancleButton.setBounds(panelWidth*11/20, feeLabel.getY()+feeLabel.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		saveButton.setBounds(panelWidth*3/4, feeText.getY()+feeText.getHeight()+INTER, panelWidth/10, name1.getHeight());
 	}
 }

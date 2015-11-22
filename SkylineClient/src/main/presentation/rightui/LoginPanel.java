@@ -10,8 +10,8 @@ import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 
 public class LoginPanel {
-	private JTextField userName=new JTextField("141250029");
-	private JTextField passWord=new JTextField("141250029");
+	private JTextField userName=new JTextField("141250024");
+	private JTextField passWord=new JTextField("141250024");
 	private JLabel confirm=new JLabel("确定");
 	private JLabel back=new JLabel("返回");
 	private FrameMain frame;
@@ -55,20 +55,30 @@ public class LoginPanel {
 						MainController.goToCourierui();
 					}
 					break;
+					
 				case "141250028":    //营业厅业务员账号
-					if(password.equals(username));
+					if(password.equals(username)){
+						remove();
+						panel.repaint();
+						MainController.goToLobbyStaffui();
+					}
 					break;
 					
 				case "141250027":    //中转中心业务员账号 
 					if(password.equals(username)){
 						remove();
 						panel.repaint();
+						//panel.add(FrameMain.getContentPanel());
 						MainController.goToIntermediateStaffui();
 					}
 					break;
 					
 				case "141250026":    //中转仓库管理人员账号
-					if(password.equals(username));
+					if(password.equals(username)){
+						remove();
+						panel.repaint();
+						MainController.goToWarehouseui();
+					}
 					break;
 					
 				case "141250025":    //财务管理人员账号
@@ -80,15 +90,19 @@ public class LoginPanel {
 					break;
 					
 				case "141250024":    //总经理账号
-					if(password.equals(username));
+					if(password.equals(username)){
+						remove();
+						panel.repaint();
+						MainController.goToManagerui();
+					}
 					break;
+					
 				case "141250023":    //账户管理人员账号
-					if(password.equals(username))
-						
-					{
+					if(password.equals(username)){
 					remove();
 					panel.repaint();
 					MainController.goToRightAdminStaffui();
+
 					}
 					break;
 				}

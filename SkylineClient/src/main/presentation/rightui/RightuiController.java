@@ -6,6 +6,7 @@ import main.presentation.mainui.RightAdminStaffPanel;
 public class RightuiController {
 	private LoginPanel login;
 	private ModifyPassWordPanel passwordInit;
+	private ModifyPassWordPanel modifyPassWordPanel;
 	private RightAdminPanel rightAdmin;
 	public void select(Rightui ui){
 		switch(ui){
@@ -20,6 +21,12 @@ public class RightuiController {
 		case PasswordInit:
 			passwordInit=new ModifyPassWordPanel();
 			passwordInit.init();
+		case ModifyPassWord:
+			modifyPassWordPanel = new ModifyPassWordPanel();
+			modifyPassWordPanel.init();
+			break;
+		default:
+			break;
 		}
 	}
 }

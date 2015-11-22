@@ -1,6 +1,6 @@
 package main.po;
 import java.io.Serializable;
-public class TrainLoadingPO  extends Message implements Serializable{
+public class TrainLoadingPO  extends Receipt implements Serializable{
 	/**
 	 * 
 	 */

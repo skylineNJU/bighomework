@@ -5,8 +5,11 @@ public class FinanceuiControl {
 	private BalancePanel balancePanel;
 	private CostListPanel costListPanel;
 	private EarnListPanel earnListPanel;
+	private LobbyEarnPanel lobbyEarnPanel;
 	private StatisticsListPanel statisticsListPanel;
-	private ModifyPassWordPanel modifyPassWordPanel;
+	private FeeStrategyPanel feeStrategy;
+	private SalaryPanel salaryPanel;
+	
 	public void select(Financeui ui){
 		switch(ui){
 		case Balanceui:
@@ -25,9 +28,18 @@ public class FinanceuiControl {
 			statisticsListPanel = new StatisticsListPanel();
 			statisticsListPanel.init();
 			break;
-		case ModifyPassWordui:
-			modifyPassWordPanel = new ModifyPassWordPanel();
-			modifyPassWordPanel.init();
+		case LobbyEarnui:
+			lobbyEarnPanel = new LobbyEarnPanel();
+			lobbyEarnPanel.init();
+			break;
+		case FeeStrategyui:
+			feeStrategy = new FeeStrategyPanel();
+			feeStrategy.init();
+			break;
+		case SalaryStrategyui:
+			salaryPanel = new SalaryPanel();
+			salaryPanel.init();
+			break;
 		default:
 			break;
 		}

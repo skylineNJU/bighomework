@@ -6,9 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import main.businesslogic.financebl.FinanceController;
 import main.presentation.financeui.Financeui;
-import main.presentation.financeui.FinanceuiControl;
 import main.presentation.rightui.Rightui;
 
 public class FinanceStaffPanel extends GuidePanel{
@@ -16,7 +14,6 @@ public class FinanceStaffPanel extends GuidePanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static FinanceuiControl financeuiControl;
 	private JButton modifyKeyWord = new JButton("修改密码");
 	private JButton costManager = new JButton("成本管理");
 	private JButton earnManager = new JButton("结算管理");
@@ -28,7 +25,6 @@ public class FinanceStaffPanel extends GuidePanel{
 	public FinanceStaffPanel(){
 		panel = FrameMain.getContentPanel();
 		this.setLayout(null);
-		financeuiControl = new FinanceuiControl();
 	}
 	
 	public void init(){
@@ -53,42 +49,42 @@ public class FinanceStaffPanel extends GuidePanel{
 		earnManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*2);
 		bankAccountManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*3);
 		StatisticsManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*4);
-		back.setLocation(this.getWidth()/8, this.getHeight()/4*1 + this.getHeight()/10*5);
+		back.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*5);
 		
 		//------设置按钮组件的监听--------
 		//修改密码
 		modifyKeyWord.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
-				financeuiControl.select(Financeui.ModifyPassWordui);
+				MainController.jumpToRightui(Rightui.ModifyPassWord);
 			}
 		});
 		//------跳至成本管理界面-------
 		costManager.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
-				financeuiControl.select(Financeui.CostListui);
+				MainController.jumpToFinanceui(Financeui.CostListui);
 			}
 		});
 		//-------跳至收益管理界面-------
 		earnManager.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
-				financeuiControl.select(Financeui.EarnListui);
+				MainController.jumpToFinanceui(Financeui.EarnListui);
 			}
 		});
 		//-------跳至银行账户界面-------
 		bankAccountManager.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
-				financeuiControl.select(Financeui.Balanceui);
+				MainController.jumpToFinanceui(Financeui.Balanceui);
 			}
 		});
 		//-------跳至统计报表界面-------
 		StatisticsManager.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
-				financeuiControl.select(Financeui.StatisticsListui);
+				MainController.jumpToFinanceui(Financeui.StatisticsListui);
 			}
 		});
 		

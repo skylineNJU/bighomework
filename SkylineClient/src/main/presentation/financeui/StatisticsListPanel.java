@@ -9,8 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.Spring;
-import javax.swing.SwingConstants;
+
 
 import main.presentation.mainui.MainController;
 
@@ -159,7 +158,7 @@ public class StatisticsListPanel {
 		costListTable.setEnabled(false);//设置不可编辑内容
 		costListTable .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		costListTable.setRowHeight(panelWidth/25);//设置列宽
-		costListTable.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/25));//设置表头高度
+		costListTable.getTableHeader().setPreferredSize(new Dimension(10000, panelWidth/25));//设置表头高度
 		costListTable.setDragEnabled(false);//不可拖动
 		costListTable.getTableHeader().setResizingAllowed(false);//列宽不可以改动
 		costPane = new JScrollPane(costListTable);

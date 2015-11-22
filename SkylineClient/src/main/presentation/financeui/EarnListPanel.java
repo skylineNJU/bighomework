@@ -65,27 +65,19 @@ public class EarnListPanel {
 	public void setTime(){
 		Calendar calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
+		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
+		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
+		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		
 		timeLabel = new JLabel("时间");
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
 		dayLabel = new JLabel("日");
 		ensureButton = new JButton("确认");
-		
-		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
-		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
-		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
-				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
 		yearBox = new JComboBox<String>(yearString);
-		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		yearLabel.setBounds(yearBox.getX()+panelWidth/10+10, panelHeight/10, panelWidth/20, panelHeight/20);
 		monthBox = new JComboBox<String>(monthString);
-		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		monthLabel.setBounds(monthBox.getX()+panelWidth/10+10, panelHeight/10, panelWidth/20, panelHeight/20);
 		dayBox = new JComboBox<String>(dayString);
-		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
-		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10, panelWidth/10, panelHeight/20);
 		
 		panel.add(ensureButton);
 		panel.add(timeLabel);
@@ -95,6 +87,17 @@ public class EarnListPanel {
 		panel.add(yearBox);
 		panel.add(monthBox);
 		panel.add(dayBox);
+		
+
+		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
+		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		yearLabel.setBounds(yearBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		monthLabel.setBounds(monthBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
+		dayLabel.setBounds(dayBox.getX()+panelWidth/40+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/10, panelHeight/20);
+		
 	}
 	//成本管理列表
 	public void initTable(){

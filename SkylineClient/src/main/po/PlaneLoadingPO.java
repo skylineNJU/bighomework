@@ -1,6 +1,10 @@
 package main.po;
 import java.io.Serializable;
-public class PlaneLoadingPO  extends Message implements Serializable{
+public class PlaneLoadingPO  extends Receipt implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String loadingDate;//装机日期
 	String flightNum;//中转中心航运编号
 	String planeNum;//航班号

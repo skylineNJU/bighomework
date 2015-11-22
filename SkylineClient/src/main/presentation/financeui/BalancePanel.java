@@ -60,7 +60,7 @@ public class BalancePanel {
 	
 	public void title(){
 		title = new JLabel("“¯––’Àªß");
-		title.setBounds(panelWidth/3, 20, panelWidth/6, 40);
+		title.setBounds(panelWidth/3, panelHeight/40, panelWidth/6, panelHeight/20);
 		panel.add(title);
 	}
 

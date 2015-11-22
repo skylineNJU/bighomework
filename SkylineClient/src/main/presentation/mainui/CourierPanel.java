@@ -13,11 +13,12 @@ import main.presentation.receiptui.Receiptui;
 import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
+import main.presentation.rightui.RightuiController;
 
 @SuppressWarnings("serial")
 
 public class CourierPanel extends GuidePanel {
-	private ReceiveController receiveController;
+
 	private JButton modifyPassWordButton = new JButton("修改密码");
 	private JButton orderInput=new JButton("订单输入");
 	private JButton receiveInput=new JButton("收件信息输入");
@@ -25,10 +26,10 @@ public class CourierPanel extends GuidePanel {
 	private JButton showTask=new JButton("任务查看");
 	private JButton back=new JButton("注销");
 	private JPanel panel;
+	
 	public CourierPanel(){
 		panel = FrameMain.getContentPanel();
 		this.setLayout(null);
-		receiveController = new ReceiveController();
 	}
 	
 	public void init(){
@@ -65,7 +66,7 @@ public class CourierPanel extends GuidePanel {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
 				panel.repaint();
-				receiveController.select(Receiveui.ModifyPassWord);
+				MainController.jumpToRightui(Rightui.ModifyPassWord);
 			}
 		});
 		//跳至订单输入的界面
@@ -73,7 +74,7 @@ public class CourierPanel extends GuidePanel {
 			public void mouseClicked(MouseEvent e){
 				removeAllComponent();
 				panel.repaint();
-				MainController.goToCourierui();
+				MainController.jumpToReceiveui(Receiveui.OrderInput);
 			}
 		});
 		//收件信息输入
@@ -122,6 +123,7 @@ public class CourierPanel extends GuidePanel {
 		MainController.getWritepanel().removeAll();
 		panel.remove(MainController.getWritepanel());
 	}
+	
 	//跳转到模块其他界面前，移除所有的组件
 	public void removeAllComponent(){
 		MainController.getWritepanel().removeAll();

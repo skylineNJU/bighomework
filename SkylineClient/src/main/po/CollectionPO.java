@@ -1,7 +1,9 @@
 package main.po;
 
+import main.vo.ReceiptVO;
+
 //一项收入的收款单PO
-public class CollectionPO extends Message{
+public class CollectionPO extends Receipt{
 	
 	/**
 	 * 
@@ -25,6 +27,9 @@ public class CollectionPO extends Message{
 		this.remark = remark;
 	}
 
+	public void convert(ReceiptVO vo){
+		
+	}
 	public int getCollectionYear() {
 		return collectionYear;
 	}

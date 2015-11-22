@@ -1,9 +1,7 @@
 package main.po;
 
-import java.util.List;
-
 //成本单，一项成本信息
-public class CostPO extends Message{
+public class CostPO extends Receipt{
 	/**
 	 * 
 	 */
