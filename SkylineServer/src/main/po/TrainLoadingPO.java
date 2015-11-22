@@ -1,31 +1,57 @@
 package main.po;
 import java.io.Serializable;
-public class TrainLoadingPO  extends Message implements Serializable{
+
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+public class TrainLoadingPO  extends Receipt implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String loadingDate;//装运日期
-	String trainNum;//中转中心货运编号
-	String trainTourNum;//车次号
-	String departure;//出发地
-	String destination;//到达地
-	String monitor;//监装员
-	String store;//车厢号
-	String shipment;//装箱托运区号
-	String freight;//运费
+	private String loadingDate;//装运日期
+	private String trainNum;//中转中心货运编号
+	private String trainTourNum;//车次号
+	private String departure;//出发地
+	private String destination;//到达地
+	private String monitor;//监装员
+	private String store;//车厢号
+	private String shipment;//装箱托运区号
+	private double freight;//运费
 	
-	public TrainLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,String i){
-		loadingDate=a;
-		trainNum=b;
-		trainTourNum=c;
-		departure=d;
-		destination=e;
-		monitor=f;
-		store=g;
-		shipment=h;
-		freight=i;
+	public void writeIntoDatabase(){
+		SqlWriter writer=new SqlWriter();
+		shipment=readOrderCode(shipment);
+		String content="'"+trainNum+"','"+trainTourNum+"','"+store+"','"+departure+"','"
+				+destination+"','"+monitor+"','"+shipment+"','"+super.getCode()+"',"+freight+",'"+loadingDate+"'";
+		writer.writeIntoSql("TrainLoading", content);
 	}
+	
+	public String readOrderCode(String area){
+		String content="";
+		SqlReader reader=new SqlReader("InventoryInfo");
+		while(reader.findNext("区号",area)){
+			content=content+reader.getString("订单号")+" ";
+		}
+		reader.close();
+		return content;
+	}
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("TrainLoading");
+		reader.findNext("火车装运单单号",this.getCode());
+		this.departure=reader.getString("出发地");
+		this.destination=reader.getString("到达地");
+		this.trainTourNum=reader.getString("火车车次号");
+		this.trainNum=reader.getString("中转中心火车货运编号编号");
+		this.monitor=reader.getString("监装员");
+		this.shipment=reader.getString("所有货物订单号");
+		this.store=reader.getString("车厢号");
+		this.loadingDate=reader.getString("单据生成时间");
+		this.freight=reader.getDouble("费用");
+		reader.close();
+	}
+	
+	
 
 	public String getLoadingDate() {
 		return loadingDate;
@@ -91,11 +117,4 @@ public class TrainLoadingPO  extends Message implements Serializable{
 		this.shipment = shipment;
 	}
 
-	public String getFreight() {
-		return freight;
-	}
-
-	public void setFreight(String freight) {
-		this.freight = freight;
-	}
 }

@@ -2,95 +2,61 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
 //营业厅收到快递后生产的一条收件单信息
-public class LobbyReceivePO extends Message implements Serializable{
+public class LobbyReceivePO extends Receipt implements Serializable{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String receiveYear;//营业厅接收时间 
-	private String receiveMonth;//营业厅接收时间 
-	private String receiveDay;//营业厅接收时间 
+	private int receiveYear;//营业厅接收时间 
+	private int receiveMonth;//营业厅接收时间 
+	private int receiveDay;//营业厅接收时间 
 	private int condition;//货物到达状态
 	private String expressBar;//expressBar表示订单
-	private String receiptCode;
 	
+
+	public void writerIntoDataBase(){
+		SqlWriter writer=new SqlWriter();
+		String cond = null;
+		switch(condition){
+		case 0:
+			cond="完好";
+			break;
+		case 1:
+			cond="破损";
+			break;
+		case 2:
+			cond="丢失";
+			break;
+		}
+		String content="'"+receiveYear+"/"+receiveMonth+"/"+receiveDay+"','"
+				+cond+"','"+expressBar+"','"+this.getCode()+"'";
+		writer.writeIntoSql("LobbyReceive",content);
+	}
 	
-	public LobbyReceivePO(String receiveYear,String receiveMonth,String receiveDay,int co,String expressBar,String receiptC){
-		this.receiveYear = receiveYear;
-		this.receiveMonth = receiveMonth;
-		this.receiveDay = receiveDay;
-		this.condition = co;
-		this.expressBar = expressBar;
-		this.receiptCode=receiptC;
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("LobbyReceive");
+		reader.findNext("单据号",this.getCode());
+		String date[]=reader.getString("接收时间").split(" ");
+		this.receiveYear=Integer.parseInt(date[0]);
+		this.receiveMonth=Integer.parseInt(date[1]);
+		this.receiveDay=Integer.parseInt(date[2]);
+		String condition=reader.getString("货物到达状态");
+		switch(condition){
+		case "完好":
+			this.condition=0;
+		case "破损":
+			this.condition=1;
+		case "丢失":
+			this.condition=2;
+		}
+		this.expressBar=reader.getString("订单号");
 	}
-
-
-	public String getReceiveYear() {
-		return receiveYear;
-	}
-
-
-	public void setReceiveYear(String receiveYear) {
-		this.receiveYear = receiveYear;
-	}
-
-
-	public String getReceiveMonth() {
-		return receiveMonth;
-	}
-
-
-	public void setReceiveMonth(String receiveMonth) {
-		this.receiveMonth = receiveMonth;
-	}
-
-
-	public String getReceiveDay() {
-		return receiveDay;
-	}
-
-
-	public void setReceiveDay(String receiveDay) {
-		this.receiveDay = receiveDay;
-	}
-
-
-	public int getCondition() {
-		return condition;
-	}
-
-
-	public void setCondition(int condition) {
-		this.condition = condition;
-	}
-
-
-	public String getExpressBar() {
-		return expressBar;
-	}
-
-
-	public void setExpressBar(String expressBar) {
-		this.expressBar = expressBar;
-	}
-
-
-	public String getReceiptCode() {
-		return receiptCode;
-	}
-
-
-	public void setReceiptCode(String receiptCode) {
-		this.receiptCode = receiptCode;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
 	
 	
 }

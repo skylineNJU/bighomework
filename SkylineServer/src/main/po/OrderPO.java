@@ -1,32 +1,23 @@
 package main.po;
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
 
-public class OrderPO extends Message implements Serializable{
+
+public class OrderPO extends Receipt implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*	飩у瘎浠朵汉濮撳悕銆佷綇鍧�銆佸崟浣嶃�佺數璇濄�佹墜鏈猴紱
-飩�	             鏀朵欢浜哄鍚嶃�佷綇鍧�銆佸崟浣嶃�佺數璇濄�佹墜鏈�
-飩�	鎵樿繍璐х墿淇℃伅锛堝師浠舵暟銆佸疄闄呴噸閲忋�佷綋绉�佸唴浠跺搧鍚嶃�佸昂瀵革級
-飩�	鍖呰璐癸紙绾哥銆佹湪绠便�佸揩閫掕銆佸叾瀹冿級
-飩�	璐圭敤鍚堣
-飩�	璁㈠崟鏉″舰鐮佸彿锛�10浣嶆暟锛�
-飩�	缁忔祹蹇�掋�佹爣鍑嗗揩閫掋�佺壒蹇�
-
-
-*/
 	 	String senderName;
 		String senderAddress;
 		String senderCom;
-		//String sendertel;
 		String senderMobile;
 		
 		String receivorName;
 		String receivorAddress;
 		String receivorCom;
-		//String receivortel;
 		String receivorMobile;
 		
 		public enum PackageCost{
@@ -35,45 +26,69 @@ public class OrderPO extends Message implements Serializable{
 		
 		PackageCost packageCost;
 		Type type;
-		
-		int num;//鍘熶欢鏁�
-		double weight;//瀹為檯閲嶉噺
-		double volume;//浣撶Н
-		String cargoName;//鍐呴儴鍝佸悕
-		
-		public enum Size{
-			large,medium,small;	
-		}//灏哄
-		
-		Size size;
-		String orderCode;//璁㈠崟鏉″舰鐮�
-		int sum;//璐圭敤鍚堣
+		int num;
+		double weight;
+		double volume;
+		String cargoName;
+		String orderCode;
+		double sum;
 
-		public OrderPO(String a,String b,String c,String e,String f,String g ,String h,String j,
-		 PackageCost pC,Type t,int k,double l,double m,String n,Size s,String p,int q){
-			 senderName = a;
-			 senderAddress = b;
-			 senderCom = c;
-			// sendertel = d;
-			 senderMobile = e;
-			
-			 receivorName = f;
-			 receivorAddress = g;
-			 receivorCom = h;
-		     //receivortel = i;
-			 receivorMobile = j;
-			
-		     packageCost = pC;
-			 type = t;
-				 
-			 num = k;
-			 weight = l;
-			 volume = m;
-			 cargoName = n;
-			 size = s;
-			 orderCode = p;
-			 sum = q;	
+		public void writeIntoDatabase(){
+			SqlWriter writer=new SqlWriter();
+			String content="'"+super.getCode()+"','"+orderCode+"','"
+					+senderName+"','"+senderAddress+"','"+senderCom+"','"
+					+receivorName+"','"+receivorAddress+"','"+receivorCom+"'"
+					+num+","+weight+","+volume+",'"+type.name()+"','"+packageCost.name()+"',"+sum+",'"
+					+cargoName+"'";
+			writer.writeIntoSql("Order", content);
 		}
+		
+		public void getDataFromBase(){
+			SqlReader reader=new SqlReader("Order");
+			reader.findNext("单据号",this.getCode());
+			this.orderCode=reader.getString("订单号");
+			this.senderName=reader.getString("寄件人姓名");
+			this.senderAddress=reader.getString("寄件人住址");
+			this.senderCom=reader.getString("寄件人单位");
+			this.senderMobile=reader.getString("寄件人电话号码");
+			this.receivorName=reader.getString("收件人姓名");
+			this.receivorAddress=reader.getString("收件人住址");
+			this.receivorCom=reader.getString("收件人单位");
+			this.receivorMobile=reader.getString("收件人电话号码");
+			this.num=reader.getInt("寄件数量");
+			this.weight=reader.getDouble("寄件总重");
+			this.volume=reader.getDouble("寄件体积");
+			this.cargoName=reader.getString("货物名");
+			this.packageCost=PackageCost.valueOf(reader.getString("包装"));
+			this.type=Type.valueOf(reader.getString("货运方式"));
+			this.sum=reader.getDouble("费用");
+			
+		}
+		
+	
+		public OrderPO(String senderName, String senderAddress, String senderCom, String senderMobile,
+				String receivorName, String receivorAddress, String receivorCom, String receivorMobile,
+				PackageCost packageCost, Type type, int num, double weight, double volume, String cargoName,
+				String orderCode, double sum) {
+			super();
+			this.senderName = senderName;
+			this.senderAddress = senderAddress;
+			this.senderCom = senderCom;
+			this.senderMobile = senderMobile;
+			this.receivorName = receivorName;
+			this.receivorAddress = receivorAddress;
+			this.receivorCom = receivorCom;
+			this.receivorMobile = receivorMobile;
+			this.packageCost = packageCost;
+			this.type = type;
+			this.num = num;
+			this.weight = weight;
+			this.volume = volume;
+			this.cargoName = cargoName;
+			this.orderCode = orderCode;
+			this.sum = sum;
+		}
+
 
 		public String getSenderName() {
 			return senderName;
@@ -205,14 +220,6 @@ public class OrderPO extends Message implements Serializable{
 			this.cargoName = cargoName;
 		}
 
-		public Size getSize() {
-			return size;
-		}
-
-		public void setSize(Size size) {
-			this.size = size;
-		}
-
 		public String getOrderCode() {
 			return orderCode;
 		}
@@ -221,11 +228,5 @@ public class OrderPO extends Message implements Serializable{
 			this.orderCode = orderCode;
 		}
 
-		public int getSum() {
-			return sum;
-		}
-
-		public void setSum(int sum) {
-			this.sum = sum;
-		} 
+	
 }

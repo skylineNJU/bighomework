@@ -1,29 +1,24 @@
 package main.po;
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
 public class InventoryPO extends Message implements Serializable{
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-/*	椋╋拷	
- * 閸戯拷/閸忋儱绨遍弫浼村櫤閿涘苯鍤崗銉ョ氨鐠愌呭⒖閻ㄥ嫯顓归崡鏇炲娇閿涘本宕崸蹇斿剰閸愮绱濋崚鍡楀隘閸欓攱甯撻崣閿嬬仸閸欒渹缍呴崣鍑ょ礉閸掓媽鎻弮銉︽埂,閻╊喚娈戦崷锟�
- * 
-*/
-	 	int inNum;
-	 	int outNum;
-	 	String orderCode;
-	 	String damageCondition;
-	 	char area;
-		int row;
-		int shelf;
-		int position;
-		String destination;
-		String arriveDate;
+	 	private String orderCode;
+	 	private String damageCondition;
+	 	private String area;
+		private int row;
+		private int shelf;
+		private int position;
+		private String destination;
+		private String arriveDate;
 		
-		public InventoryPO(int a,int b,String c,String d,char e,int f,int g,int h,String i,String j){
-			inNum=a;
-			outNum=b;
+		public InventoryPO(String c,String d,String e,int f,int g,int h,String i,String j){
 			orderCode=c;
 			damageCondition=d;
 			area=e;
@@ -34,14 +29,26 @@ public class InventoryPO extends Message implements Serializable{
 			arriveDate=j;
 		}
 
-		public int getInNum() {
-			return inNum;
+		public void writeIntoDatabase(){
+			SqlWriter writer=new SqlWriter();
+			String content="'"+orderCode+"','"+damageCondition+"','"+area+"',"+
+			row+","+shelf+","+position+",'"+destination+"','"+arriveDate+"'";
+			writer.writeIntoSql("InventoryInfo", content);
 		}
-
-		public int getOutNum() {
-			return outNum;
+		
+		public void getDaraFromBase(){
+			SqlReader reader=new SqlReader("InventoryInfo");
+			reader.findNext("订单号",orderCode);
+			this.damageCondition=reader.getString("损坏情况");
+			this.area=reader.getString("区号");
+			this.arriveDate=reader.getString("到达时间");
+			this.destination=reader.getString("目的地");
+			this.row=reader.getInt("排号");
+			this.shelf=reader.getInt("架号");
+			this.position=reader.getInt("位号");
+			reader.close();
 		}
-
+	
 		public String getOrderCode() {
 			return orderCode;
 		}
@@ -50,7 +57,7 @@ public class InventoryPO extends Message implements Serializable{
 			return damageCondition;
 		}
 
-		public char getArea() {
+		public String getArea() {
 			return area;
 		}
 

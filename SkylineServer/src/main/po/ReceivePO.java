@@ -1,15 +1,15 @@
 package main.po;
 import java.io.Serializable;
-//鎺ユ敹鍗�
-public class ReceivePO extends Message implements Serializable{
+
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
+public class ReceivePO extends Receipt implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*
- * 涓浆涓績鎺ユ敹鍗曞彿锛屾敹浠朵汉濮撳悕锛屾敹浠舵棩鏈�
- */
 	
 	String bar;
 	String receivorName;
@@ -21,6 +21,21 @@ public class ReceivePO extends Message implements Serializable{
 		receiveDate = c;
 	}
 
+	public void writeIntoDatabase(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+this.getCode()+"','"+bar+"','"+receivorName+"','"
+				+receiveDate+"'";
+		writer.writeIntoSql("Receive", content);
+	}
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("Receive");
+		reader.findNext("收件单单号",this.getCode());
+		this.bar=reader.getString("订单单号");
+		this.receiveDate=reader.getString("收件时间");
+		this.receivorName=reader.getString("收件人姓名");
+	}
+	
 	public String getBar() {
 		return bar;
 	}

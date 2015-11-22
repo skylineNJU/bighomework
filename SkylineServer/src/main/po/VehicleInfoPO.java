@@ -2,75 +2,54 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
 
 public class VehicleInfoPO extends Message implements Serializable{
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int carID;//车辆代号
-	private int engineID;//底盘代号
-    private int carNum;//车辆号
-    private int underpanID;//底盘号
+	private String carID;//车牌号
+	private String engineID;//引擎代号
+    private String carNum;//车辆号
+    private String underpanID;//底盘号
     private String boughtTime;//购买时间
-    private int usedTime;//服役时间
+    private String usedTime;//服役时间
 
-public VehicleInfoPO(int i,int j,int k,int m,String n,int p){
-	carID=i;
-	engineID=j;
-	carNum=k;
-	underpanID=m;
-	boughtTime=n;
-	usedTime=p;
-}
+ 
+    public void writeIntoDatabase(){
+    	SqlWriter writer=new SqlWriter();
+    	String content="'"+carID+"','"+engineID+"','"+carNum+"','"
+    			+underpanID+"','"+boughtTime+"','"+usedTime+"'";
+    	writer.writeIntoSql("VehicleInfo", content);
+    	
+    }
 
-public int getCarID() {
-	return carID;
-}
+    public void getDataFromBase(){
+    	SqlReader reader=new SqlReader("VehicleInfo");
+    	reader.findNext("车辆代号",carNum);
+    	this.carID=reader.getString("车牌号");
+    	this.engineID=reader.getString("引擎代号");
+    	this.underpanID=reader.getString("底盘代号");
+    	this.usedTime=reader.getString("服役时间");
+    	this.boughtTime=reader.getString("购买时间");
+    	reader.close();
+    }
 
-public void setCarID(int carID) {
-	this.carID = carID;
-}
-
-public int getEngineID() {
-	return engineID;
-}
-
-public void setEngineID(int engineID) {
-	this.engineID = engineID;
-}
-
-public int getCarNum() {
-	return carNum;
-}
-
-public void setCarNum(int carNum) {
-	this.carNum = carNum;
-}
-
-public int getUnderpanID() {
-	return underpanID;
-}
-
-public void setUnderpanID(int underpanID) {
-	this.underpanID = underpanID;
-}
-
-public String getBoughtTime() {
-	return boughtTime;
-}
-
-public void setBoughtTime(String boughtTime) {
-	this.boughtTime = boughtTime;
-}
-
-public int getUsedTime() {
-	return usedTime;
-}
-
-public void setUsedTime(int usedTime) {
-	this.usedTime = usedTime;
-}
-
+	public VehicleInfoPO(String carID, String engineID, String carNum, String underpanID, String boughtTime,
+			String usedTime) {
+		super();
+		this.carID = carID;
+		this.engineID = engineID;
+		this.carNum = carNum;
+		this.underpanID = underpanID;
+		this.boughtTime = boughtTime;
+		this.usedTime = usedTime;
+	}
+    
+    
+   
 
 }

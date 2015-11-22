@@ -2,6 +2,9 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
 public class SalaryPO extends Message implements Serializable{
 
 	/**
@@ -17,6 +20,30 @@ public class SalaryPO extends Message implements Serializable{
     private double managerSalary=0;
     private double accountSalary=0;
     private double Performance=0;
+    
+    
+    public void writeIntoDatabase() {
+    	SqlWriter writer=new SqlWriter();
+    	String content="'薪水',"+coutierSalary+","+lobbySalary+","+driverSalary+","
+    			+intermediateSalary+","+storehouseSalary+","+financeSalary+","
+    			+managerSalary+","+accountSalary+","+Performance;
+    	writer.writeIntoSql("SalaryInfo", content);
+	}
+    
+    public void getDataFromBase(){
+    	SqlReader reader=new SqlReader("SalaryInfo");
+    	reader.findNext("ID","薪水");
+    	this.accountSalary=reader.getDouble("账户管理人员薪水");
+    	this.coutierSalary=reader.getDouble("快递员薪水");
+    	this.driverSalary=reader.getDouble("司机薪水");
+    	this.intermediateSalary=reader.getDouble("中转中心业务员薪水");
+    	this.lobbySalary=reader.getDouble("营业厅业务员薪水");
+    	this.managerSalary=reader.getDouble("总经理薪水");
+    	this.Performance=reader.getDouble("表现提成");
+    	this.storehouseSalary=reader.getDouble("仓库管理人员薪水");
+    	reader.close();
+    }
+    
 	public double getCoutierSalary() {
 		return coutierSalary;
 	}

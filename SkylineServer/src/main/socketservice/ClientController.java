@@ -1,90 +1,45 @@
 package main.socketservice;
 
-import main.po.AccountPO;
-import main.po.ApprovalPO;
-import main.po.BankAccountPO;
-import main.po.CenterReceivePO;
-import main.po.LobbyReceivePO;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import main.po.Message;
 
 public class ClientController {
 	private Message message;
-
+	private ObjectOutputStream writer;
+	
+	public ClientController(ObjectOutputStream writer){
+		this.writer=writer;
+	}
+	
     public void analysis(Message obj){
     	message=obj;
     	
     	switch(message.getKey()){
+    	case "Save":
+    		message.writeIntoDatabase();
+    		break;
+    	case "inquire":
+    		message.getDataFromBase();
+    		response(message);
+    		break;
     	case "Start":
-    		AccountPO account=(AccountPO)message;
     		break;
     	case "End":
     		break;
-    		
     	}
-//    	switch(message.getType()){
-//    	case LobbyReceive:
-//    		LobbyReceivePO lobbyReceive=(LobbyReceivePO)message;
-//    		break;
-//		case Account:
-//			AccountPO Account=(AccountPO)message;
-//			break;
-//		case Approval:
-//			ApprovalPO approval=(ApprovalPO)message;
-//			break;
-//		case BankAccount:
-//			BankAccountPO bankAccount=(BankAccountPO)message;
-//			break;
-//		case CenterReceive:
-//			CenterReceivePO centerReceive=(CenterReceivePO)message;
-//			break;
-//		case Clearing:
-//			
-//			break;
-//		case Collection:
-//			break;
-//		case Cost:
-//			break;
-//		case Distribute:
-//			break;
-//		case DriverInfo:
-//			break;
-//		case Institution:
-//			break;
-//		case Inventory:
-//			break;
-//		case Loading:
-//			break;
-//		case Message:
-//			break;
-//		case Order:
-//			break;
-//		case PlaneLoading:
-//			break;
-//		case Receive:
-//			break;
-//		case Rights:
-//			break;
-//		case Salary:
-//			break;
-//		case StaffReceipt:
-//			break;
-//		case TrainLoading:
-//			break;
-//		case VehicleInfo:
-//			break;
-//		case VehicleLoading:
-//			break;
-//		case WarehouseIn:
-//			break;
-//		case WarehouseOut:
-//			break;
-//		case Worker:
-//			break;
-//		default:
-//			break;
-//    		
-//    	}
-//    	
-//    	
+
     }
+    
+    public void response(Message message){
+    	try {
+			writer.writeObject(message);
+			writer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
 }

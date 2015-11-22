@@ -1,3 +1,5 @@
+
+
 package main.presentation.rightui;
 
 import java.awt.Dimension;
@@ -94,5 +96,6 @@ public class PasswordInitPanel {
 		scrollPane.setBounds(accountNameLabel.getX(), panelHeight*13/30, panelWidth*4/5, panelHeight*2/15);
 		cancle.setBounds(panelWidth*3/5, panelHeight*19/30, panelWidth/8, panelHeight/15);
 		submit.setBounds(panelWidth*31/40, cancle.getY(), panelWidth/8, panelHeight/15);
+
 	}
 }

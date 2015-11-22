@@ -1,23 +1,26 @@
 package main.po;
 
-import java.util.List;
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
 
 //成本单，一项成本信息
-public class CostPO extends Message{
+public class CostPO extends Receipt{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String costItem;//成本项目，如租金、工资等
 	private int costYear;//支出年份
-	private String costMonth;//支出月份
-	private String costDay;//支出天
-	private int money;//支出金额
+	private int costMonth;//支出月份
+	private int costDay;//支出天
+	private double money;//支出金额
 	private String count;//支出人账户
-	private String unit;//支出单位
 	private String remark;//支出备注
 
-	public CostPO(String costItem,int costYear,String costMonth,String costDay,int money,String count,String remark,String unit){
+
+	public CostPO(String costItem, int costYear, int costMonth, int costDay, double money, String count,
+			String remark) {
+		super();
 		this.costItem = costItem;
 		this.costYear = costYear;
 		this.costMonth = costMonth;
@@ -25,17 +28,30 @@ public class CostPO extends Message{
 		this.money = money;
 		this.count = count;
 		this.remark = remark;
-		this.unit = unit;
 	}
 
-	public String getUnit() {
-		return unit;
+
+	public void writeIntoDatabase(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+count+"',"+money+",'"+costItem+"','"
+				+costYear+"/"+costMonth+"/"+costDay+"','"+remark+"','"+this.getCode()+"'";
+		writer.writeIntoSql("Cost", content);
 	}
 
-	public void setUnit(String unit) {
-		this.unit = unit;
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("Cost");
+		reader.findNext("付款单单号",this.getCode());
+		this.count=reader.getString("银行账户名");
+		this.money=reader.getDouble("花费");
+		this.costItem=reader.getString("支出类型");
+		String date[]=reader.getString("支出日期").split(" ");
+		this.costYear=Integer.parseInt(date[0]);
+		this.costMonth=Integer.parseInt(date[1]);
+		this.costDay=Integer.parseInt(date[2]);
+		this.remark=reader.getString("备注");
 	}
-
+	
 	public String getCostItem() {
 		return costItem;
 	}
@@ -52,23 +68,8 @@ public class CostPO extends Message{
 		this.costYear = costYear;
 	}
 
-	public String getCostMonth() {
-		return costMonth;
-	}
 
-	public void setCostMonth(String costMonth) {
-		this.costMonth = costMonth;
-	}
-
-	public String getCostDay() {
-		return costDay;
-	}
-
-	public void setCostDay(String costDay) {
-		this.costDay = costDay;
-	}
-
-	public int getMoney() {
+	public double getMoney() {
 		return money;
 	}
 

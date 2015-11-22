@@ -1,14 +1,14 @@
 package main.dataservice;
 
 import main.po.ApprovalPO;
-import main.po.StaffReceiptPO;
+import main.po.CourrierReceiptPO;
 
 //
 public interface ReceiptDataService {
 	
 	public boolean saveReceiptCode(String account,String code);
 	
-	public StaffReceiptPO getStaffReceipt(String account);
+	public CourrierReceiptPO getStaffReceipt(String account);
 	
 	public boolean delReceiptCode(String account,String code);
 	
