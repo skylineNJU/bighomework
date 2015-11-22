@@ -7,10 +7,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.presentation.financeui.Financeui;
+import main.presentation.loadui.Loadui;
+import main.presentation.loadui.LoaduiController;
 import main.presentation.rightui.Rightui;
 
 @SuppressWarnings("serial")
 public class IntermediateStaffPanel extends GuidePanel{
+	private static LoaduiController loaduiController;
 	private JButton transmitReceive=new JButton("中转接收");
 	private JButton loadAdmin=new JButton("装运管理");
 	private JButton receiveList=new JButton("接收单列表");
@@ -42,6 +46,31 @@ public class IntermediateStaffPanel extends GuidePanel{
 		back.setLocation((this.getWidth()-transmitReceive.getWidth())/2
 				,receiveList.getY()+receiveList.getHeight()*3/2);
 		
+		//跳转至中转接收
+		 transmitReceive.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				panel.repaint();
+				MainController.jumpToLoadui(Loadui.TRANSMITRECEIVE);
+			}
+		});
+		 //跳转至装运管理
+		 loadAdmin.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e){
+					removeAllComponent();
+					panel.repaint();
+					MainController.jumpToLoadui(Loadui.LOADVEHICLE);
+				}
+			});
+		//跳转至接收单列表
+		 receiveList.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e){
+					removeAllComponent();
+					panel.repaint();
+					MainController.jumpToLoadui(Loadui.RECEIVELIST);
+				}
+			});
+		//跳转至注销
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				remove();
@@ -61,12 +90,9 @@ public class IntermediateStaffPanel extends GuidePanel{
 			panel.remove(this);
 			MainController.getWritepanel().removeAll();
 			panel.remove(MainController.getWritepanel());
-		
-		
-		
-		
-		
-	}
-	
+}
+		public void removeAllComponent(){
+			MainController.getWritepanel().removeAll();
+		}
 	
 }

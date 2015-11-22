@@ -51,7 +51,7 @@ public class WarehousePanel extends GuidePanel{
 		
 		addWarehouseInReceipt.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				MainController.getWritepanel().removeAll();
 				panel.repaint();
 				MainController.jumpToWarehouseui(Warehouseui.AddWarehouseInReceipt);
 			}
@@ -59,7 +59,7 @@ public class WarehousePanel extends GuidePanel{
 		
 		addWarehouseOutReceipt.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				MainController.getWritepanel().removeAll();
 				panel.repaint();
 				MainController.jumpToWarehouseui(Warehouseui.AddWarehouseOutReceipt);
 			}
@@ -67,7 +67,7 @@ public class WarehousePanel extends GuidePanel{
 		
 		showInventory.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				MainController.getWritepanel().removeAll();
 				panel.repaint();
 				MainController.jumpToWarehouseui(Warehouseui.ShowInventory);
 			}
@@ -75,7 +75,7 @@ public class WarehousePanel extends GuidePanel{
 		
 		checkInventory.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				MainController.getWritepanel().removeAll();
 				panel.repaint();
 				MainController.jumpToWarehouseui(Warehouseui.CheckInventory);
 			}

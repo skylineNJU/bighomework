@@ -1,5 +1,6 @@
 package main.presentation.loadui;
 
 public enum Loadui {
-LOADVEHICLE,LobbyLoading
+LOADVEHICLE,LOADINFO,RECEIVELIST,TRANSMITRECEIVE
+
 }

@@ -2,9 +2,11 @@ package main.presentation.receiveui;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import main.presentation.mainui.MainController;
@@ -51,6 +53,27 @@ public class OrderInputPanel {
 	private JLabel weight;
 	private JTextField weightText;
 	
+	private JTabbedPane tabbedPane;
+	private JPanel senderInfo;
+	private JPanel receiverInfo;
+	private JPanel cargoInfo;
+	private JTextField senderName;
+	private JTextField senderPhoneNumber;
+	private JTextField senderAdress;
+	private JTextField receiverName;
+	private JTextField receiverPhoneNumber;
+	private JTextField receiverAdress;
+	private JCheckBox cheap;
+	private JCheckBox normal;
+	private JCheckBox fast;
+	private JCheckBox paper;
+	private JCheckBox wood;
+	private JCheckBox plastic;
+	private JTextField length;
+	private JTextField width;
+	private JTextField height;
+	private ButtonGroup trans;
+	private ButtonGroup packge;
 	public OrderInputPanel(){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
@@ -188,4 +211,5 @@ public class OrderInputPanel {
 		cancleButton.setBounds(panelWidth*11/20, feeLabel.getY()+feeLabel.getHeight()+INTER, panelWidth/10, name1.getHeight());
 		saveButton.setBounds(panelWidth*3/4, feeText.getY()+feeText.getHeight()+INTER, panelWidth/10, name1.getHeight());
 	}
+	
 }
