@@ -1,9 +1,12 @@
 package main.presentation.loadui; 
+
+import main.presentation.distributeui.ReceiveMessagePanel;
  
   public class LoaduiController { 
   private LoadVehiclePanel loadVehicle; 
   private ReceiveListPanel receiveList; 
   private TransmitReceivePanel transmitReceive; 
+  private LobbyLoadPanel lobbyLoadPanel;
   public void select(Loadui ui){ 
  	switch(ui){ 
  	case LOADVEHICLE: 
@@ -20,7 +23,10 @@ package main.presentation.loadui;
  		transmitReceive=new TransmitReceivePanel(); 
  		transmitReceive.init(); 
  		break; 
- 		 
+ 	case LobbyLoading:
+ 		lobbyLoadPanel = new LobbyLoadPanel();
+ 		lobbyLoadPanel.init();
+ 		break;
  		default: 
  			break; 
  	} 

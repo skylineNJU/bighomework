@@ -3,9 +3,7 @@ package main.presentation.loadui;
 import java.awt.Dimension;
 import java.util.Calendar;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

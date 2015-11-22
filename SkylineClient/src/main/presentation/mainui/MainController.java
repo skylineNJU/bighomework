@@ -6,11 +6,15 @@ import main.presentation.financeui.Financeui;
 import main.presentation.financeui.FinanceuiControl;
 import main.presentation.guestui.Guestui;
 import main.presentation.guestui.GuestuiController;
+import main.presentation.infoui.Infoui;
+import main.presentation.infoui.InfouiControl;
 import main.presentation.loadui.LoadVehiclePanel;
 import main.presentation.loadui.Loadui;
 import main.presentation.loadui.LoaduiController;
 import main.presentation.loadui.ReceiveListPanel;
 import main.presentation.loadui.TransmitReceivePanel;
+import main.presentation.receiptui.Receiptui;
+import main.presentation.receiptui.ReceiptuiControl;
 import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
@@ -29,6 +33,8 @@ public class MainController {
 	private static ReceiveController receiveuiControl=new ReceiveController();
 	private static FinanceuiControl financeuiControl = new FinanceuiControl();
 	private static LoaduiController loaduiControl=new LoaduiController();
+	private static InfouiControl infouiControl = new InfouiControl();
+	private static ReceiptuiControl receiptuiControl = new ReceiptuiControl();
 	
 	private static LoadVehiclePanel loadVehicle;
 	private static ReceiveListPanel receiveList;
@@ -39,6 +45,8 @@ public class MainController {
 	private static IntermediateStaffPanel intermediateStaffPanel;
 	private static RightAdminStaffPanel rightAdminStaffPanel;
 	private static WarehousePanel warehousepanel;
+	private static LobbyStaffPanel lobbyStaffPanel;
+	private static ManagerPanel managerPanel;
 	public static void start(){
 		frame=FrameMain.createFrame();
 		FrameMain.init();
@@ -64,6 +72,9 @@ public class MainController {
 	public static void jumpToReceiveui(Receiveui ui){
 		receiveuiControl.select(ui);
 	}
+	public static void jumpToReceiptui(Receiptui ui){
+		receiptuiControl.select(ui);
+	}
 	public static void jumpToLoadui(Loadui ui){
 		loaduiControl.select(ui);
 	}
@@ -71,7 +82,12 @@ public class MainController {
 	public static void jumpToWarehouseui(Warehouseui ui){
 		 warehouseuiControl.select(ui);
 	}
+	
+	public static void jumpToInfoui(Infoui ui){
+		infouiControl.select(ui);
+	}
 
+	
 	public static void goToCourierui(){
 		courierpanel=new CourierPanel();
 		courierpanel.init();
@@ -98,6 +114,18 @@ public class MainController {
 		FrameMain.getContentPanel().add(writepanel);
 		jumpToLoadui(Loadui.LOADVEHICLE);
 	}
+	
+	public static void goToLobbyStaffui(){
+		lobbyStaffPanel = new LobbyStaffPanel();
+		lobbyStaffPanel.init();
+		FrameMain.getContentPanel().add(writepanel);
+	}
+	public static void goToManagerui(){
+		managerPanel = new ManagerPanel();
+		managerPanel.init();
+		FrameMain.getContentPanel().add(writepanel);
+	}
+	
 	public static void goToWarehouseui(){
 		warehousepanel=new WarehousePanel();
 		warehousepanel.init();
