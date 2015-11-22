@@ -5,7 +5,7 @@ import main.presentation.mainui.RightAdminStaffPanel;
 @SuppressWarnings("unused")
 public class RightuiController {
 	private LoginPanel login;
-	private ModifyPassWordPanel passwordInit;
+	private PasswordInitPanel passwordInit;
 	private ModifyPassWordPanel modifyPassWordPanel;
 	private RightAdminPanel rightAdmin;
 	public void select(Rightui ui){
@@ -19,8 +19,9 @@ public class RightuiController {
 			rightAdmin.init();
 			break;
 		case PasswordInit:
-			passwordInit=new ModifyPassWordPanel();
+			passwordInit = new PasswordInitPanel();
 			passwordInit.init();
+			break;
 		case ModifyPassWord:
 			modifyPassWordPanel = new ModifyPassWordPanel();
 			modifyPassWordPanel.init();
