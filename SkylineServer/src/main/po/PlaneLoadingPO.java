@@ -1,28 +1,57 @@
 package main.po;
 import java.io.Serializable;
-public class PlaneLoadingPO  extends Message implements Serializable{
-	String loadingDate;//装机日期
-	String flightNum;//中转中心航运编号
-	String planeNum;//航班号
-	String departure;//出发地
-	String destination;//到达地
-	String monitor;//监装员
-	String store;//货柜号
-	String shipment;//装箱托运区号
-	String freight;//运费
-	
-	public PlaneLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,String i){
-		loadingDate=a;
-		flightNum=b;
-		planeNum=c;
-		departure=d;
-		destination=e;
-		monitor=f;
-		store=g;
-		shipment=h;
-		freight=i;
-	}
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+public class PlaneLoadingPO  extends Receipt implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String loadingDate;//装机日期
+	private String flightNum;//中转中心航运编号
+	private String planeNum;//航班号
+	private String departure;//出发地
+	private String destination;//到达地
+	private String monitor;//监装员
+	private String store;//货柜号
+	private String shipment;//装箱托运区号
+	private double freight;//运费
+	
+
+	
+
+	public void writeIntoDatabase(){
+		shipment=readOrderCode(shipment);
+		SqlWriter writer=new SqlWriter();
+		String content="'"+super.getCode()+"','"+flightNum+"','"+planeNum+"','"+departure+"','"
+				+destination+"','"+store+"','"+monitor+"','"+shipment+"',"+freight;
+		writer.writeIntoSql("LobbyLoading", content);
+	}
+	
+	public String readOrderCode(String area){
+		String content="";
+		SqlReader reader=new SqlReader("InventoryInfo");
+		while(reader.findNext("区号",area)){
+			content=content+reader.getString("订单号")+" ";
+		}
+		reader.close();
+		return content;
+	}
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("PlaneLoading");
+		reader.findNext("飞机装运单单号",this.getCode());
+		this.flightNum=reader.getString("中转中心编号");
+		this.planeNum=reader.getString("飞机航班号");
+		this.departure=reader.getString("出发地");
+		this.destination=reader.getString("到达地");
+		this.store=reader.getString("飞机舱号");
+		this.monitor=reader.getString("监装员");
+		this.freight=reader.getDouble("运费");
+		this.loadingDate=reader.getString("单据生成时间");
+		reader.close();
+	}
 	public String getLoadingDate() {
 		return loadingDate;
 	}
@@ -87,11 +116,4 @@ public class PlaneLoadingPO  extends Message implements Serializable{
 		this.shipment = shipment;
 	}
 
-	public String getFreight() {
-		return freight;
-	}
-
-	public void setFreight(String freight) {
-		this.freight = freight;
-	}
 }

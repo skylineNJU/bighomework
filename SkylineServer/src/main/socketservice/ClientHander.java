@@ -1,22 +1,27 @@
 package main.socketservice;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import main.po.Message;
 
 public class ClientHander implements Runnable{
 	private ObjectInputStream reader;
+	private ObjectOutputStream writer;
 	private Socket socket;
 	private ClientController messagein;
 	public ClientHander(Socket clientSocket){
-		messagein=new ClientController();
 		try{
 			socket=clientSocket;
 			reader=new ObjectInputStream(
 					new BufferedInputStream(socket.getInputStream()));
+			writer=new ObjectOutputStream(
+					new BufferedOutputStream(socket.getOutputStream()));
+			messagein=new ClientController(writer);
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}

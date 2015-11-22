@@ -8,14 +8,16 @@ public class Message implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private MessageType type;
 	private String key;
-	public MessageType getType() {
-		return type;
+	
+	
+	public void writeIntoDatabase() {
 	}
-	public void setType(MessageType type) {
-		this.type = type;
+	
+	public void getDataFromBase(){
+		
 	}
+	
 	public String getKey() {
 		return key;
 	}

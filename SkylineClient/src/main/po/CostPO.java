@@ -12,10 +12,9 @@ public class CostPO extends Receipt{
 	private String costDay;//支出天
 	private int money;//支出金额
 	private String count;//支出人账户
-	private String unit;//支出单位
 	private String remark;//支出备注
 
-	public CostPO(String costItem,int costYear,String costMonth,String costDay,int money,String count,String remark,String unit){
+	public CostPO(String costItem,int costYear,String costMonth,String costDay,int money,String count,String remark){
 		this.costItem = costItem;
 		this.costYear = costYear;
 		this.costMonth = costMonth;
@@ -23,17 +22,10 @@ public class CostPO extends Receipt{
 		this.money = money;
 		this.count = count;
 		this.remark = remark;
-		this.unit = unit;
 	}
 
-	public String getUnit() {
-		return unit;
-	}
-
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
-
+	
+	
 	public String getCostItem() {
 		return costItem;
 	}

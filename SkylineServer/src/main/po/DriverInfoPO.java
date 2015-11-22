@@ -2,6 +2,9 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
 public class DriverInfoPO extends Message implements Serializable{
 	/**
 	 * 
@@ -25,6 +28,25 @@ public class DriverInfoPO extends Message implements Serializable{
 		dueDate=q;
 	}
 
+	public void writeIntoDatabase(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+name+"','"+driverID+"','"+birthDay
+				+"','"+idCard+"','"+phoneNum+"','"+sex+"','"
+				+dueDate+"'";
+		writer.writeIntoSql("DriverInfo", content);
+	}
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("DriverInfo");
+		reader.findNext("司机编号",driverID);
+		this.name=reader.getString("司机姓名");
+		this.birthDay=reader.getString("司机出生日期");
+		this.dueDate=reader.getString("司机行驶证期限");
+		this.idCard=reader.getString("司机身份证号");
+		this.phoneNum=reader.getString("司机手机号码");
+		this.sex=reader.getString("司机性别");
+	}
+	
 	public String getDriverID() {
 		return driverID;
 	}

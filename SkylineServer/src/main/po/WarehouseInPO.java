@@ -1,79 +1,59 @@
 package main.po;
 import java.io.Serializable;
 
-public class WarehouseInPO extends Message implements Serializable{
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
+public class WarehouseInPO extends Receipt implements Serializable{
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-/*
- * 蹇�掔紪鍙枫�佸叆搴撴棩鏈熴�佺洰鐨勫湴銆佸尯鍙枫�佹帓鍙枫�佹灦鍙枫�佷綅鍙�
- */
-	String bar;
-	String inDate;
-	String destination;
-	char area;
-	int row;
-	int shelf;
-	int position;
+	private String bar;
+	private String inDate;
+	private String destination;
+	private String area;
+	private int row;
+	private int shelf;
+	private int position;
+	private String damageCondition;
 	
-	public WarehouseInPO(String a,String b,String c,char d,int e,int f,int g){
-		bar = a;
-		inDate = b;
-		destination = c;
-		area = d;
-		row = e;
-		shelf = f;
-		position = g;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
+	
+	public WarehouseInPO(String bar, String inDate, String destination, String area, int row, int shelf, int position,
+			String damageCondition) {
+		super();
+		this.bar = bar;
+		this.inDate = inDate;
 		this.destination = destination;
-	}
-
-	public char getArea() {
-		return area;
-	}
-
-	public void setArea(char area) {
 		this.area = area;
-	}
-
-	public int getRow() {
-		return row;
-	}
-
-	public void setRow(int row) {
 		this.row = row;
-	}
-
-	public int getShelf() {
-		return shelf;
-	}
-
-	public void setShelf(int shelf) {
 		this.shelf = shelf;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
-	public void setPosition(int position) {
 		this.position = position;
+		this.damageCondition = damageCondition;
 	}
 
-	public String getBar() {
-		return bar;
-	}
 
-	public String getInDate() {
-		return inDate;
+	public void writeIntoDatabase(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+bar+"','"+super.getCode()+"','"+destination+"','"+inDate+"','"
+				+area+"',"+row+","+shelf+","+position+",'"+damageCondition+"'";
+		writer.writeIntoSql("Warhousein", content);
+		InventoryPO inven=new InventoryPO(bar,damageCondition,area,row,shelf, position,destination,inDate);
+		inven.writeIntoDatabase();
+		
 	}
 	
-	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("WarhouseIn");
+		reader.findNext("入库单单号",this.getCode());
+		this.bar=reader.getString("订单单号");
+		this.area=reader.getString("区号");
+		this.damageCondition=reader.getString("损坏情况");
+		this.destination=reader.getString("目的地");
+		this.inDate=reader.getString("入库日期");
+		this.row=reader.getInt("排号");
+		this.shelf=reader.getInt("架号");
+		this.position=reader.getInt("位号");
+		reader.close();
+	}
 }

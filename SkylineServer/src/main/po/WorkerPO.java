@@ -2,6 +2,9 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+
 public class WorkerPO extends Message implements Serializable{
 	/**
 	 * 
@@ -13,6 +16,23 @@ public class WorkerPO extends Message implements Serializable{
 	private String age;
 	private String code;
 	
+	
+	public void writeIntoDataBase(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+name+"','"+position+"','"+belong+"','"
+				+age+"','"+code+"'";
+		writer.writeIntoSql("StaffInfo", content);
+	}
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("StaffInfo");
+		reader.findNext("职工账号",code);
+		this.name=reader.getString("职工姓名");
+		this.position=reader.getString("职位");
+		this.belong=reader.getString("所属单位");
+		this.age=reader.getString("入职时间");
+		reader.close();
+	}
 	//-------------------
 	//获取和修改职工的年龄
 	public String getAge() {

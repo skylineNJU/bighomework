@@ -3,12 +3,9 @@ package main.socketservice;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class Server {
-	ServerSocket ss;
-	ClientController hander=new ClientController();
-	ArrayList<Thread> threadList=new ArrayList<Thread>();
+	private ServerSocket ss;
 	public void start(){
 		try {
 			ss=new ServerSocket(12345);
@@ -16,7 +13,6 @@ public class Server {
 			while(true){
 			Socket socket=ss.accept();
 			Thread clientThread=new Thread(new ClientHander(socket));
-			threadList.add(clientThread);
 			clientThread.start();
 			System.out.println("got a connection");
 			}

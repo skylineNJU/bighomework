@@ -1,101 +1,53 @@
 package main.po;
 import java.io.Serializable;
-public class VehicleLoadingPO  extends Message implements Serializable{
+
+import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
+public class VehicleLoadingPO  extends Receipt implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String loadingDate;//装运日期
-	String carNum;//中转中心汽运编号
-	String carTourNum;//车次号
-	String departure;//出发地
-	String destination;//到达地
-	String monitor;//监装员
-	String guard;//押送员
-	String shipment;//装箱托运区号
-	String freight;//运费
+	private String loadingDate;//装运日期
+	private String carNum;//中转中心汽运编号
+	private String carTourNum;//车次号
+	private String departure;//出发地
+	private String destination;//到达地
+	private String monitor;//监装员
+	private String guard;//押送员
+	private String shipment;//装箱托运区号
+	private double freight;//运费
 	
-	public VehicleLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,String i){
-		loadingDate=a;
-		carNum=b;
-		carTourNum=c;
-		departure=d;
-		destination=e;
-		monitor=f;
-		guard=g;
-		shipment=h;
-		freight=i;
+	public void writeIntoDatabase(){
+		SqlWriter writer=new SqlWriter();
+		shipment=readOrderCode(shipment);
+		String content="'"+this.getCode()+"','"+loadingDate+"','"+carNum+"','"
+				+carTourNum+"','"+departure+"','"+destination+"','"+monitor+"','"
+				+guard+"','"+shipment+"',"+freight;
+		writer.writeIntoSql("VehicleLoading", content);
 	}
-
-	public String getLoadingDate() {
-		return loadingDate;
+	
+	public String readOrderCode(String area){
+		String content="";
+		SqlReader reader=new SqlReader("InventoryInfo");
+		while(reader.findNext("区号",area)){
+			content=content+reader.getString("订单号")+" ";
+		}
+		reader.close();
+		return content;
 	}
-
-	public void setLoadingDate(String loadingDate) {
-		this.loadingDate = loadingDate;
-	}
-
-	public String getCarNum() {
-		return carNum;
-	}
-
-	public void setCarNum(String carNum) {
-		this.carNum = carNum;
-	}
-
-	public String getCarTourNum() {
-		return carTourNum;
-	}
-
-	public void setCarTourNum(String carTourNum) {
-		this.carTourNum = carTourNum;
-	}
-
-	public String getDeparture() {
-		return departure;
-	}
-
-	public void setDeparture(String departure) {
-		this.departure = departure;
-	}
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	public String getMonitor() {
-		return monitor;
-	}
-
-	public void setMonitor(String monitor) {
-		this.monitor = monitor;
-	}
-
-	public String getGuard() {
-		return guard;
-	}
-
-	public void setGuard(String guard) {
-		this.guard = guard;
-	}
-
-	public String getShipment() {
-		return shipment;
-	}
-
-	public void setShipment(String shipment) {
-		this.shipment = shipment;
-	}
-
-	public String getFreight() {
-		return freight;
-	}
-
-	public void setFreight(String freight) {
-		this.freight = freight;
+	
+	public void getDataFromBase(){
+		SqlReader reader=new SqlReader("VehicleLoading");
+		reader.findNext("中转中心汽车装运单",this.getCode());
+		this.loadingDate=reader.getString("装运日期");
+		this.carNum=reader.getString("中转中心汽运编号");
+		this.carTourNum=reader.getString("车次号");
+		this.departure=reader.getString("出发地");
+		this.destination=reader.getString("到达地");
+		this.monitor=reader.getString("监装员");
+		this.guard=reader.getString("押运员");
+		this.shipment=reader.getString("所有订单单号");
+		this.freight=reader.getDouble("运费");
 	}
 }
