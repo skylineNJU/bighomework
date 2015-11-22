@@ -130,10 +130,10 @@ public class MainController {
 		warehousepanel=new WarehousePanel();
 		warehousepanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-		jumpToWarehouseui(Warehouseui.AddWarehouseInReceipt);
-		jumpToWarehouseui(Warehouseui.AddWarehouseOutReceipt);
-		jumpToWarehouseui(Warehouseui.ShowInventory);
-		jumpToWarehouseui(Warehouseui.CheckInventory);
+//		jumpToWarehouseui(Warehouseui.AddWarehouseInReceipt);
+//		jumpToWarehouseui(Warehouseui.AddWarehouseOutReceipt);
+//		jumpToWarehouseui(Warehouseui.ShowInventory);
+//		jumpToWarehouseui(Warehouseui.CheckInventory);
 	}
 
 	public static WritePanel getWritepanel() {

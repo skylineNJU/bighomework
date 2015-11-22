@@ -16,24 +16,31 @@ public class LoginPanel {
 	private JLabel back=new JLabel("·µ»Ø");
 	private FrameMain frame;
 	private JPanel panel;
+	private JLabel uIcon;
+	private JLabel pIcon;
+	
 	public LoginPanel(){
 		frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
 	}
 	
 	public void init(){
-		userName.setSize(frame.getWidth()/2,frame.getHeight()/10);
-		passWord.setSize(frame.getWidth()/2,frame.getHeight()/10);
-		userName.setLocation(frame.getWidth()/4,frame.getHeight()/5*2);
-		passWord.setLocation(frame.getWidth()/4, frame.getHeight()/5*3);
+		uIcon = new JLabel("Icon");
+		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
+		uIcon.setVisible(true);
+		pIcon = new JLabel("Icon");		
+		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
+		pIcon.setVisible(true);
+		userName.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*7,frame.getWidth()/10*3,frame.getHeight()/10);
+		passWord.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*10,frame.getWidth()/10*3,frame.getHeight()/10);
+		panel.add(uIcon);
+		panel.add(pIcon);
 		panel.add(userName);
 		panel.add(passWord);
-		confirm.setSize(frame.getWidth()/10, frame.getHeight()/10);
-		confirm.setLocation(frame.getWidth()/10*3,
-				passWord.getY()+passWord.getHeight()+confirm.getHeight()/3);
-		back.setSize(frame.getWidth()/10, frame.getHeight()/10);
-		back.setLocation(frame.getWidth()/10*6,
-				passWord.getY()+passWord.getHeight()+confirm.getHeight()/3);
+
+		confirm.setBounds(frame.getWidth()/40*28,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
+		back.setBounds(frame.getWidth()/40*34,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
+	
 		panel.add(back);
 		panel.add(confirm);
 		back.addMouseListener(new MouseAdapter(){
@@ -112,6 +119,8 @@ public class LoginPanel {
 	}
 	
 	public void remove(){
+		panel.remove(uIcon);
+		panel.remove(pIcon);
 		panel.remove(back);
 		panel.remove(passWord);
 		panel.remove(confirm);

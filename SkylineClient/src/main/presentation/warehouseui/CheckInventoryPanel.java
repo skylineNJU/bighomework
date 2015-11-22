@@ -16,6 +16,7 @@ public class CheckInventoryPanel {
 	private JButton export;
 	private JLabel title;//标题
 	private JLabel area;
+	private JLabel ddl;
 	private JTextField areanumber;
 	private JScrollPane scrollPane;
 	private JTable table;
@@ -37,14 +38,14 @@ public class CheckInventoryPanel {
 	}
 	private void area() {
 		areanumber = new JTextField();
-		areanumber.setBounds(panelWidth/7, 40, panelWidth/15, 40);
+		areanumber.setBounds(panel.getWidth()/8, panel.getHeight()/11, panel.getWidth()/18, panel.getHeight()/20 );
 		areanumber.setVisible(true);
 		panel.add(areanumber);
 		
 		title = new JLabel("区号: ");
 		Font font = new Font("宋体", Font.PLAIN, 20);
 		title.setFont(font);
-		title.setBounds(panelWidth/15, 40, panelWidth/6, 40);
+		title.setBounds(panel.getWidth()/18, panel.getHeight()/11, panel.getWidth()/6, panel.getHeight()/20 );
 		panel.add(title);
 	}
 	//初始化表格
@@ -78,14 +79,22 @@ public class CheckInventoryPanel {
 		scrollPane.setVisible(true);
 		panel.add(scrollPane);
 		
+		
 		ok=new JButton("确定");
 		ok.setBounds(panel.getWidth()*17/20,panel.getHeight()*7/8, panel.getWidth()/11, panel.getHeight()/15);
 		ok.setVisible(true);
 		panel.add(ok);
+		
 		export=new JButton("导出");
 		export.setBounds(panel.getWidth()*15/20,panel.getHeight()*7/8, panel.getWidth()/11, panel.getHeight()/15);
 		export.setVisible(true);
 		panel.add(export);
+		
+		String data="2015年09月11日";
+		ddl= new JLabel("上一个截至点: "+data);
+		ddl.setBounds(panel.getWidth()/16,panel.getHeight()*7/8, panel.getWidth()*2/5, panel.getHeight()/15);
+		ddl.setVisible(true);
+		panel.add(ddl);
 	}
 /*//标题
 	public void title(){
