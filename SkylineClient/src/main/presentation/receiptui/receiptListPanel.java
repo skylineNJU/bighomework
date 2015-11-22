@@ -6,14 +6,14 @@ import javax.swing.JPanel;
 import main.presentation.mainui.MainController;
 
 //Ω” ’µ•
-public class receiptListPanel {
+public class ReceiptListPanel {
 	
 	private JPanel panel;
 	private int panelWidth;
 	private int panelHeight;
 	private JLabel title;
 	
-	public receiptListPanel(){
+	public ReceiptListPanel(){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
 		panelWidth = panel.getWidth();
