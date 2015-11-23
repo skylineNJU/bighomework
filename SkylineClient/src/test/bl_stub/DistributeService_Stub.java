@@ -14,7 +14,7 @@ public class DistributeService_Stub implements DistributeBLService{
 		// TODO Auto-generated method stub
 		distributeList.clear();
 		DistributeVO distribute=new DistributeVO("1101201234","张三","南京大学仙林校区",
-				"13018101290","141250029");
+				"13018101290","141250029", null);
 		distributeList.add(distribute);
 		return true;
 	}

@@ -1,34 +1,48 @@
 package main.vo;
 
+//巖冞等VO
 public class DistributeVO {
-	private String orderCode;
+	private String orderCode;//隆等瘍
+	private String distributeCode;//巖冞等等瘍
 	private String name;
 	private String adress;
 	private String phoneNumber;
-	private String ID;
+	private String courierID;
 	public DistributeVO(){
 		
 	}
-	public DistributeVO(String orderCode,String na,String ad,String pN,String id){
+	public DistributeVO(String orderCode, String distributeCode, String name,String adress,String phoneNumber,String courierID){
 		this.orderCode=orderCode;
-		name=na;
-		adress=ad;
-		phoneNumber=pN;
-		ID=id;
+		this.distributeCode = distributeCode;
+		this.name=name;
+		this.adress=adress;
+		this.phoneNumber=phoneNumber;
+		this.courierID=courierID;
+	}
+	public void write(DistributeVO distributeVO){
+		distributeVO.orderCode = orderCode;
+		distributeVO.distributeCode = distributeCode;
+		distributeVO.name = name;
+		distributeVO.adress = adress;
+		distributeVO.phoneNumber = phoneNumber;
+		distributeVO.courierID = courierID;
 	}
 	public String getOrderCode() {
-		return orderCode;
+		return this.orderCode;
 	}
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	public String getAdress() {
-		return adress;
+		return this.adress;
 	}
 	public String getPhoneNumber() {
-		return phoneNumber;
+		return this.phoneNumber;
 	}
 	public String getID() {
-		return ID;
+		return this.courierID;
+	}
+	public String getDistributeCode() {
+		return this.distributeCode;
 	}
 }

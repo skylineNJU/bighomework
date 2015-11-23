@@ -1,6 +1,8 @@
 package main.presentation.receiptui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -8,10 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.event.TableColumnModelEvent;
+import javax.swing.table.DefaultTableModel;
 
 import main.presentation.mainui.MainController;
 
 public class ExamAllOrderPanel {
+	
 	private JPanel panel;
 	private JLabel title;
 	private JTabbedPane tab;
@@ -108,8 +113,38 @@ public class ExamAllOrderPanel {
 		}else{
 			courierScrollPane.setBounds(tabWidth/12, tabHeight/24, tabWidth/6*5, 13*courierTable.getRowHeight());
 		}
+		courierTable.setModel(new DefaultTableModel(courierData,courierTitle){//设置第四行不可被编辑
+			public boolean isCellEditable(int row,int column){  
+				if(column == 4){  
+				     return false;  
+				}else{  
+				      return true;  
+				}  
+			}  
+		});
 		
+		courierTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(courierTable.getSelectedColumn()==4&&courierTable.getValueAt(courierTable.getSelectedRow(),4).equals("批准")){
+					courierTable.setValueAt("",courierTable.getSelectedRow(),4);
+				}else if(courierTable.getSelectedColumn()==4&&!courierTable.getValueAt(courierTable.getSelectedRow(),4).equals("批准")){
+					courierTable.setValueAt("批准",courierTable.getSelectedRow(),4);
+				}
+				courierTable.repaint();
+			}
+		});
+
 		courierChooseAll = new JButton("全选");
+		courierChooseAll.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				for (int i = 0; i < courierData.length; i++) {
+					courierTable.setValueAt("批准",i,4);
+					courierTable.repaint();
+				}
+			}
+		});
+		
+		
 		courierCheck = new JButton("批准");
 		courierCheck.setBounds(tabWidth*3/4, 13*courierTable.getRowHeight() + tabHeight/10, tabWidth/8, tabHeight/15);
 		courierChooseAll.setBounds(tabWidth*11/20, 13*courierTable.getRowHeight()+ tabHeight/10, tabWidth/8, tabHeight/15);
@@ -141,7 +176,36 @@ public class ExamAllOrderPanel {
 			lobbyScrollPane.setBounds(tabWidth/12, tabHeight/24, tabWidth/6*5, 13*lobbyTable.getRowHeight());
 		}
 		
+		lobbyTable.setModel(new DefaultTableModel(lobbyData,lobbyTitle){//设置第四行不可被编辑
+			public boolean isCellEditable(int row,int column){  
+				if(column == 4){  
+				     return false;  
+				}else{  
+				      return true;  
+				}  
+			}  
+		});
+		
+		lobbyTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(lobbyTable.getSelectedColumn()==4&&lobbyTable.getValueAt(lobbyTable.getSelectedRow(),4).equals("批准")){
+					lobbyTable.setValueAt("",lobbyTable.getSelectedRow(),4);
+				}else if(lobbyTable.getSelectedColumn()==4&&!lobbyTable.getValueAt(lobbyTable.getSelectedRow(),4).equals("批准")){
+					lobbyTable.setValueAt("批准",lobbyTable.getSelectedRow(),4);
+				}
+				lobbyTable.repaint();
+			}
+		});
+
 		lobbyChooseAll = new JButton("全选");
+		lobbyChooseAll.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				for (int i = 0; i < lobbyData.length; i++) {
+					lobbyTable.setValueAt("批准",i,4);
+					lobbyTable.repaint();
+				}
+			}
+		});
 		lobbyCheck = new JButton("批准");
 		lobbyCheck.setBounds(tabWidth*3/4, 13*lobbyTable.getRowHeight() + tabHeight/10, tabWidth/8, tabHeight/15);
 		lobbyChooseAll.setBounds(tabWidth*11/20, 13*lobbyTable.getRowHeight()+ tabHeight/10, tabWidth/8, tabHeight/15);
@@ -173,7 +237,37 @@ public class ExamAllOrderPanel {
 			intermeScrollPane.setBounds(tabWidth/12, tabHeight/24, tabWidth/6*5, 13*intermeTable.getRowHeight());
 		}
 		
+		intermeTable.setModel(new DefaultTableModel(intermeData,intermeTitle){//设置第四行不可被编辑
+			public boolean isCellEditable(int row,int column){  
+				if(column == 4){  
+				     return false;  
+				}else{  
+				      return true;  
+				}  
+			}  
+		});
+		
+		intermeTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(intermeTable.getSelectedColumn()==4&&intermeTable.getValueAt(intermeTable.getSelectedRow(),4).equals("批准")){
+					intermeTable.setValueAt("",intermeTable.getSelectedRow(),4);
+				}else if(intermeTable.getSelectedColumn()==4&&!intermeTable.getValueAt(intermeTable.getSelectedRow(),4).equals("批准")){
+					intermeTable.setValueAt("批准",intermeTable.getSelectedRow(),4);
+				}
+				intermeTable.repaint();
+			}
+		});
+
 		intermeChooseAll = new JButton("全选");
+		intermeChooseAll.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				for (int i = 0; i < intermeData.length; i++) {
+					intermeTable.setValueAt("批准",i,4);
+					intermeTable.repaint();
+				}
+			}
+		});
+		
 		intermeCheck = new JButton("批准");
 		intermeCheck.setBounds(tabWidth*3/4, 13*intermeTable.getRowHeight() + tabHeight/10, tabWidth/8, tabHeight/15);
 		intermeChooseAll.setBounds(tabWidth*11/20, 13*intermeTable.getRowHeight()+ tabHeight/10, tabWidth/8, tabHeight/15);
@@ -204,8 +298,36 @@ public class ExamAllOrderPanel {
 		}else{
 			warehouseScrollPane.setBounds(tabWidth/12, tabHeight/24, tabWidth/6*5, 13*warehouseTable.getRowHeight());
 		}
+		warehouseTable.setModel(new DefaultTableModel(warehouseData,warehouseTitle){//设置第四行不可被编辑
+			public boolean isCellEditable(int row,int column){  
+				if(column == 4){  
+				     return false;  
+				}else{  
+				      return true;  
+				}  
+			}  
+		});
 		
+		warehouseTable.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if(warehouseTable.getSelectedColumn()==4&&warehouseTable.getValueAt(warehouseTable.getSelectedRow(),4).equals("批准")){
+					warehouseTable.setValueAt("",warehouseTable.getSelectedRow(),4);
+				}else if(warehouseTable.getSelectedColumn()==4&&!warehouseTable.getValueAt(warehouseTable.getSelectedRow(),4).equals("批准")){
+					warehouseTable.setValueAt("批准",warehouseTable.getSelectedRow(),4);
+				}
+				warehouseTable.repaint();
+			}
+		});
+
 		warehouseChooseAll = new JButton("全选");
+		warehouseChooseAll.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				for (int i = 0; i < warehouseData.length; i++) {
+					warehouseTable.setValueAt("批准",i,4);
+					warehouseTable.repaint();
+				}
+			}
+		});
 		warehouseCheck = new JButton("批准");
 		warehouseCheck.setBounds(tabWidth*3/4, 13*warehouseTable.getRowHeight() + tabHeight/10, tabWidth/8, tabHeight/15);
 		warehouseChooseAll.setBounds(tabWidth*11/20, 13*warehouseTable.getRowHeight()+ tabHeight/10, tabWidth/8, tabHeight/15);

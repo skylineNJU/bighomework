@@ -1,4 +1,4 @@
-package main.dataservice;
+package main.dataService;
 
 import main.po.AccountPO;
 import main.State.RightType;

@@ -1,23 +1,23 @@
 package main.vo;
 
+//Ö§³öVO
 public class CostVO extends ReceiptVO{
-	private String accountname;
+	private String accountName;
 	private double cost;
-	private String ps;
+	private String comment;
 	private CostType type;
-	public CostVO(String id, String da, String co,String an,double cos,String p,CostType ty) {
-		super(id, da, co);
-		this.accountname=an;
-		this.cost=cos;
-		this.ps=p;
-		this.type=ty;
-		// TODO Auto-generated constructor stub
+	public CostVO(String id, String date, String code,String accountName,double cost,String comment,CostType type) {
+		super(id, date, code);
+		this.accountName=accountName;
+		this.cost=cost;
+		this.comment=comment;
+		this.type=type;
 	}
 	public String getAccountname() {
-		return accountname;
+		return accountName;
 	}
 	public void setAccountname(String accountname) {
-		this.accountname = accountname;
+		this.accountName = accountname;
 	}
 	public double getCost() {
 		return cost;
@@ -26,10 +26,10 @@ public class CostVO extends ReceiptVO{
 		this.cost = cost;
 	}
 	public String getPs() {
-		return ps;
+		return comment;
 	}
-	public void setPs(String ps) {
-		this.ps = ps;
+	public void setPs(String comment) {
+		this.comment = comment;
 	}
 	public CostType getCostType() {
 		return type;

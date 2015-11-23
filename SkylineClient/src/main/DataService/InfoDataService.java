@@ -1,4 +1,4 @@
-package main.dataservice;
+package main.dataService;
 
 import main.po.DriverInfoPO;
 import main.po.InstitutionPO;

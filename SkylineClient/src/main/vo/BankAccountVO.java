@@ -2,21 +2,18 @@ package main.vo;
 
 //“¯––’Àªß
 public class BankAccountVO {
-	//private double balance;
 	private String code;
-	String balance;
-	public BankAccountVO(String code,String balance){
+	double balance;
+	public BankAccountVO(String code,double balance){
 		this.code=code;
 		this.balance=balance;
 	}
-	public boolean write(String code,String balance){
+	public boolean write(String code,double balance){
 		this.code=code;
 		this.balance=balance;
 		return true;
 	}
-	public BankAccountVO(String name, double d) {
-		// TODO Auto-generated constructor stub
-	}
+
 
 	public String getCode() {
 		return code;
@@ -25,19 +22,10 @@ public class BankAccountVO {
 		this.code = code;
 	}
 	
-	public String getBalance(String code) {
-		
+	public double getBalance(String code) {
 		return balance;
 	}
-	public void setBalance(double d) {
-		// TODO Auto-generated method stub	
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
-	
-	
-//	public double getBalance() {
-//		return balance;
-//	}
-//	public void setBalance(double balance) {
-//		this.balance = balance;
-//	}
 }
