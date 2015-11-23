@@ -6,6 +6,7 @@ import main.po.WarehouseOutPO;
 import main.vo.WarehouseOutVO;
 
 public class WarehouseOut {
+	private String bar;
 	private String destination;
 	private TransType type;
 	private String outDate;
@@ -14,6 +15,7 @@ public class WarehouseOut {
 	private WarehouseOutPO po;
 	
 	public WarehouseOut(WarehouseOutVO who){
+		this.bar=who.getBar();
 		this.destination=who.getDestination();
 		this.outDate = who.getOutDate();
 		this.type=who.getTransType();
@@ -76,6 +78,11 @@ public class WarehouseOut {
 	}
 	public String getTransferCode() {
 		return transferCode;
+	}
+
+	public String getBar() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

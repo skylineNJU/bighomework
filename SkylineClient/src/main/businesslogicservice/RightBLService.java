@@ -1,11 +1,11 @@
 package main.businesslogicservice;
 
+import main.vo.AccountVO;
 import main.vo.BankAccountVO;
-import main.vo.RightVO;
 
 public interface RightBLService {
 	//用户输入账户名称，密码来登录,系统根据返回的权限来跳转页面
-	public boolean login(String AccountName,String code,RightVO rightInfo);
+	public boolean login(AccountVO account);
 	
 	//账户管理人员创建新的账户，系统显示账户信息
 	public boolean createNewAccount(BankAccountVO accountInfo);

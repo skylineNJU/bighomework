@@ -3,6 +3,7 @@ package main.socketservice;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import main.po.AccountPO;
 import main.po.Message;
 
 public class ClientController {
@@ -20,12 +21,14 @@ public class ClientController {
     	case "Save":
     		message.writeIntoDatabase();
     		break;
-    	case "inquire":
+    	case "Inquire":
     		message.getDataFromBase();
     		response(message);
     		break;
     	case "Start":
-    		break;
+    		AccountPO po=(AccountPO)message;
+    		po.checkLogin();
+    		response(po);
     	case "End":
     		break;
     	}

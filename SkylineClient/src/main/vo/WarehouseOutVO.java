@@ -4,15 +4,16 @@ import main.businesslogic.warehousebl.WarehouseOut;
 import main.State.TransType;
 
 public class WarehouseOutVO extends ReceiptVO{
-
+	private String bar;
 	private String destination;
 	private TransType type;
 	private String outDate;
 	private String transferCode;
 	private String vehicleCode;
 	
-	public WarehouseOutVO(String id, String da, String co,String c,String k,TransType t,String d,String e){
+	public WarehouseOutVO(String id, String da, String co,String b,String c,String k,TransType t,String d,String e){
 		super(id, da, co);//outdata
+		bar=b;
 		destination = c;
 		outDate =k;
 		type = t;
@@ -21,6 +22,7 @@ public class WarehouseOutVO extends ReceiptVO{
 	}
 	
 	public boolean writeWarehouseOutInfo(WarehouseOut who){
+		this.bar = who.getBar();
 		this.destination=who.getDestination();
 		this.outDate = who.getOutDate();
 		this.type=who.getTransType();
@@ -28,6 +30,11 @@ public class WarehouseOutVO extends ReceiptVO{
 		this.vehicleCode=who.getVehicleCode();
 		return true;
 	}
+	
+	public String getBar() {
+		return bar;
+	}
+
 	public String getOutDate() {
 		return outDate;
 	}
@@ -59,5 +66,6 @@ public class WarehouseOutVO extends ReceiptVO{
 	public String getTransferCode() {
 		return transferCode;
 	}
-	
+
+
 }

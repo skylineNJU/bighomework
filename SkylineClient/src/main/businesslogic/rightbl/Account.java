@@ -1,26 +1,38 @@
 package main.businesslogic.rightbl;
+import main.data.right.RightDataController;
+import main.dataservice.RightDataService;
 import main.po.AccountPO;
 import main.po.Rights;
-import main.vo.BankAccountVO;
-import main.vo.RightVO;
+import main.vo.AccountVO;
 public class Account {
 
 	private String ID;//员工账号名
 	private String code;//密码
-	private RightVO right;//权限
+	private Rights right;//权限
+	private String belong;
 	private AccountPO po;
-	private String initCode="000000";
-	public Account(BankAccountVO ac){
-		this.ID=ac.getAccountName();
-		this.code=ac.getCode();
-		this.right=ac.getRight();	
-	}
-	public Account(String string, String string2, RightVO rightInfo) {
+	private RightDataService service;
+	private AccountVO vo;
+	
+	public Account(AccountVO vo) {
 		// TODO Auto-generated constructor stub
-		this.ID=string;
-		this.code=string2;
-		this.right=rightInfo;
+		this.ID=vo.getAccountName();
+		this.code=vo.getCode();
+		this.belong=vo.getBelong();
+		this.vo=vo;
+		service=new RightDataController();
 	}
+	
+	public AccountVO login(AccountVO vo){
+		po=new AccountPO(ID,code,right,belong);
+		po=service.login(po);
+		System.out.println(po.getRight());
+		vo.setRight(po.getRight());
+		vo.setBelong(po.getBelong());
+		return vo;
+	}
+	
+	
 	public Account(String oldCode, String newCode) {
 		// TODO Auto-generated constructor stub
 		this.code=newCode;
@@ -28,7 +40,6 @@ public class Account {
 	public Account(String iD2) {
 		// TODO Auto-generated constructor stub
 		this.ID=iD2;
-		this.code=initCode;
 	}
 	public boolean saveInfo(){
 		return true;
@@ -58,12 +69,4 @@ public class Account {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public RightVO getRight() {
-		return right;
-	}
-	public void setRight(RightVO right) {
-		this.right = right;
-	}
-	
-	
 }

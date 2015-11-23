@@ -13,9 +13,9 @@ public class VehicleLoadingPO  extends Receipt implements Serializable{
 	String monitor;//监装员
 	String guard;//押送员
 	String shipment;//装箱托运区号
-	String freight;//运费
+	double freight;//运费
 	
-	public VehicleLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,String i){
+	public VehicleLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,double i){
 		loadingDate=a;
 		carNum=b;
 		carTourNum=c;
@@ -91,11 +91,11 @@ public class VehicleLoadingPO  extends Receipt implements Serializable{
 		this.shipment = shipment;
 	}
 
-	public String getFreight() {
+	public double getFreight() {
 		return freight;
 	}
 
-	public void setFreight(String freight) {
+	public void setFreight(double freight) {
 		this.freight = freight;
 	}
 }

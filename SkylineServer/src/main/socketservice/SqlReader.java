@@ -17,7 +17,7 @@ public class SqlReader {
 			Class.forName(JDriver);
 			con=DriverManager.getConnection(connectDB);
 			stmt=con.createStatement();
-			rs=stmt.executeQuery("selet*from "+tableName);
+			rs=stmt.executeQuery("select * from "+tableName);
 		}catch(Exception ex){
 			System.err.println(ex);
 		}
@@ -32,22 +32,17 @@ public class SqlReader {
 		}
 	}
 	public boolean findNext(String attribute,String content){
+		System.out.println(attribute);
 		try {
-			while(rs.next()&&!rs.getString(attribute).equals(content));
+			while(rs.next()){
+				if(rs.getString(attribute).equals(content))
+					return true;
+			}			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}	
-		try {
-			if(rs.getString(attribute).equals(content)){
-				return true;
-			}else{
-				return false;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return false;
 	}
 	

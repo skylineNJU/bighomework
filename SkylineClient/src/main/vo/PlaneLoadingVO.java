@@ -1,41 +1,39 @@
 package main.vo;
 
-import main.businesslogic.warehousebl.WarehouseIn;
-
-public class VehicleLoadingVO extends ReceiptVO{
+public class PlaneLoadingVO {
 	private String loadingDate;//装运日期
-	private String carNum;//中转中心汽运编号
-	private String carTourNum;//车次号
+	private String flightNum;//中转中心
+	private String planeNum;//
 	private String departure;//出发地
 	private String destination;//到达地
 	private String monitor;//监装员
-	private String guard;//押送员
+	private String store;//押送员
 	private String shipment;//装箱托运区号
 	private double freight;//运费
 
-	public VehicleLoadingVO(String id, String da, String co, String a, String b, String c, String d,
+	public PlaneLoadingVO(String id, String da, String co, String a, String b, String c, String d,
 			String e, String f,String g,String h, double i) {
-		super(id, da, co);
+		super();
 		this.loadingDate=a;
-		this.carNum=b;
-		this.carTourNum=c;
+		this.flightNum=b;
+		this.planeNum=c;
 		this.departure=d;
 		this.destination=e;
 		this.monitor=f;
-		this.guard=g;
+		this.store=g;
 		this.shipment=h;
 		this.freight=i;
 		// TODO Auto-generated constructor stub
 	}
 	
-	public boolean writeVehicleLoadingInfo(VehicleLoadingVO vl){
+	public boolean writePlaneLoadingVOInfo(PlaneLoadingVO vl){
 		this.loadingDate=vl.getLoadingDate();
-		this.carNum=vl.getCarNum();
-		this.carTourNum=vl.getCarTourNum();
+		this.flightNum=vl.getCarNum();
+		this.planeNum=vl.getCarTourNum();
 		this.departure=vl.getDeparture();
 		this.destination=vl.getDestination();
 		this.monitor=vl.getMonitor();
-		this.guard=vl.getGuard();
+		this.store=vl.getGuard();
 		this.shipment=vl.getShipment();
 		this.freight=vl.getFreight();
 		return true;
@@ -50,19 +48,19 @@ public class VehicleLoadingVO extends ReceiptVO{
 	}
 
 	public String getCarNum() {
-		return carNum;
+		return flightNum;
 	}
 
 	public void setCarNum(String carNum) {
-		this.carNum = carNum;
+		this.flightNum = carNum;
 	}
 
 	public String getCarTourNum() {
-		return carTourNum;
+		return planeNum;
 	}
 
 	public void setCarTourNum(String carTourNum) {
-		this.carTourNum = carTourNum;
+		this.planeNum = carTourNum;
 	}
 
 	public String getDeparture() {
@@ -90,11 +88,11 @@ public class VehicleLoadingVO extends ReceiptVO{
 	}
 
 	public String getGuard() {
-		return guard;
+		return store;
 	}
 
 	public void setGuard(String guard) {
-		this.guard = guard;
+		this.store = guard;
 	}
 
 	public String getShipment() {
@@ -112,5 +110,4 @@ public class VehicleLoadingVO extends ReceiptVO{
 	public void setFreight(double freight) {
 		this.freight = freight;
 	}
-
 }

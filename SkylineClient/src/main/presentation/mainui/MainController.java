@@ -21,6 +21,7 @@ import main.presentation.rightui.Rightui;
 import main.presentation.rightui.RightuiController;
 import main.presentation.warehouseui.Warehouseui;
 import main.presentation.warehouseui.WarehouseuiController;
+import main.socketservice.Client;
 
 public class MainController {
 	@SuppressWarnings("unused")
@@ -35,6 +36,7 @@ public class MainController {
 	private static LoaduiController loaduiControl=new LoaduiController();
 	private static InfouiControl infouiControl = new InfouiControl();
 	private static ReceiptuiControl receiptuiControl = new ReceiptuiControl();
+	private static Client client;
 	
 	private static LoadVehiclePanel loadVehicle;
 	private static ReceiveListPanel receiveList;
@@ -48,10 +50,12 @@ public class MainController {
 	private static LobbyStaffPanel lobbyStaffPanel;
 	private static ManagerPanel managerPanel;
 	public static void start(){
+		client=new Client();
 		frame=FrameMain.createFrame();
 		FrameMain.init();
 		writepanel=new WritePanel();
 		jumpToGuestui(Guestui.Search);
+		
 	}
 	
 	public static void jumpToDistributeui(Distributeui ui){
@@ -88,47 +92,61 @@ public class MainController {
 	}
 
 	
-	public static void goToCourierui(){
+	public static void goToCourierui(String belong){
 		courierpanel=new CourierPanel();
 		courierpanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
 	
-	public static void gotoFinanceui(){
+	public static void gotoFinanceui(String belong){
 		financeStaffPanel = new FinanceStaffPanel();
 		financeStaffPanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
 	
-	public static void goToRightAdminStaffui(){
+	public static void goToRightAdminStaffui(String belong){
 		rightAdminStaffPanel=new RightAdminStaffPanel();
 		rightAdminStaffPanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
-	public static void goToIntermediateStaffui(){
+	public static void goToIntermediateStaffui(String belong){
 		intermediateStaffPanel=new IntermediateStaffPanel();
 		intermediateStaffPanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
 	
-	public static void goToLobbyStaffui(){
+	public static void goToLobbyStaffui(String belong){
 		lobbyStaffPanel = new LobbyStaffPanel();
 		lobbyStaffPanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
-	public static void goToManagerui(){
+	public static void goToManagerui(String belong){
 		managerPanel = new ManagerPanel();
 		managerPanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
 	
-	public static void goToWarehouseui(){
+	public static void goToWarehouseui(String belong){
 		warehousepanel=new WarehousePanel();
 		warehousepanel.init();
+		writepanel.setBelong(belong);
 		FrameMain.getContentPanel().add(writepanel);
 	}
 
 	public static WritePanel getWritepanel() {
 		return writepanel;
 	}
+
+	public static Client getClient() {
+		return client;
+	}
+
+
+
 }
