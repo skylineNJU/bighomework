@@ -11,11 +11,12 @@ public class Client {
 	private Socket socket;
 	private ObjectOutputStream writer;
 	private ObjectInputStream reader;
+	private ClientThread clth;
 	public Client(){
 		try{
 			socket=new Socket("127.0.0.1",12345);
 			reader=new ObjectInputStream(socket.getInputStream());
-			Thread thread=new Thread(new ClientThread(reader));
+			Thread thread=new Thread(clth=new ClientThread(reader));
 			thread.start();
 		}catch(Exception ex){
 			System.out.println("net start failed");
@@ -37,5 +38,8 @@ public class Client {
 		
 	}
 	
-	
+	public Message getResponse(){
+		return clth.getResponseMessage();
+	}
+
 }
