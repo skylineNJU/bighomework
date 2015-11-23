@@ -1,4 +1,4 @@
-package main.dataservice;
+package main.DataService;
 
 import main.po.AccountPO;
 import main.State.RightType;
@@ -21,4 +21,6 @@ public interface RightDataService {
 	
 	//从数据库中读取该账户的权限
 	public boolean readRight(String account,RightType rightType);
+	
+	public boolean login(AccountPO accountInfo);
 }

@@ -8,14 +8,15 @@ import java.net.Socket;
 import main.po.Message;
 
 public class Client {
-	Socket socket;
-	ObjectOutputStream writer;
-	ObjectInputStream reader;
+	private Socket socket;
+	private ObjectOutputStream writer;
+	private ObjectInputStream reader;
 	public Client(){
 		try{
 			socket=new Socket("127.0.0.1",12345);
 			reader=new ObjectInputStream(socket.getInputStream());
 			Thread thread=new Thread(new ClientThread(reader));
+			thread.start();
 		}catch(Exception ex){
 			System.out.println("net start failed");
 		}

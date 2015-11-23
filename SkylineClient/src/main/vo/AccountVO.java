@@ -1,7 +1,9 @@
 package main.vo;
 
+import main.State.Rights;
+
 public class AccountVO {
-	private RightVO right;
+	private Rights right;
 	private String accountName;
 	private String code;
 	private String belong;

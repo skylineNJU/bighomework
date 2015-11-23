@@ -1,4 +1,4 @@
-package main.po;
+package main.State;
 
 public enum Rights {
 	COURIER,LOBBY,INTERMEDIATE,STOREHOUSE,FINANCE,MANAGER,ACCOUNT

@@ -1,6 +1,7 @@
 package main.businesslogic.rightbl;
+import main.DataService.RightDataService;
+import main.State.Rights;
 import main.po.AccountPO;
-import main.po.Rights;
 import main.vo.AccountVO;
 import main.vo.BankAccountVO;
 import main.vo.RightVO;
@@ -8,10 +9,10 @@ public class Account {
 
 	private String ID;//员工账号名
 	private String code;//密码
-	private RightVO right;//权限
+	private Rights right;//权限
 	private String belong;
 	private AccountPO po;
-	
+	private RightDataService service;
 	
 	public Account(AccountVO vo) {
 		// TODO Auto-generated constructor stub
@@ -20,6 +21,11 @@ public class Account {
 		this.belong=vo.getBelong();
 	}
 	
+	public boolean login(){
+		po=new AccountPO(ID,code,right,belong);
+		service.login(po);
+		return true;
+	}
 	public Account(String oldCode, String newCode) {
 		// TODO Auto-generated constructor stub
 		this.code=newCode;
@@ -56,12 +62,4 @@ public class Account {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public RightVO getRight() {
-		return right;
-	}
-	public void setRight(RightVO right) {
-		this.right = right;
-	}
-	
-	
 }

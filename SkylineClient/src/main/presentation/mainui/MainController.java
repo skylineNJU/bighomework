@@ -21,6 +21,7 @@ import main.presentation.rightui.Rightui;
 import main.presentation.rightui.RightuiController;
 import main.presentation.warehouseui.Warehouseui;
 import main.presentation.warehouseui.WarehouseuiController;
+import main.socketservice.Client;
 
 public class MainController {
 	@SuppressWarnings("unused")
@@ -131,4 +132,6 @@ public class MainController {
 	public static WritePanel getWritepanel() {
 		return writepanel;
 	}
+
+
 }
