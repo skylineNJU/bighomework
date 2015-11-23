@@ -3,6 +3,7 @@ package main.socketservice;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import main.po.AccountPO;
 import main.po.Message;
 
 public class ClientController {
@@ -25,7 +26,9 @@ public class ClientController {
     		response(message);
     		break;
     	case "Start":
-    		break;
+    		AccountPO po=(AccountPO)message;
+    		po.checkLogin();
+    		response(po);
     	case "End":
     		break;
     	}

@@ -11,12 +11,17 @@ public class AccountPO extends Message implements Serializable{
 	private String ID;
 	private String code;
 	private Rights right;
+	private String belong;
 	
-	public AccountPO(String id,String co,Rights ri){
-		ID=id;
-		code=co;
-		right=ri;
+	
+	public AccountPO(String iD, String code, Rights right, String belong) {
+		super();
+		ID = iD;
+		this.code = code;
+		this.right = right;
+		this.setBelong(belong);
 	}
+	
 	public String getID() {
 		return ID;
 	}
@@ -34,5 +39,13 @@ public class AccountPO extends Message implements Serializable{
 	}
 	public void setRight(Rights right) {
 		this.right = right;
+	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
 	}
 }

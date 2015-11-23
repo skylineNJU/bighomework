@@ -1,20 +1,11 @@
 package main.businesslogic.rightbl;
 
+import main.businesslogicservice.RightBLService;
+import main.vo.AccountVO;
 import main.vo.BankAccountVO;
 import main.vo.RightVO;
 
-public class RightController {
-	public boolean login(String AccountName,String code,RightVO rightInfo){
-		Account account=new Account(AccountName,code,rightInfo);
-		
-		return account.saveInfo();
-	
-	}
-	public boolean createNewAccount(BankAccountVO accountInfo){
-		Account account=new Account(accountInfo);
-		
-		return account.saveInfo();
-	}
+public class RightController implements RightBLService{
 	
 	public boolean modifyCode(String oldCode,String newCode){//ÐÞ¸ÄÃÜÂë
 		Account account=new Account(oldCode,newCode);
@@ -25,5 +16,20 @@ public class RightController {
 		Account account=new Account(ID);
 		
 		return account.saveInfo();
+	}
+
+
+	@Override
+	public boolean createNewAccount(BankAccountVO accountInfo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean login(String AccountName, String code, AccountVO account) {
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
 }

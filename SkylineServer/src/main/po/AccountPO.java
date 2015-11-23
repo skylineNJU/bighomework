@@ -39,6 +39,21 @@ public class AccountPO extends Message implements Serializable{
 		reader.close();
 	}
 	
+	public void checkLogin(){
+		SqlReader reader=new SqlReader("AccountInfo");
+		if(reader.findNext("账号",ID)){
+			if(this.code==reader.getString("密码")){
+				right=Rights.valueOf(reader.getString("权限"));
+				belong=reader.getString("所属单位");
+				System.out.println("login success");
+				return;
+			}
+		}else{
+			right=null;
+			belong=null;
+		}
+	}
+	
 	
 	
 	

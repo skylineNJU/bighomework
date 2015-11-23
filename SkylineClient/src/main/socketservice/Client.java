@@ -1,6 +1,7 @@
 package main.socketservice;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -8,12 +9,13 @@ import main.po.Message;
 
 public class Client {
 	Socket socket;
-	ObjectOutputStream obOut;
-	
+	ObjectOutputStream writer;
+	ObjectInputStream reader;
 	public Client(){
 		try{
 			socket=new Socket("127.0.0.1",12345);
-			
+			reader=new ObjectInputStream(socket.getInputStream());
+			Thread thread=new Thread(new ClientThread(reader));
 		}catch(Exception ex){
 			System.out.println("net start failed");
 		}
@@ -21,12 +23,11 @@ public class Client {
 	
 	public boolean wrightReceipt(Message receipt){
 		try {
-			obOut=new ObjectOutputStream(socket.getOutputStream());
-			 obOut.writeObject(receipt);
+			writer=new ObjectOutputStream(socket.getOutputStream());
+			writer.writeObject(receipt);
 			System.out.println("send successfully");
-			obOut.flush();
-			obOut.close();
-			socket.close();
+			writer.flush();
+			writer.close();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
