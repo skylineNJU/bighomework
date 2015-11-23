@@ -92,27 +92,23 @@ public class MainController {
 		courierpanel=new CourierPanel();
 		courierpanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-		jumpToReceiveui(Receiveui.OrderInput);
 	}
 	
 	public static void gotoFinanceui(){
 		financeStaffPanel = new FinanceStaffPanel();
 		financeStaffPanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-		jumpToFinanceui(Financeui.Balanceui);
 	}
 	
 	public static void goToRightAdminStaffui(){
 		rightAdminStaffPanel=new RightAdminStaffPanel();
 		rightAdminStaffPanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-		jumpToRightui(Rightui.RightAdmin);
 	}
 	public static void goToIntermediateStaffui(){
 		intermediateStaffPanel=new IntermediateStaffPanel();
 		intermediateStaffPanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-		jumpToLoadui(Loadui.LOADVEHICLE);
 	}
 	
 	public static void goToLobbyStaffui(){
@@ -130,10 +126,6 @@ public class MainController {
 		warehousepanel=new WarehousePanel();
 		warehousepanel.init();
 		FrameMain.getContentPanel().add(writepanel);
-//		jumpToWarehouseui(Warehouseui.AddWarehouseInReceipt);
-//		jumpToWarehouseui(Warehouseui.AddWarehouseOutReceipt);
-//		jumpToWarehouseui(Warehouseui.ShowInventory);
-//		jumpToWarehouseui(Warehouseui.CheckInventory);
 	}
 
 	public static WritePanel getWritepanel() {
