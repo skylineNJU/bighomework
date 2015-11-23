@@ -12,7 +12,8 @@ import main.presentation.mainui.MainController;
 public class AddWarehouseInReceiptPanel {
 	private FrameMain frame;
 	private JPanel panel;
-	private JPanel listpanel;
+	private JPanel listPanel;
+	private JPanel warningPanel;
 	private JButton ok;
 	private JButton cancel;
 	private JLabel inList;
@@ -47,8 +48,8 @@ public class AddWarehouseInReceiptPanel {
 	
 	public void init(){
 		//title();
-		listpanel= new JPanel();
-		listpanel.setLayout(null);
+		listPanel= new JPanel();
+		listPanel.setLayout(null);
 	//	scrollPane = new JScrollPane(listpanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 	//	scrollPane.setVisible(true);
 	//	scrollPane.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*60/80, panel.getHeight()*18/20);
@@ -56,16 +57,17 @@ public class AddWarehouseInReceiptPanel {
 	
 	//	scrollPane.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		
-		listpanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*57/80, panel.getHeight()*18/20);
-		listpanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
+		listPanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*57/80, panel.getHeight()*18/20);
+		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 	
 		content();
-	
+		
 	//	panel.add(scrollPane);
-		listpanel.setVisible(true);
-		panel.add(listpanel);
+		listPanel.setVisible(true);
+		panel.add(listPanel);
 		panel.repaint();
-		listpanel.repaint();
+		listPanel.repaint();
+		WarningPanel();
 	}
 
 
@@ -75,23 +77,23 @@ public class AddWarehouseInReceiptPanel {
 		Font font = new Font("卜悶", Font.BOLD, 15);
 		line1 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！！！");
 		line1.setFont(font0);
-		line1.setBounds(listpanel.getX()-panel.getWidth()/15,listpanel.getY(), panel.getWidth()*3/5, panel.getHeight()/10);
+		line1.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY(), panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		line2 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！");
 		line2.setFont(font0);
 		line2.setForeground(Color.GRAY);
-		line2.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/13, panel.getWidth()*3/5, panel.getHeight()/10);
+		line2.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/13, panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		line3 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！");
 		line3.setFont(font0);
 		line3.setForeground(Color.GRAY);
-		line3.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/20*11, panel.getWidth()*3/5, panel.getHeight()/10);
+		line3.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/20*11, panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		
 		
 		ok=new JButton("戻住");
 		ok.setFont(font);
-		ok.setBounds(listpanel.getX()+panel.getWidth()*2/5,listpanel.getY()+panel.getHeight()*4/6, panel.getWidth()/10, panel.getHeight()/20);
+		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*4/6, panel.getWidth()/10, panel.getHeight()/20);
 		
 		cancel=new JButton("函��");
 		cancel.setFont(font);
@@ -99,11 +101,11 @@ public class AddWarehouseInReceiptPanel {
 		
 		inList=new JLabel("秘垂汽");
 		inList.setFont(font00);
-		inList.setBounds(listpanel.getX()-panel.getWidth()/15,listpanel.getY()-panel.getHeight()/30, panel.getWidth()/10, panel.getHeight()/10);
+		inList.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY()-panel.getHeight()/30, panel.getWidth()/10, panel.getHeight()/10);
 		
 		cargoinfo=new JLabel("歯麗佚連");
 		cargoinfo.setFont(font0);
-		cargoinfo.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/20,panel.getWidth()/10, panel.getHeight()/10);
+		cargoinfo.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/20,panel.getWidth()/10, panel.getHeight()/10);
 		
 		bar=new JLabel("秘垂汽催:");
 		bar.setFont(font);
@@ -185,13 +187,13 @@ public class AddWarehouseInReceiptPanel {
      
         day = new JComboBox(arr30);  
         day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
-       listpanel.add(day);
+       listPanel.add(day);
         
         month.addItemListener(new ItemListener(){
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
-				listpanel.remove(day);
+				listPanel.remove(day);
 				switch(month.getSelectedItem().toString()){
 					case "1埖":
 					case "3埖":
@@ -208,7 +210,7 @@ public class AddWarehouseInReceiptPanel {
         		
         			day = new JComboBox(arr31);  
         	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
-        	        listpanel.add(day);	
+        	        listPanel.add(day);	
         	        break;
 					case "4埖":
 					case "6埖":
@@ -221,7 +223,7 @@ public class AddWarehouseInReceiptPanel {
 		        		
 		    			 day = new JComboBox(arr3);  
 		    	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
-		    	        listpanel.add(day);
+		    	        listPanel.add(day);
 		    	        break;
 					case "2埖":
 						if(isLeap(year.getSelectedItem().toString())){
@@ -232,7 +234,7 @@ public class AddWarehouseInReceiptPanel {
 		        		
 							day = new JComboBox(arr33);  
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
-							listpanel.add(day);
+							listPanel.add(day);
 						}
 						else{
 							String[] arr333 = new String[28];  
@@ -242,7 +244,7 @@ public class AddWarehouseInReceiptPanel {
 		        		
 							day = new JComboBox(arr333);  
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
-							listpanel.add(day);
+							listPanel.add(day);
 							
 						}
 							break;
@@ -256,32 +258,46 @@ public class AddWarehouseInReceiptPanel {
 		
 
 		
-		listpanel.add(year);
-		listpanel.add(month);
-		listpanel.add(day);
-		listpanel.add(line1);
-		listpanel.add(line2);
-		listpanel.add(line3);
-		listpanel.add(tip);
-		listpanel.add(inList);
-		listpanel.add(ok);
-		listpanel.add(cancel);
-		listpanel.add(bar);
-		listpanel.add(cargoinfo);
-		listpanel.add(inDate);
-		listpanel.add(distination);
-		listpanel.add(area);
-		listpanel.add(row);
-		listpanel.add(shelf);
-		listpanel.add(position);
-		listpanel.add(bartext);
-		listpanel.add(distext);
-		listpanel.add(areatext);
-		listpanel.add(rowtext);
-		listpanel.add(shelftext);
-		listpanel.add(postext);
+		listPanel.add(year);
+		listPanel.add(month);
+		listPanel.add(day);
+		listPanel.add(line1);
+		listPanel.add(line2);
+		listPanel.add(line3);
+		listPanel.add(tip);
+		listPanel.add(inList);
+		listPanel.add(ok);
+		listPanel.add(cancel);
+		listPanel.add(bar);
+		listPanel.add(cargoinfo);
+		listPanel.add(inDate);
+		listPanel.add(distination);
+		listPanel.add(area);
+		listPanel.add(row);
+		listPanel.add(shelf);
+		listPanel.add(position);
+		listPanel.add(bartext);
+		listPanel.add(distext);
+		listPanel.add(areatext);
+		listPanel.add(rowtext);
+		listPanel.add(shelftext);
+		listPanel.add(postext);
 		
 	}
+	
+	public void WarningPanel(){
+		warningPanel = new JPanel();
+		warningPanel.setLayout(null);
+		warningPanel.setBounds(panel.getX()+panel.getWidth()/3,panel.getY()+panel.getHeight()/3, panel.getWidth()/2, panel.getWidth()/2);
+		warningPanel.setVisible(true);
+		warningPanel.setBackground(Color.lightGray);
+		
+		panel.add(warningPanel);
+		panel.repaint();
+		warningPanel.repaint();
+		
+	} 
+	
 	static public boolean isLeap(String a){
 		a=a.substring(0,4);
 		int year = Integer.parseInt(a);
@@ -292,5 +308,8 @@ public class AddWarehouseInReceiptPanel {
 			return false;
 		
 	} 
+	
+	
+	
 	
 }

@@ -62,9 +62,8 @@ public class ShowInventoryPanel {
 		panel.add(tab);
 		
 		datePanel();
-		Num();
 		tablePanel();
-	
+		Num();
 		
 		inInfo.setVisible(true);
 		outInfo.setVisible(true);
