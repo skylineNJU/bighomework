@@ -3,7 +3,7 @@ package test.data_stub;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.DataService.DistributeDataService;
+import main.dataservice.DistributeDataService;
 import main.po.OrderPO;
 import main.po.OrderPO.Size;
 import main.po.ReceivePO;

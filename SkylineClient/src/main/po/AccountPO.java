@@ -2,7 +2,6 @@ package main.po;
 
 import java.io.Serializable;
 
-import main.State.Rights;
 
 public class AccountPO extends Message implements Serializable{
 

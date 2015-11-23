@@ -3,9 +3,15 @@ package main.data.right;
 import main.dataservice.RightDataService;
 import main.State.RightType;
 import main.po.AccountPO;
+import main.presentation.mainui.MainController;
+import main.socketservice.Client;
 
-public class RightController implements RightDataService{
+public class RightDataController implements RightDataService{
 
+	private Client client;
+	public RightDataController(){
+		client=MainController.getClient();
+	}
 	@Override
 	public boolean initKeyWord(String account) {
 		// TODO Auto-generated method stub
@@ -31,9 +37,14 @@ public class RightController implements RightDataService{
 	}
 
 	@Override
-	public boolean login(AccountPO accountInfo) {
+	public AccountPO login(AccountPO accountInfo) {
 		// TODO Auto-generated method stub
-		return false;
+		accountInfo.setKey("Start");
+		System.out.println(accountInfo.getID());
+		client.wrightReceipt(accountInfo);
+		accountInfo=(AccountPO) client.getResponse();
+		System.out.println(accountInfo.getRight());
+		return accountInfo;
 	}
 
 }

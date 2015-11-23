@@ -1,6 +1,6 @@
 package main.vo;
 
-import main.State.Rights;
+import main.po.Rights;
 
 public class AccountVO {
 	private Rights right;

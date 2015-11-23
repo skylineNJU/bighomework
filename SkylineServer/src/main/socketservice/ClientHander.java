@@ -1,7 +1,5 @@
 package main.socketservice;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,10 +15,8 @@ public class ClientHander implements Runnable{
 	public ClientHander(Socket clientSocket){
 		try{
 			socket=clientSocket;
-			reader=new ObjectInputStream(
-					new BufferedInputStream(socket.getInputStream()));
-			writer=new ObjectOutputStream(
-					new BufferedOutputStream(socket.getOutputStream()));
+			reader=new ObjectInputStream(socket.getInputStream());
+			writer=new ObjectOutputStream(socket.getOutputStream());
 			messagein=new ClientController(writer);
 		}catch(Exception ex){
 			ex.printStackTrace();
@@ -37,10 +33,36 @@ public class ClientHander implements Runnable{
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				try {
+					socket.close();
+					System.out.println("a socket closed");
+					
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				break;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				try {
+					socket.close();
+					System.out.println("a socket closed");
+					break;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				break;
+			} catch(Exception ex){
+				try {
+					socket.close();
+					System.out.println("a socket closed");
+					break;
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				break;
 			}
 		}
 	}

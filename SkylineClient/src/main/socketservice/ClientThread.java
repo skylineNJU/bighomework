@@ -2,38 +2,62 @@ package main.socketservice;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.net.Socket;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import main.po.Message;
 
 public class ClientThread implements Runnable {
 	private ObjectInputStream reader; 
 	private Message message;
-	private Queue<Message> messageList=new LinkedList<Message>();
-	public ClientThread(ObjectInputStream reader){
-		this.reader=reader;
+	private BlockingQueue<Message> messageList=new LinkedBlockingQueue<Message>();
+	private Socket socket;
+	public ClientThread(Socket socket){
+		this.socket=socket;
 	}
 	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		while(true){
-			try {
-				if((message=(Message) reader.readObject())!=null){
-					messageList.add(message);
-				}
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			reader=new ObjectInputStream(socket.getInputStream());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			System.out.println(socket.isClosed());
+			while(true){
+				message=(Message)reader.readObject();
+				if(message!=null){
+					System.out.println("get message");
+				try {
+					messageList.put(message);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				System.out.println(socket.isClosed());
 			}
+			}
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
 	public Message getResponseMessage(){
-			return messageList.poll();
+		int counter=0;
+		System.out.println("waiting.....");
+		Message message=null;
+		try {
+			message = messageList.take();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(message.getKey());
+		return message;
 	}
 }

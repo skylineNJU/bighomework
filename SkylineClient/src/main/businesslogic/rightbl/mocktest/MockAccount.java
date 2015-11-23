@@ -23,9 +23,5 @@ public MockAccount(String iD2) {
 		// TODO Auto-generated constructor stub
 	}
 
-public MockAccount(BankAccountVO ac) {
-	super(ac);
-	// TODO Auto-generated constructor stub
-	}
 
 }

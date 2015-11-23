@@ -5,14 +5,12 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-import main.State.Rights;
 import main.businesslogicservice.RightBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.guestui.Guestui;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.vo.AccountVO;
-import main. State.Rights;
 
 public class LoginPanel {
 	private JTextField userName=new JTextField("141250024");
@@ -59,10 +57,12 @@ public class LoginPanel {
 			public void mouseClicked(MouseEvent e){
 				String username=userName.getText();
 				String password=passWord.getText();
+				System.out.println();
+				System.out.println("username: "+username);
 				AccountVO account=	new AccountVO(username, password);
 				RightBLService  service  = ConstructFactory.RightFactory();
 				service.login(account);
-				
+				System.out.println("get login message");
 				switch(account.getRight()){
 					case ACCOUNT:
 						remove();

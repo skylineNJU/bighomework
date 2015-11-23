@@ -36,6 +36,7 @@ public class MainController {
 	private static LoaduiController loaduiControl=new LoaduiController();
 	private static InfouiControl infouiControl = new InfouiControl();
 	private static ReceiptuiControl receiptuiControl = new ReceiptuiControl();
+	private static Client client;
 	
 	private static LoadVehiclePanel loadVehicle;
 	private static ReceiveListPanel receiveList;
@@ -49,10 +50,12 @@ public class MainController {
 	private static LobbyStaffPanel lobbyStaffPanel;
 	private static ManagerPanel managerPanel;
 	public static void start(){
+		client=new Client();
 		frame=FrameMain.createFrame();
 		FrameMain.init();
 		writepanel=new WritePanel();
 		jumpToGuestui(Guestui.Search);
+		
 	}
 	
 	public static void jumpToDistributeui(Distributeui ui){
@@ -139,6 +142,11 @@ public class MainController {
 	public static WritePanel getWritepanel() {
 		return writepanel;
 	}
+
+	public static Client getClient() {
+		return client;
+	}
+
 
 
 }

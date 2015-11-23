@@ -2,7 +2,6 @@ package main.businesslogicservice;
 
 import main.vo.AccountVO;
 import main.vo.BankAccountVO;
-import main.vo.RightVO;
 
 public interface RightBLService {
 	//用户输入账户名称，密码来登录,系统根据返回的权限来跳转页面

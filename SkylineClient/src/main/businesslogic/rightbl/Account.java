@@ -1,10 +1,9 @@
 package main.businesslogic.rightbl;
+import main.data.right.RightDataController;
 import main.dataservice.RightDataService;
-import main.State.Rights;
 import main.po.AccountPO;
+import main.po.Rights;
 import main.vo.AccountVO;
-import main.vo.BankAccountVO;
-import main.vo.RightVO;
 public class Account {
 
 	private String ID;//‘±π§’À∫≈√˚
@@ -13,19 +12,27 @@ public class Account {
 	private String belong;
 	private AccountPO po;
 	private RightDataService service;
+	private AccountVO vo;
 	
 	public Account(AccountVO vo) {
 		// TODO Auto-generated constructor stub
 		this.ID=vo.getAccountName();
 		this.code=vo.getCode();
 		this.belong=vo.getBelong();
+		this.vo=vo;
+		service=new RightDataController();
 	}
 	
-	public boolean login(){
+	public AccountVO login(AccountVO vo){
 		po=new AccountPO(ID,code,right,belong);
-		service.login(po);
-		return true;
+		po=service.login(po);
+		System.out.println(po.getRight());
+		vo.setRight(po.getRight());
+		vo.setBelong(po.getBelong());
+		return vo;
 	}
+	
+	
 	public Account(String oldCode, String newCode) {
 		// TODO Auto-generated constructor stub
 		this.code=newCode;

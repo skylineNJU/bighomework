@@ -32,26 +32,36 @@ public class AccountPO extends Message implements Serializable{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
+		System.out.println(this.ID);
 		reader.findNext("账号",ID);
 		this.code=reader.getString("密码");
 		this.right=Rights.valueOf(reader.getString("权限"));
 		this.belong=reader.getString("所属单位");
+		
 		reader.close();
 	}
 	
 	public void checkLogin(){
 		SqlReader reader=new SqlReader("AccountInfo");
+		System.out.println(ID);
+		System.out.println(code);
 		if(reader.findNext("账号",ID)){
-			if(this.code==reader.getString("密码")){
+			String code=reader.getString("密码");
+
+			if(this.code.equals(code)){
 				right=Rights.valueOf(reader.getString("权限"));
 				belong=reader.getString("所属单位");
 				System.out.println("login success");
+				System.out.println(right);
 				return;
 			}
 		}else{
+			System.out.println("can not found this account");
+			System.out.println("login failed");
 			right=null;
 			belong=null;
 		}
+		
 	}
 	
 	
