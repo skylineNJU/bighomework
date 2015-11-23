@@ -3,14 +3,14 @@ package main.vo;
 import main.businesslogic.infobl.Vehicle;
 
 public class VehicleVO {
-	private int carID;//车辆代号
-	private int engineID;//底盘代号
-	private int carNum;//车辆号
-	private int underpanID;//底盘号
+	private String carID;//车辆代号
+	private String engineID;//底盘代号
+	private String carNum;//车辆号
+	private String underpanID;//底盘号
 	private String boughtTime;//购买时间
-	private int usedTime;//服役时间
+	private String usedTime;//服役时间
 
-	public VehicleVO(int i,int j,int k,int m,String n,int p){
+	public VehicleVO(String i,String j,String k,String m,String n,String p){
 		carID=i;
 		engineID=j;
 		carNum=k;
@@ -29,35 +29,35 @@ public class VehicleVO {
 		return true;
 	}
 
-	public int getCarID() {
+	public String getCarID() {
 		return carID;
 	}
 
-	public void setCarID(int carID) {
+	public void setCarID(String carID) {
 		this.carID = carID;
 	}
 
-	public int getEngineID() {
+	public String getEngineID() {
 		return engineID;
 	}
 
-	public void setEngineID(int engineID) {
+	public void setEngineID(String engineID) {
 		this.engineID = engineID;
 	}
 
-	public int getCarNum() {
+	public String getCarNum() {
 		return carNum;
 	}
 
-	public void setCarNum(int carNum) {
+	public void setCarNum(String carNum) {
 		this.carNum = carNum;
 	}
 
-	public int getUnderpanID() {
+	public String getUnderpanID() {
 		return underpanID;
 	}
 
-	public void setUnderpanID(int underpanID) {
+	public void setUnderpanID(String underpanID) {
 		this.underpanID = underpanID;
 	}
 
@@ -69,11 +69,11 @@ public class VehicleVO {
 		this.boughtTime = boughtTime;
 	}
 
-	public int getUsedTime() {
+	public String getUsedTime() {
 		return usedTime;
 	}
 
-	public void setUsedTime(int usedTime) {
+	public void setUsedTime(String usedTime) {
 		this.usedTime = usedTime;
 	}
 }

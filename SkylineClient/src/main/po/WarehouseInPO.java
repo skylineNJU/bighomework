@@ -12,12 +12,13 @@ public class WarehouseInPO extends Receipt implements Serializable{
 	String bar;
 	String inDate;
 	String destination;
-	char area;
+	String area;
 	int row;
 	int shelf;
 	int position;
+	private String damageCondition;
 	
-	public WarehouseInPO(String a,String b,String c,char d,int e,int f,int g){
+	public WarehouseInPO(String a,String b,String c,String d,int e,int f,int g,String h){
 		bar = a;
 		inDate = b;
 		destination = c;
@@ -25,6 +26,15 @@ public class WarehouseInPO extends Receipt implements Serializable{
 		row = e;
 		shelf = f;
 		position = g;
+		damageCondition=h;
+	}
+
+	public String getDamageCondition() {
+		return damageCondition;
+	}
+
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
 	}
 
 	public String getDestination() {
@@ -35,11 +45,11 @@ public class WarehouseInPO extends Receipt implements Serializable{
 		this.destination = destination;
 	}
 
-	public char getArea() {
+	public String getArea() {
 		return area;
 	}
 
-	public void setArea(char area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 

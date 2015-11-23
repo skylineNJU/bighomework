@@ -9,12 +9,13 @@ public class WarehouseInVO extends ReceiptVO {
 	private String bar;//入库单编号
 	private String destination;//目的地
 	private String inDate;//入库日期
-	private char area;//区号
+	private String area;//区号
 	private int row;//排号
 	private int shelf;//架号
 	private int position;//位号
+	private String damageCondition;
 	
-	public WarehouseInVO(String id,String da,String co,String a,String b,String c,char d,int e,int f,int g){
+	public WarehouseInVO(String id,String da,String co,String a,String b,String c,String d,int e,int f,int g,String h){
 		super(id, da, co);
 		bar = a;
 		inDate=b;
@@ -23,6 +24,7 @@ public class WarehouseInVO extends ReceiptVO {
 		row = e;
 		shelf = f;
 		position = g;
+		damageCondition =h;
 	}
 	public boolean writeWarehouseInInfo(WarehouseIn whi){
 		this.bar=whi.getBar();
@@ -32,9 +34,17 @@ public class WarehouseInVO extends ReceiptVO {
 		this.row=whi.getRow();
 		this.shelf=whi.getShelf();
 		this.position=whi.getPosition();
+		this.damageCondition=whi.getDamageCondition();
 		return true;
 	}
 
+	
+	public String getDamageCondition() {
+		return damageCondition;
+	}
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
+	}
 	public String getInDate() {
 		return inDate;
 	}
@@ -46,11 +56,11 @@ public class WarehouseInVO extends ReceiptVO {
 		this.destination = destination;
 	}
 
-	public char getArea() {
+	public String getArea() {
 		return area;
 	}
 
-	public void setArea(char area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 

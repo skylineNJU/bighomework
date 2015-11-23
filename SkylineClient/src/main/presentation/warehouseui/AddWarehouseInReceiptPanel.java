@@ -1,5 +1,6 @@
 package main.presentation.warehouseui;
 
+import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -59,16 +60,24 @@ public class AddWarehouseInReceiptPanel {
 		
 		listPanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*57/80, panel.getHeight()*18/20);
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
-	
 		content();
+
+		
+		
+		
+		
+
+		
 		
 	//	panel.add(scrollPane);
 		listPanel.setVisible(true);
 		panel.add(listPanel);	
-		WarningPanel();
 		panel.repaint();
 		listPanel.repaint();
-		warningPanel.repaint();
+	
+	//	JOptionPane.showMessageDialog(null, "该区货物过满，请重新填写区号！","消息",JOptionPane. WARNING_MESSAGE);
+		
+		
 	}
 
 
@@ -286,18 +295,7 @@ public class AddWarehouseInReceiptPanel {
 		
 	}
 	
-	public void WarningPanel(){
-		warningPanel = new JPanel();
-		warningPanel.setLayout(null);
-		warningPanel.setBounds(panel.getX()+panel.getWidth()/3,panel.getY()+panel.getHeight()/3, panel.getWidth()/2, panel.getWidth()/2);
-		warningPanel.setVisible(true);
-		warningPanel.setBackground(Color.lightGray);
-		
-		panel.add(warningPanel);
-		panel.repaint();
-		
-		
-	} 
+
 	
 	static public boolean isLeap(String a){
 		a=a.substring(0,4);

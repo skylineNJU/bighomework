@@ -7,10 +7,11 @@ public class WarehouseIn {
 	private String bar;//入库单编号
 	private String destination;//目的地
 	private String inDate;//入库日期
-	private char area;//区号 ,
+	private String area;//区号 ,
 	private int row;//排号
 	private int shelf;//架号
 	private int position;//位号
+	private String damageCondition;
 	private WarehouseInPO po;
 
 	
@@ -66,11 +67,11 @@ public class WarehouseIn {
 		this.destination = destination;
 	}
 
-	public char getArea() {
+	public String getArea() {
 		return area;
 	}
 
-	public void setArea(char area) {
+	public void setArea(String area) {
 		this.area = area;
 	}
 
@@ -100,6 +101,10 @@ public class WarehouseIn {
 
 	public String getBar() {
 		return bar;
+	}
+	public String getDamageCondition() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
