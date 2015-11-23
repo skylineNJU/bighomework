@@ -27,7 +27,7 @@ public class RightController implements RightBLService{
 
 
 	@Override
-	public boolean login(String AccountName, String code, AccountVO account) {
+	public boolean login(AccountVO account) {
 		// TODO Auto-generated method stub
 		
 		return false;

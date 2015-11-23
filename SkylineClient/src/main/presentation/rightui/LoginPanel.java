@@ -5,9 +5,14 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import main.State.Rights;
+import main.businesslogicservice.RightBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.guestui.Guestui;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
+import main.vo.AccountVO;
+import main. State.Rights;
 
 public class LoginPanel {
 	private JTextField userName=new JTextField("141250024");
@@ -54,7 +59,75 @@ public class LoginPanel {
 			public void mouseClicked(MouseEvent e){
 				String username=userName.getText();
 				String password=passWord.getText();
-				switch(username){
+				AccountVO account=	new AccountVO(username, password);
+				RightBLService  service  = ConstructFactory.RightFactory();
+				service.login(account);
+				
+				switch(account.getRight()){
+					case ACCOUNT:
+						remove();
+						panel.repaint();
+						MainController.goToRightAdminStaffui(account.getBelong());
+						break;
+					case COURIER:
+						remove();
+						panel.repaint();
+						MainController.goToCourierui(account.getBelong());
+						break;
+					case FINANCE:
+						remove();
+						panel.repaint();
+						MainController.gotoFinanceui(account.getBelong());	
+						break;
+					case INTERMEDIATE:
+						remove();
+						panel.repaint();
+						MainController.goToIntermediateStaffui(account.getBelong());
+						break;
+					case LOBBY:
+						remove();
+						panel.repaint();
+						MainController.goToLobbyStaffui(account.getBelong());
+						break;
+					case MANAGER:
+						remove();
+						panel.repaint();
+						MainController.goToManagerui(account.getBelong());
+						break;
+					case STOREHOUSE:
+						remove();
+						panel.repaint();
+						MainController.goToWarehouseui(account.getBelong());
+						break;
+					default:
+						System.err.println("密码或用户名错误！");
+						break;
+						
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+		/*		switch(username){
 				case "141250029":    //快递员账号
 					if(password.equals(username)){
 						remove();
@@ -113,6 +186,7 @@ public class LoginPanel {
 					}
 					break;
 				}
+			*/
 			}
 		});
 		panel.repaint();

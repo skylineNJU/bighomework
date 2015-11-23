@@ -15,7 +15,7 @@ public class AccountVO {
 		this.setBelong(null);
 	}
 	
-	public AccountVO(RightVO right, String accountName, String code, String belong) {
+	public AccountVO(Rights right, String accountName, String code, String belong) {
 		super();
 		this.setRight(right);
 		this.setAccountName(accountName);
@@ -23,11 +23,11 @@ public class AccountVO {
 		this.setBelong(belong);
 	}
 
-	public RightVO getRight() {
+	public Rights getRight() {
 		return right;
 	}
 
-	public void setRight(RightVO right) {
+	public void setRight(Rights right) {
 		this.right = right;
 	}
 

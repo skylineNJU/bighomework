@@ -1,6 +1,6 @@
 package main.data.right;
 
-import main.DataService.RightDataService;
+import main.dataservice.RightDataService;
 import main.State.RightType;
 import main.po.AccountPO;
 

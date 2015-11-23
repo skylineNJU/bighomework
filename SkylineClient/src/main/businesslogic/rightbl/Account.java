@@ -1,5 +1,5 @@
 package main.businesslogic.rightbl;
-import main.DataService.RightDataService;
+import main.dataservice.RightDataService;
 import main.State.Rights;
 import main.po.AccountPO;
 import main.vo.AccountVO;

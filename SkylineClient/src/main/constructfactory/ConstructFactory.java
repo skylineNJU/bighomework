@@ -13,39 +13,39 @@ import main.businesslogicservice.*;
 
 public class ConstructFactory {
 	
-	public DistributeBLService DistributeFactory(){
+	static public DistributeBLService DistributeFactory(){
 		return new DistributeController();	
 	}
 	
-	public FinanceBLService FinanceFactory(){
+	static 	public FinanceBLService FinanceFactory(){
 		return new FinanceController();	
 	}
 	
-	public GuestBLService GuestFactory(){
+	static 	public GuestBLService GuestFactory(){
 		return new GuestController();	
 	}
 	
-	public InfoBLService InfoFactory(){
+	static 	public InfoBLService InfoFactory(){
 		return new InfoController();	
 	}
 	
-	public LoadBLService LoadFactory(){
+	static 	public LoadBLService LoadFactory(){
 		return new LoadController();	
 	}
 	
-	public ReceiptBLService ReceiptFactory(){
+	static 	public ReceiptBLService ReceiptFactory(){
 		return new ReceiptController();	
 	}
 	
-	public ReceiveBLService ReceiveFactory(){
+	static 	public ReceiveBLService ReceiveFactory(){
 		return new ReceiveController();	
 	}
 	
-	public RightBLService RightFactory(){
+	static 	public RightBLService RightFactory(){
 		return  new RightController();	
 	}
 	
-	public WarehouseBLService WarehouseFactory(){
+	static 	public WarehouseBLService WarehouseFactory(){
 		return new WarehouseController();	
 	}
 }

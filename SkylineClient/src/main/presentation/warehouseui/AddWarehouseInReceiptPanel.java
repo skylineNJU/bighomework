@@ -64,10 +64,11 @@ public class AddWarehouseInReceiptPanel {
 		
 	//	panel.add(scrollPane);
 		listPanel.setVisible(true);
-		panel.add(listPanel);
+		panel.add(listPanel);	
+		WarningPanel();
 		panel.repaint();
 		listPanel.repaint();
-		WarningPanel();
+		warningPanel.repaint();
 	}
 
 
@@ -294,7 +295,7 @@ public class AddWarehouseInReceiptPanel {
 		
 		panel.add(warningPanel);
 		panel.repaint();
-		warningPanel.repaint();
+		
 		
 	} 
 	
