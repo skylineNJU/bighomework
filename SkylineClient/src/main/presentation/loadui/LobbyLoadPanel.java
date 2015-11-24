@@ -36,7 +36,7 @@ public class LobbyLoadPanel {
 	private String[] monthString;
 	private String[] dayString;
 	//writePanel上的组件
-	private JLabel loadData;//撞车日期
+	private JLabel loadData;//装车日期
 	private JLabel loadYear;//装车年
 	private JLabel loadMonth;//装车月
 	private JLabel loadDay;//装车天
