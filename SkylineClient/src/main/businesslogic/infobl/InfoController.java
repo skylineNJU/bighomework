@@ -1,5 +1,7 @@
 package main.businesslogic.infobl;
 
+import java.util.ArrayList;
+
 import main.businesslogicservice.InfoBLService;
 import main.vo.DriverVO;
 import main.vo.InstitutionVO;
@@ -49,10 +51,13 @@ public class InfoController implements InfoBLService {
 	}
 
 	@Override
-	public boolean inquireStaff(String staffCode,StaffVO staffInfo) {
+	public StaffVO inquireStaff(String staffCode) {
 		// TODO Auto-generated method stub
 		Staff staff=new Staff(staffCode);
-		return staffInfo.writeStaffInfo(staff);
+		StaffVO vo=new StaffVO(null,null,null,null,null);
+		vo.writeStaffInfo(staff);
+		return vo;
+		
 	}
 
 	@Override
@@ -103,17 +108,19 @@ public class InfoController implements InfoBLService {
 	}
 
 	@Override
-	public boolean inquireDriver(String code, DriverVO driverInfo) {
-		// TODO Auto-generated method stub
-		Driver driver=new Driver(code);
-		return driverInfo.writeDriverInfo(driver);
-	}
-
-	@Override
 	public boolean modifyDriver(DriverVO driverInfo) {
 		// TODO Auto-generated method stub
 		Driver driver=new Driver(driverInfo);
 		return driver.modify();
+	}
+
+	@Override
+	public ArrayList<DriverVO> inquireDriver(String code) {
+		// TODO Auto-generated method stub
+		Driver driver=new Driver(code);
+		ArrayList<DriverVO> volist=driver.inquire(code);
+		System.out.println(volist.get(0).getName());
+		return volist;
 	}
 
 	

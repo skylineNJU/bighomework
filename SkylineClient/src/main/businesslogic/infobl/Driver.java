@@ -1,8 +1,11 @@
 package main.businesslogic.infobl;
 
+import java.util.ArrayList;
+
 import main.data.info.InfoDataController;
 import main.dataservice.InfoDataService;
 import main.po.DriverInfoPO;
+import main.po.DriverList;
 import main.vo.DriverVO;
 
 public class Driver {
@@ -28,15 +31,7 @@ public class Driver {
 	}
 	
 	public Driver(String driverCode){
-		if(inquire(driverCode)){
-			this.age=po.getBirthDay();
-			this.code=po.getDriverID();
-			this.IDcode=po.getIdCard();
-			this.limit=po.getDueDate();
-			this.name=po.getName();
-			this.phoneNumber=po.getPhoneNum();
-			this.sex=po.getSex();
-		}
+		
 	}
 	
 	public boolean saveInfo(){
@@ -49,10 +44,25 @@ public class Driver {
 	public boolean modify(){
 		return true;
 	}
-	private boolean inquire(String driverCode){
-		
-		return true;
-		
+	public ArrayList<DriverVO> inquire(String Code){
+		InfoDataService service=new InfoDataController();
+		po=new DriverInfoPO(Code);
+		DriverList driverlist=new DriverList();
+		driverlist.add(po);
+		driverlist=service.inquireDriver(driverlist);
+		ArrayList<DriverVO> volist=new ArrayList<DriverVO>();
+		for(DriverInfoPO p:driverlist.getlist()){
+			System.out.println(p.getName());
+			volist.add(new DriverVO(p.getName(),
+									p.getDriverID(),
+									p.getBirthDay(),
+									p.getIdCard(),
+									p.getPhoneNum(),
+									p.getSex(),
+									p.getDueDate(),
+									p.getCarunit()));
+		}
+		return volist;
 	}
 	
 	public static boolean delete(String driverCode){

@@ -1,6 +1,7 @@
-package main.dataService;
+package main.dataservice;
 
 import main.po.DriverInfoPO;
+import main.po.DriverList;
 import main.po.InstitutionPO;
 import main.po.VehicleInfoPO;
 import main.po.WorkerPO;
@@ -38,9 +39,6 @@ public interface InfoDataService {
 	//account为员工的账户
 	public boolean deleteStaff(String account);
 		
-	//数据库返回该账户的信息
-	//account为该员工的账户
-	public boolean inquireStaff(String account,WorkerPO workerPO);
 		
 	//修改职工信息
 	//account为该员工的账户，account不可以被修改
@@ -67,8 +65,10 @@ public interface InfoDataService {
 	public boolean deleteDriver();
 		
 	//查询司机信息，输入司机编号
-	public boolean inquireDriver(String code,DriverInfoPO driverInfoPO);
+	public DriverList inquireDriver(DriverList driverlist);
 		
 	//修改司机信息
 	public boolean modifyDriver(DriverInfoPO driveInfoPO);
+
+	WorkerPO inquireStaff(WorkerPO workerPO);
 }

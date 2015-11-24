@@ -9,7 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.InfoBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.StaffVO;
 
 //人员管理
 public class ManagerStaffPanel {
@@ -111,6 +114,17 @@ public class ManagerStaffPanel {
 		addPanel.add(saveButton);
 		addPanel.add(cancleButton);
 		
+		saveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				InfoBLService service=ConstructFactory.InfoFactory();
+				StaffVO staffInfo=new StaffVO(nameText.getText(),
+											  positionText.getText(),
+											  companyText.getText(),
+											  startWorkTimeText.getText(),
+											  staffCodeText.getText());
+				service.createNewStaff(staffInfo);
+			}
+		});
 		final int INTER = tabHeight*3/35;
 		
 		position.setBounds(tabWidth/10, INTER, tabWidth/10, tabHeight/15);//职位
@@ -155,6 +169,14 @@ public class ManagerStaffPanel {
 		inquireButton = new JButton("查询");
 		inquireButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				InfoBLService service=ConstructFactory.InfoFactory();
+				System.out.println(inquireText.getText());
+				StaffVO vo=service.inquireStaff(inquireText.getText());
+				inquirePositionText.setText(vo.getJob());
+				inquireStaffCodeText.setText(vo.getCode());
+				inquireCompanyText.setText(vo.getUnit());
+				inquireNameText.setText(vo.getName());
+				inquireStartWorkTimeText.setText(vo.getWorkage());
 				dataLabel.setVisible(true);
 				label.setVisible(false);
 			}

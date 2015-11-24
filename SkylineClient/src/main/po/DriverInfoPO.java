@@ -19,6 +19,11 @@ public class DriverInfoPO extends Message implements Serializable{
 
 	
 
+	public DriverInfoPO(String carunit) {
+		super();
+		this.carunit = carunit;
+	}
+
 	public DriverInfoPO(String driverID, String name, String birthDay, String idCard, String phoneNum, String sex,
 			String dueDate, String carunit) {
 		super();
@@ -88,4 +93,7 @@ public class DriverInfoPO extends Message implements Serializable{
 		this.dueDate = dueDate;
 	}
 	
+	public String getCarunit(){
+		return this.carunit;
+	}
 }

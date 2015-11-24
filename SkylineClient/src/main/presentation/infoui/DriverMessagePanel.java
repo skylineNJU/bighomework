@@ -3,6 +3,7 @@ package main.presentation.infoui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -13,10 +14,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
 import main.vo.DriverVO;
 
 public class DriverMessagePanel {
@@ -80,9 +84,24 @@ public class DriverMessagePanel {
 		tab=new JTabbedPane(JTabbedPane.TOP);
 		tab.add("查看司机信息",lookPanel);
 		tab.add("新增司机信息",writePanel);
-		panel.add(tab);
+		panel.add(tab);	
 		tab.setBounds(panelWidth/10, panelHeight/10, panelWidth*4/5, panelHeight*4/5);
 		tab.setVisible(true);
+		tab.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				if(tab.getSelectedIndex()==0){
+					tableData =initTableData();
+					for(int x=0;x<20;x++){
+						for(int y=0;y<8;y++)
+						table.setValueAt(tableData[x][y],x,y);
+					}
+				}
+			}
+			
+		});
 		panel.repaint();
 	}
 	
@@ -101,7 +120,13 @@ public class DriverMessagePanel {
 		writePanel.add(saveButton);
 		cancleButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				driverNameText.setText(null);
+				driverCodeText.setText(null);
+				driverBirthText.setText(null);
+				idCodeText.setText(null);
+				driverPhoneText.setText(null);
+				licenseDataText.setText(null);
+				carUnitText.setText(null);
 			}
 		});
 		
@@ -122,7 +147,7 @@ public class DriverMessagePanel {
 												,driverPhoneText.getText()
 												,sex
 												,licenseDataText.getText()
-												,carUnitText.getText());
+												,((WritePanel) panel).getBelong());
 				InfoBLService service=ConstructFactory.InfoFactory();
 				service.createNewDriver(driverInfo);
 			}
@@ -133,21 +158,12 @@ public class DriverMessagePanel {
 		lookSaveButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
 		lookPanel.add(lookCancleButton);
 		lookPanel.add(lookSaveButton);
+		
 	}
 	
 	public void lookTabel(){
 		tableTitle = new String[]{"司机编号", "司机姓名", "司机性别", "司机生日", "身份证号", "联系方式", "车辆单位", "行驶证截止日期"};
-		tableData = new String[][]{{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"}
-		};
+		tableData = this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
@@ -167,6 +183,31 @@ public class DriverMessagePanel {
 		}
 		scrollPane.setVisible(true);
 		lookPanel.add(scrollPane);
+	}
+	
+	public String[][] initTableData(){
+		String[][] content =new String[20][8];
+		for(int x=0;x<20;x++)
+			for(int y=0;y<8;y++)
+				content[x][y]=null;
+	
+		ArrayList<DriverVO> volist=null;
+		InfoBLService service=ConstructFactory.InfoFactory();
+		volist=service.inquireDriver(((WritePanel)panel).getBelong());
+		int counter=0;
+		for(DriverVO vo:volist){
+			content[counter][0]=vo.getCode();
+			content[counter][1]=vo.getName();
+			content[counter][2]=vo.getSex();
+			content[counter][3]=vo.getAge();
+			content[counter][4]=vo.getIDcode();
+			content[counter][5]=vo.getPhoneNumber();
+			content[counter][6]=vo.getCarunit();
+			content[counter][7]=vo.getLimit();
+			counter++;
+		}
+		
+		return content;
 	}
 	
 	public void writeTabel(){

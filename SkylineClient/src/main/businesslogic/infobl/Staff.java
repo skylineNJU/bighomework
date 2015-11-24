@@ -1,5 +1,7 @@
 package main.businesslogic.infobl;
 
+import main.data.info.InfoDataController;
+import main.dataservice.InfoDataService;
 import main.po.WorkerPO;
 import main.vo.StaffVO;
 
@@ -29,9 +31,16 @@ public class Staff {
 	}
 	
 	private boolean inquire(String code){
+		InfoDataService service=new InfoDataController();
+		System.out.println(code);
+		po=new WorkerPO(code, code, code, code, code);
+		po=service.inquireStaff(po);
 		return true;
 	}
 	public boolean saveInfo(){
+		po=new WorkerPO(this.name,this.job,this.unit,this.workage,this.code);
+		InfoDataService service=new InfoDataController();
+		service.createNewStaff(po);
 		return true;
 	}
 	

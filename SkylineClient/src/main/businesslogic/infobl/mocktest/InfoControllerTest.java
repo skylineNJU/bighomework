@@ -25,7 +25,7 @@ public class InfoControllerTest {
 	
 	@Test
 	public void testInquireVehicle(){
-		VehicleVO vehicleInfo=new VehicleVO(-1,-1,-1,-1,null,-1);
+		VehicleVO vehicleInfo=new VehicleVO(null, null, null, null, null, null);
 		MockVehicle vehicle=new MockVehicle("141250029");
 		vehicleInfo.writeVehicleInfo(vehicle);
 		assertEquals("2014-01-01",vehicleInfo.getBoughtTime());
@@ -33,8 +33,7 @@ public class InfoControllerTest {
 	
 	@Test
 	public void testmodifyDriver(){
-		DriverVO drInfo=new DriverVO("ÕÅÈý","141250029",
-				"30","5134121223512412335","13018101290","ÄÐ","20");
+		DriverVO drInfo=new DriverVO(null, null, null, null, null, null, null, null);
 		MockDriver driver=new MockDriver(drInfo);
 		assertEquals(true,driver.modify());
 	}

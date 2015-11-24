@@ -29,6 +29,7 @@ public class ClientHander implements Runnable{
 		while(true){
 			try {
 				if((message=(Message) reader.readObject())!=null){
+					System.out.println("get a message");
 					messagein.analysis(message);
 				}
 			} catch (ClassNotFoundException e) {

@@ -26,6 +26,7 @@ public class DriverVO {
 		this.limit = limit;
 		this.setCarunit(carunit);
 	}
+	
 	public boolean writeDriverInfo(Driver dr){
 		this.age=dr.getAge();
 		this.code=dr.getCode();

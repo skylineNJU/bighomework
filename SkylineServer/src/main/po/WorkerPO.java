@@ -17,8 +17,9 @@ public class WorkerPO extends Message implements Serializable{
 	private String code;
 	
 	
-	public void writeIntoDataBase(){
+	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
+		System.out.println("save staffinfo");
 		String content="'"+name+"','"+position+"','"+belong+"','"
 				+age+"','"+code+"'";
 		writer.writeIntoSql("StaffInfo", content);
@@ -26,11 +27,18 @@ public class WorkerPO extends Message implements Serializable{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("StaffInfo");
-		reader.findNext("职工账号",code);
-		this.name=reader.getString("职工姓名");
+		if(reader.findNext("职工账号",code)){
+		this.name=reader.getString("员工姓名");
 		this.position=reader.getString("职位");
 		this.belong=reader.getString("所属单位");
 		this.age=reader.getString("入职时间");
+		}else{
+			this.name=null;
+			this.position=null;
+			this.belong=null;
+			this.age=null;
+		}
+		System.out.println(this.name);
 		reader.close();
 	}
 	//-------------------
@@ -69,15 +77,19 @@ public class WorkerPO extends Message implements Serializable{
 	
 	//----------------------
 	//构造函数
-	public WorkerPO(String na,String po,String be,String ag){
-		this.name=na;
-		this.position=po;
-		this.belong=be;
-		this.age=ag;
-	}
+	
 	public String getCode() {
 		return code;
 	}
+	public WorkerPO(String name, String position, String belong, String age, String code) {
+		super();
+		this.name = name;
+		this.position = position;
+		this.belong = belong;
+		this.age = age;
+		this.code = code;
+	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}

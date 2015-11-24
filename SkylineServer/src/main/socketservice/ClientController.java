@@ -16,7 +16,7 @@ public class ClientController {
 	
     public void analysis(Message obj){
     	message=obj;
-    	
+    	System.out.println(message.getKey());
     	switch(message.getKey()){
     	case "Save":
     		message.writeIntoDatabase();

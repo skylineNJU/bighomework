@@ -106,6 +106,10 @@ public class InstitutionPanel {
 		addPanel.add(saveButton);
 		addPanel.add(cancleButton);
 		
+		saveButton.addMouseListener(new MouseAdapter(){
+			
+		});
+		
 		kindLabel.setBounds(tabWidth/10, tabHeight/9, tabWidth/10, tabHeight/15);
 		nameLabel.setBounds(kindLabel.getX(), kindLabel.getY()+kindLabel.getHeight()+tabHeight/9, kindLabel.getWidth(), kindLabel.getHeight());
 		placeLabel.setBounds(kindLabel.getX(), nameLabel.getY()+nameLabel.getHeight()+tabHeight/9, kindLabel.getWidth(), kindLabel.getHeight());
