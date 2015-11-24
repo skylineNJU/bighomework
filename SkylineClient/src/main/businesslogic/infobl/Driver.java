@@ -1,5 +1,7 @@
 package main.businesslogic.infobl;
 
+import main.data.info.InfoDataController;
+import main.dataservice.InfoDataService;
 import main.po.DriverInfoPO;
 import main.vo.DriverVO;
 
@@ -11,6 +13,7 @@ public class Driver {
 	private String phoneNumber;
 	private String sex;
 	private String limit;
+	private String carunit;
 	private DriverInfoPO po;
 	
 	public Driver(DriverVO dr){
@@ -21,6 +24,7 @@ public class Driver {
 		this.name=dr.getName();
 		this.phoneNumber=dr.getPhoneNumber();
 		this.sex=dr.getSex();
+		this.carunit=dr.getCarunit();
 	}
 	
 	public Driver(String driverCode){
@@ -36,6 +40,9 @@ public class Driver {
 	}
 	
 	public boolean saveInfo(){
+		po=new DriverInfoPO(this.code,this.name,this.age,this.IDcode,this.phoneNumber,this.sex,this.limit,this.carunit);
+		InfoDataService service=new InfoDataController();
+		service.createNewDriver(po);
 		return true;
 	}
 	

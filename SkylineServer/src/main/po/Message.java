@@ -18,6 +18,9 @@ public class Message implements Serializable {
 		
 	}
 	
+	public void deleteFromDatabase(){
+		
+	}
 	public String getKey() {
 		return key;
 	}

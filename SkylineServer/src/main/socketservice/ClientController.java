@@ -25,6 +25,9 @@ public class ClientController {
     		message.getDataFromBase();
     		response(message);
     		break;
+    	case "Delete":
+    		message.deleteFromDatabase();
+    		break;
     	case "Start":
     		AccountPO po=(AccountPO)message;
     		po.checkLogin();

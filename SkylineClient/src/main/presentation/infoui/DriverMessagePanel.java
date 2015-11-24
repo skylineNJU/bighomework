@@ -1,6 +1,8 @@
 package main.presentation.infoui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,7 +14,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.InfoBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.DriverVO;
 
 public class DriverMessagePanel {
 	private JPanel panel;
@@ -67,9 +72,10 @@ public class DriverMessagePanel {
 		lookPanel.setLayout(null);
 		writePanel = new JPanel();
 		writePanel.setLayout(null);
-		initButton();//初始化按钮
+		
 		lookTabel();//初始化查看司机面板
 		writeTabel();//初始化填写信息面板
+		initButton();//初始化按钮
 		tab = new JTabbedPane();
 		tab=new JTabbedPane(JTabbedPane.TOP);
 		tab.add("查看司机信息",lookPanel);
@@ -93,6 +99,34 @@ public class DriverMessagePanel {
 		saveButton.setBounds(panelWidth*6/10,  panelHeight*13/20, panelWidth/10, panelHeight/20);
 		writePanel.add(cancleButton);
 		writePanel.add(saveButton);
+		cancleButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+			}
+		});
+		
+		saveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				String sex=null;
+				if(driverSex1.isSelected()){
+					sex="男";
+				}else if(driverSex2.isSelected()){
+					sex="女";
+				}else{
+					return;
+				}
+				DriverVO driverInfo=new DriverVO(driverNameText.getText()
+												,driverCodeText.getText()
+												,driverBirthText.getText()
+												,idCodeText.getText()
+												,driverPhoneText.getText()
+												,sex
+												,licenseDataText.getText()
+												,carUnitText.getText());
+				InfoBLService service=ConstructFactory.InfoFactory();
+				service.createNewDriver(driverInfo);
+			}
+		});
 		lookCancleButton = new JButton("取消");
 		lookSaveButton = new JButton("保存");
 		lookCancleButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);

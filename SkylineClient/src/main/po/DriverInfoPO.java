@@ -14,15 +14,22 @@ public class DriverInfoPO extends Message implements Serializable{
 	String phoneNum;//电话号码
 	String sex;//性别
 	String dueDate;//行驶证期限
+	String carunit;
 	
-	public DriverInfoPO(String i,String j,String k,String m,String n,String o,String p,String q){
-		driverID=i;
-		name=j;
-		birthDay=k;
-		idCard=m;
-		phoneNum=n;
-		sex=p;
-		dueDate=q;
+
+	
+
+	public DriverInfoPO(String driverID, String name, String birthDay, String idCard, String phoneNum, String sex,
+			String dueDate, String carunit) {
+		super();
+		this.driverID = driverID;
+		this.name = name;
+		this.birthDay = birthDay;
+		this.idCard = idCard;
+		this.phoneNum = phoneNum;
+		this.sex = sex;
+		this.dueDate = dueDate;
+		this.carunit = carunit;
 	}
 
 	public String getDriverID() {

@@ -2,6 +2,7 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -24,6 +25,11 @@ public class AccountPO extends Message implements Serializable{
 		this.belong = belong;
 	}
 
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("AccountInfo","ук╨е",ID);
+	}
+	
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";

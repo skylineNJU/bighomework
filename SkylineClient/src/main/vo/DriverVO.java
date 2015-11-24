@@ -10,17 +10,22 @@ public class DriverVO {
 	private String phoneNumber;
 	private String sex;
 	private String limit;
+	private String carunit;
 	
-	public DriverVO(String na,String co,String ag,String id,String ph,String se,String li ){
-		name=na;
-		code=co;
-		age=ag;
-		IDcode=id;
-		phoneNumber=ph;
-		sex=se;
-		limit=li;
+	
+	
+	public DriverVO(String name, String code, String age, String iDcode, String phoneNumber, String sex, String limit,
+			String carunit) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.age = age;
+		IDcode = iDcode;
+		this.phoneNumber = phoneNumber;
+		this.sex = sex;
+		this.limit = limit;
+		this.setCarunit(carunit);
 	}
-	
 	public boolean writeDriverInfo(Driver dr){
 		this.age=dr.getAge();
 		this.code=dr.getCode();
@@ -72,5 +77,11 @@ public class DriverVO {
 	}
 	public void setLimit(String limit) {
 		this.limit = limit;
+	}
+	public String getCarunit() {
+		return carunit;
+	}
+	public void setCarunit(String carunit) {
+		this.carunit = carunit;
 	}
 }
