@@ -4,7 +4,7 @@ public class RecipientVO extends ReceiptVO{
 	private String name;
 	private String sendeePhone;
 	public RecipientVO(String id, String da, String co) {
-		super(id, da, co);
+		super(id);
 		// TODO Auto-generated constructor stub
 	}
 	public boolean setName(String na){

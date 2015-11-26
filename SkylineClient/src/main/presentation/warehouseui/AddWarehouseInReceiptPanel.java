@@ -1,14 +1,26 @@
 package main.presentation.warehouseui;
 
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Calendar;
 
 import javax.swing.*;
 
+import main.businesslogicservice.InfoBLService;
+import main.businesslogicservice.WarehouseBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.vo.WarehouseInVO;
 
 public class AddWarehouseInReceiptPanel {
 	private FrameMain frame;
@@ -20,6 +32,7 @@ public class AddWarehouseInReceiptPanel {
 	private JLabel inList;
 	private JLabel cargoinfo;
 	private JLabel bar;
+	private JLabel code;
 	private JLabel tip;
 	private JLabel inDate;
 	private JLabel distination;	
@@ -30,10 +43,14 @@ public class AddWarehouseInReceiptPanel {
 	private JLabel line1;
 	private JLabel line2;
 	private JLabel line3;
+	private JLabel damageCondition;
+	private JCheckBox good;
+	private JCheckBox damage;
 	private JComboBox year;
 	private JComboBox month;
 	private JComboBox day;
 	private JTextField bartext;
+	private JTextField codetext;
 	private JTextField distext;
 	private JTextField areatext;
 	private JTextField rowtext;
@@ -57,15 +74,9 @@ public class AddWarehouseInReceiptPanel {
 	//	listpanel.setPreferredSize(new Dimension(1, panel.getHeight()));
 	
 	//	scrollPane.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
-		
 		listPanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*57/80, panel.getHeight()*18/20);
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		content();
-
-		
-		
-		
-		
 
 		
 		
@@ -76,7 +87,6 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.repaint();
 	
 	//	JOptionPane.showMessageDialog(null, "该区货物过满，请重新填写区号！","消息",JOptionPane. WARNING_MESSAGE);
-		
 		
 	}
 
@@ -97,18 +107,17 @@ public class AddWarehouseInReceiptPanel {
 		line3 = new JLabel("——————————————————————");
 		line3.setFont(font0);
 		line3.setForeground(Color.GRAY);
-		line3.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/20*11, panel.getWidth()*3/5, panel.getHeight()/10);
-		
-		
+		line3.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/100*78, panel.getWidth()*3/5, panel.getHeight()/10);
+
 		
 		ok=new JButton("提交");
 		ok.setFont(font);
-		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*4/6, panel.getWidth()/10, panel.getHeight()/20);
+		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*31/40, panel.getWidth()/10, panel.getHeight()/20);
 		
 		cancel=new JButton("取消");
 		cancel.setFont(font);
 		cancel.setBounds(ok.getX()-panel.getWidth()/7,ok.getY(), panel.getWidth()/10, panel.getHeight()/20);
-		
+			
 		inList=new JLabel("入库单");
 		inList.setFont(font00);
 		inList.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY()-panel.getHeight()/30, panel.getWidth()/10, panel.getHeight()/10);
@@ -117,21 +126,38 @@ public class AddWarehouseInReceiptPanel {
 		cargoinfo.setFont(font0);
 		cargoinfo.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/20,panel.getWidth()/10, panel.getHeight()/10);
 		
-		bar=new JLabel("入库单号:");
+		bar = new JLabel("订单号:");
 		bar.setFont(font);
 		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
 		
+		code=new JLabel("入库单号:");
+		code.setFont(font);
+		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
+		
 		inDate=new JLabel("入库日期:");
 		inDate.setFont(font);
-		inDate.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		inDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
 		
 		distination=new JLabel("目的地:");
 		distination.setFont(font);
 		distination.setBounds(cargoinfo.getX(),inDate.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
 		
+		damageCondition = new JLabel("损坏情况");
+		damageCondition.setFont(font);
+		damageCondition.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		
+		good = new JCheckBox("完好");
+		good.setFont(font);
+		good.setBounds(damageCondition.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		
+		damage = new JCheckBox("损坏");
+		damage.setFont(font);
+		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		
+		
 		area=new JLabel("区号:");
 		area.setFont(font);
-		area.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		area.setBounds(cargoinfo.getX(),damageCondition.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
 		
 		row=new JLabel("排号:");
 		row.setFont(font);
@@ -148,11 +174,13 @@ public class AddWarehouseInReceiptPanel {
 		bartext = new JTextField();
 		bartext.setBounds(bar.getX()+panel.getWidth()/8,bar.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
+		codetext = new JTextField();
+		codetext.setBounds(code.getX()+panel.getWidth()/8,code.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
+		
 		tip = new JLabel("*请输入10位有效入库单号");
 		tip.setFont(new Font("宋体", Font.BOLD, 12));
 		tip.setForeground(Color.GRAY);
-		tip.setBounds(bartext.getX()+bartext.getWidth()+panel.getWidth()/50,bar.getY(),panel.getWidth()/3, panel.getHeight()/10);
-		
+		tip.setBounds(codetext.getX()+codetext.getWidth()+panel.getWidth()/50,code.getY(),panel.getWidth()/3, panel.getHeight()/10);
 		
 		distext = new JTextField();
 		distext.setBounds(distination.getX()+panel.getWidth()/8,distination.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
@@ -180,6 +208,15 @@ public class AddWarehouseInReceiptPanel {
         }         
         
         year = new JComboBox(arr1);  
+    	Calendar calendar = Calendar.getInstance();
+    
+    	String	y = String.valueOf(calendar.get(Calendar.YEAR))+"年";
+    	for(String  y1: arr1){
+    		if(y1.equals(y)){
+    			year.setSelectedItem(y);
+    		}
+    	}
+    	
         year.setBounds(inDate.getX()+panel.getWidth()/8, inDate.getY()+panel.getWidth()/50, panel.getWidth()/11, panel.getHeight()/20);
    
         String [] arr2 = new String[12];  
@@ -189,6 +226,14 @@ public class AddWarehouseInReceiptPanel {
     
         month = new JComboBox(arr2);  
        
+    	String	m = String.valueOf(calendar.get(Calendar.MONTH)+1)+"月";
+    	for(String  m1: arr2){
+    		if(m1.equals(m)){
+    			month.setSelectedItem(m1);
+    		}
+    	}
+        
+        
         month.setBounds(year.getX()+year.getWidth()+panel.getWidth()/100, inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
         String[] arr30 = new String[31];  
         for(int i=0;i<31;i++){  
@@ -196,6 +241,14 @@ public class AddWarehouseInReceiptPanel {
          }  
      
         day = new JComboBox(arr30);  
+        
+    	String	d = String.valueOf(calendar.get(Calendar.DATE))+"日";
+    	for(String  d1: arr30){
+    		if(d1.equals(d)){
+    			day.setSelectedItem(d1);
+    		}
+    	}
+    	
         day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
        listPanel.add(day);
         
@@ -219,6 +272,7 @@ public class AddWarehouseInReceiptPanel {
         			}  
         		
         			day = new JComboBox(arr31);  
+
         	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
         	        listPanel.add(day);	
         	        break;
@@ -232,6 +286,8 @@ public class AddWarehouseInReceiptPanel {
 		    			}  
 		        		
 		    			 day = new JComboBox(arr3);  
+		    		
+		    		    
 		    	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 		    	        listPanel.add(day);
 		    	        break;
@@ -243,6 +299,7 @@ public class AddWarehouseInReceiptPanel {
 							}  
 		        		
 							day = new JComboBox(arr33);  
+						
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 							listPanel.add(day);
 						}
@@ -253,6 +310,7 @@ public class AddWarehouseInReceiptPanel {
 							}  
 		        		
 							day = new JComboBox(arr333);  
+					    	
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 							listPanel.add(day);
 							
@@ -278,23 +336,61 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.add(inList);
 		listPanel.add(ok);
 		listPanel.add(cancel);
+		listPanel.add(code);
 		listPanel.add(bar);
+		listPanel.add(bartext);
 		listPanel.add(cargoinfo);
 		listPanel.add(inDate);
 		listPanel.add(distination);
+		listPanel.add(damageCondition);
+		listPanel.add(good);
+		listPanel.add(damage);
 		listPanel.add(area);
 		listPanel.add(row);
 		listPanel.add(shelf);
 		listPanel.add(position);
-		listPanel.add(bartext);
+		listPanel.add(codetext);
 		listPanel.add(distext);
 		listPanel.add(areatext);
 		listPanel.add(rowtext);
 		listPanel.add(shelftext);
 		listPanel.add(postext);
 		
-	}
+		
+		
+		ok.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+				String date=((year.getSelectedIndex()+2000)+"年")+((month.getSelectedIndex()+1)+"月")+((day.getSelectedIndex()+1+"日"));
+				
+				String damageCondition = null;
+				if(good.isSelected()){
+					damageCondition=good.getText();
+				}
+				if(damage.isSelected()){
+					damageCondition=damage.getText();
+				}	
+				damageCondition="完好";
+				//code入库单号、bar为订单号
+				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),codetext.getText(),
+						distext.getText(),date,((WritePanel) panel).getBelong()+" "+areatext.getText(),
+						Integer.parseInt(rowtext.getText()),
+						Integer.parseInt(shelftext.getText()),
+						Integer.parseInt(postext.getText()),
+						"完好");
+				WarehouseBLService service=ConstructFactory.WarehouseFactory();
+				service.WarehouseIn(warehouseInVO);
+			}
+		});
 	
+		cancel.addMouseListener( new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				panel.removeAll();
+				panel.repaint();
+			}		
+		});
+	
+}	
 
 	
 	static public boolean isLeap(String a){

@@ -3,10 +3,11 @@ package main.vo;
 import main.businesslogic.warehousebl.WarehouseIn;
 
 
-public class WarehouseInVO extends ReceiptVO {
+public class WarehouseInVO {
 
 // TODO Auto-generated constructor stub
-	private String bar;//入库单编号
+	private String bar;//订单号
+	private String code;//入库单编号
 	private String destination;//目的地
 	private String inDate;//入库日期
 	private String area;//区号
@@ -15,8 +16,8 @@ public class WarehouseInVO extends ReceiptVO {
 	private int position;//位号
 	private String damageCondition;
 	
-	public WarehouseInVO(String id,String da,String co,String a,String b,String c,String d,int e,int f,int g,String h){
-		super(id, da, co);
+	public WarehouseInVO(String a,String co,String b,String c,String d,int e,int f,int g,String h){
+		code = co;
 		bar = a;
 		inDate=b;
 		destination = c;
@@ -27,6 +28,7 @@ public class WarehouseInVO extends ReceiptVO {
 		damageCondition =h;
 	}
 	public boolean writeWarehouseInInfo(WarehouseIn whi){
+		this.code = whi.getCode();
 		this.bar=whi.getBar();
 		this.destination=whi.getDestination();
 		this.inDate=whi.getInDate();
@@ -39,6 +41,9 @@ public class WarehouseInVO extends ReceiptVO {
 	}
 
 	
+	public String getCode() {
+		return code;
+	}
 	public String getDamageCondition() {
 		return damageCondition;
 	}

@@ -13,7 +13,7 @@ public class TransVO extends ReceiptVO{
 	private String[] ordercode;
 	public TransVO(String id, String da, String co,TransType type, String Transcode, String Vehiclecode, String from,
 			String to, String compartment, String monitor, String[] ordercode) {
-		super(id, da, co);
+		super(null);
 		this.type=type;
 		this.Transcode=Transcode;
 		this.Vehiclecode=Vehiclecode;

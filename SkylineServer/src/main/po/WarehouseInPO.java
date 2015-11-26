@@ -10,6 +10,7 @@ public class WarehouseInPO extends Receipt implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String bar;
+	private String code;
 	private String inDate;
 	private String destination;
 	private String area;
@@ -19,9 +20,10 @@ public class WarehouseInPO extends Receipt implements Serializable{
 	private String damageCondition;
 	
 	
-	public WarehouseInPO(String bar, String inDate, String destination, String area, int row, int shelf, int position,
+	public WarehouseInPO(String bar, String code,String inDate, String destination, String area, int row, int shelf, int position,
 			String damageCondition) {
 		super();
+		this.code=code;
 		this.bar = bar;
 		this.inDate = inDate;
 		this.destination = destination;

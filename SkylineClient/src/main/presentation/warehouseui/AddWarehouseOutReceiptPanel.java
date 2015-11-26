@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Calendar;
 
 import javax.swing.*;
 
@@ -19,18 +20,19 @@ public class AddWarehouseOutReceiptPanel {
 	private JLabel outList;
 	private JLabel cargoinfo;
 	private JLabel bar;
+	private JLabel code;
 	private JLabel tip1;
 	private JLabel tip2;
 	private JLabel outDate;
 	private JLabel distination;	
 	private JLabel loadingtype;
 	private JLabel transfercode;
-	private JLabel train;	
-	private JLabel bus;
-	private JLabel plane;
-	private JLabel trainB;	
-	private JLabel busB;
-	private JLabel planeB;
+	private JLabel damageCondition;
+	private JCheckBox tB;
+	private JCheckBox pB;
+	private JCheckBox bB;
+	private JCheckBox good;
+	private JCheckBox damage;
 	private JLabel line1;
 	private JLabel line2;
 	private JLabel line3;
@@ -38,6 +40,7 @@ public class AddWarehouseOutReceiptPanel {
 	private JComboBox month;
 	private JComboBox day;
 	private JTextField bartext;
+	private JTextField codetext;
 	private JTextField distext;
 	private JTextField transtext;
 	private JScrollPane scrollPane;
@@ -88,13 +91,13 @@ public class AddWarehouseOutReceiptPanel {
 		line3 = new JLabel("——————————————————————");
 		line3.setFont(font0);
 		line3.setForeground(Color.GRAY);
-		line3.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/20*13, panel.getWidth()*3/5, panel.getHeight()/10);
+		line3.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/100*78, panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		
 		
 		ok=new JButton("提交");
 		ok.setFont(font);
-		ok.setBounds(listpanel.getX()+panel.getWidth()*2/5,listpanel.getY()+panel.getHeight()*5/7, panel.getWidth()/10, panel.getHeight()/20);
+		ok.setBounds(listpanel.getX()+panel.getWidth()*2/5,listpanel.getY()+panel.getHeight()*31/40, panel.getWidth()/10, panel.getHeight()/20);
 		
 		cancel=new JButton("取消");
 		cancel.setFont(font);
@@ -108,55 +111,62 @@ public class AddWarehouseOutReceiptPanel {
 		cargoinfo.setFont(font0);
 		cargoinfo.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/20,panel.getWidth()/10, panel.getHeight()/10);
 		
-		bar=new JLabel("出库单号:");
+		bar = new JLabel("订单号");
 		bar.setFont(font);
 		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
 		
+		code=new JLabel("出库单号:");
+		code.setFont(font);
+		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
+		
 		outDate=new JLabel("出库日期:");
 		outDate.setFont(font);
-		outDate.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		outDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
 		
 		distination=new JLabel("目的地:");
 		distination.setFont(font);
 		distination.setBounds(cargoinfo.getX(),outDate.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
 		
+		damageCondition = new JLabel("损坏情况");
+		damageCondition.setFont(font);
+		damageCondition.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		
+		good = new JCheckBox("完好");
+		good.setFont(font);
+		good.setBounds(damageCondition.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		
+		damage = new JCheckBox("损坏");
+		damage.setFont(font);
+		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		
 		loadingtype=new JLabel("装运形式:");
 		loadingtype.setFont(font);
-		loadingtype.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		loadingtype.setBounds(damageCondition.getX(),damageCondition.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
 		
-		trainB = new JLabel("Icon"); 
-		trainB.setFont(font);
-		trainB.setBounds(loadingtype.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
-		planeB = new JLabel("Icon");
-		planeB.setFont(font);
-		planeB.setBounds(loadingtype.getX()+panel.getWidth()/8,trainB.getY()+panel.getHeight()/20,panel.getWidth()/5, panel.getHeight()/20);
-		busB = new JLabel("Icon");
-		busB.setFont(font);
-		busB.setBounds(loadingtype.getX()+panel.getWidth()/8,planeB.getY()+panel.getHeight()/20,panel.getWidth()/5, panel.getHeight()/20);
+		tB = new JCheckBox("火车");
+		tB.setFont(font);
+		tB.setBounds(loadingtype.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		pB = new JCheckBox("飞机");
+		pB.setFont(font);
+		pB.setBounds(tB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		bB = new JCheckBox("汽车");
+		bB.setFont(font);
+		bB.setBounds(pB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
 		
-		train = new JLabel("火车"); 
-		train.setFont(font);
-		train.setBounds(trainB.getX()+panel.getWidth()/15,trainB.getY(),panel.getWidth()/5, panel.getHeight()/20);
-		plane = new JLabel("飞机");
-		plane.setFont(font);
-		plane.setBounds(planeB.getX()+panel.getWidth()/15,planeB.getY(),panel.getWidth()/5, panel.getHeight()/20);
-		bus = new JLabel("汽车");
-		bus.setFont(font);
-		bus.setBounds(busB.getX()+panel.getWidth()/15,busB.getY(),panel.getWidth()/5, panel.getHeight()/20);
-		
-
 		transfercode=new JLabel("中转单编号:");
 		transfercode.setFont(font);
-		transfercode.setBounds(cargoinfo.getX(),bus.getY()+panel.getHeight()/17,panel.getWidth()/5, panel.getHeight()/10);
+		transfercode.setBounds(cargoinfo.getX(),bB.getY()+panel.getHeight()/17,panel.getWidth()/5, panel.getHeight()/10);
 		
-		bartext = new JTextField();
-		bartext.setBounds(bar.getX()+panel.getWidth()/8,bar.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
+		codetext = new JTextField();
+		codetext.setBounds(code.getX()+panel.getWidth()/8,code.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
 		tip1 = new JLabel("*请输入10位有效出库单号");
 		tip1.setFont(new Font("宋体", Font.BOLD, 12));
 		tip1.setForeground(Color.GRAY);
-		tip1.setBounds(bartext.getX()+bartext.getWidth()+panel.getWidth()/50,bar.getY(),panel.getWidth()/3, panel.getHeight()/10);
+		tip1.setBounds(codetext.getX()+codetext.getWidth()+panel.getWidth()/50,code.getY(),panel.getWidth()/3, panel.getHeight()/10);
 		
+		bartext = new JTextField();
+		bartext.setBounds(bar.getX()+panel.getWidth()/8,bar.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
 		distext = new JTextField();
 		distext.setBounds(distination.getX()+panel.getWidth()/8,distination.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
@@ -181,6 +191,14 @@ public class AddWarehouseOutReceiptPanel {
         }         
         
         year = new JComboBox(arr1);  
+        Calendar calendar = Calendar.getInstance();
+        
+    	String	y = String.valueOf(calendar.get(Calendar.YEAR))+"年";
+    	for(String  y1: arr1){
+    		if(y1.equals(y)){
+    			year.setSelectedItem(y);
+    		}
+    	}
         year.setBounds(outDate.getX()+panel.getWidth()/8, outDate.getY()+panel.getWidth()/50, panel.getWidth()/11, panel.getHeight()/20);
    
         String [] arr2 = new String[12];  
@@ -189,6 +207,12 @@ public class AddWarehouseOutReceiptPanel {
         }  
     
         month = new JComboBox(arr2);  
+        String	m = String.valueOf(calendar.get(Calendar.MONTH)+1)+"月";
+    	for(String  m1: arr2){
+    		if(m1.equals(m)){
+    			month.setSelectedItem(m1);
+    		}
+    	}
        
         month.setBounds(year.getX()+year.getWidth()+panel.getWidth()/100, outDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
         String[] arr30 = new String[31];  
@@ -197,6 +221,13 @@ public class AddWarehouseOutReceiptPanel {
          }  
      
         day = new JComboBox(arr30);  
+        
+    	String	d = String.valueOf(calendar.get(Calendar.DATE))+"日";
+    	for(String  d1: arr30){
+    		if(d1.equals(d)){
+    			day.setSelectedItem(d1);
+    		}
+    	}
         day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,outDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
        listpanel.add(day);
         
@@ -281,18 +312,20 @@ public class AddWarehouseOutReceiptPanel {
 		listpanel.add(ok);
 		listpanel.add(cancel);
 		listpanel.add(bar);
+		listpanel.add(code);
 		listpanel.add(cargoinfo);
 		listpanel.add(outDate);
 		listpanel.add(distination);
 		listpanel.add(loadingtype);
-		listpanel.add(plane);
-		listpanel.add(bus);
-		listpanel.add(train);
-		listpanel.add(planeB);
-		listpanel.add(busB);
-		listpanel.add(trainB);
+		listpanel.add(damageCondition);
+		listpanel.add(good);
+		listpanel.add(damage);
+		listpanel.add(pB);
+		listpanel.add(bB);
+		listpanel.add(tB);
 		listpanel.add(transfercode);
 		listpanel.add(bartext);
+		listpanel.add(codetext);
 		listpanel.add(distext);
 		listpanel.add(transtext);
 		

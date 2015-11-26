@@ -12,6 +12,7 @@ public class WarehouseOut {
 	private String outDate;
 	private String transferCode;
 	private String vehicleCode;
+	private String damageCondition;
 	private WarehouseOutPO po;
 	
 	public WarehouseOut(WarehouseOutVO who){
@@ -21,6 +22,7 @@ public class WarehouseOut {
 		this.type=who.getTransType();
 		this.transferCode=who.getTransferCode();
 		this.vehicleCode=who.getVehicleCode();
+		this.damageCondition = who.getDamageCondition();
 	}
 	
 	public WarehouseOut(String code){
@@ -30,9 +32,18 @@ public class WarehouseOut {
 		this.type=po.getTType();
 		this.transferCode=po.getTransferCode();
 		this.vehicleCode=po.getVehicleCode();
+		this.damageCondition = po.getDamageCondition();
 		}
 	}
 	
+	public String getDamageCondition() {
+		return damageCondition;
+	}
+
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
+	}
+
 	public boolean saveInfo(){
 		return true;
 	}

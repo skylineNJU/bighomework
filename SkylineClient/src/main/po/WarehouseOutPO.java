@@ -18,14 +18,25 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	TransType type;
 	String transferCode;
 	String vehicleCode;
-	public WarehouseOutPO(String a,String b,String c,TransType t,String d,String e){
+	String damageCondition ;
+	public WarehouseOutPO(String a,String b,String c,TransType t,String d,String e,String f){
 		bar=a;
 		outDate =b;
 		destination = c;
 		type = t;
 		transferCode = d;
 		vehicleCode = e;
+		damageCondition=f;
 	}
+	
+	public String getDamageCondition() {
+		return damageCondition;
+	}
+
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
+	}
+
 	public String getDestination() {
 		return destination;
 	}
@@ -53,5 +64,6 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	public String getTransferCode() {
 		return transferCode;
 	}
+
 	
 }

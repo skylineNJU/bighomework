@@ -17,14 +17,14 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	private String bar;
 	private String outDate;
 	private String destination;
-	
 	private TransType type;
 	private String transferCode;
 	private String vehicleCode;
+	private String damageCondition;
 	
 	
 	public WarehouseOutPO(String bar, String outDate, String destination, TransType type, String transferCode,
-			String vehicleCode) {
+			String vehicleCode,String damageCondition) {
 		super();
 		this.bar = bar;
 		this.outDate = outDate;
@@ -32,6 +32,7 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 		this.type = type;
 		this.transferCode = transferCode;
 		this.vehicleCode = vehicleCode;
+		this.damageCondition=damageCondition;
 	}
 	
 	public void writeIntoDatabase(){
@@ -50,9 +51,19 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 		this.vehicleCode=reader.getString("运输工具编号");
 		this.type=TransType.valueOf(reader.getString("装运形式"));
 		this.destination=reader.getString("目的地");
+		this.damageCondition=reader.getString("损坏情况");
 		reader.close();
 	}
 	
+	
+	public String getDamageCondition() {
+		return damageCondition;
+	}
+
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
+	}
+
 	public String getDestination() {
 		return destination;
 	}

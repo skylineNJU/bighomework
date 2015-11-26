@@ -10,6 +10,8 @@ public class WarehouseInPO extends Receipt implements Serializable{
  * 蹇�掔紪鍙枫�佸叆搴撴棩鏈熴�佺洰鐨勫湴銆佸尯鍙枫�佹帓鍙枫�佹灦鍙枫�佷綅鍙�
  */
 	String bar;
+	String code;
+	String date;
 	String inDate;
 	String destination;
 	String area;
@@ -18,8 +20,9 @@ public class WarehouseInPO extends Receipt implements Serializable{
 	int position;
 	private String damageCondition;
 	
-	public WarehouseInPO(String a,String b,String c,String d,int e,int f,int g,String h){
+	public WarehouseInPO(String a,String co,String b,String c,String d,int e,int f,int g,String h){
 		bar = a;
+		code = co;
 		inDate = b;
 		destination = c;
 		area = d;
@@ -28,6 +31,27 @@ public class WarehouseInPO extends Receipt implements Serializable{
 		position = g;
 		damageCondition=h;
 	}
+
+	
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+	public void setInDate(String inDate) {
+		this.inDate = inDate;
+	}
+
 
 	public String getDamageCondition() {
 		return damageCondition;

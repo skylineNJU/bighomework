@@ -10,15 +10,17 @@ public class WarehouseOutVO extends ReceiptVO{
 	private String outDate;
 	private String transferCode;
 	private String vehicleCode;
+	private String damageCondition;
 	
-	public WarehouseOutVO(String id, String da, String co,String b,String c,String k,TransType t,String d,String e){
-		super(id, da, co);//outdata
+	public WarehouseOutVO(String id, String da, String co,String b,String c,String k,TransType t,String d,String e,String f){
+		super(co);//outdata
 		bar=b;
 		destination = c;
 		outDate =k;
 		type = t;
 		transferCode = d;
 		vehicleCode = e;
+		damageCondition =f;
 	}
 	
 	public boolean writeWarehouseOutInfo(WarehouseOut who){
@@ -28,9 +30,18 @@ public class WarehouseOutVO extends ReceiptVO{
 		this.type=who.getTransType();
 		this.transferCode=who.getTransferCode();
 		this.vehicleCode=who.getVehicleCode();
+		this.damageCondition=who.getDamageCondition();
 		return true;
 	}
 	
+	public String getDamageCondition() {
+		return damageCondition;
+	}
+
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
+	}
+
 	public String getBar() {
 		return bar;
 	}

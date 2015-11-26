@@ -11,14 +11,14 @@ import main.vo.WarehouseOutVO;
 public class WarehouseControllerTest {
 	@Test
 	public void testWarehouseIn(){
-		WarehouseInVO whi = new WarehouseInVO("", "", "", "1232143244", "","", 'A', 0, 0, 0);
+		WarehouseInVO whi = new WarehouseInVO("", "", "", "1232143244", "","", "A", 0, 0, 0,"");
 		MockWarehouseIn WarehouseIN1 =new MockWarehouseIn(whi);
 		assertEquals("1232143244", WarehouseIN1.getBar());
 		assertEquals(true,WarehouseIN1.saveInfo());
 	}
 	@Test
 	public void testWarehouseOut(){
-		WarehouseOutVO who = new WarehouseOutVO(null, null, null, "上海", null, null, null, null);
+		WarehouseOutVO who = new WarehouseOutVO(null, null, null, "上海", null, null, null, null, null, null);
 		MockWarehouseOut WarehouseOUT =new MockWarehouseOut(who);
 		assertEquals("上海", WarehouseOUT.getDestination());
 		assertEquals(true,WarehouseOUT.saveInfo());
@@ -26,7 +26,7 @@ public class WarehouseControllerTest {
 	
 	@Test
 	public void testCheckInventory(){
-		WarehouseInVO whi = new WarehouseInVO("", "", "", "1232143244", "","", 'A', 0, 0, 0);
+		WarehouseInVO whi = new WarehouseInVO("", "", "", "1232143244", "","", "", 0, 0, 0,null);
 		MockWarehouseIn WarehouseIN1 =new MockWarehouseIn(whi);
 		assertEquals("1232143244", WarehouseIN1.getBar());
 		assertEquals(true,WarehouseIN1.check());

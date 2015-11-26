@@ -1,10 +1,16 @@
 package main.businesslogic.warehousebl;
 
+import main.data.info.InfoDataController;
+import main.data.warehouse.WarehouseDataController;
+import main.dataservice.InfoDataService;
+import main.dataservice.WarehouseDataService;
+import main.po.DriverInfoPO;
 import main.po.WarehouseInPO;
 import main.vo.WarehouseInVO;
 
 public class WarehouseIn {
-	private String bar;//入库单编号
+	private String bar;//订单号
+	private String code;//入库单编号
 	private String destination;//目的地
 	private String inDate;//入库日期
 	private String area;//区号 ,
@@ -16,6 +22,7 @@ public class WarehouseIn {
 
 	
 	public WarehouseIn(WarehouseInVO whi){
+		this.code =whi.getCode();
 		this.bar=whi.getBar();
 		this.destination=whi.getDestination();
 		this.inDate=whi.getInDate();
@@ -33,14 +40,21 @@ public class WarehouseIn {
 		this.row=po.getRow();
 		this.shelf=po.getShelf();
 		this.position=po.getPosition();
+		this.damageCondition=po.getDamageCondition();
 		}
 	}
+	
+	
 	//库存盘点
 	public boolean check(){
 		return true;
 	}
 	
 	public boolean saveInfo(){
+		po=new WarehouseInPO(this.bar,this.code,this.destination,this.inDate,this.area,this.row,this.shelf,this.position,this.damageCondition);
+		po.setCode(code);
+		WarehouseDataService service=new WarehouseDataController();
+		service.createWarehouseInReceipt(po);	
 		return true;
 	}
 	
@@ -56,6 +70,16 @@ public class WarehouseIn {
 		return true;
 	}
 
+	
+	public String getCode() {
+		return code;
+	}
+	public void setInDate(String inDate) {
+		this.inDate = inDate;
+	}
+	public void setDamageCondition(String damageCondition) {
+		this.damageCondition = damageCondition;
+	}
 	public String getInDate() {
 		return inDate;
 	}

@@ -100,10 +100,8 @@ public class WarehousePanel extends GuidePanel{
 	}
 	
 	public void remove(){
-		this.removeAll();
-		panel.remove(this);
-		MainController.getWritepanel().removeAll();
-		panel.remove(MainController.getWritepanel());
+		panel.removeAll();
+		
 	}
 	
 }
