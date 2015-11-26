@@ -2,8 +2,6 @@ package main.businesslogic.rightbl.mocktest;
 
 import main.businesslogic.rightbl.Account;
 import main.vo.AccountVO;
-import main.vo.BankAccountVO;
-import main.vo.RightVO;
 
 
 public class MockAccount extends Account{

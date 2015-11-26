@@ -32,7 +32,7 @@ public class SqlReader {
 		}
 	}
 	public boolean findNext(String attribute,String content){
-		System.out.println(attribute);
+		System.out.println(attribute+" "+content);
 		try {
 			while(rs.next()){
 				if(rs.getString(attribute).equals(content))

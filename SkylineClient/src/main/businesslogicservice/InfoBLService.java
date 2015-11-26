@@ -1,5 +1,7 @@
 package main.businesslogicservice;
 
+import java.util.ArrayList;
+
 import main.vo.DriverVO;
 import main.vo.InstitutionVO;
 import main.vo.StaffVO;
@@ -24,8 +26,6 @@ public interface InfoBLService {
 	//删除一个职工信息，系统显示删除成功
 	public boolean deleteStaff(String staffCode);
 	
-	//查询职工，输入职工编号，系统显示职工信息
-	public boolean inquireStaff(String staffCode,StaffVO staffInfo);
 	
 	//修改职工信息，系统显示修改后的职工信息
 	public boolean modifyStaff(StaffVO staffInfo);
@@ -49,8 +49,11 @@ public interface InfoBLService {
 	public boolean deleteDriver(String driverCode);
 	
 	//查询司机信息，输入司机编号，系统显示司机信息
-	public boolean inquireDriver(String code,DriverVO driverInfo);
 	
 	//修改司机信息，系统显示修改后的司机信息
 	public boolean modifyDriver(DriverVO driverInfo);
+
+	ArrayList<DriverVO> inquireDriver(String code);
+
+	StaffVO inquireStaff(String staffCode);
 }

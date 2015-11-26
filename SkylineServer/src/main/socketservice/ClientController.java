@@ -16,7 +16,7 @@ public class ClientController {
 	
     public void analysis(Message obj){
     	message=obj;
-    	
+    	System.out.println(message.getKey());
     	switch(message.getKey()){
     	case "Save":
     		message.writeIntoDatabase();
@@ -24,6 +24,9 @@ public class ClientController {
     	case "Inquire":
     		message.getDataFromBase();
     		response(message);
+    		break;
+    	case "Delete":
+    		message.deleteFromDatabase();
     		break;
     	case "Start":
     		AccountPO po=(AccountPO)message;

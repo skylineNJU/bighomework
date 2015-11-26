@@ -18,9 +18,11 @@ public class SqlWriter {
 	
 	public void writeIntoSql(String listName,String content){
 		try{
+			
 			Connection con=DriverManager.getConnection(connectDB);
 			Statement stmt=con.createStatement();
-			String query="insert into "+listName+"("+content+")";
+			String query="INSERT INTO "+listName+" VALUES("+content+")";
+			System.out.println(query);
 			stmt.executeUpdate(query);
 			con.close();
 		}catch(SQLException e){

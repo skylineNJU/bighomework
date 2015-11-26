@@ -17,22 +17,26 @@ public class DriverInfoPO extends Message implements Serializable{
 	String phoneNum;//电话号码
 	String sex;//性别
 	String dueDate;//行驶证期限
+	String carunit;
 	
-	public DriverInfoPO(String i,String j,String k,String m,String n,String o,String p,String q){
-		driverID=i;
-		name=j;
-		birthDay=k;
-		idCard=m;
-		phoneNum=n;
-		sex=p;
-		dueDate=q;
+	public DriverInfoPO(String driverID, String name, String birthDay, String idCard, String phoneNum, String sex,
+			String dueDate, String carunit) {
+		super();
+		this.driverID = driverID;
+		this.name = name;
+		this.birthDay = birthDay;
+		this.idCard = idCard;
+		this.phoneNum = phoneNum;
+		this.sex = sex;
+		this.dueDate = dueDate;
+		this.carunit = carunit;
 	}
 
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		String content="'"+name+"','"+driverID+"','"+birthDay
 				+"','"+idCard+"','"+phoneNum+"','"+sex+"','"
-				+dueDate+"'";
+				+dueDate+"','"+carunit+"'";
 		writer.writeIntoSql("DriverInfo", content);
 	}
 	
@@ -45,6 +49,7 @@ public class DriverInfoPO extends Message implements Serializable{
 		this.idCard=reader.getString("司机身份证号");
 		this.phoneNum=reader.getString("司机手机号码");
 		this.sex=reader.getString("司机性别");
+		this.carunit=reader.getString("司机所在单位");
 	}
 	
 	public String getDriverID() {
