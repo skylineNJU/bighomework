@@ -11,24 +11,27 @@ public class DriverVO {
 	private String sex;
 	private String limit;
 	
-	public DriverVO(String na,String co,String ag,String id,String ph,String se,String li ){
-		name=na;
-		code=co;
-		age=ag;
-		IDcode=id;
-		phoneNumber=ph;
-		sex=se;
-		limit=li;
-	}
+	//无参数构造函数
+	public DriverVO(){}
 	
-	public boolean writeDriverInfo(Driver dr){
-		this.age=dr.getAge();
-		this.code=dr.getCode();
-		this.IDcode=dr.getIDcode();
-		this.limit=dr.getLimit();
-		this.name=dr.getName();
-		this.phoneNumber=dr.getPhoneNumber();
-		this.sex=dr.getSex();
+	public DriverVO(String name, String code, String age, String iDcode,
+			String phoneNumber, String sex, String limit) {
+		this.name = name;
+		this.code = code;
+		this.age = age;
+		IDcode = iDcode;
+		this.phoneNumber = phoneNumber;
+		this.sex = sex;
+		this.limit = limit;
+	}
+	public boolean writeDriverInfo(Driver driver){
+		this.age=driver.getAge();
+		this.code=driver.getCode();
+		this.IDcode=driver.getIDcode();
+		this.limit=driver.getLimit();
+		this.name=driver.getName();
+		this.phoneNumber=driver.getPhoneNumber();
+		this.sex=driver.getSex();
 		return true;
 	}
 	public String getName() {

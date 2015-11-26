@@ -4,9 +4,18 @@ public class EarnVO extends ReceiptVO{
 	private String[] name=new String[50];
 	private double[] fee=new double[50];
 	private String Lobbycode;
-	public EarnVO(String id, String da, String co) {
-		super(id, da, co);
-		// TODO Auto-generated constructor stub
+	
+	//无参数构造函数
+	public EarnVO(){}
+	
+	public EarnVO(String id, String date, String code) {
+		super(id, date, code);
+	}
+	public boolean write(EarnVO earnVO){
+		this.ID = earnVO.getID();
+		this.date = earnVO.getDate();
+		this.code = earnVO.getCode();
+		return true;
 	}
 	public String[] getName() {
 		return name;

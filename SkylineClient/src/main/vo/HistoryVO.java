@@ -8,15 +8,16 @@ public class HistoryVO {
 	private TransitReceptionVO interm1;
 	private TransitReceptionVO interm2;
 	
-	public boolean writeHistory(History his){
-		
-		return true;
-	}
-	public HistoryVO(String co){
-		this.code=co;
+	public HistoryVO(){}
+	public HistoryVO(String code){
+		this.code=code;
 	}
 	public String getCode() {
 		return code;
+	}
+	public boolean writeHistory(History history){
+		
+		return true;
 	}
 	public OrderVO getOrder() {
 		return order;

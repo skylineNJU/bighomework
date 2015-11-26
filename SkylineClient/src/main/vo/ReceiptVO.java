@@ -2,15 +2,22 @@ package main.vo;
 
 public class ReceiptVO {
 	private boolean isApprovaled=false;
-	private String ID;
-	private String date;
-	private String code;
-	private ReceiptType type;
+	protected String ID;
+	protected String date;
+	protected String code;
+	protected ReceiptType type;
 	
-	public ReceiptVO(String id,String da,String co){
-		ID=id;
-		date=da;
-		code=co;
+	//无参数构造函数
+	public ReceiptVO(){}
+	public ReceiptVO(String id,String date,String code){
+		this.ID=id;
+		this.date=date;
+		this.code=code;
+	}
+	public void write(ReceiptVO receiptVO){
+		this.ID = receiptVO.getID();
+		this.date = receiptVO.getDate();
+		this.code = receiptVO.getCode();
 	}
 	public boolean isApprovaled() {
 		return isApprovaled;
@@ -36,10 +43,5 @@ public class ReceiptVO {
 	}
 	public void setType(ReceiptType type) {
 		this.type = type;
-	}
-	public void write(String id,String date,String code){
-		this.ID = id;
-		this.date = date;
-		this.code = code;
 	}
 }

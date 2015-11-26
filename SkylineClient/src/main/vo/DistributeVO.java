@@ -8,9 +8,10 @@ public class DistributeVO {
 	private String adress;
 	private String phoneNumber;
 	private String courierID;
-	public DistributeVO(){
-		
-	}
+	
+	//无参数构造函数
+	public DistributeVO(){}
+	
 	public DistributeVO(String orderCode, String distributeCode, String name,String adress,String phoneNumber,String courierID){
 		this.orderCode=orderCode;
 		this.distributeCode = distributeCode;
@@ -20,12 +21,15 @@ public class DistributeVO {
 		this.courierID=courierID;
 	}
 	public void write(DistributeVO distributeVO){
-		distributeVO.orderCode = orderCode;
-		distributeVO.distributeCode = distributeCode;
-		distributeVO.name = name;
-		distributeVO.adress = adress;
-		distributeVO.phoneNumber = phoneNumber;
-		distributeVO.courierID = courierID;
+		this.orderCode = distributeVO.getOrderCode();
+		this.distributeCode = distributeVO.getDistributeCode();
+		this.name = distributeVO.getName();
+		this.adress = distributeVO.getAdress();
+		this.phoneNumber = distributeVO.getPhoneNumber();
+		this.courierID = distributeVO.getCourierID();
+	}
+	private String getCourierID() {
+		return courierID;
 	}
 	public String getOrderCode() {
 		return this.orderCode;
