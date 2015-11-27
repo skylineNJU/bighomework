@@ -36,9 +36,6 @@ public interface InfoBLService {
 	//删除车辆信息，系统显示删除成功
 	public boolean deleteVehicle(String vehicleCode);
 	
-	//查询车辆信息，输入车辆代号，系统显示车辆信息
-	public boolean inquireVehicle(String code,VehicleVO vehicleInfo);
-	
 	//修改车辆信息，系统显示修改后的车辆信息
 	public boolean modifyVehicle(VehicleVO vehicleInfo);
 	
@@ -56,4 +53,6 @@ public interface InfoBLService {
 	ArrayList<DriverVO> inquireDriver(String code);
 
 	StaffVO inquireStaff(String staffCode);
+
+	ArrayList<VehicleVO> inquireVehicle(String code);
 }

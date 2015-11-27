@@ -8,15 +8,16 @@ public class LobbyReceptionVO extends ReceiptVO{
 	private String expressBar;//expressBar±Ì æ∂©µ•
 	private String receiptCode;
 
-	public LobbyReceptionVO(String id,String da,String co,String a, String b, String c,int d,String e,String f) {
-		super(id, da, co);
-		receiveYear=a;
-		receiveMonth=b;
-		receiveDay=c;
-		condition=d;
-		expressBar=e;
-		receiptCode=f;
-		// TODO Auto-generated constructor stub
+	
+	public LobbyReceptionVO(String co, String receiveYear, String receiveMonth, String receiveDay, int condition,
+			String expressBar, String receiptCode) {
+		super(co);
+		this.receiveYear = receiveYear;
+		this.receiveMonth = receiveMonth;
+		this.receiveDay = receiveDay;
+		this.condition = condition;
+		this.expressBar = expressBar;
+		this.receiptCode = receiptCode;
 	}
 
 	public String getReceiveYear() {

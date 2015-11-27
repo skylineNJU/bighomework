@@ -81,10 +81,11 @@ public class InfoController implements InfoBLService {
 	}
 
 	@Override
-	public boolean inquireVehicle(String code, VehicleVO vehicleInfo) {
+	public ArrayList<VehicleVO> inquireVehicle(String code) {
 		// TODO Auto-generated method stub
 		Vehicle vehicle=new Vehicle(code);
-		return vehicleInfo.writeVehicleInfo(vehicle);
+		ArrayList<VehicleVO> vehicleList=vehicle.inquire();
+		return vehicleList;
 	}
 
 	@Override

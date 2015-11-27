@@ -10,15 +10,19 @@ public class VehicleVO {
 	private String boughtTime;//购买时间
 	private String usedTime;//服役时间
 
-	public VehicleVO(String i,String j,String k,String m,String n,String p){
-		carID=i;
-		engineID=j;
-		carNum=k;
-		underpanID=m;
-		boughtTime=n;
-		usedTime=p;
-	}
 	
+	
+	public VehicleVO(String carID, String engineID, String carNum, String underpanID, String boughtTime,
+			String usedTime) {
+		super();
+		this.carID = carID;
+		this.engineID = engineID;
+		this.carNum = carNum;
+		this.underpanID = underpanID;
+		this.boughtTime = boughtTime;
+		this.usedTime = usedTime;
+	}
+
 	public boolean writeVehicleInfo(Vehicle ve){
 		this.carID=ve.getCarID();
 		this.carNum=ve.getCarNum();

@@ -9,19 +9,26 @@ public class ApprovalPO extends Message{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<String> code;
-
-	public ApprovalPO(List<String> code) {
+	private String code;
+	private String kinds;
+	public ApprovalPO(String code, String kinds) {
 		super();
-		this.code = code;
+		this.setCode(code);
+		this.setKinds(kinds);
 	}
-
-	public List<String> getCode() {
+	public String getCode() {
 		return code;
 	}
-
-	public void setCode(List<String> code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
+	public String getKinds() {
+		return kinds;
+	}
+	public void setKinds(String kinds) {
+		this.kinds = kinds;
+	}
+	
+	
 	
 }

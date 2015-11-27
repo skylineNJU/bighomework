@@ -5,11 +5,12 @@ import main.businesslogic.financebl.FinanceController;
 import main.businesslogic.guestbl.GuestController;
 import main.businesslogic.infobl.InfoController;
 import main.businesslogic.loadbl.LoadController;
-import main.businesslogic.receiptbl.ReceiptController;
+import main.businesslogic.receiptbl.ReceiptBLController;
 import main.businesslogic.receivebl.ReceiveController;
 import main.businesslogic.rightbl.RightController;
 import main.businesslogic.warehousebl.WarehouseController;
 import main.businesslogicservice.*;
+import main.businesslogicservice.receiptblService.CourrierReceipt;
 
 public class ConstructFactory {
 	
@@ -33,9 +34,6 @@ public class ConstructFactory {
 		return new LoadController();	
 	}
 	
-	static 	public ReceiptBLService ReceiptFactory(){
-		return new ReceiptController();	
-	}
 	
 	static 	public ReceiveBLService ReceiveFactory(){
 		return new ReceiveController();	
@@ -47,5 +45,9 @@ public class ConstructFactory {
 	
 	static 	public WarehouseBLService WarehouseFactory(){
 		return new WarehouseController();	
+	}
+	
+	public static CourrierReceipt CourrierReceiptFactory(){
+		return new ReceiptBLController();
 	}
 }

@@ -5,6 +5,7 @@ import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.InstitutionPO;
 import main.po.VehicleInfoPO;
+import main.po.VehicleListPO;
 import main.po.WorkerPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -69,6 +70,9 @@ public class InfoDataController implements InfoDataService {
 	@Override
 	public boolean createNewVehicle(VehicleInfoPO vehicleInfoPO) {
 		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		vehicleInfoPO.setKey("Save");
+		client.wrightReceipt(vehicleInfoPO);
 		return false;
 	}
 
@@ -79,9 +83,13 @@ public class InfoDataController implements InfoDataService {
 	}
 
 	@Override
-	public boolean readVehicle(String code, VehicleInfoPO vehicleInfoPO) {
+	public VehicleListPO readVehicle(VehicleListPO vehiclelist) {
 		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		vehiclelist.setKey("Inquire");
+		client.wrightReceipt(vehiclelist);
+		vehiclelist=(VehicleListPO) client.getResponse();
+		return vehiclelist;
 	}
 
 	@Override

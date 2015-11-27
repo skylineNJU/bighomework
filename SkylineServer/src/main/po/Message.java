@@ -10,7 +10,10 @@ public class Message implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String key;
 	
-	
+	public void modifyTheDate(){
+		deleteFromDatabase();
+		writeIntoDatabase();
+	}
 	public void writeIntoDatabase() {
 	}
 	

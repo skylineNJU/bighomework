@@ -1,6 +1,11 @@
 package main.businesslogic.infobl;
 
+import java.util.ArrayList;
+
+import main.data.info.InfoDataController;
+import main.dataservice.InfoDataService;
 import main.po.VehicleInfoPO;
+import main.po.VehicleListPO;
 import main.vo.VehicleVO;
 
 public class Vehicle {
@@ -21,20 +26,35 @@ public class Vehicle {
 	}
 	
 	public Vehicle(String vehicleCode){
-		if(inquire(vehicleCode)){
-			this.carID=po.getCarID();
-			this.engineID=po.getEngineID();
-			this.carNum=po.getCarNum();
-			this.underpanID=po.getUnderpanID();
-			this.boughtTime=po.getBoughtTime();
-			this.usedTime=po.getUsedTime();
-		}
+		po=new VehicleInfoPO(vehicleCode, vehicleCode, vehicleCode, vehicleCode, vehicleCode, vehicleCode);
 	}
-	public boolean inquire(String vehicleCode){
-		return true;
+	public ArrayList<VehicleVO> inquire(){
+		ArrayList<VehicleVO> vehicleList=new ArrayList<VehicleVO>();
+		VehicleListPO list=new VehicleListPO();
+		list.add(po);
+		InfoDataService service=new InfoDataController();
+		list=service.readVehicle(list);
+		for(VehicleInfoPO info:list.getList()){
+			VehicleVO vo=new VehicleVO(info.getCarID(),
+									   info.getEngineID(),
+									   info.getCarNum(),
+									   info.getUnderpanID(),
+									   info.getBoughtTime(),
+									   info.getUsedTime());
+			vehicleList.add(vo);
+		}
+		return vehicleList;
 	}
 	
 	public boolean saveInfo(){
+		InfoDataService service=new InfoDataController();
+		po=new VehicleInfoPO(this.carID,
+							 this.engineID,
+							 this.carNum,
+							 this.underpanID,
+							 this.boughtTime,
+							 this.usedTime);
+		service.createNewVehicle(po);
 		return true;
 	}
 	

@@ -19,6 +19,9 @@ public class VehicleInfoPO extends Message implements Serializable{
     private String usedTime;//∑˛“€ ±º‰
 
  
+    public String gerCarNum(){
+    	return carNum;
+    }
     public void writeIntoDatabase(){
     	SqlWriter writer=new SqlWriter();
     	String content="'"+carID+"','"+engineID+"','"+carNum+"','"

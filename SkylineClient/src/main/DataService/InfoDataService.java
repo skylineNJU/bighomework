@@ -4,6 +4,7 @@ import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.InstitutionPO;
 import main.po.VehicleInfoPO;
+import main.po.VehicleListPO;
 import main.po.WorkerPO;
 
 	//机构管理
@@ -52,8 +53,6 @@ public interface InfoDataService {
 	//code表示车辆代号
 	public boolean deleteVehicle(String code);
 		
-	//查询车辆信息，输入车辆代号 数据库中查询该代号的车辆信息
-	public boolean readVehicle(String code,VehicleInfoPO vehicleInfoPO);
 	
 	//修改车辆信息
 	public boolean modifyVehicle(VehicleInfoPO vehicleInfoPO);
@@ -71,4 +70,6 @@ public interface InfoDataService {
 	public boolean modifyDriver(DriverInfoPO driveInfoPO);
 
 	WorkerPO inquireStaff(WorkerPO workerPO);
+
+	VehicleListPO readVehicle(VehicleListPO vehiclelist);
 }

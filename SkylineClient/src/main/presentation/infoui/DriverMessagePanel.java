@@ -134,7 +134,7 @@ public class DriverMessagePanel {
 			public void mouseClicked(MouseEvent e){
 				String sex=null;
 				if(driverSex1.isSelected()){
-					sex="ÄÐ";
+					sex=driverSex1.getText();
 				}else if(driverSex2.isSelected()){
 					sex="Å®";
 				}else{
