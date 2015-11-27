@@ -7,6 +7,7 @@ import main.businesslogicservice.receiptblService.CourrierReceipt;
 import main.businesslogicservice.receiptblService.FinanceReceipt;
 import main.businesslogicservice.receiptblService.IntermediateReceipt;
 import main.businesslogicservice.receiptblService.LobbyReceipt;
+import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.businesslogicservice.receiptblService.SubmitReceipt;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.vo.ApprovalVO;
@@ -16,7 +17,8 @@ import main.vo.IntermediateReciptVO;
 import main.vo.LobbyReceiptVO;
 import main.vo.WarhouseReceiptVO;
 
-public class ReceiptBLController implements CourrierReceipt,FinanceReceipt,IntermediateReceipt,LobbyReceipt,WarehouseReceipt,SubmitReceipt{
+public class ReceiptBLController implements CourrierReceipt,FinanceReceipt,IntermediateReceipt,LobbyReceipt,WarehouseReceipt,SubmitReceipt,
+ReceiptCode{
 
 	@Override
 	public void saveOrderCode(String orderCode, String userName) {
@@ -188,6 +190,14 @@ public class ReceiptBLController implements CourrierReceipt,FinanceReceipt,Inter
 		// TODO Auto-generated method stub
 		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,code,null,code);
 		warehouse.saveInfo();
+	}
+
+	@Override
+	public String calculCode(String codeList,String userName) {
+		// TODO Auto-generated method stub
+		
+		
+		return null;
 	}
 
 }
