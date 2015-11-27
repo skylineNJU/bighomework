@@ -1,7 +1,6 @@
 package main.presentation.mainui;
 
-import java.awt.Color;
-
+import java.awt.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -22,6 +21,15 @@ public class WritePanel extends JPanel{
 		this.setBounds((int)((double)frame.getWidth()*138/724),(int)((double)frame.getHeight()*22/490)
 				,frame.getWidth()-(int)((double)frame.getWidth()*138/724)
 				,frame.getHeight()-(int)((double)frame.getHeight()*22/490));
-		this.setBackground(Color.GREEN);
+
+		
 	}
+	
+	protected void paintComponent(Graphics g) {
+	        // «Â∆¡
+	        super.paintComponent(g);
+	        g.drawImage(AllImage.background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+	    }
+		
+	
 }

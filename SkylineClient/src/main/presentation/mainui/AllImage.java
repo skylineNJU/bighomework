@@ -7,6 +7,9 @@ public class AllImage {
 	//构造方法私有化
 	private AllImage(){}
 	
+	
+		//用户界面背景图
+		public static ImageIcon background = new ImageIcon("graphics/background.jpg");
 		//退出按钮，鼠标进入时的图片
 		public static ImageIcon exitEnterImg = new ImageIcon("src/graphics/label/exitFrameEnter.gif");
 		//退出按钮，鼠标未进入时的图片
@@ -26,4 +29,6 @@ public class AllImage {
 		//边框
 		public static ImageIcon edgW = new ImageIcon("src/graphics/label/frameedge.jpg");
 		public static ImageIcon egdH = new ImageIcon("src/graphics/label/frameedge1.jpg");
+		
+		
 }
