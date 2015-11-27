@@ -30,6 +30,7 @@ public class ApprovalPO extends Message{
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		getDataFromBase();
+		deleteFromDatabase();
 		String content="'"+"×Ü¾­Àí"+"','"+code+"','"+kinds+"'";
 		writer.writeIntoSql("ApprovalList", content);
 	}

@@ -1,5 +1,6 @@
 package main.po;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -28,9 +29,15 @@ public class WarhouseReceiptPO extends Message{
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		this.getDataFromBase();
+		this.deleteFromDatabase();
 		String content="'"+username+"','"+warehouseInCode+"','"+warehouseOutCode+"','"+
 		belong+"'";
 		writer.writeIntoSql("WarhouseReceipt", content);
+	}
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("CourrierReceipt","ÕË»§Ãû",username);
 	}
 	
 	public void getDataFromBase(){

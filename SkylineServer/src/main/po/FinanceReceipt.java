@@ -1,5 +1,6 @@
 package main.po;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -21,11 +22,18 @@ public class FinanceReceipt extends Message{
 	
 	public void writeIntoDatabase(){
 		this.getDataFromeBase();
+		this.deleteFromDatabase();
 		SqlWriter writer=new SqlWriter();
 		String content="'"+accountName+"','"+costCode+"','"+earnCode+"'";
 		writer.writeIntoSql("FinanceReceipt", content);
 	}
 
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("CourrierReceipt","ук╨е",accountName);
+	}
+	
 	public void getDataFromeBase(){
 		SqlReader reader=new SqlReader("FinanceReceipt");
 		reader.findNext("ук╨е",accountName);
