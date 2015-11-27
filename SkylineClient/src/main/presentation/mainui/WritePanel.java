@@ -4,10 +4,13 @@ import java.awt.Color;
 
 import javax.swing.*;
 
+import main.presentation.mainui.memory.Memory;
+
 @SuppressWarnings("serial")
 public class WritePanel extends JPanel{
 	private FrameMain frame;
 	private String belong;
+	private Memory memory;
 	
 	public String getBelong() {
 		return belong;
@@ -23,5 +26,13 @@ public class WritePanel extends JPanel{
 				,frame.getWidth()-(int)((double)frame.getWidth()*138/724)
 				,frame.getHeight()-(int)((double)frame.getHeight()*22/490));
 		this.setBackground(Color.GREEN);
+	}
+
+	public Memory getMemory() {
+		return memory;
+	}
+
+	public void setMemory(Memory memory) {
+		this.memory = memory;
 	}
 }

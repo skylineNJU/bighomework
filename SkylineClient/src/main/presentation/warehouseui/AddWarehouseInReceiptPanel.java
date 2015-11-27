@@ -16,10 +16,12 @@ import javax.swing.*;
 
 import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.WarehouseBLService;
+import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.WarehouseInVO;
 
 public class AddWarehouseInReceiptPanel {
@@ -370,14 +372,22 @@ public class AddWarehouseInReceiptPanel {
 				if(damage.isSelected()){
 					damageCondition="损坏";
 				}	
+				
+				
+				WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
+				String code=memory.getWarehouseInCode();
+				ReceiptCode cal=ConstructFactory.calculateCode();
+				code=cal.calculCode(code,memory.getUserName());
+				System.out.println(code);
 				System.out.println(""+damageCondition);
 				//code入库单号、bar为订单号
-				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),codetext.getText(),
+				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),code,
 						distext.getText(),date,((WritePanel) panel).getBelong()+" "+areatext.getText(),
 						Integer.parseInt(rowtext.getText()),
 						Integer.parseInt(shelftext.getText()),
 						Integer.parseInt(postext.getText()),
 						damageCondition);
+				
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				service.WarehouseIn(warehouseInVO);
 			}

@@ -6,11 +6,14 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import main.businesslogicservice.RightBLService;
+import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.guestui.Guestui;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.AccountVO;
+import main.vo.WarhouseReceiptVO;
 
 public class LoginPanel {
 	private JTextField userName=new JTextField("141250024");
@@ -97,6 +100,11 @@ public class LoginPanel {
 					case STOREHOUSE:
 						remove();
 						panel.repaint();
+						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
+						WarhouseReceiptVO vo=new WarhouseReceiptVO(null,null,null,username);
+						vo=receipt.inquireWarehouseReceipt(vo);
+						System.out.println("---------"+vo.getWarehouseInCode());
+						MainController.getWritepanel().setMemory(new WarehouseMemory(username,password,vo.getWarehouseInCode(),vo.getWarehouseOutCode()));
 						MainController.goToWarehouseui(account.getBelong());
 						break;
 					default:
