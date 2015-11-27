@@ -45,6 +45,8 @@ public class WarehouseDataController implements WarehouseDataService{
 	@Override
 	public boolean createWarehouseOutReceipt(WarehouseOutPO warehouseOutPO) {
 		// TODO Auto-generated method stub
+		warehouseOutPO.setKey("Save");
+		client.wrightReceipt(warehouseOutPO);
 		return false;
 	}
 

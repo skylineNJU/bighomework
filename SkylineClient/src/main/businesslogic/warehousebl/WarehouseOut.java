@@ -2,11 +2,15 @@ package main.businesslogic.warehousebl;
 
 
 import main.State.TransType;
+import main.data.warehouse.WarehouseDataController;
+import main.dataservice.WarehouseDataService;
+import main.po.WarehouseInPO;
 import main.po.WarehouseOutPO;
 import main.vo.WarehouseOutVO;
 
 public class WarehouseOut {
 	private String bar;
+	private String code;
 	private String destination;
 	private TransType type;
 	private String outDate;
@@ -16,6 +20,7 @@ public class WarehouseOut {
 	private WarehouseOutPO po;
 	
 	public WarehouseOut(WarehouseOutVO who){
+		this.code=who.getCode();
 		this.bar=who.getBar();
 		this.destination=who.getDestination();
 		this.outDate = who.getOutDate();
@@ -27,6 +32,7 @@ public class WarehouseOut {
 	
 	public WarehouseOut(String code){
 		if(inquire(code)){
+		this.bar=po.getBar();
 		this.destination=po.getDestination();
 		this.outDate = po.getOutDate();
 		this.type=po.getTType();
@@ -36,6 +42,10 @@ public class WarehouseOut {
 		}
 	}
 	
+	public String getCode() {
+		return code;
+	}
+
 	public String getDamageCondition() {
 		return damageCondition;
 	}
@@ -45,7 +55,13 @@ public class WarehouseOut {
 	}
 
 	public boolean saveInfo(){
+		System.out.println("--------------2-----"+damageCondition);
+		po=new WarehouseOutPO(this.bar,this.code,this.outDate,this.destination,this.type,this.transferCode,this.vehicleCode,this.damageCondition);
+		po.setCode(code);
+		WarehouseDataService service=new WarehouseDataController();
+		service.createWarehouseOutReceipt(po);	
 		return true;
+	
 	}
 	
 	public boolean modify(){

@@ -1,10 +1,7 @@
 package main.businesslogic.warehousebl;
 
-import main.data.info.InfoDataController;
 import main.data.warehouse.WarehouseDataController;
-import main.dataservice.InfoDataService;
 import main.dataservice.WarehouseDataService;
-import main.po.DriverInfoPO;
 import main.po.WarehouseInPO;
 import main.vo.WarehouseInVO;
 
@@ -30,6 +27,7 @@ public class WarehouseIn {
 		this.row=whi.getRow();
 		this.shelf=whi.getShelf();
 		this.position=whi.getPosition();
+		this.damageCondition =whi.getDamageCondition();
 	}
 	public WarehouseIn(String code){
 		if(inquire(code)){
@@ -51,6 +49,7 @@ public class WarehouseIn {
 	}
 	
 	public boolean saveInfo(){
+		System.out.println("----------------2------"+damageCondition);
 		po=new WarehouseInPO(this.bar,this.code,this.destination,this.inDate,this.area,this.row,this.shelf,this.position,this.damageCondition);
 		po.setCode(code);
 		WarehouseDataService service=new WarehouseDataController();

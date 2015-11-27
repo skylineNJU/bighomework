@@ -9,15 +9,15 @@ public class WarehouseInPO extends Receipt implements Serializable{
 /*
  * 蹇�掔紪鍙枫�佸叆搴撴棩鏈熴�佺洰鐨勫湴銆佸尯鍙枫�佹帓鍙枫�佹灦鍙枫�佷綅鍙�
  */
-	String bar;
-	String code;
-	String date;
-	String inDate;
-	String destination;
-	String area;
-	int row;
-	int shelf;
-	int position;
+	private String bar;
+	private String code;
+	private String date;
+	private String inDate;
+	private String destination;
+	private String area;
+	private int row;
+	private int shelf;
+	private int position;
 	private String damageCondition;
 	
 	public WarehouseInPO(String a,String co,String b,String c,String d,int e,int f,int g,String h){

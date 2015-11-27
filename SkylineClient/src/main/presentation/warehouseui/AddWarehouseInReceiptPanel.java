@@ -128,36 +128,36 @@ public class AddWarehouseInReceiptPanel {
 		
 		bar = new JLabel("订单号:");
 		bar.setFont(font);
-		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
+		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		code=new JLabel("入库单号:");
 		code.setFont(font);
-		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
+		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		inDate=new JLabel("入库日期:");
 		inDate.setFont(font);
-		inDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		inDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
 		
 		distination=new JLabel("目的地:");
 		distination.setFont(font);
-		distination.setBounds(cargoinfo.getX(),inDate.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		distination.setBounds(cargoinfo.getX(),inDate.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		damageCondition = new JLabel("损坏情况");
 		damageCondition.setFont(font);
-		damageCondition.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		damageCondition.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/13,panel.getWidth()/10, panel.getHeight()/10);
 		
 		good = new JCheckBox("完好");
 		good.setFont(font);
-		good.setBounds(damageCondition.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		good.setBounds(damageCondition.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
 		damage = new JCheckBox("损坏");
 		damage.setFont(font);
-		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
 		
 		area=new JLabel("区号:");
 		area.setFont(font);
-		area.setBounds(cargoinfo.getX(),damageCondition.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		area.setBounds(cargoinfo.getX(),damageCondition.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		row=new JLabel("排号:");
 		row.setFont(font);
@@ -165,7 +165,7 @@ public class AddWarehouseInReceiptPanel {
 		
 		shelf=new JLabel("架号:");
 		shelf.setFont(font);
-		shelf.setBounds(cargoinfo.getX(),row.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		shelf.setBounds(cargoinfo.getX(),row.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		position=new JLabel("位号:");
 		position.setFont(font);
@@ -365,19 +365,19 @@ public class AddWarehouseInReceiptPanel {
 				
 				String damageCondition = null;
 				if(good.isSelected()){
-					damageCondition=good.getText();
+					damageCondition="完好";
 				}
 				if(damage.isSelected()){
-					damageCondition=damage.getText();
+					damageCondition="损坏";
 				}	
-				damageCondition="完好";
+				System.out.println(""+damageCondition);
 				//code入库单号、bar为订单号
 				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),codetext.getText(),
 						distext.getText(),date,((WritePanel) panel).getBelong()+" "+areatext.getText(),
 						Integer.parseInt(rowtext.getText()),
 						Integer.parseInt(shelftext.getText()),
 						Integer.parseInt(postext.getText()),
-						"完好");
+						damageCondition);
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				service.WarehouseIn(warehouseInVO);
 			}

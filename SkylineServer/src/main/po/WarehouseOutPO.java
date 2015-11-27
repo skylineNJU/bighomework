@@ -15,6 +15,7 @@ public class WarehouseOutPO extends Receipt implements Serializable{
  */
 	
 	private String bar;
+	private String code;
 	private String outDate;
 	private String destination;
 	private TransType type;
@@ -23,10 +24,11 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	private String damageCondition;
 	
 	
-	public WarehouseOutPO(String bar, String outDate, String destination, TransType type, String transferCode,
-			String vehicleCode,String damageCondition) {
+	public WarehouseOutPO(String bar, String code,String outDate, String destination, TransType type, String transferCode,
+			String vehicleCode,	String damageCondition) {
 		super();
 		this.bar = bar;
+		this.code=code;
 		this.outDate = outDate;
 		this.destination = destination;
 		this.type = type;

@@ -5,6 +5,7 @@ import main.State.TransType;
 
 public class WarehouseOutVO extends ReceiptVO{
 	private String bar;
+	private String code;
 	private String destination;
 	private TransType type;
 	private String outDate;
@@ -12,8 +13,9 @@ public class WarehouseOutVO extends ReceiptVO{
 	private String vehicleCode;
 	private String damageCondition;
 	
-	public WarehouseOutVO(String id, String da, String co,String b,String c,String k,TransType t,String d,String e,String f){
+	public WarehouseOutVO(String b,String co,String c,String k,TransType t,String d,String e,String f){
 		super(co);//outdata
+		code=co;
 		bar=b;
 		destination = c;
 		outDate =k;
@@ -24,6 +26,7 @@ public class WarehouseOutVO extends ReceiptVO{
 	}
 	
 	public boolean writeWarehouseOutInfo(WarehouseOut who){
+		this.code=who.getCode();
 		this.bar = who.getBar();
 		this.destination=who.getDestination();
 		this.outDate = who.getOutDate();
@@ -34,6 +37,14 @@ public class WarehouseOutVO extends ReceiptVO{
 		return true;
 	}
 	
+	public String getCode() {
+		return code;
+	}
+
+	public void setTransferCode(String transferCode) {
+		this.transferCode = transferCode;
+	}
+
 	public String getDamageCondition() {
 		return damageCondition;
 	}

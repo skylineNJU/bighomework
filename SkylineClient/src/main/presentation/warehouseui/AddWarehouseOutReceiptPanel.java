@@ -4,12 +4,20 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 import javax.swing.*;
 
+import main.State.TransType;
+import main.businesslogicservice.WarehouseBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.vo.WarehouseInVO;
+import main.vo.WarehouseOutVO;
 
 public class AddWarehouseOutReceiptPanel {
 	private FrameMain frame;
@@ -27,6 +35,8 @@ public class AddWarehouseOutReceiptPanel {
 	private JLabel distination;	
 	private JLabel loadingtype;
 	private JLabel transfercode;
+	//汽运编号
+	private JLabel vehicleCode;
 	private JLabel damageCondition;
 	private JCheckBox tB;
 	private JCheckBox pB;
@@ -42,6 +52,7 @@ public class AddWarehouseOutReceiptPanel {
 	private JTextField bartext;
 	private JTextField codetext;
 	private JTextField distext;
+	private JTextField vehtext;
 	private JTextField transtext;
 	private JScrollPane scrollPane;
 	
@@ -113,49 +124,49 @@ public class AddWarehouseOutReceiptPanel {
 		
 		bar = new JLabel("订单号");
 		bar.setFont(font);
-		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
+		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		code=new JLabel("出库单号:");
 		code.setFont(font);
-		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/12,panel.getWidth()/5, panel.getHeight()/10);
+		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		outDate=new JLabel("出库日期:");
 		outDate.setFont(font);
-		outDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		outDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
 		
 		distination=new JLabel("目的地:");
 		distination.setFont(font);
-		distination.setBounds(cargoinfo.getX(),outDate.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		distination.setBounds(cargoinfo.getX(),outDate.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		damageCondition = new JLabel("损坏情况");
 		damageCondition.setFont(font);
-		damageCondition.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		damageCondition.setBounds(cargoinfo.getX(),distination.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		good = new JCheckBox("完好");
 		good.setFont(font);
-		good.setBounds(damageCondition.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		good.setBounds(damageCondition.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
 		damage = new JCheckBox("损坏");
 		damage.setFont(font);
-		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
 		loadingtype=new JLabel("装运形式:");
 		loadingtype.setFont(font);
-		loadingtype.setBounds(damageCondition.getX(),damageCondition.getY()+panel.getHeight()/11,panel.getWidth()/5, panel.getHeight()/10);
+		loadingtype.setBounds(damageCondition.getX(),damageCondition.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
 		tB = new JCheckBox("火车");
 		tB.setFont(font);
-		tB.setBounds(loadingtype.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		tB.setBounds(loadingtype.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		pB = new JCheckBox("飞机");
 		pB.setFont(font);
-		pB.setBounds(tB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		pB.setBounds(tB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		bB = new JCheckBox("汽车");
 		bB.setFont(font);
-		bB.setBounds(pB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/5, panel.getHeight()/20);
+		bB.setBounds(pB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
 		transfercode=new JLabel("中转单编号:");
 		transfercode.setFont(font);
-		transfercode.setBounds(cargoinfo.getX(),bB.getY()+panel.getHeight()/17,panel.getWidth()/5, panel.getHeight()/10);
+		transfercode.setBounds(cargoinfo.getX(),bB.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
 		
 		codetext = new JTextField();
 		codetext.setBounds(code.getX()+panel.getWidth()/8,code.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
@@ -165,6 +176,11 @@ public class AddWarehouseOutReceiptPanel {
 		tip1.setForeground(Color.GRAY);
 		tip1.setBounds(codetext.getX()+codetext.getWidth()+panel.getWidth()/50,code.getY(),panel.getWidth()/3, panel.getHeight()/10);
 		
+		vehicleCode=new JLabel("汽运编号:");
+		vehicleCode.setFont(font);
+		vehicleCode.setBounds(cargoinfo.getX(),transfercode.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
+		
+		
 		bartext = new JTextField();
 		bartext.setBounds(bar.getX()+panel.getWidth()/8,bar.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
@@ -173,6 +189,9 @@ public class AddWarehouseOutReceiptPanel {
 		
 		transtext = new JTextField();
 		transtext.setBounds(transfercode.getX()+panel.getWidth()/7,transfercode.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
+		
+		vehtext = new JTextField();
+		vehtext.setBounds(transfercode.getX()+panel.getWidth()/7,vehicleCode.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
 		tip2 = new JLabel("*请输入14位有效中转单编号");
 		tip2.setFont(new Font("宋体", Font.BOLD, 12));
@@ -324,11 +343,62 @@ public class AddWarehouseOutReceiptPanel {
 		listpanel.add(bB);
 		listpanel.add(tB);
 		listpanel.add(transfercode);
+		listpanel.add(vehicleCode);
+		listpanel.add(vehtext);
 		listpanel.add(bartext);
 		listpanel.add(codetext);
 		listpanel.add(distext);
 		listpanel.add(transtext);
 		
+		
+		ok.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+				String date=((year.getSelectedIndex()+2000)+"年")+((month.getSelectedIndex()+1)+"月")+((day.getSelectedIndex()+1+"日"));
+				
+				String damageCondition = null;
+				if(good.isSelected()){
+					damageCondition="完好";
+				}
+				if(damage.isSelected()){
+					damageCondition="损坏";
+				}	
+
+				
+				TransType transtype= TransType.BUS;
+				if(tB.isSelected()){
+					 transtype= TransType.TRAIN;
+				}
+				if(bB.isSelected()){
+					transtype= TransType.BUS;
+				}	
+				if(pB.isSelected()){
+					 transtype= TransType.PLANE;
+					 
+				}	
+		
+				//code入库单号、bar为订单号
+				WarehouseOutVO warehouseOutVO = new WarehouseOutVO(bartext.getText(),codetext.getText(),
+						distext.getText(),outDate.getText(),
+						transtype,((WritePanel) panel).getBelong()+" "+transfercode.getText(),vehicleCode.getText(),damageCondition);
+
+				WarehouseBLService service=ConstructFactory.WarehouseFactory();
+				service.WarehouseOut(warehouseOutVO);
+			
+			
+			
+			
+			
+			}
+		});
+	
+		cancel.addMouseListener( new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				panel.removeAll();
+				panel.repaint();
+			}		
+		});
+	
 		
 	}
 	static public boolean isLeap(String a){

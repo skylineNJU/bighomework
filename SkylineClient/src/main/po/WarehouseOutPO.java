@@ -11,16 +11,18 @@ public class WarehouseOutPO extends Receipt implements Serializable{
  * 快递编号、出库日期、目的地、装运形式（火车、飞机、汽车）、中转单编号或者汽运编号
  */
 	
-	String bar;
-	String outDate;
-	String destination;
+	private	String bar;
+	private	String code;
+	private	String outDate;
+	private	String destination;
 	
-	TransType type;
-	String transferCode;
-	String vehicleCode;
-	String damageCondition ;
-	public WarehouseOutPO(String a,String b,String c,TransType t,String d,String e,String f){
+	private	TransType type;
+	private	String transferCode;
+	private	String vehicleCode;
+	private	String damageCondition ;
+	public WarehouseOutPO(String a,String co,String b,String c,TransType t,String d,String e,String f){
 		bar=a;
+		code=co;
 		outDate =b;
 		destination = c;
 		type = t;
@@ -29,6 +31,12 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 		damageCondition=f;
 	}
 	
+	
+	public String getCode() {
+		return code;
+	}
+
+
 	public String getDamageCondition() {
 		return damageCondition;
 	}
