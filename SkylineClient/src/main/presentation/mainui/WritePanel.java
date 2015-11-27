@@ -3,10 +3,13 @@ package main.presentation.mainui;
 import java.awt.*;
 import javax.swing.*;
 
+import main.presentation.mainui.memory.Memory;
+
 @SuppressWarnings("serial")
 public class WritePanel extends JPanel{
 	private FrameMain frame;
 	private String belong;
+	private Memory memory;
 	
 	public String getBelong() {
 		return belong;
@@ -26,10 +29,18 @@ public class WritePanel extends JPanel{
 	}
 	
 	protected void paintComponent(Graphics g) {
-	        // «Â∆¡
+
 	        super.paintComponent(g);
 	        g.drawImage(AllImage.background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 	    }
-		
-	
+
+
+	public Memory getMemory() {
+		return memory;
+	}
+
+	public void setMemory(Memory memory) {
+		this.memory = memory;
+	}
+
 }

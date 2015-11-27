@@ -173,6 +173,7 @@ ReceiptCode{
 	@Override
 	public WarhouseReceiptVO inquireWarehouseReceipt(WarhouseReceiptVO vo) {
 		// TODO Auto-generated method stub
+		System.out.println("-------"+vo.getUsername()+"-------------");
 		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(vo);
 		vo=warehouse.inquire();
 		return vo;
@@ -195,9 +196,9 @@ ReceiptCode{
 	@Override
 	public String calculCode(String codeList,String userName) {
 		// TODO Auto-generated method stub
+		CalculateReceiptCode cal=new CalculateReceiptCode(codeList,userName);
 		
-		
-		return null;
+		return cal.getCalculatedCode();
 	}
 
 }

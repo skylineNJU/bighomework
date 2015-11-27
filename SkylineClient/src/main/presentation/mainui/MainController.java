@@ -13,6 +13,7 @@ import main.presentation.loadui.Loadui;
 import main.presentation.loadui.LoaduiController;
 import main.presentation.loadui.ReceiveListPanel;
 import main.presentation.loadui.TransmitReceivePanel;
+import main.presentation.mainui.memory.WarehouseMemory;
 import main.presentation.receiptui.Receiptui;
 import main.presentation.receiptui.ReceiptuiControl;
 import main.presentation.receiveui.ReceiveController;

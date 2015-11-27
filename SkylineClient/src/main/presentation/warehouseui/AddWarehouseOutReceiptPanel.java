@@ -379,8 +379,8 @@ public class AddWarehouseOutReceiptPanel {
 		
 				//code入库单号、bar为订单号
 				WarehouseOutVO warehouseOutVO = new WarehouseOutVO(bartext.getText(),codetext.getText(),
-						distext.getText(),outDate.getText(),
-						transtype,((WritePanel) panel).getBelong()+" "+transfercode.getText(),vehicleCode.getText(),damageCondition);
+						distext.getText(),date,
+						transtype,((WritePanel) panel).getBelong()+" "+transtext.getText(),vehtext.getText(),damageCondition);
 
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				service.WarehouseOut(warehouseOutVO);
