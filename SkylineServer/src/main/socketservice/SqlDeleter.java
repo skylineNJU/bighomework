@@ -23,6 +23,7 @@ public class SqlDeleter {
 	
 	public void deleteData(String listname,String attribute,String content){
 		String query="DELETE FROM "+listname+" WHERE "+attribute+"='"+content+"'";
+		System.out.println("-------------------============="+query);
 		try {
 			stmt.executeUpdate(query);
 			stmt.close();

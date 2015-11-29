@@ -17,6 +17,7 @@ import javax.swing.*;
 import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.WarehouseBLService;
 import main.businesslogicservice.receiptblService.ReceiptCode;
+import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.AllImage;
 import main.presentation.mainui.FrameMain;
@@ -383,7 +384,7 @@ public class AddWarehouseInReceiptPanel {
 				ReceiptCode cal=ConstructFactory.calculateCode();
 				code=cal.calculCode(code,memory.getUserName());
 				System.out.println(code);
-				System.out.println(""+damageCondition);
+				
 				//code入库单号、bar为订单号
 				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),code,
 						distext.getText(),date,((WritePanel) panel).getBelong()+" "+areatext.getText(),
@@ -394,6 +395,12 @@ public class AddWarehouseInReceiptPanel {
 				
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				service.WarehouseIn(warehouseInVO);
+				
+				WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
+				wr.saveWarehouseInCode(code, memory.getUserName());
+				
+				memory.setWarehouseInCode(memory.getWarehouseInCode()+" "+code);
+				
 			}
 		});
 	
