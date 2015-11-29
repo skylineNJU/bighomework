@@ -1,45 +1,44 @@
 package main.vo;
 
 public class TransitReceptionVO extends ReceiptVO{
-	private int receiveYear;//接收年份
-	private int receiveMonth;//接收月份
-	private int receiveDay;//接收天
+	private String receiveYear;//接收年份
+	private String receiveMonth;//接收月份
+	private String receiveDay;//接收天
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	
-	
-
-	public TransitReceptionVO(String co, int receiveYear, int receiveMonth, int receiveDay, String centerNumber,
-			String bar) {
+	public TransitReceptionVO(String ry,String rm, String rd,String cn,String bar,String co) {
 		super(co);
-		this.receiveYear = receiveYear;
-		this.receiveMonth = receiveMonth;
-		this.receiveDay = receiveDay;
-		this.centerNumber = centerNumber;
-		this.bar = bar;
+		receiveYear=ry;
+		receiveMonth=rm;
+		receiveDay=rd;
+		centerNumber=cn;
+		bar=bar;
+		co=co;
+		// TODO Auto-generated constructor stub
 	}
 
-	public int getReceiveYear() {
+	public String getReceiveYear() {
 		return receiveYear;
 	}
 
-	public void setReceiveYear(int receiveYear) {
+	public void setReceiveYear(String receiveYear) {
 		this.receiveYear = receiveYear;
 	}
 
-	public int getReceiveMonth() {
+	public String getReceiveMonth() {
 		return receiveMonth;
 	}
 
-	public void setReceiveMonth(int receiveMonth) {
+	public void setReceiveMonth(String receiveMonth) {
 		this.receiveMonth = receiveMonth;
 	}
 
-	public int getReceiveDay() {
+	public String getReceiveDay() {
 		return receiveDay;
 	}
 
-	public void setReceiveDay(int receiveDay) {
+	public void setReceiveDay(String receiveDay) {
 		this.receiveDay = receiveDay;
 	}
 
@@ -59,6 +58,7 @@ public class TransitReceptionVO extends ReceiptVO{
 		this.bar = bar;
 	}
 
+	
 	
 	
 	

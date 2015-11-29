@@ -31,6 +31,7 @@ public class SqlReader {
 			e.printStackTrace();
 		}
 	}
+	//attribute属性，属性的内容等于content时，就获取这一行
 	public boolean findNext(String attribute,String content){
 		System.out.println(attribute+" "+content);
 		try {

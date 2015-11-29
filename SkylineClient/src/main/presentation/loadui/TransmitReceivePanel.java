@@ -1,6 +1,8 @@
 package main.presentation.loadui;
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -9,7 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.InfoBLService;
+import main.businesslogicservice.ReceiveBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.vo.DriverVO;
+import main.vo.TransitReceptionVO;
 
 public class TransmitReceivePanel {
 private JPanel panel;//´óµÄ
@@ -92,6 +100,32 @@ int panelHeight=0;
 		innerPanel.add(orderNum);
 		innerPanel.add(receiveTimeLabel);
 		innerPanel.add(orderNumLabel);
+		
+		delButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				transmitCenterNum.setText(null);
+				orderNum.setText(null);
+				yearBox.setSelectedItem(null);
+				monthBox.setSelectedItem(null);
+				dayBox.setSelectedItem(null);
+			}
+		});
+		
+		saveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+				TransitReceptionVO transitReceptionInfo=new TransitReceptionVO((String)yearBox.getSelectedItem()
+												,(String)monthBox.getSelectedItem()
+												,(String)dayBox.getSelectedItem()
+												,transmitCenterNum.getText()
+												,orderNum.getText()											
+												,((WritePanel) panel).getBelong());
+				ReceiveBLService service=ConstructFactory.ReceiveFactory();
+				service.createNewTransitReception(transitReceptionInfo);
+			}
+		});
+		
+		
 	}
 	public void setTime(){
 		Calendar calendar = Calendar.getInstance();

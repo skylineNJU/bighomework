@@ -15,7 +15,7 @@ public class BankAccountVO {
 	
 	public boolean write(BankAccountVO bankAccountVO){
 		this.code = bankAccountVO.getCode();
-		this.balance = bankAccountVO.getBalance(code);
+		this.balance = bankAccountVO.getBalance();
 		return true;
 	}
 
@@ -26,7 +26,7 @@ public class BankAccountVO {
 		this.code = code;
 	}
 	
-	public double getBalance(String code) {
+	public double getBalance() {
 		return balance;
 	}
 	public void setBalance(double balance) {

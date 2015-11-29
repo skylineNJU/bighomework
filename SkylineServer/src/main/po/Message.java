@@ -30,5 +30,4 @@ public class Message implements Serializable {
 	public void setKey(String key) {
 		this.key = key;
 	}
-
 }

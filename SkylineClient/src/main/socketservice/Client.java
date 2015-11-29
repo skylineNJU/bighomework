@@ -31,7 +31,7 @@ public class Client {
 	
 	public boolean wrightReceipt(Message receipt){
 		try {
-			
+			System.out.println(receipt==null);
 			writer.writeObject(receipt);
 			System.out.println("send successfully");
 			writer.flush();
@@ -40,11 +40,9 @@ public class Client {
 			e.printStackTrace();
 		}
 		return false;
-		
 	}
 	
 	public Message getResponse(){
 		return clth.getResponseMessage();
 	}
-
 }

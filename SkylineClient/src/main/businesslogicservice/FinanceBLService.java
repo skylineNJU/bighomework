@@ -17,7 +17,7 @@ public interface FinanceBLService {
 	public boolean showEarnListDependsOnInstitution(String code,String date1,String data2,ArrayList<EarnVO> earnList);
 	
 	//输入账户编号，显示账户余额
-	public boolean showBalance(String name,BankAccountVO account);
+	public BankAccountVO showBalance(String code);
 	
 	//显示本月的所有支出信息
 	public boolean showCostList(ArrayList<CostVO> costList);

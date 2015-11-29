@@ -1,13 +1,17 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.BankAccountVO;
 
 public class BalancePanel {
 	
@@ -31,15 +35,28 @@ public class BalancePanel {
 	
 	public void init(){
 		title();
+		getBankAcount();
 		initTable();
 		panel.repaint();
 	}
 	
+	//获得银行信息
+	public String[][] getBankAcount(){
+		bankAccountMessage = new String[6][2];
+		FinanceBLService service = ConstructFactory.FinanceFactory();
+		BankAccountVO bankAccountVO= new BankAccountVO();
+		int counter = 0;
+		while(counter<3){
+			bankAccountVO = service.showBalance(String.valueOf(counter));
+			this.bankAccountMessage[counter][0] = bankAccountVO.getCode();
+			this.bankAccountMessage[counter][1] = String.valueOf(bankAccountVO.getBalance());
+			counter++;
+		};
+		return null;
+	}
+	
 	public void initTable(){
 		tableTitle = new String[]{"银行账户","余额"};
-		bankAccountMessage = new String[][]{{"豆乘风的银行账户","3"},{"大小姐的银行账户","60000000"},
-				{"二小姐的银行账户","30000000"},{"曾攀的银行账户","9000000000"}
-		};
 		table = new JTable(bankAccountMessage,tableTitle);
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panelWidth/20);//设置列宽
