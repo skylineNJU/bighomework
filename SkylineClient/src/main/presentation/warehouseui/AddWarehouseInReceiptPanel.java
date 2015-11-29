@@ -33,6 +33,8 @@ public class AddWarehouseInReceiptPanel {
 	private JPanel warningPanel;
 	private JButton ok;
 	private JButton cancel;
+	private JLabel oL;
+	private JLabel cL;
 	private JLabel inList;
 	private JLabel cargoinfo;
 	private JLabel bar;
@@ -118,13 +120,19 @@ public class AddWarehouseInReceiptPanel {
 		line3.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/100*75, panel.getWidth()*3/5, panel.getHeight()/10);
 
 		
-		ok=new JButton("提交");
+	/*	ok=new JButton("提交");
 		ok.setFont(font);
 		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
+	*/
+		oL=new JLabel();
+		oL.setIcon(AllImage.submit);
+		oL.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
+		
+
 		
 		cancel=new JButton("取消");
 		cancel.setFont(font);
-		cancel.setBounds(ok.getX()-panel.getWidth()/7,ok.getY(), panel.getWidth()/10, panel.getHeight()/20);
+		cancel.setBounds(oL.getX()-panel.getWidth()/7,oL.getY(), panel.getWidth()/10, panel.getHeight()/20);
 			
 		inList=new JLabel("入库单");
 		inList.setFont(font00);
@@ -341,8 +349,9 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.add(line3);
 		listPanel.add(tip);
 		listPanel.add(inList);
-		listPanel.add(ok);
+	//	listPanel.add(ok);
 		listPanel.add(cancel);
+		listPanel.add(oL);
 		listPanel.add(code);
 		listPanel.add(bar);
 		listPanel.add(bartext);
@@ -365,7 +374,7 @@ public class AddWarehouseInReceiptPanel {
 		
 		
 		
-		ok.addMouseListener(new MouseAdapter(){
+		oL.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				
 				String date=((year.getSelectedIndex()+2000)+"年")+((month.getSelectedIndex()+1)+"月")+((day.getSelectedIndex()+1+"日"));

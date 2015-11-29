@@ -40,7 +40,7 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		String content="'"+transferCode+"','"+type.name()+"','"+outDate+"','"
-				+bar+"','"+vehicleCode+"','"+destination+"','"+super.getCode()+"'";
+				+bar+"','"+vehicleCode+"','"+destination+"','"+super.getCode()+"','"+damageCondition+"'";
 		writer.writeIntoSql("WarhouseOut", content);
 	}
 	
