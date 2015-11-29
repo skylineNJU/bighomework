@@ -3,6 +3,8 @@ package main.presentation.loadui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.TextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -97,7 +99,11 @@ public class LoadVehiclePanel {
 		
 		timeLabel=new JLabel("装运日期");
 		
-	
+		saveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+			}
+		});
      	
      	setTime(tabbedPane,planeLoadInfo);
      	

@@ -189,7 +189,7 @@ ReceiptCode{
 	@Override
 	public void saveWarehouseOutCode(String code, String username) {
 		// TODO Auto-generated method stub
-		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,code,null,code);
+		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,code,null,username);
 		warehouse.saveInfo();
 	}
 
