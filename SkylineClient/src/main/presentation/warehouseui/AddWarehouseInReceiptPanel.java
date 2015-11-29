@@ -18,6 +18,7 @@ import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.WarehouseBLService;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
+import main.presentation.mainui.AllImage;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
@@ -46,6 +47,7 @@ public class AddWarehouseInReceiptPanel {
 	private JLabel line2;
 	private JLabel line3;
 	private JLabel damageCondition;
+	private JLabel search;
 	private JCheckBox good;
 	private JCheckBox damage;
 	private JComboBox year;
@@ -76,7 +78,7 @@ public class AddWarehouseInReceiptPanel {
 	//	listpanel.setPreferredSize(new Dimension(1, panel.getHeight()));
 	
 	//	scrollPane.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
-		listPanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*57/80, panel.getHeight()*18/20);
+		listPanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/13, panel.getWidth()*57/80, panel.getHeight()*18/20);
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		content();
 
@@ -94,27 +96,30 @@ public class AddWarehouseInReceiptPanel {
 
 
 	public void content(){
+		
+		
+		
 		Font font00 = new Font("卜悶", Font.BOLD, 20);
 		Font font0 = new Font("卜悶", Font.BOLD, 16);
 		Font font = new Font("卜悶", Font.BOLD, 15);
 		line1 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！！！");
 		line1.setFont(font0);
-		line1.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY(), panel.getWidth()*3/5, panel.getHeight()/10);
+		line1.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY()-panel.getHeight()/20, panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		line2 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！");
 		line2.setFont(font0);
 		line2.setForeground(Color.GRAY);
-		line2.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/13, panel.getWidth()*3/5, panel.getHeight()/10);
+		line2.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/36, panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		line3 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！");
 		line3.setFont(font0);
 		line3.setForeground(Color.GRAY);
-		line3.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/100*78, panel.getWidth()*3/5, panel.getHeight()/10);
+		line3.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/100*75, panel.getWidth()*3/5, panel.getHeight()/10);
 
 		
 		ok=new JButton("戻住");
 		ok.setFont(font);
-		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*31/40, panel.getWidth()/10, panel.getHeight()/20);
+		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
 		
 		cancel=new JButton("函��");
 		cancel.setFont(font);
@@ -122,11 +127,11 @@ public class AddWarehouseInReceiptPanel {
 			
 		inList=new JLabel("秘垂汽");
 		inList.setFont(font00);
-		inList.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY()-panel.getHeight()/30, panel.getWidth()/10, panel.getHeight()/10);
+		inList.setBounds(listPanel.getX()-panel.getWidth()/15,listPanel.getY()-panel.getHeight()/13, panel.getWidth()/10, panel.getHeight()/10);
 		
 		cargoinfo=new JLabel("歯麗佚連");
 		cargoinfo.setFont(font0);
-		cargoinfo.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY()+panel.getHeight()/20,panel.getWidth()/10, panel.getHeight()/10);
+		cargoinfo.setBounds(listPanel.getX()-panel.getWidth()/30,listPanel.getY(),panel.getWidth()/10, panel.getHeight()/10);
 		
 		bar = new JLabel("匡汽催:");
 		bar.setFont(font);
@@ -327,7 +332,6 @@ public class AddWarehouseInReceiptPanel {
         });
 		
 
-		
 		listPanel.add(year);
 		listPanel.add(month);
 		listPanel.add(day);

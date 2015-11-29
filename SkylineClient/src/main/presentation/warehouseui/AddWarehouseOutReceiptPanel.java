@@ -73,7 +73,7 @@ public class AddWarehouseOutReceiptPanel {
 	
 	//	scrollPane.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		
-		listpanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*57/80, panel.getHeight()*18/20);
+		listpanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/13, panel.getWidth()*57/80, panel.getHeight()*18/20);
 		listpanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 	
 		content();
@@ -92,23 +92,23 @@ public class AddWarehouseOutReceiptPanel {
 		Font font = new Font("卜悶", Font.BOLD, 15);
 		line1 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！！！");
 		line1.setFont(font0);
-		line1.setBounds(listpanel.getX()-panel.getWidth()/15,listpanel.getY(), panel.getWidth()*3/5, panel.getHeight()/10);
+		line1.setBounds(listpanel.getX()-panel.getWidth()/15,listpanel.getY()-panel.getHeight()/20,panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		line2 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！");
 		line2.setFont(font0);
 		line2.setForeground(Color.GRAY);
-		line2.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/13, panel.getWidth()*3/5, panel.getHeight()/10);
+		line2.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/36,panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		line3 = new JLabel("！！！！！！！！！！！！！！！！！！！！！！");
 		line3.setFont(font0);
 		line3.setForeground(Color.GRAY);
-		line3.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/100*78, panel.getWidth()*3/5, panel.getHeight()/10);
+		line3.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/100*75, panel.getWidth()*3/5, panel.getHeight()/10);
 		
 		
 		
 		ok=new JButton("戻住");
 		ok.setFont(font);
-		ok.setBounds(listpanel.getX()+panel.getWidth()*2/5,listpanel.getY()+panel.getHeight()*31/40, panel.getWidth()/10, panel.getHeight()/20);
+		ok.setBounds(listpanel.getX()+panel.getWidth()*2/5,listpanel.getY()+panel.getHeight()*30/40,  panel.getWidth()/10, panel.getHeight()/20);
 		
 		cancel=new JButton("函��");
 		cancel.setFont(font);
@@ -116,11 +116,11 @@ public class AddWarehouseOutReceiptPanel {
 		
 		outList=new JLabel("竃垂汽");
 		outList.setFont(font00);
-		outList.setBounds(listpanel.getX()-panel.getWidth()/15,listpanel.getY()-panel.getHeight()/30, panel.getWidth()/10, panel.getHeight()/10);
+		outList.setBounds(listpanel.getX()-panel.getWidth()/15,listpanel.getY()-panel.getHeight()/13, panel.getWidth()/10, panel.getHeight()/10);
 		
 		cargoinfo=new JLabel("歯麗佚連");
 		cargoinfo.setFont(font0);
-		cargoinfo.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY()+panel.getHeight()/20,panel.getWidth()/10, panel.getHeight()/10);
+		cargoinfo.setBounds(listpanel.getX()-panel.getWidth()/30,listpanel.getY(),panel.getWidth()/10, panel.getHeight()/10);
 		
 		bar = new JLabel("匡汽催");
 		bar.setFont(font);
