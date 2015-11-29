@@ -107,5 +107,4 @@ public class DriverInfoPO extends Message implements Serializable{
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
-	
 }

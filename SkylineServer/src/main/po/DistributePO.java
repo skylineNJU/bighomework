@@ -10,21 +10,33 @@ public class DistributePO extends Receipt implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String bar;
-	private String courrierName;
+	private String courrierName;//快递员的编号
 	private String GuestName;
 	private String GuestAdress;
 	private String GuestPhoneNumber;
+	private String order;//订单号
 	
 	public DistributePO(String bar,String courrierName
-			,String GuestName,String GuestAdress,String GuestPhoneNumber){
+			, String order,String GuestName,String GuestAdress,String GuestPhoneNumber){
 		this.bar=bar;
 		this.courrierName=courrierName;
+		this.order = order;
 		this.GuestName=GuestName;
 		this.GuestAdress=GuestAdress;
 		this.GuestPhoneNumber=GuestPhoneNumber;
 	}
 
 	
+	public String getOrder() {
+		return order;
+	}
+
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+
+
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		String content="'"+super.getCode()+"','"+courrierName+"','"+GuestName
@@ -34,7 +46,7 @@ public class DistributePO extends Receipt implements Serializable{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("Distribute");
-		reader.findNext("单号",this.getCode());
+		reader.findNext("快递员账号",this.getCourrierName());
 		this.courrierName=reader.getString("快递员账号");
 		this.GuestName=reader.getString("收件人姓名");
 		this.GuestAdress=reader.getString("收件人地址");

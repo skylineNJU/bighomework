@@ -9,9 +9,9 @@ import main.vo.RecipientVO;
 public class DistributeController implements DistributeBLService{
 
 	//ÎªArrayList<DistributeVO>¸³Öµ
-	public boolean showDistributeList(ArrayList<DistributeVO> distributeList) {
+	public boolean showDistributeList(String courierCode) {
 		DistributeList distribute = new DistributeList();
-		distribute.writeDistribute(distributeList);
+		distribute.writeDistribute(courierCode);
 		return false;
 	}
 

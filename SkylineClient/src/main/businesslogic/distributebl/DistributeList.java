@@ -8,7 +8,7 @@ import main.vo.DistributeVO;
 public class DistributeList {
 
 	//在数据库里查询被分配的任务
-	public boolean writeDistribute(ArrayList<DistributeVO> distributeList){
+	public boolean writeDistribute(String courierCode){
 		
 		return true;
 	}
