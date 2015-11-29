@@ -11,7 +11,7 @@ import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 
 public class LoadDataController implements LoadDataService {
-	private Client client=MainController.getClient();
+	private Client client;
 	
 	@Override
 	public boolean readVehicleLoadBase(List<VehicleLoadingPO> vehicleLoadingPOList) {
@@ -70,6 +70,7 @@ public class LoadDataController implements LoadDataService {
 	@Override
 	public boolean saveLobbyLoadingReceipt(LoadingInfoPO po) {
 		// TODO Auto-generated method stub
+		client=MainController.getClient();
 		po.setKey("Save");
 		System.out.println("save receipt");
 		client.wrightReceipt(po);

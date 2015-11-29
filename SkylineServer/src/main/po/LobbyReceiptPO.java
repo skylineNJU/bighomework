@@ -24,13 +24,13 @@ public class LobbyReceiptPO extends Message {
 		getDataFromBase();
 		this.deleteFromDatabase();
 		String content="'"+accountName+"','"+receiveCode+"','"+earnCode+"','"
-				+receiveDate+"','"+earnDate+"','"+lobbyLoading;
+				+receiveDate+"','"+earnDate+"','"+lobbyLoading+"'";
 		writer.writeIntoSql("LobbyReceipt", content);
 	}
 
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
-		deleter.deleteData("CourrierReceipt","账户名",accountName);
+		deleter.deleteData("LobbyReceipt","账户名",accountName);
 	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("LobbyReceipt");

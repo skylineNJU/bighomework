@@ -1,7 +1,6 @@
 package main.po;
-import java.io.Serializable;
 //车辆装车管理
-public class LoadingInfoPO  extends Receipt implements Serializable {
+public class LoadingInfoPO  extends Receipt{
 	/**
 	 * 
 	 */

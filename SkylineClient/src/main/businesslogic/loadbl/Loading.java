@@ -31,6 +31,7 @@ public class Loading {
 
 	
 	public void saveInfo(){
+		System.out.println("check-------------"+code);
 		po=new LoadingInfoPO(this.loadingDate,this.vehiclecode,
 				this.from,this.to,this.monitor,this.escort,this.eara,this.fee);
 		po.setCode(this.code);

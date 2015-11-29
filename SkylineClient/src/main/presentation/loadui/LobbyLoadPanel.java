@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import main.businesslogicservice.LoadBLService;
+import main.businesslogicservice.receiptblService.LobbyReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
@@ -131,12 +132,15 @@ public class LobbyLoadPanel {
 				String userName=memory.getUserName();
 				ReceiptCode service2=ConstructFactory.calculateCode();
 				code=service2.calculCode(codeList, userName);
+				memory.setLobbyLoading(memory.getLobbyLoading()+" "+code);
 				System.out.println("-------"+code);
 				LobbyLoading vo=new LobbyLoading(code,yearBox.getItemAt(yearBox.getSelectedIndex())+"/"+monthBox.getItemAt(monthBox.getSelectedIndex())+"/"+dayBox.getItemAt(dayBox.getSelectedIndex()),
 						loadCodeText.getText(),startPlaceText.getText(),endPlaceText.getText(),
 						supervisorText.getText(),supercargoText.getText(),loadOrderText.getText()+" "+
 						((WritePanel)panel).getBelong(),Double.parseDouble(loadFeeText.getText()));
 				service.loadVehicle(vo);
+				LobbyReceipt receiptService=ConstructFactory.LobbyReceiptFactory();
+				receiptService.SaveLoadingCode(userName, code);
 			}
 		});
 	}

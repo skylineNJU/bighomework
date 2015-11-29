@@ -1,10 +1,8 @@
 package main.po;
-import java.io.Serializable;
-
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 //车辆装车管理
-public class LoadingInfoPO  extends Receipt implements Serializable {
+public class LoadingInfoPO  extends Receipt{
 	/**
 	 * 
 	 */
@@ -16,9 +14,22 @@ public class LoadingInfoPO  extends Receipt implements Serializable {
 	private String monitor;//监装员
 	private String guard;//押送员
 	private String shipment;//装箱托运区号
-	double freight;//运费
+	private double freight;//运费
 	
 	
+	public LoadingInfoPO(String loadingDate, String autoMobileNum, String departure, String destination, String monitor,
+			String guard, String shipment, double freight) {
+		super();
+		this.loadingDate = loadingDate;
+		this.autoMobileNum = autoMobileNum;
+		this.departure = departure;
+		this.destination = destination;
+		this.monitor = monitor;
+		this.guard = guard;
+		this.shipment = shipment;
+		this.freight = freight;
+	}
+
 	public void writeIntoDatabase(){
 		shipment=readOrderCode(shipment);
 		SqlWriter writer=new SqlWriter();

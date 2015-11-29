@@ -9,6 +9,7 @@ public class LoadController implements LoadBLService {
 	@Override
 	public boolean loadVehicle(LobbyLoading vehicleLoadingInfo) {
 		// TODO Auto-generated method stub
+		System.out.println("get a lobbyLoading mission");
 		Load load=new Load();
 		return load.loadVehicle(vehicleLoadingInfo);
 	}
