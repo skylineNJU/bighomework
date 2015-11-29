@@ -6,13 +6,15 @@ public class CalculateReceiptCode {
 	public CalculateReceiptCode(String code,String userName){
 		if(code!=null)
 		setCodelist(code.split(" "));
+		else
+			System.out.println("some thing goes wrong");
 		this.userName=userName;
 	}
 	
 	public String getCalculatedCode(){
-		if(codelist==null)
-			return userName+"0000";
-		return userName+Integer.parseInt(codelist[codelist.length-1].substring(userName.length()))+1;		
+		if(codelist.length==1)
+			return userName+codelist[0]+"0000";
+		return userName+Integer.parseInt(codelist[codelist.length-1].substring(userName.length()+1))+1;		
 	}
 	
 	public String[] getCodelist() {

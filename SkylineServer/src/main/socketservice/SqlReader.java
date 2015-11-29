@@ -46,6 +46,19 @@ public class SqlReader {
 		return false;
 	}
 	
+	public boolean hasNext(String attribute,String content){
+		try {
+			if(rs.next())
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public String getString(String attribute){
 		String contents=null;
 		try {

@@ -11,7 +11,11 @@ import main.businesslogic.rightbl.RightController;
 import main.businesslogic.warehousebl.WarehouseController;
 import main.businesslogicservice.*;
 import main.businesslogicservice.receiptblService.CourrierReceipt;
+import main.businesslogicservice.receiptblService.FinanceReceipt;
+import main.businesslogicservice.receiptblService.IntermediateReceipt;
+import main.businesslogicservice.receiptblService.LobbyReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
+import main.businesslogicservice.receiptblService.SubmitReceipt;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 
 public class ConstructFactory {
@@ -57,6 +61,22 @@ public class ConstructFactory {
 	}
 	
 	public static ReceiptCode calculateCode(){
+		return new ReceiptBLController();
+	}
+	
+	public static FinanceReceipt FinanceReceiptFactory(){
+		return new ReceiptBLController();
+	}
+	
+	public static IntermediateReceipt IntermediateFactory(){
+		return new ReceiptBLController();
+	}
+	
+	public static LobbyReceipt LobbyReceiptFactory(){
+		return new ReceiptBLController();
+	}
+	
+	public static SubmitReceipt SubMitFactory(){
 		return new ReceiptBLController();
 	}
 }
