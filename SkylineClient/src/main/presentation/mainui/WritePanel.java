@@ -1,7 +1,10 @@
 package main.presentation.mainui;
 
-import java.awt.*;
-import javax.swing.*;
+
+
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
 
 import main.presentation.mainui.memory.Memory;
 

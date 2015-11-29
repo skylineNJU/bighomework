@@ -20,7 +20,6 @@ public class BankAccountPO extends Message{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("BankAccount");
-		System.out.println("--------------this.getCode()--------------");
 		reader.findNext("账户编号",this.getCode());
 		this.account = reader.getString("银行账户名");
 		this.money=reader.getDouble("余额");

@@ -9,9 +9,6 @@ public class DistributeVO {
 	private String phoneNumber;
 	private String courierID;
 	
-	//无参数构造函数
-	public DistributeVO(){}
-	
 	public DistributeVO(String orderCode, String distributeCode, String name,String adress,String phoneNumber,String courierID){
 		this.orderCode=orderCode;
 		this.distributeCode = distributeCode;
