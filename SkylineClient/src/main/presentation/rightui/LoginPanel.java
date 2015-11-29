@@ -6,18 +6,33 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import main.businesslogicservice.RightBLService;
+import main.businesslogicservice.receiptblService.CourrierReceipt;
+import main.businesslogicservice.receiptblService.FinanceReceipt;
+import main.businesslogicservice.receiptblService.IntermediateReceipt;
+import main.businesslogicservice.receiptblService.LobbyReceipt;
+import main.businesslogicservice.receiptblService.SubmitReceipt;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.guestui.Guestui;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.memory.CourrierMemory;
+import main.presentation.mainui.memory.FinanceMemory;
+import main.presentation.mainui.memory.IntermediateMemory;
+import main.presentation.mainui.memory.LobbyMemory;
+import main.presentation.mainui.memory.ManagerMemory;
 import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.AccountVO;
+import main.vo.ApprovalVO;
+import main.vo.CorrierReceiptVO;
+import main.vo.FinanceReceiptVO;
+import main.vo.IntermediateReciptVO;
+import main.vo.LobbyReceiptVO;
 import main.vo.WarhouseReceiptVO;
 
 public class LoginPanel {
-	private JTextField userName=new JTextField("141250024");
-	private JTextField passWord=new JTextField("141250024");
+	private JTextField userName=new JTextField("000870019");
+	private JTextField passWord=new JTextField("00000000");
 	private JLabel confirm=new JLabel("È·¶¨");
 	private JLabel back=new JLabel("·µ»Ø");
 	private FrameMain frame;
@@ -73,26 +88,48 @@ public class LoginPanel {
 						MainController.goToRightAdminStaffui(account.getBelong());
 						break;
 					case COURIER:
+						CourrierReceipt Receiptservice=ConstructFactory.CourrierReceiptFactory();
+						CorrierReceiptVO Courrier=Receiptservice.getAllReceipt(username);
+						MainController.getWritepanel().setMemory(new CourrierMemory(username,password,Courrier.getOrderCode()
+								,Courrier.getBuildDate(),Courrier.getReceiveCode(),Courrier.getReceiveDate(),
+						Courrier.getDistributeCode()));
 						remove();
 						panel.repaint();
 						MainController.goToCourierui(account.getBelong());
 						break;
 					case FINANCE:
+						FinanceReceipt financeService=ConstructFactory.FinanceReceiptFactory();
+						FinanceReceiptVO financeVO=financeService.getFinanceCode(username);
+						MainController.getWritepanel().setMemory(new FinanceMemory(username,password,financeVO.getCostCode()
+						,financeVO.getEarnCode()));
 						remove();
 						panel.repaint();
 						MainController.gotoFinanceui(account.getBelong());	
 						break;
 					case INTERMEDIATE:
+						IntermediateReceipt intermediate=ConstructFactory.IntermediateFactory();
+						IntermediateReciptVO intermediateVO=intermediate.getIntermediateReceiptCode(username);
+						MainController.getWritepanel().setMemory(new IntermediateMemory(username,password,
+								intermediateVO.getIntermReceiptCode(),intermediateVO.getAirLoadCode(),intermediateVO.getRailLoadCode(),intermediateVO.getRoadLoadCode()
+								,intermediateVO.getAirLoadDate(),intermediateVO.getRailLoadDate(),intermediateVO.getRoadLoadDate(),intermediateVO.getIntermDate()));
 						remove();
 						panel.repaint();
 						MainController.goToIntermediateStaffui(account.getBelong());
 						break;
 					case LOBBY:
+						LobbyReceipt lobbyService=ConstructFactory.LobbyReceiptFactory();
+						LobbyReceiptVO lobbyVO=lobbyService.getLobbyReceiptCode(username);
+						System.out.println(lobbyVO.getReceiveCode());
+						MainController.getWritepanel().setMemory(new LobbyMemory(username,password,lobbyVO.getReceiveCode(),
+								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate(),lobbyVO.getLobbyLoading()));
 						remove();
 						panel.repaint();
 						MainController.goToLobbyStaffui(account.getBelong());
 						break;
 					case MANAGER:
+						SubmitReceipt manager=ConstructFactory.SubMitFactory();
+						ApprovalVO manvo=manager.getApproval();
+						MainController.getWritepanel().setMemory(new ManagerMemory(username,password,manvo.getKinds(),manvo.getCode()));
 						remove();
 						panel.repaint();
 						MainController.goToManagerui(account.getBelong());
@@ -101,10 +138,11 @@ public class LoginPanel {
 						remove();
 						panel.repaint();
 						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
-						WarhouseReceiptVO vo=new WarhouseReceiptVO(null,null,null,username);
-						vo=receipt.inquireWarehouseReceipt(vo);
-						System.out.println("---------"+vo.getWarehouseInCode());
-						MainController.getWritepanel().setMemory(new WarehouseMemory(username,password,vo.getWarehouseInCode(),vo.getWarehouseOutCode()));
+						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,username);
+						Warehouse=receipt.inquireWarehouseReceipt(Warehouse);
+						System.out.println("---------"+Warehouse.getWarehouseInCode());
+						MainController.getWritepanel().setMemory(new WarehouseMemory(username,password,Warehouse.getWarehouseInCode()
+								,Warehouse.getWarehouseOutCode()));
 						MainController.goToWarehouseui(account.getBelong());
 						break;
 					default:

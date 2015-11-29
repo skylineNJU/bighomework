@@ -31,6 +31,7 @@ public class SqlReader {
 			e.printStackTrace();
 		}
 	}
+	//attribute属性，属性的内容等于content时，就获取这一行
 	public boolean findNext(String attribute,String content){
 		System.out.println(attribute+" "+content);
 		try {
@@ -43,6 +44,19 @@ public class SqlReader {
 			e.printStackTrace();
 			return false;
 		}	
+		return false;
+	}
+	
+	public boolean hasNext(String attribute,String content){
+		try {
+			if(rs.next())
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 	

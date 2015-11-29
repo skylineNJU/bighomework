@@ -15,22 +15,16 @@ public class LobbyReceiptPO extends Message {
 	private String earnCode;
 	private String receiveDate;
 	private String earnDate;
-	public LobbyReceiptPO(String accountName, String receiveCode, String earnCode, String receiveDate,
-			String earnDate) {
-		super();
-		this.accountName = accountName;
-		this.receiveCode = receiveCode;
-		this.earnCode = earnCode;
-		this.receiveDate = receiveDate;
-		this.earnDate = earnDate;
-	}
+	private String lobbyLoading;
+	
+	
 	
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		getDataFromBase();
 		this.deleteFromDatabase();
 		String content="'"+accountName+"','"+receiveCode+"','"+earnCode+"','"
-				+receiveDate+"','"+earnDate+"'";
+				+receiveDate+"','"+earnDate+"','"+lobbyLoading;
 		writer.writeIntoSql("LobbyReceipt", content);
 	}
 
@@ -60,7 +54,10 @@ public class LobbyReceiptPO extends Message {
 			earnDate=reader.getString("入款单生成时间")+" "+earnDate;
 		else
 			earnDate=reader.getString("入款单生成时间");
-		
+		if(lobbyLoading!=null)
+			lobbyLoading=reader.getString("营业厅装运单单号")+" "+lobbyLoading;
+		else
+			lobbyLoading=reader.getString("营业厅装运单单号");
 		reader.close();
 	}
 }

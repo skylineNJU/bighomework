@@ -11,15 +11,20 @@ public class LobbyReceiptPO extends Message {
 	private String earnCode;
 	private String receiveDate;
 	private String earnDate;
-	public LobbyReceiptPO(String accountName, String receiveCode, String earnCode, String receiveDate,
-			String earnDate) {
+	private String lobbyLoading;
+	
+	
+	public LobbyReceiptPO(String accountName, String receiveCode, String earnCode, String receiveDate, String earnDate,
+			String lobbyLoading) {
 		super();
-		this.setAccountName(accountName);
-		this.setReceiveCode(receiveCode);
-		this.setEarnCode(earnCode);
-		this.setReceiveDate(receiveDate);
-		this.setEarnDate(earnDate);
+		this.accountName = accountName;
+		this.receiveCode = receiveCode;
+		this.earnCode = earnCode;
+		this.receiveDate = receiveDate;
+		this.earnDate = earnDate;
+		this.setLobbyLoading(lobbyLoading);
 	}
+	
 	public String getAccountName() {
 		return accountName;
 	}
@@ -49,6 +54,14 @@ public class LobbyReceiptPO extends Message {
 	}
 	public void setEarnDate(String earnDate) {
 		this.earnDate = earnDate;
+	}
+
+	public String getLobbyLoading() {
+		return lobbyLoading;
+	}
+
+	public void setLobbyLoading(String lobbyLoading) {
+		this.lobbyLoading = lobbyLoading;
 	}
 	
 	

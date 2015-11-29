@@ -27,8 +27,7 @@ public class DriverList extends Message {
 					reader.getString("司机手机号码"),
 					reader.getString("司机性别"),
 					reader.getString("司机行驶证期限"),
-					key
-					);
+					key);
 			driverlist.add(driverinfo);
 			System.out.println("get a driver "+name);
 		}

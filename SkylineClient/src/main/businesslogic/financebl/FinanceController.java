@@ -34,10 +34,8 @@ public class FinanceController implements FinanceBLService {
 	}
 
 	@Override
-	public boolean showBalance(String name, BankAccountVO account) {
-		Balance balance = new Balance();
-		balance.readBalance(name, account);
-		return false;
+	public BankAccountVO showBalance(String code) {
+		return new Balance().readBalance(code);
 	}
 
 	@Override

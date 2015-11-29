@@ -15,7 +15,6 @@ public class DriverList extends Message {
 	}
 	
 	public ArrayList<DriverInfoPO> getlist(){
-		return driverlist;
-		
+		return driverlist;	
 	}
 }

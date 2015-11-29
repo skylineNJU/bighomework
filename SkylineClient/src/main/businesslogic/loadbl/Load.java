@@ -1,10 +1,11 @@
 package main.businesslogic.loadbl;
 
+import main.vo.LobbyLoading;
 import main.vo.TransVO;
 import main.vo.VehicleLoadingVO;
 
 public class Load {
-	public boolean loadVehicle(VehicleLoadingVO vehicleLoadingInfo){
+	public boolean loadVehicle(LobbyLoading vehicleLoadingInfo){
 		Loading loa=new Loading(vehicleLoadingInfo);
 		return loa.saveLoading();
 	}

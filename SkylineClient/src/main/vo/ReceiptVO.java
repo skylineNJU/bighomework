@@ -2,10 +2,10 @@ package main.vo;
 
 public class ReceiptVO {
 
-	private String code;
+	private String code=null;
 	
 	public ReceiptVO(String co){
-		
+		if(co!=null)
 		code=co;
 	}
 	public void convert(ReceiptVO vo){
