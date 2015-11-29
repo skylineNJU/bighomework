@@ -9,7 +9,7 @@ import java.awt.event.*;
 public class FrameMain extends JFrame{
 	private static JLabel exit=new JLabel(AllImage.exitImg);
 	private static JLabel hide=new JLabel(AllImage.smallestImg);
-	private static JLabel title=new JLabel(AllImage.edgW);
+	private static JLabel title=new JLabel(AllImage.edg);
 	private static JPanel panel=new JPanel();
 	private static FrameMain frame;
 	private static boolean move=false;

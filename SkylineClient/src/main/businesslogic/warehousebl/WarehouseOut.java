@@ -55,7 +55,6 @@ public class WarehouseOut {
 	}
 
 	public boolean saveInfo(){
-		System.out.println("--------------2-----"+damageCondition);
 		po=new WarehouseOutPO(this.bar,this.code,this.outDate,this.destination,this.type,this.transferCode,this.vehicleCode,this.damageCondition);
 		po.setCode(code);
 		WarehouseDataService service=new WarehouseDataController();

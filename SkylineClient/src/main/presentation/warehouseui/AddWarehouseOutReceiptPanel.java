@@ -12,10 +12,13 @@ import javax.swing.*;
 
 import main.State.TransType;
 import main.businesslogicservice.WarehouseBLService;
+import main.businesslogicservice.receiptblService.ReceiptCode;
+import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 
@@ -376,7 +379,13 @@ public class AddWarehouseOutReceiptPanel {
 					 transtype= TransType.PLANE;
 					 
 				}	
-		
+				WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
+				String code=memory.getWarehouseOutCode();
+				ReceiptCode cal=ConstructFactory.calculateCode();
+				code=cal.calculCode(code,memory.getUserName());
+				System.out.println("--------========-----------------"+memory.getUserName());
+				System.out.println(code);
+				
 				//code入库单号、bar为订单号
 				WarehouseOutVO warehouseOutVO = new WarehouseOutVO(bartext.getText(),codetext.getText(),
 						distext.getText(),date,
@@ -386,7 +395,10 @@ public class AddWarehouseOutReceiptPanel {
 				service.WarehouseOut(warehouseOutVO);
 			
 			
-			
+				WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
+				wr.saveWarehouseOutCode(code, memory.getUserName());
+				
+				memory.setWarehouseOutCode(memory.getWarehouseOutCode()+" "+code);
 			
 			
 			}

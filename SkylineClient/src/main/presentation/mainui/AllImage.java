@@ -30,6 +30,7 @@ public class AllImage {
 		//±ß¿ò
 		public static ImageIcon edgW = new ImageIcon("src/graphics/label/frameedge.jpg");
 		public static ImageIcon egdH = new ImageIcon("src/graphics/label/frameedge1.jpg");
+		public static ImageIcon edg = new ImageIcon("graphics/edg.png");
 		//ËÑË÷
 				public static ImageIcon search = new ImageIcon("graphics/search.png");
 		
