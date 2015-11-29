@@ -16,7 +16,7 @@ public class CalculateReceiptCode {
 			return userName+codelist[0]+"0000";
 		int num=Integer.parseInt(codelist[codelist.length-1].substring(userName.length()+1))+1;
 		System.out.println(num);
-		return userName+String.format("%04d",num);		
+		return userName+codelist[0]+String.format("%04d",num);		
 	}
 	
 	public String[] getCodelist() {
