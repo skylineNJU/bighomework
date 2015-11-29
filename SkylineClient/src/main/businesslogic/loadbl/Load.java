@@ -1,12 +1,15 @@
 package main.businesslogic.loadbl;
 
+import main.vo.LobbyLoading;
 import main.vo.TransVO;
 import main.vo.VehicleLoadingVO;
 
 public class Load {
-	public boolean loadVehicle(VehicleLoadingVO vehicleLoadingInfo){
+	public boolean loadVehicle(LobbyLoading vehicleLoadingInfo){
+		System.out.println("bagin to loading");
 		Loading loa=new Loading(vehicleLoadingInfo);
-		return loa.saveLoading();
+		loa.saveInfo();
+		return true;
 	}
 	
 	public boolean intermidateLoading(TransVO transInfo){

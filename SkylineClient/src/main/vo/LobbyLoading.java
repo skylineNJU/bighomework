@@ -1,43 +1,28 @@
 package main.vo;
 
-public class VehicleLoadingVO extends ReceiptVO{
-	private String loadingDate;//装运日期
-	private String carNum;//中转中心汽运编号
-	private String carTourNum;//车次号
+public class LobbyLoading extends ReceiptVO {
+	private String loadingDate;//装车日期
+	private String autoMobileNum;//营业厅汽运编号
 	private String departure;//出发地
 	private String destination;//到达地
 	private String monitor;//监装员
 	private String guard;//押送员
 	private String shipment;//装箱托运区号
 	private double freight;//运费
+	
+	
 
-	
-	
-	public VehicleLoadingVO(String co, String loadingDate, String carNum, String carTourNum, String departure,
-			String destination, String monitor, String guard, String shipment, double freight) {
+	public LobbyLoading(String co, String loadingDate, String autoMobileNum, String departure, String destination,
+			String monitor, String guard, String shipment, double freight) {
 		super(co);
 		this.loadingDate = loadingDate;
-		this.carNum = carNum;
-		this.carTourNum = carTourNum;
+		this.autoMobileNum = autoMobileNum;
 		this.departure = departure;
 		this.destination = destination;
 		this.monitor = monitor;
 		this.guard = guard;
 		this.shipment = shipment;
-		this.freight = freight;
-	}
-
-	public boolean writeVehicleLoadingInfo(VehicleLoadingVO vl){
-		this.loadingDate=vl.getLoadingDate();
-		this.carNum=vl.getCarNum();
-		this.carTourNum=vl.getCarTourNum();
-		this.departure=vl.getDeparture();
-		this.destination=vl.getDestination();
-		this.monitor=vl.getMonitor();
-		this.guard=vl.getGuard();
-		this.shipment=vl.getShipment();
-		this.freight=vl.getFreight();
-		return true;
+		this.setFreight(freight);
 	}
 
 	public String getLoadingDate() {
@@ -48,20 +33,12 @@ public class VehicleLoadingVO extends ReceiptVO{
 		this.loadingDate = loadingDate;
 	}
 
-	public String getCarNum() {
-		return carNum;
+	public String getAutoMobileNum() {
+		return autoMobileNum;
 	}
 
-	public void setCarNum(String carNum) {
-		this.carNum = carNum;
-	}
-
-	public String getCarTourNum() {
-		return carTourNum;
-	}
-
-	public void setCarTourNum(String carTourNum) {
-		this.carTourNum = carTourNum;
+	public void setAutoMobileNum(String autoMobileNum) {
+		this.autoMobileNum = autoMobileNum;
 	}
 
 	public String getDeparture() {
@@ -112,4 +89,5 @@ public class VehicleLoadingVO extends ReceiptVO{
 		this.freight = freight;
 	}
 
+	
 }

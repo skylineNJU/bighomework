@@ -1,5 +1,6 @@
 package main.businesslogicservice;
 
+import main.vo.LobbyLoading;
 import main.vo.TransVO;
 import main.vo.VehicleLoadingVO;
 
@@ -9,7 +10,7 @@ public interface LoadBLService {
 	 * 系统显示车辆装车单
 	 */
 	
-	public boolean loadVehicle(VehicleLoadingVO vehicleLoadingInfo);
+	public boolean loadVehicle(LobbyLoading vehicleLoadingInfo);
 	
 	/*
 	 * 中转中心管理员

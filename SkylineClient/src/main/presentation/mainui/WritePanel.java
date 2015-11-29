@@ -1,10 +1,8 @@
 package main.presentation.mainui;
 
+import java.awt.*;
 
-
-import java.awt.Graphics;
-
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import main.presentation.mainui.memory.Memory;
 
@@ -13,7 +11,7 @@ public class WritePanel extends JPanel{
 	private FrameMain frame;
 	private String belong;
 	private Memory memory;
-	
+	private JLabel search;
 	public String getBelong() {
 		return belong;
 	}
@@ -35,7 +33,13 @@ public class WritePanel extends JPanel{
 
 	        super.paintComponent(g);
 	        g.drawImage(AllImage.background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
-	    }
+	   
+	        search= new JLabel();
+			search.setBounds(this.getWidth()*12/20,this.getHeight()/50,this.getWidth()/2,this.getHeight()/20);
+			search.setIcon(AllImage.search);
+			this.add(search);
+	
+	}
 
 
 	public Memory getMemory() {

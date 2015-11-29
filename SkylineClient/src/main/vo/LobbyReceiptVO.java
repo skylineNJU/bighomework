@@ -6,15 +6,18 @@ public class LobbyReceiptVO {
 	private String earnCode;
 	private String receiveDate;
 	private String earnDate;
+	private String lobbyLoading;
 	
-	public LobbyReceiptVO(String accountName, String receiveCode, String earnCode, String receiveDate,
-			String earnDate) {
+	
+	public LobbyReceiptVO(String accountName, String receiveCode, String earnCode, String receiveDate, String earnDate,
+			String lobbyLoading) {
 		super();
-		this.setAccountName(accountName);
-		this.setReceiveCode(receiveCode);
-		this.setEarnCode(earnCode);
-		this.setReceiveDate(receiveDate);
-		this.setEarnDate(earnDate);
+		this.accountName = accountName;
+		this.receiveCode = receiveCode;
+		this.earnCode = earnCode;
+		this.receiveDate = receiveDate;
+		this.earnDate = earnDate;
+		this.setLobbyLoading(lobbyLoading);
 	}
 
 	public String getAccountName() {
@@ -55,6 +58,14 @@ public class LobbyReceiptVO {
 
 	public void setEarnDate(String earnDate) {
 		this.earnDate = earnDate;
+	}
+
+	public String getLobbyLoading() {
+		return lobbyLoading;
+	}
+
+	public void setLobbyLoading(String lobbyLoading) {
+		this.lobbyLoading = lobbyLoading;
 	}
 	
 	

@@ -37,7 +37,7 @@ public class WarhouseReceiptPO extends Message{
 	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
-		deleter.deleteData("CourrierReceipt","账户名",username);
+		deleter.deleteData("WarhouseReceipt","账户名",username);
 	}
 	
 	public void getDataFromBase(){

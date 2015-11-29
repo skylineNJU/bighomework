@@ -132,7 +132,7 @@ ReceiptCode{
 		Date dt=new Date();
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 		String time=format.format(dt);
-		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,code,null,time,null);
+		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,code,null,time,null,null);
 		lobby.saveInfo();
 	}
 
@@ -142,14 +142,14 @@ ReceiptCode{
 		Date dt=new Date();
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 		String time=format.format(dt);
-		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,null,code,null,time);
+		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,null,code,null,time,null);
 		lobby.saveInfo();
 	}
 
 	@Override
 	public LobbyReceiptVO getLobbyReceiptCode(String userName) {
 		// TODO Auto-generated method stub
-		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,null,null,null,null);
+		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,null,null,null,null,null);
 		LobbyReceiptVO vo=lobby.inquireLobbyCode();
 		return vo;
 	}
@@ -189,7 +189,7 @@ ReceiptCode{
 	@Override
 	public void saveWarehouseOutCode(String code, String username) {
 		// TODO Auto-generated method stub
-		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,code,null,code);
+		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,code,null,username);
 		warehouse.saveInfo();
 	}
 
@@ -199,6 +199,13 @@ ReceiptCode{
 		CalculateReceiptCode cal=new CalculateReceiptCode(codeList,userName);
 		
 		return cal.getCalculatedCode();
+	}
+
+	@Override
+	public void SaveLoadingCode(String userName, String code) {
+		// TODO Auto-generated method stub
+		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,null,null,null,null,code);
+		lobby.saveInfo();
 	}
 
 }
