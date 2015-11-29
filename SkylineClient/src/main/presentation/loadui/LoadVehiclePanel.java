@@ -25,12 +25,6 @@ public class LoadVehiclePanel {
 	private String[] dayString;//31天
 	private JPanel panel;
 	private JTabbedPane tabbedPane;//选择飞机/火车/汽车
-	private JTextField transmitCenterNumber;//中转中心编号输入框
-	private JLabel  transmitCenterNumberLabel;
-    private JLabel  receiptNumberLabel;
-    private JTextField receiptNumber;//订单单号输入框
-    private JLabel receiveDateLabel;
-    private JTextField receiveDate;//接收时间输入框
 	private JPanel carLoadInfo;
 	private JPanel planeLoadInfo;
 	private JPanel trainLoadInfo;
@@ -38,7 +32,6 @@ public class LoadVehiclePanel {
 	private JComboBox<String> yearBox;//表示年份的组合框
 	private JComboBox<String> monthBox;//表示月份的组合框
 	private JComboBox<String> dayBox;//表示天的组合框
-	private JButton searchFromDate;//根据日期查询
 	private JTable planeTable;//飞机表格
 	private JTable trainTable;
 	private JTable carTable;
@@ -54,6 +47,80 @@ public class LoadVehiclePanel {
 	int panelWidth=0;
 	int panelHeight=0;
 	private JScrollPane scrollPane;
+	private int tabWidth;
+	private int tabHeight;
+	
+	private int HINTER;
+	private int WINTER;
+	private int LABELWidth;
+	private int LABELHEIGHT;
+	private int TEXTWIDTH;
+	//新建汽车装运
+//	汽运编号", "车次号", "出发地", "到达地", "监装员", "押运员","托运区号","运费"
+	private JPanel carPanel;
+	private JLabel carLoadCode;//车运编号
+	private JLabel carCode;//车次号
+	private JLabel carStart;
+	private JLabel carArrive;//到达地
+	private JLabel carMontior;//监装员
+	private JLabel carSupercargo;//押运员
+	private JLabel carLoadArea;//托运区号
+	private JLabel carFee;//运费
+	private JTextField carLoadCodeText;
+	private JTextField carCodeText;
+	private JTextField carStartText;
+	private JTextField carArriveText;
+	private JTextField carMontiorText;
+	private JTextField carSupercargoText;
+	private JTextField carLoadAreaText;
+	private JTextField carFeeText;
+	private JButton carbackButton;
+	private JButton carSaveButton;
+	private JButton carCancleButton;
+	
+	//新建火车装运
+	private JPanel trainPanel;
+	private JLabel trainLoadCode;//
+	private JLabel trainCode;//
+	private JLabel trainStart;
+	private JLabel trainArrive;//
+	private JLabel trainMontior;//
+	private JLabel trainCarriage ;//
+	private JLabel trainLoadArea;//
+	private JLabel trainFee;//
+	private JTextField trainLoadCodeText;
+	private JTextField trainCodeText;
+	private JTextField trainStartText;
+	private JTextField trainArriveText;
+	private JTextField trainMontiorText;
+	private JTextField trainCarrigeText;
+	private JTextField trainLoadAreaText;
+	private JTextField trainFeeText;
+	private JButton trainbackButton;
+	private JButton trainSaveButton;
+	private JButton trainCancleButton;
+	//新建飞机装运
+	private JPanel planePanel;
+	private JLabel planeLoadCode;//
+	private JLabel planeCode;//
+	private JLabel planeStart;
+	private JLabel planeArrive;//
+	private JLabel planeMontior;//
+	private JLabel planeContainer;//
+	private JLabel planeLoadArea;//
+	private JLabel planeFee;//
+	private JTextField planeLoadCodeText;
+	private JTextField planeCodeText;
+	private JTextField planeStartText;
+	private JTextField planeArriveText;
+	private JTextField planeMontiorText;
+	private JTextField planeContainerText;
+	private JTextField planeLoadAreaText;
+	private JTextField planeFeeText;
+	private JButton planebackButton;
+	private JButton planeSaveButton;
+	private JButton planeCancleButton;
+	
 	public LoadVehiclePanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
@@ -79,6 +146,36 @@ public class LoadVehiclePanel {
 		
 		tabbedPane.setSize(panel.getWidth()/6*5+43,panel.getHeight()/6*5);
 		tabbedPane.setLocation(panel.getWidth()/18,panel.getHeight()/12);
+		tabWidth = tabbedPane.getWidth();
+		tabHeight = tabbedPane.getHeight();
+		
+		HINTER = tabHeight*4/35;
+		WINTER = tabWidth/10;
+		LABELWidth = tabWidth/10;
+		LABELHEIGHT = tabHeight/15;
+		TEXTWIDTH = tabWidth/4;
+		
+		carPanel = new JPanel();
+		carPanel.setLayout(null);
+		panel.add(carPanel);
+		carPanel.setBounds(panel.getWidth()/18,panel.getHeight()/12, panel.getWidth()/6*5+43,panel.getHeight()/6*5);
+		newCarLoading();
+		carPanel.setVisible(false);
+		
+		trainPanel = new JPanel();
+		trainPanel.setLayout(null);
+		panel.add(trainPanel);
+		trainPanel.setBounds(panel.getWidth()/18,panel.getHeight()/12, panel.getWidth()/6*5+43,panel.getHeight()/6*5);
+		newTrainLoading();
+		trainPanel.setVisible(false);
+		
+		planePanel = new JPanel();
+		planePanel.setLayout(null);
+		panel.add(planePanel);
+		planePanel.setBounds(panel.getWidth()/18,panel.getHeight()/12, panel.getWidth()/6*5+43,panel.getHeight()/6*5);
+		newPlaneLoading();
+		planePanel.setVisible(false);
+		
 		panel.add(tabbedPane);
 		planeLoadConpo();
 		trainLoadConpo();
@@ -99,9 +196,12 @@ public class LoadVehiclePanel {
 		
 		timeLabel=new JLabel("装运日期");
 		
-		saveButton.addMouseListener(new MouseAdapter(){
+		
+//--------------------------------------------------------		
+		newButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				
+				tabbedPane.setVisible(false);
+				planePanel.setVisible(true);
 			}
 		});
      	
@@ -132,7 +232,14 @@ public class LoadVehiclePanel {
 		saveButton=new JButton("保存");
 		newButton=new JButton("新建");
 		timeLabel=new JLabel("装运日期");
-		
+
+//-----------------------------------------------------------
+		newButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				tabbedPane.setVisible(false);
+				trainPanel.setVisible(true);
+			}
+		});
 	
      	setTime(tabbedPane ,trainLoadInfo);
      	delButton.setSize(75,35);//删除与保存按钮的初始化
@@ -158,6 +265,13 @@ public class LoadVehiclePanel {
 		newButton=new JButton("新建");
 		timeLabel=new JLabel("装运日期");
 		
+//--------------------------------------------------------------		
+		newButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				tabbedPane.setVisible(false);
+				carPanel.setVisible(true);
+			}
+		});
      	
      	setTime(tabbedPane ,carLoadInfo);
      	delButton.setSize(75,35);//删除与保存按钮的初始化
@@ -297,6 +411,228 @@ public class LoadVehiclePanel {
 			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, 10*table.getRowHeight());
 		}
 		panel2.add(scrollPane);
+	}
+	
+//新建一个汽车装运管理项
+	public void newCarLoading(){
+		carLoadCode = new JLabel("车运编号");//车运编号
+		carCode = new JLabel("车次号");//车次号
+		carStart = new JLabel("出发地");
+		carArrive = new JLabel("到达地");//到达地
+		carMontior = new JLabel("监装员");//监装员
+		carSupercargo = new JLabel("押运员");//押运员
+		carLoadArea = new JLabel("托运区号");//托运区号
+		carFee = new JLabel("运费");//运费
+		carLoadCodeText = new JTextField();
+		carCodeText = new JTextField();
+		carStartText = new JTextField();
+		carArriveText = new JTextField();
+		carMontiorText = new JTextField();
+		carSupercargoText = new JTextField();
+		carLoadAreaText = new JTextField();
+		carFeeText = new JTextField();
+		carbackButton = new JButton("返回");
+		carSaveButton = new JButton("保存");
+		carCancleButton = new JButton("取消");
+		
+		carPanel.add(carLoadCode);
+		carPanel.add(carCode);
+		carPanel.add(carStart);
+		carPanel.add(carArrive);
+		carPanel.add(carMontior);
+		carPanel.add(carSupercargo);
+		carPanel.add(carLoadArea);
+		carPanel.add(carFee);
+		carPanel.add(carLoadCodeText);
+		carPanel.add(carCodeText);
+		carPanel.add(carStartText);
+		carPanel.add(carArriveText);
+		carPanel.add(carMontiorText);
+		carPanel.add(carSupercargoText);
+		carPanel.add(carLoadAreaText);
+		carPanel.add(carFeeText);
+		carPanel.add(carbackButton);
+		carPanel.add(carSaveButton);
+		carPanel.add(carCancleButton);
+		
+		carbackButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				carPanel.setVisible(false);
+				tabbedPane.setVisible(true);
+			}
+		});
+		
+//		HINTER = tabHeight*3/35;
+//		WINTER = tabWidth/10;
+//		LABELWidth = tabWidth/10;
+//		LABELHEIGHT = tabHeight/15;
+//		TEXTWIDTH = tabWidth/4;
+		carLoadCode.setBounds(tabWidth/10, HINTER, LABELWidth, LABELHEIGHT);
+		carCode.setBounds(tabWidth/2, HINTER, LABELWidth, LABELHEIGHT);
+		carStart.setBounds(carLoadCode.getX(), HINTER*2+LABELHEIGHT, LABELWidth, LABELHEIGHT);
+		carArrive.setBounds(carCode.getX(), HINTER*2+LABELHEIGHT, LABELWidth, LABELHEIGHT);
+		carMontior.setBounds(carLoadCode.getX(), HINTER*3+LABELHEIGHT*2, LABELWidth, LABELHEIGHT);
+		carSupercargo.setBounds(carCode.getX(), HINTER*3+LABELHEIGHT*2, LABELWidth, LABELHEIGHT);
+		carLoadArea.setBounds(carLoadCode.getX(), HINTER*4+LABELHEIGHT*3, LABELWidth, LABELHEIGHT);
+		carFee.setBounds(carCode.getX(), HINTER*4+LABELHEIGHT*3, LABELWidth, LABELHEIGHT);
+		carLoadCodeText.setBounds(carLoadCode.getX()+LABELWidth, carLoadCode.getY(), tabWidth/4, LABELHEIGHT);
+		carCodeText.setBounds(carCode.getX()+LABELWidth, carCode.getY(), tabWidth/4, LABELHEIGHT);
+		carStartText.setBounds(carStart.getX() + LABELWidth, carStart.getY(), tabWidth/4, LABELHEIGHT);
+		carArriveText.setBounds(carArrive.getX() + LABELWidth, carArrive.getY(), tabWidth/4, LABELHEIGHT);
+		carMontiorText.setBounds(carMontior.getX() + LABELWidth, carMontior.getY(), tabWidth/4, LABELHEIGHT);
+		carSupercargoText.setBounds(carSupercargo.getX() + LABELWidth, carSupercargo.getY(), tabWidth/4, LABELHEIGHT);
+		carLoadAreaText.setBounds(carLoadArea.getX() + LABELWidth, carLoadArea.getY(), tabWidth/4, LABELHEIGHT);
+		carFeeText.setBounds(carFee.getX() + LABELWidth, carFee.getY(), tabWidth/4, LABELHEIGHT);
+		carbackButton.setBounds(tabWidth*7/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		carSaveButton.setBounds(tabWidth*15/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		carCancleButton.setBounds(tabWidth*11/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		
+		carPanel.repaint();
+	}
+//新建一个火车装运管理项
+	public void newTrainLoading(){
+		trainLoadCode = new JLabel("货运编号");//车运编号
+		trainCode = new JLabel("车次号");//车次号
+		trainStart = new JLabel("出发地");
+		trainArrive = new JLabel("到达地");//
+		trainMontior = new JLabel("监装员");//
+		trainCarriage  = new JLabel("车厢号");
+		trainLoadArea = new JLabel("托运区号");//托运区号
+		trainFee = new JLabel("运费");//运费
+
+		trainLoadCodeText = new JTextField();
+		trainCodeText = new JTextField();
+		trainStartText = new JTextField();
+		trainArriveText = new JTextField();
+		trainMontiorText = new JTextField();
+		trainCarrigeText = new JTextField();
+		trainLoadAreaText = new JTextField();
+		trainFeeText = new JTextField();
+		trainbackButton = new JButton("返回");
+		trainSaveButton = new JButton("保存");
+		trainCancleButton = new JButton("取消");
+		
+		trainPanel.add(trainLoadCode);
+		trainPanel.add(trainCode);
+		trainPanel.add(trainStart);
+		trainPanel.add(trainArrive);
+		trainPanel.add(trainMontior);
+		trainPanel.add(trainCarriage );
+		trainPanel.add(trainLoadArea);
+		trainPanel.add(trainFee);
+		trainPanel.add(trainLoadCodeText);
+		trainPanel.add(trainCodeText);
+		trainPanel.add(trainStartText);
+		trainPanel.add(trainArriveText);
+		trainPanel.add(trainMontiorText);
+		trainPanel.add(trainCarrigeText);
+		trainPanel.add(trainLoadAreaText);
+		trainPanel.add(trainFeeText);
+		trainPanel.add(trainbackButton);
+		trainPanel.add(trainSaveButton);
+		trainPanel.add(trainCancleButton);
+		
+		trainbackButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				trainPanel.setVisible(false);
+				tabbedPane.setVisible(true);
+			}
+		});
+		
+		trainLoadCode.setBounds(tabWidth/10, HINTER, LABELWidth, LABELHEIGHT);
+		trainCode.setBounds(tabWidth/2, HINTER, LABELWidth, LABELHEIGHT);
+		trainStart.setBounds(trainLoadCode.getX(), LABELHEIGHT + HINTER*2, LABELWidth, LABELHEIGHT);
+		trainArrive.setBounds(trainCode.getX(), LABELHEIGHT + HINTER*2, LABELWidth, LABELHEIGHT);
+		trainMontior.setBounds(trainLoadCode.getX(), LABELHEIGHT*2 + HINTER*3, LABELWidth, LABELHEIGHT);
+		trainCarriage .setBounds(trainCode.getX(), LABELHEIGHT*2 + HINTER*3, LABELWidth, LABELHEIGHT);
+		trainLoadArea.setBounds(trainLoadCode.getX(), LABELHEIGHT*3 + HINTER*4, LABELWidth, LABELHEIGHT);
+		trainFee.setBounds(trainCode.getX(), LABELHEIGHT*3 + HINTER*4, LABELWidth, LABELHEIGHT);
+		trainLoadCodeText.setBounds(trainLoadCode.getX()+LABELWidth, HINTER, tabWidth/4,LABELHEIGHT);
+		trainCodeText.setBounds(trainCode.getX() + LABELWidth, HINTER, tabWidth/4,LABELHEIGHT);
+		trainStartText.setBounds(trainLoadCode.getX()+LABELWidth, LABELHEIGHT + HINTER*2, tabWidth/4,LABELHEIGHT);
+		trainArriveText.setBounds(trainCode.getX() + LABELWidth, LABELHEIGHT + HINTER*2, tabWidth/4,LABELHEIGHT);
+		trainMontiorText.setBounds(trainLoadCode.getX()+LABELWidth, LABELHEIGHT*2 + HINTER*3, tabWidth/4,LABELHEIGHT);
+		trainCarrigeText.setBounds(trainCode.getX() + LABELWidth, LABELHEIGHT*2 + HINTER*3, tabWidth/4,LABELHEIGHT);
+		trainLoadAreaText.setBounds(trainLoadCode.getX()+LABELWidth, LABELHEIGHT*3 + HINTER*4, tabWidth/4,LABELHEIGHT);
+		trainFeeText.setBounds(trainCode.getX() + LABELWidth, LABELHEIGHT*3 + HINTER*4, tabWidth/4,LABELHEIGHT);
+		trainbackButton.setBounds(tabWidth*7/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		trainSaveButton.setBounds(tabWidth*15/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		trainCancleButton.setBounds(tabWidth*11/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		
+		trainPanel.repaint();
+	}
+	
+//新建一个飞机装运管理项
+	public void newPlaneLoading(){
+//		"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运区号","运费"
+		planeLoadCode = new JLabel("航运编号");//车运编号
+		planeCode = new JLabel("航班号");//车次号
+		planeStart = new JLabel("出发地");
+		planeArrive = new JLabel("到达地");//到达地
+		planeMontior = new JLabel("监装员");//监装员
+		planeContainer = new JLabel("货柜号");//押运员
+		planeLoadArea = new JLabel("托运区号");//托运区号
+		planeFee = new JLabel("运费");//运费
+		planeLoadCodeText = new JTextField();
+		planeCodeText = new JTextField();
+		planeStartText = new JTextField();
+		planeArriveText = new JTextField();
+		planeMontiorText = new JTextField();
+		planeContainerText = new JTextField();
+		planeLoadAreaText = new JTextField();
+		planeFeeText = new JTextField();
+		planebackButton = new JButton("返回");
+		planeSaveButton = new JButton("保存");
+		planeCancleButton = new JButton("取消");
+		
+		planePanel.add(planeLoadCode);
+		planePanel.add(planeCode);
+		planePanel.add(planeStart);
+		planePanel.add(planeArrive);
+		planePanel.add(planeMontior);
+		planePanel.add(planeContainer);
+		planePanel.add(planeLoadArea);
+		planePanel.add(planeFee);
+		planePanel.add(planeLoadCodeText);
+		planePanel.add(planeCodeText);
+		planePanel.add(planeStartText);
+		planePanel.add(planeArriveText);
+		planePanel.add(planeMontiorText);
+		planePanel.add(planeContainerText);
+		planePanel.add(planeLoadAreaText);
+		planePanel.add(planeFeeText);
+		planePanel.add(planebackButton);
+		planePanel.add(planeSaveButton);
+		planePanel.add(planeCancleButton);
+		
+		planebackButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				planePanel.setVisible(false);
+				tabbedPane.setVisible(true);
+			}
+		});
+		
+		planeLoadCode.setBounds(tabWidth/10, HINTER, LABELWidth, LABELHEIGHT);
+		planeCode.setBounds(tabWidth/2, HINTER, LABELWidth, LABELHEIGHT);
+		planeStart.setBounds(planeLoadCode.getX(), HINTER*2+LABELHEIGHT, LABELWidth, LABELHEIGHT);
+		planeArrive.setBounds(planeCode.getX(), HINTER*2+LABELHEIGHT, LABELWidth, LABELHEIGHT);
+		planeMontior.setBounds(planeLoadCode.getX(), HINTER*3+LABELHEIGHT*2, LABELWidth, LABELHEIGHT);
+		planeContainer.setBounds(planeCode.getX(), HINTER*3+LABELHEIGHT*2, LABELWidth, LABELHEIGHT);
+		planeLoadArea.setBounds(planeLoadCode.getX(), HINTER*4+LABELHEIGHT*3, LABELWidth, LABELHEIGHT);
+		planeFee.setBounds(planeCode.getX(), HINTER*4+LABELHEIGHT*3, LABELWidth, LABELHEIGHT);
+		planeLoadCodeText.setBounds(planeLoadCode.getX()+LABELWidth, HINTER, tabWidth/4, LABELHEIGHT);
+		planeCodeText.setBounds(planeCode.getX() + LABELWidth, HINTER, tabWidth/4, LABELHEIGHT);
+		planeStartText.setBounds(planeLoadCodeText.getX(), HINTER*2+LABELHEIGHT, tabWidth/4, LABELHEIGHT);
+		planeArriveText.setBounds(planeCode.getX() + LABELWidth, HINTER*2+LABELHEIGHT, tabWidth/4, LABELHEIGHT);
+		planeMontiorText.setBounds(planeLoadCodeText.getX(), HINTER*3+LABELHEIGHT*2, tabWidth/4, LABELHEIGHT);
+		planeContainerText.setBounds(planeCode.getX() + LABELWidth, HINTER*3+LABELHEIGHT*2, tabWidth/4, LABELHEIGHT);
+		planeLoadAreaText.setBounds(planeLoadCodeText.getX(), HINTER*4+LABELHEIGHT*3, tabWidth/4, LABELHEIGHT);
+		planeFeeText.setBounds(planeCode.getX() + LABELWidth, HINTER*4+LABELHEIGHT*3, tabWidth/4, LABELHEIGHT);
+		planebackButton.setBounds(tabWidth*7/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		planeSaveButton.setBounds(tabWidth*15/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		planeCancleButton.setBounds(tabWidth*11/20, HINTER*5+LABELHEIGHT*4, LABELWidth, LABELHEIGHT);
+		
+		planePanel.repaint();
 	}
 }
 
