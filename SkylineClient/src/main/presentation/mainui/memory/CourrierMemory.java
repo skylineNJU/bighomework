@@ -1,6 +1,7 @@
 package main.presentation.mainui.memory;
 
 public class CourrierMemory extends Memory {
+	
 	private String orderCode;
 	private String buildDate;
 	private String receiveCode;
@@ -55,7 +56,5 @@ public class CourrierMemory extends Memory {
 
 	public void setDistributeCode(String distributeCode) {
 		this.distributeCode = distributeCode;
-	}
-	
-	
+	}	
 }

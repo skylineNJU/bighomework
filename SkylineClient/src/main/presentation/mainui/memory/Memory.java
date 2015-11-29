@@ -3,16 +3,13 @@ package main.presentation.mainui.memory;
 public class Memory {
 	protected String userName;
 	protected String code;
-	
-	
-	
+		
 	public Memory(String userName, String code) {
 		super();
 		this.userName = userName;
 		this.code = code;
 	}
 
-	
 	public void setUserName(String userName){
 		this.userName=userName;
 	}
