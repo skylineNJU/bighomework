@@ -7,14 +7,16 @@ public class TransitReceptionVO extends ReceiptVO{
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	
-	public TransitReceptionVO(String id, String da, String co,int a,int b,int c,String d,String e) {
-		super(id, da, co);
-		receiveYear=a;
-		receiveMonth=b;
-		receiveDay=c;
-		centerNumber=d;
-		bar=e;
-		// TODO Auto-generated constructor stub
+	
+
+	public TransitReceptionVO(String co, int receiveYear, int receiveMonth, int receiveDay, String centerNumber,
+			String bar) {
+		super(co);
+		this.receiveYear = receiveYear;
+		this.receiveMonth = receiveMonth;
+		this.receiveDay = receiveDay;
+		this.centerNumber = centerNumber;
+		this.bar = bar;
 	}
 
 	public int getReceiveYear() {

@@ -5,13 +5,16 @@ public class LobbyMemory extends Memory {
 	private String earnCode;
 	private String receiveDate;
 	private String earnDate;
+	private String lobbyLoading;
+	
 	public LobbyMemory(String userName, String code, String receiveCode, String earnCode, String receiveDate,
-			String earnDate) {
+			String earnDate, String lobbyLoading) {
 		super(userName, code);
-		this.setReceiveCode(receiveCode);
-		this.setEarnCode(earnCode);
-		this.setReceiveDate(receiveDate);
-		this.setEarnDate(earnDate);
+		this.receiveCode = receiveCode;
+		this.earnCode = earnCode;
+		this.receiveDate = receiveDate;
+		this.earnDate = earnDate;
+		this.lobbyLoading = lobbyLoading;
 	}
 	public String getReceiveCode() {
 		return receiveCode;
@@ -36,6 +39,12 @@ public class LobbyMemory extends Memory {
 	}
 	public void setEarnDate(String earnDate) {
 		this.earnDate = earnDate;
+	}
+	public String getLobbyLoading() {
+		return lobbyLoading;
+	}
+	public void setLobbyLoading(String lobbyLoading) {
+		this.lobbyLoading = lobbyLoading;
 	}
 	
 	

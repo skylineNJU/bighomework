@@ -119,8 +119,9 @@ public class LoginPanel {
 					case LOBBY:
 						LobbyReceipt lobbyService=ConstructFactory.LobbyReceiptFactory();
 						LobbyReceiptVO lobbyVO=lobbyService.getLobbyReceiptCode(username);
+						System.out.println(lobbyVO.getReceiveCode());
 						MainController.getWritepanel().setMemory(new LobbyMemory(username,password,lobbyVO.getReceiveCode(),
-								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate()));
+								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate(),lobbyVO.getLobbyLoading()));
 						remove();
 						panel.repaint();
 						MainController.goToLobbyStaffui(account.getBelong());

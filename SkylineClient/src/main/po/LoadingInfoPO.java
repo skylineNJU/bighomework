@@ -6,24 +6,28 @@ public class LoadingInfoPO  extends Receipt implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String loadingDate;//装车日期
-	String autoMobileNum;//营业厅汽运编号
-	String departure;//出发地
-	String destination;//到达地
-	String monitor;//监装员
-	String guard;//押送员
-	String shipment;//装箱托运区号
-	String freight;//运费
+	private String loadingDate;//装车日期
+	private String autoMobileNum;//营业厅汽运编号
+	private String departure;//出发地
+	private String destination;//到达地
+	private String monitor;//监装员
+	private String guard;//押送员
+	private String shipment;//装箱托运区号
+	private double freight;//运费
 	
-	public LoadingInfoPO(String a,String b,String c,String d,String e,String f,String g,String h){
-		loadingDate=a;
-		 autoMobileNum=b;
-		departure=c;
-		destination=d;
-		 monitor=e;
-		 guard=f;
-		shipment=g;//装箱托运区号
-		freight=h;//运费
+	
+	
+	public LoadingInfoPO(String loadingDate, String autoMobileNum, String departure, String destination, String monitor,
+			String guard, String shipment, double freight) {
+		super();
+		this.loadingDate = loadingDate;
+		this.autoMobileNum = autoMobileNum;
+		this.departure = departure;
+		this.destination = destination;
+		this.monitor = monitor;
+		this.guard = guard;
+		this.shipment = shipment;
+		this.freight = freight;
 	}
 
 	public String getLoadingDate() {
@@ -82,12 +86,13 @@ public class LoadingInfoPO  extends Receipt implements Serializable {
 		this.shipment = shipment;
 	}
 
-	public String getFreight() {
+	public double getFreight() {
 		return freight;
 	}
 
-	public void setFreight(String freight) {
+	public void setFreight(double freight) {
 		this.freight = freight;
 	}
+
 	
 }

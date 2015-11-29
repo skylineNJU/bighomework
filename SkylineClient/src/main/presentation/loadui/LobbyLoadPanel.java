@@ -1,6 +1,8 @@
 package main.presentation.loadui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -12,7 +14,13 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.LoadBLService;
+import main.businesslogicservice.receiptblService.ReceiptCode;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.LobbyMemory;
+import main.vo.LobbyLoading;
 
 //营业厅装车管理
 public class LobbyLoadPanel {
@@ -76,9 +84,11 @@ public class LobbyLoadPanel {
 		lookPanel.setLayout(null);
 		writePanel = new JPanel();
 		writePanel.setLayout(null);
-		initButton();//初始化按钮
+		
 		lookTabel();//初始化查看装运单面板
 		writeTabel();//初始化填写装运单面板
+		initButton();//初始化按钮
+		
 		tab = new JTabbedPane();
 		tab=new JTabbedPane(JTabbedPane.TOP);
 		tab.add("查看装运信息",lookPanel);
@@ -111,6 +121,24 @@ public class LobbyLoadPanel {
 		ensureButton = new JButton("确认");
 		lookPanel.add(ensureButton);
 		ensureButton.setBounds(panel.getWidth()*29/40, panelHeight/30, panelWidth/10, panelHeight/20);
+		
+		saveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				LoadBLService service=ConstructFactory.LoadFactory();
+				String code=null;
+				LobbyMemory memory=(LobbyMemory) ((WritePanel)panel).getMemory();
+				String codeList=memory.getLobbyLoading();
+				String userName=memory.getUserName();
+				ReceiptCode service2=ConstructFactory.calculateCode();
+				code=service2.calculCode(codeList, userName);
+				System.out.println("-------"+code);
+				LobbyLoading vo=new LobbyLoading(code,yearBox.getItemAt(yearBox.getSelectedIndex())+"/"+monthBox.getItemAt(monthBox.getSelectedIndex())+"/"+dayBox.getItemAt(dayBox.getSelectedIndex()),
+						loadCodeText.getText(),startPlaceText.getText(),endPlaceText.getText(),
+						supervisorText.getText(),supercargoText.getText(),loadOrderText.getText()+" "+
+						((WritePanel)panel).getBelong(),Double.parseDouble(loadFeeText.getText()));
+				service.loadVehicle(vo);
+			}
+		});
 	}
 	
 	public void lookTabel(){
