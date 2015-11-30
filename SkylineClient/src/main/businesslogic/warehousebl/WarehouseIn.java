@@ -49,7 +49,6 @@ public class WarehouseIn {
 	}
 	
 	public boolean saveInfo(){
-		System.out.println("----------------2------"+damageCondition);
 		po=new WarehouseInPO(this.bar,this.code,this.destination,this.inDate,this.area,this.row,this.shelf,this.position,this.damageCondition);
 		po.setCode(code);
 		WarehouseDataService service=new WarehouseDataController();

@@ -11,7 +11,6 @@ public class WarehouseController implements WarehouseBLService {
 	@Override
 	public boolean WarehouseIn(WarehouseInVO warehouseInInfo) {
 		// TODO Auto-generated method stub
-		System.out.println("-----------------3-------------"+warehouseInInfo.getDamageCondition());
 		WarehouseIn warehouseIn = new WarehouseIn(warehouseInInfo);
 		return warehouseIn.saveInfo();
 	}

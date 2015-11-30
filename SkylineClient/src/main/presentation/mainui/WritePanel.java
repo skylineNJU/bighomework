@@ -25,18 +25,19 @@ public class WritePanel extends JPanel{
 		this.setBounds((int)((double)frame.getWidth()*138/724),(int)((double)frame.getHeight()*22/490)
 				,frame.getWidth()-(int)((double)frame.getWidth()*138/724)
 				,frame.getHeight()-(int)((double)frame.getHeight()*22/490));
-
+		
 		
 	}
 	
 	protected void paintComponent(Graphics g) {
 
 	        super.paintComponent(g);
-	        g.drawImage(AllImage.background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+	        g.drawImage(AllImage.writeback.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 	   
 	        search= new JLabel();
 			search.setBounds(this.getWidth()*12/20,this.getHeight()/50,this.getWidth()/2,this.getHeight()/20);
 			search.setIcon(AllImage.search);
+
 			this.add(search);
 	
 	}
