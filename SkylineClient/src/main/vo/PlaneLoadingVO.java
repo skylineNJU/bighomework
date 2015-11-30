@@ -1,6 +1,6 @@
 package main.vo;
 
-public class PlaneLoadingVO {
+public class PlaneLoadingVO extends ReceiptVO{
 	private String loadingDate;//装运日期
 	private String flightNum;//中转中心
 	private String planeNum;//
@@ -11,21 +11,24 @@ public class PlaneLoadingVO {
 	private String shipment;//装箱托运区号
 	private double freight;//运费
 
-	public PlaneLoadingVO(String id, String da, String co, String a, String b, String c, String d,
-			String e, String f,String g,String h, double i) {
-		super();
-		this.loadingDate=a;
-		this.flightNum=b;
-		this.planeNum=c;
-		this.departure=d;
-		this.destination=e;
-		this.monitor=f;
-		this.store=g;
-		this.shipment=h;
-		this.freight=i;
-		// TODO Auto-generated constructor stub
-	}
 	
+	
+	
+
+	public PlaneLoadingVO(String co, String loadingDate, String flightNum, String planeNum, String departure,
+			String destination, String monitor, String store, String shipment, double freight) {
+		super(co);
+		this.loadingDate = loadingDate;
+		this.flightNum = flightNum;
+		this.planeNum = planeNum;
+		this.departure = departure;
+		this.destination = destination;
+		this.monitor = monitor;
+		this.store = store;
+		this.shipment = shipment;
+		this.freight = freight;
+	}
+
 	public boolean writePlaneLoadingVOInfo(PlaneLoadingVO vl){
 		this.loadingDate=vl.getLoadingDate();
 		this.flightNum=vl.getCarNum();

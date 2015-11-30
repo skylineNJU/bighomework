@@ -16,7 +16,13 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.LoadBLService;
+import main.businesslogicservice.receiptblService.ReceiptCode;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.IntermediateMemory;
+import main.vo.PlaneLoadingVO;
 
 public class LoadVehiclePanel {
 	int year;
@@ -101,7 +107,19 @@ public class LoadVehiclePanel {
 		
 		saveButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				LoadBLService service=ConstructFactory.LoadFactory();
+				int row=planeTable.getSelectedRow();
+				WritePanel write=(WritePanel)panel;
+				String code=null;
+				IntermediateMemory memory=(IntermediateMemory)write.getMemory();
+				ReceiptCode service1=ConstructFactory.calculateCode();
+				code=service1.calculCode(memory.getAirLoadCode(),memory.getUserName());
+				String loadingDate=yearBox.getItemAt(yearBox.getSelectedIndex())+"/"+monthBox.getItemAt(monthBox.getSelectedIndex())+"/"+dayBox.getItemAt(dayBox.getSelectedIndex());
+				PlaneLoadingVO loading=new PlaneLoadingVO(code,loadingDate,
+						(String)planeTable.getValueAt(row,0),(String)planeTable.getValueAt(row,1),(String)planeTable.getValueAt(row,2),
+						(String)planeTable.getValueAt(row,3),(String)planeTable.getValueAt(row,4),(String)planeTable.getValueAt(row,5),
+					write.getBelong()+" "+(String)planeTable.getValueAt(row,6),Double.parseDouble((String)planeTable.getValueAt(row,7)));
+				System.out.println(loading.getCarNum());
 			}
 		});
      	
