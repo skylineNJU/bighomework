@@ -133,7 +133,7 @@ int panelHeight=0;
 												,Integer.parseInt((String)dayBox.getSelectedItem())
 												,transmitCenterNum.getText()
 												,orderNum.getText()											
-												,((WritePanel) panel).getBelong());
+												,code);
 				service.createNewTransitReception(transitReceptionInfo);
 				IntermediateReceipt receiptService=ConstructFactory.IntermediateFactory();
 				receiptService.saveIntermReceiptCode(userName, code);
@@ -142,6 +142,13 @@ int panelHeight=0;
 		
 		
 	}
+	public void remove(){
+		
+		
+		
+	}
+	
+	
 	public void setTime(){
 		Calendar calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);

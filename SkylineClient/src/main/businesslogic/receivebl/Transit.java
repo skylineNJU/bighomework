@@ -13,14 +13,17 @@ public class Transit {
 	private int receiveDay;//接收天
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
+	private String code;
 	private CenterReceivePO po;
 	
 	public Transit(TransitReceptionVO tr){
+		this.code=tr.getCode();
 		this.receiveYear=tr.getReceiveYear();
 		this.receiveMonth=tr.getReceiveMonth();
 		this.receiveDay=tr.getReceiveDay();
 		this.centerNumber=tr.getCenterNumber();
 		this.bar=tr.getBar();
+		
 	}
 public Transit(String code){
 		
@@ -28,6 +31,7 @@ public Transit(String code){
 	
 	public boolean saveInfo(){
 		po=new CenterReceivePO(this.receiveYear,this.receiveMonth,this.receiveDay,this.centerNumber,this.bar);
+		po.setCode(code);
 		ReceiveDataService service=new ReceiveDataController();
 		service.writeCenterOrder(po);
 		return true;

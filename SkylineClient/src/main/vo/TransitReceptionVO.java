@@ -13,8 +13,8 @@ public class TransitReceptionVO extends ReceiptVO{
 		receiveMonth=rm;
 		receiveDay=rd;
 		centerNumber=cn;
-		bar=bar;
-		co=co;
+		this.bar=bar;
+
 		// TODO Auto-generated constructor stub
 	}
 
