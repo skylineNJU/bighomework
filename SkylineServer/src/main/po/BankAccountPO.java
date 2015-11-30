@@ -11,27 +11,19 @@ public class BankAccountPO extends Message{
 	private static final long serialVersionUID = 1L;
 	private String account;//银行账户ID
 	private double money;//余额
-	private String code;//number指的是编号
-	public BankAccountPO(String account,double money,String code){
+	
+	//银行账户统一编号为1
+	public BankAccountPO(String account,double money){
 		this.account = account;
 		this.money = money;
-		this.code = code;
 	}
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("BankAccount");
-		reader.findNext("账户编号",this.getCode());
+		reader.findNext("账户编号","1");
 		this.account = reader.getString("银行账户名");
 		this.money=reader.getDouble("余额");
 		reader.close();
-	}
-	
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public void writeIntoDatabase(){

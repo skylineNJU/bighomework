@@ -193,7 +193,7 @@ public class DriverMessagePanel {
 	
 		ArrayList<DriverVO> volist=null;
 		InfoBLService service=ConstructFactory.InfoFactory();
-		volist=service.inquireDriver(((WritePanel)panel).getBelong());
+		volist = service.inquireDriver(((WritePanel)panel).getBelong());
 		int counter=0;
 		for(DriverVO vo:volist){
 			content[counter][0]=vo.getCode();

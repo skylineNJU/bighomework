@@ -2,7 +2,10 @@ package main.businesslogic.distributebl;
 
 import java.util.ArrayList;
 
+import main.data.distribute.DistributeDataController;
+import main.dataservice.DistributeDataService;
 import main.po.DistributePO;
+import main.po.DistributePOList;
 import main.vo.DistributeVO;
 
 
@@ -11,18 +14,17 @@ public class DistributeList {
 
 	//在数据库里查询被分配的任务
 	public ArrayList<DistributeVO> readDistribute(String courierCode){
-		ArrayList<DistributePO> distributePOList = new ArrayList<DistributePO>();
 		ArrayList<DistributeVO> distributeVOList = new ArrayList<DistributeVO>();
-		DistributeList distribute = new DistributeList();
-		distributeVOList = distribute.writeDistribute(courierCode);
-		for(DistributePO distributePO:distributePOList){
-			DistributeVO distributeVO = new DistributeVO(distributePO.getOrder(),
-					distributePO.getBar(),distributePO.getGuestName(),
-					distributePO.getGuestAddress(),distributePO.getGuestPhone(),
-					distributePO.getCourrierName());
-			distributeVOList.add(distributeVO);
+		DistributeDataService distributeController = new DistributeDataController();
+		DistributePOList disPOList = distributeController.lookTask(courierCode);
+		for(DistributePO distributePO:disPOList.getList()){
+			distributeVOList.add(new DistributeVO(distributePO.getOrderCode(),
+					distributePO.getBar(),
+					distributePO.getGuestName(),
+					distributePO.getGuestAddress(),
+					distributePO.getGuestPhoneNumber(),
+					distributePO.getCourrierName()));
 		}
 		return distributeVOList;
 	}
-	
 }

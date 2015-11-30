@@ -2,10 +2,9 @@ package main.po;
 
 import java.util.ArrayList;
 
-public class DistributeList extends Message{
+public class DistributePOList extends Message{
 	
 	private static final long serialVersionUID = 1L;
-	
 	private ArrayList<DistributePO> distributeList = new ArrayList<DistributePO>();
 	
 	public void add(DistributePO distributePO){

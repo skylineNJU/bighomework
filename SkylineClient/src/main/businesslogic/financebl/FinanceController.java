@@ -3,6 +3,7 @@ package main.businesslogic.financebl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
+import main.po.BankList;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
@@ -34,8 +35,8 @@ public class FinanceController implements FinanceBLService {
 	}
 
 	@Override
-	public BankAccountVO showBalance(String code) {
-		return new Balance().readBalance(code);
+	public ArrayList<BankAccountVO> showBalance() {
+		return new Balance().readBalance();
 	}
 
 	@Override

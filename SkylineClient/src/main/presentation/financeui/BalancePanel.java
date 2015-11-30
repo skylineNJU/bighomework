@@ -35,28 +35,26 @@ public class BalancePanel {
 	
 	public void init(){
 		title();
-		getBankAcount();
 		initTable();
 		panel.repaint();
 	}
 	
 	//获得银行信息
-	public String[][] getBankAcount(){
-		bankAccountMessage = new String[6][2];
+	public void getBankAcount(){
 		FinanceBLService service = ConstructFactory.FinanceFactory();
-		BankAccountVO bankAccountVO= new BankAccountVO();
+		ArrayList<BankAccountVO> bankListVO = service.showBalance();
+		bankAccountMessage = new String[bankListVO.size()][2];
 		int counter = 0;
-		while(counter<3){
-			bankAccountVO = service.showBalance(String.valueOf(counter));
-			this.bankAccountMessage[counter][0] = bankAccountVO.getCode();
-			this.bankAccountMessage[counter][1] = String.valueOf(bankAccountVO.getBalance());
+		for(BankAccountVO bankVO:bankListVO){
+			bankAccountMessage[counter][0] = bankVO.getCode();
+			bankAccountMessage[counter][1] = String.valueOf(bankVO.getBalance());
 			counter++;
-		};
-		return null;
+		}
 	}
 	
 	public void initTable(){
 		tableTitle = new String[]{"银行账户","余额"};
+		getBankAcount();
 		table = new JTable(bankAccountMessage,tableTitle);
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panelWidth/20);//设置列宽

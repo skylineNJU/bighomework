@@ -1,9 +1,12 @@
 package main.dataservice;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import main.po.DistributePOList;
 import main.po.OrderPO;
 import main.po.ReceivePO;
+import main.vo.DistributeVO;
 
 //任务分配
 public interface DistributeDataService {
@@ -14,7 +17,7 @@ public interface DistributeDataService {
 	
 	//输入快递员的账户
 	//数据库返回其需要分配的订单
-	public boolean lookTask(String code,List<OrderPO> orderPO);
+	public DistributePOList lookTask(String code);
 	
 	//增加收件信息
 	//数据库保存其订单信息

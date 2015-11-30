@@ -4,6 +4,7 @@ import java.util.List;
 
 import main.dataservice.FinanceDataService;
 import main.po.BankAccountPO;
+import main.po.BankList;
 import main.po.CollectionPO;
 import main.po.CostPO;
 import main.presentation.mainui.MainController;
@@ -70,11 +71,12 @@ public class FinanceDataController implements FinanceDataService{
 	}
 
 	@Override
-	public BankAccountPO readBankAccount(BankAccountPO bankAccountPO) {
+	public BankList readBankAccount() {
 		client=MainController.getClient();
-		bankAccountPO.setKey("Inquire");
-		client.wrightReceipt(bankAccountPO);
-		return (BankAccountPO) client.getResponse();
+		BankList bankList = new BankList();
+		bankList.setKey("Inquire");
+		client.wrightReceipt(bankList);
+		return (BankList) client.getResponse();
 	}
 
 	@Override

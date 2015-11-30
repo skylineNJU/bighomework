@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.po.BankAccountPO;
+import main.po.BankList;
 import main.po.CollectionPO;
 import main.po.CostPO;
 
@@ -45,7 +46,7 @@ public interface FinanceDataService {
 	
 	//从数据库里读取银行账户信息
 	//根据银行账户的账户查找
-	public BankAccountPO readBankAccount(BankAccountPO bankAccountPO);
+	public BankList readBankAccount();
 	
 	//写信息
 	public boolean writeBankAccount(BankAccountPO bankAccountPO);

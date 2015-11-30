@@ -2,6 +2,7 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
+import main.po.BankList;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
@@ -17,7 +18,7 @@ public interface FinanceBLService {
 	public boolean showEarnListDependsOnInstitution(String code,String date1,String data2,ArrayList<EarnVO> earnList);
 	
 	//输入账户编号，显示账户余额
-	public BankAccountVO showBalance(String code);
+	public ArrayList<BankAccountVO> showBalance();
 	
 	//显示本月的所有支出信息
 	public boolean showCostList(ArrayList<CostVO> costList);

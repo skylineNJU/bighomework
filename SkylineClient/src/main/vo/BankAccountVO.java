@@ -5,8 +5,6 @@ public class BankAccountVO {
 	private String code;
 	double balance;
 	
-	//无参数构造函数
-	public BankAccountVO(){}
 	//code表示银行账户，balance表示账户余额
 	public BankAccountVO(String code,double balance){
 		this.code=code;

@@ -1,13 +1,17 @@
 package main.presentation.distributeui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import main.businesslogicservice.DistributeBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.DistributeVO;
 
 public class DistributePanel {
 
@@ -35,21 +39,24 @@ public class DistributePanel {
 	}
 	
 	public void getData(){
-		tableTitle = new String[]{"单号","快递员账号","收件人姓名","收件人地址","收件手机","订单号"};
-		
+		int counter = 0;
+		DistributeBLService distributeController = ConstructFactory.DistributeFactory();
+		ArrayList<DistributeVO> voList = distributeController.showDistributeList("000890004");
+		tableData = new String[voList.size()][6];
+		for(DistributeVO distributeVO:voList){
+			tableData[counter][0] = distributeVO.getDistributeCode();
+			tableData[counter][1] = distributeVO.getID();
+			tableData[counter][2] = distributeVO.getName();
+			tableData[counter][3] = distributeVO.getAdress();
+			tableData[counter][4] = distributeVO.getPhoneNumber();
+			tableData[counter][5] = distributeVO.getOrderCode();
+			counter++;
+		}
 	}
 	//初始化表格
 	public void initTable(){
-		
-//		tableData = new String[][]{{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"},
-//				{"2015/02/26","南京大学","刘钦", "132626165"},{"2015/02/26","南京大学","刘钦", "132626165"}};
+		tableTitle = new String[]{"单号","快递员账号","收件人姓名","收件人地址","收件手机","订单号"};
+		getData();
 		table = new JTable(tableData,tableTitle);
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panelWidth/20);//设置列宽
