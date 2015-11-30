@@ -1,6 +1,7 @@
 package main.presentation.mainui;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.*;
 
@@ -14,5 +15,10 @@ public class GuidePanel extends JPanel{
 		this.setOpaque(false);
 		//this.setBackground(Color.BLUE);
 		
+	}
+	protected void paintComponent(Graphics g) {
+
+        super.paintComponent(g);
+        g.drawImage(AllImage.guideback.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 	}
 }

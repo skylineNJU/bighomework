@@ -45,7 +45,7 @@ public class IntermediateReceipt extends Message {
 	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
-		deleter.deleteData("CourrierReceipt","账户名",accountName);
+		deleter.deleteData("IntermediateReceipt","账户名",accountName);
 	}
 	
 	public void getDataFromBase(){

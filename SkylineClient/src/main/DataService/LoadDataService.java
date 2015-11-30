@@ -3,9 +3,12 @@ package main.dataservice;
 import java.util.List;
 
 import main.po.LoadingInfoPO;
+import main.po.LobbyLoadingList;
 import main.po.PlaneLoadingPO;
 import main.po.TrainLoadingPO;
 import main.po.VehicleLoadingPO;
+import main.vo.PlaneLoadingVO;
+import main.vo.TrainLoadingVO;
 
 /**
  * 装运信息的操作接口
@@ -24,7 +27,7 @@ public interface LoadDataService {
 	//删除数据库里的装运信息  loadList为要删除的装运信息
 	public boolean delVehicleLoadBase(List<VehicleLoadingPO> loadList);
 	
-	public boolean writeTrainLoadBase(List<TrainLoadingPO> loadList,String centerNumber);
+	public boolean writeTrainLoadBase(TrainLoadingPO po);
 	
 	//从数据库读取装运信息  LoadList是装运信息
 	public boolean readTrainLoadBase(List<TrainLoadingPO> trainLoadingPOList);
@@ -33,7 +36,7 @@ public interface LoadDataService {
 	public boolean delTrainLoadBase(List<TrainLoadingPO> loadList);
 	
 	
-	public boolean writePlaneLoadBase(List<PlaneLoadingPO> loadList,String centerNumber);
+	public boolean writePlaneLoadBase(PlaneLoadingPO po);
 	
 	//从数据库读取装运信息  LoadList是装运信息
 	public boolean readPlaneLoadBase(List<PlaneLoadingPO> planeLoadingPOList);
@@ -42,4 +45,7 @@ public interface LoadDataService {
 	public boolean delPlaneLoadBase(List<PlaneLoadingPO> loadList);
 	
 	public boolean saveLobbyLoadingReceipt(LoadingInfoPO po);
+	
+	public LobbyLoadingList inquireLobbyLoadList(LobbyLoadingList po);
+	
 }

@@ -129,7 +129,6 @@ public class InfoDataController implements InfoDataService {
 		driverlist.setKey("Inquire");
 		client.wrightReceipt(driverlist);
 		driverlist=(DriverList) client.getResponse();
-		System.out.println(driverlist.getlist().get(0).getName());
 		return driverlist;
 	}
 

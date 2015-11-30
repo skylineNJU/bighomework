@@ -120,7 +120,6 @@ public class InfoController implements InfoBLService {
 		// TODO Auto-generated method stub
 		Driver driver=new Driver(code);
 		ArrayList<DriverVO> volist=driver.inquire(code);
-		System.out.println(volist.get(0).getName());
 		return volist;
 	}
 

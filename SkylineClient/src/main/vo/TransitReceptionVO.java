@@ -1,44 +1,44 @@
 package main.vo;
 
 public class TransitReceptionVO extends ReceiptVO{
-	private String receiveYear;//接收年份
-	private String receiveMonth;//接收月份
-	private String receiveDay;//接收天
+	private int receiveYear;//接收年份
+	private int receiveMonth;//接收月份
+	private int receiveDay;//接收天
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	
-	public TransitReceptionVO(String ry,String rm, String rd,String cn,String bar,String co) {
+	public TransitReceptionVO(int ry,int rm, int rd,String cn,String bar,String co) {
 		super(co);
 		receiveYear=ry;
 		receiveMonth=rm;
 		receiveDay=rd;
 		centerNumber=cn;
-		bar=bar;
-		co=co;
+		this.bar=bar;
+
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getReceiveYear() {
+	public int getReceiveYear() {
 		return receiveYear;
 	}
 
-	public void setReceiveYear(String receiveYear) {
+	public void setReceiveYear(int receiveYear) {
 		this.receiveYear = receiveYear;
 	}
 
-	public String getReceiveMonth() {
+	public int getReceiveMonth() {
 		return receiveMonth;
 	}
 
-	public void setReceiveMonth(String receiveMonth) {
+	public void setReceiveMonth(int receiveMonth) {
 		this.receiveMonth = receiveMonth;
 	}
 
-	public String getReceiveDay() {
+	public int getReceiveDay() {
 		return receiveDay;
 	}
 
-	public void setReceiveDay(String receiveDay) {
+	public void setReceiveDay(int receiveDay) {
 		this.receiveDay = receiveDay;
 	}
 
@@ -58,8 +58,6 @@ public class TransitReceptionVO extends ReceiptVO{
 		this.bar = bar;
 	}
 
-	
-	
 	
 	
 	

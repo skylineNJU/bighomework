@@ -34,7 +34,7 @@ public class LoadingInfoPO  extends Receipt{
 		shipment=readOrderCode(shipment);
 		SqlWriter writer=new SqlWriter();
 		String content="'"+super.getCode()+"','"+autoMobileNum+"','"+departure+"','"
-				+destination+"','"+monitor+"','"+guard+"','"+shipment+"',"+freight;
+				+destination+"','"+monitor+"','"+guard+"','"+shipment+"',"+freight+",'"+loadingDate+"'";
 		writer.writeIntoSql("LobbyLoading", content);
 	}
 	
@@ -58,6 +58,7 @@ public class LoadingInfoPO  extends Receipt{
 		this.guard=reader.getString("押运员");
 		this.shipment=reader.getString("所有货物订单号");
 		this.freight=reader.getDouble("运费");
+		this.loadingDate=reader.getString("装车日期");
 		reader.close();
 	}
 	

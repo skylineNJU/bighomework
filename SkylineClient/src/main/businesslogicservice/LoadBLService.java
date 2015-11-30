@@ -1,6 +1,10 @@
 package main.businesslogicservice;
 
+import java.util.ArrayList;
+
 import main.vo.LobbyLoading;
+import main.vo.PlaneLoadingVO;
+import main.vo.TrainLoadingVO;
 import main.vo.TransVO;
 import main.vo.VehicleLoadingVO;
 
@@ -18,6 +22,14 @@ public interface LoadBLService {
 	 * 系统显示装运单（运输方式以type决定）
 	 */
 	
-	public boolean intermidateLoading(TransVO transInfo);
+	public boolean loadCar(VehicleLoadingVO vo);
+	
+	public boolean loadTrain(TrainLoadingVO vo);
+	
+	public boolean loadPlane(PlaneLoadingVO vo);
+	
+	public ArrayList<LobbyLoading> inquireLoadVehicle(String codeList);
+	
+	public ArrayList<PlaneLoadingVO> inquireLoadPlane(String codeList);
 	
 }
