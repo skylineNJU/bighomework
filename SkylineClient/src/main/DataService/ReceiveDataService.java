@@ -15,7 +15,7 @@ public interface ReceiveDataService {
 	
 	//查看订单信息
 	//orderBar为订单条形码
-	public boolean readOrder(String orderBar,OrderPO orderPO);
+	public boolean readOrder(OrderPO orderPO);
 	
 	//删除订单信息
 	//orderBar表示订单条形码
@@ -31,7 +31,7 @@ public interface ReceiveDataService {
 	
 	//查看中转接收单单信息
 	//orderBar为订单条形码
-	public boolean readCenterOrder(String orderBar,CenterReceivePO centerReceivePO);
+	public CenterReceivePO readCenterOrder(CenterReceivePO centerReceivePO);
 	
 	//删除中转接收单单信息
 	//orderBar表示订单条形码
@@ -41,13 +41,14 @@ public interface ReceiveDataService {
 	//orderBar表示订单条形码
 	public boolean modifiyCenterOrder(CenterReceivePO centerReceivePO);
 	
+
 	//存储新的接收单单信息
 	//将订单信息存储进数据库
 	public boolean writeLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO);
 	
 	//查看接收单单信息
 	//orderBar为订单条形码
-	public boolean readLobbyReceiveOrder(String orderBar,LobbyReceivePO lobbyReceivePO);
+	public boolean readLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO);
 	
 	//删除接收单单信息
 	//orderBar表示订单条形码

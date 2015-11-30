@@ -11,11 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.businesslogic.receiptbl.IntermediateReceiptCode;
 import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.ReceiveBLService;
+import main.businesslogicservice.receiptblService.IntermediateReceipt;
+import main.businesslogicservice.receiptblService.LobbyReceipt;
+import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.IntermediateMemory;
+import main.presentation.mainui.memory.LobbyMemory;
 import main.vo.DriverVO;
 import main.vo.TransitReceptionVO;
 
@@ -113,15 +119,24 @@ int panelHeight=0;
 		
 		saveButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
-				TransitReceptionVO transitReceptionInfo=new TransitReceptionVO((String)yearBox.getSelectedItem()
-												,(String)monthBox.getSelectedItem()
-												,(String)dayBox.getSelectedItem()
+				ReceiveBLService service=ConstructFactory.ReceiveFactory();
+				String code=null;
+				IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
+				String codeList=memory.getIntermReceiptCode();
+				String userName=memory.getUserName();
+				ReceiptCode service2=ConstructFactory.calculateCode();
+				code=service2.calculCode(codeList, userName);
+				memory.setIntermReceiptCode(memory.getIntermReceiptCode()+" "+code);
+				System.out.println("-------"+code);
+				TransitReceptionVO transitReceptionInfo=new TransitReceptionVO(Integer.parseInt((String)yearBox.getSelectedItem())
+												,Integer.parseInt((String)monthBox.getSelectedItem())
+												,Integer.parseInt((String)dayBox.getSelectedItem())
 												,transmitCenterNum.getText()
 												,orderNum.getText()											
 												,((WritePanel) panel).getBelong());
-				ReceiveBLService service=ConstructFactory.ReceiveFactory();
 				service.createNewTransitReception(transitReceptionInfo);
+				IntermediateReceipt receiptService=ConstructFactory.IntermediateFactory();
+				receiptService.saveIntermReceiptCode(userName, code);
 			}
 		});
 		

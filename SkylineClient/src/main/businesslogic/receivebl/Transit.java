@@ -1,5 +1,6 @@
 package main.businesslogic.receivebl;
 import main.data.info.InfoDataController;
+import main.data.receive.ReceiveDataController;
 import main.dataservice.InfoDataService;
 import main.dataservice.ReceiveDataService;
 import main.po.CenterReceivePO;
@@ -7,9 +8,9 @@ import main.po.DriverInfoPO;
 import main.vo.TransitReceptionVO;
 public class Transit {
 
-	private String receiveYear;//接收年份
-	private String receiveMonth;//接收月份
-	private String receiveDay;//接收天
+	private int receiveYear;//接收年份
+	private int receiveMonth;//接收月份
+	private int receiveDay;//接收天
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	private CenterReceivePO po;
@@ -28,7 +29,7 @@ public Transit(String code){
 	public boolean saveInfo(){
 		po=new CenterReceivePO(this.receiveYear,this.receiveMonth,this.receiveDay,this.centerNumber,this.bar);
 		ReceiveDataService service=new ReceiveDataController();
-		service.createNewDriver(po);
+		service.writeCenterOrder(po);
 		return true;
 		
 	}

@@ -10,13 +10,13 @@ public class CenterReceivePO extends Receipt{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String receiveYear;//接收年份
-	private String receiveMonth;//接收月份
-	private String receiveDay;//接收天
+	private int receiveYear;//接收年份
+	private int receiveMonth;//接收月份
+	private int receiveDay;//接收天
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
 	
-	public CenterReceivePO(String receiveYear,String receiveMonth,String receiveDay,String centerNumber,String bar){
+	public CenterReceivePO(int receiveYear,int receiveMonth,int receiveDay,String centerNumber,String bar){
 		this.receiveYear = receiveYear;
 		this.receiveMonth = receiveMonth;
 		this.receiveDay = receiveDay;
@@ -34,15 +34,15 @@ public class CenterReceivePO extends Receipt{
 		trans.setBar(bar);
 	}
 	
-	public String getReceiveYear() {
+	public int getReceiveYear() {
 		return receiveYear;
 	}
 
-	public String getReceiveMonth() {
+	public int getReceiveMonth() {
 		return receiveMonth;
 	}
 
-	public String getReceiveDay() {
+	public int getReceiveDay() {
 		return receiveDay;
 	}
 

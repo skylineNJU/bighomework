@@ -5,6 +5,8 @@ import main.po.CenterReceivePO;
 import main.po.DistributePO;
 import main.po.LobbyReceivePO;
 import main.po.OrderPO;
+import main.po.WorkerPO;
+import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 
 public class ReceiveDataController implements ReceiveDataService{
@@ -19,7 +21,7 @@ public class ReceiveDataController implements ReceiveDataService{
 	//查看订单信息
 	//orderBar为订单条形码
 	@Override
-	public boolean readOrder(String orderBar,OrderPO orderPO){
+	public boolean readOrder(OrderPO orderPO){
 		return false;
 	}
 	
@@ -41,14 +43,20 @@ public class ReceiveDataController implements ReceiveDataService{
 	//将订单信息存储进数据库
 	@Override
 	public boolean writeCenterOrder(CenterReceivePO centerReceivePO){
+		client=MainController.getClient();
+		centerReceivePO.setKey("Save");
+		client.wrightReceipt(centerReceivePO);
 		return false;
 	}
 	
 	//查看中转接收单单信息
 	//orderBar为订单条形码
 	@Override
-	public boolean readCenterOrder(String orderBar,CenterReceivePO centerReceivePO){
-		return false;
+	public CenterReceivePO readCenterOrder(CenterReceivePO centerReceivePO){
+		client=MainController.getClient();
+		centerReceivePO.setKey("Inquire");
+		client.wrightReceipt(centerReceivePO);
+		return (CenterReceivePO) client.getResponse();
 	}
 	
 	//删除中转接收单单信息
@@ -75,7 +83,7 @@ public class ReceiveDataController implements ReceiveDataService{
 	//查看接收单单信息
 	//orderBar为订单条形码
 	@Override
-	public boolean readLobbyReceiveOrder(String orderBar,LobbyReceivePO lobbyReceivePO){
+	public boolean readLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
 		return false;
 	}
 	
