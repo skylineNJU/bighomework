@@ -5,26 +5,31 @@ public class TrainLoadingPO  extends Receipt implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String loadingDate;//装运日期
-	String trainNum;//中转中心货运编号
-	String trainTourNum;//车次号
-	String departure;//出发地
-	String destination;//到达地
-	String monitor;//监装员
-	String store;//车厢号
-	String shipment;//装箱托运区号
-	String freight;//运费
+	private String loadingDate;//装运日期
+	private String trainNum;//中转中心货运编号
+	private String trainTourNum;//车次号
+	private String departure;//出发地
+	private String destination;//到达地
+	private String monitor;//监装员
+	private String store;//车厢号
+	private String shipment;//装箱托运区号
+	private double freight;//运费
 	
-	public TrainLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,String i){
-		loadingDate=a;
-		trainNum=b;
-		trainTourNum=c;
-		departure=d;
-		destination=e;
-		monitor=f;
-		store=g;
-		shipment=h;
-		freight=i;
+	
+
+
+	public TrainLoadingPO(String loadingDate, String trainNum, String trainTourNum, String departure,
+			String destination, String monitor, String store, String shipment, double freight) {
+		super();
+		this.loadingDate = loadingDate;
+		this.trainNum = trainNum;
+		this.trainTourNum = trainTourNum;
+		this.departure = departure;
+		this.destination = destination;
+		this.monitor = monitor;
+		this.store = store;
+		this.shipment = shipment;
+		this.setFreight(freight);
 	}
 
 	public String getLoadingDate() {
@@ -91,11 +96,13 @@ public class TrainLoadingPO  extends Receipt implements Serializable{
 		this.shipment = shipment;
 	}
 
-	public String getFreight() {
+	public double getFreight() {
 		return freight;
 	}
 
-	public void setFreight(String freight) {
+	public void setFreight(double freight) {
 		this.freight = freight;
 	}
+
+
 }

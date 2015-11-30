@@ -1,6 +1,4 @@
-package main.presentation.loadui; 
-
-import main.presentation.distributeui.ReceiveMessagePanel;
+package main.presentation.loadui;
  
   public class LoaduiController { 
   private LoadVehiclePanel loadVehicle; 

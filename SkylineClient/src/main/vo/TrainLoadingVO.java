@@ -1,6 +1,6 @@
 package main.vo;
 
-public class TrainLoadingVO {
+public class TrainLoadingVO extends ReceiptVO{
 	private String loadingDate;//装运日期
 	private String trainNum;//中转中心汽运编号
 	private String trainTourNum;//车次号
@@ -11,21 +11,24 @@ public class TrainLoadingVO {
 	private String shipment;//装箱托运区号
 	private double freight;//运费
 
-	public TrainLoadingVO(String id, String da, String co, String a, String b, String c, String d,
-			String e, String f,String g,String h, double i) {
-		super();
-		this.loadingDate=a;
-		this.trainNum=b;
-		this.trainTourNum=c;
-		this.departure=d;
-		this.destination=e;
-		this.monitor=f;
-		this.store=g;
-		this.shipment=h;
-		this.freight=i;
-		// TODO Auto-generated constructor stub
-	}
 	
+	
+
+
+	public TrainLoadingVO(String co, String loadingDate, String trainNum, String trainTourNum, String departure,
+			String destination, String monitor, String store, String shipment, double freight) {
+		super(co);
+		this.loadingDate = loadingDate;
+		this.trainNum = trainNum;
+		this.trainTourNum = trainTourNum;
+		this.departure = departure;
+		this.destination = destination;
+		this.monitor = monitor;
+		this.store = store;
+		this.shipment = shipment;
+		this.freight = freight;
+	}
+
 	public boolean writeTrainLoadingInfo(TrainLoadingVO vl){
 		this.loadingDate=vl.getLoadingDate();
 		this.trainNum=vl.getCarNum();

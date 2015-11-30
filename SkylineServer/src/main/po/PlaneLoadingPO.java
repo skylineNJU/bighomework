@@ -25,8 +25,8 @@ public class PlaneLoadingPO  extends Receipt implements Serializable{
 		shipment=readOrderCode(shipment);
 		SqlWriter writer=new SqlWriter();
 		String content="'"+super.getCode()+"','"+flightNum+"','"+planeNum+"','"+departure+"','"
-				+destination+"','"+store+"','"+monitor+"','"+shipment+"',"+freight;
-		writer.writeIntoSql("LobbyLoading", content);
+				+destination+"','"+store+"','"+monitor+"','"+shipment+"',"+freight+",'"+loadingDate+"'";
+		writer.writeIntoSql("PlaneLoading", content);
 	}
 	
 	public String readOrderCode(String area){

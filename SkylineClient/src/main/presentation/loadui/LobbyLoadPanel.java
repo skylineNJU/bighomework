@@ -3,6 +3,7 @@ package main.presentation.loadui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -138,6 +139,7 @@ public class LobbyLoadPanel {
 						loadCodeText.getText(),startPlaceText.getText(),endPlaceText.getText(),
 						supervisorText.getText(),supercargoText.getText(),loadOrderText.getText()+" "+
 						((WritePanel)panel).getBelong(),Double.parseDouble(loadFeeText.getText()));
+
 				service.loadVehicle(vo);
 				LobbyReceipt receiptService=ConstructFactory.LobbyReceiptFactory();
 				receiptService.SaveLoadingCode(userName, code);
@@ -145,6 +147,36 @@ public class LobbyLoadPanel {
 		});
 	}
 	
+	public String[][] initTableData(){
+		LobbyMemory memory=(LobbyMemory) ((WritePanel)panel).getMemory();
+		String[] codes=memory.getLobbyLoading().split(" ");
+		int length=codes.length;
+		String[][] table;
+		if(length>10)
+			table=new String[length-1][8];
+		else
+			table=new String[10][8];
+		for(int x=0;x<table.length;x++)
+			for(int y=0;y<8;y++)
+				table[x][y]=null;
+		
+		LoadBLService service=ConstructFactory.LoadFactory();
+		ArrayList<LobbyLoading> list=service.inquireLoadVehicle(memory.getLobbyLoading());
+		int x=0;
+		//"装车日期", "汽运编号", "出发地", "到达地", "监装员", "押运员", "托运单号", "运费"
+		for(LobbyLoading vo:list){
+			table[x][0]=vo.getLoadingDate();
+			table[x][1]=vo.getAutoMobileNum();
+			table[x][2]=vo.getDeparture();
+			table[x][3]=vo.getDestination();
+			table[x][4]=vo.getMonitor();
+			table[x][5]=vo.getGuard();
+			table[x][6]=vo.getShipment();
+			table[x][7]=vo.getFreight()+"";
+			x++;
+		}
+		return table;		
+	}
 	public void lookTabel(){
 		Calendar calendar = Calendar.getInstance();
 		year = calendar.get(Calendar.YEAR);
@@ -177,17 +209,7 @@ public class LobbyLoadPanel {
 		loadDay.setBounds(dayBox.getX()+panelWidth/100+panelWidth/10, panelHeight/30, panelWidth/10, panelHeight/20);
 		
 		tableTitle = new String[]{"装车日期", "汽运编号", "出发地", "到达地", "监装员", "押运员", "托运单号", "运费"};
-		tableData = new String[][]{{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"},
-				{"02152", "刘钦", "女", "2019/06/19", "0259584864", "05510161", "025", "2013/06/26"}
-		};
+		tableData =this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度

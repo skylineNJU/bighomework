@@ -8,6 +8,14 @@ public class PlaneLoadingVO extends ReceiptVO{
 	private String destination;//到达地
 	private String monitor;//监装员
 	private String store;//押送员
+	public String getStore() {
+		return store;
+	}
+
+	public void setStore(String store) {
+		this.store = store;
+	}
+
 	private String shipment;//装箱托运区号
 	private double freight;//运费
 

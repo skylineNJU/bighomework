@@ -5,7 +5,10 @@ import java.awt.Dimension;
 import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,12 +20,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import main.businesslogicservice.LoadBLService;
+import main.businesslogicservice.receiptblService.IntermediateReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.IntermediateMemory;
+import main.presentation.mainui.memory.LobbyMemory;
 import main.vo.PlaneLoadingVO;
+import main.vo.TrainLoadingVO;
+import main.vo.VehicleLoadingVO;
 
 public class LoadVehiclePanel {
 	int year;
@@ -202,7 +209,12 @@ public class LoadVehiclePanel {
 		
 		timeLabel=new JLabel("装运日期");
 		
-		
+		newButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				tabbedPane.setVisible(false);
+				planePanel.setVisible(true);
+			}
+		});
 //--------------------------------------------------------		
 	
      	setTime(tabbedPane,planeLoadInfo);
@@ -327,20 +339,41 @@ public class LoadVehiclePanel {
 		panel2.add(monthBox);
 		panel2.add(dayBox);
 	}
+	
+	public String[][] getPlaneTableData(){
+		IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
+		String[] codes=memory.getAirLoadCode().split(" ");
+		int length=codes.length;
+		String[][] table;
+		if(length>10)
+			table=new String[length-1][9];
+		else
+			table=new String[10][9];
+		for(int x=0;x<table.length;x++)
+			for(int y=0;y<9;y++)
+				table[x][y]=null;
+		LoadBLService service=ConstructFactory.LoadFactory();
+		ArrayList<PlaneLoadingVO> volist=service.inquireLoadPlane(memory.getAirLoadCode());
+		int x=0;
+		for(PlaneLoadingVO vo:volist){
+			table[x][0]=vo.getCarTourNum();
+			table[x][1]=vo.getCarNum();
+			table[x][2]=vo.getDeparture();
+			table[x][3]=vo.getDestination();
+			table[x][4]=vo.getMonitor();
+			table[x][5]=vo.getShipment();
+			table[x][6]=vo.getStore();
+			table[x][7]=vo.getFreight()+"";
+			table[x][8]=vo.getLoadingDate();
+			x++;
+		}
+		return table;
+	}
 	public void initPlaneTable(JTabbedPane panel,JPanel panel2,JTable table){
 		int panelWidth=panel.getWidth()-26;
 		int panelHeight=panel.getHeight()-26;
-		tableTitle = new String[]{"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运区号","运费"};
-		tableData = new String[][]{{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"}};
+		tableTitle = new String[]{"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运区号","运费","装运日期"};
+		tableData = this.getPlaneTableData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -435,6 +468,28 @@ public class LoadVehiclePanel {
 		carSaveButton = new JButton("保存");
 		carCancleButton = new JButton("取消");
 		
+		carSaveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				WritePanel wp=(WritePanel)panel;
+				IntermediateMemory memory=(IntermediateMemory) wp.getMemory();
+				String code=memory.getRoadLoadCode();
+				ReceiptCode codeService=ConstructFactory.calculateCode();
+				code=codeService.calculCode(code, memory.getUserName());
+				Date dt=new Date();
+				SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+				String time=format.format(dt);
+				VehicleLoadingVO vo=new VehicleLoadingVO(code,time,carLoadCodeText.getText(),carCodeText.getText(),
+						carStartText.getText(),carArriveText.getText(),carMontiorText.getText(),carSupercargoText.getText(),
+						wp.getBelong()+" "+carLoadAreaText.getText(),Double.parseDouble(carFeeText.getText()));
+				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
+				intermRservice.saveRoadLoadCode(memory.getRoadLoadCode(), code);
+				memory.setRoadLoadCode(memory.getRoadLoadCode()+" "+code);
+				memory.setRoadLoadDate(memory.getAirLoadDate()+" "+time);
+				LoadBLService service=ConstructFactory.LoadFactory();
+				service.loadCar(vo);
+			}
+		});
+		
 		carPanel.add(carLoadCode);
 		carPanel.add(carCode);
 		carPanel.add(carStart);
@@ -512,6 +567,29 @@ public class LoadVehiclePanel {
 		trainSaveButton = new JButton("保存");
 		trainCancleButton = new JButton("取消");
 		
+		trainSaveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				WritePanel wp=(WritePanel)panel;
+				IntermediateMemory memory=(IntermediateMemory) wp.getMemory();
+				String code=memory.getRailLoadCode();
+				ReceiptCode codeService=ConstructFactory.calculateCode();
+				code=codeService.calculCode(code, memory.getUserName());
+				Date dt=new Date();
+				SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+				String time=format.format(dt);
+				TrainLoadingVO vo=new TrainLoadingVO(code,time,trainLoadCodeText.getText(),
+						trainCodeText.getText(),trainStartText.getText(),trainArriveText.getText(),
+						trainMontiorText.getText(),trainCarriage.getText(),wp.getBelong()+" "+trainLoadAreaText.getText(),
+						Double.parseDouble(trainFeeText.getText()));
+				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
+				intermRservice.saveRoadLoadCode(memory.getUserName(), code);
+				memory.setRailLoadCode(memory.getRailLoadCode()+" "+code);
+				memory.setRailLoadDate(memory.getRailLoadDate()+" "+code);
+				LoadBLService service=ConstructFactory.LoadFactory();
+				service.loadTrain(vo);
+			}
+		});
+		
 		trainPanel.add(trainLoadCode);
 		trainPanel.add(trainCode);
 		trainPanel.add(trainStart);
@@ -584,6 +662,30 @@ public class LoadVehiclePanel {
 		planebackButton = new JButton("返回");
 		planeSaveButton = new JButton("保存");
 		planeCancleButton = new JButton("取消");
+		
+		
+		planeSaveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				WritePanel wp=(WritePanel)panel;
+				IntermediateMemory memory=(IntermediateMemory) wp.getMemory();
+				String code=memory.getAirLoadCode();
+				ReceiptCode codeService=ConstructFactory.calculateCode();
+				code=codeService.calculCode(code, memory.getUserName());
+				Date dt=new Date();
+				SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+				String time=format.format(dt);
+				PlaneLoadingVO vo=new PlaneLoadingVO(code,time,planeLoadCodeText.getText(),
+						planeCodeText.getText(),planeStartText.getText(),planeArriveText.getText(),
+						planeMontiorText.getText(),planeContainerText.getText(),wp.getBelong()+" "+planeLoadAreaText.getText(),
+						Double.parseDouble(planeFeeText.getText()));
+				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
+				intermRservice.saveAirLoadCode(memory.getUserName(), code);
+				memory.setAirLoadCode(memory.getAirLoadCode()+" "+code);
+				memory.setAirLoadDate(memory.getAirLoadDate()+" "+code);
+				LoadBLService service=ConstructFactory.LoadFactory();
+				service.loadPlane(vo);
+			}
+		});
 		
 		planePanel.add(planeLoadCode);
 		planePanel.add(planeCode);
