@@ -1,6 +1,7 @@
 package main.presentation.loadui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -12,7 +13,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.LoadBLService;
+import main.businesslogicservice.ReceiveBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.IntermediateMemory;
+import main.vo.PlaneLoadingVO;
+import main.vo.TransitReceptionVO;
 
 public class ReceiveListPanel {
 	int year;
@@ -52,7 +60,7 @@ public class ReceiveListPanel {
 		
 	    title();
 		setTime();
-		initTable();
+		initReceiveTable(panel,table);
 		delButton = new JButton("删除");
 		saveButton = new JButton("保存");
 		delButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
@@ -103,30 +111,77 @@ public class ReceiveListPanel {
 		panel.add(monthBox);
 		panel.add(dayBox);
 	}
- public void initTable(){
+ 
+ public String[][] getReceiveTableData(){
+		IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
+		String[] codes=memory.getIntermReceiptCode().split(" ");
+		int length=codes.length;
+		String[][] table;
+		if(length>10)
+			table=new String[length-1][9];
+		else
+			table=new String[10][9];
+		for(int x=0;x<table.length;x++)
+			for(int y=0;y<9;y++)
+				table[x][y]=null;
+		ReceiveBLService service=ConstructFactory.ReceiveFactory();
+		ArrayList<TransitReceptionVO> volist=service.inquireTransitReception(memory.getIntermReceiptCode());
+		int x=0;
+		for(TransitReceptionVO vo:volist){
+			table[x][0]=vo.getReceiveYear()+"/"+vo.getReceiveMonth()+"/"+vo.getReceiveDay();
+			table[x][1]=vo.getCenterNumber();
+			table[x][2]=vo.getBar();
+			
+			x++;
+		}
+		return table;
+	}
+ 
+ public void initReceiveTable(JPanel panel,JTable table){
+		int panelWidth=panel.getWidth()-26;
+		int panelHeight=panel.getHeight()-26;
 		tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
-		tableData = new String[][]{{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				{"1416191089", "333333", "888888"},
-				};
+		tableData = this.getReceiveTableData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.setDragEnabled(false);//设置不可拖动
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
-		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
+		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
 		if(tableData.length<=9){
-			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
+			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
 		}else{
-			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, 10*table.getRowHeight());
+			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, 10*table.getRowHeight());
 		}
 		panel.add(scrollPane);
 	}
+ 
+ 
+// public void initTable(){
+//		tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
+//		tableData = new String[][]{{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				{"1416191089", "333333", "888888"},
+//				};
+//		table = new JTable(tableData,tableTitle);
+//		scrollPane = new JScrollPane(table);
+//		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
+//		table.setRowHeight(panelWidth/20);//设置列宽
+//		table.setDragEnabled(false);//设置不可拖动
+//		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
+//		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
+//		if(tableData.length<=9){
+//			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
+//		}else{
+//			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, 10*table.getRowHeight());
+//		}
+//		panel.add(scrollPane);
+//	}
 }

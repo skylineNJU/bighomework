@@ -25,6 +25,10 @@ public class RightAdminPanel {
 	private JButton inquireButton;
 	private JButton ensureButton;
 	private JButton cancleButton;
+	private JButton newButton;
+	//新建账户信息
+	private JLabel name;
+
 	
 	public RightAdminPanel(){
 		panel=MainController.getWritepanel();
@@ -55,6 +59,7 @@ public class RightAdminPanel {
 		inquireButton = new JButton("确认");
 		ensureButton = new JButton("修改");
 		cancleButton = new JButton("取消");
+		newButton=new JButton("新建");
 		
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
@@ -74,11 +79,13 @@ public class RightAdminPanel {
 		panel.add(inquireButton);
 		panel.add(ensureButton);
 		panel.add(cancleButton);
+		panel.add(newButton);
 		
 		inquireLabel.setBounds(panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
 		inquireText.setBounds(panelWidth/4, panelHeight/10, panelWidth*9/20, panelHeight/20);
 		inquireButton.setBounds(panelWidth*4/5, panelHeight/10, panelWidth/10, panelHeight/20);
 		ensureButton.setBounds(panelWidth*4/5, 12*table.getRowHeight()+panelHeight/8+table.getY(), panelWidth/10, panelHeight/20);
 		cancleButton.setBounds(panelWidth*3/5, 12*table.getRowHeight()+panelHeight/8+table.getY(), panelWidth/10, panelHeight/20);
+		newButton.setBounds(panelWidth*2/5,12*table.getRowHeight()+panelHeight/8+table.getY() , panelWidth/10, panelHeight/20);
 	}
 }

@@ -58,6 +58,9 @@ public class TransitReceptionVO extends ReceiptVO{
 		this.bar = bar;
 	}
 
+
+	
+
 	
 	
 	
