@@ -41,7 +41,7 @@ public class PlaneLoadingPO  extends Receipt implements Serializable{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("PlaneLoading");
-		reader.findNext("飞机装运单单号",this.getCode());
+		if(reader.findNext("飞机装运单单号",this.getCode())){
 		this.flightNum=reader.getString("中转中心编号");
 		this.planeNum=reader.getString("飞机航班号");
 		this.departure=reader.getString("出发地");
@@ -50,6 +50,7 @@ public class PlaneLoadingPO  extends Receipt implements Serializable{
 		this.monitor=reader.getString("监装员");
 		this.freight=reader.getDouble("运费");
 		this.loadingDate=reader.getString("单据生成时间");
+		}
 		reader.close();
 	}
 	public String getLoadingDate() {

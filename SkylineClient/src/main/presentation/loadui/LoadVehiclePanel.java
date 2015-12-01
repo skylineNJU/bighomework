@@ -2,7 +2,6 @@ package main.presentation.loadui;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
@@ -18,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import main.businesslogicservice.LoadBLService;
 import main.businesslogicservice.receiptblService.IntermediateReceipt;
@@ -26,7 +27,6 @@ import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.IntermediateMemory;
-import main.presentation.mainui.memory.LobbyMemory;
 import main.vo.PlaneLoadingVO;
 import main.vo.TrainLoadingVO;
 import main.vo.VehicleLoadingVO;
@@ -64,10 +64,8 @@ public class LoadVehiclePanel {
 	private int tabHeight;
 	
 	private int HINTER;
-	private int WINTER;
 	private int LABELWidth;
 	private int LABELHEIGHT;
-	private int TEXTWIDTH;
 	//新建汽车装运
 //	汽运编号", "车次号", "出发地", "到达地", "监装员", "押运员","托运区号","运费"
 	private JPanel carPanel;
@@ -163,11 +161,8 @@ public class LoadVehiclePanel {
 		tabHeight = tabbedPane.getHeight();
 		
 		HINTER = tabHeight*4/35;
-		WINTER = tabWidth/10;
 		LABELWidth = tabWidth/10;
 		LABELHEIGHT = tabHeight/15;
-		TEXTWIDTH = tabWidth/4;
-		
 		carPanel = new JPanel();
 		carPanel.setLayout(null);
 		panel.add(carPanel);
@@ -181,19 +176,44 @@ public class LoadVehiclePanel {
 		trainPanel.setBounds(panel.getWidth()/18,panel.getHeight()/12, panel.getWidth()/6*5+43,panel.getHeight()/6*5);
 		newTrainLoading();
 		trainPanel.setVisible(false);
-		
-		planePanel = new JPanel();
-		planePanel.setLayout(null);
-		panel.add(planePanel);
-		planePanel.setBounds(panel.getWidth()/18,panel.getHeight()/12, panel.getWidth()/6*5+43,panel.getHeight()/6*5);
-		newPlaneLoading();
-		planePanel.setVisible(false);
+	
 		
 		panel.add(tabbedPane);
+		
 		planeLoadConpo();
 		trainLoadConpo();
 		carLoadConpo();
-		
+//		tabbedPane.addChangeListener(new ChangeListener(){
+//
+//			@Override
+//			public void stateChanged(ChangeEvent arg0) {
+//				// TODO Auto-generated method stub
+//				int select=tabbedPane.getSelectedIndex();
+//				switch(select){
+//				case 0:
+//					tableData=getPlaneTableData();
+//					for(int x=0;x<tableData.length;x++)
+//						for(int y=0;y<9;y++)
+//							planeTable.setValueAt(tableData[x][y],x,y);
+//					break;
+//				case 1:
+//					tableData=getTrainTableData();
+//					for(int x=0;x<tableData.length;x++)
+//						for(int y=0;y<9;y++){
+//							System.out.println("----------"+trainTable==null);
+//							trainTable.setValueAt(tableData[x][y],x,y);
+//						}
+//					break;
+//				case 2:
+//					tableData=getCarTableData();
+//					for(int x=0;x<tableData.length;x++)
+//						for(int y=0;y<9;y++)
+//							carTable.setValueAt(tableData[x][y],x,y);
+//					break;
+//				}
+//			}
+//			
+//		});
 		
 		tabbedPane.repaint();
 		panel.repaint();
@@ -209,6 +229,12 @@ public class LoadVehiclePanel {
 		
 		timeLabel=new JLabel("装运日期");
 		
+		planePanel = new JPanel();
+		
+		planePanel.setLayout(null);
+		panel.add(planePanel);
+		planePanel.setBounds(panel.getWidth()/18,panel.getHeight()/12, panel.getWidth()/6*5+43,panel.getHeight()/6*5);
+		
 		newButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				tabbedPane.setVisible(false);
@@ -221,6 +247,11 @@ public class LoadVehiclePanel {
      	
      	initPlaneTable(tabbedPane,planeLoadInfo,planeTable);
      	
+    	
+	
+		newPlaneLoading();
+		planePanel.setVisible(false);
+		
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20-100, panelHeight*72/85);
      	saveButton.setSize(75,35);
@@ -361,8 +392,8 @@ public class LoadVehiclePanel {
 			table[x][2]=vo.getDeparture();
 			table[x][3]=vo.getDestination();
 			table[x][4]=vo.getMonitor();
-			table[x][5]=vo.getShipment();
-			table[x][6]=vo.getStore();
+			table[x][5]=vo.getStore();
+			table[x][6]=vo.getShipment();
 			table[x][7]=vo.getFreight()+"";
 			table[x][8]=vo.getLoadingDate();
 			x++;
@@ -380,7 +411,7 @@ public class LoadVehiclePanel {
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.setDragEnabled(false);//设置不可拖动
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
-		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
+		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
 		if(tableData.length<=9){
 			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
 		}else{
@@ -389,27 +420,48 @@ public class LoadVehiclePanel {
 		panel2.add(scrollPane);
 	}
 	
+	public String[][] getTrainTableData(){
+		IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
+		String codes[]=memory.getRailLoadCode().split(" ");
+		int length=codes.length;
+		String[][] table;
+		if(length>10)
+			table=new String[length-1][9];
+		else
+			table=new String[10][9];
+		for(int x=0;x<table.length;x++)
+			for(int y=0;y<9;y++)
+				table[x][y]=null;
+		LoadBLService service=ConstructFactory.LoadFactory();
+		ArrayList<TrainLoadingVO> voList=service.inquireLoadTrain(memory.getRailLoadCode());
+		int x=0;
+		//"货运编号", "车次号", "出发地", "到达地", "监装员", "车厢号","托运区号","运费","装运日期"
+		for(TrainLoadingVO vo:voList){
+			table[x][0]=vo.getCarTourNum();
+			table[x][1]=vo.getCarNum();
+			table[x][2]=vo.getDeparture();
+			table[x][3]=vo.getDestination();
+			table[x][4]=vo.getMonitor();
+			table[x][5]=vo.getGuard();
+			table[x][6]=vo.getShipment();
+			table[x][7]=vo.getFreight()+"";
+			table[x][8]=vo.getLoadingDate();
+			x++;
+		}
+		return table;	
+	}
 	public void initTrainTable(JTabbedPane panel,JPanel panel2,JTable table){
 		int panelWidth=panel.getWidth()-26;
 		int panelHeight=panel.getHeight()-26;
-		tableTitle = new String[]{"货运编号", "车次号", "出发地", "到达地", "监装员", "车厢号","托运区号","运费"};
-		tableData = new String[][]{{"1216171910", "AA774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "11","66","10000"}};
+		tableTitle = new String[]{"货运编号", "车次号", "出发地", "到达地", "监装员", "车厢号","托运单号","运费","装运日期"};
+		tableData =this.getTrainTableData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.setDragEnabled(false);//设置不可拖动
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
-		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
+		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
 		if(tableData.length<=9){
 			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
 		}else{
@@ -417,20 +469,41 @@ public class LoadVehiclePanel {
 		}
 		panel2.add(scrollPane);
 	}
+	
+	public String[][] getCarTableData(){
+		IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
+		String codes[]=memory.getRoadLoadCode().split(" ");
+		int length=codes.length;
+		String[][] table;
+		if(length>10)
+			table=new String[length-1][9];
+		else
+			table=new String[10][9];
+		for(int x=0;x<table.length;x++)
+			for(int y=0;y<9;y++)
+				table[x][y]=null;
+		LoadBLService service=ConstructFactory.LoadFactory();
+		ArrayList<VehicleLoadingVO> voList=service.inquireLoadCar(memory.getRoadLoadCode());
+		int x=0;
+		for(VehicleLoadingVO vo:voList){
+			table[x][0]=vo.getCarTourNum();
+			table[x][1]=vo.getCarNum();
+			table[x][2]=vo.getDeparture();
+			table[x][3]=vo.getDestination();
+			table[x][4]=vo.getMonitor();
+			table[x][5]=vo.getGuard();
+			table[x][6]=vo.getShipment();
+			table[x][7]=vo.getFreight()+"";
+			table[x][8]=vo.getLoadingDate();
+			x++;
+		}
+		return table;
+	}
 	public void initCarTable(JTabbedPane panel,JPanel panel2,JTable table){
 		int panelWidth=panel.getWidth()-26;
 		int panelHeight=panel.getHeight()-26;
-		tableTitle = new String[]{"汽运编号", "车次号", "出发地", "到达地", "监装员", "押运员","托运区号","运费"};
-		tableData = new String[][]{{"1216171910", "AA774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"},
-				{"12161719", "K774", "南京", "内蒙古", "村夫", "司徒","66","10000"}};
+		tableTitle = new String[]{"汽运编号", "车次号", "出发地", "到达地", "监装员", "押运员","托运区号","运费","装运日期"};
+		tableData = this.getCarTableData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -487,6 +560,10 @@ public class LoadVehiclePanel {
 				memory.setRoadLoadDate(memory.getAirLoadDate()+" "+time);
 				LoadBLService service=ConstructFactory.LoadFactory();
 				service.loadCar(vo);
+				tableData=getCarTableData();
+				for(int x=0;x<tableData.length;x++)
+					for(int y=0;y<9;y++)
+						carTable.setValueAt(tableData[x][y],x,y);
 			}
 		});
 		
@@ -582,11 +659,17 @@ public class LoadVehiclePanel {
 						trainMontiorText.getText(),trainCarriage.getText(),wp.getBelong()+" "+trainLoadAreaText.getText(),
 						Double.parseDouble(trainFeeText.getText()));
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
-				intermRservice.saveRoadLoadCode(memory.getUserName(), code);
+				intermRservice.saveRailLoadCode(memory.getUserName(), code);
 				memory.setRailLoadCode(memory.getRailLoadCode()+" "+code);
 				memory.setRailLoadDate(memory.getRailLoadDate()+" "+code);
 				LoadBLService service=ConstructFactory.LoadFactory();
 				service.loadTrain(vo);
+				tableData=getTrainTableData();
+				for(int x=0;x<tableData.length;x++)
+					for(int y=0;y<9;y++){
+						System.out.println(trainTable==null);
+						trainTable.setValueAt(tableData[x][y],x,y);
+					}
 			}
 		});
 		
@@ -684,6 +767,10 @@ public class LoadVehiclePanel {
 				memory.setAirLoadDate(memory.getAirLoadDate()+" "+code);
 				LoadBLService service=ConstructFactory.LoadFactory();
 				service.loadPlane(vo);
+				tableData=getPlaneTableData();
+				for(int x=0;x<tableData.length;x++)
+					for(int y=0;y<9;y++)
+						planeTable.setValueAt(tableData[x][y],x,y);
 			}
 		});
 		

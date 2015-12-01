@@ -52,7 +52,24 @@ public class LoadController implements LoadBLService {
 	@Override
 	public ArrayList<PlaneLoadingVO> inquireLoadPlane(String codeList) {
 		// TODO Auto-generated method stub
-		return null;
+		PlaneLoadListBL bl=new PlaneLoadListBL(codeList);
+		
+		return bl.inquire();
+	}
+
+	@Override
+	public ArrayList<TrainLoadingVO> inquireLoadTrain(String codeList) {
+		// TODO Auto-generated method stub
+		TrainLoadListBL bl=new TrainLoadListBL(codeList);
+		
+		return bl.inquire();
+	}
+
+	@Override
+	public ArrayList<VehicleLoadingVO> inquireLoadCar(String codeList) {
+		// TODO Auto-generated method stub
+		VehicleLoadListBL bl=new VehicleLoadListBL(codeList);
+		return bl.inquire();
 	}
 
 	

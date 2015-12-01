@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import main.businesslogicservice.LoadBLService;
 import main.businesslogicservice.receiptblService.LobbyReceipt;
@@ -99,6 +101,20 @@ public class LobbyLoadPanel {
 		tab.setBounds(panelWidth/15, panelHeight/15, panelWidth*13/15, panelHeight*13/15);
 		tab.setVisible(true);
 		panel.repaint();
+		tab.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				if(tab.getSelectedIndex()==0){
+					tableData=initTableData();
+					for(int x=0;x<tableData.length;x++)
+						for(int y=0;y<8;y++)
+							table.setValueAt(tableData[x][y],x,y);
+				}
+			}
+			
+		});
 	}
 	
 	public void title(){

@@ -47,7 +47,7 @@ public class TrainLoadingPO  extends Receipt implements Serializable{
 		this.shipment=reader.getString("所有货物订单号");
 		this.store=reader.getString("车厢号");
 		this.loadingDate=reader.getString("单据生成时间");
-		this.freight=reader.getDouble("费用");
+		this.freight=reader.getDouble("运费");
 		reader.close();
 	}
 	

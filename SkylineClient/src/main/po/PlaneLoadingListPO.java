@@ -13,8 +13,9 @@ public class PlaneLoadingListPO extends Message {
 	
 	public PlaneLoadingListPO(String codeList){
 		String[] codes=codeList.split(" ");
-		for(int x=0;x<codes.length;x++){
-			PlaneLoadingPO po=new PlaneLoadingPO(codes[x], codes[x], codes[x], codes[x], codes[x], codes[x], codes[x], codes[x], x);
+		for(int x=1;x<codes.length;x++){
+			PlaneLoadingPO po=new PlaneLoadingPO("","","","","","","","", x);
+			po.setCode(codes[x]);
 			list.add(po);
 		}
 	}

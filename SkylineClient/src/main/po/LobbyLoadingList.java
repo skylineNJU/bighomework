@@ -12,7 +12,7 @@ public class LobbyLoadingList extends Message {
 	public LobbyLoadingList(String codeList){
 		String[] list=codeList.split(" ");
 		for(int x=1;x<list.length;x++){
-			LoadingInfoPO po=new LoadingInfoPO(codeList, codeList, codeList, codeList, codeList, codeList, codeList,0);
+			LoadingInfoPO po=new LoadingInfoPO("","","","","","","",0);
 			po.setCode(list[x]);
 			loadList.add(po);
 		}

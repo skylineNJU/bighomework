@@ -1,32 +1,27 @@
 package main.businesslogic.loadbl;
 
+import main.data.load.LoadDataController;
+import main.dataservice.LoadDataService;
+import main.po.LoadingInfoPO;
 import main.vo.LobbyLoading;
-import main.vo.TransVO;
-import main.vo.VehicleLoadingVO;
 
 public class Load {
-	public boolean loadVehicle(LobbyLoading vehicleLoadingInfo){
-		System.out.println("bagin to loading");
-		Loading loa=new Loading(vehicleLoadingInfo);
-		loa.saveInfo();
-		return true;
-	}
+	private LoadingInfoPO po;
 	
-	public boolean intermidateLoading(TransVO transInfo){
-		switch(transInfo.getTransType()){
-		case BUS:
-			VehicleLoading vehicle=new VehicleLoading(transInfo);
-			vehicle.saveLoading();
-			break;
-		case TRAIN:
-			TrainLoading train=new TrainLoading(transInfo);
-			train.saveLoading();
-			break;
-		case PLANE:
-			PlaneLoading plane=new PlaneLoading(transInfo);
-			plane.saveLoading();
-			break;
-		}
-		return true;
+	public boolean loadVehicle(LobbyLoading vo){
+		po=new LoadingInfoPO(
+				vo.getLoadingDate(),
+				vo.getAutoMobileNum(),
+				vo.getDeparture(),
+				vo.getDestination(),
+				vo.getMonitor(),
+				vo.getGuard(),
+				vo.getShipment(),
+				vo.getFreight()
+				);
+		po.setCode(vo.getCode());
+		LoadDataService service=new LoadDataController();
+		service.saveLobbyLoadingReceipt(po);
+		return false;	
 	}
 }
