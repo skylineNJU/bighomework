@@ -1,6 +1,7 @@
 package main.data.receive;
 
 import main.dataservice.ReceiveDataService;
+import main.po.CenterReceiveListPO;
 import main.po.CenterReceivePO;
 import main.po.DistributePO;
 import main.po.LobbyReceivePO;
@@ -52,11 +53,11 @@ public class ReceiveDataController implements ReceiveDataService{
 	//查看中转接收单单信息
 	//orderBar为订单条形码
 	@Override
-	public CenterReceivePO readCenterOrder(CenterReceivePO centerReceivePO){
+	public CenterReceiveListPO readCenterOrder(CenterReceiveListPO centerReceivePO){
 		client=MainController.getClient();
 		centerReceivePO.setKey("Inquire");
 		client.wrightReceipt(centerReceivePO);
-		return (CenterReceivePO) client.getResponse();
+		return (CenterReceiveListPO) client.getResponse();
 	}
 	
 	//删除中转接收单单信息

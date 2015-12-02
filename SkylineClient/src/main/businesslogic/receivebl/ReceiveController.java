@@ -1,5 +1,8 @@
 package main.businesslogic.receivebl;
 
+import java.util.ArrayList;
+
+import main.businesslogic.loadbl.TransitReceiveListBL;
 import main.businesslogicservice.ReceiveBLService;
 import main.vo.LobbyReceptionVO;
 import main.vo.OrderVO;
@@ -30,6 +33,15 @@ public class ReceiveController implements ReceiveBLService {
 		Lobby lobby=new Lobby( lobbyReceptionInfo);
 		
 		return lobby.saveInfo();
+	}
+
+	@Override
+	public ArrayList<TransitReceptionVO> inquireTransitReception(String codeList) {
+		// TODO Auto-generated method stub
+		TransitReceiveListBL bl=new TransitReceiveListBL(codeList);
+		
+		
+		return bl.inquire();
 	}
 
 }
