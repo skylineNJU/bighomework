@@ -85,8 +85,6 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		content();
 
-		
-		
 	//	panel.add(scrollPane);
 		listPanel.setVisible(true);
 		panel.add(listPanel);	
@@ -415,14 +413,46 @@ public class AddWarehouseInReceiptPanel {
 	
 		cancel.addMouseListener( new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				panel.removeAll();
+				remove();
 				panel.repaint();
 			}		
 		});
 	
 }	
 
-	
+	public void remove(){
+		panel.remove(listPanel);
+		listPanel.remove(year);
+		listPanel.remove(month);
+		listPanel.remove(day);
+		listPanel.remove(line1);
+		listPanel.remove(line2);
+		listPanel.remove(line3);
+		listPanel.remove(tip);
+		listPanel.remove(inList);
+	//	listPanel.add(ok);
+		listPanel.remove(cancel);
+		listPanel.remove(oL);
+		listPanel.remove(code);
+		listPanel.remove(bar);
+		listPanel.remove(bartext);
+		listPanel.remove(cargoinfo);
+		listPanel.remove(inDate);
+		listPanel.remove(distination);
+		listPanel.remove(damageCondition);
+		listPanel.remove(good);
+		listPanel.remove(damage);
+		listPanel.remove(area);
+		listPanel.remove(row);
+		listPanel.remove(shelf);
+		listPanel.remove(position);
+		listPanel.remove(codetext);
+		listPanel.remove(distext);
+		listPanel.remove(areatext);
+		listPanel.remove(rowtext);
+		listPanel.remove(shelftext);
+		listPanel.remove(postext);
+	}
 	static public boolean isLeap(String a){
 		a=a.substring(0,4);
 		int year = Integer.parseInt(a);

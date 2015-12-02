@@ -88,4 +88,17 @@ public class RightAdminPanel {
 		cancleButton.setBounds(panelWidth*3/5, 12*table.getRowHeight()+panelHeight/8+table.getY(), panelWidth/10, panelHeight/20);
 		newButton.setBounds(panelWidth*2/5,12*table.getRowHeight()+panelHeight/8+table.getY() , panelWidth/10, panelHeight/20);
 	}
+	
+	
+	public void remove(){
+		panel.remove(title);
+		panel.remove(scrollPane);
+		panel.remove(inquireLabel);
+		panel.remove(inquireText);
+		panel.remove(inquireButton);
+		panel.remove(ensureButton);
+		panel.remove(cancleButton);
+	}
+	
+	
 }

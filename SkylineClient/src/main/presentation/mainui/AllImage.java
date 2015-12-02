@@ -36,7 +36,8 @@ public class AllImage {
 		public static ImageIcon edg = new ImageIcon("graphics/edg.png");
 		//搜索
 		public static ImageIcon search = new ImageIcon("graphics/search3.png");
-		
+		//搜索点击
+		public static ImageIcon searchClick = new ImageIcon("graphics/search2.png");
 		//取消
 		//提交
 		public static ImageIcon submit = new ImageIcon("graphics/submit.png");	

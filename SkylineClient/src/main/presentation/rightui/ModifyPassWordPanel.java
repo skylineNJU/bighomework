@@ -56,5 +56,15 @@ public class ModifyPassWordPanel {
 		panel.add(saveButton);
 		panel.repaint();
 	}
+	public void remove(){
+		panel.remove(title);
+		panel.remove(label1);
+		panel.remove(label2);
+		panel.remove(label3);
+		panel.remove(text1);
+		panel.remove(text2);
+		panel.remove(text3);
+		panel.remove(saveButton);
+	}
 	
 }

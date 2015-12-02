@@ -19,6 +19,7 @@ import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.WarehouseMemory;
+import main.socketservice.SqlReader;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 
@@ -376,9 +377,10 @@ public class AddWarehouseOutReceiptPanel {
 					transtype= TransType.BUS;
 				}	
 				if(pB.isSelected()){
-					 transtype= TransType.PLANE;
-					 
+					 transtype= TransType.PLANE;	 
 				}	
+				
+				
 				WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
 				String code=memory.getWarehouseOutCode();
 				ReceiptCode cal=ConstructFactory.calculateCode();
@@ -386,31 +388,75 @@ public class AddWarehouseOutReceiptPanel {
 				System.out.println("--------========-----------------"+memory.getUserName());
 				System.out.println(code);
 				
-				//code入库单号、bar为订单号
+				//code出库单号、bar为订单号
+	
 				WarehouseOutVO warehouseOutVO = new WarehouseOutVO(bartext.getText(),codetext.getText(),
 						distext.getText(),date,
 						transtype,((WritePanel) panel).getBelong()+" "+transtext.getText(),vehtext.getText(),damageCondition);
 
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
-				service.WarehouseOut(warehouseOutVO);
-			
-			
-				WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
-				wr.saveWarehouseOutCode(code, memory.getUserName());
-				
-				memory.setWarehouseOutCode(memory.getWarehouseOutCode()+" "+code);
-			
-			
+				boolean key = service.WarehouseOut(warehouseOutVO);
+				if(key){
+					WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
+					wr.saveWarehouseOutCode(code, memory.getUserName());
+					memory.setWarehouseOutCode(memory.getWarehouseOutCode()+" "+code);
+					
+					
+					
+					
+				}
 			}
 		});
 	
 		cancel.addMouseListener( new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				panel.removeAll();
+				remove();
 				panel.repaint();
 			}		
 		});
 	
+		
+	}
+	
+	public boolean ifexit(){
+		
+		
+		
+		
+	}
+	public void remove(){
+		panel.remove(listpanel);
+		listpanel.remove(year);
+		listpanel.remove(month);
+		listpanel.remove(day);
+		listpanel.remove(line1);
+		listpanel.remove(line2);
+		listpanel.remove(line3);
+		listpanel.remove(tip1);
+		listpanel.remove(tip2);
+		listpanel.remove(outList);
+		listpanel.remove(ok);
+		listpanel.remove(cancel);
+		listpanel.remove(bar);
+		listpanel.remove(code);
+		listpanel.remove(cargoinfo);
+		listpanel.remove(outDate);
+		listpanel.remove(distination);
+		listpanel.remove(loadingtype);
+		listpanel.remove(damageCondition);
+		listpanel.remove(good);
+		listpanel.remove(damage);
+		listpanel.remove(pB);
+		listpanel.remove(bB);
+		listpanel.remove(tB);
+		listpanel.remove(transfercode);
+		listpanel.remove(vehicleCode);
+		listpanel.remove(vehtext);
+		listpanel.remove(bartext);
+		listpanel.remove(codetext);
+		listpanel.remove(distext);
+		listpanel.remove(transtext);
+		
 		
 	}
 	static public boolean isLeap(String a){

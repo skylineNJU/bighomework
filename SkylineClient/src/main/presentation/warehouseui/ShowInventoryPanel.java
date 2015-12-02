@@ -81,8 +81,8 @@ public class ShowInventoryPanel {
 		Font font = new Font("宋体", Font.BOLD, 15);
 		enddate.setFont(font);
 		startdate.setFont(font);
-		startdate.setBounds(panel.getWidth()/18, panel.getHeight()/15, panel.getWidth()/6, panel.getHeight()/20);
-		enddate.setBounds(panel.getWidth()*8/18, panel.getHeight()/15, panel.getWidth()/6, panel.getHeight()/20);
+		startdate.setBounds(panel.getWidth()/18, panel.getHeight()/12, panel.getWidth()/6, panel.getHeight()/20);
+		enddate.setBounds(panel.getWidth()*8/18, panel.getHeight()/12, panel.getWidth()/6, panel.getHeight()/20);
 		startdate.setVisible(true);
 		enddate.setVisible(true);
 		
@@ -102,7 +102,7 @@ public class ShowInventoryPanel {
         }         
         
         year1 = new JComboBox(arr1);  
-        year1.setBounds(panel.getWidth()*3/18, panel.getHeight()/15, panel.getWidth()/11, panel.getHeight()/20);
+        year1.setBounds(panel.getWidth()*3/18, startdate.getY(), panel.getWidth()/11, panel.getHeight()/20);
    
         String [] arr2 = new String[12];  
         for(int i=0;i<12;i++){  
@@ -111,14 +111,14 @@ public class ShowInventoryPanel {
     
         month1 = new JComboBox(arr2);  
        
-        month1.setBounds(year1.getX()+year1.getWidth()+panel.getWidth()/100, panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+        month1.setBounds(year1.getX()+year1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         String[] arr30 = new String[31];  
         for(int i=0;i<31;i++){  
              arr30[i]=i+1+"日";  
          }  
      
         day1 = new JComboBox(arr30);  
-        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         panel.add(day1);
         
         month1.addItemListener(new ItemListener(){
@@ -142,7 +142,7 @@ public class ShowInventoryPanel {
         			}  
         		
         			day1 = new JComboBox(arr31);  
-        	        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+        	        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         	        panel.add(day1);	
         	        break;
 					case "4月":
@@ -155,7 +155,7 @@ public class ShowInventoryPanel {
 		    			}  
 		        		
 		    			 day1 = new JComboBox(arr3);  
-		    	        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+		    	        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
 		    	        panel.add(day1);
 		    	        break;
 					case "2月":
@@ -166,7 +166,7 @@ public class ShowInventoryPanel {
 							}  
 		        		
 							day1 = new JComboBox(arr33);  
-							day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+							day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
 							panel.add(day1);
 						}
 						else{
@@ -176,7 +176,7 @@ public class ShowInventoryPanel {
 							}  
 		        		
 							day1 = new JComboBox(arr333);  
-							day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+							day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
 							panel.add(day1);
 							
 						}
@@ -190,17 +190,17 @@ public class ShowInventoryPanel {
         });
        
         year2 = new JComboBox(arr1);  
-        year2.setBounds(panel.getWidth()*10/18, panel.getHeight()/15, panel.getWidth()/11, panel.getHeight()/20);
+        year2.setBounds(panel.getWidth()*10/18,  startdate.getY(), panel.getWidth()/11, panel.getHeight()/20);
       
         month2 = new JComboBox(arr2);  
-        month2.setBounds(year2.getX()+year2.getWidth()+panel.getWidth()/100, panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+        month2.setBounds(year2.getX()+year2.getWidth()+panel.getWidth()/100,startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
  
         for(int i=0;i<31;i++){  
              arr30[i]=i+1+"日";  
          }  
      
         day2 = new JComboBox(arr30);  
-        day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+        day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100,startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         panel.add(day2);
         month2.addItemListener(new ItemListener(){
      			@Override
@@ -223,7 +223,7 @@ public class ShowInventoryPanel {
              			}  
              		
              			day2 = new JComboBox(arr31);  
-             	        day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+             	        day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
              	        panel.add(day2);	
              	        break;
      					case "4月":
@@ -236,7 +236,7 @@ public class ShowInventoryPanel {
      		    			}  
      		        		
      		    			 day2 = new JComboBox(arr3);  
-     		    	        day2.setBounds(month2.getX()+month1.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+     		    	        day2.setBounds(month2.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
      		    	        panel.add(day2);
      		    	        break;
      					case "2月":
@@ -247,7 +247,7 @@ public class ShowInventoryPanel {
      							}  
      		        		
      							day2 = new JComboBox(arr33);  
-     							day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+     							day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
      							panel.add(day2);
      						}
      						else{
@@ -257,7 +257,7 @@ public class ShowInventoryPanel {
      							}  
      		        		
      							day2 = new JComboBox(arr333);  
-     							day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100,panel.getHeight()/15, panel.getWidth()/12, panel.getHeight()/20);
+     							day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
      							panel.add(day2);
      							
      						}
@@ -271,7 +271,7 @@ public class ShowInventoryPanel {
              });
        
         ok=new JButton("确定");
-		ok.setBounds(day2.getX()+month2.getWidth()+panel.getWidth()/90,panel.getHeight()/15, panel.getWidth()/11, panel.getHeight()/20);
+		ok.setBounds(day2.getX()+month2.getWidth()+panel.getWidth()/90,startdate.getY(), panel.getWidth()/11, panel.getHeight()/20);
 		ok.setVisible(true);
 		
         
@@ -387,6 +387,35 @@ public class ShowInventoryPanel {
 		
 	}
 
+	
+	public void remove(){
+		panel.remove(tab);
+		inInfo.remove(scrollPane);
+		outInfo.remove(scrollPane2);
+		inInfo.remove(inNum);
+		outInfo.remove(outNum);
+		inInfo.remove(inOfNum);
+		outInfo.remove(outOfNum);
+		panel.remove(allNum);
+		panel.remove(all);	 
+        panel.remove(ok);
+		panel.remove(year1);
+		panel.remove(month1);
+		panel.remove(day1);
+		panel.remove(year2);
+		panel.remove(month2);
+		panel.remove(day2);
+		panel.remove(startdate);
+		panel.remove(enddate);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	static public boolean isLeap(String a){
 		a=a.substring(0,4);
 		int year = Integer.parseInt(a);

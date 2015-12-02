@@ -98,4 +98,13 @@ public class PasswordInitPanel {
 		submit.setBounds(panelWidth*31/40, cancle.getY(), panelWidth/8, panelHeight/15);
 
 	}
+	
+	public void remove(){		
+		panel.remove(accountNameLabel);
+		panel.remove(accountName);
+		panel.remove(submit);
+		panel.remove(cancle);
+		panel.remove(scrollPane);
+		panel.remove(inquireButton);
+	}
 }
