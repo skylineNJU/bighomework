@@ -5,57 +5,73 @@ import main.vo.ReceiptVO;
 //一项收入的收款单PO
 public class CollectionPO extends Receipt{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private int collectionYear;//收入年份
-	private String collectionMonth;//收入月份
-	private String collectionDay;//收入天
+	private String date;
 	private String unit;//收款单位，即编号
-	private String account;//收款人账户
-	private int money;//收款金额
+	private String bankAccount;//收款人账户
+	private double money;//收款金额
 	private String remark;//备注
+	private String collectionCode;
 	
-	public CollectionPO(int collectionYear,String collectionMonth,String collectionDay,String unit,String account,int money,String remark){
-		this.collectionYear = collectionYear;
-		this.collectionMonth = collectionMonth;
-		this.collectionDay = collectionDay;
+	public CollectionPO(String collectionCode,String date,String unit,String bankAccount,double money,String remark){
+		super();
+		this.collectionCode = collectionCode;
+		this.date = date;
 		this.unit = unit;
-		this.account = account;
+		this.bankAccount = bankAccount;
 		this.money = money;
 		this.remark = remark;
 	}
 
-	public void convert(ReceiptVO vo){
-		
-	}
-	public int getCollectionYear() {
-		return collectionYear;
+	public String getCollectionCode() {
+		return collectionCode;
 	}
 
-	public String getCollectionMonth() {
-		return collectionMonth;
+	public void setCollectionCode(String collectionCode) {
+		this.collectionCode = collectionCode;
 	}
 
-	public String getCollectionDay() {
-		return collectionDay;
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getUnit() {
 		return unit;
 	}
 
-	public String getAccount() {
-		return account;
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
-	public int getMoney() {
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public double getMoney() {
 		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
 	}
 
 	public String getRemark() {
 		return remark;
 	}
-	
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

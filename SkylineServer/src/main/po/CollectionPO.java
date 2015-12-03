@@ -6,70 +6,89 @@ import main.socketservice.SqlWriter;
 //一项收入的收款单PO
 public class CollectionPO extends Receipt{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private int collectionYear;//收入年份
-	private int collectionMonth;//收入月份
-	private int collectionDay;//收入天
+	private String date;
 	private String unit;//收款单位，即编号
-	private String account;//收款人账户
+	private String bankAccount;
 	private double money;//收款金额
 	private String remark;//备注
+	private String collectionCode;
 	
-	
-
-
-	public CollectionPO(int collectionYear, int collectionMonth, int collectionDay, String unit, String account,
-			double money, String remark) {
+	public CollectionPO(String collectionCode, String date, String unit, String bankAccount, double money, String remark) {
 		super();
-		this.collectionYear = collectionYear;
-		this.collectionMonth = collectionMonth;
-		this.collectionDay = collectionDay;
+		this.collectionCode = collectionCode;
+		this.date = date;
 		this.unit = unit;
-		this.account = account;
+		this.bankAccount = bankAccount;
 		this.money = money;
 		this.remark = remark;
 	}
-
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'"+this.getCode()+"','"+collectionYear+"/"+collectionMonth+"/"+collectionDay+"','"
-				+unit+"','"+account+"',"+money+",'"+remark+"'";
+		String content="'"+this.getCode()+"','"+date+"','"
+				+unit+"','"+bankAccount+"',"+money+",'"+remark+"'";
 		writer.writeIntoSql("Collection", content);
 	}
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("Collection");
 		reader.findNext("入款单单号",this.getCode());
-		String date[]=reader.getString("收入日期").split("/");
-		this.collectionYear=Integer.parseInt(date[0]);
-		this.collectionMonth=Integer.parseInt(date[1]);
-		this.collectionDay=Integer.parseInt(date[2]);
+		this.date = reader.getString("收入日期");
 		this.unit=reader.getString("收入单位");
-		this.account=reader.getString("收入账户");
+		this.bankAccount=reader.getString("收入账户");
 		this.money=reader.getDouble("收入金额");
 		this.remark=reader.getString("备注");
 	}
 	
-	
-	public int getCollectionYear() {
-		return collectionYear;
+	public String getCollectionCode() {
+		return collectionCode;
 	}
 
+	public void setCollectionCode(String collectionCode) {
+		this.collectionCode = collectionCode;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 	public String getUnit() {
 		return unit;
 	}
 
-	public String getAccount() {
-		return account;
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
-	
+	public String getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
 	public String getRemark() {
 		return remark;
 	}
-	
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

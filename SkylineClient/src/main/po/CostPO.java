@@ -2,84 +2,67 @@ package main.po;
 
 //成本单，一项成本信息
 public class CostPO extends Receipt{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	private String costItem;//成本项目，如租金、工资等
-	private int costYear;//支出年份
-	private String costMonth;//支出月份
-	private String costDay;//支出天
-	private int money;//支出金额
-	private String count;//支出人账户
-	private String remark;//支出备注
-
-	public CostPO(String costItem,int costYear,String costMonth,String costDay,int money,String count,String remark){
-		this.costItem = costItem;
-		this.costYear = costYear;
-		this.costMonth = costMonth;
-		this.costDay = costDay;
-		this.money = money;
-		this.count = count;
+	private String bankAccount;
+	private String fee;
+	private String costType;
+	private String costDate;
+	private String remark;
+	private String costCode;
+	
+	
+	public CostPO(String bankAccount, String fee, String costType,
+			String costDate, String remark, String costCode) {
+		super();
+		this.bankAccount = bankAccount;
+		this.fee = fee;
+		this.costType = costType;
+		this.costDate = costDate;
 		this.remark = remark;
+		this.costCode = costCode;
 	}
-
 	
-	
-	public String getCostItem() {
-		return costItem;
+	public String getBankAccount() {
+		return bankAccount;
 	}
-
-	public void setCostItem(String costItem) {
-		this.costItem = costItem;
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
-
-	public int getCostYear() {
-		return costYear;
+	public String getFee() {
+		return fee;
 	}
-
-	public void setCostYear(int costYear) {
-		this.costYear = costYear;
+	public void setFee(String fee) {
+		this.fee = fee;
 	}
-
-	public String getCostMonth() {
-		return costMonth;
+	public String getCostType() {
+		return costType;
 	}
-
-	public void setCostMonth(String costMonth) {
-		this.costMonth = costMonth;
+	public void setCostType(String costType) {
+		this.costType = costType;
 	}
-
-	public String getCostDay() {
-		return costDay;
+	public String getCostDate() {
+		return costDate;
 	}
-
-	public void setCostDay(String costDay) {
-		this.costDay = costDay;
+	public void setCostDate(String costDate) {
+		this.costDate = costDate;
 	}
-
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
-	}
-
-	public String getCount() {
-		return count;
-	}
-
-	public void setCount(String count) {
-		this.count = count;
-	}
-
 	public String getRemark() {
 		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public String getCostCode() {
+		return costCode;
+	}
+	public void setCostCode(String costCode) {
+		this.costCode = costCode;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 	
 }

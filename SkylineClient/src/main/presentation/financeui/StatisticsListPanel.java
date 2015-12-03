@@ -1,6 +1,7 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -10,8 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.CostVO;
+import main.vo.EarnVO;
 
 public class StatisticsListPanel {
 	
@@ -65,6 +69,9 @@ public class StatisticsListPanel {
 		ensureButton = new JButton("确认");
 		ensureButton.setBounds(endDayBox.getX()+panelWidth/5, panelHeight/8, panelWidth/10, panelHeight/20);
 		panel.add(ensureButton);
+		earnItem = new String[]{"ID", "费用", "编号", "备注","收入账户","收入单位"};
+		costItem = new String[]{"ID", "费用", "编号", "账户", "类型", "备注"};
+		getData();
 		initCostTable();
 		initEarnTable();
 		panel.repaint();
@@ -137,23 +144,42 @@ public class StatisticsListPanel {
 		panel.add(endDayBox);
 	}
 	
+	public void getData(){
+		int earnCounter = 0;
+		int costCounter = 0;
+		String date = startYearBox.getSelectedItem()+"/"+startMonthBox.getSelectedItem()+"/"+startDayBox.getSelectedItem();
+		FinanceBLService finance = ConstructFactory.FinanceFactory();
+		ArrayList<ArrayList> list = finance.showStatisticsList(date);
+		ArrayList<EarnVO> earnList = list.get(0);
+		ArrayList<CostVO> costList = list.get(1);
+		earnData = new String[earnList.size()][earnItem.length];
+		costData = new String[costList.size()][earnItem.length];
+		for(EarnVO earnVO:earnList){
+			earnData[earnCounter][0] = earnVO.getCollectionCode();
+			earnData[earnCounter][1] = earnVO.getBankAccount();
+			earnData[earnCounter][2] = earnVO.getUnit();
+			earnData[earnCounter][3] = String.valueOf(earnVO.getMoney());
+			earnData[earnCounter][4] = earnVO.getDate();
+			earnData[earnCounter][5] = earnVO.getRemark();
+			earnCounter++;
+		}
+		for(CostVO costVO:costList){
+			costData[costCounter][0] = costVO.getCostCode();
+			costData[costCounter][1] = costVO.getBankAccount();
+			costData[costCounter][2] = costVO.getCostType();
+			costData[costCounter][3] = costVO.getDate();
+			costData[costCounter][4] = String.valueOf(costVO.getCost());
+			costData[costCounter][5] = costVO.getComment();
+			costCounter++;
+		}
+	}
+	
 	//成本列表
 	public void initCostTable(){
 		costTitle1 = new JLabel("成");
 		costTitle1.setBounds(endTime.getX(), endTime.getY()+panelHeight/10, panelWidth/40, panelHeight/20);
 		costTitle2 = new JLabel("本");
 		costTitle2.setBounds(endTime.getX(), endTime.getY()+panelHeight/10+panelHeight/10, panelWidth/40, panelHeight/20);
-		costItem = new String[]{"ID", "费用", "编号", "账户", "类型", "备注"};
-		costData = new String[][]{{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"}};
 		costListTable = new JTable(costData,costItem);
 		costListTable.setEnabled(false);//设置不可编辑内容
 		costListTable .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -181,17 +207,6 @@ public class StatisticsListPanel {
 		earnTitle1.setBounds(endTime.getX(), panelHeight*3/5, panelWidth/40, panelHeight/20);
 		earnTitle2 = new JLabel("益");
 		earnTitle2.setBounds(endTime.getX(), panelHeight*3/5+panelHeight/10, panelWidth/40, panelHeight/20);
-		earnItem = new String[]{"ID", "费用", "编号", "备注"};
-		earnData = new String[][]{{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"}};
 		earnListTable = new JTable(earnData,earnItem);
 		earnListTable.setEnabled(false);//设置不可编辑内容
 		earnListTable .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -202,10 +217,10 @@ public class StatisticsListPanel {
 		earnPane = new JScrollPane(earnListTable);
 		if(earnData.length<=6){
 			earnPane.setBounds(endTime.getX()+panelWidth/30, panelHeight*3/5,
-					panelWidth - endTime.getX()*2-panelWidth/15, (costListTable.getRowCount()+1)*costListTable.getRowHeight());
+					panelWidth - endTime.getX()*2-panelWidth/15, (earnListTable.getRowCount()+1)*earnListTable.getRowHeight());
 		}else{
 			earnPane.setBounds(endTime.getX()+panelWidth/30, panelHeight*3/5, 
-					panelWidth - endTime.getX()*2-panelWidth/15, 7*costListTable.getRowHeight());
+					panelWidth - endTime.getX()*2-panelWidth/15, 7*earnListTable.getRowHeight());
 		}
 		panel.add(earnTitle1);
 		panel.add(earnTitle2);

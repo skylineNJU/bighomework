@@ -3,7 +3,6 @@ package main.businesslogic.financebl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
-import main.po.BankList;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.EarnVO;
@@ -11,27 +10,13 @@ import main.vo.EarnVO;
 public class FinanceController implements FinanceBLService {
 
 	@Override
-	public boolean showStatisticsList(String date1, String date2,
-			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
-		StatisticsList statisticsList = new StatisticsList();
-		statisticsList.showStatisticsList(date1, date2, earnList, costList);
-		return false;
+	public ArrayList<ArrayList> showStatisticsList(String date) {
+		return new StatisticsList().showStatisticsList(date);
 	}
 
 	@Override
-	public boolean showEarnListDependsOnDay(String date,
-			ArrayList<EarnVO> earnList) {
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.readEarnList(date, earnList);
-		return false;
-	}
-
-	@Override
-	public boolean showEarnListDependsOnInstitution(String code, String date1,
-			String data2, ArrayList<EarnVO> earnList) {
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.readEarnList(code, date1, data2, earnList);
-		return false;
+	public ArrayList<EarnVO> showEarnListDependsOnDay(String date){
+		return new EarnList().readEarnList(date);
 	}
 
 	@Override
@@ -39,32 +24,33 @@ public class FinanceController implements FinanceBLService {
 		return new Balance().readBalance();
 	}
 
+
 	@Override
-	public boolean showCostList(ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		costArrayList.readCostList(costList);
+	public ArrayList<CostVO> showCostList(String date) {
+		return new CostList().readCostList(date);
+	}
+
+	@Override
+	public CostVO readCost(String costCode) {
+		return new CostList().readCost(costCode);
+	}
+
+	@Override
+	public EarnVO readEarn(String earnCode) {
+		return new EarnList().readEarn(earnCode);
+	}
+
+	@Override
+	public boolean writeEarn(EarnVO earnVO) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean showCostList(String date, ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		costArrayList.readCostList(date, costList);
+	public boolean writeCost(CostVO costVO) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public boolean writeEarnList(ArrayList<EarnVO> earnList) {
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.writeEarn(earnList);
-		return false;
-	}
-
-	@Override
-	public boolean writeCostList(ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		costArrayList.writeCostList(costList);
-		return false;
-	}
 	
 }
