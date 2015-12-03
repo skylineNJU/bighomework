@@ -1,6 +1,8 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -49,21 +51,40 @@ public class EarnListPanel {
 	}
 	
 	public void init(){
+		tableTitle = new String[]{"ID", "费用", "编号", "备注","收入账户","收入单位"};
 		title();
 		setTime();
 		initTable();
-		delButton = new JButton("删除");
-		saveButton = new JButton("保存");
-		delButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
-		saveButton.setBounds(panelWidth*3/5+delButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
-		panel.add(delButton);
-		panel.add(saveButton);
+		initButton();
+		
 		panel.repaint();
 	}
 	public void title(){
 		title = new JLabel("结算管理");
 		title.setBounds(panelWidth/3, 10, panelWidth/6, 40);
 		panel.add(title);
+	}
+	
+	public void initButton(){
+		ensureButton = new JButton("确认");
+		delButton = new JButton("删除");
+		saveButton = new JButton("保存");
+		panel.add(delButton);
+		panel.add(saveButton);
+		panel.add(ensureButton);
+		delButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		saveButton.setBounds(panelWidth*3/5+delButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		ensureButton.setBounds(dayLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		
+		ensureButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				scrollPane.remove(table);
+				panel.remove(scrollPane);
+				data();
+				initTable();
+				panel.repaint();
+			}
+		});
 	}
 	//设置时间的框
 	public void setTime(){
@@ -73,17 +94,14 @@ public class EarnListPanel {
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
 		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-		
 		timeLabel = new JLabel("时间");
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
 		dayLabel = new JLabel("日");
-		ensureButton = new JButton("确认");
 		yearBox = new JComboBox<String>(yearString);
 		monthBox = new JComboBox<String>(monthString);
 		dayBox = new JComboBox<String>(dayString);
 		
-		panel.add(ensureButton);
 		panel.add(timeLabel);
 		panel.add(yearLabel);
 		panel.add(monthLabel);
@@ -100,8 +118,7 @@ public class EarnListPanel {
 		monthLabel.setBounds(monthBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
 		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
 		dayLabel.setBounds(dayBox.getX()+panelWidth/40+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/10, panelHeight/20);
-		
+
 	}
 	
 	public void data(){
@@ -109,7 +126,17 @@ public class EarnListPanel {
 		String date = yearBox.getSelectedItem()+"/"+monthBox.getSelectedItem()+"/"+dayBox.getSelectedItem();
 		FinanceBLService finance = ConstructFactory.FinanceFactory();
 		ArrayList<EarnVO> voList = finance.showEarnListDependsOnDay(date);
-		tableData = new String[voList.size()][tableTitle.length];
+		if(voList.size()!=0){
+			tableData = new String[voList.size()][tableTitle.length];
+		}else{
+			tableData = new String[1][tableTitle.length];
+			tableData[0][0] = "   no data";
+			tableData[0][1] = "   no data";
+			tableData[0][2] = "   no data";
+			tableData[0][3] = "   no data";
+			tableData[0][4] = "   no data";
+			tableData[0][5] = "   no data";
+		}
 		for(EarnVO earnVO:voList){
 			tableData[counter][0] = earnVO.getBankAccount();
 			tableData[counter][1] = earnVO.getCollectionCode();
@@ -122,18 +149,7 @@ public class EarnListPanel {
 	}
 	//成本管理列表
 	public void initTable(){
-		tableTitle = new String[]{"ID", "费用", "编号", "备注","收入账户","收入单位"};
 		data();
-//		tableData = new String[][]{{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"},
-//				{"刘钦", "1毛钱", "2015", "追求卓越"}};
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
