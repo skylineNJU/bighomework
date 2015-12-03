@@ -79,11 +79,4 @@ public class FinanceDataController implements FinanceDataService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public boolean delBankAccount(BankAccountPO bankAccountPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

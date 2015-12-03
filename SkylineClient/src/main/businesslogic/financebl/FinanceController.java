@@ -30,15 +30,6 @@ public class FinanceController implements FinanceBLService {
 		return new CostList().readCostList(date);
 	}
 
-	@Override
-	public CostVO readCost(String costCode) {
-		return new CostList().readCost(costCode);
-	}
-
-	@Override
-	public EarnVO readEarn(String earnCode) {
-		return new EarnList().readEarn(earnCode);
-	}
 
 	@Override
 	public boolean writeEarn(EarnVO earnVO) {
