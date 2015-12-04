@@ -85,7 +85,7 @@ public class WarehousePanel extends GuidePanel{
 		
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				panel.removeAll();
 				panel.repaint();
 				MainController.jumpToRightui(Rightui.Login);
 			}
@@ -100,7 +100,7 @@ public class WarehousePanel extends GuidePanel{
 	}
 	
 	public void remove(){
-		panel.removeAll();
+		
 		
 	}
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import main.socketservice.SqlReader;
 
 public class BankList extends Message {
+	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<BankAccountPO> bank = new ArrayList<BankAccountPO>();
 	

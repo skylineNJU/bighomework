@@ -1,6 +1,7 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -10,7 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.EarnVO;
 
 public class EarnListPanel {
 
@@ -99,19 +103,37 @@ public class EarnListPanel {
 		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/10, panelHeight/20);
 		
 	}
+	
+	public void data(){
+		int counter = 0;
+		String date = yearBox.getSelectedItem()+"/"+monthBox.getSelectedItem()+"/"+dayBox.getSelectedItem();
+		FinanceBLService finance = ConstructFactory.FinanceFactory();
+		ArrayList<EarnVO> voList = finance.showEarnListDependsOnDay(date);
+		tableData = new String[voList.size()][tableTitle.length];
+		for(EarnVO earnVO:voList){
+			tableData[counter][0] = earnVO.getBankAccount();
+			tableData[counter][1] = earnVO.getCollectionCode();
+			tableData[counter][2] = earnVO.getDate();
+			tableData[counter][3] = earnVO.getUnit();
+			tableData[counter][4] = earnVO.getRemark();
+			tableData[counter][5] = String.valueOf(earnVO.getMoney());
+			counter++;
+		}
+	}
 	//成本管理列表
 	public void initTable(){
-		tableTitle = new String[]{"ID", "费用", "编号", "备注"};
-		tableData = new String[][]{{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "追求卓越"}};
+		tableTitle = new String[]{"ID", "费用", "编号", "备注","收入账户","收入单位"};
+		data();
+//		tableData = new String[][]{{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "追求卓越"}};
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动

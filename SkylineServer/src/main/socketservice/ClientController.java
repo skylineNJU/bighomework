@@ -18,6 +18,10 @@ public class ClientController {
     	message=obj;
     	System.out.println(message.getKey());
     	switch(message.getKey()){
+    	case "Check":
+    		message.writeIntoDatabase();
+    		response(message);
+    		break;
     	case "Save":
     		message.writeIntoDatabase();
     		break;

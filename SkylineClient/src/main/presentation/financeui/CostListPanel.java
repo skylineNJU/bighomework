@@ -1,6 +1,7 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -10,7 +11,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.CostVO;
 
 public class CostListPanel {
 	private int panelWidth;
@@ -98,19 +102,37 @@ public class CostListPanel {
 		
 		panel.repaint();
 	}
+	
+	public void setData(){
+		int counter = 0;
+		String date = yearBox.getSelectedItem()+"/"+monthBox.getSelectedItem()+"/"+dayBox.getSelectedItem();
+		FinanceBLService finance = ConstructFactory.FinanceFactory();
+		ArrayList<CostVO> voList = finance.showCostList(date);
+		tableData = new String[voList.size()][tableTitle.length];
+		for(CostVO costVO:voList){
+			tableData[counter][0] = costVO.getCostCode();
+			tableData[counter][1] = costVO.getCostType();
+			tableData[counter][2] = costVO.getDate();
+			tableData[counter][3] = costVO.getComment();
+			tableData[counter][4] = costVO.getBankAccount();
+			tableData[counter][5] = String.valueOf(costVO.getCost());
+			counter++;
+		}
+	}
 	//成本管理列表
 	public void initTable(){
 		tableTitle = new String[]{"ID", "费用", "编号", "账户", "类型", "备注"};
-		tableData = new String[][]{{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"}};
+		setData();
+//		tableData = new String[][]{{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
+//				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"}};
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动

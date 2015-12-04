@@ -25,6 +25,8 @@ public interface ReceiveBLService {
 	
 	public boolean createNewTransitReception(TransitReceptionVO transitReceptionInfo);
 	
+	public ArrayList<TransitReceptionVO> inquireTransitReception(String codeList);//查询中转到达单
+	
 	/*营业厅业务员输入
 	 * 到达日期，订单号，出发地，货物到达状态（损坏，完整，丢失）
 	 * 系统显示保存后的营业厅到达单

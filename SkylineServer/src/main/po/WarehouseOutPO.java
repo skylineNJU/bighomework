@@ -2,6 +2,7 @@ package main.po;
 import java.io.Serializable;
 
 import main.State.TransType;
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -38,12 +39,18 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	}
 	
 	public void writeIntoDatabase(){
-		SqlWriter writer=new SqlWriter();
-		String content="'"+transferCode+"','"+type.name()+"','"+outDate+"','"
-				+bar+"','"+vehicleCode+"','"+destination+"','"+super.getCode()+"','"+damageCondition+"'";
-		writer.writeIntoSql("WarhouseOut", content);
+		if(hasCargo()){
+			SqlWriter writer=new SqlWriter();
+			String content="'"+transferCode+"','"+type.name()+"','"+outDate+"','"
+					+bar+"','"+vehicleCode+"','"+destination+"','"+super.getCode()+"','"+damageCondition+"'";
+			writer.writeIntoSql("WarhouseOut", content);
+			SqlDeleter delete=new SqlDeleter();
+			delete.deleteData("InventoryInfo", "¶©µ¥ºÅ", bar);
+		}
+		else{
+			this.setKey("Can't build!!!");
+		}
 	}
-	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("WarhouseOut");
 		reader.findNext("³ö¿âµ¥µ¥ºÅ",this.getCode());
@@ -57,6 +64,23 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 		reader.close();
 	}
 	
+	public boolean hasCargo(){
+		SqlReader reader=new SqlReader("InventoryInfo");
+		if(reader.findNext("¶©µ¥ºÅ", bar)){
+			if(reader.getString("ÇøºÅ").split(" ")[0].equals(transferCode)){
+				reader.close();
+				return true;
+			}
+			else{
+				reader.close();
+				return false;
+			}
+		}
+		else{
+			reader.close();
+			return false;
+		}
+	}
 	
 	public String getDamageCondition() {
 		return damageCondition;

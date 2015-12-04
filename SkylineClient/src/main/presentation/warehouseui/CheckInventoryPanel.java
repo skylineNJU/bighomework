@@ -15,7 +15,6 @@ public class CheckInventoryPanel {
 	private JButton ok;
 	private JButton export;
 	private JLabel title;//БъЬт
-	private JLabel area;
 	private JLabel ddl;
 	private JTextField areanumber;
 	private JScrollPane scrollPane;
@@ -103,6 +102,15 @@ public class CheckInventoryPanel {
 		panel.add(title);
 	}
 	*/
+	
+	public void remove(){
+		panel.remove(ddl);
+		panel.remove(scrollPane);
+		panel.remove(export);
+		panel.remove(ok);
+		panel.remove(title);
+		panel.remove(areanumber);
+	}	
 }
 
 
