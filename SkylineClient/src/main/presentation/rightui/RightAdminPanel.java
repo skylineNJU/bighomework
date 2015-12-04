@@ -41,7 +41,7 @@ public class RightAdminPanel {
 	private String[][] tableData;
 	private JTable table;
 	private JScrollPane scrollPane;
-	
+	private String[] identityString;
 	
 	//writePanel上的组件
 	private JLabel nameLabel;//姓名标签
@@ -59,7 +59,13 @@ public class RightAdminPanel {
 	private JPanel lookPanel;//查看权限管理单
 	private JPanel writePanel;//填写权限管理
 	private JTabbedPane tab;
-
+	private Rights[] right={Rights.ACCOUNT,
+										Rights.COURIER,
+										Rights.FINANCE,
+										Rights.INTERMEDIATE,
+										Rights.LOBBY,
+										Rights.MANAGER,
+										Rights.STOREHOUSE};
 	
 	public RightAdminPanel(){
 		panel=MainController.getWritepanel();
@@ -93,7 +99,7 @@ public class RightAdminPanel {
 				if(tab.getSelectedIndex()==0){
 					tableData =initTableData();
 					for(int x=0;x<20;x++){
-						for(int y=0;y<8;y++)
+						for(int y=0;y<table.getColumnCount();y++)
 						table.setValueAt(tableData[x][y],x,y);
 					}
 				}
@@ -133,32 +139,7 @@ public class RightAdminPanel {
 		//6 管理人员
 		saveButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				Rights staffIdentity=null;
-				switch(identity.getSelectedIndex()){
-				case 0:
-					staffIdentity=Rights.COURIER;
-					break;
-				case 1:
-					staffIdentity=Rights.LOBBY;
-					break;
-				case 2:
-					staffIdentity=Rights.INTERMEDIATE;
-					break;
-				case 3:
-					staffIdentity=Rights.MANAGER;
-					break;
-				case 4:
-					staffIdentity=Rights.STOREHOUSE;
-					break;
-				case 5:
-					staffIdentity=Rights.FINANCE;
-					break;					
-				case 6:
-					staffIdentity=Rights.ACCOUNT;
-					break;
-				default:
-					break;
-				}
+				Rights staffIdentity=right[identity.getSelectedIndex()];
 				
 				AccountVO accountInfo=new AccountVO(staffIdentity
 												,nameText.getText()
@@ -186,7 +167,7 @@ public class RightAdminPanel {
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//设置不可调整大小
-		for(int i = 0;i<8;i++){
+		for(int i = 0;i<table.getColumnCount();i++){
 			table.getColumnModel().getColumn(i).setPreferredWidth(panelWidth/5);
 		}
 		
@@ -203,9 +184,9 @@ public class RightAdminPanel {
 	
 	public String[][] initTableData(){
 		String[][] content =new String[20][8];
-		for(int x=0;x<20;x++)
-			for(int y=0;y<8;y++)
-				content[x][y]=null;
+//		for(int x=0;x<table.getRowCount();x++)
+//			for(int y=0;y<table.getColumnCount();y++)
+//				content[x][y]=null;
 	
 		ArrayList<AccountVO> volist=null;
 		RightBLService service=ConstructFactory.RightFactory();
@@ -215,7 +196,7 @@ public class RightAdminPanel {
 		for(AccountVO vo:volist){
 			content[counter][0]=vo.getCode();
 			content[counter][1]=vo.getAccountName();
-			content[counter][2]=vo.getRight().toString();
+			content[counter][2]=vo.getRight().name();
 			content[counter][3]=vo.getBelong();
 		
 			counter++;
@@ -232,48 +213,32 @@ public class RightAdminPanel {
 		
 		nameText = new JTextField();
 		accountText = new JTextField();
-		
+		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
 		institutionText = new JTextField();
+		identity = new JComboBox<String>(identityString);
 		
 		
+		
+		nameLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
+		accountLabel.setBounds(panelWidth/10, panelHeight*3/40+nameLabel.getY(), panelWidth*3/20, panelHeight/20);
+		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
+		institutionLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
+		
+		
+		nameText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
+		accountText.setBounds(panelWidth/4, panelHeight*3/40+nameText.getY(), panelWidth*9/20, panelHeight/20);
+		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+accountText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+		
+		institutionText.setBounds(panelWidth/4, panelHeight*3/40+identity.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
 		writePanel.add(nameLabel);
 		writePanel.add(accountLabel);
 		writePanel.add(identityLabel);
 		writePanel.add(institutionLabel);
-		writePanel.add(idCodeLabel);
-		writePanel.add(driverPhoneLabel);
-		writePanel.add(carUnitLabel);
-		writePanel.add(licenseDataLabel);
-		writePanel.add(driverCodeText);
-		writePanel.add(driverNameText);
-		writePanel.add(driverSex1);
-		writePanel.add(driverSex2);
-		writePanel.add(driverBirthText);
-		writePanel.add(idCodeText);
-		writePanel.add(driverPhoneText);
-		writePanel.add(carUnitText);
-		writePanel.add(licenseDataText);
+		writePanel.add(nameText);
+		writePanel.add(accountText);
+		writePanel.add(identity);
+		writePanel.add(institutionText);
 		
-		driverCodeLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
-		driverNameLabel.setBounds(panelWidth/10, panelHeight*3/40+driverCodeLabel.getY(), panelWidth*3/20, panelHeight/20);
-		driverSexLabel.setBounds(panelWidth/10, panelHeight*3/40+driverNameLabel.getY(), panelWidth*3/20, panelHeight/20);
-		driverBirthLabel.setBounds(panelWidth/10, panelHeight*3/40+driverSexLabel.getY(), panelWidth*3/20, panelHeight/20);
-		idCodeLabel.setBounds(panelWidth/10, panelHeight*3/40+driverBirthLabel.getY(), panelWidth*3/20, panelHeight/20);
-		driverPhoneLabel.setBounds(panelWidth/10, panelHeight*3/40+idCodeLabel.getY(), panelWidth*3/20, panelHeight/20);
-		carUnitLabel.setBounds(panelWidth/10, panelHeight*3/40+driverPhoneLabel.getY(), panelWidth*3/20, panelHeight/20);
-		licenseDataLabel.setBounds(panelWidth/10, panelHeight*3/40+carUnitLabel.getY(), panelWidth*3/20, panelHeight/20);
-		
-		driverCodeText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
-		driverNameText.setBounds(panelWidth/4, panelHeight*3/40+driverCodeText.getY(), panelWidth*9/20, panelHeight/20);
-		
-		driverSex1.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+driverNameText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		driverSex2.setBounds(panelWidth/4+panelWidth*13/40, panelHeight*3/40+driverNameText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		
-		driverBirthText.setBounds(panelWidth/4, panelHeight*3/40+driverSex1.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
-		idCodeText.setBounds(panelWidth/4, panelHeight*3/40+driverBirthText.getY(), panelWidth*9/20, panelHeight/20);
-		driverPhoneText.setBounds(panelWidth/4, panelHeight*3/40+idCodeText.getY(), panelWidth*9/20, panelHeight/20);
-		carUnitText.setBounds(panelWidth/4, panelHeight*3/40+driverPhoneText.getY(), panelWidth*9/20, panelHeight/20);
-		licenseDataText.setBounds(panelWidth/4, panelHeight*3/40+carUnitText.getY(), panelWidth*9/20, panelHeight/20);
 		
 	}
 }

@@ -1,5 +1,6 @@
 package main.dataservice;
 
+import main.po.AccountListPO;
 import main.po.AccountPO;
 import main.State.RightType;
 
@@ -20,7 +21,10 @@ public interface RightDataService {
 	public boolean changeRight(AccountPO accountPO);
 	
 	//从数据库中读取该账户的权限
-	public boolean readRight(String account,RightType rightType);
+	public AccountListPO inquireAccountList(AccountListPO po) ;
 	
 	public AccountPO login(AccountPO accountInfo);
+	//新建账户
+	public boolean writeAccount(AccountPO po) ;
+	
 }

@@ -2,7 +2,10 @@ package main.data.right;
 
 import main.dataservice.RightDataService;
 import main.State.RightType;
+import main.po.AccountListPO;
 import main.po.AccountPO;
+import main.po.PlaneLoadingPO;
+import main.po.VehicleLoadListPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 
@@ -19,6 +22,14 @@ public class RightDataController implements RightDataService{
 	}
 
 	@Override
+	public boolean writeAccount(AccountPO po) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		po.setKey("Save");
+		client.wrightReceipt(po);
+		return false;
+	}
+	@Override
 	public boolean delAccount(String account) {
 		// TODO Auto-generated method stub
 		return false;
@@ -31,9 +42,14 @@ public class RightDataController implements RightDataService{
 	}
 
 	@Override
-	public boolean readRight(String account, RightType rightType) {
+	public AccountListPO inquireAccountList(AccountListPO po) {
 		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		po.setKey("Inquire");
+		client.wrightReceipt(po);
+		po=(AccountListPO) client.getResponse();
+		return po;
+		
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package main.businesslogic.rightbl;
 
+import java.util.ArrayList;
+
+
 import main.businesslogicservice.RightBLService;
 import main.vo.AccountVO;
 import main.vo.BankAccountVO;
@@ -19,8 +22,10 @@ public class RightController implements RightBLService{
 
 
 	@Override
-	public boolean createNewAccount(BankAccountVO accountInfo) {
+	public boolean createNewAccount(AccountVO vo) {
 		// TODO Auto-generated method stub
+		Account account=new Account(vo);
+		account.saveInfo();
 		return false;
 	}
 
@@ -37,5 +42,20 @@ public class RightController implements RightBLService{
 		}
 		else
 			return false;
+	}
+
+	@Override
+	public boolean inquireAccount(String code, AccountVO account) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<AccountVO> inquireAccount(String codeList) {
+		// TODO Auto-generated method stub
+		AccountListBL bl=new AccountListBL(codeList);
+		
+		return bl.inquire();
+		
 	}
 }

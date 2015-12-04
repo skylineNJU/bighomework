@@ -1,8 +1,11 @@
 package main.businesslogic.rightbl;
+import main.data.load.LoadDataController;
 import main.data.right.RightDataController;
+import main.dataservice.LoadDataService;
 import main.dataservice.RightDataService;
 import main.po.AccountPO;
 import main.po.Rights;
+import main.po.TrainLoadingPO;
 import main.vo.AccountVO;
 public class Account {
 
@@ -20,6 +23,7 @@ public class Account {
 		this.code=vo.getCode();
 		this.belong=vo.getBelong();
 		this.vo=vo;
+		this.right=vo.getRight();
 		service=new RightDataController();
 	}
 	
@@ -42,6 +46,11 @@ public class Account {
 		this.ID=iD2;
 	}
 	public boolean saveInfo(){
+		po=new AccountPO(ID,code,right,belong);
+		System.out.println("һ"+po.getID()+po.getCode()+po.getRight()+po.getBelong());
+		po.setCode(code);
+		RightDataService service=new RightDataController();
+		service.writeAccount(po);
 		return true;
 	}
 	

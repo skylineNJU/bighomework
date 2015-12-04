@@ -31,11 +31,22 @@ public class AccountPO extends Message implements Serializable{
 	}
 	
 	public void writeIntoDatabase(){
+		ID=readAccount(ID);
+		System.out.println("组长快来啊！");
 		SqlWriter writer=new SqlWriter();
 		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";
+		System.out.println(content);
 		writer.writeIntoSql("AccountInfo", content);
 	}
-	
+	public String readAccount(String ID){
+		String content="";
+		SqlReader reader=new SqlReader("AccountInfo");
+		while(reader.findNext("账号",ID)){
+			content=content+reader.getString("账号")+" ";
+		}
+		reader.close();
+		return content;
+	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
 		System.out.println(this.ID);
@@ -69,30 +80,49 @@ public class AccountPO extends Message implements Serializable{
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public String getID() {
 		return ID;
 	}
+
 	public void setID(String iD) {
 		ID = iD;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public Rights getRight() {
 		return right;
 	}
+
 	public void setRight(Rights right) {
 		this.right = right;
 	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
