@@ -61,9 +61,9 @@ public class CourrierReceiptPO extends Message{
 			receiveDate=reader.getString("收件单创建日期");
 		
 		if(receiveCode!=null)
-			receiveCode=reader.getString("接收单单号")+" "+receiveCode;
+			receiveCode=reader.getString("收件单单号")+" "+receiveCode;
 		else
-			receiveCode=reader.getString("接收单单号");
+			receiveCode=reader.getString("收件单单号");
 		
 		if(distributeCode!=null)
 			distributeCode=reader.getString("派件单单号")+" "+distributeCode;

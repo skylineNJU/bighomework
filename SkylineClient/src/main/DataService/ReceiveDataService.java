@@ -2,8 +2,10 @@ package main.dataservice;
 
 import main.po.CenterReceivePO;
 import main.po.DistributePO;
+import main.po.LobbyReceiveListPO;
 import main.po.OrderPO;
 import main.po.LobbyReceivePO;
+import main.po.OrderListPO;
 
 //货物接收
 //中转接收单 CenterReceivePO
@@ -15,7 +17,7 @@ public interface ReceiveDataService {
 	
 	//查看订单信息
 	//orderBar为订单条形码
-	public boolean readOrder(OrderPO orderPO);
+	public OrderListPO readOrder(OrderListPO orderPO);
 	
 	//删除订单信息
 	//orderBar表示订单条形码
@@ -48,7 +50,7 @@ public interface ReceiveDataService {
 	
 	//查看接收单单信息
 	//orderBar为订单条形码
-	public boolean readLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO);
+	public LobbyReceiveListPO readLobbyReceiveOrder(LobbyReceiveListPO poList);
 	
 	//删除接收单单信息
 	//orderBar表示订单条形码

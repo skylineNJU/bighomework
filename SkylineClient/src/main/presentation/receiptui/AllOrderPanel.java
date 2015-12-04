@@ -1,13 +1,19 @@
 package main.presentation.receiptui;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import main.businesslogicservice.ReceiveBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.CourrierMemory;
+import main.vo.OrderVO;
 
 public class AllOrderPanel {
 	
@@ -38,29 +44,54 @@ public class AllOrderPanel {
 		title.setBounds(panelWidth/3, 20, panelWidth/6, 40);
 		panel.add(title);
 	}
+	
+	public void initTableData(){
+		WritePanel wp=(WritePanel)panel;
+		CourrierMemory memory=(CourrierMemory) wp.getMemory();
+		String code=memory.getOrderCode();
+		ReceiveBLService service=ConstructFactory.ReceiveFactory();
+		ArrayList<OrderVO> voList=service.inquireOrderReceive(code);
+		int length;
+		if(voList.size()>10){
+			length=voList.size();
+		}else{
+			length=10;
+		}
+		tableData=new String[length][13];
+		for(int x=0;x<length;x++){
+			for(int y=0;y<13;y++){
+				tableData[x][y]=null;
+			}
+		}
+		int x=0;
+		for(OrderVO vo:voList){
+			tableData[x][0]=vo.getOrderCode();
+			tableData[x][1]=vo.getSenderName();
+			tableData[x][2]=vo.getSenderAddress();
+			tableData[x][3]=vo.getSenderCom();
+			tableData[x][4]=vo.getSenderMobile();
+			tableData[x][5]=vo.getReceiverName();
+			tableData[x][6]=vo.getReceiverAddress();
+			tableData[x][7]=vo.getReceiverCom();
+			tableData[x][8]=vo.getReceiverMobile();
+			tableData[x][9]=vo.getNum()+"";
+			tableData[x][10]=vo.getWeight()+"";
+			tableData[x][11]=vo.getHeight()+"";
+			tableData[x][12]=vo.getCargoName();
+			x++;
+		}
+	}
+	
+	
 	public void initTable(){
 		tableTitle = new String[]{"订单号","寄件人姓名","寄件人住址","寄件人单位","寄件人电话",
-				"收件人姓名","收件人住址","收件人单位","收件人电话", "寄件数目","寄件总重","寄件体积"};
-		tableData = new String[][]{{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"},
-				{"2015", "刘钦", "南大", "南京 大学", "20151561","张田田", "南京小学", "南京小学", "206156", "20", "205","50"}};
+				"收件人姓名","收件人住址","收件人单位","收件人电话", "寄件数目","寄件总重","寄件体积","寄件名称"};
+		this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(10000, panelWidth/20));//设置表头高度
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
-		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
+		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//设置不可调整大小
 		table.setEnabled(false);//设置不可编辑内容
 		for(int i = 0;i<tableTitle.length;i++){

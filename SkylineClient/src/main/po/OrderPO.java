@@ -7,72 +7,62 @@ public class OrderPO extends Receipt implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*	飩у瘎浠朵汉濮撳悕銆佷綇鍧�銆佸崟浣嶃�佺數璇濄�佹墜鏈猴紱
-飩�	             鏀朵欢浜哄鍚嶃�佷綇鍧�銆佸崟浣嶃�佺數璇濄�佹墜鏈�
-飩�	鎵樿繍璐х墿淇℃伅锛堝師浠舵暟銆佸疄闄呴噸閲忋�佷綋绉�佸唴浠跺搧鍚嶃�佸昂瀵革級
-飩�	鍖呰璐癸紙绾哥銆佹湪绠便�佸揩閫掕銆佸叾瀹冿級
-飩�	璐圭敤鍚堣
-飩�	璁㈠崟鏉″舰鐮佸彿锛�10浣嶆暟锛�
-飩�	缁忔祹蹇�掋�佹爣鍑嗗揩閫掋�佺壒蹇�
-
-
-*/
-	 	String senderName;
-		String senderAddress;
-		String senderCom;
+	 	private String senderName;
+		private String senderAddress;
+		private String senderCom;
 		//String sendertel;
-		String senderMobile;
+		private String senderMobile;
 		
-		String receivorName;
-		String receivorAddress;
-		String receivorCom;
+		private String receivorName;
+		private String receivorAddress;
+		private String receivorCom;
 		//String receivortel;
-		String receivorMobile;
+		private String receivorMobile;
 		
 		public enum PackageCost{
 			paperBox ,woodBox ,plasticPackage;
 		}
 		
-		PackageCost packageCost;
-		Type type;
+		private PackageCost packageCost;
+		private Type type;
 		
-		int num;//鍘熶欢鏁�
-		double weight;//瀹為檯閲嶉噺
-		double volume;//浣撶Н
-		String cargoName;//鍐呴儴鍝佸悕
+		private int num;
+		private double weight;
+		private double volume;
+		private String cargoName;
 		
 		public enum Size{
 			large,medium,small;	
-		}//灏哄
+		}
 		
-		Size size;
-		String orderCode;//璁㈠崟鏉″舰鐮�
-		int sum;//璐圭敤鍚堣
+		private Size size;
+		private String orderCode;
+		private double sum;
+		
+		
 
-		public OrderPO(String a,String b,String c,String e,String f,String g ,String h,String j,
-		 PackageCost pC,Type t,int k,double l,double m,String n,Size s,String p,int q){
-			 senderName = a;
-			 senderAddress = b;
-			 senderCom = c;
-			// sendertel = d;
-			 senderMobile = e;
-			
-			 receivorName = f;
-			 receivorAddress = g;
-			 receivorCom = h;
-		     //receivortel = i;
-			 receivorMobile = j;
-			
-		     packageCost = pC;
-			 type = t;
-				 
-			 num = k;
-			 weight = l;
-			 volume = m;
-			 cargoName = n;
-			 size = s;
-			 orderCode = p;
-			 sum = q;	
+		public OrderPO(String senderName, String senderAddress, String senderCom, String senderMobile,
+				String receivorName, String receivorAddress, String receivorCom, String receivorMobile,
+				PackageCost packageCost, Type type, int num, double weight, double volume, String cargoName, Size size,
+				String orderCode, double sum) {
+			super();
+			this.senderName = senderName;
+			this.senderAddress = senderAddress;
+			this.senderCom = senderCom;
+			this.senderMobile = senderMobile;
+			this.receivorName = receivorName;
+			this.receivorAddress = receivorAddress;
+			this.receivorCom = receivorCom;
+			this.receivorMobile = receivorMobile;
+			this.packageCost = packageCost;
+			this.type = type;
+			this.num = num;
+			this.weight = weight;
+			this.volume = volume;
+			this.cargoName = cargoName;
+			this.size = size;
+			this.orderCode = orderCode;
+			this.sum = sum;
 		}
 
 		public String getSenderName() {
@@ -221,7 +211,7 @@ public class OrderPO extends Receipt implements Serializable{
 			this.orderCode = orderCode;
 		}
 
-		public int getSum() {
+		public double getSum() {
 			return sum;
 		}
 

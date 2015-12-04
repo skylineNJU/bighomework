@@ -3,9 +3,10 @@ package main.data.receive;
 import main.dataservice.ReceiveDataService;
 import main.po.CenterReceivePO;
 import main.po.DistributePO;
+import main.po.LobbyReceiveListPO;
 import main.po.LobbyReceivePO;
+import main.po.OrderListPO;
 import main.po.OrderPO;
-import main.po.WorkerPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 
@@ -15,13 +16,9 @@ public class ReceiveDataController implements ReceiveDataService{
 	//存储新的订单信息
 	//将订单信息存储进数据库
 	public boolean writeOrder(OrderPO orderpo){
-		return false;
-	}
-	
-	//查看订单信息
-	//orderBar为订单条形码
-	@Override
-	public boolean readOrder(OrderPO orderPO){
+		client=MainController.getClient();
+		orderpo.setKey("Save");
+		client.wrightReceipt(orderpo);
 		return false;
 	}
 	
@@ -77,13 +74,11 @@ public class ReceiveDataController implements ReceiveDataService{
 	//将订单信息存储进数据库
 	@Override
 	public boolean writeLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
-		return false;
-	}
-	
-	//查看接收单单信息
-	//orderBar为订单条形码
-	@Override
-	public boolean readLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
+		client=MainController.getClient();
+		lobbyReceivePO.setKey("Save");
+		System.out.println("begin save");
+		client.wrightReceipt(lobbyReceivePO);
+		System.out.println("save success");
 		return false;
 	}
 	
@@ -127,5 +122,25 @@ public class ReceiveDataController implements ReceiveDataService{
 	@Override
 	public boolean modifiyDistributeOrder(DistributePO distributePO){
 		return false;
+	}
+
+	@Override
+	public LobbyReceiveListPO readLobbyReceiveOrder(LobbyReceiveListPO poList) {
+		// TODO Auto-generated method stub
+		poList.setKey("Inquire");
+		client=MainController.getClient();
+		client.wrightReceipt(poList);
+		poList=(LobbyReceiveListPO) client.getResponse();
+		return poList;
+	}
+
+	@Override
+	public OrderListPO readOrder(OrderListPO orderPO) {
+		// TODO Auto-generated method stub
+		orderPO.setKey("Inquire");
+		client=MainController.getClient();
+		client.wrightReceipt(orderPO);
+		orderPO=(OrderListPO) client.getResponse();
+		return orderPO;
 	}
 }

@@ -1,6 +1,5 @@
 package main.data.receipt;
 
-import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.dataservice.receiptdataservice.ApprovalReceiptDataService;
 import main.dataservice.receiptdataservice.CourrierReceiptDataService;
 import main.dataservice.receiptdataservice.FinanceReceiptDataService;
