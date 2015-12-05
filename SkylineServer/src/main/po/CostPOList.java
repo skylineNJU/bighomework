@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import main.socketservice.SqlReader;
 
 public class CostPOList extends Message {
+	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<CostPO> cost = new ArrayList<CostPO>();
 	

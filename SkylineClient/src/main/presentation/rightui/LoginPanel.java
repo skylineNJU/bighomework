@@ -36,9 +36,12 @@ import main.vo.IntermediateReciptVO;
 import main.vo.LobbyReceiptVO;
 import main.vo.WarhouseReceiptVO;
 
+
+
 public class LoginPanel extends JPanel{
-	private JTextField userName=new JTextField("110910009");
-	private JTextField passWord=new JTextField("12345678");
+	private JTextField userName=new JTextField("000870019");
+	private JTextField passWord=new JTextField("00000000");
+
 	private JLabel confirm=new JLabel("È·¶¨");
 	private JLabel back=new JLabel("·µ»Ø");
 	private FrameMain frame;
@@ -271,3 +274,4 @@ public class LoginPanel extends JPanel{
 		panel.remove(userName);
 	}
 }
+
