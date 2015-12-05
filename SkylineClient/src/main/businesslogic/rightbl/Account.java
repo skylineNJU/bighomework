@@ -47,7 +47,6 @@ public class Account {
 	}
 	public boolean saveInfo(){
 		po=new AccountPO(ID,code,right,belong);
-		System.out.println("һ"+po.getID()+po.getCode()+po.getRight()+po.getBelong());
 		po.setCode(code);
 		RightDataService service=new RightDataController();
 		service.writeAccount(po);

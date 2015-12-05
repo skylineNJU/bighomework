@@ -17,9 +17,9 @@ public class AccountPO extends Message implements Serializable{
 	private Rights right;
 	private String belong;
 	
-	public AccountPO(String iD, String code, Rights right, String belong) {
+	public AccountPO(String ID, String code, Rights right, String belong) {
 		super();
-		ID = iD;
+		this.ID = ID;
 		this.code = code;
 		this.right = right;
 		this.belong = belong;
@@ -31,8 +31,6 @@ public class AccountPO extends Message implements Serializable{
 	}
 	
 	public void writeIntoDatabase(){
-		ID=readAccount(ID);
-		System.out.println("组长快来啊！");
 		SqlWriter writer=new SqlWriter();
 		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";
 		System.out.println(content);
@@ -50,11 +48,12 @@ public class AccountPO extends Message implements Serializable{
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
 		System.out.println(this.ID);
-		reader.findNext("账号",ID);
+		if(reader.findNext("账号",this.getID())){
+		this.ID=reader.getString("账号");
 		this.code=reader.getString("密码");
 		this.right=Rights.valueOf(reader.getString("权限"));
 		this.belong=reader.getString("所属单位");
-		
+		}
 		reader.close();
 	}
 	
@@ -66,6 +65,7 @@ public class AccountPO extends Message implements Serializable{
 			String code=reader.getString("密码");
 
 			if(this.code.equals(code)){
+				
 				right=Rights.valueOf(reader.getString("权限"));
 				belong=reader.getString("所属单位");
 				System.out.println("login success");
@@ -85,8 +85,8 @@ public class AccountPO extends Message implements Serializable{
 		return ID;
 	}
 
-	public void setID(String iD) {
-		ID = iD;
+	public void setID(String ID) {
+		ID = ID;
 	}
 
 	public String getCode() {
