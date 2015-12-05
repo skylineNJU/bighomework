@@ -47,25 +47,25 @@ public class RightAdminPanel {
 	private JLabel nameLabel;//姓名标签
 	private JLabel accountLabel;//账号标签
 	private JLabel identityLabel;//身份标签
-	private JLabel institutionLabel;//机构标签
+	//private JLabel institutionLabel;//机构标签
 	
 	private JTextField nameText;
 	private JTextField accountText;
 	private JComboBox<String> identity;
-	private JTextField institutionText;
+	//private JTextField institutionText;
 	
 	
 	private JLabel title;
 	private JPanel lookPanel;//查看权限管理单
 	private JPanel writePanel;//填写权限管理
 	private JTabbedPane tab;
-	private Rights[] right={Rights.ACCOUNT,
-										Rights.COURIER,
-										Rights.FINANCE,
-										Rights.INTERMEDIATE,
+	private Rights[] right={Rights.COURIER,
 										Rights.LOBBY,
+										Rights.INTERMEDIATE,
 										Rights.MANAGER,
-										Rights.STOREHOUSE};
+										Rights.STOREHOUSE,
+										Rights.FINANCE,
+										Rights.ACCOUNT};
 	
 	public RightAdminPanel(){
 		panel=MainController.getWritepanel();
@@ -127,7 +127,7 @@ public class RightAdminPanel {
 				nameText.setText(null);
 				accountText.setText(null);
 				identity.setSelectedIndex(0);
-				institutionText.setText(null);
+				//institutionText.setText(null);
 			}
 		});
 		//0 快递员
@@ -194,8 +194,8 @@ public class RightAdminPanel {
 		if(volist!=null){
 		int counter=0;
 		for(AccountVO vo:volist){
-			content[counter][0]=vo.getCode();
-			content[counter][1]=vo.getAccountName();
+			content[counter][0]=vo.getAccountName();
+			content[counter][1]=vo.getCode();
 			content[counter][2]=vo.getRight().name();
 			content[counter][3]=vo.getBelong();
 		
@@ -209,12 +209,12 @@ public class RightAdminPanel {
 		nameLabel = new JLabel("姓名");
 		accountLabel= new JLabel("账号");
 		identityLabel = new JLabel("身份");
-		institutionLabel = new JLabel("机构");
+		//institutionLabel = new JLabel("机构");
 		
 		nameText = new JTextField();
 		accountText = new JTextField();
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
-		institutionText = new JTextField();
+		//institutionText = new JTextField();
 		identity = new JComboBox<String>(identityString);
 		
 		
@@ -222,22 +222,22 @@ public class RightAdminPanel {
 		nameLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
 		accountLabel.setBounds(panelWidth/10, panelHeight*3/40+nameLabel.getY(), panelWidth*3/20, panelHeight/20);
 		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
-		institutionLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
+		//institutionLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
 		
 		
 		nameText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
 		accountText.setBounds(panelWidth/4, panelHeight*3/40+nameText.getY(), panelWidth*9/20, panelHeight/20);
 		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+accountText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
 		
-		institutionText.setBounds(panelWidth/4, panelHeight*3/40+identity.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
+		//institutionText.setBounds(panelWidth/4, panelHeight*3/40+identity.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
 		writePanel.add(nameLabel);
 		writePanel.add(accountLabel);
 		writePanel.add(identityLabel);
-		writePanel.add(institutionLabel);
+		//writePanel.add(institutionLabel);
 		writePanel.add(nameText);
 		writePanel.add(accountText);
 		writePanel.add(identity);
-		writePanel.add(institutionText);
+		//writePanel.add(institutionText);
 		
 		
 	}

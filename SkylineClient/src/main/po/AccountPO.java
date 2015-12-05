@@ -9,10 +9,10 @@ public class AccountPO extends Message implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String ID;
-	private String code;
-	private Rights right;
-	private String belong;
+	private String ID;//账户名
+	private String code;//密码
+	private Rights right;//权限
+	private String belong;//机构
 	
 	
 	public AccountPO(String iD, String code, Rights right, String belong) {
