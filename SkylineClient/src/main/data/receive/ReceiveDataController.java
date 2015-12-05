@@ -19,7 +19,7 @@ public class ReceiveDataController implements ReceiveDataService{
 	public boolean writeOrder(OrderPO orderpo){
 		client=MainController.getClient();
 		orderpo.setKey("Save");
-		client.wrightReceipt(orderpo);
+		client.writeReceipt(orderpo);
 		return false;
 	}
 	
@@ -43,7 +43,7 @@ public class ReceiveDataController implements ReceiveDataService{
 	public boolean writeCenterOrder(CenterReceivePO centerReceivePO){
 		client=MainController.getClient();
 		centerReceivePO.setKey("Save");
-		client.wrightReceipt(centerReceivePO);
+		client.writeReceipt(centerReceivePO);
 		return false;
 	}
 	
@@ -53,7 +53,7 @@ public class ReceiveDataController implements ReceiveDataService{
 	public CenterReceiveListPO readCenterOrder(CenterReceiveListPO centerReceivePO){
 		client=MainController.getClient();
 		centerReceivePO.setKey("Inquire");
-		client.wrightReceipt(centerReceivePO);
+		client.writeReceipt(centerReceivePO);
 		return (CenterReceiveListPO) client.getResponse();
 	}
 	
@@ -78,7 +78,7 @@ public class ReceiveDataController implements ReceiveDataService{
 		client=MainController.getClient();
 		lobbyReceivePO.setKey("Save");
 		System.out.println("begin save");
-		client.wrightReceipt(lobbyReceivePO);
+		client.writeReceipt(lobbyReceivePO);
 		System.out.println("save success");
 		return false;
 	}
@@ -130,7 +130,7 @@ public class ReceiveDataController implements ReceiveDataService{
 		// TODO Auto-generated method stub
 		poList.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(poList);
+		client.writeReceipt(poList);
 		poList=(LobbyReceiveListPO) client.getResponse();
 		return poList;
 	}
@@ -140,7 +140,7 @@ public class ReceiveDataController implements ReceiveDataService{
 		// TODO Auto-generated method stub
 		orderPO.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(orderPO);
+		client.writeReceipt(orderPO);
 		orderPO=(OrderListPO) client.getResponse();
 		return orderPO;
 	}

@@ -105,7 +105,8 @@ public class InfoController implements InfoBLService {
 	@Override
 	public boolean deleteDriver(String driverCode) {
 		// TODO Auto-generated method stub
-		return Driver.delete(driverCode);
+		Driver dr=new Driver(driverCode);
+		return dr.delete();
 	}
 
 	@Override

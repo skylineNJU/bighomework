@@ -28,8 +28,8 @@ public class VehicleMessagePanel {
 	//按钮组件
 	private JButton cancleButton;
 	private JButton saveButton;
-	private JButton lookCancleButton;
-	private JButton lookSaveButton;
+	private JButton modifyButton;
+	private JButton deleteButton;
 	//lookPanel上的组件
 	private String[] tableTitle;
 	private String[][] tableData;
@@ -130,12 +130,24 @@ public class VehicleMessagePanel {
 				serviceTimeText.setText(null);
 			}
 		});
-		lookCancleButton = new JButton("取消");
-		lookSaveButton = new JButton("保存");
-		lookCancleButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookSaveButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookPanel.add(lookCancleButton);
-		lookPanel.add(lookSaveButton);
+		modifyButton = new JButton("修改");
+		deleteButton = new JButton("删除");
+		modifyButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
+		deleteButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookPanel.add(modifyButton);
+		lookPanel.add(deleteButton);
+		
+		modifyButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+			}
+		});
+		
+		deleteButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				
+			}
+		});
 	}
 	
 	public void lookTabel(){

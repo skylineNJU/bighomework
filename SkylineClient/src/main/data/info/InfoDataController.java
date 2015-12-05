@@ -42,7 +42,7 @@ public class InfoDataController implements InfoDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		workerPO.setKey("Save");
-		client.wrightReceipt(workerPO);
+		client.writeReceipt(workerPO);
 		return false;
 	}
 
@@ -57,7 +57,7 @@ public class InfoDataController implements InfoDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		workerPO.setKey("Inquire");
-		client.wrightReceipt(workerPO);
+		client.writeReceipt(workerPO);
 		return (WorkerPO) client.getResponse();
 	}
 
@@ -72,22 +72,17 @@ public class InfoDataController implements InfoDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		vehicleInfoPO.setKey("Save");
-		client.wrightReceipt(vehicleInfoPO);
+		client.writeReceipt(vehicleInfoPO);
 		return false;
 	}
 
-	@Override
-	public boolean deleteVehicle(String code) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public VehicleListPO readVehicle(VehicleListPO vehiclelist) {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		vehiclelist.setKey("Inquire");
-		client.wrightReceipt(vehiclelist);
+		client.writeReceipt(vehiclelist);
 		vehiclelist=(VehicleListPO) client.getResponse();
 		return vehiclelist;
 	}
@@ -95,6 +90,9 @@ public class InfoDataController implements InfoDataService {
 	@Override
 	public boolean modifyVehicle(VehicleInfoPO vehicleInfoPO) {
 		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		vehicleInfoPO.setKey("Modify");
+		client.writeReceipt(vehicleInfoPO);
 		return false;
 	}
 
@@ -103,21 +101,17 @@ public class InfoDataController implements InfoDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		driverInfoPO.setKey("Save");
-		client.wrightReceipt(driverInfoPO);
+		client.writeReceipt(driverInfoPO);
 		return false;
 	}
 
-	@Override
-	public boolean deleteDriver() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	
 
 	@Override
 	public boolean modifyDriver(DriverInfoPO driveInfoPO) {
 		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		driveInfoPO.setKey("Modify");
+		client.writeReceipt(driveInfoPO);
 		return false;
 	}
 
@@ -127,9 +121,28 @@ public class InfoDataController implements InfoDataService {
 		client=MainController.getClient();
 		System.out.println(driverlist.getlist().get(0).getCarunit());
 		driverlist.setKey("Inquire");
-		client.wrightReceipt(driverlist);
+		client.writeReceipt(driverlist);
 		driverlist=(DriverList) client.getResponse();
 		return driverlist;
+	}
+
+	@Override
+	public boolean deleteDriver(DriverInfoPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Delete");
+		System.out.println("-------------begin delete");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean deleteVehicle(VehicleInfoPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Delete");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
 	}
 
 }

@@ -14,9 +14,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
@@ -30,8 +32,8 @@ public class DriverMessagePanel {
 	//按钮组件
 	private JButton cancleButton;
 	private JButton saveButton;
-	private JButton lookCancleButton;
-	private JButton lookSaveButton;
+	private JButton lookModifyButton;
+	private JButton lookDeleteButton;
 	//lookPanel上的组件
 	private String[] tableTitle;
 	private String[][] tableData;
@@ -63,6 +65,7 @@ public class DriverMessagePanel {
 	private JPanel lookPanel;//查看接收单
 	private JPanel writePanel;//填写接收单
 	private JTabbedPane tab;
+	private boolean[] selectRow;
 	public DriverMessagePanel(){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
@@ -92,19 +95,25 @@ public class DriverMessagePanel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				// TODO Auto-generated method stub
-				if(tab.getSelectedIndex()==0){
-					tableData =initTableData();
-					for(int x=0;x<20;x++){
-						for(int y=0;y<8;y++)
-						table.setValueAt(tableData[x][y],x,y);
-					}
+				switch(tab.getSelectedIndex()){
+				case 0:
+					refresh();
 				}
+				
 			}
 			
 		});
 		panel.repaint();
 	}
 	
+	public void refresh(){
+		tableData=initTableData();
+		for(int x=0;x<tableData.length;x++){
+			for(int y=0;y<9;y++){
+				table.setValueAt(tableData[x][y],x,y);
+			}
+		}
+	}
 	public void title(){
 		title = new JLabel("司机信息管理");
 		title.setBounds(panelWidth/3, panelHeight/40, panelWidth/6, panelHeight/20);
@@ -152,18 +161,54 @@ public class DriverMessagePanel {
 				service.createNewDriver(driverInfo);
 			}
 		});
-		lookCancleButton = new JButton("取消");
-		lookSaveButton = new JButton("保存");
-		lookCancleButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookSaveButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookPanel.add(lookCancleButton);
-		lookPanel.add(lookSaveButton);
+		lookModifyButton = new JButton("修改");
+		lookDeleteButton = new JButton("删除");
+		lookModifyButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookDeleteButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookPanel.add(lookModifyButton);
+		lookPanel.add(lookDeleteButton);
 		
+		lookModifyButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				for(int x=0;x<selectRow.length;x++){
+		//"司机编号", "司机姓名", "司机性别", "司机生日", "身份证号", "联系方式", "车辆单位", "行驶证截止日期"
+					if(selectRow[x]){
+						InfoBLService service=ConstructFactory.InfoFactory();
+						DriverVO vo=new DriverVO((String)table.getValueAt(x,1),
+								(String)table.getValueAt(x,0),
+								(String)table.getValueAt(x,3),
+								(String) table.getValueAt(x,4),
+								(String) table.getValueAt(x,5),
+								(String) table.getValueAt(x,2),
+								(String) table.getValueAt(x,8),
+								((WritePanel)panel).getBelong()
+								                );
+						InfoBLService service1=ConstructFactory.InfoFactory();
+						service1.modifyDriver(vo);
+					}
+				}
+				refresh();
+			}
+		});
+		
+		lookDeleteButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				for(int x=0;x<selectRow.length;x++){
+					if(selectRow[x]){
+						InfoBLService service=ConstructFactory.InfoFactory();
+						service.deleteDriver((String) table.getValueAt(x,0));
+					}
+				}
+				
+				refresh();
+			}
+		});
 	}
 	
 	public void lookTabel(){
-		tableTitle = new String[]{"司机编号", "司机姓名", "司机性别", "司机生日", "身份证号", "联系方式", "车辆单位", "行驶证截止日期"};
-		tableData = this.initTableData();
+		tableData=this.initTableData();
+		
+		tableTitle = new String[]{"司机编号", "司机姓名", "司机性别", "司机生日", "身份证号", "联系方式", "车辆单位", "行驶证截止日期","选择"};
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
@@ -183,10 +228,24 @@ public class DriverMessagePanel {
 		}
 		scrollPane.setVisible(true);
 		lookPanel.add(scrollPane);
+		table.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				int x=table.getSelectedRow();
+				if(!selectRow[x]){
+					table.setValueAt("选定",x,8);
+					selectRow[x]=true;
+					System.out.println("select");
+				}else{
+					table.setValueAt("",x,8);
+					selectRow[x]=false;
+					System.out.println("cancel");
+				}
+			}
+		});
 	}
 	
 	public String[][] initTableData(){
-		String[][] content =new String[20][8];
+		String[][] content =new String[20][9];
 		for(int x=0;x<20;x++)
 			for(int y=0;y<8;y++)
 				content[x][y]=null;
@@ -205,8 +264,13 @@ public class DriverMessagePanel {
 			content[counter][5]=vo.getPhoneNumber();
 			content[counter][6]=vo.getCarunit();
 			content[counter][7]=vo.getLimit();
+			content[counter][8]=null;
 			counter++;
 		}
+		}
+		selectRow=new boolean[content.length];
+		for(int x=0;x<content.length;x++){
+			selectRow[x]=false;
 		}
 		return content;
 	}

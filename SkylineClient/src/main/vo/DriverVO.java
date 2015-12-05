@@ -37,16 +37,6 @@ public class DriverVO {
 		this.sex = sex;
 		this.limit = limit;
 	}
-	public boolean writeDriverInfo(Driver driver){
-		this.age=driver.getAge();
-		this.code=driver.getCode();
-		this.IDcode=driver.getIDcode();
-		this.limit=driver.getLimit();
-		this.name=driver.getName();
-		this.phoneNumber=driver.getPhoneNumber();
-		this.sex=driver.getSex();
-		return true;
-	}
 	public String getName() {
 		return name;
 	}

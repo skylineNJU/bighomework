@@ -30,6 +30,7 @@ public class ClientController {
     		response(message);
     		break;
     	case "Delete":
+    		System.out.println("get a delete mission");
     		message.deleteFromDatabase();
     		break;
     	case "Start":

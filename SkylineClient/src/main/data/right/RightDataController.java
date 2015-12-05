@@ -57,7 +57,7 @@ public class RightDataController implements RightDataService{
 		// TODO Auto-generated method stub
 		accountInfo.setKey("Start");
 		System.out.println(accountInfo.getID());
-		client.wrightReceipt(accountInfo);
+		client.writeReceipt(accountInfo);
 		accountInfo=(AccountPO) client.getResponse();
 		System.out.println(accountInfo.getRight());
 		return accountInfo;

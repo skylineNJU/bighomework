@@ -26,7 +26,7 @@ public class DistributeDataController implements DistributeDataService{
 		DistributePOList distributeList = new DistributePOList();
 		distributeList.setKey("Inquire");
 		distributeList.getList().add(new DistributePO(code, code, code, code, code, code));
-		client.wrightReceipt(distributeList);
+		client.writeReceipt(distributeList);
 		return (DistributePOList)client.getResponse();
 	}
 

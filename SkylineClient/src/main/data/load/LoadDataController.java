@@ -20,7 +20,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Save");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		return false;
 	}
 
@@ -30,7 +30,7 @@ public class LoadDataController implements LoadDataService {
 		client=MainController.getClient();
 		po.setKey("Save");
 		System.out.println("save receipt");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		return false;
 	}
 
@@ -39,7 +39,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Save");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		return false;
 	}
 
@@ -48,7 +48,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Save");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		return false;
 	}
 
@@ -57,7 +57,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Inquire");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(LobbyLoadingList) client.getResponse();
 		return po;
 	}
@@ -67,7 +67,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Inquire");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(PlaneLoadingListPO) client.getResponse();
 		return po;
 	}
@@ -77,7 +77,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Inquire");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(TrainLoadListPO) client.getResponse();
 		return po;
 	}
@@ -87,7 +87,7 @@ public class LoadDataController implements LoadDataService {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Inquire");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(VehicleLoadListPO) client.getResponse();
 		return po;
 	}

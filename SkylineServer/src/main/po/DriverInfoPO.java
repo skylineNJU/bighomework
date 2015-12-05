@@ -2,6 +2,7 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -50,6 +51,11 @@ public class DriverInfoPO extends Message implements Serializable{
 		this.phoneNum=reader.getString("司机手机号码");
 		this.sex=reader.getString("司机性别");
 		this.carunit=reader.getString("司机所在单位");
+	}
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("DriverInfo","司机编号",driverID);
 	}
 	
 	public String getDriverID() {

@@ -31,17 +31,34 @@ public class Driver {
 	}
 	
 	public Driver(String driverCode){
-		
+		this.code=driverCode;
 	}
 	
 	public boolean saveInfo(){
-		po=new DriverInfoPO(this.code,this.name,this.age,this.IDcode,this.phoneNumber,this.sex,this.limit,this.carunit);
+		po=new DriverInfoPO(this.code,
+							this.name,
+							this.age,
+							this.IDcode,
+							this.phoneNumber,
+							this.sex,
+							this.limit,
+							this.carunit);
 		InfoDataService service=new InfoDataController();
 		service.createNewDriver(po);
 		return true;
 	}
 	
 	public boolean modify(){
+		po=new DriverInfoPO(this.code,
+				this.name,
+				this.age,
+				this.IDcode,
+				this.phoneNumber,
+				this.sex,
+				this.limit,
+				this.carunit);
+		InfoDataService service=new InfoDataController();
+		service.modifyDriver(po);
 		return true;
 	}
 	public ArrayList<DriverVO> inquire(String Code){
@@ -65,49 +82,11 @@ public class Driver {
 		return volist;
 	}
 	
-	public static boolean delete(String driverCode){
+	public boolean delete(){
+		DriverInfoPO po=new DriverInfoPO(code, code, code, code, code, code, code, code);
+		InfoDataService service=new InfoDataController();
+		service.deleteDriver(po);
 		return true;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-	public String getAge() {
-		return age;
-	}
-	public void setAge(String age) {
-		this.age = age;
-	}
-	public String getIDcode() {
-		return IDcode;
-	}
-	public void setIDcode(String iDcode) {
-		IDcode = iDcode;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-	public String getLimit() {
-		return limit;
-	}
-	public void setLimit(String limit) {
-		this.limit = limit;
-	}
+	
 }

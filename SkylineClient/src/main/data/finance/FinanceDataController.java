@@ -21,7 +21,7 @@ public class FinanceDataController implements FinanceDataService{
 		CostPOList costPOList = new CostPOList();
 		costPOList.getList().add(new CostPO(date, date, date, date, date, date));
 		costPOList.setKey("Inquire");
-		client.wrightReceipt(costPOList);
+		client.writeReceipt(costPOList);
 		return (CostPOList) client.getResponse();
 	}
 	
@@ -49,7 +49,7 @@ public class FinanceDataController implements FinanceDataService{
 		CollectionPOList collectionPOList = new CollectionPOList();
 		collectionPOList.getList().add(new CollectionPO(date, date, date, date, 0, date));
 		collectionPOList.setKey("Inquire");
-		client.wrightReceipt(collectionPOList);
+		client.writeReceipt(collectionPOList);
 		return (CollectionPOList) client.getResponse();
 	}
 
@@ -70,7 +70,7 @@ public class FinanceDataController implements FinanceDataService{
 		client=MainController.getClient();
 		BankList bankList = new BankList();
 		bankList.setKey("Inquire");
-		client.wrightReceipt(bankList);
+		client.writeReceipt(bankList);
 		return (BankList) client.getResponse();
 	}
 

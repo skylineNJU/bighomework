@@ -38,7 +38,7 @@ public class WarehouseDataController implements WarehouseDataService{
 	public boolean createWarehouseInReceipt(WarehouseInPO warehouseInPO) {
 		// TODO Auto-generated method stub
 		warehouseInPO.setKey("Save");
-		client.wrightReceipt(warehouseInPO);
+		client.writeReceipt(warehouseInPO);
 		
 		return false;
 	}
@@ -46,7 +46,7 @@ public class WarehouseDataController implements WarehouseDataService{
 	public boolean createWarehouseOutReceipt(WarehouseOutPO warehouseOutPO) {
 		// TODO Auto-generated method stub
 		warehouseOutPO.setKey("Save");
-		client.wrightReceipt(warehouseOutPO);
+		client.writeReceipt(warehouseOutPO);
 		return false;
 	}
 
