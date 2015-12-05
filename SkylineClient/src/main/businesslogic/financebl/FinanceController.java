@@ -60,6 +60,10 @@ public class FinanceController implements FinanceBLService {
 	public FeeVO readFee() {
 		return new Fee().getFee();
 	}
-	
+
+	@Override
+	public ArrayList<EarnVO> showLobbyEarn(String date, String unit) {
+		return new LobbyEarn().readLobbyEarn(date, unit);
+	}
 	
 }

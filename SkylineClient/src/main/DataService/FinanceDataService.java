@@ -10,6 +10,7 @@ import main.po.CostPO;
 import main.po.CostPOList;
 import main.po.DistancePO;
 import main.po.FeePO;
+import main.po.LobbyEarnPO;
 import main.po.SalaryPO;
 //财务管理
 public interface FinanceDataService {
@@ -17,6 +18,8 @@ public interface FinanceDataService {
 	public SalaryPO readSalary();
 	
 	public FeePO readFee();
+	
+	public LobbyEarnPO readLobbyEarn(String date,String unit);
 	
 	public CostPOList readCost(String date);
 

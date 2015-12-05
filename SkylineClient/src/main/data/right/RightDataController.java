@@ -26,7 +26,7 @@ public class RightDataController implements RightDataService{
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		po.setKey("Save");
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		return false;
 	}
 	@Override
@@ -61,6 +61,12 @@ public class RightDataController implements RightDataService{
 		accountInfo=(AccountPO) client.getResponse();
 		System.out.println(accountInfo.getRight());
 		return accountInfo;
+	}
+	@Override
+	public main.dataservice.AccountListPO inquireAccountList(
+			main.dataservice.AccountListPO po) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

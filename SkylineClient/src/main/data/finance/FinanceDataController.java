@@ -10,6 +10,7 @@ import main.po.CostPOList;
 import main.po.CollectionPOList;
 import main.po.DistancePO;
 import main.po.FeePO;
+import main.po.LobbyEarnPO;
 import main.po.SalaryPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -88,7 +89,7 @@ public class FinanceDataController implements FinanceDataService{
 		client=MainController.getClient();
 		DistancePO distance = new DistancePO();
 		distance.setKey("Inquire");
-		client.wrightReceipt(distance);
+		client.writeReceipt(distance);
 		return (DistancePO) client.getResponse();//Ð´Ò»¸öPO£¬½ÐdistancePOlist
 	}
 
@@ -97,7 +98,7 @@ public class FinanceDataController implements FinanceDataService{
 		client=MainController.getClient();
 		SalaryPO salary = new SalaryPO();
 		salary.setKey("Inquire");
-		client.wrightReceipt(salary);
+		client.writeReceipt(salary);
 		return (SalaryPO) client.getResponse();
 	}
 
@@ -106,7 +107,17 @@ public class FinanceDataController implements FinanceDataService{
 		client=MainController.getClient();
 		FeePO feePO = new FeePO(0, 0, 0);
 		feePO.setKey("Inquire");
-		client.wrightReceipt(feePO);
+		client.writeReceipt(feePO);
 		return (FeePO)client.getResponse();
+	}
+
+	@Override
+	public LobbyEarnPO readLobbyEarn(String date,String unit) {
+		client=MainController.getClient();
+		LobbyEarnPO lobbyEarnPO = new LobbyEarnPO();
+		lobbyEarnPO.getList().add(new CollectionPO(date, date, unit, unit, 0, unit, unit));
+		lobbyEarnPO.setKey("Inquire");
+		client.writeReceipt(lobbyEarnPO);
+		return (LobbyEarnPO)client.getResponse();
 	}
 }

@@ -15,6 +15,8 @@ public interface FinanceBLService {
 	
 	public ArrayList<ArrayList> showStatisticsList(String date);
 	
+	public ArrayList<EarnVO> showLobbyEarn(String date,String unit);
+	
 	public SalaryVO readSalary();
 	
 	public FeeVO readFee();
