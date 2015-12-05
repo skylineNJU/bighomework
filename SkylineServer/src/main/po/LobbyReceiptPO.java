@@ -17,8 +17,6 @@ public class LobbyReceiptPO extends Message {
 	private String earnDate;
 	private String lobbyLoading;
 	
-	
-	
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		getDataFromBase();

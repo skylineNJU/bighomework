@@ -22,7 +22,8 @@ public class EarnList {
 					collectionPO.getUnit(), 
 					collectionPO.getBankAccount(),
 					collectionPO.getMoney(), 
-					collectionPO.getRemark());
+					collectionPO.getRemark(),
+					collectionPO.getIsPaid());
 			voList.add(earnVO);
 		}
 		return voList;

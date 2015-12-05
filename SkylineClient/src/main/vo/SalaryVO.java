@@ -1,9 +1,6 @@
-package main.po;
+package main.vo;
 
-import java.io.Serializable;
-
-public class SalaryPO extends Message implements Serializable{
-
+public class SalaryVO {
 	private static final long serialVersionUID = 1L;
     private double courierSalary = 0;
     private double lobbySalary = 0;
@@ -121,5 +118,4 @@ public class SalaryPO extends Message implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 }

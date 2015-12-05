@@ -9,9 +9,10 @@ public class CostVO extends ReceiptVO{
 	private String type;
 	private String date;
 	private String costCode;
+	private String isPaid;
 	
 	//ID 支出人账户，date支出日期，code该单据单号，bankAccount银行账户，cost支出费用，comment备注，typy支出类型
-	public CostVO(String date, String code,String bankAccount,double cost,String comment,String type) {
+	public CostVO(String date, String code,String bankAccount,double cost,String comment,String type,String isPaid) {
 		super(code);
 		this.costCode = code;
 		this.date = date;
@@ -19,10 +20,19 @@ public class CostVO extends ReceiptVO{
 		this.cost=cost;
 		this.comment=comment;
 		this.type=type;
+		this.isPaid = isPaid;
 	}
 
 	public String getCostCode() {
 		return costCode;
+	}
+
+	public String getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(String isPaid) {
+		this.isPaid = isPaid;
 	}
 
 	public void setCostCode(String costCode) {

@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import main.businesslogicservice.FinanceBLService;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
+import main.vo.DistanceVO;
 import main.vo.EarnVO;
+import main.vo.FeeVO;
+import main.vo.SalaryVO;
 
 public class FinanceController implements FinanceBLService {
 
@@ -42,6 +45,21 @@ public class FinanceController implements FinanceBLService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public DistanceVO getDistance(){
+		return new Distance().getDistance();
+	}
 
+	@Override
+	public SalaryVO readSalary() {
+		return new Salary().getSalary();
+	}
+
+	@Override
+	public FeeVO readFee() {
+		return new Fee().getFee();
+	}
+	
 	
 }

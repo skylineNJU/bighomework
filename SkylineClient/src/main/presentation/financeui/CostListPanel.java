@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
@@ -50,7 +51,7 @@ public class CostListPanel {
 	}
 	
 	public void init(){
-		tableTitle = new String[]{"付款单单号", "费用", "支出类型", "银行账户名", "支出时间", "备注"};
+		tableTitle = new String[]{"付款单单号", "费用", "支出类型", "银行账户名", "支出时间", "是否结算", "备注"};
 		title();
 		setTime();
 		initButton();
@@ -136,6 +137,7 @@ public class CostListPanel {
 			tableData[0][3] = "   no data";
 			tableData[0][4] = "   no data";
 			tableData[0][5] = "   no data";
+			tableData[0][6] = "   no data";
 		}
 		for(CostVO costVO:voList){
 			tableData[counter][0] = costVO.getCostCode();
@@ -143,11 +145,13 @@ public class CostListPanel {
 			tableData[counter][2] = costVO.getCostType();
 			tableData[counter][3] = costVO.getBankAccount();
 			tableData[counter][4] = costVO.getDate();
-			tableData[counter][5] = costVO.getComment();
+			tableData[counter][5] = costVO.getIsPaid();
+			tableData[counter][6] = costVO.getComment();
 			counter++;
 		}
 	}
 	//成本管理列表
+	@SuppressWarnings("serial")
 	public void initTable(){
 		setData();
 		table = new JTable(tableData,tableTitle);
@@ -162,6 +166,15 @@ public class CostListPanel {
 		}else{
 			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, 10*table.getRowHeight());
 		}
+		
+		table.setModel(new DefaultTableModel(tableData,tableTitle){
+			public boolean isCellEditable(int row,int column){
+				if(column==0||column==5){
+					return false;
+				}
+				return true;
+			}
+		});
 		panel.add(scrollPane);
 	}
 }

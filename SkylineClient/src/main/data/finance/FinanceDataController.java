@@ -8,6 +8,9 @@ import main.po.CollectionPO;
 import main.po.CostPO;
 import main.po.CostPOList;
 import main.po.CollectionPOList;
+import main.po.DistancePO;
+import main.po.FeePO;
+import main.po.SalaryPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 
@@ -19,7 +22,7 @@ public class FinanceDataController implements FinanceDataService{
 	public CostPOList readCost(String date) {
 		client=MainController.getClient();
 		CostPOList costPOList = new CostPOList();
-		costPOList.getList().add(new CostPO(date, date, date, date, date, date));
+		costPOList.getList().add(new CostPO(date, date, date, date, date, date, date));
 		costPOList.setKey("Inquire");
 		client.writeReceipt(costPOList);
 		return (CostPOList) client.getResponse();
@@ -47,7 +50,7 @@ public class FinanceDataController implements FinanceDataService{
 	public CollectionPOList readCollection(String date) {
 		client=MainController.getClient();
 		CollectionPOList collectionPOList = new CollectionPOList();
-		collectionPOList.getList().add(new CollectionPO(date, date, date, date, 0, date));
+		collectionPOList.getList().add(new CollectionPO(date, date, date, date, 0, date,date));
 		collectionPOList.setKey("Inquire");
 		client.writeReceipt(collectionPOList);
 		return (CollectionPOList) client.getResponse();
@@ -78,5 +81,32 @@ public class FinanceDataController implements FinanceDataService{
 	public boolean writeBankAccount(BankAccountPO bankAccountPO) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public DistancePO readDistance() {
+		client=MainController.getClient();
+		DistancePO distance = new DistancePO();
+		distance.setKey("Inquire");
+		client.wrightReceipt(distance);
+		return (DistancePO) client.getResponse();//Ð´Ò»¸öPO£¬½ÐdistancePOlist
+	}
+
+	@Override
+	public SalaryPO readSalary() {
+		client=MainController.getClient();
+		SalaryPO salary = new SalaryPO();
+		salary.setKey("Inquire");
+		client.wrightReceipt(salary);
+		return (SalaryPO) client.getResponse();
+	}
+
+	@Override
+	public FeePO readFee() {
+		client=MainController.getClient();
+		FeePO feePO = new FeePO(0, 0, 0);
+		feePO.setKey("Inquire");
+		client.wrightReceipt(feePO);
+		return (FeePO)client.getResponse();
 	}
 }

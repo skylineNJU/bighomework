@@ -8,11 +8,15 @@ import main.po.CollectionPO;
 import main.po.CollectionPOList;
 import main.po.CostPO;
 import main.po.CostPOList;
-
+import main.po.DistancePO;
+import main.po.FeePO;
+import main.po.SalaryPO;
 //财务管理
 public interface FinanceDataService {
 	
-
+	public SalaryPO readSalary();
+	
+	public FeePO readFee();
 	
 	public CostPOList readCost(String date);
 
@@ -40,4 +44,6 @@ public interface FinanceDataService {
 	
 	//写信息
 	public boolean writeBankAccount(BankAccountPO bankAccountPO);
+	
+	public DistancePO readDistance();
 }

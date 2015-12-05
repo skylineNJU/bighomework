@@ -47,7 +47,7 @@ public class SqlReader {
 		return false;
 	}
 	
-	public boolean hasNext(String attribute,String content){
+	public boolean hasNext(){
 		try {
 			if(rs.next())
 				return true;

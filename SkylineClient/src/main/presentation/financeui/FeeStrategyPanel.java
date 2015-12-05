@@ -9,7 +9,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.DistanceVO;
+import main.vo.FeeVO;
 
 public class FeeStrategyPanel {
 	private JPanel panel;
@@ -43,6 +47,7 @@ public class FeeStrategyPanel {
 	public void init(){
 		initTitle();
 		initText();
+		getFee();
 		initTable();
 		panel.repaint();
 	}
@@ -50,6 +55,34 @@ public class FeeStrategyPanel {
 		title = new JLabel("制定收费策略");
 		panel.add(title);
 		title.setBounds(panelWidth*2/5, panelHeight/60, panelWidth/5, panelHeight/30);
+	}
+	
+	//从数据库里读取收费策略信息
+	public void getFee(){
+		FinanceBLService finance = ConstructFactory.FinanceFactory();
+		FeeVO feeVO  = finance.readFee();
+		carText.setText(String.valueOf(feeVO.getRoadFee()));
+		trainText.setText(String.valueOf(feeVO.getRailFee()));
+		planeText.setText(String.valueOf(feeVO.getAirFee()));
+	}
+	
+	public void getTableData(){
+		FinanceBLService finance = ConstructFactory.FinanceFactory();
+		DistanceVO distanceVO = finance.getDistance();
+		String[] cityName = distanceVO.getCity();
+		double[][] distance = distanceVO.getDistance();
+		tableTitle = new String[cityName.length+1];
+		tableData = new String[cityName.length][cityName.length+1];
+		tableTitle[0] = "城市距离";
+		for(int i = 1; i<cityName.length+1; i++) {
+			tableTitle[i] = cityName[i-1];
+		}
+		for(int i = 0; i < distance.length; i++){
+			tableData[i][0] = tableTitle[i+1];//获取第一列的城市名
+			for(int j = 1; j<distance[i].length+1; j++){
+				tableData[i][j] = String.valueOf(distance[i][j-1]);
+			}
+		}
 	}
 	public void initText(){
 		carLabel = new JLabel("汽车:");
@@ -84,10 +117,7 @@ public class FeeStrategyPanel {
 		
 	}
 	public void initTable(){
-		tableTitle = new String[]{" ","北京", "南京", "上海", "深圳"};
-		tableData = new String[][]{{"北京", "20", "100", "200", "300"},{"南京", "100", "20", "50", "250"},
-				{"上海", "200", "50", "20", "300"},{"深圳", "300", "250", "300", "20"}};
-		
+		getTableData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		cityDistance = new JLabel("城市距离:");

@@ -22,7 +22,8 @@ public class CostList {
 					costPO.getBankAccount(), 
 					Double.valueOf(costPO.getFee()), 
 					costPO.getRemark(),
-					costPO.getCostType());
+					costPO.getCostType(),
+					costPO.getIsPaid());
 			voList.add(costVO);
 		}
 		return voList;

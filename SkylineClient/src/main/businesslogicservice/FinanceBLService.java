@@ -4,11 +4,20 @@ import java.util.ArrayList;
 
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
+import main.vo.DistanceVO;
 import main.vo.EarnVO;
+import main.vo.FeeVO;
+import main.vo.SalaryVO;
 
 public interface FinanceBLService {
 	
+	public DistanceVO getDistance();
+	
 	public ArrayList<ArrayList> showStatisticsList(String date);
+	
+	public SalaryVO readSalary();
+	
+	public FeeVO readFee();
 	
 	//输入日期，查看当天所有的收款单
 	public ArrayList<EarnVO> showEarnListDependsOnDay(String date);

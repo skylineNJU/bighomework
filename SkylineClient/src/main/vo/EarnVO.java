@@ -9,9 +9,10 @@ public class EarnVO extends ReceiptVO{
 	private String bankAccount;//收款人账户
 	private double money;//收款金额
 	private String remark;//备注
+	private String isPaid;
 	
 	public EarnVO(String collectionCode, String date, String unit,
-			String bankAccount, double money, String remark) {
+			String bankAccount, double money, String remark,String isPaid) {
 		super(collectionCode);
 		this.collectionCode = collectionCode;
 		this.date = date;
@@ -19,10 +20,19 @@ public class EarnVO extends ReceiptVO{
 		this.bankAccount = bankAccount;
 		this.money = money;
 		this.remark = remark;
+		this.isPaid = isPaid;
 	}
 
 	public String getCollectionCode() {
 		return collectionCode;
+	}
+	
+	public String getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(String isPaid) {
+		this.isPaid = isPaid;
 	}
 
 	public void setCollectionCode(String collectionCode) {

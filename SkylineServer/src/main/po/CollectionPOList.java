@@ -19,7 +19,8 @@ public class CollectionPOList extends Message {
 					reader.getString("收入单位"),
 					reader.getString("收入账户"),
 					reader.getDouble("收入金额"),
-					reader.getString("备注"));
+					reader.getString("备注"),
+					reader.getString("是否结算"));
 			poList.add(collectionPO);
 		}
 	}

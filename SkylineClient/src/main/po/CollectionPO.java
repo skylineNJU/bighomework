@@ -12,8 +12,9 @@ public class CollectionPO extends Receipt{
 	private double money;//收款金额
 	private String remark;//备注
 	private String collectionCode;
+	private String isPaid;
 	
-	public CollectionPO(String collectionCode,String date,String unit,String bankAccount,double money,String remark){
+	public CollectionPO(String collectionCode,String date,String unit,String bankAccount,double money,String remark,String isPaid){
 		super();
 		this.collectionCode = collectionCode;
 		this.date = date;
@@ -21,6 +22,15 @@ public class CollectionPO extends Receipt{
 		this.bankAccount = bankAccount;
 		this.money = money;
 		this.remark = remark;
+		this.isPaid = isPaid;
+	}
+
+	public String getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(String isPaid) {
+		this.isPaid = isPaid;
 	}
 
 	public String getCollectionCode() {

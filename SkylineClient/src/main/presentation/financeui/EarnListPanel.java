@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
@@ -39,7 +40,7 @@ public class EarnListPanel {
 	private String[][] tableData;
 	private JTable table;
 	private JScrollPane scrollPane;
-	private JButton delButton;
+	private JButton calculationButton;
 	private JButton saveButton;
 	private JButton ensureButton;//确认选择时间完毕
 	
@@ -51,7 +52,7 @@ public class EarnListPanel {
 	}
 	
 	public void init(){
-		tableTitle = new String[]{"ID", "费用", "编号", "备注","收入账户","收入单位"};
+		tableTitle = new String[]{"收款单单号", "收款金额", "收入单位", "收入日期","收入账户","是否结算","备注"};
 		title();
 		setTime();
 		initTable();
@@ -67,13 +68,13 @@ public class EarnListPanel {
 	
 	public void initButton(){
 		ensureButton = new JButton("确认");
-		delButton = new JButton("删除");
+		calculationButton = new JButton("结算");
 		saveButton = new JButton("保存");
-		panel.add(delButton);
+		panel.add(calculationButton);
 		panel.add(saveButton);
 		panel.add(ensureButton);
-		delButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
-		saveButton.setBounds(panelWidth*3/5+delButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		calculationButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		saveButton.setBounds(panelWidth*3/5+calculationButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
 		ensureButton.setBounds(dayLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
 		
 		ensureButton.addMouseListener(new MouseAdapter() {
@@ -110,7 +111,6 @@ public class EarnListPanel {
 		panel.add(monthBox);
 		panel.add(dayBox);
 		
-
 		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
 		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
 		yearLabel.setBounds(yearBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
@@ -136,18 +136,21 @@ public class EarnListPanel {
 			tableData[0][3] = "   no data";
 			tableData[0][4] = "   no data";
 			tableData[0][5] = "   no data";
+			tableData[0][6] = "   no data";
 		}
 		for(EarnVO earnVO:voList){
-			tableData[counter][0] = earnVO.getBankAccount();
-			tableData[counter][1] = earnVO.getCollectionCode();
-			tableData[counter][2] = earnVO.getDate();
-			tableData[counter][3] = earnVO.getUnit();
-			tableData[counter][4] = earnVO.getRemark();
-			tableData[counter][5] = String.valueOf(earnVO.getMoney());
+			tableData[counter][0] = earnVO.getCollectionCode();
+			tableData[counter][1] = String.valueOf(earnVO.getMoney());
+			tableData[counter][2] = earnVO.getUnit();
+			tableData[counter][3] = earnVO.getDate();
+			tableData[counter][4] = earnVO.getBankAccount();
+			tableData[counter][5] = earnVO.getIsPaid();
+			tableData[counter][6] = earnVO.getRemark();
 			counter++;
 		}
 	}
 	//成本管理列表
+	@SuppressWarnings("serial")
 	public void initTable(){
 		data();
 		table = new JTable(tableData,tableTitle);
@@ -162,6 +165,15 @@ public class EarnListPanel {
 		}else{
 			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, 10*table.getRowHeight());
 		}
+		
+		table.setModel(new DefaultTableModel(tableData,tableTitle){
+			public boolean isCellEditable(int row,int column){
+				if(column==0||column==5){
+					return false;
+				}
+				return true;
+			}
+		});
 		panel.add(scrollPane);
 	}
 }

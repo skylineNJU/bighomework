@@ -10,10 +10,10 @@ public class CostPO extends Receipt{
 	private String costDate;
 	private String remark;
 	private String costCode;
-	
+	private String isPaid;
 	
 	public CostPO(String bankAccount, String fee, String costType,
-			String costDate, String remark, String costCode) {
+			String costDate, String remark, String costCode,String isPaid) {
 		super();
 		this.bankAccount = bankAccount;
 		this.fee = fee;
@@ -21,6 +21,7 @@ public class CostPO extends Receipt{
 		this.costDate = costDate;
 		this.remark = remark;
 		this.costCode = costCode;
+		this.isPaid = isPaid;
 	}
 	
 	public String getBankAccount() {
@@ -32,6 +33,14 @@ public class CostPO extends Receipt{
 	public String getFee() {
 		return fee;
 	}
+	public String getIsPaid() {
+		return isPaid;
+	}
+
+	public void setIsPaid(String isPaid) {
+		this.isPaid = isPaid;
+	}
+
 	public void setFee(String fee) {
 		this.fee = fee;
 	}

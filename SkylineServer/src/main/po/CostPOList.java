@@ -17,7 +17,8 @@ public class CostPOList extends Message {
 					String.valueOf(reader.getDouble("花费")), 
 					reader.getString("支出类型"), 
 					key, reader.getString("备注"), 
-					reader.getString("付款单单号"));
+					reader.getString("付款单单号"),
+					reader.getString("是否结算"));
 			cost.add(costPO);
 		}
 	}
