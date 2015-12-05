@@ -56,7 +56,6 @@ public class MainController {
 		FrameMain.init();
 		writepanel=new WritePanel();
 		jumpToGuestui(Guestui.Search);
-		
 	}
 	
 	public static void jumpToDistributeui(Distributeui ui){

@@ -1,6 +1,9 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.awt.ScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -33,7 +36,7 @@ public class LobbyEarnPanel {
 	private JPanel writePanel;
 	//查看收款信息的组件
 	private JTable table;
-	private JScrollPane srollPane;
+	private JScrollPane scrollPane;
 	private JLabel date;
 	private JLabel yearLabel;
 	private JLabel monthLabel;
@@ -123,6 +126,14 @@ public class LobbyEarnPanel {
 		lookCancleButton.setBounds(lookPanel.getWidth()*13/20, lookPanel.getHeight()*5/6, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
 		lookSaveButton.setBounds(lookCancleButton.getX()+lookPanel.getWidth()/6, lookPanel.getHeight()*5/6, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
 
+		ensureButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				scrollPane.remove(table);
+				lookPanel.remove(scrollPane);
+				initLookPanel();
+				lookPanel.repaint();
+			}
+		});
 	}
 	
 	public void getData(){
@@ -156,25 +167,22 @@ public class LobbyEarnPanel {
 	}
 	public void initLookPanel(){
 		getData();
-//		tableTitle = new String[]{"收款日期","收款金额", "收款账号", "收款订单"};
-//		tableData = new String[][]{{"2012/03/16", "20", "201515", "200959"}, {"2012/03/16", "20", "201515", "200959"},
-//				{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},
-//				{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},
-//				{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},
-//				{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"},{"2012/03/16", "20", "201515", "200959"}};
 		table = new JTable(tableData,tableTitle);
-		srollPane = new JScrollPane(table);
-		
+		scrollPane = new JScrollPane(table);
 		table.setEnabled(false);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setRowHeight(panel.getHeight()/20);//设置列宽
 		table.setDragEnabled(false);//设置不可拖动
 		table.getTableHeader().setPreferredSize(new Dimension(10000, panel.getHeight()/20));//设置表头高度
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
-	
-		lookPanel.add(srollPane);
-		srollPane.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()*2/15, lookPanel.getWidth()*13/15, lookPanel.getHeight()*13/20);			
-		srollPane.setVisible(true);
+		lookPanel.add(scrollPane);
+		if(table.getRowCount()<10){
+			scrollPane.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()*2/15, lookPanel.getWidth()*13/15, (table.getRowCount()+1)*table.getRowHeight());
+		}else{
+			scrollPane.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()*2/15, lookPanel.getWidth()*13/15, 11*table.getRowHeight());			
+
+		}
+		scrollPane.setVisible(true);
 		lookPanel.repaint();
 	}
 	
