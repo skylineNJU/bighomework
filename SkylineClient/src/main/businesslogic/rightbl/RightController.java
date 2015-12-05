@@ -3,9 +3,17 @@ package main.businesslogic.rightbl;
 import java.util.ArrayList;
 
 
+
+
+
 import main.businesslogicservice.RightBLService;
+import main.data.right.RightDataController;
+import main.dataservice.RightDataService;
+import main.po.AccountListPO;
+import main.po.AccountPO;
 import main.vo.AccountVO;
 import main.vo.BankAccountVO;
+import main.vo.DriverVO;
 
 public class RightController implements RightBLService{
 	
@@ -47,13 +55,41 @@ public class RightController implements RightBLService{
 	@Override
 	public boolean inquireAccount(String code, AccountVO account) {
 		// TODO Auto-generated method stub
-		return false;
+		Account acc=new Account(code);	
+		return account.writeAccountVO(acc);
 	}
 
 	@Override
 	public ArrayList<AccountVO> inquireAccount(String codeList) {
 		// TODO Auto-generated method stub
-		AccountListBL bl=new AccountListBL(codeList);
+		AccountListBL bl=new AccountListBL(codeList);		
+		
+		Account account=new Account(codeList);
+		ArrayList<AccountVO> volist=account.inquire(codeList);
+		
+		return bl.inquire();
+	}
+
+	@Override
+	public boolean deleteAccount(String accountName) {
+		// TODO Auto-generated method stub
+		return Account.delete(accountName);
+	}
+
+	@Override
+	public boolean modifyAccount(AccountVO accountInfo) {
+		// TODO Auto-generated method stub
+		Account account=new Account(accountInfo);
+		return account.modify();
+	}
+
+	@Override
+	public ArrayList<AccountVO> inquireAccount() {
+		// TODO Auto-generated method stub
+		AccountListBL bl=new AccountListBL();		
+		
+		Account account=new Account();
+		ArrayList<AccountVO> volist=account.inquire();
 		
 		return bl.inquire();
 		

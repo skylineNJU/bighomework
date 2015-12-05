@@ -8,16 +8,20 @@ public class AccountListPO extends Message{
 	private ArrayList<AccountPO> list=new ArrayList<AccountPO>();
 
 	
-	public AccountListPO(String codeList){
-		String[] codes=codeList.split(" ");
-		for(int x=1;x<codes.length;x++){
-			AccountPO po=new AccountPO("","",null,"");
-			po.setCode(codes[x]);
-			list.add(po);
-		}
-	}
 	
+	
+	
+	public AccountListPO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public ArrayList<AccountPO> getList(){
 		return list;
+	}
+
+	public void add(AccountPO po) {
+		// TODO Auto-generated method stub
+		list.add(po);
 	}
 }

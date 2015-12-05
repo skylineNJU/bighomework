@@ -1,5 +1,7 @@
 package main.presentation.mainui;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 public class AllImage {
@@ -43,7 +45,9 @@ public class AllImage {
 		public static ImageIcon submit = new ImageIcon("graphics/submit.png");	
 		//确认
 		
-		
+		//登录时的界面
+		public static ImageIcon login = new ImageIcon("graphics/login.png");
+
 		
 		
 }

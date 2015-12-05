@@ -1,7 +1,12 @@
 package main.presentation.rightui;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -14,6 +19,7 @@ import main.businesslogicservice.receiptblService.SubmitReceipt;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.guestui.Guestui;
+import main.presentation.mainui.AllImage;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.memory.CourrierMemory;
@@ -30,7 +36,7 @@ import main.vo.IntermediateReciptVO;
 import main.vo.LobbyReceiptVO;
 import main.vo.WarhouseReceiptVO;
 
-public class LoginPanel {
+public class LoginPanel extends JPanel{
 	private JTextField userName=new JTextField("110910009");
 	private JTextField passWord=new JTextField("12345678");
 	private JLabel confirm=new JLabel("È·¶¨");
@@ -39,12 +45,22 @@ public class LoginPanel {
 	private JPanel panel;
 	private JLabel uIcon;
 	private JLabel pIcon;
+	private JLabel login;
+	private Image backgroundImage;
+	private static boolean move=false;
+	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+	
+      
 	
 	public LoginPanel(){
 		frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
 	}
-	
+//	public void paintComponent(Graphics g) {			
+//        super.paintComponent(g);
+//        g.drawImage(AllImage.login, 0, 0, this.getWidth(), this.getHeight(), null);
+//    	
+//}
 	public void init(){
 		uIcon = new JLabel("Icon");
 		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
@@ -52,13 +68,21 @@ public class LoginPanel {
 		pIcon = new JLabel("Icon");		
 		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
 		pIcon.setVisible(true);
+		AllImage.login.setImage(AllImage.login.getImage().getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_DEFAULT));
+
+		login=new JLabel(AllImage.login);
+		login.setSize(panel.getWidth(),panel.getHeight());
+		login.setLocation(0,0);
+		login.setVisible(true);
 		userName.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*7,frame.getWidth()/10*3,frame.getHeight()/10);
 		passWord.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*10,frame.getWidth()/10*3,frame.getHeight()/10);
+		
+		panel.add(login);
 		panel.add(uIcon);
 		panel.add(pIcon);
 		panel.add(userName);
 		panel.add(passWord);
-
+		
 		confirm.setBounds(frame.getWidth()/40*28,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
 		back.setBounds(frame.getWidth()/40*34,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
 	

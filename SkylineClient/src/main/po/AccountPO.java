@@ -24,6 +24,11 @@ public class AccountPO extends Message implements Serializable{
 	}
 
 
+	public AccountPO() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getID() {
 		return ID;
 	}

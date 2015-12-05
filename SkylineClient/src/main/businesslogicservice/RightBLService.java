@@ -6,6 +6,7 @@ import main.vo.AccountVO;
 import main.vo.BankAccountVO;
 import main.vo.DriverVO;
 import main.vo.InstitutionVO;
+import main.vo.StaffVO;
 
 public interface RightBLService {
 	//用户输入账户名称，密码来登录,系统根据返回的权限来跳转页面
@@ -23,4 +24,13 @@ public interface RightBLService {
 	public boolean initCode(String ID);
 	
 	ArrayList<AccountVO> inquireAccount(String code);
+
+	//删除一个账号信息，系统显示删除成功
+	public boolean deleteAccount(String accountName);
+		
+		
+	//修改账号信息，系统显示修改后的职工信息
+	public boolean modifyAccount(AccountVO accountInfo);
+
+	public ArrayList<AccountVO> inquireAccount();
 }

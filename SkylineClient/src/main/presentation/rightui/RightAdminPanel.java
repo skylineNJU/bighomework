@@ -5,9 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.*;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,15 +15,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 
-import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.RightBLService;
 import main.constructfactory.ConstructFactory;
 import main.po.Rights;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.vo.AccountVO;
-import main.vo.DriverVO;
 
 public class RightAdminPanel {
 	private JPanel panel;
@@ -34,26 +31,26 @@ public class RightAdminPanel {
 	//按钮组件
 	private JButton cancelButton;
 	private JButton saveButton;
-	private JButton lookCancleButton;
-	private JButton lookSaveButton;
+	private JButton lookDeleteButton;
+	private JButton lookModifyButton;
 	//lookPanel上的组件
 	private String[] tableTitle;
 	private String[][] tableData;
 	private JTable table;
 	private JScrollPane scrollPane;
 	private String[] identityString;
-	
+	DefaultTableModel model ;
 	//writePanel上的组件
-	private JLabel nameLabel;//姓名标签
 	private JLabel accountLabel;//账号标签
+	private JLabel codeLabel;//密码标签
 	private JLabel identityLabel;//身份标签
 	//private JLabel institutionLabel;//机构标签
 	
-	private JTextField nameText;
 	private JTextField accountText;
+	private JTextField codeText;
 	private JComboBox<String> identity;
 	//private JTextField institutionText;
-	
+	private boolean[] selectRow;
 	
 	private JLabel title;
 	private JPanel lookPanel;//查看权限管理单
@@ -80,7 +77,7 @@ public class RightAdminPanel {
 		lookPanel.setLayout(null);
 		writePanel = new JPanel();
 		writePanel.setLayout(null);
-		
+
 		lookTabel();//初始化查看权限管理面板
 		writeTabel();//初始化填写权限管理面板
 		initButton();//初始化按钮
@@ -96,17 +93,26 @@ public class RightAdminPanel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				// TODO Auto-generated method stub
-				if(tab.getSelectedIndex()==0){
-					tableData =initTableData();
-					for(int x=0;x<20;x++){
-						for(int y=0;y<table.getColumnCount();y++)
-						table.setValueAt(tableData[x][y],x,y);
-					}
+				switch(tab.getSelectedIndex()){
+				case 0:
+					refresh();
 				}
+				
 			}
 			
 		});
 		panel.repaint();
+	}
+	public void refresh(){
+		tableData=this.initTableData();
+		while(table.getRowCount()<tableData.length){
+		((DefaultTableModel)table.getModel()).addRow(new String[4]);
+		}
+		for(int x=0;x<tableData.length;x++){
+			for(int y=0;y<4;y++){
+				table.setValueAt(tableData[x][y],x,y);
+			}
+		}
 	}
 	
 	public void title(){
@@ -124,8 +130,8 @@ public class RightAdminPanel {
 		writePanel.add(saveButton);
 		cancelButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				nameText.setText(null);
 				accountText.setText(null);
+				codeText.setText(null);
 				identity.setSelectedIndex(0);
 				//institutionText.setText(null);
 			}
@@ -142,24 +148,55 @@ public class RightAdminPanel {
 				Rights staffIdentity=right[identity.getSelectedIndex()];
 				
 				AccountVO accountInfo=new AccountVO(staffIdentity
-												,nameText.getText()
 												,accountText.getText()
+												,codeText.getText()
 												,((WritePanel) panel).getBelong());
 				RightBLService service=ConstructFactory.RightFactory();
 				service.createNewAccount(accountInfo);
 			}
 		});
-		lookCancleButton = new JButton("取消");
-		lookSaveButton = new JButton("保存");
-		lookCancleButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookSaveButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookPanel.add(lookCancleButton);
-		lookPanel.add(lookSaveButton);
+		lookDeleteButton = new JButton("删除");
+		lookModifyButton = new JButton("修改");
+		lookDeleteButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookModifyButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookPanel.add(lookDeleteButton);
+		lookPanel.add(lookModifyButton);
 		
+		lookModifyButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				for(int x=0;x<selectRow.length;x++){
+		//"账号"“密码”“权限”“机构”
+					if(selectRow[x]){
+						RightBLService service=ConstructFactory.RightFactory();
+						AccountVO vo=new AccountVO((Rights)table.getValueAt(x,2),
+								(String)table.getValueAt(x,0),
+								(String)table.getValueAt(x,1),
+								(String) table.getValueAt(x,3)
+								);
+						RightBLService service1=ConstructFactory.RightFactory();
+						service1.modifyAccount(vo);
+					}
+				}
+				refresh();
+			}
+		});
+		lookDeleteButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				for(int x=0;x<selectRow.length;x++){
+					if(selectRow[x]){
+						RightBLService service=ConstructFactory.RightFactory();
+						service.deleteAccount((String) table.getValueAt(x,0));
+					}
+				}
+				
+				refresh();
+			}
+		});
 	}
 	
+	
 	public void lookTabel(){
-		tableTitle = new String[]{"账号", "姓名", "身份", "机构"};
+		tableTitle = new String[]{"账号", "密码", "身份", "机构"};
 		tableData = this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
@@ -167,7 +204,7 @@ public class RightAdminPanel {
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//设置不可调整大小
-		for(int i = 0;i<table.getColumnCount();i++){
+		for(int i = 0;i<4;i++){
 			table.getColumnModel().getColumn(i).setPreferredWidth(panelWidth/5);
 		}
 		
@@ -180,62 +217,86 @@ public class RightAdminPanel {
 		}
 		scrollPane.setVisible(true);
 		lookPanel.add(scrollPane);
+		table.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				int x=table.getSelectedRow();
+				if(!selectRow[x]){
+					table.setValueAt("选定",x,4);
+					selectRow[x]=true;
+					System.out.println("select");
+				}else{
+					table.setValueAt("",x,4);
+					selectRow[x]=false;
+					System.out.println("cancel");
+				}
+			}
+		});
 	}
 	
 	public String[][] initTableData(){
-		String[][] content =new String[20][8];
 //		for(int x=0;x<table.getRowCount();x++)
 //			for(int y=0;y<table.getColumnCount();y++)
 //				content[x][y]=null;
-	
+		
 		ArrayList<AccountVO> volist=null;
 		RightBLService service=ConstructFactory.RightFactory();
-		volist=service.inquireAccount(((WritePanel)panel).getBelong());
+		volist=service.inquireAccount();
+		String[][] content =new String[volist.size()][4];
+		for(int x=0;x<volist.size();x++)
+			for(int y=0;y<4;y++)
+				content[x][y]=null;
+		
 		if(volist!=null){
 		int counter=0;
+		
 		for(AccountVO vo:volist){
 			content[counter][0]=vo.getAccountName();
 			content[counter][1]=vo.getCode();
 			content[counter][2]=vo.getRight().name();
 			content[counter][3]=vo.getBelong();
-		
+			
 			counter++;
 		}
+		
+		}
+		selectRow=new boolean[content.length];
+		for(int x=0;x<content.length;x++){
+			selectRow[x]=false;
 		}
 		return content;
 	}
 	
 	public void writeTabel(){
-		nameLabel = new JLabel("姓名");
-		accountLabel= new JLabel("账号");
+		accountLabel = new JLabel("账号");
+		codeLabel= new JLabel("密码");
 		identityLabel = new JLabel("身份");
 		//institutionLabel = new JLabel("机构");
 		
-		nameText = new JTextField();
 		accountText = new JTextField();
+		codeText = new JTextField();
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
 		//institutionText = new JTextField();
 		identity = new JComboBox<String>(identityString);
 		
 		
 		
-		nameLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
-		accountLabel.setBounds(panelWidth/10, panelHeight*3/40+nameLabel.getY(), panelWidth*3/20, panelHeight/20);
-		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
+		accountLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
+		codeLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
+		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+codeLabel.getY(), panelWidth*3/20, panelHeight/20);
 		//institutionLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
 		
 		
-		nameText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
-		accountText.setBounds(panelWidth/4, panelHeight*3/40+nameText.getY(), panelWidth*9/20, panelHeight/20);
-		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+accountText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+		accountText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
+		codeText.setBounds(panelWidth/4, panelHeight*3/40+accountText.getY(), panelWidth*9/20, panelHeight/20);
+		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+codeText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
 		
 		//institutionText.setBounds(panelWidth/4, panelHeight*3/40+identity.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
-		writePanel.add(nameLabel);
 		writePanel.add(accountLabel);
+		writePanel.add(codeLabel);
 		writePanel.add(identityLabel);
 		//writePanel.add(institutionLabel);
-		writePanel.add(nameText);
 		writePanel.add(accountText);
+		writePanel.add(codeText);
 		writePanel.add(identity);
 		//writePanel.add(institutionText);
 		

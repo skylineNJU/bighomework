@@ -1,5 +1,7 @@
 package main.vo;
 
+import main.businesslogic.infobl.Institution;
+import main.businesslogic.rightbl.Account;
 import main.po.Rights;
 
 public class AccountVO {
@@ -22,7 +24,13 @@ public class AccountVO {
 		this.setCode(code);
 		this.setBelong(belong);
 	}
-
+	public boolean writeAccountVO(Account acc){
+		this.accountName=acc.getID();
+		this.code=acc.getCode();
+		this.right=acc.getRight();
+		this.belong=acc.getBelong();
+		return true;
+	}
 	public Rights getRight() {
 		return right;
 	}

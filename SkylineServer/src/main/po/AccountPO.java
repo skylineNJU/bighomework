@@ -45,6 +45,16 @@ public class AccountPO extends Message implements Serializable{
 		reader.close();
 		return content;
 	}
+	public void getDataFromBase0(){
+		SqlReader reader=new SqlReader("AccountInfo");
+		while(reader.hasNext()){
+			this.ID=reader.getString("账号");
+			this.code=reader.getString("密码");
+			this.right=Rights.valueOf(reader.getString("权限"));
+			this.belong=reader.getString("所属单位");
+		}
+		reader.close();
+	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
 		System.out.println(this.ID);
@@ -56,6 +66,7 @@ public class AccountPO extends Message implements Serializable{
 		}
 		reader.close();
 	}
+	
 	
 	public void checkLogin(){
 		SqlReader reader=new SqlReader("AccountInfo");

@@ -62,6 +62,11 @@ public class RightDataController implements RightDataService{
 		System.out.println(accountInfo.getRight());
 		return accountInfo;
 	}
+	@Override
+	public boolean modifyAcount(AccountPO accountPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 }
