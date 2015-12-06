@@ -34,11 +34,22 @@ public class RightDataController implements RightDataService{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+	@Override 
+public boolean delAccount(AccountPO po ){
+		po.setKey("Delete");
+		System.out.println("-------------begin delete");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
 	@Override
 	public boolean changeRight(AccountPO accountPO) {
 		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		accountPO.setKey("Modify");
+		client.writeReceipt(accountPO);
 		return false;
+		
 	}
 
 	@Override
@@ -65,7 +76,11 @@ public class RightDataController implements RightDataService{
 	@Override
 	public boolean modifyAcount(AccountPO accountPO) {
 		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		accountPO.setKey("Modify");
+		client.writeReceipt(accountPO);
 		return false;
+	
 	}
 
 

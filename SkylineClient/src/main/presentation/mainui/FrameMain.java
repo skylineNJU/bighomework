@@ -3,11 +3,12 @@ import java.awt.Frame;
 import java.awt.Point;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class FrameMain extends JFrame{
-	private static JLabel exit=new JLabel(AllImage.exitImg);
+	private static MyButton exit=new MyButton();
 	private static JLabel hide=new JLabel(AllImage.smallestImg);
 	private static JLabel title=new JLabel(AllImage.edg);
 	private static JPanel panel=new JPanel();
@@ -63,17 +64,10 @@ public class FrameMain extends JFrame{
             	}
             }
 		});
-		exit.addMouseListener(new MouseAdapter(){
+		exit.setIMG(AllImage.exitEnterImg, AllImage.exitImg, AllImage.exitClicking);
+		exit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				System.exit(0);
-			}
-			
-			public void mouseEntered(MouseEvent e){
-				exit.setIcon(AllImage.exitEnterImg);
-			}
-			
-			public void mouseExited(MouseEvent e){
-				exit.setIcon(AllImage.exitImg);
 			}
 		});
 		hide.addMouseListener(new MouseAdapter(){

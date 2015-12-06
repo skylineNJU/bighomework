@@ -18,6 +18,7 @@ public interface RightDataService {
 	//删除账户
 	//输入账户，将数据库中的账户删除
 	public void delAccount(List<AccountPO> accountList);
+	public void delAccount();
 	
 	//增加权限
 	//权限应该设置为枚举类型

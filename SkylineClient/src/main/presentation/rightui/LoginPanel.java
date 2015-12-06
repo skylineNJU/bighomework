@@ -38,7 +38,7 @@ import main.vo.WarhouseReceiptVO;
 
 
 
-public class LoginPanel extends JPanel{
+public class LoginPanel{
 	private JTextField userName=new JTextField("000870019");
 	private JTextField passWord=new JTextField("00000000");
 
@@ -49,9 +49,6 @@ public class LoginPanel extends JPanel{
 	private JLabel uIcon;
 	private JLabel pIcon;
 	private JLabel login;
-	private Image backgroundImage;
-	private static boolean move=false;
-	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	
       
 	
@@ -59,11 +56,6 @@ public class LoginPanel extends JPanel{
 		frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
 	}
-//	public void paintComponent(Graphics g) {			
-//        super.paintComponent(g);
-//        g.drawImage(AllImage.login, 0, 0, this.getWidth(), this.getHeight(), null);
-//    	
-//}
 	public void init(){
 		uIcon = new JLabel("Icon");
 		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
@@ -76,24 +68,23 @@ public class LoginPanel extends JPanel{
 		login=new JLabel(AllImage.login);
 		login.setSize(panel.getWidth(),panel.getHeight());
 		login.setLocation(0,0);
-		login.setVisible(true);
 		userName.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*7,frame.getWidth()/10*3,frame.getHeight()/10);
 		passWord.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*10,frame.getWidth()/10*3,frame.getHeight()/10);
 		
-		panel.add(login);
 		panel.add(uIcon);
 		panel.add(pIcon);
 		panel.add(userName);
 		panel.add(passWord);
-		
+		panel.add(login);
 		confirm.setBounds(frame.getWidth()/40*28,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
 		back.setBounds(frame.getWidth()/40*34,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
 	
 		panel.add(back);
 		panel.add(confirm);
+		panel.repaint();
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				panel.removeAll();
 				panel.repaint();
 				MainController.jumpToGuestui(Guestui.Search);
 			}
@@ -108,9 +99,9 @@ public class LoginPanel extends JPanel{
 				RightBLService  service  = ConstructFactory.RightFactory();
 				service.login(account);
 				System.out.println("get login message");
-				switch(account.getRight()){
+				switch(account.getRight()){	
 					case ACCOUNT:
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToRightAdminStaffui(account.getBelong());
 						break;
@@ -120,7 +111,7 @@ public class LoginPanel extends JPanel{
 						MainController.getWritepanel().setMemory(new CourrierMemory(username,password,Courrier.getOrderCode()
 								,Courrier.getBuildDate(),Courrier.getReceiveCode(),Courrier.getReceiveDate(),
 						Courrier.getDistributeCode()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToCourierui(account.getBelong());
 						break;
@@ -129,7 +120,7 @@ public class LoginPanel extends JPanel{
 						FinanceReceiptVO financeVO=financeService.getFinanceCode(username);
 						MainController.getWritepanel().setMemory(new FinanceMemory(username,password,financeVO.getCostCode()
 						,financeVO.getEarnCode()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.gotoFinanceui(account.getBelong());	
 						break;
@@ -139,7 +130,7 @@ public class LoginPanel extends JPanel{
 						MainController.getWritepanel().setMemory(new IntermediateMemory(username,password,
 								intermediateVO.getIntermReceiptCode(),intermediateVO.getAirLoadCode(),intermediateVO.getRailLoadCode(),intermediateVO.getRoadLoadCode()
 								,intermediateVO.getAirLoadDate(),intermediateVO.getRailLoadDate(),intermediateVO.getRoadLoadDate(),intermediateVO.getIntermDate()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToIntermediateStaffui(account.getBelong());
 						break;
@@ -149,7 +140,7 @@ public class LoginPanel extends JPanel{
 						System.out.println(lobbyVO.getReceiveCode());
 						MainController.getWritepanel().setMemory(new LobbyMemory(username,password,lobbyVO.getReceiveCode(),
 								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate(),lobbyVO.getLobbyLoading()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToLobbyStaffui(account.getBelong());
 						break;
@@ -157,12 +148,12 @@ public class LoginPanel extends JPanel{
 						SubmitReceipt manager=ConstructFactory.SubMitFactory();
 						ApprovalVO manvo=manager.getApproval();
 						MainController.getWritepanel().setMemory(new ManagerMemory(username,password,manvo.getKinds(),manvo.getCode()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToManagerui(account.getBelong());
 						break;
 					case STOREHOUSE:
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
 						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,username);
@@ -175,7 +166,6 @@ public class LoginPanel extends JPanel{
 					default:
 						System.err.println("密码或用户名错误！");
 						break;
-						
 				}
 				
 				

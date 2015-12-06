@@ -15,11 +15,13 @@ public class AllImage {
 		public static ImageIcon background = new ImageIcon("graphics/B.png");
 		public static ImageIcon guideback = new ImageIcon("graphics/guideback1.png");
 		public static ImageIcon writeback = new ImageIcon("graphics/writeback.png");
+		//退出按钮，鼠标点击时的图片
+		public static ImageIcon exitClicking =new ImageIcon("graphics/frameGraphics/exitFrameClick.png");
 		//退出按钮，鼠标进入时的图片
-		public static ImageIcon exitEnterImg = new ImageIcon("src/graphics/label/exitFrameEnter.gif");
+		public static ImageIcon exitEnterImg = new ImageIcon("graphics/frameGraphics/exitFrameMove.png");
 		//退出按钮，鼠标未进入时的图片
 	//	public static ImageIcon exit = new ImageIcon("graphics/exit.png");
-		public static ImageIcon exitImg = new ImageIcon("src/graphics/label/exitFrameExit.gif");
+		public static ImageIcon exitImg = new ImageIcon("graphics/frameGraphics/exitFrameExit.png");
 		//最小化按钮，鼠标进入时的图片
 		public static ImageIcon smallestEnterImg = new ImageIcon("src/graphics/label/smallestEnter.gif");
 		//最小化按钮，鼠标未进入时的图片

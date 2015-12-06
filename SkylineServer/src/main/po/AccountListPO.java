@@ -14,8 +14,8 @@ public class AccountListPO extends Message{
 	}
 	
 	public void getDataFromBase(){
-		list.clear();
 		SqlReader reader=new SqlReader("AccountInfo");
+		list.clear();
 	    while(reader.hasNext()){
 	    	AccountPO po=new AccountPO(reader.getString("ÕËºÅ"),
 	    			reader.getString("ÃÜÂë"),
