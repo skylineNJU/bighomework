@@ -54,7 +54,9 @@ public class ShowInventoryPanel {
 	private int m2;
 	private int d2;
 	private String[] tableTitle1;
-	private String[][] tableData;
+	private String[] tableTitle2;
+	private String[][] tableData1;
+	private String[][] tableData2;
 	public ShowInventoryPanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
@@ -152,7 +154,6 @@ public class ShowInventoryPanel {
 						String[] arr31 = new String[31];  
         			for(int i=0;i<31;i++){  
         				arr31[i]=i+1+"日";  
-        				
         			}  
         		
         			day1 = new JComboBox(arr31);  
@@ -290,10 +291,10 @@ public class ShowInventoryPanel {
 		
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				tableData=initInTableData();
-				 for(int i=0;i<tableData.length;i++){
-						for(int j=0;j<tableData[0].length;j++){
-							table1.setValueAt(tableData[i][j], i, j);
+				tableData1=initInTableData();
+				 for(int i=0;i<tableData1.length;i++){
+						for(int j=0;j<tableData1[0].length;j++){
+							table1.setValueAt(tableData1[i][j], i, j);
 						}
 					}
 			}});
@@ -311,11 +312,12 @@ public class ShowInventoryPanel {
 	
 	public void tablePanel(){
 		tableTitle1= new String[]{"入库单号","区号","排号","架号","位号"};
-		tableData=initInTableData();	
-		table1 = new JTable(tableData,tableTitle1);
+		tableData1=initInTableData();	
+		table1 = new JTable(tableData1,tableTitle1);
 		
-		String[] ot1 = new String[]{"出库单号","区号","排号","架号","位号"};
-		table2 = new JTable(tableData,ot1);
+		tableTitle2 = new String[]{"出库单号","区号","排号","架号","位号"};
+		tableData2=initOutTableData();	
+		table2 = new JTable(tableData2,tableTitle2);
 	//in
 		table1.setEnabled(false);//设置不可编辑内容
 		table1.setRowHeight(panel.getWidth()/20);//设置列宽
@@ -325,7 +327,7 @@ public class ShowInventoryPanel {
 		table1.setVisible(true);
 		scrollPane = new JScrollPane(table1);
 
-		if(tableData.length>=10){
+		if(tableData1.length>=10){
 			scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8,tab.getWidth(), 10*table1.getRowHeight());
 		}else{
 			scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8,tab.getWidth(), (table1.getRowCount()+1)*table1.getRowHeight());
@@ -344,7 +346,7 @@ public class ShowInventoryPanel {
 		table2.setVisible(true);
 		scrollPane2 = new JScrollPane(table2);
 
-		if(tableData.length>=10){
+		if(tableData2.length>=10){
 			scrollPane2.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8, tab.getWidth(), 10*table1.getRowHeight());
 		}else{
 			scrollPane2.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8,tab.getWidth(), (table1.getRowCount()+1)*table1.getRowHeight());
@@ -434,30 +436,34 @@ public class ShowInventoryPanel {
         return null;
 }
 	
-/*	public String[][] initOutTableData(){
-		String[][] content =new String[20][5];
-		for(int x=0;x<20;x++)
-			for(int y=0;y<5;y++)
-				content[x][y]=null;
-		ArrayList<InventoryVO> out=null;
-		WarehouseBLService service=ConstructFactory.WarehouseFactory();
-	//	assert(areanumber.getText()!=null);
-	//	System.out.println("+++++++++++++++::::"+areanumber.getText());
-		out=service.checkInventory(((WritePanel)panel).getBelong()+" "+areanumber.getText());
-		if(out!=null){
-		int counter=0;
-		for(InventoryVO vo:out){
-			content[counter][0]=vo.getOrderCode();
-			content[counter][1]=vo.getArriveDate();
-			content[counter][2]=vo.getDestination();
-			content[counter][3]=vo.getArea();
-			content[counter][4]=vo.getRow()+"";
-			counter++;
+	public String[][] initOutTableData(){
+		
+		
+		
+		//得到
+			String[][] content =new String[20][5];
+			for(int x=0;x<20;x++)
+				for(int y=0;y<5;y++)
+					content[x][y]=null;
+			ArrayList<InventoryVO> out=null;
+			WarehouseBLService service=ConstructFactory.WarehouseFactory();
+	//		assert(areanumber.getText()!=null);
+	//		System.out.println("+++++++++++++++::::"+areanumber.getText());
+		//	out=service.checkInventory(((WritePanel)panel).getBelong()+" "+areanumber.getText());
+			if(out!=null){
+			int counter=0;
+			for(InventoryVO vo:out){
+				content[counter][0]=vo.getOrderCode();
+				content[counter][1]=vo.getArriveDate();
+				content[counter][2]=vo.getDestination();
+				content[counter][3]=vo.getArea();
+				content[counter][4]=vo.getRow()+"";
+				counter++;
+			}
+			}
+			return content;
 		}
-		}
-		return content;
-	}
-	*/
+	
 	
 	public void Num(){
 		Font font = new Font("宋体", Font.BOLD, 13);//BOLD PLAIN
