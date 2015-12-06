@@ -3,18 +3,31 @@ package main.vo;
 import main.businesslogic.warehousebl.Inventory;
 
 public class InventoryVO {
-	int inNum;
- 	int outNum;
- 	String orderCode;
- 	String damageCondition;
- 	char area;
-	int row;
-	int shelf;
-	int position;
-	String destination;
-	String arriveDate;
+	private int inNum;
+ 	private int outNum;
+ 	private String orderCode;
+ 	private String bar;
+ 	private String damageCondition;
+ 	private String area;
+	private int row;
+	private int shelf;
+	private int position;
+	private String destination;
+	private String arriveDate;
 	
-	public InventoryVO(int a,int b,String c,String d,char e,int f,int g,int h,String i,String j){
+	public InventoryVO( String orderCode, String arriveDate, String destination, String area, int row, int shelf, int position){
+		super();
+		this.orderCode = orderCode;
+		this.arriveDate = arriveDate;
+		this.destination = destination;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+	}
+	
+
+	public InventoryVO(int a,int b,String c,String d,String e,int f,int g,int h,String i,String j){
 		inNum=a;
 		outNum=b;
 		orderCode=c;
@@ -58,7 +71,7 @@ public class InventoryVO {
 		return damageCondition;
 	}
 
-	public char getArea() {
+	public String getArea() {
 		return area;
 	}
 

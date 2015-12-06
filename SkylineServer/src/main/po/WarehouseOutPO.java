@@ -7,9 +7,7 @@ import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
 public class WarehouseOutPO extends Receipt implements Serializable{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 /*
  * 快递编号、出库日期、目的地、装运形式（火车、飞机、汽车）、中转单编号或者汽运编号
@@ -40,14 +38,17 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	
 	public void writeIntoDatabase(){
 		if(hasCargo()){
+		
 			SqlWriter writer=new SqlWriter();
 			String content="'"+transferCode+"','"+type.name()+"','"+outDate+"','"
 					+bar+"','"+vehicleCode+"','"+destination+"','"+super.getCode()+"','"+damageCondition+"'";
 			writer.writeIntoSql("WarhouseOut", content);
 			SqlDeleter delete=new SqlDeleter();
 			delete.deleteData("InventoryInfo", "订单号", bar);
+			this.setKey("success");
 		}
 		else{
+			
 			this.setKey("Can't build!!!");
 		}
 	}
@@ -67,8 +68,8 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	public boolean hasCargo(){
 		SqlReader reader=new SqlReader("InventoryInfo");
 		if(reader.findNext("订单号", bar)){
+			System.out.println("++++++++++++++!!!!!!!!!!!!!!!!!"+transferCode);
 			if(reader.getString("区号").split(" ")[0].equals(transferCode)){
-				reader.close();
 				return true;
 			}
 			else{

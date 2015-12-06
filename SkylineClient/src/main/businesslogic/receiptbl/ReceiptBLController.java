@@ -182,14 +182,20 @@ ReceiptCode{
 	@Override
 	public void saveWarehouseInCode(String code, String username) {
 		// TODO Auto-generated method stub
-		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(code,null,null,username);
+		Date dt=new Date();
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+		String time=format.format(dt);
+		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(code,time,null,null,null,username);
 		warehouse.saveInfo();
 	}
 
 	@Override
 	public void saveWarehouseOutCode(String code, String username) {
 		// TODO Auto-generated method stub
-		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,code,null,username);
+		Date dt=new Date();
+		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+		String time=format.format(dt);
+		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,null,code,time,null,username);
 		warehouse.saveInfo();
 	}
 

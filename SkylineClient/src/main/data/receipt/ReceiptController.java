@@ -106,6 +106,8 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		po.setKey("Save");
 		client=MainController.getClient();
 		client.wrightReceipt(po);
+		System.out.println("{{{{{{{{{{{{{{:::"+po.getUsername()+" "+po.getWarehouseInCode()+" "+po.getWarehouseInDate()+" "+
+				po.getWarehouseOutCode()+" "+po.getWarehouseOutDate()+" "+po.getBelong());
 		
 	}
 	@Override

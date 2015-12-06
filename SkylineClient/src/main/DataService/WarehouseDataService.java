@@ -2,7 +2,9 @@ package main.dataservice;
 
 import java.util.ArrayList;
 
+import main.po.InventoryList;
 import main.po.InventoryPO;
+import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
 import main.po.WarehouseOutPO;
 
@@ -24,4 +26,11 @@ public interface WarehouseDataService {
 	
 	public boolean createWarehouseOutReceipt(WarehouseOutPO warehouseOutPO);
 
+	//查询货物信息，输入订单号
+	public InventoryList inquireInventory(InventoryList Inventorylist);
+		
+	public WarehouseInList inquireWarehouseIn(WarehouseInList warehouseInList);
+	
+	
+	
 }

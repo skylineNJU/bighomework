@@ -1,5 +1,10 @@
 package main.businesslogicservice;
 
+import java.util.ArrayList;
+
+import main.po.DriverList;
+import main.po.InventoryList;
+import main.vo.DriverVO;
 import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
@@ -24,8 +29,12 @@ public interface WarehouseBLService {
 	 */
 	//库存查看 
 	public boolean showInventory(String startdate,String enddate,InventoryVO inventoryInfo);
+	ArrayList<WarehouseInVO> showWarehouseInInfo(String code);
+
 	
 	//库存盘点 通过入库单得到
-	public boolean checkInventory(WarehouseInVO checkinventoryInfo);
+	ArrayList<InventoryVO> checkInventory(String code);
+	
+	
 	
 }

@@ -15,11 +15,11 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	private	String code;
 	private	String outDate;
 	private	String destination;
-	
 	private	TransType type;
 	private	String transferCode;
 	private	String vehicleCode;
-	private	String damageCondition ;
+	private	String damageCondition;
+	
 	public WarehouseOutPO(String a,String co,String b,String c,TransType t,String d,String e,String f){
 		bar=a;
 		code=co;

@@ -57,9 +57,8 @@ public class WarehouseOut {
 	public boolean saveInfo(){
 		po=new WarehouseOutPO(this.bar,this.code,this.outDate,this.destination,this.type,this.transferCode,this.vehicleCode,this.damageCondition);
 		po.setCode(code);
-		WarehouseDataService service=new WarehouseDataController();
-		service.createWarehouseOutReceipt(po);	
-		return true;
+		WarehouseDataService service=new WarehouseDataController();	
+		return service.createWarehouseOutReceipt(po);
 	
 	}
 	
@@ -82,8 +81,6 @@ public class WarehouseOut {
 	public void setOutDate(String outDate) {
 		this.outDate = outDate;
 	}
-
-
 	public String getDestination() {
 		return destination;
 	}

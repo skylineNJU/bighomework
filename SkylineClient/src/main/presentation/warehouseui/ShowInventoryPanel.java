@@ -2,11 +2,22 @@ package main.presentation.warehouseui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.*;
 
+import main.businesslogicservice.LoadBLService;
+import main.businesslogicservice.WarehouseBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.WarehouseMemory;
+import main.vo.InventoryVO;
+import main.vo.PlaneLoadingVO;
+import main.vo.WarehouseInVO;
+import main.vo.WarehouseOutVO;
 
 //库存查看
 public class ShowInventoryPanel {
@@ -34,13 +45,16 @@ public class ShowInventoryPanel {
 	private JTable table2;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane2;
-	private String  title1;//入库单号
-	private String  title2;//出库单号
-	private String  title3;//存储位置
-	
 	private String  othertitle;//区排架位
 	private String  titlelist;
-	
+	private int y1;
+	private int m1;
+	private int d1;
+	private int y2;
+	private int m2;
+	private int d2;
+	private String[] tableTitle1;
+	private String[][] tableData;
 	public ShowInventoryPanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
@@ -96,8 +110,8 @@ public class ShowInventoryPanel {
 
           
         //分别设置3个combobox内的值  
-        String[] arr1=new String[1000];//数组时个对象,对象在使用前要初始化  
-        for(int i=0;i<1000;i++){  
+        String[] arr1=new String[50];//数组时个对象,对象在使用前要初始化  
+        for(int i=0;i<50;i++){  
             arr1[i] = i+2000+"年";  
         }         
         
@@ -274,7 +288,16 @@ public class ShowInventoryPanel {
 		ok.setBounds(day2.getX()+month2.getWidth()+panel.getWidth()/90,startdate.getY(), panel.getWidth()/11, panel.getHeight()/20);
 		ok.setVisible(true);
 		
-        
+		ok.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				tableData=initInTableData();
+				 for(int i=0;i<tableData.length;i++){
+						for(int j=0;j<tableData[0].length;j++){
+							table1.setValueAt(tableData[i][j], i, j);
+						}
+					}
+			}});
+		
         panel.add(ok);
 		panel.add(year1);
 		panel.add(month1);
@@ -287,22 +310,12 @@ public class ShowInventoryPanel {
 	}
 	
 	public void tablePanel(){
+		tableTitle1= new String[]{"入库单号","区号","排号","架号","位号"};
+		tableData=initInTableData();	
+		table1 = new JTable(tableData,tableTitle1);
 		
-		title1="入库单号";
-		title2 ="出库单号";
-		title3="存储位置";
-		String[] t1 = new String[]{title1,title3};
-		String[] t2 = new String[]{title2,title3};
-
-		
-		String[] ot = new String[]{"入库单号","区号","排号","架号","位号"};
-		String[][] tl = new String[][]{{"111010000000","A","1","2","1"},{"111010000000","A","1","3","1"},{"111010000000","A","1","4","1"},
-				{"111010000200","B","2","2","1"},{"111010000050","K","1","2","1"},{"111010000090","F","1","2","1"},{"111010000000","A","1","9","1"},
-				{"111010000004","A","9","3","1"},{"111010000000","D","1","2","1"},{"111230000230","A","1","2","1"},{"111010000000","C","1","2","1"},
-				{"112020033000","H","11","2","7"},{"112040000003","D","1","2","1"},{"112310000010","B","2","3","1"},{"111010000000","C","2","1","1"}};
-		table1 = new JTable(tl,ot);
 		String[] ot1 = new String[]{"出库单号","区号","排号","架号","位号"};
-		table2 = new JTable(tl,ot1);
+		table2 = new JTable(tableData,ot1);
 	//in
 		table1.setEnabled(false);//设置不可编辑内容
 		table1.setRowHeight(panel.getWidth()/20);//设置列宽
@@ -312,7 +325,7 @@ public class ShowInventoryPanel {
 		table1.setVisible(true);
 		scrollPane = new JScrollPane(table1);
 
-		if(tl.length>=10){
+		if(tableData.length>=10){
 			scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8,tab.getWidth(), 10*table1.getRowHeight());
 		}else{
 			scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8,tab.getWidth(), (table1.getRowCount()+1)*table1.getRowHeight());
@@ -331,7 +344,7 @@ public class ShowInventoryPanel {
 		table2.setVisible(true);
 		scrollPane2 = new JScrollPane(table2);
 
-		if(tl.length>=10){
+		if(tableData.length>=10){
 			scrollPane2.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8, tab.getWidth(), 10*table1.getRowHeight());
 		}else{
 			scrollPane2.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/8,tab.getWidth(), (table1.getRowCount()+1)*table1.getRowHeight());
@@ -343,9 +356,108 @@ public class ShowInventoryPanel {
 		scrollPane2.setVisible(true);
 		outInfo.add(scrollPane2);
 		
-		
 		//tab.add(table1);
 	}
+	
+	public String[][] initInTableData(){
+		y1=year1.getSelectedIndex()+2000;
+		m1=month1.getSelectedIndex()+1;
+		d1=day1.getSelectedIndex()+1;
+		y2=year2.getSelectedIndex()+2000;
+		m2=month2.getSelectedIndex()+1;
+		d2=day2.getSelectedIndex()+1;
+		
+		System.out.println("/////////////////////////:::"+y1+" "+m1+" "+d1+" "+y2+" "+m2+" "+d2);
+		
+		WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
+		
+		//得到date1,date2,判断memory中d是否在这之前，如果在，则取得相对应的入库单号号再从db入库单里提出区排架位
+		String date=memory.getWarehouseInDate().substring(2);
+		String[] dates =date.split(" ");
+		String code = memory.getWarehouseInCode().substring(2);
+		String[] codes =code.split(" ");
+		System.out.println("::::::::::1:::::::::"+date);
+		System.out.println("::::::::::2:::::::::"+code);
+		Date date1 = new Date(y1-1900,m1-1,d1);
+        Date date2 = new Date(y2-1900,m2-1,d2);
+        assert(date2.after(date1));
+       
+        int counter=0;
+        for(int i=0;i<dates.length;i++){
+        	System.out.println(":::::::::3::::::::::"+dates[0]);
+        	String[] yAmAd=dates[i].split("年|月|日");
+        	int year = Integer.parseInt(yAmAd[0]);
+        	int month = Integer.parseInt(yAmAd[1]);
+        	int day = Integer.parseInt(yAmAd[2]);
+        	
+        	Date d = new Date(year-1900,month-1,day);
+        	if(d.after(date1)&&d.before(date2)){
+        		String c = codes[i];
+        		
+        		String[][] content =new String[20][5];
+        		for(int x=0;x<20;x++)
+        			for(int y=0;y<5;y++)
+        				content[x][y]=null;
+        		if(c!=null){
+    				WarehouseBLService service = ConstructFactory.WarehouseFactory();
+    				ArrayList<WarehouseInVO> in = service.showWarehouseInInfo(c);
+					for(WarehouseInVO vo: in){
+						content[counter][0]=c;
+						content[counter][1]=vo.getArea();
+						content[counter][2]=vo.getRow()+"";
+						content[counter][3]=vo.getShelf()+"";
+						content[counter][4]=vo.getPosition()+"";
+					}
+        		}
+        			counter++;
+        			return content;
+        	}else return null;
+        }
+        	/*	ArrayList<WarehouseInVO> in=null;
+        		WarehouseBLService service=ConstructFactory.WarehouseFactory();
+        		in=service.showWarehouseInInfo(((WritePanel)panel).getBelong());
+        		if(in!=null){
+        			int counter=0;
+        			for(WarehouseInVO vo:in){
+        				content[counter][0]=vo.getCode();
+						content[counter][1]=vo.getArea();
+						content[counter][2]=vo.getRow()+"";
+						content[counter][3]=vo.getShelf()+"";
+						content[counter][4]=vo.getPosition()+"";
+						counter++;
+        			}
+        		}
+        		
+        		return content;
+        	}else return null;
+        }*/
+        return null;
+}
+	
+/*	public String[][] initOutTableData(){
+		String[][] content =new String[20][5];
+		for(int x=0;x<20;x++)
+			for(int y=0;y<5;y++)
+				content[x][y]=null;
+		ArrayList<InventoryVO> out=null;
+		WarehouseBLService service=ConstructFactory.WarehouseFactory();
+	//	assert(areanumber.getText()!=null);
+	//	System.out.println("+++++++++++++++::::"+areanumber.getText());
+		out=service.checkInventory(((WritePanel)panel).getBelong()+" "+areanumber.getText());
+		if(out!=null){
+		int counter=0;
+		for(InventoryVO vo:out){
+			content[counter][0]=vo.getOrderCode();
+			content[counter][1]=vo.getArriveDate();
+			content[counter][2]=vo.getDestination();
+			content[counter][3]=vo.getArea();
+			content[counter][4]=vo.getRow()+"";
+			counter++;
+		}
+		}
+		return content;
+	}
+	*/
 	
 	public void Num(){
 		Font font = new Font("宋体", Font.BOLD, 13);//BOLD PLAIN
@@ -408,12 +520,6 @@ public class ShowInventoryPanel {
 		panel.remove(startdate);
 		panel.remove(enddate);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	static public boolean isLeap(String a){

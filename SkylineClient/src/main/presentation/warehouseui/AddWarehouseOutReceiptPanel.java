@@ -19,7 +19,6 @@ import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.WarehouseMemory;
-import main.socketservice.SqlReader;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 
@@ -70,19 +69,10 @@ public class AddWarehouseOutReceiptPanel {
 		//title();
 		listpanel= new JPanel();
 		listpanel.setLayout(null);
-	//	scrollPane = new JScrollPane(listpanel, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-	//	scrollPane.setVisible(true);
-	//	scrollPane.setBounds(panel.getWidth()*10/80, panel.getHeight()/20, panel.getWidth()*60/80, panel.getHeight()*18/20);
-	//	listpanel.setPreferredSize(new Dimension(1, panel.getHeight()));
-	
-	//	scrollPane.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
-		
 		listpanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/13, panel.getWidth()*57/80, panel.getHeight()*18/20);
 		listpanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 	
 		content();
-	
-	//	panel.add(scrollPane);
 		listpanel.setVisible(true);
 		panel.add(listpanel);
 		panel.repaint();
@@ -130,13 +120,13 @@ public class AddWarehouseOutReceiptPanel {
 		bar.setFont(font);
 		bar.setBounds(cargoinfo.getX(),cargoinfo.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
-		code=new JLabel("出库单号:");
+/*		code=new JLabel("出库单号:");
 		code.setFont(font);
 		code.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
-		
+	*/	
 		outDate=new JLabel("出库日期:");
 		outDate.setFont(font);
-		outDate.setBounds(cargoinfo.getX(),code.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
+		outDate.setBounds(cargoinfo.getX(),bar.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
 		
 		distination=new JLabel("目的地:");
 		distination.setFont(font);
@@ -168,21 +158,21 @@ public class AddWarehouseOutReceiptPanel {
 		bB.setFont(font);
 		bB.setBounds(pB.getX()+panel.getWidth()/8,loadingtype.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
-		transfercode=new JLabel("中转单编号:");
-		transfercode.setFont(font);
-		transfercode.setBounds(cargoinfo.getX(),bB.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
+//		transfercode=new JLabel("中转单编号:");
+//		transfercode.setFont(font);
+//		transfercode.setBounds(cargoinfo.getX(),bB.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
 		
-		codetext = new JTextField();
-		codetext.setBounds(code.getX()+panel.getWidth()/8,code.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
+	//	codetext = new JTextField();
+	//	codetext.setBounds(code.getX()+panel.getWidth()/8,code.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
-		tip1 = new JLabel("*请输入10位有效出库单号");
+	/*	tip1 = new JLabel("*请输入10位有效出库单号");
 		tip1.setFont(new Font("宋体", Font.BOLD, 12));
 		tip1.setForeground(Color.GRAY);
 		tip1.setBounds(codetext.getX()+codetext.getWidth()+panel.getWidth()/50,code.getY(),panel.getWidth()/3, panel.getHeight()/10);
-		
+		*/
 		vehicleCode=new JLabel("汽运编号:");
 		vehicleCode.setFont(font);
-		vehicleCode.setBounds(cargoinfo.getX(),transfercode.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
+		vehicleCode.setBounds(cargoinfo.getX(),bB.getY()+panel.getHeight()/14,panel.getWidth()/5, panel.getHeight()/10);
 		
 		
 		bartext = new JTextField();
@@ -191,17 +181,17 @@ public class AddWarehouseOutReceiptPanel {
 		distext = new JTextField();
 		distext.setBounds(distination.getX()+panel.getWidth()/8,distination.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
-		transtext = new JTextField();
-		transtext.setBounds(transfercode.getX()+panel.getWidth()/7,transfercode.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
+	//	transtext = new JTextField();
+	//	transtext.setBounds(transfercode.getX()+panel.getWidth()/7,transfercode.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
 		vehtext = new JTextField();
-		vehtext.setBounds(transfercode.getX()+panel.getWidth()/7,vehicleCode.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
+		vehtext.setBounds(distination.getX()+panel.getWidth()/7,vehicleCode.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
-		tip2 = new JLabel("*请输入14位有效中转单编号");
+/*		tip2 = new JLabel("*请输入14位有效中转单编号");
 		tip2.setFont(new Font("宋体", Font.BOLD, 12));
 		tip2.setForeground(Color.GRAY);
 		tip2.setBounds(transtext.getX()+transtext.getWidth()+panel.getWidth()/50,transfercode.getY(),panel.getWidth()/3, panel.getHeight()/10);
-		
+	*/	
 		
 		
 
@@ -329,13 +319,13 @@ public class AddWarehouseOutReceiptPanel {
 		listpanel.add(line1);
 		listpanel.add(line2);
 		listpanel.add(line3);
-		listpanel.add(tip1);
-		listpanel.add(tip2);
+	//	listpanel.add(tip1);
+	//	listpanel.add(tip2);
 		listpanel.add(outList);
 		listpanel.add(ok);
 		listpanel.add(cancel);
 		listpanel.add(bar);
-		listpanel.add(code);
+	//	listpanel.add(code);
 		listpanel.add(cargoinfo);
 		listpanel.add(outDate);
 		listpanel.add(distination);
@@ -346,13 +336,13 @@ public class AddWarehouseOutReceiptPanel {
 		listpanel.add(pB);
 		listpanel.add(bB);
 		listpanel.add(tB);
-		listpanel.add(transfercode);
+	//	listpanel.add(transfercode);
 		listpanel.add(vehicleCode);
 		listpanel.add(vehtext);
 		listpanel.add(bartext);
-		listpanel.add(codetext);
+	//	listpanel.add(codetext);
 		listpanel.add(distext);
-		listpanel.add(transtext);
+	//	listpanel.add(transtext);
 		
 		
 		ok.addMouseListener(new MouseAdapter(){
@@ -385,14 +375,13 @@ public class AddWarehouseOutReceiptPanel {
 				String code=memory.getWarehouseOutCode();
 				ReceiptCode cal=ConstructFactory.calculateCode();
 				code=cal.calculCode(code,memory.getUserName());
-				System.out.println("--------========-----------------"+memory.getUserName());
 				System.out.println(code);
 				
 				//code出库单号、bar为订单号
 	
-				WarehouseOutVO warehouseOutVO = new WarehouseOutVO(bartext.getText(),codetext.getText(),
+				WarehouseOutVO warehouseOutVO = new WarehouseOutVO(bartext.getText(),code,
 						distext.getText(),date,
-						transtype,((WritePanel) panel).getBelong()+" "+transtext.getText(),vehtext.getText(),damageCondition);
+						transtype,((WritePanel) panel).getBelong(),vehtext.getText(),damageCondition);
 
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				boolean key = service.WarehouseOut(warehouseOutVO);
@@ -400,10 +389,7 @@ public class AddWarehouseOutReceiptPanel {
 					WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
 					wr.saveWarehouseOutCode(code, memory.getUserName());
 					memory.setWarehouseOutCode(memory.getWarehouseOutCode()+" "+code);
-					
-					
-					
-					
+					memory.setWarehouseOutDate(memory.getWarehouseOutDate()+" "+date);
 				}
 			}
 		});
@@ -414,13 +400,6 @@ public class AddWarehouseOutReceiptPanel {
 				panel.repaint();
 			}		
 		});
-	
-		
-	}
-	
-	public boolean ifexit(){
-		
-		
 		
 		
 	}
@@ -432,13 +411,13 @@ public class AddWarehouseOutReceiptPanel {
 		listpanel.remove(line1);
 		listpanel.remove(line2);
 		listpanel.remove(line3);
-		listpanel.remove(tip1);
-		listpanel.remove(tip2);
+	//	listpanel.remove(tip1);
+	//	listpanel.remove(tip2);
 		listpanel.remove(outList);
 		listpanel.remove(ok);
 		listpanel.remove(cancel);
 		listpanel.remove(bar);
-		listpanel.remove(code);
+	//	listpanel.remove(code);
 		listpanel.remove(cargoinfo);
 		listpanel.remove(outDate);
 		listpanel.remove(distination);
@@ -449,13 +428,13 @@ public class AddWarehouseOutReceiptPanel {
 		listpanel.remove(pB);
 		listpanel.remove(bB);
 		listpanel.remove(tB);
-		listpanel.remove(transfercode);
+	//	listpanel.remove(transfercode);
 		listpanel.remove(vehicleCode);
 		listpanel.remove(vehtext);
 		listpanel.remove(bartext);
-		listpanel.remove(codetext);
+	//	listpanel.remove(codetext);
 		listpanel.remove(distext);
-		listpanel.remove(transtext);
+	//	listpanel.remove(transtext);
 		
 		
 	}

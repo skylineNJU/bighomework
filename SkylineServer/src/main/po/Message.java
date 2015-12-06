@@ -16,7 +16,6 @@ public class Message implements Serializable {
 	}
 	public void writeIntoDatabase() {
 	}
-	
 	public void getDataFromBase(){
 		
 	}

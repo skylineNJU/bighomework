@@ -7,10 +7,10 @@ public class WarehouseInPO extends Receipt implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 /*
- * 蹇�掔紪鍙枫�佸叆搴撴棩鏈熴�佺洰鐨勫湴銆佸尯鍙枫�佹帓鍙枫�佹灦鍙枫�佷綅鍙�
+ * 入库单及入库信息
  */
-	private String bar;
-	private String code;
+	private String bar;//订单号
+	private String code;//入库单号
 	private String date;
 	private String inDate;
 	private String destination;
@@ -20,6 +20,22 @@ public class WarehouseInPO extends Receipt implements Serializable{
 	private int position;
 	private String damageCondition;
 	
+	
+	
+	public WarehouseInPO(String code){
+		super();
+		this.code=code;
+	}
+
+	public WarehouseInPO(String code, String area, int row, int shelf,int position) {
+		super();
+		this.code = code;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+	}
+
 	public WarehouseInPO(String a,String co,String b,String c,String d,int e,int f,int g,String h){
 		bar = a;
 		code = co;

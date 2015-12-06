@@ -1,6 +1,16 @@
 package main.businesslogic.warehousebl;
 
+import java.util.ArrayList;
+
+import main.data.info.InfoDataController;
+import main.data.warehouse.WarehouseDataController;
+import main.dataservice.InfoDataService;
+import main.dataservice.WarehouseDataService;
+import main.po.DriverInfoPO;
+import main.po.DriverList;
+import main.po.InventoryList;
 import main.po.InventoryPO;
+import main.vo.DriverVO;
 import main.vo.InventoryVO;
 
 public class Inventory {
@@ -8,7 +18,7 @@ public class Inventory {
 	private	int outNum;
 	private	String orderCode;
 	private	String damageCondition;
-	private	char area;
+	private	String area;
 	private	int row;
 	private	int shelf;
 	private	int position;
@@ -30,7 +40,7 @@ public class Inventory {
 	}
 	
 	public Inventory(String Code){
-		if(inquire(Code)){
+		if(inquire(Code) != null){
 			this.inNum=po.getInNum();
 			this.outNum=po.getOutNum();
 			this.orderCode=po.getOrderCode();
@@ -56,11 +66,27 @@ public class Inventory {
 		return true;
 	}
 	
-	private boolean inquire(String driverCode){
-		
-		return true;
-		
+	public ArrayList<InventoryVO> inquire(String Code){
+		WarehouseDataService service=new WarehouseDataController();
+		po=new InventoryPO(Code);
+		InventoryList Inventorylist=new InventoryList();
+		Inventorylist.add(po);
+		Inventorylist=service.inquireInventory(Inventorylist);
+		ArrayList<InventoryVO> inventoryinfo=new ArrayList<InventoryVO>();
+		for(InventoryPO p:Inventorylist.getlist()){
+			System.out.println(p.getOrderCode());
+			inventoryinfo.add(new InventoryVO(p.getOrderCode(),
+									p.getArriveDate(),
+									p.getDestination(),
+									p.getArea(),
+									p.getRow(),
+									p.getShelf(),
+									p.getPosition()
+									));
+		}
+		return inventoryinfo;
 	}
+	
 	
 	public static boolean delete(String driverCode){
 		return true;
@@ -83,7 +109,7 @@ public class Inventory {
 		return damageCondition;
 	}
 
-	public char getArea() {
+	public String getArea() {
 		return area;
 	}
 

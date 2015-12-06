@@ -10,6 +10,7 @@ public class InventoryPO extends Message implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	 	private String orderCode;
+	 	private String bar;
 	 	private String damageCondition;
 	 	private String area;
 		private int row;
@@ -17,6 +18,18 @@ public class InventoryPO extends Message implements Serializable{
 		private int position;
 		private String destination;
 		private String arriveDate;
+		
+		public InventoryPO( String orderCode, String arriveDate, String destination, String area, int row, int shelf, int position){
+			super();
+			this.orderCode = orderCode;
+			this.arriveDate = arriveDate;
+			this.destination = destination;
+			this.area = area;
+			this.row = row;
+			this.shelf = shelf;
+			this.position = position;
+		}
+
 		
 		public InventoryPO(String c,String d,String e,int f,int g,int h,String i,String j){
 			orderCode=c;
@@ -38,10 +51,10 @@ public class InventoryPO extends Message implements Serializable{
 		
 		public void getDaraFromBase(){
 			SqlReader reader=new SqlReader("InventoryInfo");
-			reader.findNext("订单号",orderCode);
+			reader.findNext("区号",area);
 			this.damageCondition=reader.getString("损坏情况");
 			this.area=reader.getString("区号");
-			this.arriveDate=reader.getString("到达时间");
+			this.arriveDate=reader.getString("入库时间");
 			this.destination=reader.getString("目的地");
 			this.row=reader.getInt("排号");
 			this.shelf=reader.getInt("架号");

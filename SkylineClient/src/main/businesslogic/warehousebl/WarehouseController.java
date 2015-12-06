@@ -1,9 +1,14 @@
 package main.businesslogic.warehousebl;
 
 
+import java.util.ArrayList;
+
+import main.po.InventoryList;
+import main.vo.DriverVO;
 import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
+import main.businesslogic.infobl.Driver;
 import main.businesslogicservice.WarehouseBLService;
 
 public class WarehouseController implements WarehouseBLService {
@@ -31,10 +36,19 @@ public class WarehouseController implements WarehouseBLService {
 	}
 
 	@Override
-	public boolean checkInventory(WarehouseInVO checkinventoryInfo) {
+	public ArrayList<InventoryVO> checkInventory(String code) {
 		// TODO Auto-generated method stub
-		WarehouseIn checkinventory = new WarehouseIn(checkinventoryInfo);
-		return checkinventory.check();
+		Inventory inventory=new Inventory(code);
+		ArrayList<InventoryVO> ivo=inventory.inquire(code);
+		return ivo;
+	}
+
+	@Override
+	public ArrayList<WarehouseInVO> showWarehouseInInfo(String code) {
+		// TODO Auto-generated method stub
+		WarehouseIn in=new WarehouseIn(code);
+		ArrayList<WarehouseInVO> invo=in.inquire(code);
+		return invo;
 	}
 
 }

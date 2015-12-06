@@ -138,11 +138,11 @@ public class LoginPanel {
 						remove();
 						panel.repaint();
 						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
-						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,username);
+						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,null,null,username);
 						Warehouse=receipt.inquireWarehouseReceipt(Warehouse);
 						System.out.println("---------"+Warehouse.getWarehouseInCode());
 						MainController.getWritepanel().setMemory(new WarehouseMemory(username,password,Warehouse.getWarehouseInCode()
-								,Warehouse.getWarehouseOutCode()));
+								,Warehouse.getWarehouseInDate(),Warehouse.getWarehouseOutCode(),Warehouse.getWarehouseOutDate()));
 						MainController.goToWarehouseui(account.getBelong());
 						break;
 					default:

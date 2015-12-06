@@ -6,7 +6,11 @@ import main.dataservice.RightDataService;
 import main.dataservice.WarehouseDataService;
 import main.State.RightType;
 import main.po.AccountPO;
+import main.po.DriverList;
+import main.po.InventoryList;
 import main.po.InventoryPO;
+import main.po.Message;
+import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
 import main.po.WarehouseOutPO;
 import main.presentation.mainui.MainController;
@@ -39,15 +43,42 @@ public class WarehouseDataController implements WarehouseDataService{
 		// TODO Auto-generated method stub
 		warehouseInPO.setKey("Save");
 		client.wrightReceipt(warehouseInPO);
-		
-		return false;
+		return true;
 	}
 	@Override
 	public boolean createWarehouseOutReceipt(WarehouseOutPO warehouseOutPO) {
 		// TODO Auto-generated method stub
-		warehouseOutPO.setKey("Save");
+		warehouseOutPO.setKey("Check");
 		client.wrightReceipt(warehouseOutPO);
-		return false;
+		Message message=client.getResponse();
+		
+		warehouseOutPO=(WarehouseOutPO) message;
+		if(warehouseOutPO.getKey().equals("success")){
+			return true;
+		}
+		else return false;
+		 
+	}
+	@Override
+	public InventoryList inquireInventory(InventoryList Inventorylist) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		System.out.println(Inventorylist.getlist().get(0).getOrderCode());
+		Inventorylist.setKey("Inquire");
+		client.wrightReceipt(Inventorylist);
+		Inventorylist=(InventoryList) client.getResponse();
+		return Inventorylist;
+	}
+	@Override
+	public WarehouseInList inquireWarehouseIn(WarehouseInList warehouseInList) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		System.out.println(warehouseInList.getlist().get(0).getCode());
+		warehouseInList.setKey("Inquire");
+		client.wrightReceipt(warehouseInList);
+		warehouseInList=(WarehouseInList) client.getResponse();
+		return warehouseInList;
+		
 	}
 
 }

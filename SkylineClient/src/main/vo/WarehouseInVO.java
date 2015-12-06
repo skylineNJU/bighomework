@@ -16,6 +16,15 @@ public class WarehouseInVO {
 	private int position;//Î»ºÅ
 	private String damageCondition;
 	
+	public WarehouseInVO(String code, String area, int row, int shelf,
+			int position) {
+		super();
+		this.code = code;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+	}
 	public WarehouseInVO(String a,String co,String b,String c,String d,int e,int f,int g,String h){
 		code = co;
 		bar = a;

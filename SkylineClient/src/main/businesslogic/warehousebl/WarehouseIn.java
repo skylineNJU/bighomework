@@ -1,8 +1,14 @@
 package main.businesslogic.warehousebl;
 
+import java.util.ArrayList;
+
 import main.data.warehouse.WarehouseDataController;
 import main.dataservice.WarehouseDataService;
+import main.po.InventoryList;
+import main.po.InventoryPO;
+import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
+import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
 
 public class WarehouseIn {
@@ -30,7 +36,7 @@ public class WarehouseIn {
 		this.damageCondition =whi.getDamageCondition();
 	}
 	public WarehouseIn(String code){
-		if(inquire(code)){
+		if(inquire(code) != null){
 		this.bar=po.getBar();
 		this.destination=po.getDestination();
 		this.inDate=po.getInDate();
@@ -52,17 +58,32 @@ public class WarehouseIn {
 		po=new WarehouseInPO(this.bar,this.code,this.destination,this.inDate,this.area,this.row,this.shelf,this.position,this.damageCondition);
 		po.setCode(code);
 		WarehouseDataService service=new WarehouseDataController();
-		service.createWarehouseInReceipt(po);	
-		return true;
+		return service.createWarehouseInReceipt(po);	
 	}
 	
 	public boolean modify(){
 		return true;
 	}
 	
-	private boolean inquire(String Code){
-		return true;	
+	public ArrayList<WarehouseInVO> inquire(String bar){
+		WarehouseDataService service=new WarehouseDataController();
+		po=new WarehouseInPO(bar);
+		WarehouseInList WarehouseInlist=new WarehouseInList(bar);
+		WarehouseInlist.add(po);
+		WarehouseInlist=service.inquireWarehouseIn(WarehouseInlist);
+		ArrayList<WarehouseInVO> warehouseInInfo=new ArrayList<WarehouseInVO>();
+		for(WarehouseInPO p:WarehouseInlist.getlist()){
+			System.out.println(p.getCode());
+			 warehouseInInfo.add(new WarehouseInVO(p.getCode(),
+									p.getArea(),
+									p.getRow(),
+									p.getShelf(),
+									p.getPosition()
+									));
+		}
+		return  warehouseInInfo;
 	}
+	
 		
 	public static boolean delete(String Code){
 		return true;

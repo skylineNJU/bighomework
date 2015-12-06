@@ -24,6 +24,7 @@ public class ClientController {
     		break;
     	case "Save":
     		message.writeIntoDatabase();
+    		response(message);
     		break;
     	case "Inquire":
     		message.getDataFromBase();
