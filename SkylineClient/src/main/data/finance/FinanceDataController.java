@@ -148,4 +148,10 @@ public class FinanceDataController implements FinanceDataService{
 		client.writeReceipt(distancePO);
 		return true;
 	}
+
+	@Override
+	public boolean modifyBalance(BankAccountPO bankPO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

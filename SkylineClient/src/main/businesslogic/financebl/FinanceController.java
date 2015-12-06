@@ -78,5 +78,10 @@ public class FinanceController implements FinanceBLService {
 	public boolean writeDistance(DistanceVO distanceVO) {
 		return new Distance().writeDistance(distanceVO);
 	}
+
+	@Override
+	public boolean modifyBalance(BankAccountVO bankVO) {
+		return new Balance().changeBalance(bankVO);
+	}
 	
 }

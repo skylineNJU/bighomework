@@ -10,7 +10,6 @@ import main.vo.BankAccountVO;
 
 public class Balance {
 
-	
 	public ArrayList<BankAccountVO> readBalance(){
 		ArrayList<BankAccountVO> bankVOList = new ArrayList<BankAccountVO>();
 		FinanceDataService dataService = new FinanceDataController();
@@ -21,8 +20,9 @@ public class Balance {
 		return bankVOList;
 	}
 	
-	public boolean changeBalance(double balance,BankAccountVO account){
-		account.setBalance(balance);
-		return false;
+	public boolean changeBalance(BankAccountVO bank){
+		BankAccountPO bankPO = new BankAccountPO(bank.getCode(), bank.getBalance());
+		FinanceDataService finance = new FinanceDataController();
+		return finance.modifyBalance(bankPO);
 	}
 }

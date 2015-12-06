@@ -40,4 +40,6 @@ public interface FinanceBLService {
 	public boolean writeFee(FeeVO feeVO);
 	
 	public boolean writeDistance(DistanceVO distanceVO);
+	
+	public boolean modifyBalance(BankAccountVO bankVO);
 }

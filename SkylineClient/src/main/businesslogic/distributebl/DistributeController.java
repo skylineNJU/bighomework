@@ -13,7 +13,11 @@ public class DistributeController implements DistributeBLService{
 	public ArrayList<DistributeVO> showDistributeList(String courierCode) {
 		return new DistributeList().readDistribute(courierCode);
 	}
-
+	
+	@Override
+	public boolean writeDistributeList(ArrayList<DistributeVO> voList){
+		return new DistributeList().writeDistribute(voList);
+	}
 	@Override
 	public boolean writeReceiveMessage(RecipientVO recipient) {
 		return new ReceiveMessage().writeReceviceMessage(recipient);

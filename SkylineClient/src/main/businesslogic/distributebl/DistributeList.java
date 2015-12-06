@@ -27,4 +27,17 @@ public class DistributeList {
 		}
 		return distributeVOList;
 	}
+	
+	public boolean writeDistribute(ArrayList<DistributeVO> voList){
+		ArrayList<DistributePO> poList = new ArrayList<DistributePO>();
+		for(DistributeVO distributeVO:voList){
+			DistributePO distributePO = new DistributePO(distributeVO.getDistributeCode(),
+					distributeVO.getOrderCode(),distributeVO.getName(),
+					distributeVO.getAdress(),distributeVO.getPhoneNumber(),distributeVO.getID()
+					);
+			poList.add(distributePO);
+		}
+		DistributeDataService distribute  = new DistributeDataController();
+		return distribute.writeDistribute(poList);
+	}
 }

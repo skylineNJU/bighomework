@@ -36,8 +36,8 @@ public class DistributePO extends Receipt implements Serializable {
 
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'"+super.getCode()+"','"+courierName+"','"+guestName
-				+"','"+guestAddress+"','"+guestPhoneNumber+"','"+bar+"'";
+		String content="'"+courierName+"','"+bar+"','"+orderCode+"','"
+		+guestName+"','"+guestAddress+"','"+guestPhoneNumber+"'";
 		writer.writeIntoSql("Distribute", content);
 	}
 	

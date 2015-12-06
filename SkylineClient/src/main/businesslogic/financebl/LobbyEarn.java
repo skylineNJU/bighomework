@@ -27,4 +27,5 @@ public class LobbyEarn {
 		}
 		return voList;
 	}
+	
 }

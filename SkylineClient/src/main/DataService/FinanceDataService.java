@@ -15,6 +15,8 @@ import main.po.SalaryPO;
 //财务管理
 public interface FinanceDataService {
 	
+	public boolean modifyBalance(BankAccountPO bankPO);
+	
 	public SalaryPO readSalary();
 	
 	public FeePO readFee();
