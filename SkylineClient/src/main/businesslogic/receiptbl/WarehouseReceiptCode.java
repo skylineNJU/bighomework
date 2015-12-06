@@ -45,6 +45,7 @@ public class WarehouseReceiptCode {
 		WarehouseReceiptDataService service=new ReceiptController();
 		po=service.inquireWarehouseReceipt(po);
 		WarhouseReceiptVO vo=new WarhouseReceiptVO(po.getWarehouseInCode(),po.getWarehouseInDate(),po.getWarehouseOutCode(),po.getWarehouseOutDate(),po.getBelong(),po.getUsername());
+		
 		return vo;		
 	}
 	
