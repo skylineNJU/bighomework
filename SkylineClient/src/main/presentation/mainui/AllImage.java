@@ -11,7 +11,6 @@ public class AllImage {
 	
 	
 		//用户界面背景图
-		//public static ImageIcon background = new ImageIcon("graphics/background.jpg");
 		public static ImageIcon background = new ImageIcon("graphics/B.png");
 		public static ImageIcon guideback = new ImageIcon("graphics/guideback1.png");
 		public static ImageIcon writeback = new ImageIcon("graphics/writeback.png");
@@ -20,7 +19,6 @@ public class AllImage {
 		//退出按钮，鼠标进入时的图片
 		public static ImageIcon exitEnterImg = new ImageIcon("graphics/frameGraphics/exitFrameMove.png");
 		//退出按钮，鼠标未进入时的图片
-	//	public static ImageIcon exit = new ImageIcon("graphics/exit.png");
 		public static ImageIcon exitImg = new ImageIcon("graphics/frameGraphics/exitFrameExit.png");
 		//最小化按钮，鼠标未进入时的图片
 		public static ImageIcon minMin = new ImageIcon("graphics/frameGraphics/minFrameMin.png");
@@ -52,6 +50,11 @@ public class AllImage {
 		//登录时的界面
 		public static ImageIcon login = new ImageIcon("graphics/login.png");
 		public static ImageIcon login_username=new ImageIcon("graphics/login_username.png");
+		public static ImageIcon login_password =new ImageIcon("graphics/login_password.png");
+		public static ImageIcon login_back=new ImageIcon("graphics/login_back.png");
+		public static ImageIcon login_forget=new ImageIcon("graphics/login_forget.png");
+		public static ImageIcon login_login=new ImageIcon("graphics/login_login.png");
+		public static ImageIcon login_show=new ImageIcon("graphics/login_show.png");
 		
 		
 }

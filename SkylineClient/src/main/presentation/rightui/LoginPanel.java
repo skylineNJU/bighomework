@@ -44,14 +44,13 @@ public class LoginPanel{
 	private JTextField userName=new JTextField("011900017");
 	private JTextField passWord=new JTextField("00000000");
 
-	private JLabel confirm=new JLabel("确定");
-	private JLabel back=new JLabel("返回");
+	private JLabel confirm=new JLabel("");//log in按钮
+	private JLabel back=new JLabel("");
 	private FrameMain frame;
 	private JPanel panel;
-//	private JLabel uIcon;
-//	private JLabel pIcon;
 	private JLabel login;
-	
+	private JLabel show=new JLabel("");//显示密码标记
+	private JLabel forget=new JLabel("");//忘记密码
       
 	
 	public LoginPanel(){
@@ -59,10 +58,20 @@ public class LoginPanel{
 		panel=FrameMain.getContentPanel();
 	}
 	public void init(){
+		int w=frame.getWidth();
+		int h=frame.getHeight();
 		
+		AllImage.login_username.setImage(AllImage.login_username.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		AllImage.login.setImage(AllImage.login.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		AllImage.login_back.setImage(AllImage.login_back.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		AllImage.login_login.setImage(AllImage.login_login.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		AllImage.login_password.setImage(AllImage.login_password.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		AllImage.login_show.setImage(AllImage.login_show.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		AllImage.login_forget.setImage(AllImage.login_forget.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+	
 		userName.setOpaque(false);
 		userName.setBorder(null);
-		userName.setFont(new Font("黑体",Font.ITALIC,18));
+		userName.setFont(new Font("黑体",Font.PLAIN,18));
 		userName.setForeground(Color.WHITE);
 		userName.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e){
@@ -74,31 +83,71 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
+		passWord.setOpaque(false);
+		passWord.setBorder(null);
+		passWord.setFont(new Font("黑体",Font.PLAIN,18));
+		passWord.setForeground(Color.WHITE);
+		passWord.addMouseListener(new MouseAdapter(){
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_password);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
+		});
+		show.setOpaque(false);
+		show.setSize(w*38/851,h*12/576);
+		show.setLocation(w*506/851,h*300/576);
+		show.addMouseListener(new MouseAdapter(){
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_show);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
+		});
 		
-//		uIcon = new JLabel("Icon");
-//		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
-//		uIcon.setVisible(true);
-//		pIcon = new JLabel("Icon");		
-//		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
-//		pIcon.setVisible(true);
-		AllImage.login.setImage(AllImage.login.getImage().getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_DEFAULT));
-
+		forget.setOpaque(false);
+		forget.setSize(w*113/851,h*15/576);
+		forget.setLocation(w*354/851,h*470/576);
+		forget.addMouseListener(new MouseAdapter(){
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_forget);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
+		});
+//背景
 		login=new JLabel(AllImage.login);
 		login.setSize(panel.getWidth(),panel.getHeight());
 		login.setLocation(0,0);
-		userName.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*7,frame.getWidth()/10*3,frame.getHeight()/10);
-		passWord.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*10,frame.getWidth()/10*3,frame.getHeight()/10);
+		userName.setSize(w*152/851,h*38/576);
+		userName.setLocation(w*293/851,h*234/576);
+		passWord.setSize(w*152/851,h*38/576);
+		passWord.setLocation(w*293/851,h*317/576);
 		
-//		panel.add(uIcon);
-//		panel.add(pIcon);
+		back.setOpaque(false);
+		back.setSize(w*32/851,h*29/576);
+		back.setLocation(w*275/851,h*105/576);
+		
+		confirm.setOpaque(false);
+		confirm.setSize(w*230/851,h*46/576);
+		confirm.setLocation(w*298/851,h*406/576);
+		System.out.println("Frame长"+frame.getWidth()+"   "+frame.getHeight());
 		panel.add(userName);
 		panel.add(passWord);
-		panel.add(login);
-		confirm.setBounds(frame.getWidth()/40*28,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
-		back.setBounds(frame.getWidth()/40*34,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
-	
 		panel.add(back);
 		panel.add(confirm);
+		panel.add(forget);
+		panel.add(show);
+		panel.add(login);
 		panel.repaint();
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
@@ -106,8 +155,25 @@ public class LoginPanel{
 				panel.repaint();
 				MainController.jumpToGuestui(Guestui.Search);
 			}
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_back);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
 		});
+		
 		confirm.addMouseListener(new MouseAdapter(){
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_login);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
 			public void mouseClicked(MouseEvent e){
 				String username=userName.getText();
 				String password=passWord.getText();
