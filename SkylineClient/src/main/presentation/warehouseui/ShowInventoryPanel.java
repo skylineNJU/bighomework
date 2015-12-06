@@ -387,11 +387,12 @@ public class ShowInventoryPanel {
         int counter=0;
         for(int i=0;i<dates.length;i++){
         	System.out.println(":::::::::3::::::::::"+dates[0]);
-        	String[] yAmAd=dates[i].split("Äê|ÔÂ|ÈÕ");
+        	String[] yAmAd=dates[i].split("\\/");
         	int year = Integer.parseInt(yAmAd[0]);
+        	
         	int month = Integer.parseInt(yAmAd[1]);
         	int day = Integer.parseInt(yAmAd[2]);
-        	
+        	System.out.println(":::::::::3::::::::::"+year+" "+month+" "+day);
         	Date d = new Date(year-1900,month-1,day);
         	if(d.after(date1)&&d.before(date2)){
         		String c = codes[i];
