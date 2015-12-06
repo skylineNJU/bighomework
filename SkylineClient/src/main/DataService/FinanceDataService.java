@@ -15,6 +15,8 @@ import main.po.SalaryPO;
 //财务管理
 public interface FinanceDataService {
 	
+	public boolean modifyBalance(BankAccountPO bankPO);
+	
 	public SalaryPO readSalary();
 	
 	public FeePO readFee();
@@ -48,5 +50,11 @@ public interface FinanceDataService {
 	//写信息
 	public boolean writeBankAccount(BankAccountPO bankAccountPO);
 	
+	public boolean writeSalary(SalaryPO salaryPO);
+	
 	public DistancePO readDistance();
+	
+	public boolean writeFee(FeePO feePO);
+	
+	public boolean writeDistance(DistancePO distancePO);
 }

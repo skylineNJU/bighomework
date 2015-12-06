@@ -31,4 +31,19 @@ public class Distance {
 		}
 		return new DistanceVO(cityName, distance);
 	}
+	
+	public boolean writeDistance(DistanceVO distanceVO){
+		FinanceDataService finance = new FinanceDataController();
+		DistancePO distancePO = new DistancePO();
+		ArrayList<String[]> distance = new ArrayList<String[]>(); 
+		String[] city = distanceVO.getCity();
+		double[][] cityDistance = distanceVO.getDistance();
+		for(int i = 0;i<cityDistance.length;i++){
+			for(int j = 0;j<cityDistance[i].length;j++){
+				distance.add(new String[]{city[i],city[j],String.valueOf(cityDistance[i][j])});
+			}
+		}
+		distancePO.setCity(distance);
+		return finance.writeDistance(distancePO);
+	}
 }

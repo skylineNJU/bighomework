@@ -1,11 +1,18 @@
 package main.presentation.distributeui;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Calendar;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.DistributeBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.RecipientVO;
 
 public class ReceiveMessagePanel {
 	
@@ -55,7 +62,7 @@ public class ReceiveMessagePanel {
 		receiverName.setBounds(nameLabel.getX()+panelWidth/8, codeLabel.getY()+panelHeight/6, panelWidth/2, panelHeight/20);
 		phone.setBounds(phoneLabel.getX()+panelWidth/8, nameLabel.getY()+panelHeight/6, panelWidth/2, panelHeight/20);
 		
-		cancleButton = new JButton("取消");
+		cancleButton = new JButton("清空");
 		saveButton = new JButton("保存");
 		cancleButton.setBounds(panelWidth*3/8, phone.getY()+panelHeight/6, panelWidth/8, panelHeight/20);
 		saveButton.setBounds(panelWidth*5/8,phone.getY()+panelHeight/6, panelWidth/8, panelHeight/20);
@@ -68,5 +75,30 @@ public class ReceiveMessagePanel {
 		panel.add(phone);
 		panel.add(cancleButton);
 		panel.add(saveButton);
+		
+		cancleButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				receiveCode.setText(null);
+				receiverName.setText(null);
+				phone.setText(null);
+			}
+		});
+		
+		saveButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				Calendar calendar = Calendar.getInstance();
+				String date = calendar.get(Calendar.YEAR)+"/"+(calendar.get(Calendar.MONTH)+1)
+						+"/"+calendar.get(Calendar.DAY_OF_MONTH);
+				RecipientVO recipientVO = new RecipientVO(receiverName.getText(), 
+						phone.getText(), receiveCode.getText(), 
+						date, "当前快递员编号");
+				DistributeBLService distribute = ConstructFactory.DistributeFactory();
+				if(distribute.writeReceiveMessage(recipientVO)){//保存成功
+					
+				}else{
+					
+				}
+			}
+		});
 	}
 }

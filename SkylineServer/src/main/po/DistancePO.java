@@ -20,10 +20,10 @@ public class DistancePO extends Message {
 
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content1=null;
-		String content2=null;
-		writer.writeIntoSql("Distance", content1);
-		writer.writeIntoSql("Distance", content2);
+		for(String[] string:city){
+			String content = "'"+string[0]+"','"+string[1]+"','"+string[2]+"'";
+			writer.writeIntoSql("Distance", content);
+		}
 	}
 	
 	public void getDataFromBase(){

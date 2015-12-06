@@ -34,4 +34,12 @@ public interface FinanceBLService {
 	public boolean writeEarn(EarnVO earnVO);
 	
 	public boolean writeCost(CostVO costVO);
+	
+	public boolean writeSalary(SalaryVO salaryVO);
+	
+	public boolean writeFee(FeeVO feeVO);
+	
+	public boolean writeDistance(DistanceVO distanceVO);
+	
+	public boolean modifyBalance(BankAccountVO bankVO);
 }

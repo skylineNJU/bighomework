@@ -10,6 +10,12 @@ public class DistributePOList extends Message{
 	
 	private ArrayList<DistributePO> distributeList = new ArrayList<DistributePO>();
 	
+	public void writeIntoDatabase(){
+		for(DistributePO distributePO:distributeList){
+			distributePO.writeIntoDatabase();
+		}
+	}
+	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("Distribute");
 		String key = distributeList.get(0).getCourrierName();

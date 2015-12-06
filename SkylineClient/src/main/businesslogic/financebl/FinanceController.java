@@ -36,14 +36,12 @@ public class FinanceController implements FinanceBLService {
 
 	@Override
 	public boolean writeEarn(EarnVO earnVO) {
-		// TODO Auto-generated method stub
-		return false;
+		return new EarnList().writeEarn(earnVO);
 	}
 
 	@Override
 	public boolean writeCost(CostVO costVO) {
-		// TODO Auto-generated method stub
-		return false;
+		return new CostList().writeCostList(costVO);
 	}
 	
 	@Override
@@ -64,6 +62,26 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public ArrayList<EarnVO> showLobbyEarn(String date, String unit) {
 		return new LobbyEarn().readLobbyEarn(date, unit);
+	}
+
+	@Override
+	public boolean writeSalary(SalaryVO salaryVO) {
+		return new Salary().writeSalary(salaryVO);
+	}
+
+	@Override
+	public boolean writeFee(FeeVO feeVO) {
+		return new Fee().writeFee(feeVO);
+	}
+
+	@Override
+	public boolean writeDistance(DistanceVO distanceVO) {
+		return new Distance().writeDistance(distanceVO);
+	}
+
+	@Override
+	public boolean modifyBalance(BankAccountVO bankVO) {
+		return new Balance().changeBalance(bankVO);
 	}
 	
 }

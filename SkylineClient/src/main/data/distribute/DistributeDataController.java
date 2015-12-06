@@ -1,5 +1,6 @@
 package main.data.distribute;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import main.dataservice.DistributeDataService;
@@ -32,10 +33,21 @@ public class DistributeDataController implements DistributeDataService{
 
 	@Override
 	public boolean inputOrder(ReceivePO receivePO) {
-		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		receivePO.setKey("Save");
+		client.writeReceipt(receivePO);
+		return true;
 	}
-	
-	
 
+	@Override
+	public boolean writeDistribute(ArrayList<DistributePO> poList) {
+		DistributePOList distributePOList = new DistributePOList();
+		for(DistributePO distributePO:poList){
+			distributePOList.add(distributePO);
+		}
+		client=MainController.getClient();
+		distributePOList.setKey("Save");
+		client.writeReceipt(distributePOList);
+		return true;
+	}
 }

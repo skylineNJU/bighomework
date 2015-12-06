@@ -13,5 +13,11 @@ public class Fee {
 		FeeVO feeVO = new FeeVO(feePO.getRoadFee(), feePO.getRailFee(), feePO.getAirFee());
 		return feeVO;
 	}
+	
+	public boolean writeFee(FeeVO feeVO){
+		FinanceDataService finance = new FinanceDataController();
+		FeePO feePO = new FeePO(feeVO.getRoadFee(), feeVO.getRailFee(), feeVO.getAirFee());
+		return finance.writeFee(feePO);
+	}
 
 }

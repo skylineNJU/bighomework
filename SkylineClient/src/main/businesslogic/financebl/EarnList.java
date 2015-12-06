@@ -29,8 +29,12 @@ public class EarnList {
 		return voList;
 	}
 	//写到数据库里面
-	public boolean writeEarn(ArrayList<EarnVO> earnList){
-		//TODO
-		return true;
+	public boolean writeEarn(EarnVO earnVO){
+		FinanceDataService finance = new FinanceDataController();
+		CollectionPO collectionPO = new CollectionPO(earnVO.getCollectionCode(), 
+				earnVO.getDate(), earnVO.getUnit(), earnVO.getBankAccount(), 
+				earnVO.getMoney(), earnVO.getRemark(), earnVO.getIsPaid()
+				);
+		return finance.writeCollection(collectionPO);
 	}
 }

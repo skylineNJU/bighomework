@@ -28,11 +28,11 @@ public class SalaryPO extends Message implements Serializable{
     
     public void writeIntoDatabase() {
     	SqlWriter writer=new SqlWriter();
-    	String content="'нˮ',"+courierSalary+","+lobbySalary+","+driverSalary+","
-    			+intermediateSalary+","+warehouseSalary+","+financeSalary+","
-    			+managerSalary+","+adminSalary+","+courierCommission+","+lobbyCommission+","
-    			+driverCommission+","+intermediateCommission+","+warehouseCommission+","
-    			+financeCommission+","+managerCommission+","+adminCommission;
+    	String content="'"+"1"+"','"+courierSalary+"','"+lobbySalary+"','"+driverSalary+"','"
+    			+intermediateSalary+"','"+warehouseSalary+"','"+financeSalary+"','"
+    			+managerSalary+"','"+adminSalary+"','"+courierCommission+"','"+lobbyCommission+"','"
+    			+driverCommission+"','"+intermediateCommission+"','"+warehouseCommission+"','"
+    			+financeCommission+"','"+managerCommission+"','"+adminCommission+"'";
     	writer.writeIntoSql("SalaryInfo", content);
 	}
     

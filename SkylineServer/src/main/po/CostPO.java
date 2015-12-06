@@ -1,6 +1,7 @@
 package main.po;
 
 import main.socketservice.SqlReader;
+import main.socketservice.SqlWriter;
 
 //成本单，一项成本信息
 public class CostPO extends Receipt{
@@ -23,6 +24,12 @@ public class CostPO extends Receipt{
 		this.remark = remark;
 		this.costCode = costCode;
 		this.isPaid = isPaid;
+	}
+	public void writeIntoDatabase(){
+		SqlWriter writer = new SqlWriter();
+		String content = "'"+bankAccount+"','"+fee+"','"+costType+"','"+
+				costDate+"','"+remark+"','"+costCode+"','"+isPaid+"'";
+		writer.writeIntoSql("Cost", content);
 	}
 	
 	public void getDataFromBase(){
