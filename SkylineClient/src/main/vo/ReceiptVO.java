@@ -1,27 +1,20 @@
 package main.vo;
 
-public class ReceiptVO {
+import main.po.Message;
 
-	private String code=null;
+public class ReceiptVO extends Message{
+
+	private String code;
 	
 	public ReceiptVO(String co){
 		if(co!=null)
-		code=co;
+		this.code=co;
 	}
-	public void convert(ReceiptVO vo){
-		
-	}
-
-
 	
 	public String getCode() {
-
-	return code;
+		return code;
 	}
 	public void setCode(String code) {
 	this.code = code;
-	}
-	public void write(String id,String date,String code){		
-		this.code = code;
 	}
 }

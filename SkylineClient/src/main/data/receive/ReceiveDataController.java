@@ -1,11 +1,13 @@
 package main.data.receive;
 
 import main.dataservice.ReceiveDataService;
+import main.po.CenterReceiveListPO;
 import main.po.CenterReceivePO;
 import main.po.DistributePO;
+import main.po.LobbyReceiveListPO;
 import main.po.LobbyReceivePO;
+import main.po.OrderListPO;
 import main.po.OrderPO;
-import main.po.WorkerPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 
@@ -15,13 +17,9 @@ public class ReceiveDataController implements ReceiveDataService{
 	//存储新的订单信息
 	//将订单信息存储进数据库
 	public boolean writeOrder(OrderPO orderpo){
-		return false;
-	}
-	
-	//查看订单信息
-	//orderBar为订单条形码
-	@Override
-	public boolean readOrder(OrderPO orderPO){
+		client=MainController.getClient();
+		orderpo.setKey("Save");
+		client.writeReceipt(orderpo);
 		return false;
 	}
 	
@@ -45,18 +43,18 @@ public class ReceiveDataController implements ReceiveDataService{
 	public boolean writeCenterOrder(CenterReceivePO centerReceivePO){
 		client=MainController.getClient();
 		centerReceivePO.setKey("Save");
-		client.wrightReceipt(centerReceivePO);
+		client.writeReceipt(centerReceivePO);
 		return false;
 	}
 	
 	//查看中转接收单单信息
 	//orderBar为订单条形码
 	@Override
-	public CenterReceivePO readCenterOrder(CenterReceivePO centerReceivePO){
+	public CenterReceiveListPO readCenterOrder(CenterReceiveListPO centerReceivePO){
 		client=MainController.getClient();
 		centerReceivePO.setKey("Inquire");
-		client.wrightReceipt(centerReceivePO);
-		return (CenterReceivePO) client.getResponse();
+		client.writeReceipt(centerReceivePO);
+		return (CenterReceiveListPO) client.getResponse();
 	}
 	
 	//删除中转接收单单信息
@@ -77,13 +75,11 @@ public class ReceiveDataController implements ReceiveDataService{
 	//将订单信息存储进数据库
 	@Override
 	public boolean writeLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
-		return false;
-	}
-	
-	//查看接收单单信息
-	//orderBar为订单条形码
-	@Override
-	public boolean readLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
+		client=MainController.getClient();
+		lobbyReceivePO.setKey("Save");
+		System.out.println("begin save");
+		client.writeReceipt(lobbyReceivePO);
+		System.out.println("save success");
 		return false;
 	}
 	
@@ -127,5 +123,25 @@ public class ReceiveDataController implements ReceiveDataService{
 	@Override
 	public boolean modifiyDistributeOrder(DistributePO distributePO){
 		return false;
+	}
+
+	@Override
+	public LobbyReceiveListPO readLobbyReceiveOrder(LobbyReceiveListPO poList) {
+		// TODO Auto-generated method stub
+		poList.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(poList);
+		poList=(LobbyReceiveListPO) client.getResponse();
+		return poList;
+	}
+
+	@Override
+	public OrderListPO readOrder(OrderListPO orderPO) {
+		// TODO Auto-generated method stub
+		orderPO.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(orderPO);
+		orderPO=(OrderListPO) client.getResponse();
+		return orderPO;
 	}
 }

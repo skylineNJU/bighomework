@@ -1,5 +1,7 @@
 package main.presentation.mainui;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 
 public class AllImage {
@@ -13,15 +15,19 @@ public class AllImage {
 		public static ImageIcon background = new ImageIcon("graphics/B.png");
 		public static ImageIcon guideback = new ImageIcon("graphics/guideback1.png");
 		public static ImageIcon writeback = new ImageIcon("graphics/writeback.png");
+		//退出按钮，鼠标点击时的图片
+		public static ImageIcon exitClicking =new ImageIcon("graphics/frameGraphics/exitFrameClick.png");
 		//退出按钮，鼠标进入时的图片
-		public static ImageIcon exitEnterImg = new ImageIcon("src/graphics/label/exitFrameEnter.gif");
+		public static ImageIcon exitEnterImg = new ImageIcon("graphics/frameGraphics/exitFrameMove.png");
 		//退出按钮，鼠标未进入时的图片
 	//	public static ImageIcon exit = new ImageIcon("graphics/exit.png");
-		public static ImageIcon exitImg = new ImageIcon("src/graphics/label/exitFrameExit.gif");
-		//最小化按钮，鼠标进入时的图片
-		public static ImageIcon smallestEnterImg = new ImageIcon("src/graphics/label/smallestEnter.gif");
+		public static ImageIcon exitImg = new ImageIcon("graphics/frameGraphics/exitFrameExit.png");
 		//最小化按钮，鼠标未进入时的图片
-		public static ImageIcon smallestImg = new ImageIcon("src/graphics/label/smallestExit.gif");
+		public static ImageIcon minMin = new ImageIcon("graphics/frameGraphics/minFrameMin.png");
+		//最小化按钮，鼠标进入时的图片
+		public static ImageIcon minMove = new ImageIcon("graphics/frameGraphics/minFrameMove.png");
+		//最小化按钮，鼠标点击时的图片
+		public static ImageIcon minClick=new ImageIcon("graphics/frameGraphics/minFrameClick.png");
 		//边框图标，长
 		public static ImageIcon frameEdgingWImg = new ImageIcon("src/graphics/label/frameedge.jpg");
 		//边框图标，宽
@@ -43,7 +49,9 @@ public class AllImage {
 		public static ImageIcon submit = new ImageIcon("graphics/submit.png");	
 		//确认
 		
-		
+		//登录时的界面
+		public static ImageIcon login = new ImageIcon("graphics/login.png");
+		public static ImageIcon login_username=new ImageIcon("graphics/login_username.png");
 		
 		
 }

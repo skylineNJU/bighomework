@@ -5,92 +5,89 @@ import main.socketservice.SqlWriter;
 
 //成本单，一项成本信息
 public class CostPO extends Receipt{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private String costItem;//成本项目，如租金、工资等
-	private int costYear;//支出年份
-	private int costMonth;//支出月份
-	private int costDay;//支出天
-	private double money;//支出金额
-	private String count;//支出人账户
-	private String remark;//支出备注
-
-
-	public CostPO(String costItem, int costYear, int costMonth, int costDay, double money, String count,
-			String remark) {
+	private String bankAccount;
+	private String fee;
+	private String costType;
+	private String costDate;
+	private String remark;
+	private String costCode;
+	private String isPaid;
+		
+	public CostPO(String bankAccount, String fee, String costType,
+			String costDate, String remark, String costCode,String isPaid) {
 		super();
-		this.costItem = costItem;
-		this.costYear = costYear;
-		this.costMonth = costMonth;
-		this.costDay = costDay;
-		this.money = money;
-		this.count = count;
+		this.bankAccount = bankAccount;
+		this.fee = fee;
+		this.costType = costType;
+		this.costDate = costDate;
 		this.remark = remark;
+		this.costCode = costCode;
+		this.isPaid = isPaid;
 	}
-
-
 	public void writeIntoDatabase(){
-		SqlWriter writer=new SqlWriter();
-		String content="'"+count+"',"+money+",'"+costItem+"','"
-				+costYear+"/"+costMonth+"/"+costDay+"','"+remark+"','"+this.getCode()+"'";
+		SqlWriter writer = new SqlWriter();
+		String content = "'"+bankAccount+"','"+fee+"','"+costType+"','"+
+				costDate+"','"+remark+"','"+costCode+"','"+isPaid+"'";
 		writer.writeIntoSql("Cost", content);
 	}
-
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("Cost");
 		reader.findNext("付款单单号",this.getCode());
-		this.count=reader.getString("银行账户名");
-		this.money=reader.getDouble("花费");
-		this.costItem=reader.getString("支出类型");
-		String date[]=reader.getString("支出日期").split(" ");
-		this.costYear=Integer.parseInt(date[0]);
-		this.costMonth=Integer.parseInt(date[1]);
-		this.costDay=Integer.parseInt(date[2]);
-		this.remark=reader.getString("备注");
+		this.bankAccount = reader.getString("银行账户");
+		this.fee = reader.getString("花费");
+		this.costType = reader.getString("支出类型");
+		this.costDate = reader.getString("支出日期");
+		this.remark = reader.getString("备注");
+		this.costCode = reader.getString("付款单单号");
 	}
-	
-	public String getCostItem() {
-		return costItem;
+		
+	public String getIsPaid() {
+		return isPaid;
 	}
 
-	public void setCostItem(String costItem) {
-		this.costItem = costItem;
+	public void setIsPaid(String isPaid) {
+		this.isPaid = isPaid;
 	}
 
-	public int getCostYear() {
-		return costYear;
+	public String getBankAccount() {
+		return bankAccount;
 	}
-
-	public void setCostYear(int costYear) {
-		this.costYear = costYear;
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
-
-
-	public double getMoney() {
-		return money;
+	public String getFee() {
+		return fee;
 	}
-
-	public void setMoney(int money) {
-		this.money = money;
+	public void setFee(String fee) {
+		this.fee = fee;
 	}
-
-	public String getCount() {
-		return count;
+	public String getCostType() {
+		return costType;
 	}
-
-	public void setCount(String count) {
-		this.count = count;
+	public void setCostType(String costType) {
+		this.costType = costType;
 	}
-
+	public String getCostDate() {
+		return costDate;
+	}
+	public void setCostDate(String costDate) {
+		this.costDate = costDate;
+	}
 	public String getRemark() {
 		return remark;
 	}
-
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+	public String getCostCode() {
+		return costCode;
+	}
+	public void setCostCode(String costCode) {
+		this.costCode = costCode;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

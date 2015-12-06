@@ -2,7 +2,6 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
-import main.vo.LobbyLoading;
 import main.vo.LobbyReceptionVO;
 import main.vo.OrderVO;
 import main.vo.TransitReceptionVO;
@@ -34,4 +33,9 @@ public interface ReceiveBLService {
 	 */
 	
 	public boolean createNewLobbyReception(LobbyReceptionVO lobbyReceptionInfo);
+	
+	
+	public ArrayList<LobbyReceptionVO> inquireLobbyReceive(String codes);
+	
+	public ArrayList<OrderVO> inquireOrderReceive(String codes);
 }

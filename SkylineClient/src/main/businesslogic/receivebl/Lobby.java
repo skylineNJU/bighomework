@@ -1,12 +1,14 @@
 package main.businesslogic.receivebl;
 
+import main.data.receive.ReceiveDataController;
+import main.dataservice.ReceiveDataService;
 import main.po.LobbyReceivePO;
 import main.vo.LobbyReceptionVO;
 public class Lobby {
 	private String receiveYear;//营业厅接收时间 
 	private String receiveMonth;//营业厅接收时间 
 	private String receiveDay;//营业厅接收时间 
-	private int condition;//货物到达状态
+	private String condition;//货物到达状态
 	private String expressBar;//expressBar表示订单
 	private String receiptCode;
 	private LobbyReceivePO po;
@@ -17,9 +19,19 @@ public class Lobby {
 		this.receiveDay=lo.getReceiveDay();
 		this.condition=lo.getCondition();
 		this.expressBar=lo.getExpressBar();
-		this.receiptCode=lo.getReceiptCode();		
+		this.receiptCode=lo.getCode();		
 		}
 	public boolean saveInfo(){
+		po=new LobbyReceivePO(
+				this.receiveYear,
+				this.receiveMonth,
+				this.receiveDay,
+				this.condition,
+				this.expressBar
+				);
+		po.setCode(receiptCode);
+		ReceiveDataService service=new ReceiveDataController();
+		service.writeLobbyReceiveOrder(po);
 		return true;
 	}
 	
@@ -57,14 +69,7 @@ public class Lobby {
 		this.receiveDay = receiveDay;
 	}
 
-	public int getCondition() {
-		return condition;
-	}
-
-	public void setCondition(int condition) {
-		this.condition = condition;
-	}
-
+	
 	public String getExpressBar() {
 		return expressBar;
 	}

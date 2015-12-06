@@ -1,6 +1,8 @@
 package main.dataservice;
 
+import main.po.AccountListPO;
 import main.po.AccountPO;
+import main.po.DriverInfoPO;
 import main.State.RightType;
 
 //权限管理数据接口
@@ -20,7 +22,14 @@ public interface RightDataService {
 	public boolean changeRight(AccountPO accountPO);
 	
 	//从数据库中读取该账户的权限
-	public boolean readRight(String account,RightType rightType);
+	public AccountListPO inquireAccountList(AccountListPO po) ;
 	
 	public AccountPO login(AccountPO accountInfo);
+	//新建账户
+	public boolean writeAccount(AccountPO po) ;
+	//修改账户信息
+	public boolean modifyAcount(AccountPO accountPO);
+
+	boolean delAccount(AccountPO po);
+	
 }

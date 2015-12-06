@@ -48,7 +48,6 @@ public class ClientThread implements Runnable {
 	}
 
 	public Message getResponseMessage(){
-		int counter=0;
 		System.out.println("waiting.....");
 		Message message=null;
 		try {

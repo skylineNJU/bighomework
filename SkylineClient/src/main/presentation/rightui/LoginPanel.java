@@ -1,7 +1,14 @@
 package main.presentation.rightui;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -14,6 +21,7 @@ import main.businesslogicservice.receiptblService.SubmitReceipt;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.guestui.Guestui;
+import main.presentation.mainui.AllImage;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.memory.CourrierMemory;
@@ -30,43 +38,71 @@ import main.vo.IntermediateReciptVO;
 import main.vo.LobbyReceiptVO;
 import main.vo.WarhouseReceiptVO;
 
-public class LoginPanel {
-	private JTextField userName=new JTextField("000890004");
-	private JTextField passWord=new JTextField("12345678");
+
+
+public class LoginPanel{
+	private JTextField userName=new JTextField("000870019");
+	private JTextField passWord=new JTextField("00000000");
+
 	private JLabel confirm=new JLabel("确定");
 	private JLabel back=new JLabel("返回");
 	private FrameMain frame;
 	private JPanel panel;
-	private JLabel uIcon;
-	private JLabel pIcon;
+//	private JLabel uIcon;
+//	private JLabel pIcon;
+	private JLabel login;
+	
+      
 	
 	public LoginPanel(){
 		frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
 	}
-	
 	public void init(){
-		uIcon = new JLabel("Icon");
-		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
-		uIcon.setVisible(true);
-		pIcon = new JLabel("Icon");		
-		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
-		pIcon.setVisible(true);
+		
+		userName.setOpaque(false);
+		userName.setBorder(null);
+		userName.setFont(new Font("黑体",Font.ITALIC,18));
+		userName.setForeground(Color.WHITE);
+		userName.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_username);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
+		});
+		
+//		uIcon = new JLabel("Icon");
+//		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
+//		uIcon.setVisible(true);
+//		pIcon = new JLabel("Icon");		
+//		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
+//		pIcon.setVisible(true);
+		AllImage.login.setImage(AllImage.login.getImage().getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_DEFAULT));
+
+		login=new JLabel(AllImage.login);
+		login.setSize(panel.getWidth(),panel.getHeight());
+		login.setLocation(0,0);
 		userName.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*7,frame.getWidth()/10*3,frame.getHeight()/10);
 		passWord.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*10,frame.getWidth()/10*3,frame.getHeight()/10);
-		panel.add(uIcon);
-		panel.add(pIcon);
+		
+//		panel.add(uIcon);
+//		panel.add(pIcon);
 		panel.add(userName);
 		panel.add(passWord);
-
+		panel.add(login);
 		confirm.setBounds(frame.getWidth()/40*28,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
 		back.setBounds(frame.getWidth()/40*34,frame.getHeight()/40*25,frame.getWidth()/10,frame.getHeight()/10);
 	
 		panel.add(back);
 		panel.add(confirm);
+		panel.repaint();
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				remove();
+				panel.removeAll();
 				panel.repaint();
 				MainController.jumpToGuestui(Guestui.Search);
 			}
@@ -81,9 +117,9 @@ public class LoginPanel {
 				RightBLService  service  = ConstructFactory.RightFactory();
 				service.login(account);
 				System.out.println("get login message");
-				switch(account.getRight()){
+				switch(account.getRight()){	
 					case ACCOUNT:
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToRightAdminStaffui(account.getBelong());
 						break;
@@ -93,7 +129,7 @@ public class LoginPanel {
 						MainController.getWritepanel().setMemory(new CourrierMemory(username,password,Courrier.getOrderCode()
 								,Courrier.getBuildDate(),Courrier.getReceiveCode(),Courrier.getReceiveDate(),
 						Courrier.getDistributeCode()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToCourierui(account.getBelong());
 						break;
@@ -102,7 +138,7 @@ public class LoginPanel {
 						FinanceReceiptVO financeVO=financeService.getFinanceCode(username);
 						MainController.getWritepanel().setMemory(new FinanceMemory(username,password,financeVO.getCostCode()
 						,financeVO.getEarnCode()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.gotoFinanceui(account.getBelong());	
 						break;
@@ -112,7 +148,7 @@ public class LoginPanel {
 						MainController.getWritepanel().setMemory(new IntermediateMemory(username,password,
 								intermediateVO.getIntermReceiptCode(),intermediateVO.getAirLoadCode(),intermediateVO.getRailLoadCode(),intermediateVO.getRoadLoadCode()
 								,intermediateVO.getAirLoadDate(),intermediateVO.getRailLoadDate(),intermediateVO.getRoadLoadDate(),intermediateVO.getIntermDate()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToIntermediateStaffui(account.getBelong());
 						break;
@@ -122,7 +158,7 @@ public class LoginPanel {
 						System.out.println(lobbyVO.getReceiveCode());
 						MainController.getWritepanel().setMemory(new LobbyMemory(username,password,lobbyVO.getReceiveCode(),
 								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate(),lobbyVO.getLobbyLoading()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToLobbyStaffui(account.getBelong());
 						break;
@@ -130,12 +166,12 @@ public class LoginPanel {
 						SubmitReceipt manager=ConstructFactory.SubMitFactory();
 						ApprovalVO manvo=manager.getApproval();
 						MainController.getWritepanel().setMemory(new ManagerMemory(username,password,manvo.getKinds(),manvo.getCode()));
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						MainController.goToManagerui(account.getBelong());
 						break;
 					case STOREHOUSE:
-						remove();
+						panel.removeAll();
 						panel.repaint();
 						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
 						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,null,null,username);
@@ -148,7 +184,6 @@ public class LoginPanel {
 					default:
 						System.err.println("密码或用户名错误！");
 						break;
-						
 				}
 				
 				
@@ -239,11 +274,11 @@ public class LoginPanel {
 	}
 	
 	public void remove(){
-		panel.remove(uIcon);
-		panel.remove(pIcon);
+	
 		panel.remove(back);
 		panel.remove(passWord);
 		panel.remove(confirm);
 		panel.remove(userName);
 	}
 }
+

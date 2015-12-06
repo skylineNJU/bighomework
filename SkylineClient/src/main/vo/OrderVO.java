@@ -1,63 +1,52 @@
 package main.vo;
 
-import main.po.Type;
 import main.po.OrderPO.PackageCost;
+import main.po.OrderPO.Size;
+import main.po.Type;
 
 public class OrderVO extends ReceiptVO{
 	private String senderName;
 	private String senderAddress;
 	private String senderCom;
-	//String sendertel;
 	private String senderMobile;
 	
 	private String receiverName;
 	private String receiverAddress;
 	private String receiverCom;
-	//String receivortel;
 	private String receiverMobile;
 	
+	private int num;
+ 	private double sum;
+	private PackageCost packageCost;
+	private Type type;
+	private Size size;
+	private String cargoName;
+	private double weight;
+	private double volumn;
 	private String orderCode;
- 	private int sum;
-	public enum PackageCost{
-		paperBox ,woodBox ,plasticPackage;
-	}
 	
-	
-	
-	public enum Type{
-		 fast,normal,cheap;
-	}	  
-	
-	public enum Size{
-		large,medium,small;	
-	}//³ß´ç
-	
-	
-	PackageCost packageCost;
-	Type type;
-	Size size;
-	
-	public OrderVO(String sn, String sa, String sc,
-			String sm, String rn, String ra, String rc,
-			String rm, String oc,int sum, 
-			PackageCost pC,Type t,Size s, String co){
-		
-		super( co);
-		senderName=sn;
-		senderAddress=sa;
-		senderCom=sc;
-		senderMobile=sm;
-		
-		receiverName=rm;
-		receiverAddress=ra;
-		receiverCom=rc;
-		receiverMobile=rm;
-		orderCode=oc;
-		sum=sum;
-		packageCost=pC;
-		 type=t;
-		 size=s;
-		co=co;
+
+
+	public OrderVO(String co, String senderName, String senderAddress, String senderCom, String senderMobile,
+			String receiverName, String receiverAddress, String receiverCom, String receiverMobile, int num, double sum,
+			PackageCost packageCost, Type type, Size size, String cargoName, double weight, double height) {
+		super(co);
+		this.senderName = senderName;
+		this.senderAddress = senderAddress;
+		this.senderCom = senderCom;
+		this.senderMobile = senderMobile;
+		this.receiverName = receiverName;
+		this.receiverAddress = receiverAddress;
+		this.receiverCom = receiverCom;
+		this.receiverMobile = receiverMobile;
+		this.num = num;
+		this.setSum(sum);
+		this.packageCost = packageCost;
+		this.type = type;
+		this.size = size;
+		this.setCargoName(cargoName);
+		this.setWeight(weight);
+		this.setHeight(height);
 	}
 
 	public String getSenderName() {
@@ -124,18 +113,6 @@ public class OrderVO extends ReceiptVO{
 		this.receiverMobile = receiverMobile;
 	}
 
-	public String getOrderCode() {
-		return orderCode;
-	}
-
-	public void setOrderCode(String orderCode) {
-		this.orderCode = orderCode;
-	}
-
-	public int getSum() {
-		return sum;
-	}
-
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
@@ -162,6 +139,54 @@ public class OrderVO extends ReceiptVO{
 
 	public void setSize(Size size) {
 		this.size = size;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public String getCargoName() {
+		return cargoName;
+	}
+
+	public void setCargoName(String cargoName) {
+		this.cargoName = cargoName;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public double getHeight() {
+		return volumn;
+	}
+
+	public void setHeight(double height) {
+		this.volumn = height;
+	}
+
+	public String getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
 	}
 	
 	

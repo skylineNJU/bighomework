@@ -29,7 +29,7 @@ public class Client {
 	}
 	
 	
-	public boolean wrightReceipt(Message receipt){
+	public boolean writeReceipt(Message receipt){
 		try {
 			System.out.println(receipt==null);
 			writer.writeObject(receipt);

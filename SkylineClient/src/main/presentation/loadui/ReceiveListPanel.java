@@ -29,7 +29,6 @@ public class ReceiveListPanel {
 	private String[] dayString;//31天
 	private JPanel panel;
 	private JLabel title;
-	
 	private JLabel timeLabel;//装运日期
 	private JComboBox<String> yearBox;//表示年份的组合框
 	private JComboBox<String> monthBox;//表示月份的组合框
@@ -67,6 +66,7 @@ public class ReceiveListPanel {
 		saveButton.setBounds(panelWidth*3/5+delButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
 		panel.add(delButton);
 		panel.add(saveButton);
+		
 		panel.repaint();
 	}
  
@@ -129,9 +129,9 @@ public class ReceiveListPanel {
 		int x=0;
 		for(TransitReceptionVO vo:volist){
 			table[x][0]=vo.getReceiveYear()+"/"+vo.getReceiveMonth()+"/"+vo.getReceiveDay();
-			table[x][1]=vo.getCenterNumber();
-			table[x][2]=vo.getBar();
-			
+		    table[x][1]=vo.getCenterNumber();
+	        table[x][2]=vo.getBar();
+		
 			x++;
 		}
 		return table;
@@ -139,9 +139,10 @@ public class ReceiveListPanel {
  
  public void initReceiveTable(JPanel panel,JTable table){
 		int panelWidth=panel.getWidth()-26;
-		int panelHeight=panel.getHeight()-26;
-		tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
-		tableData = this.getReceiveTableData();
+	    int panelHeight=panel.getHeight()-26;
+	    tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
+	    tableData = new String[][]{{"1416191089", "333333", "888888"}};
+	    tableData = this.getReceiveTableData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动

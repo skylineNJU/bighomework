@@ -6,6 +6,7 @@ public class TransitReceptionVO extends ReceiptVO{
 	private int receiveDay;//接收天
 	private String centerNumber;//中转中心编号
 	private String bar;//快递的单号
+	//private String code;
 	
 	public TransitReceptionVO(int ry,int rm, int rd,String cn,String bar,String co) {
 		super(co);

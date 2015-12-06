@@ -1,6 +1,9 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -9,8 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.BankAccountVO;
+import main.vo.CostVO;
 
 public class CostListPanel {
 	private int panelWidth;
@@ -32,9 +41,38 @@ public class CostListPanel {
 	private String[][] tableData;
 	private JTable table;
 	private JScrollPane scrollPane;
-	private JButton delButton;
-	private JButton saveButton;
+	private JButton newCostButton;
+	private JButton payButton;
 	private JButton ensureButton;
+	private JPanel lookPanel;
+	private JPanel addPanel;
+	
+	//-----addPanel------的界面
+	private JLabel addTime;
+	private JLabel addYear;
+	private JLabel addMonth;
+	private JLabel addDay;
+	private JLabel codeLabel;
+	private JLabel feeLabel;
+	private JLabel typeLabel;
+	private JLabel bankLabel;
+	private JLabel isPaidLabel;
+	private JLabel commentLabel;
+	private JComboBox<String> addYearBox;
+	private JComboBox<String> addMonthBox;
+	private JComboBox<String> addDayBox;
+	private JTextField codeText;
+	private JTextField feeText;
+	private JComboBox<String> typeBox;
+	private JComboBox<String> bankBox;
+	private JComboBox<String> isPaidBox;
+	private JTextField commentText;
+	private JButton backButton;
+	private JButton addButton;
+	private String[] paidType = new String[]{"租金", "工资", "提成", "运费", "其它"};
+	private String[] isPaidType = new String[]{"已结算", "未结算"};
+	private String[] bankType;
+	
 	
 	public CostListPanel(){
 		panel = MainController.getWritepanel();
@@ -44,21 +82,60 @@ public class CostListPanel {
 	}
 	
 	public void init(){
-		title();
+		tableTitle = new String[]{"付款单单号", "费用", "支出类型", "银行账户名", "支出时间", "是否结算", "备注"};
+		lookPanel = new JPanel();
+		addPanel = new JPanel();
+		panel.add(lookPanel);
+		panel.add(addPanel);
+		lookPanel.setBounds(0, 0, panelWidth, panelHeight);
+		lookPanel.setOpaque(false);;
+		lookPanel.setLayout(null);
+		addPanel.setBounds(0, 0, panelWidth, panelHeight);
+		addPanel.setOpaque(false);
+		addPanel.setLayout(null);
+		lookPanel.setVisible(true);
+		addPanel.setVisible(false);
 		setTime();
+		initButton();
 		initTable();
-		delButton = new JButton("删除");
-		saveButton = new JButton("保存");
-		delButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
-		saveButton.setBounds(panelWidth*3/5+delButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
-		panel.add(delButton);
-		panel.add(saveButton);
+		initAddPanel();
+		title();
 		panel.repaint();
 	}
 	public void title(){
 		title = new JLabel("成本管理");
 		title.setBounds(panelWidth/3, 10, panelWidth/6, 40);
-		panel.add(title);
+		lookPanel.add(title);
+	}
+	public void initButton(){
+		ensureButton = new JButton("确认");
+		newCostButton = new JButton("新增");
+		payButton = new JButton("结算");
+		lookPanel.add(ensureButton);
+		lookPanel.add(newCostButton);
+		lookPanel.add(payButton);
+		ensureButton.setBounds(dayLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		newCostButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		payButton.setBounds(panelWidth*3/5+newCostButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		
+		newCostButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				lookPanel.setVisible(false);
+				addPanel.setVisible(true);
+			}
+		});
+		
+		ensureButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				scrollPane.remove(table);
+				lookPanel.remove(scrollPane);
+				setData();
+				initTable();
+				lookPanel.repaint();
+			}
+		});
+
+		panel.repaint();
 	}
 	//设置时间的框
 	public void setTime(){
@@ -68,7 +145,6 @@ public class CostListPanel {
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
 		dayLabel = new JLabel("日");
-		ensureButton = new JButton("确认");
 		
 		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
@@ -78,39 +154,57 @@ public class CostListPanel {
 		monthBox = new JComboBox<String>(monthString);
 		dayBox = new JComboBox<String>(dayString);
 		
-		panel.add(ensureButton);
-		panel.add(timeLabel);
-		panel.add(yearLabel);
-		panel.add(monthLabel);
-		panel.add(dayLabel);
-		panel.add(yearBox);
-		panel.add(monthBox);
-		panel.add(dayBox);
+		lookPanel.add(timeLabel);
+		lookPanel.add(yearLabel);
+		lookPanel.add(monthLabel);
+		lookPanel.add(dayLabel);
+		lookPanel.add(yearBox);
+		lookPanel.add(monthBox);
+		lookPanel.add(dayBox);
 		
 		timeLabel.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
 		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		yearLabel.setBounds(yearBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		yearLabel.setBounds(yearBox.getX()+yearBox.getWidth()+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
 		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		monthLabel.setBounds(monthBox.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		monthLabel.setBounds(monthBox.getX()+monthBox.getWidth()+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
 		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10,  panelWidth/10, panelHeight/20);
-		dayLabel.setBounds(dayBox.getX()+panelWidth/40+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
-		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+panelWidth/40, panelHeight/10, panelWidth/10, panelHeight/20);
-		
-		panel.repaint();
+		dayLabel.setBounds(dayBox.getX()+panelWidth/40+dayBox.getWidth(), panelHeight/10, panelWidth/10, panelHeight/20);
+			
+		lookPanel.repaint();
+	}
+	
+	public void setData(){
+		int counter = 0;
+		String date = yearBox.getSelectedItem()+"/"+monthBox.getSelectedItem()+"/"+dayBox.getSelectedItem();
+		FinanceBLService finance = ConstructFactory.FinanceFactory();
+		ArrayList<CostVO> voList = finance.showCostList(date);
+		if(voList.size()!=0){
+			tableData = new String[voList.size()][tableTitle.length];
+		}else{
+			tableData = new String[1][tableTitle.length];
+			tableData[0][0] = "   no data";
+			tableData[0][1] = "   no data";
+			tableData[0][2] = "   no data";
+			tableData[0][3] = "   no data";
+			tableData[0][4] = "   no data";
+			tableData[0][5] = "   no data";
+			tableData[0][6] = "   no data";
+		}
+		for(CostVO costVO:voList){
+			tableData[counter][0] = costVO.getCostCode();
+			tableData[counter][1] = String.valueOf(costVO.getCost());
+			tableData[counter][2] = costVO.getCostType();
+			tableData[counter][3] = costVO.getBankAccount();
+			tableData[counter][4] = costVO.getDate();
+			tableData[counter][5] = costVO.getIsPaid();
+			tableData[counter][6] = costVO.getComment();
+			counter++;
+		}
 	}
 	//成本管理列表
+	@SuppressWarnings("serial")
 	public void initTable(){
-		tableTitle = new String[]{"ID", "费用", "编号", "账户", "类型", "备注"};
-		tableData = new String[][]{{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"},
-				{"刘钦", "1毛钱", "2015", "2013167", "快递费", "追求卓越"}};
+		setData();
 		table = new JTable(tableData,tableTitle);
 		scrollPane = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -123,6 +217,131 @@ public class CostListPanel {
 		}else{
 			scrollPane.setBounds(panelWidth/12, panelHeight/5, panelWidth/6*5, 10*table.getRowHeight());
 		}
-		panel.add(scrollPane);
+		
+		table.setModel(new DefaultTableModel(tableData,tableTitle){
+			public boolean isCellEditable(int row,int column){
+				if(column==0||column==5){
+					return false;
+				}
+				return true;
+			}
+		});
+		lookPanel.add(scrollPane);
+	}
+	
+	public void getBank(){
+		FinanceBLService service = ConstructFactory.FinanceFactory();
+		ArrayList<BankAccountVO> bankListVO = service.showBalance();
+		int counter = 0;
+		bankType = new String[bankListVO.size()];
+		for(BankAccountVO bankVO:bankListVO){
+			bankType[counter] = bankVO.getCode();
+			counter++;
+		}
+	}
+	
+	public boolean isLegal(){//判断是否可以存储
+		return true;
+	}
+	public void initAddPanel(){
+		getBank();
+		addTime = new JLabel("日期");
+		addYear = new JLabel("年");
+		addMonth = new JLabel("月");
+		addDay = new JLabel("日");
+		codeLabel = new JLabel("付款单号");
+		feeLabel = new JLabel("费用");
+		typeLabel = new JLabel("付款类型");
+		bankLabel = new JLabel("支出账户");
+		isPaidLabel = new JLabel("是否结算");
+		commentLabel = new JLabel("备注");
+		addYearBox = new JComboBox<String>(yearString);
+		addMonthBox = new JComboBox<String>(monthString);
+		addDayBox = new JComboBox<String>(dayString);
+		codeText = new JTextField();
+		feeText = new JTextField();
+		typeBox = new JComboBox<String>(paidType);
+		bankBox = new JComboBox<String>(bankType);
+		isPaidBox = new JComboBox<String>(isPaidType);
+		commentText = new JTextField();
+		backButton = new JButton("返回");
+		addButton = new JButton("保存");
+		
+		backButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				codeText.setText(null);
+				feeText.setText(null);
+				commentText.setText(null);
+				addPanel.setVisible(false);
+				lookPanel.setVisible(true);
+			}
+		});
+		
+		addButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+//				String date, String code,String bankAccount,double cost,String comment,String type,String isPaid
+				if(isLegal()){
+					String date = addYearBox.getSelectedItem()+"/"+addMonthBox.getSelectedItem()+"/"+addDayBox.getSelectedItem();
+					CostVO costVO = new CostVO(date, codeText.getText(), 
+							String.valueOf(bankBox.getSelectedItem()), Double.valueOf(feeText.getText()), 
+							commentText.getText(), String.valueOf(typeBox.getSelectedItem()), 
+							String.valueOf(isPaidBox.getSelectedItem()));
+					FinanceBLService finance = ConstructFactory.FinanceFactory();
+					if(finance.writeCost(costVO)){//返回值是布尔类型，在这里添加人机交互内容
+					}
+				}else{
+					//TODO 当不合法的收款单时，人机交互
+				}
+			}
+		});
+		
+		addPanel.add(addTime);
+		addPanel.add(addYear);
+		addPanel.add(addMonth);
+		addPanel.add(addDay);
+		addPanel.add(codeLabel);
+		addPanel.add(feeLabel);
+		addPanel.add(typeLabel);
+		addPanel.add(bankLabel);
+		addPanel.add(isPaidLabel);
+		addPanel.add(commentLabel);
+		addPanel.add(addYearBox);
+		addPanel.add(addMonthBox);
+		addPanel.add(addDayBox);
+		addPanel.add(codeText);
+		addPanel.add(feeText);
+		addPanel.add(typeBox);
+		addPanel.add(bankBox);
+		addPanel.add(isPaidBox);
+		addPanel.add(commentText);
+		addPanel.add(backButton);
+		addPanel.add(addButton);
+		
+		final int HINTER = panelHeight/7;
+		
+		addTime.setBounds(panelWidth/20, panelHeight/10, panelWidth/10, panelHeight/20);
+		addYearBox.setBounds(addTime.getX()+panelWidth/8, panelHeight/10, panelWidth/10, panelHeight/20);
+		addYear.setBounds(addYearBox.getX()+addYearBox.getWidth()+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		addMonthBox.setBounds(addYear.getX()+panelWidth/8, panelHeight/10, panelWidth/10, panelHeight/20);
+		addMonth.setBounds(addMonthBox.getX()+addMonthBox.getWidth()+panelWidth/40, panelHeight/10, panelWidth/20, panelHeight/20);
+		addDayBox.setBounds(addMonth.getX()+panelWidth/8, panelHeight/10,  panelWidth/10, panelHeight/20);
+		addDay.setBounds(addDayBox.getX()+panelWidth/40+addDayBox.getWidth(), panelHeight/10, panelWidth/10, panelHeight/20);
+		
+		codeLabel.setBounds(panelWidth/20, addTime.getY()+addTime.getHeight()+HINTER, panelWidth/12, panelHeight/20);
+		feeLabel.setBounds(panelWidth/2, codeLabel.getY(), panelWidth/12, panelHeight/20);
+		typeLabel.setBounds(codeLabel.getX(), codeLabel.getY()+codeLabel.getHeight()+HINTER, panelWidth/12, panelHeight/20);
+		bankLabel.setBounds(panelWidth/2, typeLabel.getY(), panelWidth/12, panelHeight/20);
+		isPaidLabel.setBounds(codeLabel.getX(), typeLabel.getY()+typeLabel.getHeight()+HINTER, panelWidth/12, panelHeight/20);
+		commentLabel.setBounds(panelWidth/2, isPaidLabel.getY(), panelWidth/12, panelHeight/20);
+		codeText.setBounds(codeLabel.getX()+codeLabel.getWidth(), addTime.getY()+addTime.getHeight()+HINTER, panelWidth*3/10, panelHeight/20);
+		feeText.setBounds(feeLabel.getX()+feeLabel.getWidth(), codeLabel.getY(), panelWidth*3/10, panelHeight/20);
+		typeBox.setBounds(typeLabel.getX()+typeLabel.getWidth(), codeLabel.getY()+codeLabel.getHeight()+HINTER, panelWidth*3/10, panelHeight/20);
+		bankBox.setBounds(bankLabel.getX()+bankLabel.getWidth(), typeLabel.getY(), panelWidth*3/10, panelHeight/20);
+		isPaidBox.setBounds(isPaidLabel.getX()+isPaidLabel.getWidth(), typeLabel.getY()+typeLabel.getHeight()+HINTER, panelWidth*3/10, panelHeight/20);
+		commentText.setBounds(commentLabel.getX()+commentLabel.getWidth(), isPaidLabel.getY(), panelWidth*3/10, panelHeight/20);
+		backButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		addButton.setBounds(panelWidth*3/5+newCostButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		
+		addPanel.repaint();
 	}
 }

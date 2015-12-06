@@ -2,11 +2,7 @@ package main.data.warehouse;
 
 import java.util.ArrayList;
 
-import main.dataservice.RightDataService;
 import main.dataservice.WarehouseDataService;
-import main.State.RightType;
-import main.po.AccountPO;
-import main.po.DriverList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
 import main.po.Message;
@@ -42,14 +38,19 @@ public class WarehouseDataController implements WarehouseDataService{
 	public boolean createWarehouseInReceipt(WarehouseInPO warehouseInPO) {
 		// TODO Auto-generated method stub
 		warehouseInPO.setKey("Save");
-		client.wrightReceipt(warehouseInPO);
+		client.writeReceipt(warehouseInPO);
 		return true;
+
+		
+		
+
 	}
 	@Override
 	public boolean createWarehouseOutReceipt(WarehouseOutPO warehouseOutPO) {
 		// TODO Auto-generated method stub
+
 		warehouseOutPO.setKey("Check");
-		client.wrightReceipt(warehouseOutPO);
+		client.writeReceipt(warehouseOutPO);
 		Message message=client.getResponse();
 		
 		warehouseOutPO=(WarehouseOutPO) message;
@@ -65,7 +66,7 @@ public class WarehouseDataController implements WarehouseDataService{
 		client=MainController.getClient();
 		System.out.println(Inventorylist.getlist().get(0).getOrderCode());
 		Inventorylist.setKey("Inquire");
-		client.wrightReceipt(Inventorylist);
+		client.writeReceipt(Inventorylist);
 		Inventorylist=(InventoryList) client.getResponse();
 		return Inventorylist;
 	}
@@ -75,10 +76,10 @@ public class WarehouseDataController implements WarehouseDataService{
 		client=MainController.getClient();
 		System.out.println(warehouseInList.getlist().get(0).getCode());
 		warehouseInList.setKey("Inquire");
-		client.wrightReceipt(warehouseInList);
+		client.writeReceipt(warehouseInList);
 		warehouseInList=(WarehouseInList) client.getResponse();
 		return warehouseInList;
-		
+
 	}
 
 }

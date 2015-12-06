@@ -12,18 +12,19 @@ public class LobbyReceivePO extends Receipt implements Serializable{
 	private String receiveYear;//营业厅接收时间 
 	private String receiveMonth;//营业厅接收时间 
 	private String receiveDay;//营业厅接收时间 
-	private int condition;//货物到达状态
+	private String condition;//货物到达状态
 	private String expressBar;//expressBar表示订单
-	private String receiptCode;
 	
 	
-	public LobbyReceivePO(String receiveYear,String receiveMonth,String receiveDay,int co,String expressBar,String receiptC){
+
+	public LobbyReceivePO(String receiveYear, String receiveMonth, String receiveDay, String condition,
+			String expressBar) {
+		super();
 		this.receiveYear = receiveYear;
 		this.receiveMonth = receiveMonth;
 		this.receiveDay = receiveDay;
-		this.condition = co;
+		this.setCondition(condition);
 		this.expressBar = expressBar;
-		this.receiptCode=receiptC;
 	}
 
 
@@ -56,17 +57,6 @@ public class LobbyReceivePO extends Receipt implements Serializable{
 		this.receiveDay = receiveDay;
 	}
 
-
-	public int getCondition() {
-		return condition;
-	}
-
-
-	public void setCondition(int condition) {
-		this.condition = condition;
-	}
-
-
 	public String getExpressBar() {
 		return expressBar;
 	}
@@ -77,18 +67,18 @@ public class LobbyReceivePO extends Receipt implements Serializable{
 	}
 
 
-	public String getReceiptCode() {
-		return receiptCode;
-	}
-
-
-	public void setReceiptCode(String receiptCode) {
-		this.receiptCode = receiptCode;
-	}
-
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+	public String getCondition() {
+		return condition;
+	}
+
+
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 
 	

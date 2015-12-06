@@ -3,12 +3,13 @@ import java.awt.Frame;
 import java.awt.Point;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class FrameMain extends JFrame{
-	private static JLabel exit=new JLabel(AllImage.exitImg);
-	private static JLabel hide=new JLabel(AllImage.smallestImg);
+	private static MyButton exit=new MyButton();
+	private static MyButton min=new MyButton();
 	private static JLabel title=new JLabel(AllImage.edg);
 	private static JPanel panel=new JPanel();
 	private static FrameMain frame;
@@ -29,15 +30,15 @@ public class FrameMain extends JFrame{
 		frame.setUndecorated(true);
 		frame.setResizable(false);
 		exit.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
-		hide.setSize(30,25);
+		min.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		title.setSize(frame.getWidth()-(int)((double)frame.getWidth()*18/490)*2,(int)((double)frame.getHeight()*22/490));
 		title.setLocation(0,0);
 		exit.setLocation(frame.getWidth()-exit.getWidth(),0);
-		hide.setLocation(frame.getWidth()-2*hide.getWidth(),0);
+		min.setLocation(frame.getWidth()-2*min.getWidth(),0);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		panel.add(exit);
-		panel.add(hide);
+		panel.add(min);
 		panel.add(title);
 		frame.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {  //按下（mousePressed 不是点击，而是鼠标被按下没有抬起）
@@ -63,29 +64,28 @@ public class FrameMain extends JFrame{
             	}
             }
 		});
-		exit.addMouseListener(new MouseAdapter(){
+		exit.setIMG(AllImage.exitEnterImg, AllImage.exitImg, AllImage.exitClicking);
+		min.setIMG(AllImage.minMove, AllImage.minMin, AllImage.minClick);
+		exit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				System.exit(0);
 			}
-			
-			public void mouseEntered(MouseEvent e){
-				exit.setIcon(AllImage.exitEnterImg);
-			}
-			
-			public void mouseExited(MouseEvent e){
-				exit.setIcon(AllImage.exitImg);
-			}
 		});
-		hide.addMouseListener(new MouseAdapter(){
+//		min.addMouseListener(new MouseAdapter(){
+//			public void mouseClicked(MouseEvent e){
+//				frame.setExtendedState(Frame.ICONIFIED);
+//			}
+//			public void mouseEntered(MouseEvent e){
+//				min.setIcon(AllImage.smallestEnterImg);
+//			}
+//			
+//			public void mouseExited(MouseEvent e){
+//				min.setIcon(AllImage.smallestImg);
+//			}
+//		});
+		min.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				frame.setExtendedState(Frame.ICONIFIED);
-			}
-			public void mouseEntered(MouseEvent e){
-				hide.setIcon(AllImage.smallestEnterImg);
-			}
-			
-			public void mouseExited(MouseEvent e){
-				hide.setIcon(AllImage.smallestImg);
 			}
 		});
 		frame.setVisible(true);

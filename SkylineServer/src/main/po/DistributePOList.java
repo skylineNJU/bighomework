@@ -10,11 +10,17 @@ public class DistributePOList extends Message{
 	
 	private ArrayList<DistributePO> distributeList = new ArrayList<DistributePO>();
 	
+	public void writeIntoDatabase(){
+		for(DistributePO distributePO:distributeList){
+			distributePO.writeIntoDatabase();
+		}
+	}
+	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("Distribute");
 		String key = distributeList.get(0).getCourrierName();
 		distributeList.clear();
-		while(reader.hasNext("快递员账号",key)){
+		while(reader.findNext("快递员账号",key)){
 			DistributePO distributePO = new DistributePO(reader.getString("派送单号"),
 					reader.getString("订单号"),
 					reader.getString("收件人姓名"),

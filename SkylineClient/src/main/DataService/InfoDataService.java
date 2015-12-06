@@ -51,7 +51,7 @@ public interface InfoDataService {
 		
 	//删除车辆信息
 	//code表示车辆代号
-	public boolean deleteVehicle(String code);
+	public boolean deleteVehicle(VehicleInfoPO po);
 		
 	
 	//修改车辆信息
@@ -61,7 +61,7 @@ public interface InfoDataService {
 	public boolean createNewDriver(DriverInfoPO driveInfoPO);
 		
 	//删除司机信息
-	public boolean deleteDriver();
+	public boolean deleteDriver(DriverInfoPO po);
 		
 	//查询司机信息，输入司机编号
 	public DriverList inquireDriver(DriverList driverlist);
@@ -69,7 +69,7 @@ public interface InfoDataService {
 	//修改司机信息
 	public boolean modifyDriver(DriverInfoPO driveInfoPO);
 
-	WorkerPO inquireStaff(WorkerPO workerPO);
+	public WorkerPO inquireStaff(WorkerPO workerPO);
 
-	VehicleListPO readVehicle(VehicleListPO vehiclelist);
+	public VehicleListPO readVehicle(VehicleListPO vehiclelist);
 }

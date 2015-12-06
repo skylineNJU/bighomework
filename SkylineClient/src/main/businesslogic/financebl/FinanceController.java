@@ -3,35 +3,23 @@ package main.businesslogic.financebl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
-import main.po.BankList;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
+import main.vo.DistanceVO;
 import main.vo.EarnVO;
+import main.vo.FeeVO;
+import main.vo.SalaryVO;
 
 public class FinanceController implements FinanceBLService {
 
 	@Override
-	public boolean showStatisticsList(String date1, String date2,
-			ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
-		StatisticsList statisticsList = new StatisticsList();
-		statisticsList.showStatisticsList(date1, date2, earnList, costList);
-		return false;
+	public ArrayList<ArrayList> showStatisticsList(String date) {
+		return new StatisticsList().showStatisticsList(date);
 	}
 
 	@Override
-	public boolean showEarnListDependsOnDay(String date,
-			ArrayList<EarnVO> earnList) {
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.readEarnList(date, earnList);
-		return false;
-	}
-
-	@Override
-	public boolean showEarnListDependsOnInstitution(String code, String date1,
-			String data2, ArrayList<EarnVO> earnList) {
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.readEarnList(code, date1, data2, earnList);
-		return false;
+	public ArrayList<EarnVO> showEarnListDependsOnDay(String date){
+		return new EarnList().readEarnList(date);
 	}
 
 	@Override
@@ -39,32 +27,61 @@ public class FinanceController implements FinanceBLService {
 		return new Balance().readBalance();
 	}
 
+
 	@Override
-	public boolean showCostList(ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		costArrayList.readCostList(costList);
-		return false;
+	public ArrayList<CostVO> showCostList(String date) {
+		return new CostList().readCostList(date);
+	}
+
+
+	@Override
+	public boolean writeEarn(EarnVO earnVO) {
+		return new EarnList().writeEarn(earnVO);
 	}
 
 	@Override
-	public boolean showCostList(String date, ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		costArrayList.readCostList(date, costList);
-		return false;
+	public boolean writeCost(CostVO costVO) {
+		return new CostList().writeCostList(costVO);
+	}
+	
+	@Override
+	public DistanceVO getDistance(){
+		return new Distance().getDistance();
 	}
 
 	@Override
-	public boolean writeEarnList(ArrayList<EarnVO> earnList) {
-		EarnList earnArrayList = new EarnList();
-		earnArrayList.writeEarn(earnList);
-		return false;
+	public SalaryVO readSalary() {
+		return new Salary().getSalary();
 	}
 
 	@Override
-	public boolean writeCostList(ArrayList<CostVO> costList) {
-		CostList costArrayList = new CostList();
-		costArrayList.writeCostList(costList);
-		return false;
+	public FeeVO readFee() {
+		return new Fee().getFee();
+	}
+
+	@Override
+	public ArrayList<EarnVO> showLobbyEarn(String date, String unit) {
+		return new LobbyEarn().readLobbyEarn(date, unit);
+	}
+
+	@Override
+	public boolean writeSalary(SalaryVO salaryVO) {
+		return new Salary().writeSalary(salaryVO);
+	}
+
+	@Override
+	public boolean writeFee(FeeVO feeVO) {
+		return new Fee().writeFee(feeVO);
+	}
+
+	@Override
+	public boolean writeDistance(DistanceVO distanceVO) {
+		return new Distance().writeDistance(distanceVO);
+	}
+
+	@Override
+	public boolean modifyBalance(BankAccountVO bankVO) {
+		return new Balance().changeBalance(bankVO);
 	}
 	
 }

@@ -1,6 +1,5 @@
 package main.data.receipt;
 
-import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.dataservice.receiptdataservice.ApprovalReceiptDataService;
 import main.dataservice.receiptdataservice.CourrierReceiptDataService;
 import main.dataservice.receiptdataservice.FinanceReceiptDataService;
@@ -24,14 +23,14 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Save");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 	}
 	@Override
 	public CourrierReceiptPO inquireCourrierCodes(CourrierReceiptPO po) {
 		// TODO Auto-generated method stub
 		po.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(CourrierReceiptPO) client.getResponse();
 		return po;
 	}
@@ -40,14 +39,14 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Save");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 	}
 	@Override
 	public FinanceReceipt inquireFinanceReceipt(FinanceReceipt po) {
 		// TODO Auto-generated method stub
 		po.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(FinanceReceipt)client.getResponse();
 		return po;
 	}
@@ -56,14 +55,14 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Save");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 	}
 	@Override
 	public IntermediateReceipt inquireIntermCodes(IntermediateReceipt po) {
 		// TODO Auto-generated method stub
 		po.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(IntermediateReceipt) client.getResponse();
 		return po;
 	}
@@ -72,14 +71,14 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Save");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 	}
 	@Override
 	public LobbyReceiptPO inquireLobbyReceipt(LobbyReceiptPO po) {
 		// TODO Auto-generated method stub
 		po.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(LobbyReceiptPO) client.getResponse();
 		return po;
 	}
@@ -88,14 +87,14 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Save");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 	}
 	@Override
 	public ApprovalPO inquireApprovalPO(ApprovalPO po) {
 		// TODO Auto-generated method stub
 		po.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(ApprovalPO) client.getResponse();
 		return po;
 	}
@@ -105,9 +104,9 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Save");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
 		System.out.println("{{{{{{{{{{{{{{:::"+po.getUsername()+" "+po.getWarehouseInCode()+" "+po.getWarehouseInDate()+" "+
 				po.getWarehouseOutCode()+" "+po.getWarehouseOutDate()+" "+po.getBelong());
+		client.writeReceipt(po);
 		
 	}
 	@Override
@@ -115,7 +114,7 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		// TODO Auto-generated method stub
 		po.setKey("Inquire");
 		client=MainController.getClient();
-		client.wrightReceipt(po);
+		client.writeReceipt(po);
 		po=(WarhouseReceiptPO) client.getResponse();
 		return po;
 	}

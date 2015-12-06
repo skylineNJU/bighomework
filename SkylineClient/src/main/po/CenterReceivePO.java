@@ -1,10 +1,12 @@
 package main.po;
 
+import java.io.Serializable;
+
 import main.vo.ReceiptVO;
 import main.vo.TransitReceptionVO;
 
 //中转中心接收单
-public class CenterReceivePO extends Receipt{
+public class CenterReceivePO extends Receipt implements Serializable{
 	
 	/**
 	 * 
@@ -52,6 +54,9 @@ public class CenterReceivePO extends Receipt{
 
 	public String getBar() {
 		return bar;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

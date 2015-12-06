@@ -1,6 +1,9 @@
 package main.presentation.receiveui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,8 +12,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import main.businesslogicservice.ReceiveBLService;
+import main.businesslogicservice.receiptblService.LobbyReceipt;
+import main.businesslogicservice.receiptblService.ReceiptCode;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.LobbyMemory;
+import main.vo.LobbyReceptionVO;
 
 //营业厅接收单
 public class LobbyReceivePanel {
@@ -28,16 +40,16 @@ public class LobbyReceivePanel {
 	private JButton saveButton;
 	private JPanel lookPanel;//查看接收单
 	private JPanel writePanel;//填写接收单
-	private JLabel arriveLabel;//到达日期
-	private JLabel orderCode;//订单号
-	private JLabel trainsCode;//中转单编号
-	private JLabel startPlace;//出发地
-	private JLabel endPlace;//到达地
-	private JTextField arriveText;//到达日期文本框
-	private JTextField orderCodeText;//订单号文本框
-	private JTextField trainsCodeText;//中转单号文本框
-	private JTextField startText;//出发地文本框
-	private JTextField endText;//到达地文本框
+	private JLabel yearLabel;//到达日期
+	private JLabel monthLabel;//订单号
+	private JLabel dayLabel;//中转单编号
+	private JLabel conditionLabel;//出发地
+	private JLabel barLabel;//到达地
+	private JTextField yearText;//到达日期文本框
+	private JTextField monthText;//订单号文本框
+	private JTextField dayText;//中转单号文本框
+	private JTextField conditionText;//出发地文本框
+	private JTextField barText;//到达地文本框
 	private JButton writeCancleButton;//取消按钮
 	private JButton writeSaveButton;//保存按钮
 	
@@ -62,6 +74,21 @@ public class LobbyReceivePanel {
 		tabbedPane.add("查看接收单",lookPanel);
 		tabbedPane.add("填写接收单",writePanel);
 		tabbedPane.setVisible(true);
+		tabbedPane.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				if(tabbedPane.getSelectedIndex()==0){
+					initTableData();
+					for(int x=0;x<tableData.length;x++)
+						for(int y=0;y<3;y++){
+							table.setValueAt(tableData[x][y],x,y);
+						}
+				}
+			}
+			
+		});
 		title();
 		panel.repaint();
 	}
@@ -79,6 +106,36 @@ public class LobbyReceivePanel {
 		writePanel.add(writeSaveButton);
 		writeCancleButton.setBounds(panelWidth*2/5, panelHeight*5/8, panelWidth/10, panelHeight/20);
 		writeSaveButton.setBounds(panelWidth*6/10,  panelHeight*5/8, panelWidth/10, panelHeight/20);
+		
+		writeSaveButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+			WritePanel wp=(WritePanel)panel;
+			LobbyMemory memory=(LobbyMemory) wp.getMemory();
+			String code=null;
+			
+			ReceiptCode service2=ConstructFactory.calculateCode();
+			code=service2.calculCode(memory.getReceiveCode(),memory.getUserName());
+			
+			
+			LobbyReceptionVO vo=new LobbyReceptionVO(
+					code,
+					yearText.getText(),
+					monthText.getText(),
+					dayText.getText(),
+					conditionText.getText(),
+					barText.getText()
+					);
+			
+			ReceiveBLService service=ConstructFactory.ReceiveFactory();
+			service.createNewLobbyReception(vo);
+			
+			memory.setReceiveCode(memory.getReceiveCode()+" "+code);
+			memory.setReceiveDate(memory.getReceiveDate()+" "+yearText.getText()+"/"+monthText.getText()+"/"+dayText.getText());
+			
+			LobbyReceipt service3=ConstructFactory.LobbyReceiptFactory();
+			service3.SaveReceiveCode(memory.getUserName(), code);
+			}
+		});
 	}
 	//标题
 	public void title(){
@@ -87,16 +144,37 @@ public class LobbyReceivePanel {
 		title.setBounds(panelWidth/3, panelHeight/40, panelWidth/6, panelHeight/20);
 	}
 	//单据列表
+	public void initTableData(){
+		WritePanel wp=(WritePanel)panel;
+		LobbyMemory memory=(LobbyMemory) wp.getMemory();
+		String code=memory.getReceiveCode();
+		String codes[]=code.split(" ");
+		if(codes.length<11){
+			tableData=new String[10][3];
+			for(int x=0;x<10;x++)
+				for(int y=0;y<3;y++)
+					tableData[x][y]=null;
+		}else{
+			tableData=new String[codes.length-1][3];
+			for(int x=0;x<codes.length-1;x++)
+				for(int y=0;y<3;y++)
+					tableData[x][y]=null;
+		}
+		
+		ReceiveBLService service=ConstructFactory.ReceiveFactory();
+		ArrayList<LobbyReceptionVO> voList=service.inquireLobbyReceive(code);
+		int x=0;
+		for(LobbyReceptionVO vo:voList){
+			tableData[x][0]=vo.getReceiveYear()+"/"+vo.getReceiveMonth()+"/"+vo.getReceiveDay();
+			tableData[x][1]=vo.getExpressBar();
+			tableData[x][2]=vo.getCondition();
+			x++;
+		}
+	}
+	
 	public void lookTable(){		
-		tableTitle = new String[]{"ID","时间","接收单号","类型","状态"};
-		tableData = new String[][]{{"20152","2015/03/15","209090","普通","损坏"},{"20152","2015/03/15","209090","普通","损坏"},
-				{"20152","2015/03/15","209090","普通","损坏"},{"20152","2015/03/15","209090","普通","损坏"},
-				{"20152","2015/03/15","209090","普通","损坏"},{"20152","2015/03/15","209090","普通","损坏"},
-				{"20152","2015/03/15","209090","普通","损坏"},{"20152","2015/03/15","209090","普通","损坏"},
-				{"20152","2015/03/15","209090","普通","损坏"},{"20152","2015/03/15","209090","普通","损坏"},
-				{"20152","2015/03/15","209090","普通","损坏"},{"20152","2015/03/15","209090","普通","损坏"},
-				{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},{"","","","",""},
-		};
+		initTableData();
+		tableTitle = new String[]{"时间","订单号","状态"};
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
@@ -115,38 +193,39 @@ public class LobbyReceivePanel {
 	}
 	//
 	public void writeTable(){
-		arriveLabel = new JLabel("到达日期");//到达日期
-		orderCode = new JLabel("订单号");//订单号
-		trainsCode = new JLabel("中转单编号");//中转单编号
-		startPlace = new JLabel("出发地");//出发地
-		endPlace = new JLabel("到达地");//到达地
-		arriveText = new JTextField();//到达日期文本框
-		orderCodeText = new JTextField();//订单号文本框
-		trainsCodeText = new JTextField();//中转单号文本框
-		startText = new JTextField();//出发地文本框
-		endText = new JTextField();//到达地文本框
+		yearLabel = new JLabel("年份");//到达日期
+		monthLabel = new JLabel("月份");//订单号
+		dayLabel = new JLabel("日期");//中转单编号
+		conditionLabel = new JLabel("损坏情况");//出发地
+		barLabel = new JLabel("订单号");//到达地
+		yearText = new JTextField();//到达日期文本框
+		monthText = new JTextField();//订单号文本框
+		dayText = new JTextField();//中转单号文本框
+		conditionText = new JTextField();//出发地文本框
+		barText = new JTextField();//到达地文本框
 		
-		writePanel.add(arriveLabel);
-		writePanel.add(orderCode);
-		writePanel.add(trainsCode);
-		writePanel.add(startPlace);
-		writePanel.add(endPlace);
-		writePanel.add(arriveText);
-		writePanel.add(orderCodeText);
-		writePanel.add(trainsCodeText);
-		writePanel.add(startText);
-		writePanel.add(endText);
 		
-		arriveLabel.setBounds(panelWidth/10, panelHeight/10, panelWidth/8, panelHeight/20);
-		orderCode.setBounds(panelWidth/10, panelHeight/10+arriveLabel.getY(), panelWidth/8, panelHeight/20);
-		trainsCode.setBounds(panelWidth/10, panelHeight/10+orderCode.getY(), panelWidth/8, panelHeight/20);
-		startPlace.setBounds(panelWidth/10, panelHeight/10+trainsCode.getY(), panelWidth/8, panelHeight/20);
-		endPlace.setBounds(panelWidth/10, panelHeight/10+startPlace.getY(), panelWidth/8, panelHeight/20);
-		arriveText.setBounds(panelWidth*3/10, panelHeight/10, panelWidth*4/10, panelHeight/20);
-		orderCodeText.setBounds(panelWidth*3/10, panelHeight/10+arriveText.getY(), panelWidth*4/10, panelHeight/20);
-		trainsCodeText.setBounds(panelWidth*3/10, panelHeight/10+orderCodeText.getY(), panelWidth*4/10, panelHeight/20);
-		startText.setBounds(panelWidth*3/10, panelHeight/10+trainsCodeText.getY(), panelWidth*4/10, panelHeight/20);
-		endText.setBounds(panelWidth*3/10, panelHeight/10+startText.getY(), panelWidth*4/10, panelHeight/20);
+		writePanel.add(yearLabel);
+		writePanel.add(monthLabel);
+		writePanel.add(dayLabel);
+		writePanel.add(conditionLabel);
+		writePanel.add(barLabel);
+		writePanel.add(yearText);
+		writePanel.add(monthText);
+		writePanel.add(dayText);
+		writePanel.add(conditionText);
+		writePanel.add(barText);
+		
+		yearLabel.setBounds(panelWidth/10, panelHeight/10, panelWidth/8, panelHeight/20);
+		monthLabel.setBounds(panelWidth/10, panelHeight/10+yearLabel.getY(), panelWidth/8, panelHeight/20);
+		dayLabel.setBounds(panelWidth/10, panelHeight/10+monthLabel.getY(), panelWidth/8, panelHeight/20);
+		conditionLabel.setBounds(panelWidth/10, panelHeight/10+dayLabel.getY(), panelWidth/8, panelHeight/20);
+		barLabel.setBounds(panelWidth/10, panelHeight/10+conditionLabel.getY(), panelWidth/8, panelHeight/20);
+		yearText.setBounds(panelWidth*3/10, panelHeight/10, panelWidth*4/10, panelHeight/20);
+		monthText.setBounds(panelWidth*3/10, panelHeight/10+yearText.getY(), panelWidth*4/10, panelHeight/20);
+		dayText.setBounds(panelWidth*3/10, panelHeight/10+monthText.getY(), panelWidth*4/10, panelHeight/20);
+		conditionText.setBounds(panelWidth*3/10, panelHeight/10+dayText.getY(), panelWidth*4/10, panelHeight/20);
+		barText.setBounds(panelWidth*3/10, panelHeight/10+conditionText.getY(), panelWidth*4/10, panelHeight/20);
 		
 	}
 		

@@ -17,9 +17,9 @@ public class AccountPO extends Message implements Serializable{
 	private Rights right;
 	private String belong;
 	
-	public AccountPO(String iD, String code, Rights right, String belong) {
+	public AccountPO(String ID, String code, Rights right, String belong) {
 		super();
-		ID = iD;
+		this.ID = ID;
 		this.code = code;
 		this.right = right;
 		this.belong = belong;
@@ -33,19 +33,40 @@ public class AccountPO extends Message implements Serializable{
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";
+		System.out.println(content);
 		writer.writeIntoSql("AccountInfo", content);
 	}
-	
+	public String readAccount(String ID){
+		String content="";
+		SqlReader reader=new SqlReader("AccountInfo");
+		while(reader.findNext("账号",ID)){
+			content=content+reader.getString("账号")+" ";
+		}
+		reader.close();
+		return content;
+	}
+	public void getDataFromBase0(){
+		SqlReader reader=new SqlReader("AccountInfo");
+		while(reader.hasNext()){
+			this.ID=reader.getString("账号");
+			this.code=reader.getString("密码");
+			this.right=Rights.valueOf(reader.getString("权限"));
+			this.belong=reader.getString("所属单位");
+		}
+		reader.close();
+	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
 		System.out.println(this.ID);
-		reader.findNext("账号",ID);
+		if(reader.findNext("账号",this.getID())){
+		this.ID=reader.getString("账号");
 		this.code=reader.getString("密码");
 		this.right=Rights.valueOf(reader.getString("权限"));
 		this.belong=reader.getString("所属单位");
-		
+		}
 		reader.close();
 	}
+	
 	
 	public void checkLogin(){
 		SqlReader reader=new SqlReader("AccountInfo");
@@ -55,6 +76,7 @@ public class AccountPO extends Message implements Serializable{
 			String code=reader.getString("密码");
 
 			if(this.code.equals(code)){
+				
 				right=Rights.valueOf(reader.getString("权限"));
 				belong=reader.getString("所属单位");
 				System.out.println("login success");
@@ -69,30 +91,49 @@ public class AccountPO extends Message implements Serializable{
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public String getID() {
 		return ID;
 	}
-	public void setID(String iD) {
-		ID = iD;
+
+	public void setID(String ID) {
+		ID = ID;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public Rights getRight() {
 		return right;
 	}
+
 	public void setRight(Rights right) {
 		this.right = right;
 	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

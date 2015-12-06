@@ -26,7 +26,7 @@ public class SqlWriter {
 			stmt.executeUpdate(query);
 			con.close();
 		}catch(SQLException e){
-			System.err.println(e);
+			e.printStackTrace();
 		}
 		
 	}
