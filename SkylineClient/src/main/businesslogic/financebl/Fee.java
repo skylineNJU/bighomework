@@ -19,5 +19,10 @@ public class Fee {
 		FeePO feePO = new FeePO(feeVO.getRoadFee(), feeVO.getRailFee(), feeVO.getAirFee());
 		return finance.writeFee(feePO);
 	}
-
+	
+	public boolean delFee(FeeVO feeVO){
+		FinanceDataService finance = new FinanceDataController();
+		FeePO feePO = new FeePO(feeVO.getRoadFee(), feeVO.getRailFee(), feeVO.getAirFee());
+		return finance.delFee(feePO);
+	}
 }

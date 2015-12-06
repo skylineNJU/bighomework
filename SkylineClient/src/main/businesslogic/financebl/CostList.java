@@ -37,4 +37,12 @@ public class CostList {
 		finance.writeCost(costPO);
 		return true;
 	}
+	
+	public boolean deleteCost(CostVO costVO){
+		CostPO costPO = new CostPO(costVO.getBankAccount(), String.valueOf(costVO.getCost()), 
+				costVO.getCostType(), costVO.getDate(), costVO.getComment(), costVO.getCostCode(), costVO.getIsPaid()
+				);
+		FinanceDataService finance = new FinanceDataController();
+		return finance.deleteCost(costPO);
+	}
 }

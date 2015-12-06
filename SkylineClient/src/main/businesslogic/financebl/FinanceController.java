@@ -3,6 +3,7 @@ package main.businesslogic.financebl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
+import main.po.CollectionPO;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.DistanceVO;
@@ -82,6 +83,62 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public boolean modifyBalance(BankAccountVO bankVO) {
 		return new Balance().changeBalance(bankVO);
+	}
+
+	@Override
+	public boolean deleteCost(CostVO costVO) {
+		return new CostList().deleteCost(costVO);
+	}
+
+	@Override
+	public boolean modifyCost(CostVO costVO) {
+		deleteCost(costVO);
+		return writeCost(costVO);
+	}
+
+	@Override
+	public boolean delDistance(DistanceVO distanceVO) {
+		return new Distance().delDistance(distanceVO);
+	}
+
+	@Override
+	public boolean modifyDistance(DistanceVO distanceVO) {
+		delDistance(distanceVO);
+		return writeDistance(distanceVO);
+	}
+
+	@Override
+	public boolean delCollection(EarnVO earnVO) {
+		return new EarnList().delEarn(earnVO);
+	}
+
+	@Override
+	public boolean modifyCollection(EarnVO earnVO) {
+		delCollection(earnVO);
+		return writeEarn(earnVO);
+	}
+
+	@Override
+	public boolean delFee(FeeVO feeVO) {
+		return new Fee().delFee(feeVO);
+	}
+
+	@Override
+	public boolean modifyFee(FeeVO feeVO) {
+		delFee(feeVO);
+		return writeFee(feeVO);
+	}
+
+	@Override
+	public boolean delSalary(SalaryVO salaryVO) {
+		return new Salary().delSalary(salaryVO);
+	}
+
+	@Override
+	public boolean modifySalary(SalaryVO salaryVO) {
+		delSalary(salaryVO);
+		writeSalary(salaryVO);
+		return false;
 	}
 	
 }

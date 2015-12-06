@@ -1,5 +1,6 @@
 package main.po;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -40,6 +41,11 @@ public class CollectionPO extends Receipt{
 		this.bankAccount=reader.getString("收入账户");
 		this.money=reader.getDouble("收入金额");
 		this.remark=reader.getString("备注");
+	}
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("Colletion","入款单单号",collectionCode);
 	}
 	
 	public String getIsPaid() {

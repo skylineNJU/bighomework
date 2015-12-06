@@ -37,4 +37,14 @@ public class EarnList {
 				);
 		return finance.writeCollection(collectionPO);
 	}
+	
+	public boolean delEarn(EarnVO earnVO){
+//		String collectionCode,String date,String unit,String bankAccount,double money,String remark,String isPaid
+		CollectionPO collectionPO = new CollectionPO(earnVO.getCollectionCode(),
+				earnVO.getDate(),earnVO.getUnit(),earnVO.getBankAccount(),
+				earnVO.getMoney(),earnVO.getRemark(),earnVO.getIsPaid()
+				);
+		FinanceDataService finance = new FinanceDataController();
+		return finance.delCollection(collectionPO);
+	}
 }

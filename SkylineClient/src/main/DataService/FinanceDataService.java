@@ -15,9 +15,19 @@ import main.po.SalaryPO;
 //财务管理
 public interface FinanceDataService {
 	
+	public boolean delFee(FeePO feePO);
+	
+	public boolean delCollection(CollectionPO collectionPO);
+	
+	public boolean delDistance(DistancePO distancePO);
+	
+	public boolean deleteCost(CostPO costPO);
+	
 	public boolean modifyBalance(BankAccountPO bankPO);
 	
 	public SalaryPO readSalary();
+	
+	public boolean delSalary(SalaryPO salaryPO);
 	
 	public FeePO readFee();
 	
@@ -27,9 +37,6 @@ public interface FinanceDataService {
 
 	//将成本的信息存储进数据库
 	public boolean writeCost(CostPO costPO);
-	
-	//删除成本信息
-	public boolean delCost(CostPO costPO);
 	
 	//修改成本信息
 	public boolean modifiyCost(CostPO costPO);

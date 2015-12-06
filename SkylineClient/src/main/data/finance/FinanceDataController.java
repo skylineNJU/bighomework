@@ -38,12 +38,6 @@ public class FinanceDataController implements FinanceDataService{
 	}
 
 	@Override
-	public boolean delCost(CostPO costPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean modifiyCost(CostPO costPO) {
 		// TODO Auto-generated method stub
 		return false;
@@ -84,8 +78,10 @@ public class FinanceDataController implements FinanceDataService{
 
 	@Override
 	public boolean writeBankAccount(BankAccountPO bankAccountPO) {
-		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		bankAccountPO.setKey("Save");
+		client.writeReceipt(bankAccountPO);
+		return true;
 	}
 
 	@Override
@@ -151,7 +147,50 @@ public class FinanceDataController implements FinanceDataService{
 
 	@Override
 	public boolean modifyBalance(BankAccountPO bankPO) {
-		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		bankPO.setKey("Delete");
+		client.writeReceipt(bankPO);
+		writeBankAccount(bankPO);
+		return true;
+	}
+
+	@Override
+	public boolean deleteCost(CostPO costPO) {
+		client=MainController.getClient();
+		costPO.setKey("Delete");
+		client.writeReceipt(costPO);
+		return true;
+	}
+
+	@Override
+	public boolean delDistance(DistancePO distancePO) {
+		client=MainController.getClient();
+		distancePO.setKey("Delete");
+		client.writeReceipt(distancePO);
+		return true;
+	}
+
+	@Override
+	public boolean delCollection(CollectionPO collectionPO) {
+		client=MainController.getClient();
+		collectionPO.setKey("Delete");
+		client.writeReceipt(collectionPO);
+		return true;
+	}
+
+	@Override
+	public boolean delFee(FeePO feePO) {
+		client=MainController.getClient();
+		feePO.setKey("Delete");
+		client.writeReceipt(feePO);
+		return true;
+	}
+
+	@Override
+	public boolean delSalary(SalaryPO salaryPO) {
+		client=MainController.getClient();
+		salaryPO.setKey("Delete");
+		client.writeReceipt(salaryPO);
 		return true;
 	}
 }

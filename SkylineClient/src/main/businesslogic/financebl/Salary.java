@@ -51,4 +51,26 @@ public class Salary {
 		salaryPO.setWareHouseCommission(salaryVO.getWareHouseCommission());
 		return finance.writeSalary(salaryPO);
 	}
+	
+	public boolean delSalary(SalaryVO salaryVO){
+		FinanceDataService finance = new FinanceDataController();
+		SalaryPO salaryPO = new SalaryPO();
+		salaryPO.setAdminSalary(salaryVO.getAdminSalary());
+		salaryPO.setAdminCommission(salaryVO.getAdminCommission());
+		salaryPO.setCourierSalary(salaryVO.getCourierSalary());
+		salaryPO.setCourierCommission(salaryVO.getCourierCommission());
+		salaryPO.setDriverSalary(salaryVO.getDriverSalary());
+		salaryPO.setDriverCommission(salaryVO.getDriverCommission());
+		salaryPO.setFinanceSalary(salaryVO.getFinanceSalary());
+		salaryPO.setFinanceCommission(salaryVO.getFinanceCommission());
+		salaryPO.setIntermediateSalary(salaryVO.getIntermediateSalary());
+		salaryPO.setIntermediateCommission(salaryVO.getIntermediateCommission());
+		salaryPO.setLobbySalary(salaryVO.getLobbySalary());
+		salaryPO.setLobbyCommission(salaryVO.getLobbyCommission());
+		salaryPO.setManagerSalary(salaryVO.getManagerSalary());
+		salaryPO.setManagerCommission(salaryVO.getManagerCommission());
+		salaryPO.setWarehouseSalary(salaryVO.getWarehouseSalary());
+		salaryPO.setWareHouseCommission(salaryVO.getWareHouseCommission());
+		return finance.delSalary(salaryPO);
+	}
 }

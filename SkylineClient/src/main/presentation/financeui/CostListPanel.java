@@ -226,6 +226,7 @@ public class CostListPanel {
 				return true;
 			}
 		});
+		
 		lookPanel.add(scrollPane);
 	}
 	

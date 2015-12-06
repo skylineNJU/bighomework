@@ -1,5 +1,6 @@
 package main.po;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -30,6 +31,10 @@ public class CostPO extends Receipt{
 		String content = "'"+bankAccount+"','"+fee+"','"+costType+"','"+
 				costDate+"','"+remark+"','"+costCode+"','"+isPaid+"'";
 		writer.writeIntoSql("Cost", content);
+	}
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("Cost","¸¶¿îµ¥µ¥ºÅ",costCode);
 	}
 	
 	public void getDataFromBase(){

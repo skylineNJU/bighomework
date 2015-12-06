@@ -2,6 +2,7 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -59,6 +60,11 @@ public class SalaryPO extends Message implements Serializable{
         	reader.close();
     	}
     }
+    
+    public void deleteFromDatabase(){
+		SqlDeleter deleter = new SqlDeleter();
+		//deleter.deleteData("Salary","司机编号",driverID);删除某一行
+	}
 
 	public double getCourierSalary() {
 		return courierSalary;

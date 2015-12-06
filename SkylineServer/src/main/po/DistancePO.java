@@ -2,6 +2,7 @@ package main.po;
 
 import java.util.ArrayList;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -33,6 +34,13 @@ public class DistancePO extends Message {
 					reader.getString("城市名2"),
 					String.valueOf(reader.getDouble("距离"))}
 			);
+		}
+	}
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		for(String[] string:city){
+			deleter.deleteData("Distance","城市名1",string[0]);
 		}
 	}
 }

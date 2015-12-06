@@ -1,5 +1,6 @@
 package main.po;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -29,6 +30,11 @@ public class FeePO extends Message {
 			this.airFee=reader.getDouble("飞机装运费");
 			this.roadFee=reader.getDouble("汽车状运费");
 		}
+	}
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("Fee","ID","");//删除所有的,这个地方没有写完
 	}
 
 	public double getRoadFee() {

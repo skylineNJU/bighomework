@@ -2,6 +2,7 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
+import main.po.CollectionPO;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.DistanceVO;
@@ -10,6 +11,22 @@ import main.vo.FeeVO;
 import main.vo.SalaryVO;
 
 public interface FinanceBLService {
+	
+	public boolean delSalary(SalaryVO salaryVO);
+	
+	public boolean modifySalary(SalaryVO salaryVO);
+	
+	public boolean delFee(FeeVO feeVO);
+	
+	public boolean modifyFee(FeeVO feeVO);
+	
+	public boolean delCollection(EarnVO earnVO);
+	
+	public boolean modifyCollection(EarnVO earnVO);
+	
+	public boolean modifyCost(CostVO costVO);
+	
+	public boolean deleteCost(CostVO costVO);
 	
 	public DistanceVO getDistance();
 	
@@ -40,6 +57,10 @@ public interface FinanceBLService {
 	public boolean writeFee(FeeVO feeVO);
 	
 	public boolean writeDistance(DistanceVO distanceVO);
+	
+	public boolean modifyDistance(DistanceVO distanceVO);
+	
+	public boolean delDistance(DistanceVO distanceVO);
 	
 	public boolean modifyBalance(BankAccountVO bankVO);
 }

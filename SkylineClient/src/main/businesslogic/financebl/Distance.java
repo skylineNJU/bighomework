@@ -46,4 +46,16 @@ public class Distance {
 		distancePO.setCity(distance);
 		return finance.writeDistance(distancePO);
 	}
+	
+	public boolean delDistance(DistanceVO distanceVO){
+		DistancePO distancePO = new DistancePO();
+		ArrayList<String[]> city = new ArrayList<String[]>();
+		String[] cityName = distanceVO.getCity();
+		for(String string:cityName){
+			city.add(new String[]{string});
+		}
+		distancePO.setCity(city);
+		FinanceDataService finance = new FinanceDataController();
+		return finance.delDistance(distancePO);
+	}
 }

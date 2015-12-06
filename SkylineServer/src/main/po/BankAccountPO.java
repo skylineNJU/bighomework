@@ -1,5 +1,6 @@
 package main.po;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -30,6 +31,11 @@ public class BankAccountPO extends Message{
 		SqlWriter writer=new SqlWriter();
 		String content="'"+account+"','"+money+"'";
 		writer.writeIntoSql("BankAccount", content);
+	}
+	
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("BankAccount","银行账户名",account);
 	}
 	
 	public String getAccount() {
