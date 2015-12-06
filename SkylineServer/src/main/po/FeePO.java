@@ -18,7 +18,7 @@ public class FeePO extends Message {
 	
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'∑—”√',"+roadFee+","+railFee+","+airFee;
+		String content="'"+roadFee+"','"+railFee+"','"+airFee+"'";
 		writer.writeIntoSql("Fee", content);
 	}
 	

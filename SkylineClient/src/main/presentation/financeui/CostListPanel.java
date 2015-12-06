@@ -239,6 +239,10 @@ public class CostListPanel {
 			counter++;
 		}
 	}
+	
+	public boolean isLegal(){//判断是否可以存储
+		return true;
+	}
 	public void initAddPanel(){
 		getBank();
 		addTime = new JLabel("日期");
@@ -265,10 +269,32 @@ public class CostListPanel {
 		
 		backButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				codeText.setText(null);
+				feeText.setText(null);
+				commentText.setText(null);
 				addPanel.setVisible(false);
 				lookPanel.setVisible(true);
 			}
 		});
+		
+		addButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+//				String date, String code,String bankAccount,double cost,String comment,String type,String isPaid
+				if(isLegal()){
+					String date = addYearBox.getSelectedItem()+"/"+addMonthBox.getSelectedItem()+"/"+addDayBox.getSelectedItem();
+					CostVO costVO = new CostVO(date, codeText.getText(), 
+							String.valueOf(bankBox.getSelectedItem()), Double.valueOf(feeText.getText()), 
+							commentText.getText(), String.valueOf(typeBox.getSelectedItem()), 
+							String.valueOf(isPaidBox.getSelectedItem()));
+					FinanceBLService finance = ConstructFactory.FinanceFactory();
+					if(finance.writeCost(costVO)){//返回值是布尔类型，在这里添加人机交互内容
+					}
+				}else{
+					//TODO 当不合法的收款单时，人机交互
+				}
+			}
+		});
+		
 		addPanel.add(addTime);
 		addPanel.add(addYear);
 		addPanel.add(addMonth);

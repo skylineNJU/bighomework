@@ -10,9 +10,6 @@ public class ReceiptVO extends Message{
 		if(co!=null)
 		this.code=co;
 	}
-	public void convert(ReceiptVO vo){
-		
-	}
 	
 	public String getCode() {
 		return code;

@@ -31,8 +31,10 @@ public class FinanceDataController implements FinanceDataService{
 	
 	@Override
 	public boolean writeCost(CostPO costPO) {
-		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		costPO.setKey("Save");
+		client.writeReceipt(costPO);
+		return true;
 	}
 
 	@Override
@@ -59,8 +61,10 @@ public class FinanceDataController implements FinanceDataService{
 
 	@Override
 	public boolean writeCollection(CollectionPO collectionPO) {
-		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		collectionPO.setKey("Save");
+		client.writeReceipt(collectionPO);
+		return true;
 	}
 
 	@Override
@@ -119,5 +123,29 @@ public class FinanceDataController implements FinanceDataService{
 		lobbyEarnPO.setKey("Inquire");
 		client.writeReceipt(lobbyEarnPO);
 		return (LobbyEarnPO)client.getResponse();
+	}
+
+	@Override
+	public boolean writeSalary(SalaryPO salaryPO) {
+		client=MainController.getClient();
+		salaryPO.setKey("Save");
+		client.writeReceipt(salaryPO);
+		return true;
+	}
+
+	@Override
+	public boolean writeFee(FeePO feePO) {
+		client=MainController.getClient();
+		feePO.setKey("Save");
+		client.writeReceipt(feePO);
+		return true;
+	}
+
+	@Override
+	public boolean writeDistance(DistancePO distancePO) {
+		client=MainController.getClient();
+		distancePO.setKey("Save");
+		client.writeReceipt(distancePO);
+		return true;
 	}
 }

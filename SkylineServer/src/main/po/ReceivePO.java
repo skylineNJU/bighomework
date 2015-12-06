@@ -13,18 +13,24 @@ public class ReceivePO extends Receipt implements Serializable{
 	
 	String bar;
 	String receivorName;
+	String receivorPhone;
+	String courierCode;
 	String receiveDate;
 	
-	public ReceivePO(String a,String b,String c){
-		bar = a;
-		receivorName = b;
-		receiveDate = c;
+	public ReceivePO(String bar, String receivorName, String receivorPhone,
+			String courierCode, String receiveDate) {
+		super();
+		this.bar = bar;
+		this.receivorName = receivorName;
+		this.receivorPhone = receivorPhone;
+		this.courierCode = courierCode;
+		this.receiveDate = receiveDate;
 	}
 
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'"+this.getCode()+"','"+bar+"','"+receivorName+"','"
-				+receiveDate+"'";
+		String content="'"+bar+"','"+receivorName+"','"
+				+receiveDate+"','"+receivorPhone+"','"+courierCode+"'";
 		writer.writeIntoSql("Receive", content);
 	}
 	
@@ -35,18 +41,49 @@ public class ReceivePO extends Receipt implements Serializable{
 		this.receiveDate=reader.getString("收件时间");
 		this.receivorName=reader.getString("收件人姓名");
 	}
-	
+
 	public String getBar() {
 		return bar;
+	}
+
+	public void setBar(String bar) {
+		this.bar = bar;
 	}
 
 	public String getReceivorName() {
 		return receivorName;
 	}
 
+	public void setReceivorName(String receivorName) {
+		this.receivorName = receivorName;
+	}
+
+	public String getReceivorPhone() {
+		return receivorPhone;
+	}
+
+	public void setReceivorPhone(String receivorPhone) {
+		this.receivorPhone = receivorPhone;
+	}
+
+	public String getCourierCode() {
+		return courierCode;
+	}
+
+	public void setCourierCode(String courierCode) {
+		this.courierCode = courierCode;
+	}
+
 	public String getReceiveDate() {
 		return receiveDate;
 	}
-	
+
+	public void setReceiveDate(String receiveDate) {
+		this.receiveDate = receiveDate;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }

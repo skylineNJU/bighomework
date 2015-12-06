@@ -48,5 +48,11 @@ public interface FinanceDataService {
 	//–¥–≈œ¢
 	public boolean writeBankAccount(BankAccountPO bankAccountPO);
 	
+	public boolean writeSalary(SalaryPO salaryPO);
+	
 	public DistancePO readDistance();
+	
+	public boolean writeFee(FeePO feePO);
+	
+	public boolean writeDistance(DistancePO distancePO);
 }

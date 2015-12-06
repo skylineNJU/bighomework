@@ -16,8 +16,6 @@ public class DistributeController implements DistributeBLService{
 
 	@Override
 	public boolean writeReceiveMessage(RecipientVO recipient) {
-		ReceiveMessage receiveMessage = new ReceiveMessage();
-		receiveMessage.writeReceviceMessage(recipient);
-		return false;
+		return new ReceiveMessage().writeReceviceMessage(recipient);
 	}
 }

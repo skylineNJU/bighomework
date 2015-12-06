@@ -1,6 +1,8 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,7 +38,6 @@ public class FeeStrategyPanel {
 	private JLabel cityDistance;
 	private JButton saveButton;
 	private JButton refleshButton;
-	private JButton cancleButton;
 	
 	public FeeStrategyPanel(){
 		panel = MainController.getWritepanel();
@@ -123,13 +124,11 @@ public class FeeStrategyPanel {
 		cityDistance = new JLabel("城市距离:");
 		saveButton = new JButton("保存");
 		refleshButton = new JButton("刷新");
-		cancleButton = new JButton("取消");
 		
 		
 		panel.add(scrollPane);
 		panel.add(saveButton);
 		panel.add(refleshButton);
-		panel.add(cancleButton);
 		panel.add(cityDistance);
 		
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -140,10 +139,30 @@ public class FeeStrategyPanel {
 		
 		cityDistance.setBounds(panelWidth/10, panelHeight*23/60, panelWidth/4, panelHeight/20);
 		scrollPane.setBounds(panelWidth/10, panelHeight*9/20, panelWidth*4/5, panelHeight*31/100);
-		cancleButton.setBounds(panelWidth*2/5, panelHeight*17/20, panelWidth/10, panelHeight/20);
 		refleshButton.setBounds(panelWidth*3/5, panelHeight*17/20, panelWidth/10, panelHeight/20);
 		saveButton.setBounds(panelWidth*4/5, panelHeight*17/20, panelWidth/10, panelHeight/20);
+		
+		saveButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				FinanceBLService finance = ConstructFactory.FinanceFactory();
+				FeeVO feeVO = new FeeVO(Double.valueOf(carText.getText()), 
+						Double.valueOf(trainText.getText()), 
+						Double.valueOf(planeText.getText()));
+				String[] city = new String[tableTitle.length-1];
+				double[][] cityDistance = new double[tableTitle.length-1][tableTitle.length-1];
+				for(int i = 0;i<tableTitle.length-1;i++){
+					city[i] = tableTitle[i+1];
+					for(int j = 1;j<tableTitle.length;j++){
+						cityDistance[i][j-1] = Double.valueOf((String) table.getModel().getValueAt(i, j));
+					}
+				}
+				DistanceVO distanceVO = new DistanceVO(city, cityDistance);
+				if(finance.writeFee(feeVO)&&finance.writeDistance(distanceVO)){//人机交互部分
+					
+				}else{//失败时的处理
+					
+				}
+			}
+		});
 	}
-	
-
 }

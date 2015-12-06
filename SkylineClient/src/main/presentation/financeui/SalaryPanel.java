@@ -1,5 +1,8 @@
 package main.presentation.financeui;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -47,7 +50,6 @@ public class SalaryPanel {
 	private JTextField adminerCommission;
 	private JTextField managerCommission;
 	private JButton saveButton;
-	private JButton cancleButton;
 	
 	public SalaryPanel(){
 		panel = MainController.getWritepanel();
@@ -121,7 +123,34 @@ public class SalaryPanel {
 		adminerCommission = new JTextField();
 		managerCommission = new JTextField();
 		saveButton = new JButton("保存");
-		cancleButton = new JButton("取消");
+		
+		saveButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				FinanceBLService finance = ConstructFactory.FinanceFactory();
+				SalaryVO salaryVO = new SalaryVO();
+				salaryVO.setAdminSalary(Double.valueOf(adminerBasic.getText()));
+				salaryVO.setAdminCommission(Double.valueOf(adminerCommission.getText()));
+				salaryVO.setCourierSalary(Double.valueOf(courierBasic.getText()));
+				salaryVO.setCourierCommission(Double.valueOf(courierCommission.getText()));
+				salaryVO.setDriverSalary(Double.valueOf(driverBasic.getText()));
+				salaryVO.setDriverCommission(Double.valueOf(driverCommission.getText()));
+				salaryVO.setFinanceSalary(Double.valueOf(financerBasic.getText()));
+				salaryVO.setFinanceCommission(Double.valueOf(financerCommission.getText()));
+				salaryVO.setIntermediateSalary(Double.valueOf(IntermeBasic.getText()));
+				salaryVO.setIntermediateCommission(Double.valueOf(IntermeCommission.getText()));
+				salaryVO.setLobbySalary(Double.valueOf(lobbyerBasic.getText()));
+				salaryVO.setLobbyCommission(Double.valueOf(lobbyerCommission.getText()));
+				salaryVO.setManagerSalary(Double.valueOf(managerBasic.getText()));
+				salaryVO.setManagerCommission(Double.valueOf(managerCommission.getText()));
+				salaryVO.setWarehouseSalary(Double.valueOf(wareHouserBasic.getText()));
+				salaryVO.setWareHouseCommission(Double.valueOf(wareHouserCommission.getText()));
+				if(finance.writeSalary(salaryVO)){//保存成功，人机交互部分
+					
+				}else{//保存失败
+					
+				}
+			}
+		});
 		
 		panel.add(staff);
 		panel.add(basicSalary);
@@ -151,7 +180,6 @@ public class SalaryPanel {
 		panel.add(adminerCommission);
 		panel.add(managerCommission);
 		panel.add(saveButton);
-		panel.add(cancleButton);
 		
 		staff.setBounds(panelWidth/10, panelHeight/10, panelWidth/8, panelHeight/20);
 		basicSalary.setBounds(staff.getX()+staff.getWidth()+InterWidth, panelHeight/10, panelWidth*12/40, panelHeight/20);
@@ -181,7 +209,6 @@ public class SalaryPanel {
 		adminerCommission.setBounds(commission.getX()-InterWidth*3, adminer.getY(), commission.getWidth(), panelHeight/20);
 		managerCommission.setBounds(commission.getX()-InterWidth*3, manager.getY(), commission.getWidth(), panelHeight/20);
 		
-		cancleButton.setBounds(managerCommission.getX()-panelWidth/10, managerCommission.getY()+InterHeight*5/2, panelWidth/10, panelHeight/20);
 		saveButton.setBounds(managerCommission.getX()+panelWidth/10, managerCommission.getY()+InterHeight*5/2, panelWidth/10, panelHeight/20);
 	}
 }

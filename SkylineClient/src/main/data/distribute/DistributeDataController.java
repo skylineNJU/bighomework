@@ -32,10 +32,9 @@ public class DistributeDataController implements DistributeDataService{
 
 	@Override
 	public boolean inputOrder(ReceivePO receivePO) {
-		// TODO Auto-generated method stub
-		return false;
+		client=MainController.getClient();
+		receivePO.setKey("Save");
+		client.writeReceipt(receivePO);
+		return true;
 	}
-	
-	
-
 }

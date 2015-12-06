@@ -29,8 +29,12 @@ public class CostList {
 		return voList;
 	}
 
-	public boolean writeCostList(ArrayList<CostVO> costList) {
-		//TODO
+	public boolean writeCostList(CostVO costVO) {
+		FinanceDataService finance = new FinanceDataController();
+		CostPO costPO = new CostPO(costVO.getBankAccount(), String.valueOf(costVO.getCost()), 
+				costVO.getCostType(), costVO.getDate(), costVO.getComment(), 
+				costVO.getCostCode(), costVO.getIsPaid());
+		finance.writeCost(costPO);
 		return true;
 	}
 }
