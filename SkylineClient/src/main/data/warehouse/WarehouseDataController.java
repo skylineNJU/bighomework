@@ -52,9 +52,7 @@ public class WarehouseDataController implements WarehouseDataService{
 		warehouseOutPO.setKey("Check");
 		client.writeReceipt(warehouseOutPO);
 		Message message=client.getResponse();
-		
-		warehouseOutPO=(WarehouseOutPO) message;
-		if(warehouseOutPO.getKey().equals("success")){
+		if(message.getKey().equals("success")){
 			return true;
 		}
 		else return false;
