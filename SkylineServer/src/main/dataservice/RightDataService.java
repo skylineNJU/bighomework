@@ -3,8 +3,6 @@ package main.dataservice;
 import java.util.List;
 
 import main.po.AccountPO;
-import main.po.PlaneLoadingPO;
-import main.po.TrainLoadingPO;
 import main.State.RightType;
 
 //权限管理数据接口

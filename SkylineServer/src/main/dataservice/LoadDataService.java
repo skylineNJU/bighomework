@@ -5,7 +5,6 @@ import java.util.List;
 import main.po.PlaneLoadingPO;
 import main.po.TrainLoadingPO;
 import main.po.VehicleLoadingPO;
-import main.State.LoadType;
 
 /**
  * 装运信息的操作接口
