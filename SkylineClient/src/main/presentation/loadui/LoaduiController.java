@@ -5,11 +5,13 @@ package main.presentation.loadui;
   private ReceiveListPanel receiveList; 
   private TransmitReceivePanel transmitReceive; 
   private LobbyLoadPanel lobbyLoadPanel;
+  private IntermLoadingui interml;
   public void select(Loadui ui){ 
  	switch(ui){ 
  	case LOADVEHICLE: 
- 		loadVehicle=new LoadVehiclePanel(); 
- 		loadVehicle.init(); 
+// 		loadVehicle=new LoadVehiclePanel(); 
+// 		loadVehicle.init(); 
+ 		interml=new IntermLoadingui();
 		break; 
  		 
  	case RECEIVELIST: 

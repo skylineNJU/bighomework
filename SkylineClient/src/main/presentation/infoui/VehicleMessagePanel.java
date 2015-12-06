@@ -28,8 +28,8 @@ public class VehicleMessagePanel {
 	//按钮组件
 	private JButton cancleButton;
 	private JButton saveButton;
-	private JButton modifyButton;
-	private JButton deleteButton;
+	private JButton lookModifyButton;
+	private JButton lookDeleteButton;
 	//lookPanel上的组件
 	private String[] tableTitle;
 	private String[][] tableData;
@@ -51,6 +51,9 @@ public class VehicleMessagePanel {
 	private JPanel lookPanel;//查看接收单
 	private JPanel writePanel;//填写接收单
 	private JTabbedPane tab;
+	private boolean[] selectRow; 
+	
+	
 	public VehicleMessagePanel(){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
@@ -82,11 +85,7 @@ public class VehicleMessagePanel {
 			public void stateChanged(ChangeEvent arg0) {
 				// TODO Auto-generated method stub
 				if(tab.getSelectedIndex()==0){
-					tableData =getTableData();
-					for(int x=0;x<20;x++){
-						for(int y=0;y<8;y++)
-						table.setValueAt(tableData[x][y],x,y);
-					}
+					refresh();
 				}
 			}
 			
@@ -94,6 +93,13 @@ public class VehicleMessagePanel {
 		panel.repaint();
 	}
 	
+	private void refresh(){
+		tableData =getTableData();
+		for(int x=0;x<20;x++){
+			for(int y=0;y<6;y++)
+			table.setValueAt(tableData[x][y],x,y);
+		}
+	}
 	public void title(){
 		title = new JLabel("车辆信息管理");
 		title.setBounds(panelWidth/3, panelHeight/40, panelWidth/6, panelHeight/20);
@@ -130,28 +136,49 @@ public class VehicleMessagePanel {
 				serviceTimeText.setText(null);
 			}
 		});
-		modifyButton = new JButton("修改");
-		deleteButton = new JButton("删除");
-		modifyButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
-		deleteButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookPanel.add(modifyButton);
-		lookPanel.add(deleteButton);
+		lookModifyButton = new JButton("修改");
+		lookDeleteButton = new JButton("删除");
+		lookModifyButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookDeleteButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookPanel.add(lookModifyButton);
+		lookPanel.add(lookDeleteButton);
 		
-		modifyButton.addMouseListener(new MouseAdapter(){
+		lookModifyButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				InfoBLService service=ConstructFactory.InfoFactory();
+				for(int x=0;x<20;x++){
+					if(selectRow[x]){
+						//"车辆代号", "发动机号", "底盘号", "购买时间", "服役时间"
+						VehicleVO vo=new VehicleVO((String)table.getValueAt(x, 0),
+												   (String)table.getValueAt(x, 1),
+												   ((WritePanel)panel).getBelong(),
+												   (String)table.getValueAt(x, 2),
+												   (String)table.getValueAt(x, 3),
+												   (String)table.getValueAt(x, 4)
+													);
+						service.modifyVehicle(vo);
+					}
+				}
+				refresh();
 			}
 		});
 		
-		deleteButton.addMouseListener(new MouseAdapter(){
+		lookDeleteButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				System.out.println("delete");
+				InfoBLService service=ConstructFactory.InfoFactory();
+				for(int x=0;x<20;x++){
+					if(selectRow[x]){					
+						service.deleteVehicle((String)table.getValueAt(x,0));
+					}
+				}
+				refresh();
 			}
 		});
 	}
 	
 	public void lookTabel(){
-		tableTitle = new String[]{"车辆代号", "发动机号", "底盘号", "购买时间", "服役时间"};
+		tableTitle = new String[]{"车辆代号", "发动机号", "底盘号", "购买时间", "服役时间","选择"};
 		tableData = this.getTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
@@ -167,13 +194,30 @@ public class VehicleMessagePanel {
 		}
 		scrollPane.setVisible(true);
 		lookPanel.add(scrollPane);
+		table.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				int x=table.getSelectedRow();
+				if(!selectRow[x]){
+					selectRow[x]=true;
+					table.setValueAt("已选",x,5);
+				}else{
+					selectRow[x]=false;
+					table.setValueAt("",x,5);
+				}
+			}
+		});
 	}
 	
 	public String[][] getTableData(){
-		String[][] content=new String[20][5];
-		for(int x=0;x<20;x++)
-			for(int y=0;y<5;y++)
+		String[][] content=new String[20][6];
+		this.selectRow=new boolean[20];
+		for(int x=0;x<20;x++){
+			this.selectRow[x]=false;
+			for(int y=0;y<6;y++){
 				content[x][y]=null;
+				
+			}
+		}
 		InfoBLService service=ConstructFactory.InfoFactory();
 		ArrayList<VehicleVO> list=service.inquireVehicle(((WritePanel) panel).getBelong());
 		int counter=0;
@@ -183,6 +227,7 @@ public class VehicleMessagePanel {
 			content[counter][2]=vo.getUnderpanID();
 			content[counter][3]=vo.getBoughtTime();
 			content[counter][4]=vo.getUsedTime();
+			content[counter][5]=null;
 			counter++;
 		}
 		return content;

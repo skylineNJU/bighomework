@@ -11,6 +11,7 @@ public class Message implements Serializable {
 	private String key;
 	
 	public void modifyTheDate(){
+		System.out.println("modify Begin");
 		deleteFromDatabase();
 		writeIntoDatabase();
 	}

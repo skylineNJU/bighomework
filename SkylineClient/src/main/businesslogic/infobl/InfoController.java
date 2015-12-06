@@ -77,7 +77,8 @@ public class InfoController implements InfoBLService {
 	@Override
 	public boolean deleteVehicle(String vehicleCode) {
 		// TODO Auto-generated method stub
-		return Vehicle.delete(vehicleCode);
+		Vehicle ve=new Vehicle(vehicleCode);
+		return ve.delete();
 	}
 
 	@Override

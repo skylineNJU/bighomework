@@ -16,6 +16,7 @@ public class Vehicle {
 	private String boughtTime;//购买时间
 	private String usedTime;//服役时间
 	private VehicleInfoPO po;
+	
 	public Vehicle(VehicleVO vo){
 		this.carID=vo.getCarID();
 		this.engineID=vo.getEngineID();
@@ -23,6 +24,7 @@ public class Vehicle {
 		this.underpanID=vo.getUnderpanID();
 		this.boughtTime=vo.getBoughtTime();
 		this.usedTime=vo.getUsedTime();
+		
 	}
 	
 	public Vehicle(String vehicleCode){
@@ -59,10 +61,20 @@ public class Vehicle {
 	}
 	
 	public boolean modify(){
+		InfoDataService service=new InfoDataController();
+		po=new VehicleInfoPO(this.carID,
+				 this.engineID,
+				 this.carNum,
+				 this.underpanID,
+				 this.boughtTime,
+				 this.usedTime);
+		service.modifyVehicle(po);
 		return true;
 	}
 	
-	public static boolean delete(String vehicleCode){
+	public  boolean delete(){
+		InfoDataService service=new InfoDataController();
+		service.deleteVehicle(po);
 		return true;
 	}
 	public String getCarID() {

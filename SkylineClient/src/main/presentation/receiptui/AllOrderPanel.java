@@ -1,6 +1,8 @@
 package main.presentation.receiptui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -25,7 +27,7 @@ public class AllOrderPanel {
 	private JScrollPane scrollPane;
 	private String[] tableTitle;
 	private String[][] tableData;
-	
+	private boolean[] selectRow;
 	
 	public AllOrderPanel(){
 		panel = MainController.getWritepanel();
@@ -52,13 +54,16 @@ public class AllOrderPanel {
 		ReceiveBLService service=ConstructFactory.ReceiveFactory();
 		ArrayList<OrderVO> voList=service.inquireOrderReceive(code);
 		int length;
+		
 		if(voList.size()>10){
 			length=voList.size();
 		}else{
 			length=10;
 		}
-		tableData=new String[length][13];
+		tableData=new String[length][14];
+		selectRow=new boolean[length];
 		for(int x=0;x<length;x++){
+			selectRow[x]=false;
 			for(int y=0;y<13;y++){
 				tableData[x][y]=null;
 			}
@@ -78,6 +83,7 @@ public class AllOrderPanel {
 			tableData[x][10]=vo.getWeight()+"";
 			tableData[x][11]=vo.getHeight()+"";
 			tableData[x][12]=vo.getCargoName();
+			tableData[x][13]=null;
 			x++;
 		}
 	}
@@ -85,7 +91,7 @@ public class AllOrderPanel {
 	
 	public void initTable(){
 		tableTitle = new String[]{"订单号","寄件人姓名","寄件人住址","寄件人单位","寄件人电话",
-				"收件人姓名","收件人住址","收件人单位","收件人电话", "寄件数目","寄件总重","寄件体积","寄件名称"};
+				"收件人姓名","收件人住址","收件人单位","收件人电话", "寄件数目","寄件总重","寄件体积","寄件名称","选择"};
 		this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
@@ -105,5 +111,17 @@ public class AllOrderPanel {
 			scrollPane.setBounds(panelWidth/20, panelHeight/6, panelWidth*9/10, (table.getRowCount()+1)*table.getRowHeight());
 		}
 		panel.add(scrollPane);
+		table.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				int x=table.getSelectedRow();
+				if(!selectRow[x]){
+					selectRow[x]=true;
+					table.setValueAt("已选",x,13);
+				}else{
+					selectRow[x]=false;
+					table.setValueAt("",x,13);
+				}
+			}
+		});
 	}
 }

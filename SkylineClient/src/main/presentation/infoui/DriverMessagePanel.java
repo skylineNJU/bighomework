@@ -180,7 +180,7 @@ public class DriverMessagePanel {
 								(String) table.getValueAt(x,4),
 								(String) table.getValueAt(x,5),
 								(String) table.getValueAt(x,2),
-								(String) table.getValueAt(x,8),
+								(String) table.getValueAt(x,7),
 								((WritePanel)panel).getBelong()
 								                );
 						InfoBLService service1=ConstructFactory.InfoFactory();

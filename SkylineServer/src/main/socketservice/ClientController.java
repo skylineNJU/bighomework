@@ -18,6 +18,9 @@ public class ClientController {
     	message=obj;
     	System.out.println(message.getKey());
     	switch(message.getKey()){
+    	case "Modify":
+    	    message.modifyTheDate();
+    		break;
     	case "Check":
     		message.writeIntoDatabase();
     		response(message);

@@ -2,6 +2,7 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -28,6 +29,11 @@ public class VehicleInfoPO extends Message implements Serializable{
     			+underpanID+"','"+boughtTime+"','"+usedTime+"'";
     	writer.writeIntoSql("VehicleInfo", content);
     	
+    }
+    
+    public void deleteFromDatabase(){
+    	SqlDeleter deleter=new SqlDeleter();
+    	deleter.deleteData("VehicleInfo","³µÅÆºÅ",this.carID);
     }
 
     public void getDataFromBase(){

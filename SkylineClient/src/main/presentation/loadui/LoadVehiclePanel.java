@@ -42,9 +42,15 @@ public class LoadVehiclePanel {
 	private JPanel planeLoadInfo;
 	private JPanel trainLoadInfo;
 	private JLabel timeLabel;//装运日期
-	private JComboBox<String> yearBox;//表示年份的组合框
-	private JComboBox<String> monthBox;//表示月份的组合框
-	private JComboBox<String> dayBox;//表示天的组合框
+	private JComboBox<String> carYearBox;//表示年份的组合框
+	private JComboBox<String> carMonthBox;//表示月份的组合框
+	private JComboBox<String> carDayBox;//表示天的组合框
+	private JComboBox<String> planeYearBox;
+	private JComboBox<String> planeMonthBox;
+	private JComboBox<String> planeDayBox;
+	private JComboBox<String> TrainYearBox;
+	private JComboBox<String> TrainMonthBox;
+	private JComboBox<String> TrainDayBox;
 	private JTable planeTable;//飞机表格
 	private JTable trainTable;
 	private JTable carTable;
@@ -55,7 +61,7 @@ public class LoadVehiclePanel {
 	private String[] tableTitle;
 	private String[][] tableData;
 	private JButton delButton;
-	private JButton saveButton;
+	private JButton inquireButton;
 	private JButton newButton;
 	int panelWidth=0;
 	int panelHeight=0;
@@ -224,7 +230,7 @@ public class LoadVehiclePanel {
     	panelHeight=tabbedPane.getHeight();
 		
 		delButton=new JButton("删除");
-		saveButton=new JButton("保存");
+		inquireButton=new JButton("查询");
 		newButton=new JButton("新建");
 		
 		timeLabel=new JLabel("装运日期");
@@ -243,19 +249,43 @@ public class LoadVehiclePanel {
 		});
 //--------------------------------------------------------		
 	
-     	setTime(tabbedPane,planeLoadInfo);
+		
      	
-     	initPlaneTable(tabbedPane,planeLoadInfo,planeTable);
+     	initPlaneTable(tabbedPane,planeLoadInfo);
      	
-    	
+     	inquireButton.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
+				String dateInfo=memory.getAirLoadDate();
+				System.out.println(dateInfo);
+				String dateString[]=dateInfo.split(" ");
+				String choose=(String)carYearBox.getItemAt(carYearBox.getSelectedIndex())+"/"+(String)carMonthBox.getItemAt(carMonthBox.getSelectedIndex())+"/"+
+				(String)carDayBox.getItemAt(carDayBox.getSelectedIndex());
+				System.out.println(choose);
+				int x=1;
+				int y=x;
+				for(;x<dateString.length;x++){
+					if(dateString[x].equals(choose)){
+						for(y=x;y<dateString.length;y++){
+							if(!dateString[y].equals(choose))
+							break;
+						}
+						break;
+					}
+				}
+				System.out.println(x+"--------"+y);
+				if(y>=x)
+				planeTable.setRowSelectionInterval(x-1,y-1);
+			}
+		});
 	
 		newPlaneLoading();
 		planePanel.setVisible(false);
 		
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20-100, panelHeight*72/85);
-     	saveButton.setSize(75,35);
-		saveButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
+     	inquireButton.setSize(75,35);
+		inquireButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
      	newButton.setSize(75,35);
      	newButton.setLocation(panelWidth*13/20,panelHeight*72/85);
 		
@@ -263,7 +293,7 @@ public class LoadVehiclePanel {
 		
 		planeLoadInfo.add(timeLabel);
      	planeLoadInfo.add(delButton);
-        planeLoadInfo.add(saveButton);
+        planeLoadInfo.add(inquireButton);
         planeLoadInfo.add(newButton);
 	}
 	
@@ -272,7 +302,7 @@ public class LoadVehiclePanel {
     	panelHeight=tabbedPane.getHeight();
 		
 		delButton=new JButton("删除");
-		saveButton=new JButton("保存");
+		inquireButton=new JButton("保存");
 		newButton=new JButton("新建");
 		timeLabel=new JLabel("装运日期");
 
@@ -284,18 +314,17 @@ public class LoadVehiclePanel {
 			}
 		});
 	
-     	setTime(tabbedPane ,trainLoadInfo);
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20-100, panelHeight*72/85);
-     	saveButton.setSize(75,35);
-		saveButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
+     	inquireButton.setSize(75,35);
+		inquireButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
 		newButton.setSize(75,35);
      	newButton.setLocation(panelWidth*13/20,panelHeight*72/85);
 		initTrainTable(tabbedPane,trainLoadInfo,trainTable);
 		
 		trainLoadInfo.add(timeLabel);
      	trainLoadInfo.add(delButton);
-        trainLoadInfo.add(saveButton);
+        trainLoadInfo.add(inquireButton);
         trainLoadInfo.add(newButton);
 	}
 	
@@ -304,7 +333,7 @@ public class LoadVehiclePanel {
     	panelHeight=tabbedPane.getHeight();
 		
 		delButton=new JButton("删除");
-		saveButton=new JButton("保存");
+		inquireButton=new JButton("保存");
 		newButton=new JButton("新建");
 		timeLabel=new JLabel("装运日期");
 		
@@ -316,11 +345,11 @@ public class LoadVehiclePanel {
 			}
 		});
      	
-     	setTime(tabbedPane ,carLoadInfo);
+     	this.setCarTime();
      	delButton.setSize(75,35);//删除与保存按钮的初始化
      	delButton.setLocation(panelWidth*13/20-100, panelHeight*72/85);
-     	saveButton.setSize(75,35);
-		saveButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
+     	inquireButton.setSize(75,35);
+		inquireButton.setLocation(panelWidth*13/20+100,panelHeight*72/85);
 		newButton.setSize(75,35);
      	newButton.setLocation(panelWidth*13/20,panelHeight*72/85);
      	
@@ -328,12 +357,13 @@ public class LoadVehiclePanel {
 		
 		carLoadInfo.add(timeLabel);
      	carLoadInfo.add(delButton);
-        carLoadInfo.add(saveButton);
+        carLoadInfo.add(inquireButton);
         carLoadInfo.add(newButton);
 	}
 	
 	
-	public void setTime(JTabbedPane panel,JPanel panel2){
+	
+	private void setCarTime(){
 		int panelWidth=panel.getWidth();
 		int panelHeight=panel.getHeight();
 		
@@ -347,28 +377,28 @@ public class LoadVehiclePanel {
 		
 		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
-		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+		dayString = new String[]{"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 		timeLabel.setBounds(panelWidth/20, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		yearBox = new JComboBox<String>(yearString);
-		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		yearLabel.setBounds(yearBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
-		monthBox = new JComboBox<String>(monthString);
-		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		monthLabel.setBounds(monthBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
-		dayBox = new JComboBox<String>(dayString);
-		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10-15,  panelWidth/10, panelHeight/20);
-		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+		carYearBox = new JComboBox<String>(yearString);
+		carYearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+		yearLabel.setBounds(carYearBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
+		carMonthBox = new JComboBox<String>(monthString);
+		carMonthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+		monthLabel.setBounds(carMonthBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
+		carDayBox = new JComboBox<String>(dayString);
+		carDayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10-15,  panelWidth/10, panelHeight/20);
+		dayLabel.setBounds(carDayBox.getX()+10+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
 		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/10, panelHeight/20);
 		
-		panel2.add(ensureButton);
-		panel2.add(timeLabel);
-		panel2.add(yearLabel);
-		panel2.add(monthLabel);
-		panel2.add(dayLabel);
-		panel2.add(yearBox);
-		panel2.add(monthBox);
-		panel2.add(dayBox);
+		carPanel.add(ensureButton);
+		carPanel.add(timeLabel);
+		carPanel.add(yearLabel);
+		carPanel.add(monthLabel);
+		carPanel.add(dayLabel);
+		carPanel.add(carYearBox);
+		carPanel.add(carMonthBox);
+		carPanel.add(carDayBox);
 	}
 	
 	public String[][] getPlaneTableData(){
@@ -400,22 +430,22 @@ public class LoadVehiclePanel {
 		}
 		return table;
 	}
-	public void initPlaneTable(JTabbedPane panel,JPanel panel2,JTable table){
+	public void initPlaneTable(JTabbedPane panel,JPanel panel2){
 		int panelWidth=panel.getWidth()-26;
 		int panelHeight=panel.getHeight()-26;
 		tableTitle = new String[]{"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运区号","运费","装运日期"};
 		tableData = this.getPlaneTableData();
-		table = new JTable(tableData,tableTitle);
-		scrollPane = new JScrollPane(table);
-		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
-		table.setRowHeight(panelWidth/20);//设置列宽
-		table.setDragEnabled(false);//设置不可拖动
-		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
-		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
+		planeTable = new JTable(tableData,tableTitle);
+		scrollPane = new JScrollPane(planeTable);
+		planeTable .getTableHeader().setReorderingAllowed(false);//表头不可移动
+		planeTable.setRowHeight(panelWidth/20);//设置列宽
+		planeTable.setDragEnabled(false);//设置不可拖动
+		planeTable.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
+		planeTable.getTableHeader().setResizingAllowed(true);//设置列宽不可变
 		if(tableData.length<=9){
-			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
+			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (planeTable.getRowCount()+1)*planeTable.getRowHeight());
 		}else{
-			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, 10*table.getRowHeight());
+			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, 10*planeTable.getRowHeight());
 		}
 		panel2.add(scrollPane);
 	}
