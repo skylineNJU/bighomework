@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
+import main.po.CollectionPO;
 import main.presentation.mainui.MainController;
+import main.vo.BankAccountVO;
 import main.vo.EarnVO;
 
 public class EarnListPanel {
@@ -41,7 +43,6 @@ public class EarnListPanel {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JButton calculationButton;
-	private JButton saveButton;
 	private JButton ensureButton;//确认选择时间完毕
 	
 	public EarnListPanel(){
@@ -69,13 +70,17 @@ public class EarnListPanel {
 	public void initButton(){
 		ensureButton = new JButton("确认");
 		calculationButton = new JButton("结算");
-		saveButton = new JButton("保存");
 		panel.add(calculationButton);
-		panel.add(saveButton);
 		panel.add(ensureButton);
-		calculationButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
-		saveButton.setBounds(panelWidth*3/5+calculationButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		calculationButton.setBounds(panelWidth*4/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
 		ensureButton.setBounds(dayLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
+		
+		calculationButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				updateEarn();
+				panel.repaint();
+			}
+		});
 		
 		ensureButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
@@ -86,6 +91,49 @@ public class EarnListPanel {
 				panel.repaint();
 			}
 		});
+	}
+	
+	//结算，并更新数据库
+	public void updateEarn(){
+		String[][] allData = new String[tableData.length][tableData[0].length];
+		for(int i = 0; i<tableData.length; i++){//获得表中的数据,用allData存储
+			for(int j = 0; j<tableData[i].length; j++){
+				allData[i][j] = String.valueOf(table.getModel().getValueAt(i, j));
+			}
+		}
+		FinanceBLService service = ConstructFactory.FinanceFactory();
+		ArrayList<BankAccountVO> bankListVO = service.showBalance();
+		String[][] bank = new String[bankListVO.size()][2];//获得银行账户的数据
+		ArrayList<Integer> modifyEarn = new ArrayList<Integer>();//记录被改过的收款数据
+		for(int i = 0;i<bank.length;i++){
+			bank[i][0] = bankListVO.get(i).getCode();
+			bank[i][1] = String.valueOf(bankListVO.get(i).getBalance());
+		}
+		for(int i = 0;i<allData.length; i++) {
+			if(allData[i][5].equals("未结算")){
+				modifyEarn.add(i);//记录结算的行
+				for(int j = 0; j<bank.length; j++){
+					if(bank[j][0].equals(String.valueOf(allData[j][4]))) {//找到相应的银行账户
+						bank[j][1] = String.valueOf(Double.valueOf(bank[j][1]) + Double.valueOf(allData[i][1]));
+					}
+				}
+				allData[i][5] = "已结算";
+				table.getModel().setValueAt("已结算", i, 5);
+			}
+			
+		}
+		for(int i = 0;i<bank.length;i++){//更新银行账户
+			BankAccountVO bankVO = new BankAccountVO(bank[i][0],Double.valueOf(bank[i][1]));
+			service.modifyBalance(bankVO);
+		}
+		for(int i = 0; i<modifyEarn.size();i++){//更新收款信息
+			EarnVO earnVO = new EarnVO(allData[modifyEarn.get(i)][0],allData[modifyEarn.get(i)][3],
+					allData[modifyEarn.get(i)][2],allData[modifyEarn.get(i)][4],
+					Double.valueOf(allData[modifyEarn.get(i)][1]),allData[modifyEarn.get(i)][6],
+					allData[modifyEarn.get(i)][5]
+							);
+			service.modifyCollection(earnVO);
+		}
 	}
 	//设置时间的框
 	public void setTime(){
@@ -168,10 +216,11 @@ public class EarnListPanel {
 		
 		table.setModel(new DefaultTableModel(tableData,tableTitle){
 			public boolean isCellEditable(int row,int column){
-				if(column==0||column==5){
-					return false;
+				if((column==1||column==6)&&
+						!String.valueOf(table.getModel().getValueAt(row, 5)).equals("已结算")){
+					return true;
 				}
-				return true;
+				return false;
 			}
 		});
 		panel.add(scrollPane);
