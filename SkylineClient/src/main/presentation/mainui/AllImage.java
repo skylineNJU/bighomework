@@ -22,10 +22,12 @@ public class AllImage {
 		//退出按钮，鼠标未进入时的图片
 	//	public static ImageIcon exit = new ImageIcon("graphics/exit.png");
 		public static ImageIcon exitImg = new ImageIcon("graphics/frameGraphics/exitFrameExit.png");
-		//最小化按钮，鼠标进入时的图片
-		public static ImageIcon smallestEnterImg = new ImageIcon("src/graphics/label/smallestEnter.gif");
 		//最小化按钮，鼠标未进入时的图片
-		public static ImageIcon smallestImg = new ImageIcon("src/graphics/label/smallestExit.gif");
+		public static ImageIcon minMin = new ImageIcon("graphics/frameGraphics/minFrameMin.png");
+		//最小化按钮，鼠标进入时的图片
+		public static ImageIcon minMove = new ImageIcon("graphics/frameGraphics/minFrameMove.png");
+		//最小化按钮，鼠标点击时的图片
+		public static ImageIcon minClick=new ImageIcon("graphics/frameGraphics/minFrameClick.png");
 		//边框图标，长
 		public static ImageIcon frameEdgingWImg = new ImageIcon("src/graphics/label/frameedge.jpg");
 		//边框图标，宽
@@ -49,7 +51,7 @@ public class AllImage {
 		
 		//登录时的界面
 		public static ImageIcon login = new ImageIcon("graphics/login.png");
-
+		public static ImageIcon login_username=new ImageIcon("graphics/login_username.png");
 		
 		
 }

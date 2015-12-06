@@ -1,6 +1,8 @@
 package main.presentation.rightui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -46,8 +48,8 @@ public class LoginPanel{
 	private JLabel back=new JLabel("·µ»Ø");
 	private FrameMain frame;
 	private JPanel panel;
-	private JLabel uIcon;
-	private JLabel pIcon;
+//	private JLabel uIcon;
+//	private JLabel pIcon;
 	private JLabel login;
 	
       
@@ -57,12 +59,28 @@ public class LoginPanel{
 		panel=FrameMain.getContentPanel();
 	}
 	public void init(){
-		uIcon = new JLabel("Icon");
-		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
-		uIcon.setVisible(true);
-		pIcon = new JLabel("Icon");		
-		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
-		pIcon.setVisible(true);
+		
+		userName.setOpaque(false);
+		userName.setBorder(null);
+		userName.setFont(new Font("ºÚÌå",Font.ITALIC,18));
+		userName.setForeground(Color.WHITE);
+		userName.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e){
+				login.setIcon(AllImage.login_username);
+				panel.repaint();
+			}
+			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
+		});
+		
+//		uIcon = new JLabel("Icon");
+//		uIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*7,frame.getWidth()/10,frame.getHeight()/10);
+//		uIcon.setVisible(true);
+//		pIcon = new JLabel("Icon");		
+//		pIcon.setBounds(frame.getWidth()/20*12,frame.getHeight()/20*10,frame.getWidth()/10,frame.getHeight()/10);
+//		pIcon.setVisible(true);
 		AllImage.login.setImage(AllImage.login.getImage().getScaledInstance(panel.getWidth(),panel.getHeight(),Image.SCALE_DEFAULT));
 
 		login=new JLabel(AllImage.login);
@@ -71,8 +89,8 @@ public class LoginPanel{
 		userName.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*7,frame.getWidth()/10*3,frame.getHeight()/10);
 		passWord.setBounds(frame.getWidth()/20*13,frame.getHeight()/20*10,frame.getWidth()/10*3,frame.getHeight()/10);
 		
-		panel.add(uIcon);
-		panel.add(pIcon);
+//		panel.add(uIcon);
+//		panel.add(pIcon);
 		panel.add(userName);
 		panel.add(passWord);
 		panel.add(login);
@@ -256,8 +274,7 @@ public class LoginPanel{
 	}
 	
 	public void remove(){
-		panel.remove(uIcon);
-		panel.remove(pIcon);
+	
 		panel.remove(back);
 		panel.remove(passWord);
 		panel.remove(confirm);
