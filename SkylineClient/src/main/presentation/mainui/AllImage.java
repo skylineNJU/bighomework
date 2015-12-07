@@ -56,5 +56,31 @@ public class AllImage {
 		public static ImageIcon login_login=new ImageIcon("graphics/login_login.png");
 		public static ImageIcon login_show=new ImageIcon("graphics/login_show.png");
 		
+		//首页界面
+		public static ImageIcon welcome=new ImageIcon("graphics/welcome/welcome.png");
+		public static ImageIcon welcome_version=new ImageIcon("graphics/welcome/welcome_version.png");
+		public static ImageIcon welcome_login=new ImageIcon("graphics/welcome/welcome_login.png");
+		public static ImageIcon welcome_input2=new ImageIcon("graphics/welcome/welcome_input2.png");
+		public static ImageIcon welcome_input1=new ImageIcon("graphics/welcome/welcome_input1.png");
+		public static ImageIcon welcome_aboutus=new ImageIcon("graphics/welcome/welcome_aboutus.png");
+		
+		
+		
+		//按钮
+		public static ImageIcon cancel1=new ImageIcon("graphics/button/cancel1.png");
+		public static ImageIcon cancel2=new ImageIcon("graphics/button/cancel2.png");
+		public static ImageIcon cancel3=new ImageIcon("graphics/button/cancel3.png");
+		public static ImageIcon confirm1=new ImageIcon("graphics/button/confirm1.png");
+		public static ImageIcon confirm2=new ImageIcon("graphics/button/confirm2.png");
+		public static ImageIcon confirm3=new ImageIcon("graphics/button/confirm3.png");
+		public static ImageIcon delete1=new ImageIcon("graphics/button/delete1.png");
+		public static ImageIcon delete2=new ImageIcon("graphics/button/delete2.png");
+		public static ImageIcon delete3=new ImageIcon("graphics/button/delete3.png");
+		public static ImageIcon new1=new ImageIcon("graphics/button/new1.png");
+		public static ImageIcon new2=new ImageIcon("graphics/button/new2.png");
+		public static ImageIcon new3=new ImageIcon("graphics/button/new3.png");
+		public static ImageIcon save1=new ImageIcon("graphics/button/save1.png");
+		public static ImageIcon save2=new ImageIcon("graphics/button/save2.png");
+		public static ImageIcon save3=new ImageIcon("graphics/button/save3.png");
 		
 }
