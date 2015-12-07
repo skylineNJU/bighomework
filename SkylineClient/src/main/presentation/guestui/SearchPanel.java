@@ -23,7 +23,9 @@ public class SearchPanel{
 	private JLabel version=new JLabel("");
 	private JLabel search=new JLabel("");
 	private JLabel welcome;//背景图
-	
+	private JLabel aboutusPane=new JLabel(AllImage.aboutus);//关于我们 弹框
+	private JLabel aboutusClose=new JLabel("");
+	private JLabel welcome_none;
 	public SearchPanel(){
 		this.frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
@@ -38,12 +40,20 @@ public class SearchPanel{
 		AllImage.welcome_input2.setImage(AllImage.welcome_input2.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		AllImage.welcome_input1.setImage(AllImage.welcome_input1.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		AllImage.welcome_aboutus.setImage(AllImage.welcome_aboutus.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
-	
+		AllImage.welcome_none.setImage(AllImage.welcome_none.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		
 		welcome=new JLabel(AllImage.welcome);
 		welcome.setSize(panel.getWidth(),panel.getHeight());
 		welcome.setLocation(0,0);
 		
+		welcome_none=new JLabel(AllImage.welcome_none);
+		welcome_none.setSize(panel.getWidth(),panel.getHeight());
+		welcome_none.setLocation(0, 0);
+		welcome_none.setVisible(false);
+		
+		aboutusPane.setSize(508*w,346*h);
+		aboutusPane.setLocation(176*w,122*h);
+		aboutusPane.setVisible(false);
 		
 		searchField.setOpaque(false);
 		searchField.setBorder(null);
@@ -88,12 +98,18 @@ public class SearchPanel{
 		version.setSize(50*w,11*h);
 		version.setLocation(350*w,470*h);
 		
+		aboutusClose.setOpaque(false);
+		aboutusClose.setBorder(null);
+		aboutusClose.setSize(18*w,18*h);
+		aboutusClose.setLocation(648*w,132*h);
 		
 		login.setOpaque(false);
 		login.setBorder(null);
 		login.setSize(75*w,13*h);
 		login.setLocation(768*w,54*h);
 		
+		panel.add(aboutusClose);
+		panel.add(aboutusPane);
 		panel.add(login);
 		panel.add(search);
 		panel.add(welComeLabel);
@@ -101,6 +117,7 @@ public class SearchPanel{
 		panel.add(aboutUs);
 		panel.add(version);
 		panel.add(welcome);
+		panel.add(welcome_none);
 		search.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				
@@ -114,6 +131,20 @@ public class SearchPanel{
 				panel.repaint();
 			}
 		});
+		
+		
+		aboutusClose.addMouseListener(new MouseAdapter(){
+		public void mouseClicked(MouseEvent e){
+				aboutusPane.setVisible(false);
+				welcome_none.setVisible(false);
+				welcome.setVisible(true);
+				panel.add(searchField);
+				panel.add(search);
+				panel.repaint();
+			}
+		});
+		
+		
 		aboutUs.addMouseListener(new MouseAdapter(){
 			
 			public void mouseEntered(MouseEvent e){
@@ -122,6 +153,14 @@ public class SearchPanel{
 			}
 			public void mouseExited(MouseEvent e){
 				welcome.setIcon(AllImage.welcome);
+				panel.repaint();
+			}
+			public void mouseClicked(MouseEvent e){				
+				panel.remove(searchField);
+				panel.remove(search);
+				welcome.setVisible(false);
+				welcome_none.setVisible(true);
+				aboutusPane.setVisible(true);
 				panel.repaint();
 			}
 		});

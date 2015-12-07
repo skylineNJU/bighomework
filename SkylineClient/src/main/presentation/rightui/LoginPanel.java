@@ -151,7 +151,7 @@ public class LoginPanel{
 		panel.repaint();
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				panel.removeAll();
+				removeAll();
 				panel.repaint();
 				MainController.jumpToGuestui(Guestui.Search);
 			}
@@ -185,7 +185,7 @@ public class LoginPanel{
 				System.out.println("get login message");
 				switch(account.getRight()){	
 					case ACCOUNT:
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						MainController.goToRightAdminStaffui(account.getBelong());
 						break;
@@ -195,7 +195,7 @@ public class LoginPanel{
 						MainController.getWritepanel().setMemory(new CourrierMemory(username,password,Courrier.getOrderCode()
 								,Courrier.getBuildDate(),Courrier.getReceiveCode(),Courrier.getReceiveDate(),
 						Courrier.getDistributeCode()));
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						MainController.goToCourierui(account.getBelong());
 						break;
@@ -204,7 +204,7 @@ public class LoginPanel{
 						FinanceReceiptVO financeVO=financeService.getFinanceCode(username);
 						MainController.getWritepanel().setMemory(new FinanceMemory(username,password,financeVO.getCostCode()
 						,financeVO.getEarnCode()));
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						MainController.gotoFinanceui(account.getBelong());	
 						break;
@@ -214,7 +214,7 @@ public class LoginPanel{
 						MainController.getWritepanel().setMemory(new IntermediateMemory(username,password,
 								intermediateVO.getIntermReceiptCode(),intermediateVO.getAirLoadCode(),intermediateVO.getRailLoadCode(),intermediateVO.getRoadLoadCode()
 								,intermediateVO.getAirLoadDate(),intermediateVO.getRailLoadDate(),intermediateVO.getRoadLoadDate(),intermediateVO.getIntermDate()));
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						MainController.goToIntermediateStaffui(account.getBelong());
 						break;
@@ -224,7 +224,7 @@ public class LoginPanel{
 						System.out.println(lobbyVO.getReceiveCode());
 						MainController.getWritepanel().setMemory(new LobbyMemory(username,password,lobbyVO.getReceiveCode(),
 								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate(),lobbyVO.getLobbyLoading()));
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						MainController.goToLobbyStaffui(account.getBelong());
 						break;
@@ -232,12 +232,12 @@ public class LoginPanel{
 						SubmitReceipt manager=ConstructFactory.SubMitFactory();
 						ApprovalVO manvo=manager.getApproval();
 						MainController.getWritepanel().setMemory(new ManagerMemory(username,password,manvo.getKinds(),manvo.getCode()));
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						MainController.goToManagerui(account.getBelong());
 						break;
 					case STOREHOUSE:
-						panel.removeAll();
+						removeAll();
 						panel.repaint();
 						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
 						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,null,null,username);
@@ -274,73 +274,16 @@ public class LoginPanel{
 				
 				
 				
-		/*		switch(username){
-				case "141250029":    //快递员账号
-					if(password.equals(username)){
-						remove();
-						panel.repaint();
-						MainController.goToCourierui();
-					}
-					break;
-					
-				case "141250028":    //营业厅业务员账号
-					if(password.equals(username)){
-						remove();
-						panel.repaint();
-						MainController.goToLobbyStaffui();
-					}
-					break;
-					
-				case "141250027":    //中转中心业务员账号 
-					if(password.equals(username)){
-						remove();
-						panel.repaint();
-						//panel.add(FrameMain.getContentPanel());
-						MainController.goToIntermediateStaffui();
-					}
-					break;
-					
-				case "141250026":    //中转仓库管理人员账号
-					if(password.equals(username)){
-						remove();
-						panel.repaint();
-						MainController.goToWarehouseui();
-					}
-					break;
-					
-				case "141250025":    //财务管理人员账号
-					if(password.equals(username)){
-						remove();
-						panel.repaint();
-						MainController.gotoFinanceui();	
-					}
-					break;
-					
-				case "141250024":    //总经理账号
-					if(password.equals(username)){
-						remove();
-						panel.repaint();
-						MainController.goToManagerui();
-					}
-					break;
-					
-				case "141250023":    //账户管理人员账号
-					if(password.equals(username)){
-					remove();
-					panel.repaint();
-					MainController.goToRightAdminStaffui();
-
-					}
-					break;
-				}
-			*/
+		
 			}
 		});
 		panel.repaint();
 	}
 	
-	public void remove(){
-	
+	public void removeAll(){
+		panel.remove(login);
+		panel.remove(show);
+		panel.remove(forget);
 		panel.remove(back);
 		panel.remove(passWord);
 		panel.remove(confirm);

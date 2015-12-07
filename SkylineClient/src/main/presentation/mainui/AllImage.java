@@ -63,7 +63,7 @@ public class AllImage {
 		public static ImageIcon welcome_input2=new ImageIcon("graphics/welcome/welcome_input2.png");
 		public static ImageIcon welcome_input1=new ImageIcon("graphics/welcome/welcome_input1.png");
 		public static ImageIcon welcome_aboutus=new ImageIcon("graphics/welcome/welcome_aboutus.png");
-		
+		public static ImageIcon welcome_none=new ImageIcon("graphics/welcome/welcome_none.png");
 		
 		
 		//按钮
@@ -82,5 +82,8 @@ public class AllImage {
 		public static ImageIcon save1=new ImageIcon("graphics/button/save1.png");
 		public static ImageIcon save2=new ImageIcon("graphics/button/save2.png");
 		public static ImageIcon save3=new ImageIcon("graphics/button/save3.png");
+		
+		//关于我们  及 版本号
+		public static ImageIcon aboutus=new ImageIcon("graphics/welcome/aboutus.png");
 		
 }

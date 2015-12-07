@@ -1,5 +1,5 @@
 package main.presentation.guestui;
 
 public enum Guestui {
-	Search,ShowHistory
+	Search,ShowHistory,AboutUs
 }
