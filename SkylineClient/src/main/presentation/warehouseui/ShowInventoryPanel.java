@@ -302,16 +302,16 @@ public class ShowInventoryPanel {
 		
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				tableData1=initInTableData();
-				tableData2=initOutTableData();
-				 for(int i=0;i<tableData1.length;i++){
-						for(int j=0;j<tableData1[0].length;j++){
-							table1.setValueAt(tableData1[i][j], i, j);
-						}
-					}
+			//	tableData1=initInTableData();
+			//	 for(int i=0;i<tableData1.length;i++){
+			//			for(int j=0;j<tableData1[0].length;j++){
+			//				table1.setValueAt(tableData1[i][j], i, j);
+			//			}
+			//		}
+				 tableData2=initOutTableData();
 				 for(int i=0;i<tableData2.length;i++){
 						for(int j=0;j<tableData2[0].length;j++){
-							table1.setValueAt(tableData2[i][j], i, j);
+							table2.setValueAt(tableData2[i][j], i, j);
 							
 						}
 					}
@@ -329,6 +329,7 @@ public class ShowInventoryPanel {
 	}
 	
 	public void tablePanel(){
+		System.out.println(")))))))))))))))))((((((((((((((((");
 		tableTitle1= new String[]{"Èë¿âµ¥ºÅ","ÇøºÅ","ÅÅºÅ","¼ÜºÅ","Î»ºÅ"};
 		tableData1=initInTableData();	
 		table1 = new JTable(tableData1,tableTitle1);
@@ -375,7 +376,6 @@ public class ShowInventoryPanel {
 		table2.setVisible(true);
 		scrollPane2.setVisible(true);
 		outInfo.add(scrollPane2);
-		//tab.add(table1);
 	}
 	
 	public String[][] initInTableData(){
@@ -455,8 +455,8 @@ public class ShowInventoryPanel {
 		String[] dates =date.split(" ");
 		String code = memory.getWarehouseOutCode().substring(2);
 		String[] codes =code.split(" ");
-		System.out.println("::::::::::1:::::::::"+date);
-		System.out.println("::::::::::2:::::::::"+code);
+		System.out.println("::::::::::11:::::::::"+date);
+		System.out.println("::::::::::22:::::::::"+code);
 		Date date1 = new Date(y1-1900,m1-1,d1);
         Date date2 = new Date(y2-1900,m2-1,d2);
         assert(date2.after(date1));
@@ -467,12 +467,12 @@ public class ShowInventoryPanel {
         int counter = 0;
         InNum = 0;
         for(int i=0;i<dates.length;i++){
-        	System.out.println(":::::::::3::::::::::"+dates[0]);
+        	System.out.println(":::::::::33::::::::::"+dates[0]);
         	String[] yAmAd=dates[i].split("\\/");
         	int year = Integer.parseInt(yAmAd[0]);
         	int month = Integer.parseInt(yAmAd[1]);
         	int day = Integer.parseInt(yAmAd[2]);
-        	System.out.println(":::::::::3::::::::::"+year+" "+month+" "+day);
+        	System.out.println(":::::::::33::::::::::"+year+" "+month+" "+day);
         	Date d = new Date(year-1900,month-1,day);
         	if(d.after(date1)&&d.before(date2)){
         		OutNum++;
