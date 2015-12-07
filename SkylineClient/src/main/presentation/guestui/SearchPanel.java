@@ -174,6 +174,14 @@ public class SearchPanel{
 				welcome.setIcon(AllImage.welcome);
 				panel.repaint();
 			}
+			public void mouseClicked(MouseEvent e){				
+				panel.remove(searchField);
+				panel.remove(search);
+				welcome.setVisible(false);
+				welcome_none.setVisible(true);
+				aboutusPane.setVisible(true);
+				panel.repaint();
+			}
 		});
 		login.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
