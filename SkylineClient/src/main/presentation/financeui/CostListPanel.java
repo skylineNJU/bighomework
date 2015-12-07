@@ -97,9 +97,9 @@ public class CostListPanel {
 		addPanel.setVisible(false);
 		setTime();
 		initButton();
-		initTable();
 		initAddPanel();
 		title();
+		initTable();
 		panel.repaint();
 	}
 	public void title(){
@@ -117,6 +117,13 @@ public class CostListPanel {
 		ensureButton.setBounds(dayLabel.getX()+panelWidth/10, panelHeight/10, panelWidth/10, panelHeight/20);
 		newCostButton.setBounds(panelWidth*3/5, panelHeight*9/10, panelWidth/10, panelHeight/20);
 		payButton.setBounds(panelWidth*3/5+newCostButton.getWidth()*2, panelHeight*9/10, panelWidth/10, panelHeight/20);
+		
+		payButton.addMouseListener(new MouseAdapter() {//把未结算全部改成已结算，保存至数据库，然后再修改银行账户余额
+			public void mouseClicked(MouseEvent e){
+				updateCost();
+				table.repaint();
+			}
+		});
 		
 		newCostButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
@@ -136,6 +143,50 @@ public class CostListPanel {
 		});
 
 		panel.repaint();
+	}
+	
+	//结算并更新数据库
+	public void updateCost(){
+		String[][] allData = new String[tableData.length][tableData[0].length];
+		for(int i = 0; i<tableData.length; i++) {//拿到表中的数据
+			for(int j = 0; j<tableData[i].length; j++){
+				allData[i][j] = String.valueOf(table.getModel().getValueAt(i, j));
+			}
+		}
+		FinanceBLService service = ConstructFactory.FinanceFactory();
+		ArrayList<BankAccountVO> bankListVO = service.showBalance();
+		String[][] bank = new String[bankListVO.size()][2];//获得银行账户的数据
+		ArrayList<Integer> modifyCost = new ArrayList<Integer>();//记录被改过的成本数据
+		for(int i = 0;i<bank.length;i++){
+			bank[i][0] = bankListVO.get(i).getCode();
+			bank[i][1] = String.valueOf(bankListVO.get(i).getBalance());
+		}
+		for(int i = 0; i<tableData.length; i++) {//结算
+			if(allData[i][5].equals("未结算")){
+				modifyCost.add(i);//记录被改过的数据
+				for(int j = 0; j<bank.length; j++){
+					if(allData[i][3].equals(bank[j][0])){//找到相应的银行账户
+						bank[j][1] = String.valueOf(Double.valueOf(bank[j][1]) - Double.valueOf(allData[i][1]));//减钱，此时应该是否小于0
+					}
+				}
+				allData[i][5] = "已结算";
+				table.getModel().setValueAt("已结算", i, 5);
+			}
+		}
+		//更新银行账户数据库
+		for(int i = 0;i<bank.length;i++){//更新银行账户
+			BankAccountVO bankVO = new BankAccountVO(bank[i][0],Double.valueOf(bank[i][1]));
+			service.modifyBalance(bankVO);
+			
+		}
+		//更新付款单数据库
+		for(int i = 0;i<modifyCost.size();i++){//更新付款单
+			CostVO costVO = new CostVO(allData[modifyCost.get(i)][4],allData[modifyCost.get(i)][0],
+					allData[modifyCost.get(i)][3],Double.valueOf(allData[modifyCost.get(i)][1]),
+					allData[modifyCost.get(i)][6],allData[modifyCost.get(i)][2],allData[modifyCost.get(i)][5]
+							);
+			service.modifyCost(costVO);
+		}
 	}
 	//设置时间的框
 	public void setTime(){
@@ -200,6 +251,7 @@ public class CostListPanel {
 			tableData[counter][6] = costVO.getComment();
 			counter++;
 		}
+		
 	}
 	//成本管理列表
 	@SuppressWarnings("serial")
@@ -220,13 +272,17 @@ public class CostListPanel {
 		
 		table.setModel(new DefaultTableModel(tableData,tableTitle){
 			public boolean isCellEditable(int row,int column){
-				if(column==0||column==5){
+				if(column==0||column==5||tableData[row][5].equals("已结算")
+						||tableData[row][column].equals("   no data")){//规定不能修改是否结算和单号，规定不能对已结算的单据修改任何信息
+					return false;
+				}else if(column==1||column==6){//只允许修改金额和备注
+					return true;
+				}else{
 					return false;
 				}
-				return true;
 			}
 		});
-		
+
 		lookPanel.add(scrollPane);
 	}
 	
@@ -280,7 +336,6 @@ public class CostListPanel {
 		
 		addButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-//				String date, String code,String bankAccount,double cost,String comment,String type,String isPaid
 				if(isLegal()){
 					String date = addYearBox.getSelectedItem()+"/"+addMonthBox.getSelectedItem()+"/"+addDayBox.getSelectedItem();
 					CostVO costVO = new CostVO(date, codeText.getText(), 

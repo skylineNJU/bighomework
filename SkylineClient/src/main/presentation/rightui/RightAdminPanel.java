@@ -168,11 +168,12 @@ public class RightAdminPanel {
 		//"账号"“密码”“权限”“机构”
 					if(selectRow[x]){
 						RightBLService service=ConstructFactory.RightFactory();
-						AccountVO vo=new AccountVO((Rights)table.getValueAt(x,2),
+						AccountVO vo=new AccountVO(Rights.valueOf((String)table.getValueAt(x,2)),
 								(String)table.getValueAt(x,0),
 								(String)table.getValueAt(x,1),
 								(String) table.getValueAt(x,3)
 								);
+						System.out.println(vo.getCode());
 						RightBLService service1=ConstructFactory.RightFactory();
 						service1.modifyAccount(vo);
 					}
@@ -196,9 +197,19 @@ public class RightAdminPanel {
 	
 	
 	public void lookTabel(){
-		tableTitle = new String[]{"账号", "密码", "身份", "机构"};
+		tableTitle = new String[]{"账号", "密码", "身份", "机构","选择"};
 		tableData = this.initTableData();
-		table = new JTable(tableData,tableTitle);
+		MyTableModel model=new MyTableModel();
+		model.setColumnCount(5);
+		model.setColumnIdentifiers(tableTitle);
+		for(int x=0;x<tableData.length;x++){
+			model.addRow(tableData[x]);
+		}
+		table = new JTable(model);
+
+		table.setEditingColumn(1);
+		table.setEditingColumn(3);
+		
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -221,16 +232,15 @@ public class RightAdminPanel {
 			public void mouseClicked(MouseEvent e){
 				int x=table.getSelectedRow();
 				if(!selectRow[x]){
-					table.setValueAt("选定",x,4);
 					selectRow[x]=true;
-					System.out.println("select");
+					table.setValueAt("已选",x,4);
 				}else{
-					table.setValueAt("",x,4);
 					selectRow[x]=false;
-					System.out.println("cancel");
+					table.setValueAt("",x,4);
 				}
 			}
 		});
+		
 	}
 	
 	public String[][] initTableData(){
@@ -241,9 +251,9 @@ public class RightAdminPanel {
 		ArrayList<AccountVO> volist=null;
 		RightBLService service=ConstructFactory.RightFactory();
 		volist=service.inquireAccount();
-		String[][] content =new String[volist.size()][4];
+		String[][] content =new String[volist.size()][5];
 		for(int x=0;x<volist.size();x++)
-			for(int y=0;y<4;y++)
+			for(int y=0;y<5;y++)
 				content[x][y]=null;
 		
 		if(volist!=null){
@@ -254,7 +264,7 @@ public class RightAdminPanel {
 			content[counter][1]=vo.getCode();
 			content[counter][2]=vo.getRight().name();
 			content[counter][3]=vo.getBelong();
-			
+			content[counter][4]="";
 			counter++;
 		}
 		
@@ -302,4 +312,18 @@ public class RightAdminPanel {
 		
 		
 	}
+	
+	class MyTableModel extends DefaultTableModel {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public boolean isCellEditable(int row, int column) {
+			if(column%2==0){
+				return false;
+			}
+			return true;
+		}
+    }
 }

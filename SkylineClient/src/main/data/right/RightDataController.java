@@ -76,6 +76,7 @@ public boolean delAccount(AccountPO po ){
 	@Override
 	public boolean modifyAcount(AccountPO accountPO) {
 		// TODO Auto-generated method stub
+		System.out.println("modify begain");
 		client=MainController.getClient();
 		accountPO.setKey("Modify");
 		client.writeReceipt(accountPO);

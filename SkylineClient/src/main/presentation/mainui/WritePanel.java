@@ -1,10 +1,15 @@
 package main.presentation.mainui;
 
-import java.awt.*;
-import java.awt.event.*;
 
-import javax.swing.*;
-import javax.swing.border.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import main.presentation.mainui.memory.Memory;
 
@@ -28,9 +33,8 @@ public class WritePanel extends JPanel{
 		frame=FrameMain.getFrame();
 		this.setBounds((int)((double)frame.getWidth()*138/724),(int)((double)frame.getHeight()*22/490)
 				,frame.getWidth()-(int)((double)frame.getWidth()*138/724)
-				,frame.getHeight()-(int)((double)frame.getHeight()*22/490));
-		
-		  
+				,frame.getHeight()-(int)((double)frame.getHeight()*22/490)
+				);
 	}
 
 	protected void paintComponent(Graphics g) {			
@@ -39,6 +43,7 @@ public class WritePanel extends JPanel{
 	    	searchLabel();
 	}
 	
+
 	public void searchLabel(){
 		 	search= new JLabel();
 			search.setBounds(this.getWidth()*12/20,this.getHeight()/50,this.getWidth()/2,this.getHeight()/20);

@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.ReceiveBLService;
 import main.businesslogicservice.receiptblService.LobbyReceipt;
@@ -81,6 +82,9 @@ public class LobbyReceivePanel {
 				// TODO Auto-generated method stub
 				if(tabbedPane.getSelectedIndex()==0){
 					initTableData();
+					while(tableData.length>table.getRowCount()){
+						((DefaultTableModel)table.getModel()). addRow(new String[9]);
+					}
 					for(int x=0;x<tableData.length;x++)
 						for(int y=0;y<3;y++){
 							table.setValueAt(tableData[x][y],x,y);
@@ -125,11 +129,12 @@ public class LobbyReceivePanel {
 					conditionText.getText(),
 					barText.getText()
 					);
-			
+			vo.setBelong(wp.getBelong());
 			ReceiveBLService service=ConstructFactory.ReceiveFactory();
 			service.createNewLobbyReception(vo);
 			
 			memory.setReceiveCode(memory.getReceiveCode()+" "+code);
+			System.out.println("receiveCode:"+memory.getReceiveCode());
 			memory.setReceiveDate(memory.getReceiveDate()+" "+yearText.getText()+"/"+monthText.getText()+"/"+dayText.getText());
 			
 			LobbyReceipt service3=ConstructFactory.LobbyReceiptFactory();

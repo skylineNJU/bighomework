@@ -1,10 +1,14 @@
 package main.presentation.mainui;
 import java.awt.Frame;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class FrameMain extends JFrame{
@@ -35,7 +39,7 @@ public class FrameMain extends JFrame{
 		title.setLocation(0,0);
 		exit.setLocation(frame.getWidth()-exit.getWidth(),0);
 		min.setLocation(frame.getWidth()-2*min.getWidth(),0);
-		frame.getContentPane().add(panel);
+		frame.setContentPane(panel);
 		panel.setLayout(null);
 		panel.add(exit);
 		panel.add(min);

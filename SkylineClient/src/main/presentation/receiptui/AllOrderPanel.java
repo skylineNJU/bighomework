@@ -111,17 +111,17 @@ public class AllOrderPanel {
 			scrollPane.setBounds(panelWidth/20, panelHeight/6, panelWidth*9/10, (table.getRowCount()+1)*table.getRowHeight());
 		}
 		panel.add(scrollPane);
-		table.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				int x=table.getSelectedRow();
-				if(!selectRow[x]){
-					selectRow[x]=true;
-					table.setValueAt("已选",x,13);
-				}else{
-					selectRow[x]=false;
-					table.setValueAt("",x,13);
-				}
-			}
-		});
+//		table.addMouseListener(new MouseAdapter(){
+//			public void mouseClicked(MouseEvent e){
+//				int x=table.getSelectedRow();
+//				if(!selectRow[x]){
+//					selectRow[x]=true;
+//					table.setValueAt("已选",x,13);
+//				}else{
+//					selectRow[x]=false;
+//					table.setValueAt("",x,13);
+//				}
+//			}
+//		});
 	}
 }

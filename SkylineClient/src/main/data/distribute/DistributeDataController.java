@@ -6,6 +6,7 @@ import java.util.List;
 import main.dataservice.DistributeDataService;
 import main.po.DistributePO;
 import main.po.DistributePOList;
+import main.po.Message;
 import main.po.OrderPO;
 import main.po.ReceivePO;
 import main.presentation.mainui.MainController;
@@ -34,9 +35,13 @@ public class DistributeDataController implements DistributeDataService{
 	@Override
 	public boolean inputOrder(ReceivePO receivePO) {
 		client=MainController.getClient();
-		receivePO.setKey("Save");
+		receivePO.setKey("Check");
 		client.writeReceipt(receivePO);
-		return true;
+		Message message=client.getResponse();
+		if(message.getKey().equals("success")){
+			return true;
+		}
+		return false;
 	}
 
 	@Override

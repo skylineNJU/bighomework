@@ -19,9 +19,10 @@ public class DistributePOList extends Message{
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("Distribute");
 		String key = distributeList.get(0).getCourrierName();
+		System.out.println("the courrier accountName is:"+key);
 		distributeList.clear();
 		while(reader.findNext("快递员账号",key)){
-			DistributePO distributePO = new DistributePO(reader.getString("派送单号"),
+			DistributePO distributePO = new DistributePO(reader.getString("单号"),
 					reader.getString("订单号"),
 					reader.getString("收件人姓名"),
 					reader.getString("收件人地址"),

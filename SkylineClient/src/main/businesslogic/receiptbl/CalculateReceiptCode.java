@@ -1,5 +1,7 @@
 package main.businesslogic.receiptbl;
 
+import java.util.Calendar;
+
 public class CalculateReceiptCode {
 	private String[] codelist=null;
 	private String userName;
@@ -12,11 +14,20 @@ public class CalculateReceiptCode {
 	}
 	
 	public String getCalculatedCode(){
+		Calendar now = Calendar.getInstance();  
+		int year=now.get(Calendar.YEAR);
+		year=year%100;
 		if(codelist.length==1)
-			return userName+codelist[0]+"0000";
-		int num=Integer.parseInt(codelist[codelist.length-1].substring(userName.length()+1))+1;
+			return userName+codelist[0]+year+"000000";
+		String str=codelist[codelist.length-1].substring(userName.length()+1);
+		int num=Integer.parseInt(str);
+		if(num/1000000==year){
+			num=num+1;
+		}else{
+			num=year*1000000;
+		}
 		System.out.println(num);
-		return userName+codelist[0]+String.format("%04d",num);		
+		return userName+codelist[0]+num;		
 	}
 	
 	public String[] getCodelist() {
