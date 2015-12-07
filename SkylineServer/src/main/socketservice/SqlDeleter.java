@@ -21,7 +21,7 @@ public class SqlDeleter {
 		
 	}
 	
-	public void deleteData(String listname,String attribute,String content){
+	public boolean deleteData(String listname,String attribute,String content){
 		String query="DELETE FROM "+listname+" WHERE "+attribute+"= '"+content+"'";
 		System.out.println("-------------------============="+query);
 		try {
@@ -32,6 +32,8 @@ public class SqlDeleter {
 			// TODO Auto-generated catch block
 			System.out.println("³ö´í");
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 }

@@ -31,7 +31,7 @@ public class ClientThread implements Runnable {
 			while(true){
 				message=(Message)reader.readObject();
 				if(message!=null){
-					System.out.println("get message");
+					System.out.println("get message,and key is:"+message.getKey());
 				try {
 					messageList.put(message);
 				} catch (InterruptedException e) {
@@ -52,10 +52,12 @@ public class ClientThread implements Runnable {
 		Message message=null;
 		try {
 			message = messageList.take();
+			messageList.clear();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("take a message");
 		System.out.println(message.getKey());
 		return message;
 	}

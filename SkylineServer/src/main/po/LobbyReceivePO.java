@@ -20,7 +20,6 @@ public class LobbyReceivePO extends Receipt implements Serializable{
 	
 
 	public void writeIntoDatabase(){
-		System.out.println("Save begin---------------------");
 		SqlWriter writer=new SqlWriter();
 		String content="'"+receiveYear+"/"+receiveMonth+"/"+receiveDay+"','"
 				+condition+"','"+expressBar+"','"+this.getCode()+"'";

@@ -2,6 +2,7 @@ package main.dataservice;
 
 import main.po.CenterReceiveListPO;
 import main.po.CenterReceivePO;
+import main.po.CourrierPO;
 import main.po.DistributePO;
 import main.po.LobbyReceiveListPO;
 import main.po.OrderPO;
@@ -77,4 +78,7 @@ public interface ReceiveDataService {
 	//orderBar表示订单条形码
 	public boolean modifiyDistributeOrder(DistributePO distributePO);
 	
+	public CourrierPO getCourrierInfo(CourrierPO po);
+	
+	public void saveDistribute(DistributePO po);
 }

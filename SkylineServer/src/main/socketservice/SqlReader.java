@@ -93,12 +93,5 @@ public class SqlReader {
 		return contents;
 	}
 	
-	public void resetResultSet(String tableName){
-		try {
-			rs=stmt.executeQuery("selet*from "+tableName);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 }

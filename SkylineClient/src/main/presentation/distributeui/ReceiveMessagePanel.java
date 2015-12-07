@@ -10,8 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.businesslogicservice.DistributeBLService;
+import main.businesslogicservice.receiptblService.CourrierReceipt;
+import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.CourrierMemory;
 import main.vo.RecipientVO;
 
 public class ReceiveMessagePanel {
@@ -49,7 +53,7 @@ public class ReceiveMessagePanel {
 	}
 	
 	public void allTextFiled(){
-		codeLabel = new JLabel("收件编号");
+		codeLabel = new JLabel("订单号");
 		nameLabel = new JLabel("收件人姓名");
 		phoneLabel = new JLabel("联系方式");
 		receiveCode = new JTextField();
@@ -89,14 +93,21 @@ public class ReceiveMessagePanel {
 				Calendar calendar = Calendar.getInstance();
 				String date = calendar.get(Calendar.YEAR)+"/"+(calendar.get(Calendar.MONTH)+1)
 						+"/"+calendar.get(Calendar.DAY_OF_MONTH);
+				String code=null;
+				ReceiptCode service0=ConstructFactory.calculateCode();
+				CourrierMemory memory=(CourrierMemory) ((WritePanel)panel).getMemory();
+				code=service0.calculCode(memory.getReceiveCode(),memory.getUserName());
 				RecipientVO recipientVO = new RecipientVO(receiverName.getText(), 
-						phone.getText(), receiveCode.getText(), 
-						date, "当前快递员编号");
+						phone.getText(),code, 
+						date,receiveCode.getText());
 				DistributeBLService distribute = ConstructFactory.DistributeFactory();
 				if(distribute.writeReceiveMessage(recipientVO)){//保存成功
-					
+					CourrierReceipt service=ConstructFactory.CourrierReceiptFactory();
+					service.saveReceiveCode(code,memory.getUserName());
+					memory.setReceiveCode(memory.getReceiveCode()+" "+code);
+					memory.setReceiveDate(memory.getReceiveDate()+" "+date);
 				}else{
-					
+					System.out.println("生成失败");
 				}
 			}
 		});
