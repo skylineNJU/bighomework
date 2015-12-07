@@ -3,7 +3,7 @@ package main.vo;
 import main.businesslogic.warehousebl.WarehouseIn;
 
 
-public class WarehouseInVO {
+public class WarehouseInVO extends ReceiptVO{
 
 // TODO Auto-generated constructor stub
 	private String bar;//¶©µ¥ºÅ
@@ -18,7 +18,7 @@ public class WarehouseInVO {
 	
 	public WarehouseInVO(String code, String area, int row, int shelf,
 			int position) {
-		super();
+		super(code);
 		this.code = code;
 		this.area = area;
 		this.row = row;
@@ -26,6 +26,7 @@ public class WarehouseInVO {
 		this.position = position;
 	}
 	public WarehouseInVO(String a,String co,String b,String c,String d,int e,int f,int g,String h){
+		super(co);
 		code = co;
 		bar = a;
 		inDate=b;

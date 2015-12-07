@@ -1,11 +1,16 @@
 package main.businesslogic.warehousebl;
 
 
+import java.util.ArrayList;
+
 import main.State.TransType;
 import main.data.warehouse.WarehouseDataController;
 import main.dataservice.WarehouseDataService;
+import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
+import main.po.WarehouseOutList;
 import main.po.WarehouseOutPO;
+import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 
 public class WarehouseOut {
@@ -31,7 +36,7 @@ public class WarehouseOut {
 	}
 	
 	public WarehouseOut(String code){
-		if(inquire(code)){
+		if(inquire(code) != null){
 		this.bar=po.getBar();
 		this.destination=po.getDestination();
 		this.outDate = po.getOutDate();
@@ -66,9 +71,25 @@ public class WarehouseOut {
 		return true;
 	}
 	
-	private boolean inquire(String Code){
-		return true;	
+	public ArrayList<WarehouseOutVO> inquire(String code){
+		WarehouseDataService service=new WarehouseDataController();
+		po=new WarehouseOutPO(code);
+		WarehouseOutList WarehouseOutlist=new WarehouseOutList(code);
+		WarehouseOutlist.add(po);
+		WarehouseOutlist=service.inquireWarehouseOut(WarehouseOutlist);
+		ArrayList<WarehouseOutVO> warehouseOutInfo=new ArrayList<WarehouseOutVO>();
+		for(WarehouseOutPO p:WarehouseOutlist.getlist()){
+			System.out.println(p.getCode());
+			 warehouseOutInfo.add(new WarehouseOutVO(p.getCode(),
+									p.getArea(),
+									p.getRow(),
+									p.getShelf(),
+									p.getPosition()
+									));
+		}
+		return  warehouseOutInfo;
 	}
+	
 		
 	public static boolean delete(String Code){
 		return true;

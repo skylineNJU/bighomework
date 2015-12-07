@@ -6,6 +6,7 @@ import main.po.InventoryList;
 import main.po.InventoryPO;
 import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
+import main.po.WarehouseOutList;
 import main.po.WarehouseOutPO;
 
 //²Ö¿â
@@ -31,6 +32,6 @@ public interface WarehouseDataService {
 		
 	public WarehouseInList inquireWarehouseIn(WarehouseInList warehouseInList);
 	
-	
+	public WarehouseOutList inquireWarehouseOut(WarehouseOutList warehouseOutList);
 	
 }

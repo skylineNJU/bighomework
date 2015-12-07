@@ -39,7 +39,7 @@ public class WritePanel extends JPanel{
 	    	searchLabel();
 	}
 	
-public void searchLabel(){
+	public void searchLabel(){
 		 	search= new JLabel();
 			search.setBounds(this.getWidth()*12/20,this.getHeight()/50,this.getWidth()/2,this.getHeight()/20);
 			search.setIcon(AllImage.search);

@@ -42,7 +42,7 @@ import main.vo.WarhouseReceiptVO;
 
 public class LoginPanel{
 	private JTextField userName=new JTextField("011900017");
-	private JTextField passWord=new JTextField("00000000");
+	private JPasswordField passWord=new JPasswordField("00000000");
 
 	private JLabel confirm=new JLabel("");//log in按钮
 	private JLabel back=new JLabel("");
@@ -51,6 +51,7 @@ public class LoginPanel{
 	private JLabel login;
 	private JLabel show=new JLabel("");//显示密码标记
 	private JLabel forget=new JLabel("");//忘记密码
+	private JLabel wrongPassword;
       
 	
 	public LoginPanel(){
@@ -83,6 +84,12 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
+		
+		wrongPassword =new JLabel(AllImage.wrong_password);
+		wrongPassword.setOpaque(false);
+		wrongPassword.setBorder(null);
+		
+		passWord.setEchoChar('*');
 		passWord.setOpaque(false);
 		passWord.setBorder(null);
 		passWord.setFont(new Font("黑体",Font.PLAIN,18));
@@ -103,10 +110,12 @@ public class LoginPanel{
 		show.addMouseListener(new MouseAdapter(){
 			public void mouseEntered(MouseEvent e){
 				login.setIcon(AllImage.login_show);
+				passWord.setEchoChar('\0');
 				panel.repaint();
 			}
 			public void mouseExited(MouseEvent e){
 				login.setIcon(AllImage.login);
+				passWord.setEchoChar('*');
 				panel.repaint();
 			}
 		});
@@ -124,6 +133,12 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
+		
+	
+		
+		
+		
+		
 //背景
 		login=new JLabel(AllImage.login);
 		login.setSize(panel.getWidth(),panel.getHeight());
@@ -132,6 +147,9 @@ public class LoginPanel{
 		userName.setLocation(w*293/851,h*234/576);
 		passWord.setSize(w*152/851,h*38/576);
 		passWord.setLocation(w*293/851,h*317/576);
+		wrongPassword.setSize(w*42/851,h*38/576);
+		wrongPassword.setLocation(w*510/851,h*317/576);
+		
 		
 		back.setOpaque(false);
 		back.setSize(w*32/851,h*29/576);

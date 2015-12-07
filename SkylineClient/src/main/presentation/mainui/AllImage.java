@@ -49,12 +49,13 @@ public class AllImage {
 		
 		//登录时的界面
 		public static ImageIcon login = new ImageIcon("graphics/login.png");
-		public static ImageIcon login_username=new ImageIcon("graphics/login_username.png");
-		public static ImageIcon login_password =new ImageIcon("graphics/login_password.png");
-		public static ImageIcon login_back=new ImageIcon("graphics/login_back.png");
-		public static ImageIcon login_forget=new ImageIcon("graphics/login_forget.png");
-		public static ImageIcon login_login=new ImageIcon("graphics/login_login.png");
-		public static ImageIcon login_show=new ImageIcon("graphics/login_show.png");
-		
+		public static ImageIcon login_username = new ImageIcon("graphics/login_username.png");
+		public static ImageIcon login_password = new ImageIcon("graphics/login_password.png");
+		public static ImageIcon login_back = new ImageIcon("graphics/login_back.png");
+		public static ImageIcon login_forget = new ImageIcon("graphics/login_forget.png");
+		public static ImageIcon login_login = new ImageIcon("graphics/login_login.png");
+		public static ImageIcon login_show = new ImageIcon("graphics/login_show.png");
+		//密码错误tip
+		public static ImageIcon wrong_password = new ImageIcon("graphics/wrong_assword.png");
 		
 }

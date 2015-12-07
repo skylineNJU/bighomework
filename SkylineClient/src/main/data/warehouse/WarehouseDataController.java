@@ -8,6 +8,7 @@ import main.po.InventoryPO;
 import main.po.Message;
 import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
+import main.po.WarehouseOutList;
 import main.po.WarehouseOutPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -78,6 +79,16 @@ public class WarehouseDataController implements WarehouseDataService{
 		warehouseInList=(WarehouseInList) client.getResponse();
 		return warehouseInList;
 
+	}
+	@Override
+	public WarehouseOutList inquireWarehouseOut(WarehouseOutList warehouseOutList) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		System.out.println(warehouseOutList.getlist().get(0).getCode());
+		warehouseOutList.setKey("Inquire");
+		client.writeReceipt(warehouseOutList);
+		warehouseOutList=(WarehouseOutList) client.getResponse();
+		return warehouseOutList;
 	}
 
 }
