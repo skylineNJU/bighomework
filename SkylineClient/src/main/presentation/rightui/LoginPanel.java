@@ -52,7 +52,7 @@ public class LoginPanel{
 	private JLabel login;
 	private JLabel show=new JLabel("");//显示密码标记
 	private JLabel forget=new JLabel("");//忘记密码
-	private JLabel wrongPassword;
+	private JLabel wrongPassword=new JLabel();
       
 	
 	public LoginPanel(){
