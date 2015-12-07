@@ -45,7 +45,7 @@ public class CollectionPO extends Receipt{
 	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
-		deleter.deleteData("Colletion","入款单单号",collectionCode);
+		deleter.deleteData("Collection","入款单单号",collectionCode);
 	}
 	
 	public String getIsPaid() {

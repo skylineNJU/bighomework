@@ -1,7 +1,6 @@
 package main.socketservice;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -31,9 +30,8 @@ public class Client {
 	
 	public boolean writeReceipt(Message receipt){
 		try {
-			System.out.println(receipt==null);
 			writer.writeObject(receipt);
-			System.out.println("send successfully");
+			System.out.println("send successfully,and key is:"+receipt.getKey());
 			writer.flush();
 			} catch (IOException e) {
 			// TODO Auto-generated catch block

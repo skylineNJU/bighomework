@@ -136,7 +136,7 @@ public class FinanceController implements FinanceBLService {
 
 	@Override
 	public boolean modifySalary(SalaryVO salaryVO) {
-		delSalary(salaryVO);
+		delSalary(salaryVO);//好像有问题，哦，我知道了，因为我没有删除，需要在数据库里加一项作为索引删除
 		writeSalary(salaryVO);
 		return false;
 	}

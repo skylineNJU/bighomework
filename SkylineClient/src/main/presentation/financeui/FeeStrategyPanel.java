@@ -125,7 +125,6 @@ public class FeeStrategyPanel {
 		saveButton = new JButton("±£´æ");
 		refleshButton = new JButton("Ë¢ÐÂ");
 		
-		
 		panel.add(scrollPane);
 		panel.add(saveButton);
 		panel.add(refleshButton);

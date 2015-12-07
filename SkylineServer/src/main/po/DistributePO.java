@@ -34,11 +34,26 @@ public class DistributePO extends Receipt implements Serializable {
 		this.orderCode = orderCode;
 	}
 
+	
 	public void writeIntoDatabase(){
+		inquireInfo();
 		SqlWriter writer=new SqlWriter();
-		String content="'"+courierName+"','"+bar+"','"+orderCode+"','"
-		+guestName+"','"+guestAddress+"','"+guestPhoneNumber+"'";
+		String content="'"+this.getCode()+"','"+courierName+"','"
+		+guestName+"','"+guestAddress+"','"+guestPhoneNumber+"','"+this.orderCode+"'";
 		writer.writeIntoSql("Distribute", content);
+	}
+	
+	public void inquireInfo(){
+		SqlReader reader=new SqlReader("OrderReceive");
+		if(reader.findNext("订单号",bar)){
+			this.guestName=reader.getString("收件人姓名");
+			this.guestAddress=reader.getString("收件人住址");
+			this.guestPhoneNumber=reader.getString("收件人电话号码");
+			System.out.println(this.guestName);
+		}
+		reader.close();
+		CourrierReceiptPO po=new CourrierReceiptPO(this.courierName,null,null,null,null,this.getCode());
+		po.writeIntoDatabase();
 	}
 	
 	public void getDataFromBase(){

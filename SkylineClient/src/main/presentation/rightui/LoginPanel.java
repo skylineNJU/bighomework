@@ -1,16 +1,16 @@
 package main.presentation.rightui;
 
+
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import main.businesslogicservice.RightBLService;
 import main.businesslogicservice.receiptblService.CourrierReceipt;
@@ -41,8 +41,9 @@ import main.vo.WarhouseReceiptVO;
 
 
 public class LoginPanel{
+
 	private JTextField userName=new JTextField("011900017");
-	private JTextField passWord=new JTextField("00000000");
+	private JPasswordField passWord=new JPasswordField("00000000");
 
 	private JLabel confirm=new JLabel("");//log in按钮
 	private JLabel back=new JLabel("");
@@ -51,6 +52,7 @@ public class LoginPanel{
 	private JLabel login;
 	private JLabel show=new JLabel("");//显示密码标记
 	private JLabel forget=new JLabel("");//忘记密码
+	private JLabel wrongPassword;
       
 	
 	public LoginPanel(){
@@ -83,6 +85,12 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
+		
+	//	wrongPassword =new JLabel(AllImage.wrong_password);
+		wrongPassword.setOpaque(false);
+		wrongPassword.setBorder(null);
+		
+		passWord.setEchoChar('*');
 		passWord.setOpaque(false);
 		passWord.setBorder(null);
 		passWord.setFont(new Font("黑体",Font.PLAIN,18));
@@ -103,10 +111,12 @@ public class LoginPanel{
 		show.addMouseListener(new MouseAdapter(){
 			public void mouseEntered(MouseEvent e){
 				login.setIcon(AllImage.login_show);
+				passWord.setEchoChar('\0');
 				panel.repaint();
 			}
 			public void mouseExited(MouseEvent e){
 				login.setIcon(AllImage.login);
+				passWord.setEchoChar('*');
 				panel.repaint();
 			}
 		});
@@ -124,6 +134,12 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
+		
+	
+		
+		
+		
+		
 //背景
 		login=new JLabel(AllImage.login);
 		login.setSize(panel.getWidth(),panel.getHeight());
@@ -132,6 +148,9 @@ public class LoginPanel{
 		userName.setLocation(w*293/851,h*234/576);
 		passWord.setSize(w*152/851,h*38/576);
 		passWord.setLocation(w*293/851,h*317/576);
+		wrongPassword.setSize(w*42/851,h*38/576);
+		wrongPassword.setLocation(w*510/851,h*317/576);
+		
 		
 		back.setOpaque(false);
 		back.setSize(w*32/851,h*29/576);
@@ -151,7 +170,7 @@ public class LoginPanel{
 		panel.repaint();
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				removeAll();
+				removeA();
 				panel.repaint();
 				MainController.jumpToGuestui(Guestui.Search);
 			}
@@ -185,7 +204,9 @@ public class LoginPanel{
 				System.out.println("get login message");
 				switch(account.getRight()){	
 					case ACCOUNT:
-						removeAll();
+
+						removeA();
+
 						panel.repaint();
 						MainController.goToRightAdminStaffui(account.getBelong());
 						break;
@@ -195,7 +216,9 @@ public class LoginPanel{
 						MainController.getWritepanel().setMemory(new CourrierMemory(username,password,Courrier.getOrderCode()
 								,Courrier.getBuildDate(),Courrier.getReceiveCode(),Courrier.getReceiveDate(),
 						Courrier.getDistributeCode()));
-						removeAll();
+
+						removeA();
+
 						panel.repaint();
 						MainController.goToCourierui(account.getBelong());
 						break;
@@ -204,7 +227,9 @@ public class LoginPanel{
 						FinanceReceiptVO financeVO=financeService.getFinanceCode(username);
 						MainController.getWritepanel().setMemory(new FinanceMemory(username,password,financeVO.getCostCode()
 						,financeVO.getEarnCode()));
-						removeAll();
+
+						removeA();
+
 						panel.repaint();
 						MainController.gotoFinanceui(account.getBelong());	
 						break;
@@ -214,7 +239,9 @@ public class LoginPanel{
 						MainController.getWritepanel().setMemory(new IntermediateMemory(username,password,
 								intermediateVO.getIntermReceiptCode(),intermediateVO.getAirLoadCode(),intermediateVO.getRailLoadCode(),intermediateVO.getRoadLoadCode()
 								,intermediateVO.getAirLoadDate(),intermediateVO.getRailLoadDate(),intermediateVO.getRoadLoadDate(),intermediateVO.getIntermDate()));
-						removeAll();
+
+						removeA();
+
 						panel.repaint();
 						MainController.goToIntermediateStaffui(account.getBelong());
 						break;
@@ -224,7 +251,9 @@ public class LoginPanel{
 						System.out.println(lobbyVO.getReceiveCode());
 						MainController.getWritepanel().setMemory(new LobbyMemory(username,password,lobbyVO.getReceiveCode(),
 								lobbyVO.getEarnCode(),lobbyVO.getReceiveDate(),lobbyVO.getEarnDate(),lobbyVO.getLobbyLoading()));
-						removeAll();
+
+						removeA();
+
 						panel.repaint();
 						MainController.goToLobbyStaffui(account.getBelong());
 						break;
@@ -232,12 +261,15 @@ public class LoginPanel{
 						SubmitReceipt manager=ConstructFactory.SubMitFactory();
 						ApprovalVO manvo=manager.getApproval();
 						MainController.getWritepanel().setMemory(new ManagerMemory(username,password,manvo.getKinds(),manvo.getCode()));
-						removeAll();
+
+						removeA();
+
 						panel.repaint();
 						MainController.goToManagerui(account.getBelong());
 						break;
 					case STOREHOUSE:
-						removeAll();
+						removeA();
+
 						panel.repaint();
 						WarehouseReceipt receipt=ConstructFactory.WarehouseReceiptFactory();
 						WarhouseReceiptVO Warehouse=new WarhouseReceiptVO(null,null,null,null,null,username);
@@ -250,37 +282,15 @@ public class LoginPanel{
 					default:
 						System.err.println("密码或用户名错误！");
 						break;
+
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-		
+	
 			}
 		});
 		panel.repaint();
 	}
-	
-	public void removeAll(){
+
+	public void removeA(){
 		panel.remove(login);
 		panel.remove(show);
 		panel.remove(forget);

@@ -1,15 +1,29 @@
 package main.presentation.warehouseui;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Calendar;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
 import main.businesslogicservice.WarehouseBLService;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.AllImage;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.TipFrame;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.WarehouseInVO;
@@ -65,14 +79,14 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		tip();
 		content();
+	//	TipFrame a = new TipFrame("请重新输入");
 		listPanel.setVisible(true);
 		panel.add(listPanel);	
 		panel.repaint();
 		listPanel.repaint();
-		tipPanel.repaint();
+		//tipPanel.repaint();
+		//a.repaint();
 	
-	//	JOptionPane.showMessageDialog(null, "该区货物过满，请重新填写区号！","消息",JOptionPane. WARNING_MESSAGE);
-		
 	}
 
 

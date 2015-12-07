@@ -12,6 +12,13 @@ public class WarehouseOutVO extends ReceiptVO{
 	private String transferCode;
 	private String vehicleCode;
 	private String damageCondition;
+	private String area;
+	private int row;
+	private int shelf;
+	private int position;
+	
+	
+	
 	
 	public WarehouseOutVO(String b,String co,String c,String k,TransType t,String d,String e,String f){
 		super(co);//outdata
@@ -25,6 +32,18 @@ public class WarehouseOutVO extends ReceiptVO{
 		damageCondition =f;
 	}
 	
+	
+	public WarehouseOutVO( String code, String area, int row,
+			int shelf, int position) {
+		super(code);
+		this.code = code;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+	}
+
+
 	public boolean writeWarehouseOutInfo(WarehouseOut who){
 		this.code=who.getCode();
 		this.bar = who.getBar();
@@ -37,6 +56,39 @@ public class WarehouseOutVO extends ReceiptVO{
 		return true;
 	}
 	
+	
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public int getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(int shelf) {
+		this.shelf = shelf;
+	}
+
+	public int getPosition() {
+		return position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
 	public String getCode() {
 		return code;
 	}

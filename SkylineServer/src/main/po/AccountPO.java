@@ -28,6 +28,31 @@ public class AccountPO extends Message implements Serializable{
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
 		deleter.deleteData("AccountInfo","账号",ID);
+		switch(right){
+		case COURIER:
+			deleter=new SqlDeleter();
+			deleter.deleteData("CourrierReceipt","账户名",ID);
+			break;
+		case FINANCE:
+			deleter=new SqlDeleter();
+			deleter.deleteData("FinanceReceipt","账号",ID);
+			break;
+		case INTERMEDIATE:
+			deleter=new SqlDeleter();
+			deleter.deleteData("IntermediateReceipt","账户名",ID);
+			break;
+		case LOBBY:
+			deleter=new SqlDeleter();
+			deleter.deleteData("LobbyReceipt","账户名",ID);
+			break;
+		case STOREHOUSE:
+			deleter=new SqlDeleter();
+			deleter.deleteData("WarhouseReceipt","账户名",ID);
+			break;
+		default:
+			break;
+
+		}
 	}
 	
 	public void writeIntoDatabase(){
@@ -45,16 +70,22 @@ public class AccountPO extends Message implements Serializable{
 		reader.close();
 		return content;
 	}
-	public void getDataFromBase0(){
+
+	public void modifyTheDate(){
 		SqlReader reader=new SqlReader("AccountInfo");
-		while(reader.hasNext()){
-			this.ID=reader.getString("账号");
-			this.code=reader.getString("密码");
-			this.right=Rights.valueOf(reader.getString("权限"));
-			this.belong=reader.getString("所属单位");
+		Rights job=null;
+		if(reader.findNext("账号",this.getID())){
+			job=Rights.valueOf(reader.getString("权限"));
 		}
 		reader.close();
+		if(job.equals(right)){
+			this.deleteFromDatabase();
+			this.writeIntoDatabase();
+		}else{
+			System.out.println("can't do it");
+		}
 	}
+
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
 		System.out.println(this.ID);
@@ -97,7 +128,7 @@ public class AccountPO extends Message implements Serializable{
 	}
 
 	public void setID(String ID) {
-		ID = ID;
+		this.ID = ID;
 	}
 
 	public String getCode() {

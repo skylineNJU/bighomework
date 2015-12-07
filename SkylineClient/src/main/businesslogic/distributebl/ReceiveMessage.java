@@ -15,6 +15,7 @@ public class ReceiveMessage {
 		DistributeDataService distribute = new DistributeDataController();
 		ReceivePO receivePO = new ReceivePO(recipentVO.getCode(), recipentVO.getName(), 
 				recipentVO.getSendeePhone(), recipentVO.getCourierCode(), recipentVO.getDate());
+		receivePO.setCode(recipentVO.getCode());
 		return distribute.inputOrder(receivePO);
 	}
 }

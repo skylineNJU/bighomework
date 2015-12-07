@@ -11,8 +11,8 @@ public class WarehouseMemory extends Memory {
 		super(userName, code);
 		this.warehouseInCode = warehouseInCode;
 		this.warehouseOutCode = warehouseOutCode;
-		this.warehouseInDate = warehouseInCode;
-		this.warehouseOutDate = warehouseOutCode;
+		this.warehouseInDate = warehouseInDate;
+		this.warehouseOutDate = warehouseOutDate;
 	}
 
 	public String getWarehouseInCode() {

@@ -3,9 +3,11 @@ package main.data.receive;
 import main.dataservice.ReceiveDataService;
 import main.po.CenterReceiveListPO;
 import main.po.CenterReceivePO;
+import main.po.CourrierPO;
 import main.po.DistributePO;
 import main.po.LobbyReceiveListPO;
 import main.po.LobbyReceivePO;
+import main.po.Message;
 import main.po.OrderListPO;
 import main.po.OrderPO;
 import main.presentation.mainui.MainController;
@@ -143,5 +145,24 @@ public class ReceiveDataController implements ReceiveDataService{
 		client.writeReceipt(orderPO);
 		orderPO=(OrderListPO) client.getResponse();
 		return orderPO;
+	}
+
+	@Override
+	public CourrierPO getCourrierInfo(CourrierPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		Message message=client.getResponse();
+		System.out.println("+++++++++++++++++++"+message.getKey());
+		return (CourrierPO) message;
+	}
+
+	@Override
+	public void saveDistribute(DistributePO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Save");
+		client=MainController.getClient();
+		client.writeReceipt(po);
 	}
 }

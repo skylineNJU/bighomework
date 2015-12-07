@@ -36,8 +36,6 @@ public class WarhouseReceiptPO extends Message{
 		belong+"','"+warehouseInDate+"','"+warehouseOutDate+"'";
 		System.out.println("_))))))))))))))):::"+content);
 		writer.writeIntoSql("WarhouseReceipt", content);
-		System.out.println("++++++++++++++++++:::"+warehouseInDate);
-		System.out.println("++++++++++++++++++:::"+warehouseOutDate);
 	}
 	
 	public void deleteFromDatabase(){
@@ -74,7 +72,7 @@ public class WarhouseReceiptPO extends Message{
 			belong=reader.getString("²Ö¿â±àºÅ");
 		else
 			belong=reader.getString("²Ö¿â±àºÅ")+" "+belong;
-		System.out.println("<<<<<<<<<<<<<<<<<<<<<<:::"+warehouseInCode+" "+warehouseInDate+" "+warehouseOutCode+" "+warehouseOutDate+" "+belong);
+		
 	}
 	
 	
