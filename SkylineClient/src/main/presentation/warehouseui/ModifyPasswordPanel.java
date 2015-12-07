@@ -1,6 +1,7 @@
 package main.presentation.warehouseui;
 
-import javax.swing.*;
+
+import javax.swing.JPanel;
 
 import main.presentation.mainui.FrameMain;
 

@@ -2,7 +2,6 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
-import main.po.CollectionPO;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 import main.vo.DistanceVO;

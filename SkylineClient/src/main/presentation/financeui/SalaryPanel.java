@@ -144,7 +144,7 @@ public class SalaryPanel {
 				salaryVO.setManagerCommission(Double.valueOf(managerCommission.getText()));
 				salaryVO.setWarehouseSalary(Double.valueOf(wareHouserBasic.getText()));
 				salaryVO.setWareHouseCommission(Double.valueOf(wareHouserCommission.getText()));
-				if(finance.writeSalary(salaryVO)){//保存成功，人机交互部分
+				if(finance.modifySalary(salaryVO)){//保存成功，人机交互部分
 					
 				}else{//保存失败
 					
