@@ -85,5 +85,6 @@ public class AllImage {
 		
 		//关于我们  及 版本号
 		public static ImageIcon aboutus=new ImageIcon("graphics/welcome/aboutus.png");
+		public static ImageIcon wrong_password=new ImageIcon("graphics/wrong.png");
 		
 }

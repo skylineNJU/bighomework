@@ -86,7 +86,7 @@ public class LoginPanel{
 			}
 		});
 		
-	//	wrongPassword =new JLabel(AllImage.wrong_password);
+		wrongPassword =new JLabel(AllImage.wrong_password);
 		wrongPassword.setOpaque(false);
 		wrongPassword.setBorder(null);
 		

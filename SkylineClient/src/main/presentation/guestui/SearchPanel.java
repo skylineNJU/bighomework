@@ -185,7 +185,7 @@ public class SearchPanel{
 		});
 		login.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				panel.removeAll();
+				removeA();
 				panel.repaint();
 				MainController.jumpToRightui(Rightui.Login);
 			}
@@ -200,12 +200,19 @@ public class SearchPanel{
 		});
 		panel.repaint();
 	}
-	
-	public void remove(){
-		panel.remove(this.searchField);
-		panel.remove(this.welComeLabel);
+
+	public void removeA(){
+		panel.remove(searchField);
+		panel.remove(welComeLabel);
 		panel.remove(login);
 		panel.remove(search);
+		panel.remove(aboutUs);
+		panel.remove(version);
+		panel.remove(welcome);
+		panel.remove(aboutusPane);
+		panel.remove(aboutusClose);
+		panel.remove(welcome_none);
+		
 	}
 	
 	
