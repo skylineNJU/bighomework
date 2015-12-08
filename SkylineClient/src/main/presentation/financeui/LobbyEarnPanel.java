@@ -45,8 +45,6 @@ public class LobbyEarnPanel {
 	private JComboBox<String> monthBox;
 	private JComboBox<String> dayBox;
 	private JButton ensureButton;
-	private JButton lookSaveButton;
-	private JButton lookCancleButton;
 	//填写收款信息的组件
 	private JLabel addTime;
 	private JLabel addYear;
@@ -117,8 +115,6 @@ public class LobbyEarnPanel {
 		monthBox = new JComboBox<String>(monthString);
 		dayBox = new JComboBox<String>(dayString);
 		ensureButton = new JButton("确认");
-		lookSaveButton = new JButton("保存");
-		lookCancleButton = new JButton("取消");
 		lookPanel.add(date);
 		lookPanel.add(yearLabel);
 		lookPanel.add(monthLabel);
@@ -127,8 +123,6 @@ public class LobbyEarnPanel {
 		lookPanel.add(monthBox);
 		lookPanel.add(dayBox);
 		lookPanel.add(ensureButton);
-		lookPanel.add(lookSaveButton);
-		lookPanel.add(lookCancleButton);
 		date.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()/30, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
 		yearBox.setBounds(lookPanel.getWidth()/10+date.getX(), lookPanel.getHeight()/30, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
 		yearLabel.setBounds(lookPanel.getWidth()*7/60+yearBox.getX(), lookPanel.getHeight()/30, lookPanel.getWidth()/20, lookPanel.getHeight()/20);
@@ -137,9 +131,7 @@ public class LobbyEarnPanel {
 		dayBox.setBounds(lookPanel.getWidth()/5+monthBox.getX(), lookPanel.getHeight()/30, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
 		dayLabel.setBounds(lookPanel.getWidth()*7/60+dayBox.getX(), lookPanel.getHeight()/30, lookPanel.getWidth()/20, lookPanel.getHeight()/20);
 		ensureButton.setBounds(lookPanel.getWidth()*5/6, lookPanel.getHeight()/30, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
-		lookCancleButton.setBounds(lookPanel.getWidth()*13/20, lookPanel.getHeight()*5/6, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
-		lookSaveButton.setBounds(lookCancleButton.getX()+lookPanel.getWidth()/6, lookPanel.getHeight()*5/6, lookPanel.getWidth()/10, lookPanel.getHeight()/20);
-
+	
 		ensureButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				scrollPane.remove(table);
@@ -190,10 +182,10 @@ public class LobbyEarnPanel {
 		table.getTableHeader().setPreferredSize(new Dimension(10000, panel.getHeight()/20));//设置表头高度
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		lookPanel.add(scrollPane);
-		if(table.getRowCount()<10){
+		if(table.getRowCount()<11){
 			scrollPane.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()*2/15, lookPanel.getWidth()*13/15, (table.getRowCount()+1)*table.getRowHeight());
 		}else{
-			scrollPane.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()*2/15, lookPanel.getWidth()*13/15, 11*table.getRowHeight());			
+			scrollPane.setBounds(lookPanel.getWidth()/15, lookPanel.getHeight()*2/15, lookPanel.getWidth()*13/15, 12*table.getRowHeight());			
 
 		}
 		scrollPane.setVisible(true);

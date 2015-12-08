@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogic.financebl.Balance;
+import main.businesslogic.financebl.UpdateBank;
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
@@ -145,8 +147,8 @@ public class CostListPanel {
 		panel.repaint();
 	}
 	
-	//结算并更新数据库
 	public void updateCost(){
+		UpdateBank updateBank = new UpdateBank();
 		String[][] allData = new String[tableData.length][tableData[0].length];
 		for(int i = 0; i<tableData.length; i++) {//拿到表中的数据
 			for(int j = 0; j<tableData[i].length; j++){
@@ -154,40 +156,24 @@ public class CostListPanel {
 			}
 		}
 		FinanceBLService service = ConstructFactory.FinanceFactory();
-		ArrayList<BankAccountVO> bankListVO = service.showBalance();
-		String[][] bank = new String[bankListVO.size()][2];//获得银行账户的数据
-		ArrayList<Integer> modifyCost = new ArrayList<Integer>();//记录被改过的成本数据
-		for(int i = 0;i<bank.length;i++){
-			bank[i][0] = bankListVO.get(i).getCode();
-			bank[i][1] = String.valueOf(bankListVO.get(i).getBalance());
-		}
 		for(int i = 0; i<tableData.length; i++) {//结算
 			if(allData[i][5].equals("未结算")){
-				modifyCost.add(i);//记录被改过的数据
-				for(int j = 0; j<bank.length; j++){
-					if(allData[i][3].equals(bank[j][0])){//找到相应的银行账户
-						bank[j][1] = String.valueOf(Double.valueOf(bank[j][1]) - Double.valueOf(allData[i][1]));//减钱，此时应该是否小于0
-					}
-				}
-				allData[i][5] = "已结算";
 				table.getModel().setValueAt("已结算", i, 5);
+				CostVO costVO = new CostVO(allData[i][4],allData[i][0],
+						allData[i][3],Double.valueOf(allData[i][1]),
+						allData[i][6],allData[i][2],allData[i][5]
+								);
+				service.modifyCost(costVO);
+				updateBank.updateMoney(allData[i][3], Double.valueOf(allData[i][1]));
 			}
 		}
-		//更新银行账户数据库
-		for(int i = 0;i<bank.length;i++){//更新银行账户
-			BankAccountVO bankVO = new BankAccountVO(bank[i][0],Double.valueOf(bank[i][1]));
-			service.modifyBalance(bankVO);
-			
+		ArrayList<BankAccountVO> voList = updateBank.getBankList();
+		for(int i = 0; i<voList.size(); i++){
+			service.modifyBalance(voList.get(i));
 		}
-		//更新付款单数据库
-		for(int i = 0;i<modifyCost.size();i++){//更新付款单
-			CostVO costVO = new CostVO(allData[modifyCost.get(i)][4],allData[modifyCost.get(i)][0],
-					allData[modifyCost.get(i)][3],Double.valueOf(allData[modifyCost.get(i)][1]),
-					allData[modifyCost.get(i)][6],allData[modifyCost.get(i)][2],allData[modifyCost.get(i)][5]
-							);
-			service.modifyCost(costVO);
-		}
+		panel.repaint();
 	}
+	
 	//设置时间的框
 	public void setTime(){
 		Calendar calendar = Calendar.getInstance();

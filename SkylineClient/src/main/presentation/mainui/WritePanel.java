@@ -44,10 +44,9 @@ public class WritePanel extends JPanel{
 
 	protected void paintComponent(Graphics g) {			
 	        super.paintComponent(g);
-	        g.drawImage(AllImage.writeback.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+	        g.drawImage(AllImage.writeback.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	    	searchLabel();
 	}
-	
 
 	public void searchLabel(){
 		 	search= new JLabel();
@@ -79,18 +78,4 @@ public class WritePanel extends JPanel{
 	public void setMemory(Memory memory) {
 		this.memory = memory;
 	}
-	
-//	public boolean show(ImageIcon img) {
-//		img.setImage((img.getImage().getScaledInstance(
-//				showLabel.getWidth(), showLabel.getHeight(), Image.SCALE_DEFAULT)));
-//		showLabel.setIcon(img);
-//		try {
-//			new Thread().sleep(1000);
-//		} catch (InterruptedException e) {
-//			System.err.println("额，这个地方也许有问题！");
-//			e.printStackTrace();
-//		}
-//		showLabel.setIcon(null);
-//		return true;
-//	}
 }
