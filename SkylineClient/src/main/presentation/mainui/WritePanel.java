@@ -3,9 +3,11 @@ package main.presentation.mainui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -20,6 +22,7 @@ public class WritePanel extends JPanel{
 	private Memory memory;
 	private  JLabel search;
 	private  JTextField s;
+	private JLabel showLabel = new JLabel();
 	
 	public String getBelong() {
 		return belong;
@@ -35,6 +38,8 @@ public class WritePanel extends JPanel{
 				,frame.getWidth()-(int)((double)frame.getWidth()*138/724)
 				,frame.getHeight()-(int)((double)frame.getHeight()*22/490)
 				);
+		showLabel.setBounds(frame.getWidth(), frame.getHeight(), 0, 0);
+		
 	}
 
 	protected void paintComponent(Graphics g) {			
@@ -74,5 +79,18 @@ public class WritePanel extends JPanel{
 	public void setMemory(Memory memory) {
 		this.memory = memory;
 	}
-
+	
+//	public boolean show(ImageIcon img) {
+//		img.setImage((img.getImage().getScaledInstance(
+//				showLabel.getWidth(), showLabel.getHeight(), Image.SCALE_DEFAULT)));
+//		showLabel.setIcon(img);
+//		try {
+//			new Thread().sleep(1000);
+//		} catch (InterruptedException e) {
+//			System.err.println("额，这个地方也许有问题！");
+//			e.printStackTrace();
+//		}
+//		showLabel.setIcon(null);
+//		return true;
+//	}
 }

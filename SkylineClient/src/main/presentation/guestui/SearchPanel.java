@@ -31,6 +31,7 @@ public class SearchPanel{
 		panel=FrameMain.getContentPanel();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void init(){
 		int w=frame.getWidth()/851;
 		int h=frame.getHeight()/576;
@@ -54,7 +55,6 @@ public class SearchPanel{
 		aboutusPane.setSize(508*w,346*h);
 		aboutusPane.setLocation(176*w,122*h);
 		aboutusPane.setVisible(false);
-		
 		searchField.setOpaque(false);
 		searchField.setBorder(null);
 		searchField.setFont(new Font("ºÚÌå",Font.PLAIN,18));

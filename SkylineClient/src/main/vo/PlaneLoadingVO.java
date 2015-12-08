@@ -2,8 +2,8 @@ package main.vo;
 
 public class PlaneLoadingVO extends ReceiptVO{
 	private String loadingDate;//装运日期
-	private String flightNum;//中转中心
-	private String planeNum;//
+	private String flightNum;//航班号
+	private String planeNum;//飞机号
 	private String departure;//出发地
 	private String destination;//到达地
 	private String monitor;//监装员

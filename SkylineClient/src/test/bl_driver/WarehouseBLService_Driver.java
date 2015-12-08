@@ -4,25 +4,37 @@ import  main.vo.InventoryVO;
 import  main.vo.WarehouseInVO;
 import  main.vo.WarehouseOutVO;
 import main.State.TransType;
+import main.businesslogic.warehousebl.Inventory;
 import  main.businesslogicservice.WarehouseBLService;
 
 public class WarehouseBLService_Driver {
 	public void drive(WarehouseBLService warehouseBLService){
-		WarehouseInVO warehouseIn =warehouseBLService.WarehouseIn("01","20010101","110020010001",'A',1,2,3);
-		if(warehouseIn != null){
-			System.out.println("--------------WarehouseInOrder Showing-------------");
+		//String code, String area, int row, int shelf,int position
+		WarehouseInVO warehouseIn =new WarehouseInVO("1111555555","地区",1,1,3);
+		WarehouseOutVO warehouseOut=new WarehouseOutVO("", "", 0, 0, 0);
+		if(warehouseBLService.WarehouseIn(warehouseIn)){
+			System.out.println("--------------Warehouse In-------------");
 		}
 		
-		WarehouseOutVO warehouseOutVO = warehouseBLService.WarehouseOut("10101", "20010101", "上海", TransType.PLANE,"0101010","025000001");
-		if(warehouseOutVO != null){
-			System.out.println("--------------WarehouseOutOrder Showing--------------");
+		
+		if(warehouseBLService.WarehouseOut(warehouseOut)){
+			System.out.println("--------------Warehouse Out--------------");
 		}
 		
+		InventoryVO inventory = new InventoryVO(0, 0, "", "", "", 0, 0, 0, "", "");
+		if(warehouseBLService.showInventory("20150601", "20150603", inventory)){
+			System.out.println("--------------Inventory Show--------------");
+		}
+		String code="131415";
 	
-		InventoryVO inventory = warehouseBLService.checkInventory("","");
-		if(inventory!= null){
-			System.out.println("--------------Inventory Showing-------------");
+		if(warehouseBLService.showWarehouseInInfo(code)!=null){
+			System.out.println("--------------WarehouseIn Showing-------------");
 		}
-		
+		if(warehouseBLService.showWarehouseOutInfo(code)!=null){
+			System.out.println("--------------WarehouseOut Showing-------------");
+		}
+		if(warehouseBLService.checkInventory(code)!=null){
+			System.out.println("--------------Inventory Check-------------");
+		}
 	}
 }
