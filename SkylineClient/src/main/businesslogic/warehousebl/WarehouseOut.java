@@ -22,6 +22,10 @@ public class WarehouseOut {
 	private String transferCode;
 	private String vehicleCode;
 	private String damageCondition;
+	private String area;
+	private int row;
+	private int shelf;
+	private int position;
 	private WarehouseOutPO po;
 	
 	public WarehouseOut(WarehouseOutVO who){
@@ -33,18 +37,14 @@ public class WarehouseOut {
 		this.transferCode=who.getTransferCode();
 		this.vehicleCode=who.getVehicleCode();
 		this.damageCondition = who.getDamageCondition();
+		this.area=who.getArea();
+		this.row=who.getRow();
+		this.position=who.getPosition();
+		this.shelf=who.getShelf();
 	}
 	
-	public WarehouseOut(String code){
-		if(inquire(code) != null){
-		this.bar=po.getBar();
-		this.destination=po.getDestination();
-		this.outDate = po.getOutDate();
-		this.type=po.getTType();
-		this.transferCode=po.getTransferCode();
-		this.vehicleCode=po.getVehicleCode();
-		this.damageCondition = po.getDamageCondition();
-		}
+	public WarehouseOut(){
+		
 	}
 	
 	public String getCode() {
@@ -73,9 +73,8 @@ public class WarehouseOut {
 	
 	public ArrayList<WarehouseOutVO> inquire(String code){
 		WarehouseDataService service=new WarehouseDataController();
-		po=new WarehouseOutPO(code);
 		WarehouseOutList WarehouseOutlist=new WarehouseOutList(code);
-		WarehouseOutlist.add(po);
+		System.out.println("Size+++++++++++:::::::::::"+WarehouseOutlist.getlist().size());
 		WarehouseOutlist=service.inquireWarehouseOut(WarehouseOutlist);
 		ArrayList<WarehouseOutVO> warehouseOutInfo=new ArrayList<WarehouseOutVO>();
 		for(WarehouseOutPO p:WarehouseOutlist.getlist()){

@@ -42,8 +42,8 @@ import main.vo.WarhouseReceiptVO;
 
 public class LoginPanel{
 
-	private JTextField userName=new JTextField("011900017");
-	private JPasswordField passWord=new JPasswordField("00000000");
+	private JTextField userName=new JTextField("000870021");
+	private JPasswordField passWord=new JPasswordField("00000001");
 
 	private JLabel confirm=new JLabel("");//log in°´Å¥
 	private JLabel back=new JLabel("");

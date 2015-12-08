@@ -8,10 +8,13 @@ import java.util.ArrayList;
 		private ArrayList<WarehouseOutPO> WarehouseOutlist = new ArrayList<WarehouseOutPO>();
 		
 		public WarehouseOutList(String codeList){
+			System.out.println("Codelist++++++++::::::::::"+codeList);
 			String[] codes=codeList.split(" ");
+			System.out.println(")))))))))))):::length:::::::::::::::"+codes.length);
 			for(int x=1;x<codes.length;x++){
-				WarehouseOutPO po=new WarehouseOutPO(codeList,null,0,0,0);
+				WarehouseOutPO po=new WarehouseOutPO(codes[x],null,0,0,0);
 				po.setCode(codes[x]);
+				WarehouseOutlist.add(po);
 			}
 		}
 		

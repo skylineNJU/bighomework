@@ -33,11 +33,13 @@ public class Client {
 			writer.writeObject(receipt);
 			System.out.println("send successfully,and key is:"+receipt.getKey());
 			writer.flush();
+			
 			} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	public Message getResponse(){

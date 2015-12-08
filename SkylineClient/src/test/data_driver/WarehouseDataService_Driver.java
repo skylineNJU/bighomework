@@ -2,6 +2,7 @@ package test.data_driver;
 
 import java.util.ArrayList;
 
+import main.State.TransType;
 import main.businesslogic.warehousebl.Inventory;
 import main.dataservice.WarehouseDataService;
 import main.po.InventoryPO;
@@ -12,10 +13,10 @@ public class WarehouseDataService_Driver {
  
 	public boolean warhouseDrive(WarehouseDataService warehouseDataService){
 		
-		WarehouseInPO warehouseInPO = new WarehouseInPO("123456789", "2015/02/26", "北京", 'A', 1, 2, 3);
-		WarehouseOutPO warehouseOutPO = new WarehouseOutPO("123456789", "2015/02/23", "北京", null, "2012151", "201515");
-		InventoryPO inventory = new Inventory();
-		ArrayList<InventoryPO> inventoryPOList;
+		WarehouseInPO warehouseInPO = new WarehouseInPO("01190001710000", "1235665", "2015/02/08", "上海", "A", 1, 1, 2, "完好");
+		WarehouseOutPO warehouseOutPO = new WarehouseOutPO("01190001720000", "8652131", "北京", "2018/09/09", TransType.PLANE , "0100", "025000001", "完好");
+		InventoryPO inventory = new InventoryPO(10, 6, "211323", "完好", "B", 1, 3, 4, "上海", "2016/01/01");
+		ArrayList<InventoryPO> inventoryPOList = null;
 		inventoryPOList.add(inventory);
 		
 		String warehouseNumber = "20151515";

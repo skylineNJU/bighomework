@@ -354,7 +354,7 @@ public class AddWarehouseOutReceiptPanel {
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				
-				String date=((year.getSelectedIndex()+2000)+"Äê")+((month.getSelectedIndex()+1)+"ÔÂ")+((day.getSelectedIndex()+1+"ÈÕ"));
+				String date=((year.getSelectedIndex()+2000)+"/")+((month.getSelectedIndex()+1)+"/")+((day.getSelectedIndex()+1+""));
 				
 				String damageCondition = null;
 				if(good.isSelected()){
