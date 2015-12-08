@@ -71,4 +71,17 @@ public class CourrierReceiptPO extends Message{
 			distributeCode=reader.getString("派件单单号");
 		reader.close();
 	}
+
+	public void modify() {
+		// TODO Auto-generated method stub
+		SqlReader reader=new SqlReader("CourrierReceipt");
+		reader.findNext("账户名",account);
+		distributeCode=reader.getString("派件单单号");
+		this.deleteFromDatabase();
+		reader.close();
+		SqlWriter writer=new SqlWriter();
+		String content="'"+account+"','"+orderCode+"','"+buildDate+"','"
+				+receiveCode+"','"+receiveDate+"','"+distributeCode+"'";
+		writer.writeIntoSql("CourrierReceipt", content);
+	}
 }
