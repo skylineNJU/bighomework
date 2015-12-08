@@ -37,7 +37,6 @@ public class FeeStrategyPanel {
 	private JScrollPane scrollPane;
 	private JLabel cityDistance;
 	private JButton saveButton;
-	private JButton refleshButton;
 	
 	public FeeStrategyPanel(){
 		panel = MainController.getWritepanel();
@@ -123,11 +122,9 @@ public class FeeStrategyPanel {
 		scrollPane = new JScrollPane(table);
 		cityDistance = new JLabel("城市距离:");
 		saveButton = new JButton("保存");
-		refleshButton = new JButton("刷新");
 		
 		panel.add(scrollPane);
 		panel.add(saveButton);
-		panel.add(refleshButton);
 		panel.add(cityDistance);
 		
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -138,7 +135,6 @@ public class FeeStrategyPanel {
 		
 		cityDistance.setBounds(panelWidth/10, panelHeight*23/60, panelWidth/4, panelHeight/20);
 		scrollPane.setBounds(panelWidth/10, panelHeight*9/20, panelWidth*4/5, panelHeight*31/100);
-		refleshButton.setBounds(panelWidth*3/5, panelHeight*17/20, panelWidth/10, panelHeight/20);
 		saveButton.setBounds(panelWidth*4/5, panelHeight*17/20, panelWidth/10, panelHeight/20);
 		
 		saveButton.addMouseListener(new MouseAdapter() {
@@ -156,7 +152,7 @@ public class FeeStrategyPanel {
 					}
 				}
 				DistanceVO distanceVO = new DistanceVO(city, cityDistance);
-				if(finance.writeFee(feeVO)&&finance.writeDistance(distanceVO)){//人机交互部分
+				if(finance.modifyFee(feeVO)&&finance.modifyDistance(distanceVO)){//人机交互部分
 					
 				}else{//失败时的处理
 					

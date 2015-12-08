@@ -3,9 +3,11 @@ package main.presentation.mainui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -39,10 +41,9 @@ public class WritePanel extends JPanel{
 
 	protected void paintComponent(Graphics g) {			
 	        super.paintComponent(g);
-	        g.drawImage(AllImage.writeback.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+	        g.drawImage(AllImage.writeback.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	    	searchLabel();
 	}
-	
 
 	public void searchLabel(){
 		 	search= new JLabel();
@@ -74,5 +75,4 @@ public class WritePanel extends JPanel{
 	public void setMemory(Memory memory) {
 		this.memory = memory;
 	}
-
 }

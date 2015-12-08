@@ -63,7 +63,7 @@ public class SalaryPO extends Message implements Serializable{
     
     public void deleteFromDatabase(){
 		SqlDeleter deleter = new SqlDeleter();
-		//deleter.deleteData("Salary","司机编号",driverID);删除某一行
+		deleter.deleteData("SalaryInfo","ID","1");
 	}
 
 	public double getCourierSalary() {
