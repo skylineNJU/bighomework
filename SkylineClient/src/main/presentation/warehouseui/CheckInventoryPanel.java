@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,7 +34,9 @@ public class CheckInventoryPanel {
 	private JLabel title;//标题
 	private JLabel ddl;
 	private JTextField areanumber;
-	private JScrollPane scrollPane;
+	private JComboBox area;
+	private String[] areas = new String[]{"航运区","铁运区","汽运区","机动区"};
+ 	private JScrollPane scrollPane;
 	private JTable table;
 	private String[] tableTitle;
 	private String[][] tableData;
@@ -57,49 +60,35 @@ public class CheckInventoryPanel {
 		panel.repaint();
 	}
 	private void other() {
-		title = new JLabel("区号: ");
+		title = new JLabel("区: ");
 		Font font = new Font("宋体", Font.PLAIN, 20);
 		title.setFont(font);
 		title.setBounds(panel.getWidth()/18, panel.getHeight()/11, panel.getWidth()/6, panel.getHeight()/20 );
 		panel.add(title);
 		
-		areanumber = new JTextField();
-		areanumber.setBounds(panel.getWidth()/8, panel.getHeight()/11, panel.getWidth()/18, panel.getHeight()/20 );
-		areanumber.setVisible(true);
-		panel.add(areanumber);
+		area = new JComboBox(areas);
+		area.setBounds(panel.getWidth()/8, panel.getHeight()/11, panel.getWidth()/10, panel.getHeight()/20 );
+		area.setVisible(true);
+		panel.add(area);
 		
-		areanumber.addKeyListener(new KeyListener() {	
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					// 监听到回车事件	
-					tableData = initTableData();
-					for(int i=0;i<tableData.length;i++){
-						for(int j=0;j<tableData[0].length;j++){
-							table.setValueAt(tableData[i][j], i, j);
-						}
-					}
-					
-				}
-			}		
-			@Override
-			public void keyReleased(KeyEvent arg0){
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				// TODO Auto-generated method stub		
-				}			
-		});
 		
 		ok=new JButton("确定");
 		ok.setBounds(panel.getWidth()*17/20,panel.getHeight()*7/8, panel.getWidth()/11, panel.getHeight()/15);
 		ok.setVisible(true);
 		
+		
+		
 		ddl= new JLabel("上一个截至点: 2015年11月28日");
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
+				tableData = initTableData();
+				for(int i=0;i<tableData.length;i++){
+					for(int j=0;j<tableData[0].length;j++){
+						table.setValueAt(tableData[i][j], i, j);
+					}
+				}	
+			
+				
 				Calendar calendar = Calendar.getInstance();
 		    	String	year = String.valueOf(calendar.get(Calendar.YEAR))+"年";
 		    	String	month = String.valueOf(calendar.get(Calendar.MONTH)+1)+"月";
@@ -153,9 +142,9 @@ public class CheckInventoryPanel {
 	
 		ArrayList<InventoryVO> inventory=null;
 		WarehouseBLService service=ConstructFactory.WarehouseFactory();
-		assert(areanumber.getText()!=null);
-		System.out.println("+++++++++++++++::::"+areanumber.getText());
-		inventory=service.checkInventory(((WritePanel)panel).getBelong()+" "+areanumber.getText());
+		assert(area.getSelectedItem()!=null);
+		System.out.println("+++++++++++++++::::"+area.getSelectedItem());
+		inventory=service.checkInventory(((WritePanel)panel).getBelong()+" "+area.getSelectedItem());
 		if(inventory!=null){
 		int counter=0;
 		for(InventoryVO vo:inventory){
