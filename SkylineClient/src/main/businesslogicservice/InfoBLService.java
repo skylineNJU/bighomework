@@ -10,6 +10,8 @@ import main.vo.VehicleVO;
 import main.vo.WarehouseInfoVO;
 
 public interface InfoBLService {
+	
+	public ArrayList<StaffVO> readStaff(String unitCode);
 	//新建一个机构，输入机构类别，名称，地理位置，编号，系统显示该机构信息
 	public boolean addNewIntermediate(IntermediateInfoVO vo);
 	

@@ -1,86 +1,64 @@
 package test.data_stub;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import main. dataservice.LoadDataService;
+import main.po.LoadingInfoPO;
+import main.po.LobbyLoadingList;
+import main.po.PlaneLoadingListPO;
 import  main.po.PlaneLoadingPO;
+import main.po.TrainLoadListPO;
 import main. po.TrainLoadingPO;
+import main.po.VehicleLoadListPO;
 import  main.po.VehicleLoadingPO;
 
 
 public class LoadDataService_Stub implements LoadDataService {
+
+	@Override
+	public boolean writeVehicleLoadBase(VehicleLoadingPO po) {
+		System.out.println("新增车辆转运成功！");
+		return true;
+	}
+
+	@Override
+	public boolean writeTrainLoadBase(TrainLoadingPO po) {
+		System.out.println("新增火车转运成功！");
+		return true;
+	}
+
+	@Override
+	public boolean writePlaneLoadBase(PlaneLoadingPO po) {
+		System.out.println("新增飞机转运成功！");
+		return true;
+	}
+
+	@Override
+	public boolean saveLobbyLoadingReceipt(LoadingInfoPO po) {
+		System.out.println("保存成功！！");
+		return true;
+	}
+
+	@Override
+	public LobbyLoadingList inquireLobbyLoadList(LobbyLoadingList po) {
+		LobbyLoadingList lobbyLoadingList = po;
+		return lobbyLoadingList;
+	}
+
+	@Override
+	public PlaneLoadingListPO inquirePlaneLoadList(PlaneLoadingListPO po) {
+		PlaneLoadingListPO planeLoadingListPO = po;
+		return planeLoadingListPO;
+	}
+
+	@Override
+	public TrainLoadListPO inquireTrainLoadList(TrainLoadListPO po) {
+		TrainLoadListPO trainLoadListPO = po;
+		return trainLoadListPO;
+	}
+
+	@Override
+	public VehicleLoadListPO inquireVehicleLoadList(VehicleLoadListPO po) {
+		VehicleLoadListPO vehicleLoadListPO = po;
+		return vehicleLoadListPO;
+	}
 	
-	    //填写装运表到数据库
-		//centerNumber表示出发的中转中心
-		@Override
-		public boolean writeVehicleLoadBase(List<VehicleLoadingPO> loadList,String centerNumber){
-			System.out.println("write Succeed!/n");
-			return true;
-		}
-		
-		//从数据库读取装运信息  LoadList是装运信息
-		@Override
-		public List<VehicleLoadingPO> readVehicleLoadBase(){
-			VehicleLoadingPO vehicleLoadingPO = new VehicleLoadingPO("2012/02/23", "01235", "1203", "南京", "北京", "刘钦", "刘小钦", "101", "20");
-			List<VehicleLoadingPO> vehicleList = new ArrayList<VehicleLoadingPO>();
-			vehicleList.clear();
-			vehicleList.add(vehicleLoadingPO);
-			System.out.println("Succeed!/n");
-			return vehicleList;
-		}
-		
-		//删除数据库里的装运信息  loadList为要删除的装运信息
-		@Override
-		public boolean delVehicleLoadBase(List<VehicleLoadingPO> loadList){
-			System.out.println("delete Succeed!/n");
-			return true;
-		}
-		@Override
-		public boolean writeTrainLoadBase(List<TrainLoadingPO> loadList,String centerNumber){
-			System.out.println("write Succeed!/n");
-			return true;
-		}
-		
-		//从数据库读取装运信息  LoadList是装运信息
-		@Override
-		public List<TrainLoadingPO> readTrainLoadBase(){
-			TrainLoadingPO trainLoadingPO = new TrainLoadingPO("2013/08/16", "015", "302", "北京", "南京", "刘钦", "62", "32", "20");
-			List<TrainLoadingPO> trainList = new ArrayList<TrainLoadingPO>();
-			System.out.println("Succeed!/n");
-			trainList.clear();
-			trainList.add(trainLoadingPO);
-			return trainList;	
-		}
-		
-		//删除数据库里的装运信息  loadList为要删除的装运信息
-		@Override
-		public boolean delTrainLoadBase(List<TrainLoadingPO> loadList){
-			System.out.println("delete Succeed!/n");
-			return true;
-		}
-		
-		@Override
-		public boolean writePlaneLoadBase(List<PlaneLoadingPO> loadList,String centerNumber){
-			System.out.println("write Succeed!/n");
-			return true;	
-		}
-		
-		//从数据库读取装运信息  LoadList是装运信息
-		@Override
-		public List<PlaneLoadingPO> readPlaneLoadBase(){
-			PlaneLoadingPO planeLoadingPO = new PlaneLoadingPO("2013/08/09", "230", "CZ23028", "北京", "南京", "刘钦", "023", "023", "02");
-			List<PlaneLoadingPO> planeList = new ArrayList<PlaneLoadingPO>();
-			planeList.clear();
-			planeList.add(planeLoadingPO);
-			System.out.println("Succeed!/n");
-			return planeList;
-		}
-		
-		//删除数据库里的装运信息  loadList为要删除的装运信息
-		@Override
-		public boolean delPlaneLoadBase(List<PlaneLoadingPO> loadList){
-			System.out.println("delete Succeed!/n");
-			return true;
-		}
 }

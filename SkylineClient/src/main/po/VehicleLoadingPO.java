@@ -15,16 +15,20 @@ public class VehicleLoadingPO  extends Receipt implements Serializable{
 	String shipment;//装箱托运区号
 	double freight;//运费
 	
-	public VehicleLoadingPO(String a,String b,String c,String d,String e,String f,String g,String h,double i){
-		loadingDate=a;
-		carNum=b;
-		carTourNum=c;
-		departure=d;
-		destination=e;
-		monitor=f;
-		guard=g;
-		shipment=h;
-		freight=i;
+	
+	public VehicleLoadingPO(String loadingDate, String carNum,
+			String carTourNum, String departure, String destination,
+			String monitor, String guard, String shipment, double freight) {
+		super();
+		this.loadingDate = loadingDate;
+		this.carNum = carNum;
+		this.carTourNum = carTourNum;
+		this.departure = departure;
+		this.destination = destination;
+		this.monitor = monitor;
+		this.guard = guard;
+		this.shipment = shipment;
+		this.freight = freight;
 	}
 
 	public String getLoadingDate() {

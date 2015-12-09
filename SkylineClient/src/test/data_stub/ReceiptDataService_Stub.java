@@ -9,34 +9,35 @@ import  main.po.StaffReceiptPO;
 
 
 public class ReceiptDataService_Stub implements ReceiptDataService {
-	
-	public boolean saveReceiptCode(String account,String code){
-		System.out.println("save Succeed!/n");
+
+	@Override
+	public boolean saveReceiptCode(String account, String code) {
+		System.out.println(account+"保存成功");
 		return true;
 	}
-	
-	public StaffReceiptPO getStaffReceipt(String account){
-		StaffReceiptPO staffReceiptPO = new StaffReceiptPO(account, null);
-		System.out.println("Succeed!/n");
-		return staffReceiptPO;
-	}
-	
-	public boolean delReceiptCode(String account,String code){
-		System.out.println("delete Succeed!/n");
+
+	@Override
+	public boolean getStaffReceipt(String account, StaffReceiptPO staffReceiptPO) {
+		System.out.println("获得"+account+"成功！");
 		return true;
 	}
-	
-	public ApprovalPO getApprovalPO(){
-		List<String> codeList = new ArrayList<String>();
-		codeList.clear();
-		codeList.add("0260559");
-		System.out.println("Succeed!/n");
-		ApprovalPO approvalPO = new ApprovalPO(codeList);
-		return approvalPO;
-	}
-	//........
-	public boolean removeApprovalPO(String code){
-		System.out.println("remove Succeed!/n");
+
+	@Override
+	public boolean delReceiptCode(String account, String code) {
+		System.out.println("删除"+account+"成功！");
 		return true;
 	}
+
+	@Override
+	public boolean getApprovalPO(ApprovalPO approvalPO) {
+		System.out.println("获得"+approvalPO.getCode()+"成功！");
+		return true;
+	}
+
+	@Override
+	public boolean removeApprovalPO(String code) {
+		System.out.println("删除"+code+"成功！");
+		return true;
+	}
+
 }

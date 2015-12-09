@@ -109,9 +109,6 @@ public class InfoController implements InfoBLService {
 		return false;
 	}
 
-
-	
-
 	@Override
 	public boolean addNewWarehouse(WarehouseInfoVO voList) {
 		// TODO Auto-generated method stub
@@ -184,6 +181,8 @@ public class InfoController implements InfoBLService {
 		return false;
 	}
 
-	
-
+	@Override
+	public ArrayList<StaffVO> readStaff(String unitCode) {
+		return new Staff().readWorkerList(unitCode);
+	}
 }

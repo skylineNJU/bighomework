@@ -1,13 +1,16 @@
 package main.data.info;
 
 import main.dataservice.InfoDataService;
-import main.dataservice.IntermediateInfo;
-import main.dataservice.LobbyInfoList;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.InstitutionPO;
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
+import main.po.StaffListPO;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
+import main.po.WarehouseInfo;
 import main.po.WorkerPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -15,31 +18,17 @@ import main.socketservice.Client;
 public class InfoDataController implements InfoDataService {
 
 	Client client;
-	@Override
-	public boolean readInstitution(String code, InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
-	public boolean addInstitution(InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
+	public StaffListPO readStaff(String unitCode) {
+		StaffListPO poList = new StaffListPO();
+		WorkerPO workerPO = new WorkerPO(unitCode, unitCode, unitCode, unitCode, unitCode);
+		poList.add(workerPO);
+		client=MainController.getClient();
+		poList.setKey("Inquire");
+		client.writeReceipt(poList);
+		return (StaffListPO)client.getResponse();
 	}
-
-	@Override
-	public boolean delInstitution(String code) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-
-	@Override
-	public boolean modifyInstitution(InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
 	public boolean createNewStaff(WorkerPO workerPO) {
 		// TODO Auto-generated method stub
@@ -51,8 +40,11 @@ public class InfoDataController implements InfoDataService {
 
 	@Override
 	public boolean deleteStaff(String account) {
-		// TODO Auto-generated method stub
-		return false;
+		WorkerPO workerPO = new WorkerPO(account, account, account, account, account);
+		client=MainController.getClient();
+		workerPO.setKey("Delete");
+		client.writeReceipt(workerPO);
+		return true;
 	}
 
 	@Override
@@ -62,12 +54,6 @@ public class InfoDataController implements InfoDataService {
 		workerPO.setKey("Inquire");
 		client.writeReceipt(workerPO);
 		return (WorkerPO) client.getResponse();
-	}
-
-	@Override
-	public boolean modifyStaff(WorkerPO workerPO) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -238,29 +224,10 @@ public class InfoDataController implements InfoDataService {
 		client.writeReceipt(po);
 		return false;
 	}
-
 	@Override
-	public boolean readStaff(String unitCode) {
+	public boolean modifyStaff(WorkerPO workerPO) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public boolean delStaff(WorkerPO workerPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public LobbyInfoList inquireLobby(LobbyInfoList po) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IntermediateInfo inquireInterm(IntermediateInfo po) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
