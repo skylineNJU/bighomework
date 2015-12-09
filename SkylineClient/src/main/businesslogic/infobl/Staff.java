@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import main.data.info.InfoDataController;
 import main.dataservice.InfoDataService;
+import main.po.StaffListPO;
 import main.po.WorkerPO;
 import main.vo.StaffVO;
 
@@ -14,6 +15,8 @@ public class Staff {
 	private String workage;//入职时间
 	private String code;//账号
 	private WorkerPO po;
+	
+	public Staff(){}
 	public Staff(StaffVO vo){
 		this.setName(vo.getName());
 		this.setJob(vo.getJob());
@@ -39,9 +42,19 @@ public class Staff {
 		po=service.inquireStaff(po);
 		return true;
 	}
-	private ArrayList<StaffVO> readWorkerList(String unitCode){
-		
-		return null;
+	public ArrayList<StaffVO> readWorkerList(String unitCode){
+		InfoDataService service=new InfoDataController();
+		StaffListPO staffListPO = service.readStaff(unitCode);
+		 ArrayList<WorkerPO> poList = staffListPO.getList();
+		 ArrayList<StaffVO> voList = new ArrayList<StaffVO>();
+		 for(WorkerPO workerPO:poList){
+//			 String na,String jo,String un,String wo,String co
+			 StaffVO staffVO = new StaffVO(workerPO.getName(), workerPO.getPosition(),
+					 workerPO.getBelong(), workerPO.getAge(), workerPO.getCode()
+			 );
+			 voList.add(staffVO);
+		 }
+		return voList;
 	}
 	
 	public boolean saveInfo(){

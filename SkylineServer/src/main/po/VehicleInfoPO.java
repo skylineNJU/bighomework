@@ -57,8 +57,4 @@ public class VehicleInfoPO extends Message implements Serializable{
 		this.boughtTime = boughtTime;
 		this.usedTime = usedTime;
 	}
-    
-    
-   
-
 }

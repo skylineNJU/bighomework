@@ -6,44 +6,47 @@ import  main.businesslogicservice.ReceiptBLService;
 import  main.vo.ReceiptVO;
 
 public class ReceiptBLService_Stub implements ReceiptBLService{
-	ArrayList<ReceiptVO> receipt=new ArrayList<ReceiptVO>();
+
 	@Override
-	public ArrayList<ReceiptVO> showReceiptList() {
-		// TODO Auto-generated method stub
-		ReceiptVO re=new ReceiptVO("123","321","213");
-		receipt.clear();
-		receipt.add(re);
-		return receipt;
+	public boolean showReceiptList(ArrayList<ReceiptVO> receiptList) {
+		System.out.println("显示成功！");
+		return true;
 	}
 
 	@Override
 	public boolean ApprovalReceipt(ArrayList<ReceiptVO> marked) {
-		// TODO Auto-generated method stub
-		System.out.println("我有一友屌似卿");
-		return false;
+		System.out.println("审批完成！");
+		return true;
 	}
 
 	@Override
-	public ArrayList<ReceiptVO> inquireReceiptList() {
-		// TODO Auto-generated method stub
-		ReceiptVO re=new ReceiptVO("123","321","213");
-		receipt.clear();
-		receipt.add(re);
-		return receipt;
+	public boolean inquireReceiptList(ArrayList<ReceiptVO> receiptList) {
+		System.out.println("查询完毕！");
+		return true;
 	}
 
 	@Override
 	public boolean modifyReceipt(ReceiptVO receipt) {
-		// TODO Auto-generated method stub
-		System.out.println("我有一友屌似卿时");
-		return false;
+		System.out.println("修改成功！");
+		return true;
 	}
 
 	@Override
-	public boolean submitReceipt(ReceiptVO receipt) {
-		// TODO Auto-generated method stub
-		System.out.println("我有一友屌似卿啊");
-		return false;
+	public boolean submitReceipt(String receiptCode) {
+		System.out.println("提交成功！");
+		return true;
 	}
 
+	@Override
+	public boolean save(String receiptCode) {
+		System.out.println("保存成功！");
+		return true;
+	}
+
+	@Override
+	public boolean delete(String[] receiptCode) {
+		System.out.println("删除成功！");
+		return true;
+	}
+	
 }

@@ -9,17 +9,13 @@ import main.po.LobbyReceiveListPO;
 import  main.po.LobbyReceivePO;
 import main.po.OrderListPO;
 import  main.po.OrderPO;
+
 import  main.po.OrderPO.PackageCost;
 import  main.po.OrderPO.Size;
 import  main.po.Type;
-/**
- * 
- * @author QiHan
- * 
- *
- */
 
 public class ReceiveDataService_Stub implements ReceiveDataService {
+
 
 	@Override
 	//存储新的订单信息
@@ -141,77 +137,76 @@ public class ReceiveDataService_Stub implements ReceiveDataService {
 		}
 	}
 
-	@Override
-	public boolean modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
-		// TODO Auto-generated method stub
-		lobbyReceivePO = new LobbyReceivePO("2014","3","28",null,"21323424");
-		if(lobbyReceivePO .getCode()!=null){
-			return true;
-			
-		}else{
-			return false;
+		@Override
+		public boolean modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
+			// TODO Auto-generated method stub
+			lobbyReceivePO = new LobbyReceivePO("2014","3","28",null,"21323424");
+			if(lobbyReceivePO .getCode()!=null){
+				return true;
+				
+			}else{
+				return false;
+			}
 		}
-	}
 
-	@Override
-	public boolean writeDistributeOrder(DistributePO distributePO) {
-		// TODO Auto-generated method stub
-		distributePO  = new DistributePO("121323", "23131","Sun", "shanghai","18263738990","Winter");
-		if(distributePO .getCode()!=null){
-			return true;
-			
-		}else{
-			return false;
+		@Override
+		public boolean writeDistributeOrder(DistributePO distributePO) {
+			// TODO Auto-generated method stub
+			distributePO  = new DistributePO("121323", "23131","Sun", "shanghai","18263738990","Winter");
+			if(distributePO .getCode()!=null){
+				return true;
+				
+			}else{
+				return false;
+			}
 		}
-	}
 
-	@Override
-	public boolean readDistributeOrder(String orderBar,DistributePO distributePO) {
-		// TODO Auto-generated method stub
-		distributePO  = new DistributePO(orderBar, "23131","Sun", "shanghai","18263738990","Winter");
-		if(distributePO .getCode()!=null){
-			return true;
-			
-		}else{
-			return false;
+		@Override
+		public boolean readDistributeOrder(String orderBar,DistributePO distributePO) {
+			// TODO Auto-generated method stub
+			distributePO  = new DistributePO(orderBar, "23131","Sun", "shanghai","18263738990","Winter");
+			if(distributePO .getCode()!=null){
+				return true;
+				
+			}else{
+				return false;
+			}
 		}
-	}
 
-	@Override
-	public boolean delDistributeOrder(String orderBar) {
-		// TODO Auto-generated method stub
-		if(orderBar!=null){
-			return true;
+		@Override
+		public boolean delDistributeOrder(String orderBar) {
+			// TODO Auto-generated method stub
+			if(orderBar!=null){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
-		else{
-			return false;
+
+		@Override
+		public boolean modifiyDistributeOrder(DistributePO distributePO) {
+			// TODO Auto-generated method stub
+			distributePO  = new DistributePO("21323", "23131","Sun", "shanghai","18263738990","Winter");
+			if(distributePO .getCode()!=null){
+				return true;
+				
+			}else{
+				return false;
+			}
 		}
-	}
 
-	@Override
-	public boolean modifiyDistributeOrder(DistributePO distributePO) {
-		// TODO Auto-generated method stub
-		distributePO  = new DistributePO("21323", "23131","Sun", "shanghai","18263738990","Winter");
-		if(distributePO .getCode()!=null){
-			return true;
-			
-		}else{
-			return false;
+		@Override
+		public CourrierPO getCourrierInfo(CourrierPO po) {
+			// TODO Auto-generated method stub
+			po = new CourrierPO("2131231");
+			return po;
 		}
-	}
 
-	@Override
-	public CourrierPO getCourrierInfo(CourrierPO po) {
-		// TODO Auto-generated method stub
-		po = new CourrierPO("2131231");
-		return po;
-	}
-
-	@Override
-	public void saveDistribute(DistributePO po) {
-		// TODO Auto-generated method stub
-		po = new DistributePO("12323", "23131","Sun", "shanghai","18263738990","Winter");
-		System.out.println("-----------save Distribute success-------");
-	}
-
+		@Override
+		public void saveDistribute(DistributePO po) {
+			// TODO Auto-generated method stub
+			po = new DistributePO("12323", "23131","Sun", "shanghai","18263738990","Winter");
+			System.out.println("-----------save Distribute success-------");
+		}
 }

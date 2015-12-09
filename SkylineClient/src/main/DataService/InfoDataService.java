@@ -2,8 +2,20 @@ package main.dataservice;
 
 import main.po.DriverInfoPO;
 import main.po.DriverList;
+<<<<<<< HEAD
+import main.po.InstitutionPO;
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
+import main.po.StaffListPO;
+=======
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
+>>>>>>> origin/master
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
+import main.po.WarehouseInfo;
 import main.po.WorkerPO;
 
 	//机构管理
@@ -11,12 +23,8 @@ import main.po.WorkerPO;
 	//车辆信息管理
 	//驾驶员信息管理
 public interface InfoDataService {
-
-	//--------------机构管理--------------------
 	
-	public boolean readStaff(String unitCode);
-	
-	public boolean delStaff(WorkerPO workerPO);
+	public StaffListPO readStaff(String unitCode);
 	
 	//从数据库里面读取某类别的机构信息
 	//category 为机构的类别
@@ -85,4 +93,6 @@ public interface InfoDataService {
 	public WorkerPO inquireStaff(WorkerPO workerPO);
 
 	public VehicleListPO readVehicle(VehicleListPO vehiclelist);
+
+
 }

@@ -2,6 +2,7 @@ package main.po;
 
 import java.io.Serializable;
 
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -41,6 +42,11 @@ public class WorkerPO extends Message implements Serializable{
 		System.out.println(this.name);
 		reader.close();
 	}
+	public void deleteFromDatabase(){
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.deleteData("StaffInfo","职工账号",code);
+	}
+	
 	//-------------------
 	//获取和修改职工的年龄
 	public String getAge() {
