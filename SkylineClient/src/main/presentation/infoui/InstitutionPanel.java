@@ -1,16 +1,11 @@
 package main.presentation.infoui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +17,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.InfoBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.LobbyInfoVO;
 
 public class InstitutionPanel {
 
@@ -57,8 +55,13 @@ public class InstitutionPanel {
 	private	DefaultTableModel   defaultModel2 ;
 	private Vector<String> columnNameV; // declare the table column name vector  
 	private Vector<Vector<Object>> tableValueV; // declare the table value     // vector  
-	 private int fixedColumn = 1; // the fixed column number                                
-	
+	private int fixedColumn = 1; // the fixed column number                                
+	private int oldLobbyNum=0;
+	private int oldInstitutionNum=0;
+	private JTextField stuffNumText=new JTextField();
+	private JTextField earaText=new JTextField();
+	private JLabel stuffNumLabel=new JLabel("员工数目");
+	private JLabel earaLabel=new JLabel("占地面积");
 	
 	public InstitutionPanel(){
 		panel=MainController.getWritepanel();
@@ -143,13 +146,8 @@ public class InstitutionPanel {
 	//	现有北京、上海、广州、南京设有中转中心。每个中转中心下设各设20、20、15、20、10个营业厅。未来会扩展城市的中转中心和营业厅数量。
 	//   每营业厅业务员大约5人。司机20人。
 	//营业厅编号是三位数000
-		tableTitle2 = new String[]{"所属城市","营业厅编号","机构员工数","占地面积/m^2"};
-		tableData2=new String[][]{{"上海","001","28","100"},{"上海","002","24","80"},{"上海","003","25","1000"},
-				{"上海","004","25","98"},{"上海","005","26","100"},{"上海","006","25","98"},{"上海","007","26","100"},
-				{"上海","008","25","98"},{"上海","009","26","100"},{"上海","010","25","98"},{"上海","011","26","100"},
-				{"上海","012","25","98"},{"上海","013","26","100"},{"上海","014","25","98"},{"上海","015","26","100"},
-				{"上海","016","25","98"},{"上海","017","26","100"},{"上海","018","25","98"},{"上海","019","26","100"},
-				{"上海","020","25","98"}};	
+		tableTitle2 = new String[]{"营业厅编号","机构员工数","占地面积/m^2"};
+		tableData2=new String[][]{};	
 		defaultModel2   =  new   DefaultTableModel(tableData2,tableTitle2);;
 		table2 = new JTable(defaultModel2);
 		table2.setEnabled(false);//设置不可编辑内容
@@ -159,18 +157,29 @@ public class InstitutionPanel {
 		table2.setDragEnabled(false);
 		table2.setVisible(true);
 		scrollPane2 = new JScrollPane(table2);
-		if(tableData2.length>=10){
-			scrollPane2.setBounds(tab.getX()-panel.getWidth()/16, tab.getY()-panel.getWidth()/7,tab.getWidth(), 10*table2.getRowHeight());
-		}else{
-			scrollPane2.setBounds(tab.getX()-panel.getWidth()/16, tab.getY()-panel.getWidth()/7,tab.getWidth(), (table2.getRowCount()+1)*table2.getRowHeight());
-		}
+		//if(tableData2.length>=10){
+			scrollPane2.setBounds(tab.getX()-panel.getWidth()/16, tab.getY()-panel.getWidth()/7,tab.getWidth(), 8*table2.getRowHeight());
+		//}else{
+		//	scrollPane2.setBounds(tab.getX()-panel.getWidth()/16, tab.getY()-panel.getWidth()/7,tab.getWidth(), (table2.getRowCount()+1)*table2.getRowHeight());
+		//}
+		this.stuffNumLabel.setBounds(scrollPane2.getWidth()/10,scrollPane2.getHeight()/28*32+scrollPane2.getY(),scrollPane2.getWidth()/10,table2.getRowHeight());
+		this.stuffNumText.setBounds(stuffNumLabel.getX()+stuffNumLabel.getWidth()+scrollPane2.getWidth()/15,stuffNumLabel.getY(),scrollPane2.getWidth()/5,table2.getRowHeight());
+		this.earaLabel.setBounds(stuffNumText.getX()+stuffNumText.getWidth()+scrollPane2.getWidth()/15,stuffNumLabel.getY(),scrollPane2.getWidth()/10,table2.getRowHeight());
+		this.earaText.setBounds(earaLabel.getX()+earaLabel.getWidth()+scrollPane2.getWidth()/15,stuffNumLabel.getY(),scrollPane2.getWidth()/5,table2.getRowHeight());
 		table2.getColumnModel().getColumn(0).setPreferredWidth(scrollPane2.getWidth()/5);;
 		table2.getColumnModel().getColumn(1).setPreferredWidth(scrollPane2.getWidth()/6);;
 		table2.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane2.setVisible(true);
 		scrollPane2.setEnabled(false);
 		LobbyPanel.add(scrollPane2);
-		
+		LobbyPanel.add(this.stuffNumLabel);
+		LobbyPanel.add(this.stuffNumText);
+		LobbyPanel.add(this.earaLabel);
+		LobbyPanel.add(this.earaText);
+		this.stuffNumLabel.setVisible(false);
+		this.stuffNumText.setVisible(false);
+		this.earaLabel.setVisible(false);
+		this.earaText.setVisible(false);
 	}
 	
 	public String[][] getInterm(){
@@ -238,6 +247,29 @@ public class InstitutionPanel {
 	}
 	
 	public void Listener(){
+		save.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				switch(tab.getSelectedIndex()){
+				case 0:
+					break;
+				case 1:
+					int row=table2.getRowCount();
+					//"所属城市","营业厅编号","机构员工数","占地面积/m^2"
+					LobbyInfoVO vo=new LobbyInfoVO(
+							city.getText(),
+							String.format("%3d",row),
+							Integer.parseInt(stuffNumText.getText()),
+							Double.parseDouble(earaText.getText()));
+					InfoBLService service=ConstructFactory.InfoFactory();
+					service.addNewLobby(vo);
+				    stuffNumLabel.setVisible(false);
+					stuffNumText.setVisible(false);
+					earaLabel.setVisible(false);
+					earaText.setVisible(false);
+					defaultModel2.addRow(new String[]{String.format("%3d",row),stuffNumText.getText(),earaText.getText()});
+				}
+			}
+		});
 		tab.addChangeListener( new ChangeListener() {
 		      public void stateChanged(ChangeEvent changeEvent) {
 		    	  if(tab.getTitleAt(tab.getSelectedIndex()).equals("中转中心") ){
@@ -296,8 +328,14 @@ public class InstitutionPanel {
 		});
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				 defaultModel2.addRow(new  Vector());
-				 table2.setEnabled(true);
+				stuffNumLabel.setText(null);
+				stuffNumText.setText(null);
+				earaLabel.setText(null);
+				earaText.setText(null);
+				stuffNumLabel.setVisible(true);
+				stuffNumText.setVisible(true);
+				earaLabel.setVisible(true);
+				earaText.setVisible(true);
 			}
 		});
 		save.addMouseListener(new MouseAdapter(){
