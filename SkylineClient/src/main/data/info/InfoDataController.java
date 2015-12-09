@@ -1,13 +1,14 @@
 package main.data.info;
 
 import main.dataservice.InfoDataService;
-import main.dataservice.IntermediateInfo;
-import main.dataservice.LobbyInfoList;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
-import main.po.InstitutionPO;
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
+import main.po.WarehouseInfo;
 import main.po.WorkerPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -15,31 +16,6 @@ import main.socketservice.Client;
 public class InfoDataController implements InfoDataService {
 
 	Client client;
-	@Override
-	public boolean readInstitution(String code, InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addInstitution(InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delInstitution(String code) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-
-	@Override
-	public boolean modifyInstitution(InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	@Override
 	public boolean createNewStaff(WorkerPO workerPO) {
 		// TODO Auto-generated method stub
@@ -249,18 +225,6 @@ public class InfoDataController implements InfoDataService {
 	public boolean delStaff(WorkerPO workerPO) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public LobbyInfoList inquireLobby(LobbyInfoList po) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IntermediateInfo inquireInterm(IntermediateInfo po) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
