@@ -9,7 +9,7 @@ public class LobbyLoading extends ReceiptVO {
 	private String guard;//押送员
 	private String shipment;//装箱托运区号
 	private double freight;//运费
-	
+	private String belong;
 	
 
 	public LobbyLoading(String co, String loadingDate, String autoMobileNum, String departure, String destination,
@@ -87,6 +87,14 @@ public class LobbyLoading extends ReceiptVO {
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
 	}
 
 	

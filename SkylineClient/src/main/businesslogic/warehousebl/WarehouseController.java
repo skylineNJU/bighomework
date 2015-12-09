@@ -54,7 +54,7 @@ public class WarehouseController implements WarehouseBLService {
 	@Override
 	public ArrayList<WarehouseOutVO> showWarehouseOutInfo(String code) {
 		// TODO Auto-generated method stub
-		WarehouseOut out=new WarehouseOut(code);
+		WarehouseOut out=new WarehouseOut();
 		ArrayList<WarehouseOutVO> outvo=out.inquire(code);
 		return outvo;
 	}

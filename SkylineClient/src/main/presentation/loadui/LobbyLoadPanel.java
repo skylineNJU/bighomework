@@ -155,7 +155,7 @@ public class LobbyLoadPanel {
 						loadCodeText.getText(),startPlaceText.getText(),endPlaceText.getText(),
 						supervisorText.getText(),supercargoText.getText(),loadOrderText.getText()+" "+
 						((WritePanel)panel).getBelong(),Double.parseDouble(loadFeeText.getText()));
-
+				vo.setBelong(((WritePanel)panel).getBelong());
 				service.loadVehicle(vo);
 				LobbyReceipt receiptService=ConstructFactory.LobbyReceiptFactory();
 				receiptService.SaveLoadingCode(userName, code);

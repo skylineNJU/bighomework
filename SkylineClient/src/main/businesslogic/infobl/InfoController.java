@@ -4,38 +4,14 @@ import java.util.ArrayList;
 
 import main.businesslogicservice.InfoBLService;
 import main.vo.DriverVO;
-import main.vo.InstitutionVO;
+import main.vo.IntermediateInfoVO;
+import main.vo.LobbyInfoVO;
 import main.vo.StaffVO;
 import main.vo.VehicleVO;
+import main.vo.WarehouseInfoVO;
 
 public class InfoController implements InfoBLService {
 
-	@Override
-	public boolean createNewInstitution(InstitutionVO institutionInfo) {
-		// TODO Auto-generated method stub
-		Institution ins=new Institution(institutionInfo);
-		return ins.saveInfo();
-	}
-
-	@Override
-	public boolean deleteInstitution(String institutionCode) {
-		// TODO Auto-generated method stub
-		return Institution.delete(institutionCode);
-	}
-
-	@Override
-	public boolean inquireInstitution(String code, InstitutionVO institutionInfo) {
-		// TODO Auto-generated method stub
-		Institution ins=new Institution(code);
-		return institutionInfo.writeInstitutionVO(ins);
-	}
-
-	@Override
-	public boolean modifyInstitution(InstitutionVO institutionInfo) {
-		// TODO Auto-generated method stub
-		Institution ins=new Institution(institutionInfo);
-		return ins.modify();
-	}
 
 	@Override
 	public boolean createNewStaff(StaffVO staffInfo) {
@@ -123,6 +99,89 @@ public class InfoController implements InfoBLService {
 		Driver driver=new Driver(code);
 		ArrayList<DriverVO> volist=driver.inquire(code);
 		return volist;
+	}
+
+	@Override
+	public boolean addNewIntermediate(IntermediateInfoVO vo) {
+		// TODO Auto-generated method stub
+		IntermediateInfoBL bl=new IntermediateInfoBL(vo);
+		bl.saveInfo();
+		return false;
+	}
+
+
+	
+
+	@Override
+	public boolean addNewWarehouse(WarehouseInfoVO voList) {
+		// TODO Auto-generated method stub
+		WarehouseInfoBL bl=new WarehouseInfoBL(voList);
+		bl.saveInfo();
+		return false;
+	}
+
+	@Override
+	public boolean addNewLobby(LobbyInfoVO vo) {
+		// TODO Auto-generated method stub
+		LobbyInfoBL bl=new LobbyInfoBL(vo);
+		bl.saveInfo();
+		return false;
+	}
+
+	@Override
+	public ArrayList<LobbyInfoVO> inquireLobby(String cityName) {
+		// TODO Auto-generated method stub
+		LobbyInfoBL bl=new LobbyInfoBL(cityName);
+		
+		return bl.inquire();
+	}
+
+	@Override
+	public IntermediateInfoVO inquireInterm(String city) {
+		// TODO Auto-generated method stub
+		IntermediateInfoBL bl=new IntermediateInfoBL(new IntermediateInfoVO(city, city, 0, 0));
+		
+		return bl.inquire();
+	}
+
+	@Override
+	public boolean modifyIntermediate(IntermediateInfoVO vo) {
+		// TODO Auto-generated method stub
+		IntermediateInfoBL bl=new IntermediateInfoBL(vo);
+		bl.modify();
+		return false;
+	}
+
+	@Override
+	public boolean modifyLobby(LobbyInfoVO vo) {
+		// TODO Auto-generated method stub
+		LobbyInfoBL bl=new LobbyInfoBL(vo);
+		bl.modify();
+		return false;
+	}
+
+	@Override
+	public boolean deleteIntermediate(IntermediateInfoVO vo) {
+		// TODO Auto-generated method stub
+		IntermediateInfoBL bl=new IntermediateInfoBL(vo);
+		bl.delete();
+		return false;
+	}
+
+	@Override
+	public boolean deleteLobby(LobbyInfoVO vo) {
+		// TODO Auto-generated method stub
+		LobbyInfoBL bl=new LobbyInfoBL(vo);
+		bl.modify();
+		return false;
+	}
+
+	@Override
+	public boolean deleteWarehouse(WarehouseInfoVO vo) {
+		// TODO Auto-generated method stub
+		WarehouseInfoBL bl=new WarehouseInfoBL(vo);
+		bl.delete();
+		return false;
 	}
 
 	

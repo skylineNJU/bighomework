@@ -2,12 +2,14 @@ package main.vo;
 
 public class PlaneLoadingVO extends ReceiptVO{
 	private String loadingDate;//装运日期
-	private String flightNum;//中转中心
-	private String planeNum;//
+	private String flightNum;//航班号
+	private String planeNum;//飞机号
 	private String departure;//出发地
 	private String destination;//到达地
 	private String monitor;//监装员
 	private String store;//押送员
+	private String belong;
+	
 	public String getStore() {
 		return store;
 	}
@@ -120,5 +122,13 @@ public class PlaneLoadingVO extends ReceiptVO{
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
 	}
 }

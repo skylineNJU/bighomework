@@ -1,19 +1,20 @@
-package tets.bl_driver;
+package test.bl_driver;
 
 import java.util.ArrayList;
 
-import  main.vo.ReceiptVO;
-import  main.businesslogicservice.ReceiptBLService;
+import main.businesslogicservice.ReceiptBLService;
+import main.vo.ReceiptVO;
 
 public class ReceiptBLService_Driver {
 	
 	ArrayList<ReceiptVO> receiptlist;
 	ReceiptVO receipt;
+	String receiptCode="13141516";
+	String[] reCo={"13141516","555555"};
 	
 	public void drive(ReceiptBLService receiptBLService){
 		receiptlist.clear();
-		receiptlist=receiptBLService.showReceiptList();
-		if(receiptlist != null){
+		if(receiptBLService.showReceiptList(receiptlist)){
 			System.out.println("---------Receiptlist Showing!-------------");
 		}
 		
@@ -23,17 +24,24 @@ public class ReceiptBLService_Driver {
 		}
 		
 		receiptlist.clear();
-		receiptlist=receiptBLService.inquireReceiptList();
-		if(receiptlist != null){
-			System.out.println("-----------Getting Receiptlist!-------------");
+		
+		if(receiptBLService.inquireReceiptList(receiptlist)){
+			System.out.println("-----------Inquiring Receiptlist!-------------");
 		}
 		
 		if(receiptBLService.modifyReceipt( receipt)){
 			System.out.println("---------Modifying Success!-------------");
 		}
 		
-		if(receiptBLService.submitReceipt(receipt)){
+		if(receiptBLService.submitReceipt(receiptCode)){
 			System.out.println("---------Submit Success!-------------");
+		}
+		
+		if(receiptBLService.save(receiptCode)){
+			System.out.println("---------Save Success!-------------");
+		}
+		if(receiptBLService.delete(reCo)){
+			System.out.println("---------Delete Success!-------------");
 		}
 	}
 }

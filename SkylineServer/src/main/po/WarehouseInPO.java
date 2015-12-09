@@ -46,7 +46,6 @@ public class WarehouseInPO extends Receipt implements Serializable{
 
 
 	public void writeIntoDatabase(){
-		System.out.println("------------C----------");
 		if(hasCargo()){
 			this.setKey("Can't build!!!");	
 			}
@@ -73,13 +72,12 @@ public class WarehouseInPO extends Receipt implements Serializable{
 		this.shelf=reader.getInt("架号");
 		this.position=reader.getInt("位号");
 		reader.close();
+	
 	}
 	
 	public boolean hasCargo(){
 		SqlReader reader=new SqlReader("InventoryInfo");
-		System.out.println("------------A----------");
 		if(reader.hasNext()){
-			System.out.println("------------B----------");
 			String a=reader.getString("区号");
 			if(a.equals(area)&&reader.getString("排号").equals(row)
 					&&reader.getString("架号").equals(shelf)&&reader.getString("位号").equals(position)){

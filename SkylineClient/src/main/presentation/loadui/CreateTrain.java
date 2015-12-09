@@ -54,6 +54,7 @@ public class CreateTrain extends CreatePanel {
 						CodeText.getText(),StartText.getText(),ArriveText.getText(),
 						MontiorText.getText(),Container.getText(),panel.getBelong()+" "+LoadAreaText.getText(),
 						Double.parseDouble(FeeText.getText()));
+				vo.setBelong(panel.getBelong());
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
 				intermRservice.saveRailLoadCode(memory.getUserName(), code);
 				memory.setRailLoadCode(memory.getRailLoadCode()+" "+code);

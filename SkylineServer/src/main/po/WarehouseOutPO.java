@@ -26,7 +26,14 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	private int shelf;
 	private int position;
 	
-	
+	public WarehouseOutPO(String code,String area,int row,int shelf,int position) {
+		super();
+		this.code = code;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+	}
 	public WarehouseOutPO(String bar, String code,String outDate, String destination, TransType type, String transferCode,
 			String vehicleCode,	String damageCondition) {
 		super();
@@ -39,6 +46,7 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 		this.vehicleCode = vehicleCode;
 		this.damageCondition=damageCondition;
 	}
+	
 	
 	public void writeIntoDatabase(){
 		if(hasCargo()){
@@ -58,29 +66,32 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("WarhouseOut");
-		reader.findNext("出库单单号",this.getCode());
-		this.bar = reader.getString("订单单号");
-		this.transferCode = reader.getString("中转中心编号");
-		this.outDate = reader.getString("出库时间");
-		this.vehicleCode = reader.getString("运输工具编号");
-		this.type = TransType.valueOf(reader.getString("装运形式"));
-		this.destination = reader.getString("目的地");
-		this.damageCondition = reader.getString("损坏情况");
-	
-		SqlReader reader1 = new SqlReader("WarhouseIn");
-		reader1.findNext("订单单号",this.getBar());
-		this.area = reader1.getString("区号");
-		this.row = reader1.getInt("排号");
-		this.shelf = reader1.getInt("架号");
-		this.position = reader1.getInt("位号");
+		if(reader.findNext("出库单单号",this.getCode())){
+			this.bar = reader.getString("订单单号");
+			this.transferCode = reader.getString("中转中心编号");
+			this.outDate = reader.getString("出库时间");
+			this.vehicleCode = reader.getString("运输工具编号");
+			this.type = TransType.valueOf(reader.getString("装运形式"));
+			this.destination = reader.getString("目的地");
+			this.damageCondition = reader.getString("损坏情况");
+			reader.close();
 		
-		reader1.close();
-		reader.close();
+	
+			SqlReader reader1 = new SqlReader("WarhouseIn");
+			reader1.findNext("订单单号",this.getBar());
+			this.area = reader1.getString("区号");
+			this.row = reader1.getInt("排号");
+			this.shelf = reader1.getInt("架号");
+			this.position = reader1.getInt("位号");
+			reader1.close();
+		
+		}
+		
 	}
 	
 	public boolean hasCargo(){
 		SqlReader reader=new SqlReader("InventoryInfo");
-		if(reader.findNext("订单号", bar)){
+		if(reader.findNext("订单号", this.getBar())){
 			System.out.println("++++++++++++++!!!!!!!!!!!!!!!!!"+transferCode);
 			if(reader.getString("区号").split(" ")[0].equals(transferCode)){
 				return true;

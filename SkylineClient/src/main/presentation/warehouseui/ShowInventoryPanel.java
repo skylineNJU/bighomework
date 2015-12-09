@@ -26,6 +26,7 @@ import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
+import main.vo.WarehouseOutVO;
 
 //库存查看
 public class ShowInventoryPanel {
@@ -85,7 +86,6 @@ public class ShowInventoryPanel {
 		tab.addTab("出库信息", outInfo);
 		tab.setSize(panel.getWidth()*7/8,panel.getHeight()/100*80);
 		tab.setLocation(panel.getWidth()/18,panel.getHeight()*3/20);
-	
 		panel.add(tab);
 		
 		datePanel();
@@ -302,19 +302,21 @@ public class ShowInventoryPanel {
 		
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-			//	tableData1=initInTableData();
-			//	 for(int i=0;i<tableData1.length;i++){
-			//			for(int j=0;j<tableData1[0].length;j++){
-			//				table1.setValueAt(tableData1[i][j], i, j);
-			//			}
-			//		}
-				 tableData2=initOutTableData();
+				tableData1=initInTableData();
+				for(int i=0;i<tableData1.length;i++){
+						for(int j=0;j<tableData1[0].length;j++){
+							table1.setValueAt(tableData1[i][j], i, j);
+						}
+					}
+				
+				tableData2=initOutTableData();
 				 for(int i=0;i<tableData2.length;i++){
 						for(int j=0;j<tableData2[0].length;j++){
 							table2.setValueAt(tableData2[i][j], i, j);
 							
 						}
 					}
+					
 			}});
 		
         panel.add(ok);
@@ -329,7 +331,6 @@ public class ShowInventoryPanel {
 	}
 	
 	public void tablePanel(){
-		System.out.println(")))))))))))))))))((((((((((((((((");
 		tableTitle1= new String[]{"入库单号","区号","排号","架号","位号"};
 		tableData1=initInTableData();	
 		table1 = new JTable(tableData1,tableTitle1);
@@ -461,6 +462,7 @@ public class ShowInventoryPanel {
         Date date2 = new Date(y2-1900,m2-1,d2);
         assert(date2.after(date1));
         String[][] content =new String[20][5];
+        String Code="";
         for(int x=0;x<20;x++)
         			for(int y=0;y<5;y++)
         				content[x][y]=null;
@@ -469,31 +471,34 @@ public class ShowInventoryPanel {
         for(int i=0;i<dates.length;i++){
         	System.out.println(":::::::::33::::::::::"+dates[0]);
         	String[] yAmAd=dates[i].split("\\/");
+        	System.out.println(dates[i]);
         	int year = Integer.parseInt(yAmAd[0]);
         	int month = Integer.parseInt(yAmAd[1]);
         	int day = Integer.parseInt(yAmAd[2]);
         	System.out.println(":::::::::33::::::::::"+year+" "+month+" "+day);
         	Date d = new Date(year-1900,month-1,day);
+        
         	if(d.after(date1)&&d.before(date2)){
+        		Code=Code+codes[i]+" "; 
         		OutNum++;
-        		System.out.println("OutNumNumNum:::"+InNum);
-        	
-        		String c = codes[i];
-        		if(c!=null){
-    				WarehouseBLService service = ConstructFactory.WarehouseFactory();
-    				ArrayList<WarehouseInVO> in = service.showWarehouseInInfo(c);
-					for(WarehouseInVO vo: in){
-						content[counter][0]=c;
-						content[counter][1]=vo.getArea();
-						content[counter][2]=vo.getRow()+"";
-						content[counter][3]=vo.getShelf()+"";
-						content[counter][4]=vo.getPosition()+"";
-					}
-        		}
-        			counter++;     			
+        		System.out.println("OutNumNumNum:::"+OutNum);
         	}
         }
-
+        	if(!(Code.equals(""))){
+        		Code ="0 "+Code.substring(0, Code.length()-1);
+        		System.out.println(":::::::::Code::::::::"+Code);
+    			WarehouseBLService service = ConstructFactory.WarehouseFactory();
+    			ArrayList<WarehouseOutVO> out = service.showWarehouseOutInfo(Code);
+				for(WarehouseOutVO vo: out){
+					content[counter][0]=Code;
+					content[counter][1]=vo.getArea();
+					content[counter][2]=vo.getRow()+"";
+					content[counter][3]=vo.getShelf()+"";
+					content[counter][4]=vo.getPosition()+"";
+				}
+				counter++;
+        	}
+        			
         return content;
 	}
 	

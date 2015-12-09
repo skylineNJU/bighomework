@@ -2,12 +2,16 @@ package main.businesslogic.receivebl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import main.businesslogic.financebl.Distance;
+import main.businesslogic.financebl.Fee;
 import main.data.receive.ReceiveDataController;
 import main.dataservice.ReceiveDataService;
 import main.po.OrderPO;
 import main.po.Type;
 import main.po.OrderPO.PackageCost;
 import main.po.OrderPO.Size;
+import main.vo.DistanceVO;
+import main.vo.FeeVO;
 import main.vo.OrderVO;
 
 public class Order {
@@ -65,6 +69,7 @@ public class Order {
 	}
 	public boolean saveInfo(){
 		createOrderCode();
+		calculateFee();
 		OrderPO po=new OrderPO(senderName, senderAddress, senderCom, senderMobile, 
 							   receivorName,receivorAddress,receivorCom,receivorMobile, 
 							   packageCost, type, num,weight, volume, cargoName, size,orderCode,sum);
@@ -76,6 +81,56 @@ public class Order {
 		return true;
 	}
 	
+	public void calculateFee(){
+		Distance dis=new Distance();
+		DistanceVO vo=dis.getDistance();
+		String[] cityName=vo.getCity();
+		double[][] distance=vo.getDistance();
+		int x,y;
+		for(x=0;x<cityName.length;x++){
+			if(cityName[x].equals(this.senderAddress))
+				break;
+		}
+		
+		for(y=0;y<cityName.length;y++){
+			if(cityName[y].equals(this.receivorAddress)){
+				break;
+			}
+		}
+		double juLi=distance[x][y];
+		Fee fee=new Fee();
+		FeeVO fvo=fee.getFee();
+		double per=0;
+		switch(this.type){
+		case cheap:
+			per=fvo.getRailFee();
+			break;
+		case fast:
+			per=fvo.getAirFee();
+			break;
+		case normal:
+			per=fvo.getRoadFee();
+			break;
+		default:
+			break;
+		
+		}
+		switch(this.size){
+		case large:
+			this.sum=juLi*per*this.volume/5000;
+			break;
+		case medium:
+			this.sum=juLi*per*this.weight*1.5;
+			break;
+		case small:
+			this.sum=juLi*per*this.weight;
+			break;
+		default:
+			this.sum=0;
+			break;
+		}
+		
+	}
 	public boolean modify(){
 		return true;
 	}

@@ -58,7 +58,9 @@ public class WarehouseIn {
 		po=new WarehouseInPO(this.bar,this.code,this.destination,this.inDate,this.area,this.row,this.shelf,this.position,this.damageCondition);
 		po.setCode(code);
 		WarehouseDataService service=new WarehouseDataController();
-		return service.createWarehouseInReceipt(po);	
+		boolean a=service.createWarehouseInReceipt(po);
+		System.out.println("122222222222222222222:::::"+a);
+		return a;	
 	}
 	
 	public boolean modify(){

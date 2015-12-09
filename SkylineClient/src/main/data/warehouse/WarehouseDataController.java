@@ -38,13 +38,13 @@ public class WarehouseDataController implements WarehouseDataService{
 	@Override
 	public boolean createWarehouseInReceipt(WarehouseInPO warehouseInPO) {
 		// TODO Auto-generated method stub
-		warehouseInPO.setKey("Save");
+		warehouseInPO.setKey("Check");
 		client.writeReceipt(warehouseInPO);
-		return true;
-
-		
-		
-
+		Message message=client.getResponse();
+		if(message.getKey().equals("success")){
+			return true;
+		}
+		else return false;
 	}
 	@Override
 	public boolean createWarehouseOutReceipt(WarehouseOutPO warehouseOutPO) {

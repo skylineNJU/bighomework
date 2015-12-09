@@ -60,11 +60,11 @@ public class AllOrderPanel {
 		}else{
 			length=10;
 		}
-		tableData=new String[length][14];
+		tableData=new String[length][15];
 		selectRow=new boolean[length];
 		for(int x=0;x<length;x++){
 			selectRow[x]=false;
-			for(int y=0;y<13;y++){
+			for(int y=0;y<14;y++){
 				tableData[x][y]=null;
 			}
 		}
@@ -83,7 +83,8 @@ public class AllOrderPanel {
 			tableData[x][10]=vo.getWeight()+"";
 			tableData[x][11]=vo.getHeight()+"";
 			tableData[x][12]=vo.getCargoName();
-			tableData[x][13]=null;
+			tableData[x][13]=vo.getSum()+"";
+			tableData[x][14]=null;
 			x++;
 		}
 	}
@@ -91,7 +92,7 @@ public class AllOrderPanel {
 	
 	public void initTable(){
 		tableTitle = new String[]{"订单号","寄件人姓名","寄件人住址","寄件人单位","寄件人电话",
-				"收件人姓名","收件人住址","收件人单位","收件人电话", "寄件数目","寄件总重","寄件体积","寄件名称","选择"};
+				"收件人姓名","收件人住址","收件人单位","收件人电话", "寄件数目","寄件总重","寄件体积","寄件名称","费用","选择"};
 		this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽

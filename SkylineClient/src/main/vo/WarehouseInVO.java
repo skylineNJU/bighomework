@@ -27,8 +27,8 @@ public class WarehouseInVO extends ReceiptVO{
 	}
 	public WarehouseInVO(String a,String co,String b,String c,String d,int e,int f,int g,String h){
 		super(co);
-		code = co;
 		bar = a;
+		code = co;
 		inDate=b;
 		destination = c;
 		area = d;

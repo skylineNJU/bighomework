@@ -17,9 +17,12 @@ public class CalculateReceiptCode {
 		Calendar now = Calendar.getInstance();  
 		int year=now.get(Calendar.YEAR);
 		year=year%100;
-		if(codelist.length==1)
+		if(codelist.length==1){
 			return userName+codelist[0]+year+"000000";
+		}
+		
 		String str=codelist[codelist.length-1].substring(userName.length()+1);
+		System.out.println(str+"-------+++++++++------------");
 		int num=Integer.parseInt(str);
 		if(num/1000000==year){
 			num=num+1;

@@ -3,8 +3,12 @@ package main.dataservice;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.InstitutionPO;
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
+import main.po.WarehouseInfo;
 import main.po.WorkerPO;
 
 	//机构管理
@@ -21,20 +25,30 @@ public interface InfoDataService {
 	
 	//从数据库里面读取某类别的机构信息
 	//category 为机构的类别
-	public boolean readInstitution(String code,InstitutionPO institutionPO);
+	public boolean addLobby(LobbyInfo po);
 	
+	public LobbyInfoList inquireLobby(LobbyInfoList po);
+	
+	public IntermediateInfo inquireInterm(IntermediateInfo po);
 	//增加某类别的机构
 	//新建一个机构，输入机构类别，名称，地理位置，编号
 	//数据库存储该机构信息
-	public boolean addInstitution(InstitutionPO institutionPO);
+	public boolean addIntermediate(IntermediateInfo po);
+	
+	public boolean addWarehouse(WarehouseInfo po);
 	
 	//删除某机构
 	//输入机构的编码，数据库将删除该机构
-	public boolean delInstitution(String code);
+	public boolean modifyIntermediate(IntermediateInfo po);
 	
-	//修改某机构的信息，（个人认为不能修改机构的等级，即不能将营业厅改为中转中心，其他信息可修改）
-	//String name,String position,String code表示要修改的部分，如果不修改，则和之前的信息一样
-	public boolean modifyInstitution(InstitutionPO institutionPO);
+	public boolean modifyLobby(LobbyInfo po);
+	
+	public boolean deleteIntermediate(IntermediateInfo po);
+	
+	public boolean deleteLobby(LobbyInfo po);
+	
+	public boolean deleteWarehouse(WarehouseInfo po);
+	
 	
 	//新建职工档案，输入职工名称，职位，所在单位，职工年龄以及编号
 	//数据库将保存该员工信息

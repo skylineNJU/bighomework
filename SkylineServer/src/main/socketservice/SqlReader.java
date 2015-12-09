@@ -12,14 +12,26 @@ public class SqlReader {
 	private Connection con;
 	private Statement stmt;
 	private ResultSet rs;
+	private String tableName;
 	public SqlReader(String tableName){
 		try{
 			Class.forName(JDriver);
 			con=DriverManager.getConnection(connectDB);
 			stmt=con.createStatement();
 			rs=stmt.executeQuery("select * from "+tableName);
+			this.tableName=tableName;
 		}catch(Exception ex){
 			System.err.println(ex);
+		}
+	}
+	
+	public void update(String attribute,String content,String label,String labelContent){
+		String query="update "+this.tableName+" set "+attribute+"='"+content+"' where "+label+"='"+labelContent+"'";
+		try {
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

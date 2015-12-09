@@ -3,22 +3,33 @@ package main.businesslogicservice;
 import java.util.ArrayList;
 
 import main.vo.DriverVO;
-import main.vo.InstitutionVO;
+import main.vo.IntermediateInfoVO;
+import main.vo.LobbyInfoVO;
 import main.vo.StaffVO;
 import main.vo.VehicleVO;
+import main.vo.WarehouseInfoVO;
 
 public interface InfoBLService {
 	//新建一个机构，输入机构类别，名称，地理位置，编号，系统显示该机构信息
-	public boolean createNewInstitution(InstitutionVO institutionInfo);
+	public boolean addNewIntermediate(IntermediateInfoVO vo);
 	
-	//删除一个信息，系统提示删除成功
-	public boolean deleteInstitution(String insititutionCode);
+	public boolean addNewWarehouse(WarehouseInfoVO voList);
 	
-	//查询机构，输入机构编号，系统显示机构信息
-	public boolean inquireInstitution(String code,InstitutionVO institutionInfo);
+	public boolean addNewLobby(LobbyInfoVO vo);
 	
-	//修改机构，系统显示机构修改后的信息
-	public boolean modifyInstitution(InstitutionVO institutionInfo);
+	public IntermediateInfoVO inquireInterm(String city);
+	
+	public ArrayList<LobbyInfoVO> inquireLobby(String cityName);
+	
+	public boolean modifyIntermediate(IntermediateInfoVO vo);
+	
+	public boolean modifyLobby(LobbyInfoVO vo);
+	
+	public boolean deleteIntermediate(IntermediateInfoVO vo);
+	
+	public boolean deleteLobby(LobbyInfoVO vo);
+	
+	public boolean deleteWarehouse(WarehouseInfoVO vo);
 	
 	//新建职工档案，输入职工名称，职位，所在单位，职工年龄以及编号，系统显示保存后的职工信息
 	public boolean createNewStaff(StaffVO staffInfo);

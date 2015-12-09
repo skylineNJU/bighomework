@@ -32,10 +32,10 @@ public class AddWarehouseInReceiptPanel {
 	private JPanel panel;
 	private JPanel listPanel;
 	private JPanel tipPanel;
-	private JButton ok;
+//	private JButton ok;
 	private JButton cancel;
 	private JLabel tip;
-	private JLabel oL;
+	private JLabel ok;
 	private JLabel cL;
 	private JLabel inList;
 	private JLabel cargoinfo;
@@ -64,6 +64,7 @@ public class AddWarehouseInReceiptPanel {
 	private JTextField shelftext;
 	private JTextField postext;
 	private JScrollPane scrollPane;
+	private TipFrame a ;
 	
 	public AddWarehouseInReceiptPanel(){
 		panel = MainController.getWritepanel();
@@ -79,13 +80,12 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
 		tip();
 		content();
-	//	TipFrame a = new TipFrame("请重新输入");
 		listPanel.setVisible(true);
 		panel.add(listPanel);	
 		panel.repaint();
 		listPanel.repaint();
 		//tipPanel.repaint();
-		//a.repaint();
+	//	a.repaint();
 	
 	}
 
@@ -114,15 +114,15 @@ public class AddWarehouseInReceiptPanel {
 		ok.setFont(font);
 		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
 	*/
-		oL=new JLabel();
-		oL.setIcon(AllImage.submit);
-		oL.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
+		ok=new JLabel();
+		ok.setIcon(AllImage.submit);
+		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
 		
 
 		
 		cancel=new JButton("取消");
 		cancel.setFont(font);
-		cancel.setBounds(oL.getX()-panel.getWidth()/7,oL.getY(), panel.getWidth()/10, panel.getHeight()/20);
+		cancel.setBounds(ok.getX()-panel.getWidth()/7,ok.getY(), panel.getWidth()/10, panel.getHeight()/20);
 			
 		inList=new JLabel("入库单");
 		inList.setFont(font00);
@@ -199,10 +199,6 @@ public class AddWarehouseInReceiptPanel {
 		shelftext.setBounds(shelf.getX()+panel.getWidth()/8,shelf.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);
 		postext = new JTextField();	
 		postext.setBounds(position.getX()+panel.getWidth()/8,position.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);
-		
-		
-		
-		
 		
 
 		year= new JComboBox();
@@ -341,7 +337,7 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.add(inList);
 	//	listPanel.add(ok);
 		listPanel.add(cancel);
-		listPanel.add(oL);
+		listPanel.add(ok);
 	//	listPanel.add(code);
 		listPanel.add(bar);
 		listPanel.add(bartext);
@@ -364,10 +360,10 @@ public class AddWarehouseInReceiptPanel {
 		
 		
 		
-		oL.addMouseListener(new MouseAdapter(){
+		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				
-				String date=((year.getSelectedIndex()+2000)+"年")+((month.getSelectedIndex()+1)+"月")+((day.getSelectedIndex()+1+"日"));
+				String date=((year.getSelectedIndex()+2000)+"/")+((month.getSelectedIndex()+1)+"/")+((day.getSelectedIndex()+1+""));
 				
 				String damageCondition = null;
 				if(good.isSelected()){
@@ -384,7 +380,7 @@ public class AddWarehouseInReceiptPanel {
 				code=cal.calculCode(code,memory.getUserName());
 				System.out.println(code);
 				
-				//code入库单号、bar为订单号
+				//code入库单号、bar为订单号,key判断是否已有相同入库单号
 				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),code,
 						distext.getText(),date,((WritePanel) panel).getBelong()+" "+areatext.getText(),
 						Integer.parseInt(rowtext.getText()),
@@ -394,11 +390,20 @@ public class AddWarehouseInReceiptPanel {
 				
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				boolean key=service.WarehouseIn(warehouseInVO);
+			//库存报警 如果所填区号在Inventory中已达到仓库存储量的90%，则此单据不存入任何地方，提示重新输入区号
+				System.out.println("?::::::::::::::::::::::::::??"+key);
+				try{
 				if(key){
+					System.out.println("??????????????????????????");
 					WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
 					wr.saveWarehouseInCode(code, memory.getUserName());
 					memory.setWarehouseInCode(memory.getWarehouseInCode()+" "+code);
 					memory.setWarehouseInDate(memory.getWarehouseInDate()+" "+date);
+				}
+				}catch(Exception ex){
+					ex.printStackTrace();
+					System.err.println("！！重复订单号！！");
+					a = new TipFrame("请输入正确的订单号");
 				}
 			}
 		});
@@ -439,7 +444,7 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.remove(inList);
 	//	listPanel.add(ok);
 		listPanel.remove(cancel);
-		listPanel.remove(oL);
+		listPanel.remove(ok);
 	//	listPanel.remove(code);
 		listPanel.remove(bar);
 		listPanel.remove(bartext);

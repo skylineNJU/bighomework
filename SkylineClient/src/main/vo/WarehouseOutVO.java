@@ -22,8 +22,8 @@ public class WarehouseOutVO extends ReceiptVO{
 	
 	public WarehouseOutVO(String b,String co,String c,String k,TransType t,String d,String e,String f){
 		super(co);//outdata
-		code=co;
 		bar=b;
+		code=co;
 		destination = c;
 		outDate =k;
 		type = t;

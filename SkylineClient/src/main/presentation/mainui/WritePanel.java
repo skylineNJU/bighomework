@@ -22,6 +22,7 @@ public class WritePanel extends JPanel{
 	private Memory memory;
 	private  JLabel search;
 	private  JTextField s;
+	private JLabel showLabel = new JLabel();
 	
 	public String getBelong() {
 		return belong;
@@ -37,6 +38,8 @@ public class WritePanel extends JPanel{
 				,frame.getWidth()-(int)((double)frame.getWidth()*138/724)
 				,frame.getHeight()-(int)((double)frame.getHeight()*22/490)
 				);
+		showLabel.setBounds(frame.getWidth(), frame.getHeight(), 0, 0);
+		
 	}
 
 	protected void paintComponent(Graphics g) {			

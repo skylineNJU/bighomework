@@ -2,7 +2,7 @@ package main.po;
 
 import java.util.ArrayList;
 
-public class WarehouseOutList {
+public class WarehouseOutList extends Message{
 	private static final long serialVersionUID = 1L;
 	private ArrayList<WarehouseOutPO> WarehouseOutlist=new ArrayList<WarehouseOutPO>();
 	
