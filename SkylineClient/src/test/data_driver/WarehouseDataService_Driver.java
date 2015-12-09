@@ -8,7 +8,12 @@ import main.dataservice.WarehouseDataService;
 import main.po.InventoryPO;
 import main.po.WarehouseInPO;
 import main.po.WarehouseOutPO;
-
+/**
+ * 
+ * @author QiHan
+ * 
+ *
+ */
 public class WarehouseDataService_Driver {
  
 	public boolean warhouseDrive(WarehouseDataService warehouseDataService){

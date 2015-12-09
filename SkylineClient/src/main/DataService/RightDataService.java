@@ -30,6 +30,6 @@ public interface RightDataService {
 	//修改账户信息
 	public boolean modifyAcount(AccountPO accountPO);
 
-	boolean delAccount(AccountPO po);
+	public boolean delAccount(AccountPO po);
 	
 }

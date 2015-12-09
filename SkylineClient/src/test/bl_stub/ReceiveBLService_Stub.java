@@ -1,56 +1,86 @@
 package test.bl_stub;
 
-import  main.vo.OrderVO.PackageCost;
-import  main.vo.OrderVO.Size;
-import  main.vo.OrderVO.Type;
+import java.util.ArrayList;
+
+import main.po.Type;
+import main.po.OrderPO.PackageCost;
+import main.po.OrderPO.Size;
 import  main.vo.LobbyReceptionVO;
 import  main.vo.OrderVO;
 import  main.vo.TransitReceptionVO;
 import  main.businesslogicservice.ReceiveBLService;
-
+/**
+ * 
+ * @author QiHan
+ * 
+ *
+ */
 public class ReceiveBLService_Stub implements ReceiveBLService{
 
 	@Override
-	/*快递员输入
-	 寄件人姓名、住址、单位、电话、手机；
-	 收件人姓名、住址、单位、电话、手机；
-	 托运货物信息（原件数、实际重量、体积、内件品名(没有的话填null)）；
-	 经济快递，标准快递，特快专递；
-	 包装费（纸箱（5元）、木箱（10元）、快递袋（1元)
-	 系统显示提交后订单
-	 */
-	public OrderVO createNewOrder(String name1, String position1, String unit1,
-			String phoneNumber1, String name2, String position2, String unit2,
-			String phoneNumber2, int number, double weight, double Volume,
-			String name3, PackageCost pC, Type t,Size s,String id,String data,String code) {
+	public boolean createNewOrder(OrderVO orderInfo) {
 		// TODO Auto-generated method stub
-		OrderVO orderVO= new OrderVO(name1,position1,unit1,phoneNumber1,name2,position2,unit2,phoneNumber2,number,weight,Volume,name3,pC,t,s,id,data,code);
-		return orderVO;
+		orderInfo = new OrderVO("12312313", null, null, null, null,null,null, null,null, 0, 0,
+				PackageCost.valueOf(null, null), Type.cheap, Size.medium, null, 0, 0);
+		if(orderInfo.getCode()!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
+
+	@Override
+	public boolean createNewTransitReception(TransitReceptionVO transitReceptionInfo) {
+		// TODO Auto-generated method stub
+		 transitReceptionInfo = new TransitReceptionVO(2015,0, 0,null,null,null);
+		if(transitReceptionInfo .getReceiveYear()==2015){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	@Override
+	public ArrayList<TransitReceptionVO> inquireTransitReception(String codeList) {
+		// TODO Auto-generated method stub
+		TransitReceptionVO  transit = new TransitReceptionVO(2016,11, 2,"0100","12132132432",codeList);
+		ArrayList<TransitReceptionVO> list = new ArrayList<TransitReceptionVO>();
+		list.add(transit);
+		return list;
+	}
+
+	@Override
+	public boolean createNewLobbyReception(LobbyReceptionVO lobbyReceptionInfo) {
+		// TODO Auto-generated method stub
+		lobbyReceptionInfo  = new LobbyReceptionVO("12137892321", null, null, null, null,null);
+		if(	lobbyReceptionInfo.getCode()!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	@Override
+	public ArrayList<LobbyReceptionVO> inquireLobbyReceive(String codes) {
+		// TODO Auto-generated method stub
+		LobbyReceptionVO lobby = new LobbyReceptionVO(codes, null, null, null, null,null);
+		ArrayList<LobbyReceptionVO> list = new ArrayList<LobbyReceptionVO>();
+		list.add(lobby);
+		return list;
+	}
+
+	@Override
+	public ArrayList<OrderVO> inquireOrderReceive(String codes) {
+		// TODO Auto-generated method stub
+		OrderVO order = new OrderVO(codes, null, null, null, null,null,null, null,null, 
+				0, 0,PackageCost.valueOf(null, null), Type.cheap, Size.medium, null, 0, 0);
+		 ArrayList<OrderVO> list = new ArrayList<OrderVO>();
+		 list.add(order);
+		return list;
+	}
+
 	
-	@Override
-	/*中转中心业务员输入
-	 * 中转中心编号（025城市编码+0营业厅+00鼓楼中转中心）
-	 * 、到达日期、中转单编号、出发地、货物到达状态（损坏、完整、丢失）
-	 * 系统显示保存后的中转到达单
-	 */
-	public TransitReceptionVO createNewTransitReception(String CenterCode,
-			String date, String ReceiptCode, String from, int condition) {
-		// TODO Auto-generated method stub
-		TransitReceptionVO transitReceptionVO=new TransitReceptionVO(CenterCode,date,ReceiptCode);
-		return transitReceptionVO;
-	}
-
-	@Override
-	/*营业厅业务员输入
-	 * 到达日期，订单号，出发地，货物到达状态（损坏，完整，丢失）
-	 * 系统显示保存后的营业厅到达单
-	 */
-	public LobbyReceptionVO createNewLobbyReception(String date, String code,
-			String from, int condition) {
-		// TODO Auto-generated method stub
-		LobbyReceptionVO lobbyReceptionVO =new LobbyReceptionVO(from,date,code);
-		return lobbyReceptionVO;
-	}
-
 }

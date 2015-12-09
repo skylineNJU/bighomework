@@ -11,7 +11,12 @@ import main.po.WarehouseInPO;
 import main.po.WarehouseOutList;
 import main.po.WarehouseOutPO;
 
-
+/**
+ * 
+ * @author QiHan
+ * 
+ *
+ */
 public class WarehouseDataService_Stub implements WarehouseDataService{
 	
 	//入库时，系统需要将入库的订单号保存至相应仓库的数据库

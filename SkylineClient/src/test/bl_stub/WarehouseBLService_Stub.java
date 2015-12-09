@@ -10,7 +10,12 @@ import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 import main.State.TransType;
 import main.businesslogicservice.WarehouseBLService;
-
+/**
+ * 
+ * @author QiHan
+ * 
+ *
+ */
 public class WarehouseBLService_Stub implements WarehouseBLService{
 
 	@Override

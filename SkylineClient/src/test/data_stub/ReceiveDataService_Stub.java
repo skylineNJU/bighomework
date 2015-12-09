@@ -1,136 +1,217 @@
 package test.data_stub;
 
 import  main.dataservice.ReceiveDataService;
+import main.po.CenterReceiveListPO;
 import  main.po.CenterReceivePO;
+import main.po.CourrierPO;
 import  main.po.DistributePO;
+import main.po.LobbyReceiveListPO;
 import  main.po.LobbyReceivePO;
+import main.po.OrderListPO;
 import  main.po.OrderPO;
 import  main.po.OrderPO.PackageCost;
 import  main.po.OrderPO.Size;
 import  main.po.Type;
-
+/**
+ * 
+ * @author QiHan
+ * 
+ *
+ */
 
 public class ReceiveDataService_Stub implements ReceiveDataService {
 
+	@Override
 	//存储新的订单信息
-	//将订单信息存储进数据库
+		//将订单信息存储进数据库
 	public boolean writeOrder(OrderPO orderpo){
-		System.out.println("write Succeed!/n");
-		return true;
+		orderpo = new OrderPO("201515","asdas","sads","sadsad","sadsd","sdasd", "sadsad" , "sadsd",PackageCost.paperBox, null ,20,20.1,20.2,"dsadasd",Size.small,"sadsad",20);
+		if(orderpo.getCode()!=null){
+			return true;
+		}
+		else{
+			return true;
+		}
 	}
-	
-	//查看订单信息
-	//orderBar为订单条形码
-	public OrderPO readOrder(String orderBar){
-		OrderPO orderPO = new OrderPO("张三","北京市三里屯","无","64227112","13242199875","李四","南京市和园" ,
-				"无","62238765","19876244534",PackageCost.paperBox,po.Type.normal,1,14.5,30,"衣服",Size.small,orderBar,8);
-		System.out.println("Succeed!/n");
+		
+
+	@Override
+	public OrderListPO readOrder(OrderListPO orderPO) {
+		// TODO Auto-generated method stub
+		orderPO = new OrderListPO("1234566");
 		return orderPO;
 	}
-	
+
 	//删除订单信息
 	//orderBar表示订单条形码
 	public boolean delOrder(String orderBar){
-		System.out.println("delete Succeed!/n");
-		return true;
+		if(orderBar!=null){
+			System.out.println("delete Succeed!/n");
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	
+
 	//修改订单信息
-	//orderBar表示订单条形码
-	public OrderPO modifiyOrder(OrderPO orderPO){
-		 orderPO = new OrderPO("张三","北京市三里屯","无","64227112","13242199875","李四","南京市和园" ,
-				"无","62238765","19876244534",PackageCost.paperBox,Type.normal,1,14.5,30,"衣服",Size.small,"0100210001",8);
-		System.out.println("Succeed!/n");
-		return orderPO;
+		//orderBar表示订单条形码
+		public boolean modifiyOrder(OrderPO orderPO){
+			 orderPO = new OrderPO("张三","北京市三里屯","无","64227112","13242199875","李四","南京市和园" ,
+					"无",PackageCost.paperBox,Type.normal,1,14.5,30,"衣服",Size.small,"0100210001",8);
+			if(orderPO.getCode()!=null){
+			 System.out.println("Succeed!/n");
+			 return true;
+			}
+			else{
+				return false;
+			}
+		}
+
+	@Override
+	public boolean writeCenterOrder(CenterReceivePO centerReceivePO) {
+		// TODO Auto-generated method stub
+		centerReceivePO = new CenterReceivePO(2015, 10, 30, "0100", "123243242");
+		if(centerReceivePO.getBar()!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-	
-	//存储新的中转接收单单信息
-	//将订单信息存储进数据库
-	public boolean writeCenterOrder(CenterReceivePO centerReceivePO){
-		System.out.println("write Succeed!/n");
-		return true;
-	}
-	
-	//查看中转接收单单信息
-	//orderBar为订单条形码
-	public CenterReceivePO readCenterOrder(String orderBar){
-		CenterReceivePO centerReceivePO = new CenterReceivePO(2, 23, 226, 78, orderBar);
-		System.out.println("Succeed!/n");
+
+	@Override
+	public CenterReceiveListPO readCenterOrder(CenterReceiveListPO centerReceivePO) {
+		// TODO Auto-generated method stub
+		centerReceivePO= new CenterReceiveListPO("12131234234");
 		return centerReceivePO;
 	}
-	
-	//删除中转接收单单信息
-	//orderBar表示订单条形码
-	public boolean delCenterOrder(String orderBar){
-		System.out.println("delete Succeed!/n");
-		return true;
+
+	@Override
+	public boolean delCenterOrder(String orderBar) {
+		// TODO Auto-generated method stub
+		if(orderBar!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-	
-	//修改中转接收单单信息
-	//orderBar表示订单条形码
-	public CenterReceivePO modifiyCenterOrder(CenterReceivePO centerReceivePO){
-		CenterReceivePO centerReceivePO1 = new CenterReceivePO(2, 56, 4656, 2329, null);
-		System.out.println("Succeed!/n");
-		return centerReceivePO1;
+
+	@Override
+	public boolean modifiyCenterOrder(CenterReceivePO centerReceivePO) {
+		// TODO Auto-generated method stub
+		centerReceivePO = new CenterReceivePO(2015, 10, 30, "0100", "122");
+		if(centerReceivePO.getCode()!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-	
-	//存储新的接收单单信息
-	//将订单信息存储进数据库
-	public boolean writeLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
-		System.out.println("write Succeed!/n");
-		return true;
+
+	@Override
+	public boolean writeLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
+		// TODO Auto-generated method stub
+		lobbyReceivePO = new LobbyReceivePO("2014","3","28",null,"123123123");
+		if(lobbyReceivePO.getCode()!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
+}
+
+	@Override
+	public LobbyReceiveListPO readLobbyReceiveOrder(LobbyReceiveListPO poList) {
+		// TODO Auto-generated method stub
+		poList = new LobbyReceiveListPO("12132143");
+		return poList;
 	}
-	
-	//查看接收单单信息
-	//orderBar为订单条形码
-	public LobbyReceivePO readLobbyReceiveOrder(String orderBar){
-		LobbyReceivePO lobbyReceivePO = new LobbyReceivePO(5649, 2626, 233,56,"NULL", orderBar);
-		System.out.println("Succeed!/n");
-		return lobbyReceivePO;
+
+	@Override
+	public boolean delLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
+		// TODO Auto-generated method stub
+		lobbyReceivePO = new LobbyReceivePO("2014","3","28",null,"21323424");
+		if(lobbyReceivePO .getCode()!=null){
+			return true;
+			
+		}else{
+			return false;
+		}
 	}
-	
-	//删除接收单单信息
-	//orderBar表示订单条形码
-	public boolean delLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
-		System.out.println("delete Succeed!/n");
-		return true;
+
+	@Override
+	public boolean modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO) {
+		// TODO Auto-generated method stub
+		lobbyReceivePO = new LobbyReceivePO("2014","3","28",null,"21323424");
+		if(lobbyReceivePO .getCode()!=null){
+			return true;
+			
+		}else{
+			return false;
+		}
 	}
-	
-	//修改接收单单信息
-	//orderBar表示订单条形码
-	public LobbyReceivePO modifiyLobbyReceiveOrder(LobbyReceivePO lobbyReceivePO){
-		LobbyReceivePO lobbyReceivePO1 = new LobbyReceivePO(45, 78, 12, 23,"null", "asdsad");
-		System.out.println("Succeed!/n");
-		return lobbyReceivePO1;
+
+	@Override
+	public boolean writeDistributeOrder(DistributePO distributePO) {
+		// TODO Auto-generated method stub
+		distributePO  = new DistributePO("121323", "23131","Sun", "shanghai","18263738990","Winter");
+		if(distributePO .getCode()!=null){
+			return true;
+			
+		}else{
+			return false;
+		}
 	}
-	
-	//存储新的派送单信息
-	//将订单信息存储进数据库
-	public boolean writeDistributeOrder(DistributePO distributePO){
-		System.out.println("write Succeed!/n");
-		return true;
+
+	@Override
+	public boolean readDistributeOrder(String orderBar,DistributePO distributePO) {
+		// TODO Auto-generated method stub
+		distributePO  = new DistributePO(orderBar, "23131","Sun", "shanghai","18263738990","Winter");
+		if(distributePO .getCode()!=null){
+			return true;
+			
+		}else{
+			return false;
+		}
 	}
-	
-	//查看派送单单信息
-	//orderBar为订单条形码
-	public DistributePO readDistributeOrder(String orderBar){
-		DistributePO distributePO = new DistributePO(orderBar, "sadsad", "sadasd");
-		System.out.println("Succeed!/n");
-		return distributePO;
+
+	@Override
+	public boolean delDistributeOrder(String orderBar) {
+		// TODO Auto-generated method stub
+		if(orderBar!=null){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
-	
-	//删除派送单单信息
-	//orderBar表示订单条形码
-	public boolean delDistributeOrder(String orderBar){
-		System.out.println("delete Succeed!/n");
-		return true;
+
+	@Override
+	public boolean modifiyDistributeOrder(DistributePO distributePO) {
+		// TODO Auto-generated method stub
+		distributePO  = new DistributePO("21323", "23131","Sun", "shanghai","18263738990","Winter");
+		if(distributePO .getCode()!=null){
+			return true;
+			
+		}else{
+			return false;
+		}
 	}
-	
-	//修改派送单单信息
-	//orderBar表示订单条形码
-	public DistributePO modifiyDistributeOrder(DistributePO distributePO){
-		DistributePO distributePO1 = new DistributePO("sadasd", "sdsa", "sdas");
-		System.out.println("Succeed!/n");
-		return distributePO1;
+
+	@Override
+	public CourrierPO getCourrierInfo(CourrierPO po) {
+		// TODO Auto-generated method stub
+		po = new CourrierPO("2131231");
+		return po;
 	}
+
+	@Override
+	public void saveDistribute(DistributePO po) {
+		// TODO Auto-generated method stub
+		po = new DistributePO("12323", "23131","Sun", "shanghai","18263738990","Winter");
+		System.out.println("-----------save Distribute success-------");
+	}
+
 }
