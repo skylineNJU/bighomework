@@ -56,10 +56,14 @@ public class AddWarehouseInReceiptPanel {
 	private JComboBox year;
 	private JComboBox month;
 	private JComboBox day;
+	private JCheckBox ShippingArea;
+	private JCheckBox RailwayArea;
+	private JCheckBox AutoArea;
+	private JCheckBox MotorArea;
 	private JTextField bartext;
 	private JTextField codetext;
 	private JTextField distext;
-	private JTextField areatext;
+	//private JTextField areatext;
 	private JTextField rowtext;
 	private JTextField shelftext;
 	private JTextField postext;
@@ -161,7 +165,7 @@ public class AddWarehouseInReceiptPanel {
 		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
 		
-		area=new JLabel("区号:");
+		area=new JLabel("区:");
 		area.setFont(font);
 		area.setBounds(cargoinfo.getX(),damageCondition.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
 		
@@ -171,7 +175,7 @@ public class AddWarehouseInReceiptPanel {
 		
 		shelf=new JLabel("架号:");
 		shelf.setFont(font);
-		shelf.setBounds(cargoinfo.getX(),row.getY()+panel.getHeight()/13,panel.getWidth()/5, panel.getHeight()/10);
+		shelf.setBounds(cargoinfo.getX(),row.getY()+panel.getHeight()/8,panel.getWidth()/5, panel.getHeight()/10);
 		
 		position=new JLabel("位号:");
 		position.setFont(font);
@@ -191,8 +195,20 @@ public class AddWarehouseInReceiptPanel {
 		distext = new JTextField();
 		distext.setBounds(distination.getX()+panel.getWidth()/8,distination.getY()+panel.getWidth()/50,panel.getWidth()/6, panel.getHeight()/20);
 		
-		areatext = new JTextField();
-		areatext.setBounds(area.getX()+panel.getWidth()/8,area.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);
+//		areatext = new JTextField();
+//		areatext.setBounds(area.getX()+panel.getWidth()/8,area.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);
+	
+		ShippingArea = new JCheckBox("航运区");
+		RailwayArea = new JCheckBox("铁运区");
+		AutoArea = new JCheckBox("汽运区");
+		MotorArea = new JCheckBox("机动区");
+		ShippingArea.setBounds(area.getX()+panel.getWidth()/15,area.getY()+panel.getWidth()/50,panel.getWidth()/8, panel.getHeight()/20);
+		RailwayArea .setBounds(ShippingArea.getX()+panel.getWidth()/8,area.getY()+panel.getWidth()/50,panel.getWidth()/8, panel.getHeight()/20);
+		AutoArea .setBounds(ShippingArea.getX(),ShippingArea.getY()+panel.getWidth()/20,panel.getWidth()/8, panel.getHeight()/20);
+		MotorArea.setBounds(RailwayArea.getX(),ShippingArea.getY()+panel.getWidth()/20,panel.getWidth()/8, panel.getHeight()/20);
+		 
+		
+		
 		rowtext = new JTextField();
 		rowtext.setBounds(row.getX()+panel.getWidth()/8,row.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);
 		shelftext = new JTextField();
@@ -201,9 +217,6 @@ public class AddWarehouseInReceiptPanel {
 		postext.setBounds(position.getX()+panel.getWidth()/8,position.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);
 		
 
-		year= new JComboBox();
-		month= new JComboBox();
-		day= new JComboBox();
 		String[] arr1=new String[1000];//数组时个对象,对象在使用前要初始化  
         for(int i=0;i<1000;i++){  
             arr1[i] = i+2000+"年";  
@@ -353,7 +366,10 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.add(position);
 	//	listPanel.add(codetext);
 		listPanel.add(distext);
-		listPanel.add(areatext);
+		listPanel.add(ShippingArea); 
+		listPanel.add(RailwayArea); 
+		listPanel.add(AutoArea); 
+		listPanel.add(MotorArea); 
 		listPanel.add(rowtext);
 		listPanel.add(shelftext);
 		listPanel.add(postext);
@@ -373,6 +389,19 @@ public class AddWarehouseInReceiptPanel {
 					damageCondition="损坏";
 				}	
 				
+				String Area = null;
+				if(ShippingArea.isSelected()){
+					Area = "航运区";
+				}
+				if(RailwayArea.isSelected()){
+					Area = "铁运区";
+				}	
+				if(AutoArea.isSelected()){
+					Area = "汽运区";
+				}
+				if(MotorArea.isSelected()){
+					Area = "机动区";
+				}
 				
 				WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
 				String code=memory.getWarehouseInCode();
@@ -382,7 +411,7 @@ public class AddWarehouseInReceiptPanel {
 				
 				//code入库单号、bar为订单号,key判断是否已有相同入库单号
 				WarehouseInVO warehouseInVO = new WarehouseInVO(bartext.getText(),code,
-						distext.getText(),date,((WritePanel) panel).getBelong()+" "+areatext.getText(),
+						distext.getText(),date,((WritePanel) panel).getBelong()+" "+Area,
 						Integer.parseInt(rowtext.getText()),
 						Integer.parseInt(shelftext.getText()),
 						Integer.parseInt(postext.getText()),
@@ -391,10 +420,8 @@ public class AddWarehouseInReceiptPanel {
 				WarehouseBLService service=ConstructFactory.WarehouseFactory();
 				boolean key=service.WarehouseIn(warehouseInVO);
 			//库存报警 如果所填区号在Inventory中已达到仓库存储量的90%，则此单据不存入任何地方，提示重新输入区号
-				System.out.println("?::::::::::::::::::::::::::??"+key);
 				try{
 				if(key){
-					System.out.println("??????????????????????????");
 					WarehouseReceipt wr = ConstructFactory.WarehouseReceiptFactory();
 					wr.saveWarehouseInCode(code, memory.getUserName());
 					memory.setWarehouseInCode(memory.getWarehouseInCode()+" "+code);
@@ -460,7 +487,11 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.remove(position);
 	//	listPanel.remove(codetext);
 		listPanel.remove(distext);
-		listPanel.remove(areatext);
+		listPanel.remove(ShippingArea);
+		listPanel.remove(RailwayArea);
+		listPanel.remove(AutoArea);
+		listPanel.remove(MotorArea);
+	//	listPanel.remove(areatext);
 		listPanel.remove(rowtext);
 		listPanel.remove(shelftext);
 		listPanel.remove(postext);

@@ -5,77 +5,180 @@ import java.util.ArrayList;
 import main.businesslogicservice.FinanceBLService;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
+import main.vo.DistanceVO;
 import main.vo.EarnVO;
+import main.vo.FeeVO;
+import main.vo.SalaryVO;
+
+
 
 public class FinanceBLService_Stub implements FinanceBLService{
 	ArrayList<EarnVO> earn=new ArrayList<EarnVO>();
 	BankAccountVO account;
 	ArrayList<CostVO> cost=new ArrayList<CostVO>();
+	ArrayList<ArrayList>array=new ArrayList<ArrayList>();
+	ArrayList<BankAccountVO>bankAccount=new ArrayList<BankAccountVO>();
+	String date="20150201";
 	@Override
-	public boolean showStatisticsList(String date1, String date2,ArrayList<EarnVO> earnList,ArrayList<CostVO> costList) {
-		earn.clear();
-		EarnVO ea=new EarnVO("141250029",date1,"1234567890");
-		EarnVO eaa=new EarnVO("141250029",date2,"1234567891");
-		earn.add(ea);
-		earn.add(eaa);
-		return true;
+	public ArrayList<ArrayList> showStatisticsList(String date) {
+		array.clear();
+		EarnVO ea=new EarnVO("141250029",date,"1234567890","77777",9.9,"1","1");
+		
+		return array;
 	}
 
 	@Override
-	public boolean showEarnListDependsOnDay(String date,ArrayList<EarnVO> earnList) {
+	public ArrayList<EarnVO> showEarnListDependsOnDay(String date) {
 		// TODO Auto-generated method stub
 		earn.clear();
-		EarnVO ea=new EarnVO("141250029",date,"123456789021");
-		EarnVO eaa=new EarnVO("141250029",date,"123456789121");
+		EarnVO ea=new EarnVO("141250029",date,"1234567890","77777",9.9,"1","1");
 		earn.add(ea);
-		earn.add(eaa);
-		return true;
+		return earn;
+	}
+
+
+	@Override
+	public ArrayList<BankAccountVO> showBalance() {
+		// TODO Auto-generated method stub
+		account=new BankAccountVO("12345",100000.0);
+		bankAccount.add(account);
+		return bankAccount;
 	}
 
 	@Override
-	public boolean showEarnListDependsOnInstitution(String code, String date1, String data2,ArrayList<EarnVO> earnList) {
+	public ArrayList<CostVO> showCostList(String date) {
 		// TODO Auto-generated method stub
-		earn.clear();
-		EarnVO ea=new EarnVO("123456789121",date1,code);
-		earn.add(ea);
-		return true;
-	}
-
-	@Override
-	public boolean showBalance(String name,BankAccountVO account) {
-		// TODO Auto-generated method stub
-		account=new BankAccountVO(name,100000.0);
-		return true;
-	}
-
-	@Override
-	public boolean showCostList(ArrayList<CostVO> costList) {
-		// TODO Auto-generated method stub
-		CostVO co=new CostVO("1235123512","2014/1/1","123456789211","24212341234132", 0, null, null);
+		CostVO co=new CostVO("1235123512","2014/1/1","123456789211",1.1,"24212341234132", "", "");
 		cost.clear();
 		cost.add(co);
-		return true;
+		return cost;
 	}
 
-	@Override
-	public boolean showCostList(String date,ArrayList<CostVO> costList) {
-		// TODO Auto-generated method stub
-		CostVO co=new CostVO("1235123512",date,"123456789211","24212341234132", 0, null, null);
-		cost.clear();
-		cost.add(co);
-		return true;
-	}
+
 
 	@Override
-	public boolean writeEarnList(ArrayList<EarnVO> earn) {
+	public boolean writeEarn(EarnVO earnVO) {
 		
 		return true;
 	}
 
 	@Override
-	public boolean writeCostList(ArrayList<CostVO> costList) {
+	public boolean writeCost(CostVO costVO) {
 		
 		return false;
+	}
+
+	@Override
+	public boolean delSalary(SalaryVO salaryVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifySalary(SalaryVO salaryVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delFee(FeeVO feeVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyFee(FeeVO feeVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delCollection(EarnVO earnVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyCollection(EarnVO earnVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyCost(CostVO costVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCost(CostVO costVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public DistanceVO getDistance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public ArrayList<EarnVO> showLobbyEarn(String date, String unit) {
+		// TODO Auto-generated method stub
+		EarnVO ea=new EarnVO("141250029",date,"1234567890","77777",9.9,"1","1");
+		earn.add(ea);
+		return earn;
+	}
+
+	@Override
+	public SalaryVO readSalary() {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
+	@Override
+	public FeeVO readFee() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public boolean writeSalary(SalaryVO salaryVO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean writeFee(FeeVO feeVO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean writeDistance(DistanceVO distanceVO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean modifyDistance(DistanceVO distanceVO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean delDistance(DistanceVO distanceVO) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean modifyBalance(BankAccountVO bankVO) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

@@ -19,192 +19,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 import main.presentation.mainui.MainController;
 
 public class InstitutionPanel {
-/*	private JPanel panel;
-	private JTabbedPane tab;
-	private JPanel addPanel;
-	private JPanel inquirePanel;
-	private JLabel title;
-	private int panelWidth;
-	private int panelHeight;
-	private int tabWidth;
-	private int tabHeight;
-	private String[] kindString;
-	private String[] inquireString;
-	//新增界面的组件
-	private JLabel kindLabel;
-	private JLabel nameLabel;
-	private JLabel placeLabel;
-	private JLabel codeLabel;
-	private JComboBox<String> kind;
-	private JTextField name;
-	private JTextField place;
-	private JTextField code;
-	private JButton saveButton;
-	private JButton cancleButton;
-	//查询界面的组件
-	private JTextField inquireText;
-	private JLabel inquireLabel;
-	private JLabel inquireKind;
-	private JLabel inquireName;
-	private JLabel inquirePlace;
-	private JLabel inquireCode;
-	private JComboBox<String> kindBox;
-	private JTextField nameText;
-	private JTextField codeText;
-	private JTextField placeText;
-	private JButton inquireSave;
-	private JButton  inquireCancle;
-	private JButton inquireButton;
-	private JButton backButton;
-	private JLabel label;//
-	private JLabel dataLabel;//这个label放组件，点击查询后setTrue
-	
-	public InstitutionPanel(){
-		panel = MainController.getWritepanel();
-		panel.setLayout(null);
-		panelWidth = panel.getWidth();
-		panelHeight = panel.getHeight();
-	}
-	
-	public void init(){
-		initTitle();
-		tab = new JTabbedPane(JTabbedPane.TOP);
-		panel.add(tab);
-		tab.setBounds(panelWidth/10, panelHeight/15, panelWidth*4/5, panelHeight*13/15);
-		tabWidth = tab.getWidth();
-		tabHeight = tab.getHeight();
-		addPanel = new JPanel();
-		inquirePanel = new JPanel();
-		addPanel.setLayout(null);
-		inquirePanel.setLayout(null);
-		tab.addTab("新增机构", addPanel);
-		tab.addTab("查询机构", inquirePanel);
-		initAddPanel();
-		initInquirePanel();
-		panel.repaint();
-	}
-	public void initTitle(){
-		title = new JLabel("机构管理");
-		panel.add(title);
-		title.setBounds(panelWidth*2/5, panelHeight/60, panelWidth/5, panelHeight/30);
-	}
-	public void initAddPanel(){
-		kindString = new String[]{"1", "2", "3", "4", "5"};
-		kindLabel = new JLabel("种类");
-		nameLabel = new JLabel("名字");
-		placeLabel = new JLabel("地点");
-		codeLabel = new JLabel("编号");
-		kind = new JComboBox<String>(kindString);
-		name = new JTextField();
-		place = new JTextField();
-		code = new JTextField();
-		saveButton = new JButton("保存");
-		cancleButton = new JButton("取消");
-		
-		addPanel.add(kindLabel);
-		addPanel.add(nameLabel);
-		addPanel.add(placeLabel);
-		addPanel.add(codeLabel);
-		addPanel.add(kind);
-		addPanel.add(name);
-		addPanel.add(place);
-		addPanel.add(code);
-		addPanel.add(saveButton);
-		addPanel.add(cancleButton);
-		
-		saveButton.addMouseListener(new MouseAdapter(){
-			
-		});
-		
-		kindLabel.setBounds(tabWidth/10, tabHeight/9, tabWidth/10, tabHeight/15);
-		nameLabel.setBounds(kindLabel.getX(), kindLabel.getY()+kindLabel.getHeight()+tabHeight/9, kindLabel.getWidth(), kindLabel.getHeight());
-		placeLabel.setBounds(kindLabel.getX(), nameLabel.getY()+nameLabel.getHeight()+tabHeight/9, kindLabel.getWidth(), kindLabel.getHeight());
-		codeLabel.setBounds(kindLabel.getX(), placeLabel.getY()+placeLabel.getHeight()+tabHeight/9, kindLabel.getWidth(), kindLabel.getHeight());
-		kind.setBounds(tabWidth/4, kindLabel.getY(), tabWidth*13/20, kindLabel.getHeight());
-		name.setBounds(kind.getX(), nameLabel.getY(), kind.getWidth(), kind.getHeight());
-		place.setBounds(kind.getX(), placeLabel.getY(), kind.getWidth(), kind.getHeight());
-		code.setBounds(kind.getX(), codeLabel.getY(), kind.getWidth(), kind.getHeight());
-		saveButton.setBounds(tabWidth*3/4, code.getY()+code.getHeight()+tabHeight/9, tabWidth/8, tabHeight/15);
-		cancleButton.setBounds(tabWidth*11/20, saveButton.getY(), tabWidth/8, tabHeight/15);
-	}
-	public void initInquirePanel(){
-		inquireString = new String[]{"1", "2", "3", "4", "5"};
-		inquireText = new JTextField();
-		inquireLabel = new JLabel("查询");
-		inquireKind = new JLabel("种类");
-		inquireName = new JLabel("名字");
-		inquirePlace = new JLabel("地址");
-		inquireCode = new JLabel("编号");
-		kindBox = new JComboBox<String>(inquireString);
-		nameText = new JTextField();
-		placeText = new JTextField();
-		codeText = new JTextField();
-		inquireSave = new JButton("保存");
-		inquireCancle = new JButton("取消");
-		inquireButton = new JButton("查询");
-		backButton = new JButton("返回");
-		label = new JLabel();
-		dataLabel = new JLabel();
-		
-		inquirePanel.add(label);
-		inquirePanel.add(dataLabel);
-		label.setBounds(0, 0, panelWidth, panelHeight);
-		dataLabel.setBounds(0, 0, panelWidth, panelHeight);
-		label.setVisible(true);
-		dataLabel.setVisible(false);
-	
-		label.add(inquireText);
-		label.add(inquireLabel);
-		label.add(inquireButton);
-		
-		inquireLabel.setBounds(tabWidth/10-tabWidth/40,tabHeight*2/5,tabWidth/10, tabHeight/15);
-		inquireText.setBounds(tabWidth*3/20, tabHeight*2/5, tabWidth*3/5, tabHeight/15);
-		inquireButton.setBounds(tabWidth*4/5, tabHeight*2/5, tabWidth/8, tabHeight/15);
-		inquireButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				dataLabel.setVisible(true);
-				label.setVisible(false);
-			}
-		});
-		
-		dataLabel.add(inquireKind);
-		dataLabel.add(inquireName);
-		dataLabel.add(inquirePlace);
-		dataLabel.add(inquireCode);
-		dataLabel.add(kindBox);
-		dataLabel.add(nameText);
-		dataLabel.add(placeText);
-		dataLabel.add(codeText);
-		dataLabel.add(inquireSave);
-		dataLabel.add(inquireCancle);
-		dataLabel.add(backButton);
-		
-		inquireKind.setBounds(tabWidth/10, tabHeight/9, tabWidth/10, tabHeight/15);
-		inquireName.setBounds(inquireKind.getX(), inquireKind.getY()+inquireKind.getHeight()+tabHeight/9, inquireKind.getWidth(), inquireKind.getHeight());
-		inquirePlace.setBounds(inquireKind.getX(), inquireName.getY()+inquireName.getHeight()+tabHeight/9, inquireKind.getWidth(), inquireKind.getHeight());
-		inquireCode.setBounds(inquireKind.getX(), inquirePlace.getY()+inquirePlace.getHeight()+tabHeight/9, inquireKind.getWidth(), inquireKind.getHeight());
-		kindBox.setBounds(tabWidth/4, inquireKind.getY(), tabWidth*13/20, inquireKind.getHeight());
-		nameText.setBounds(kindBox.getX(), inquireName.getY(), kindBox.getWidth(), kindBox.getHeight());
-		placeText.setBounds(kindBox.getX(), inquirePlace.getY(), kindBox.getWidth(), kindBox.getHeight());
-		codeText.setBounds(kindBox.getX(), inquireCode.getY(), kindBox.getWidth(), kindBox.getHeight());
-		inquireSave.setBounds(tabWidth*3/4, codeText.getY()+codeText.getHeight()+tabHeight/9, tabWidth/8, tabHeight/15);
-		inquireCancle.setBounds(tabWidth*11/20, inquireSave.getY(), tabWidth/8, tabHeight/15);
-		backButton.setBounds(2*inquireCancle.getX()-inquireSave.getX(), inquireSave.getY(), tabWidth/8, tabHeight/15);
-		
-		backButton.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				label.setVisible(true);
-				dataLabel.setVisible(false);
-			}
-		});
-	}
-*/
-	
+
 	
 	private JPanel panel;
 	private JPanel IntermPanel;
@@ -225,6 +46,7 @@ public class InstitutionPanel {
 	private JLabel citys;
 	private JLabel newWarehouse;
 	private JLabel newInterm;
+	private JLabel modifty;
 	private JLabel save;
 	private JLabel newLobby;
 	private JLabel ok;
@@ -233,6 +55,10 @@ public class InstitutionPanel {
 	private	DefaultTableModel   defaultModel11 ;
 	private	DefaultTableModel   defaultModel1 ;
 	private	DefaultTableModel   defaultModel2 ;
+	private Vector<String> columnNameV; // declare the table column name vector  
+	private Vector<Vector<Object>> tableValueV; // declare the table value     // vector  
+	 private int fixedColumn = 1; // the fixed column number                                
+	
 	
 	public InstitutionPanel(){
 		panel=MainController.getWritepanel();
@@ -286,9 +112,11 @@ public class InstitutionPanel {
 		scrollPane11.setVisible(true);
 	
 		
-		tableTitle1 = new String[]{"仓库区号","总员工数","占地面积/m^2","仓库警戒值"};
-		tableData1=new String[][]{{"A","50","500","90%"},{"B","50","600","90%"},{"C","50","500","90%"},{"D","50","508","90%"},{"E","50","508","80%"}};	
-		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1);;
+		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库警戒值"};
+		tableData1=new String[][]{{"航运区","50","500","90%"},{"铁路区","50","600","90%"},{"汽运区","50","500","90%"},{"机动区","50","508","90%"}};	
+		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
+	        return true;  
+	     } } ;
 		table1 = new JTable(defaultModel1);
 		table1.setEnabled(false);//设置不可编辑内容
 		table1.setRowHeight(panel.getWidth()/20);//设置列宽
@@ -306,7 +134,7 @@ public class InstitutionPanel {
 		table1.getColumnModel().getColumn(1).setPreferredWidth(scrollPane1.getWidth()/6);;
 		table1.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane1.setVisible(true);
-		
+		scrollPane1.setEnabled(false);
 		IntermPanel.add(scrollPane1);
 		IntermPanel.add(scrollPane11);
 	}
@@ -340,10 +168,35 @@ public class InstitutionPanel {
 		table2.getColumnModel().getColumn(1).setPreferredWidth(scrollPane2.getWidth()/6);;
 		table2.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane2.setVisible(true);
-		
+		scrollPane2.setEnabled(false);
 		LobbyPanel.add(scrollPane2);
 		
 	}
+	
+	public String[][] getInterm(){
+		String[][] content =new String[1][4];
+		for(int x=0;x<1;x++)
+			for(int y=0;y<4;y++)
+				content[x][y]=null;
+		return content;
+	}
+	
+	public String[][] getWarehouse(){
+		String[][] content =new String[4][4];
+		for(int x=0;x<4;x++)
+			for(int y=0;y<4;y++)
+				content[x][y]=null;
+		return content;
+	}
+	
+	public String[][]  getLobby(){
+		String[][] content =new String[20][4];
+		for(int x=0;x<20;x++)
+			for(int y=0;y<4;y++)
+				content[x][y]=null;
+		return content;
+	} 
+	
 	
 	public void Button(){
 		//可用符号代替
@@ -351,11 +204,14 @@ public class InstitutionPanel {
 		newInterm = new JLabel("新增中转中心");
 		save = new JLabel("保存");
 		newLobby = new JLabel("新增营业厅");
-		newWarehouse.setBounds(panel.getWidth()*60/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
-		newInterm.setBounds(panel.getWidth()*70/100,panel.getHeight()*53/60, panel.getWidth()/5, panel.getHeight()/15);
-		newLobby.setBounds(panel.getWidth()*70/100,panel.getHeight()*53/60, panel.getWidth()/5, panel.getHeight()/15);
+		modifty = new JLabel("修改");
+	//	newWarehouse.setBounds(panel.getWidth()*60/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
+		newInterm.setBounds(panel.getWidth()*60/100,panel.getHeight()*53/60, panel.getWidth()/5, panel.getHeight()/15);
+		newLobby.setBounds(panel.getWidth()*60/100,panel.getHeight()*53/60, panel.getWidth()/5, panel.getHeight()/15);
+		modifty.setBounds(panel.getWidth()*75/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
 		save.setBounds(panel.getWidth()*85/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
-	
+		
+		
 		message = new JLabel("请输入要查看的机构所在城市：");
 		message.setBounds(panel.getWidth()*8/100,panel.getHeight()*2/60, panel.getWidth()/3, panel.getHeight()/15);
 		city=new JTextField();
@@ -365,15 +221,16 @@ public class InstitutionPanel {
 		
 		
 		newLobby.setVisible(false);
-		newWarehouse.setVisible(true);
+	//	newWarehouse.setVisible(true);
 		newInterm.setVisible(true);
 		ok.setVisible(true);
 		city.setVisible(true);
 		message.setVisible(true);
 		
-		panel.add(newWarehouse);
+	//	panel.add(newWarehouse);
 		panel.add(newInterm);
 		panel.add(newLobby);
+		panel.add(modifty);
 		panel.add(save);
 		panel.add(ok);
 		panel.add(city);
@@ -385,29 +242,113 @@ public class InstitutionPanel {
 		      public void stateChanged(ChangeEvent changeEvent) {
 		    	  if(tab.getTitleAt(tab.getSelectedIndex()).equals("中转中心") ){
 		    		  newLobby.setVisible(false);
-		    		  newWarehouse.setVisible(true);
+		    		  table1.setEnabled(false);
+					  table11.setEnabled(false);
+		  //  		  newWarehouse.setVisible(true);
 		    		  newInterm.setVisible(true);
 		    	  }
 		
 		    	  else if(tab.getTitleAt(tab.getSelectedIndex()).equals("营业厅")){
-		    		  newWarehouse.setVisible(false);
+		   // 		  newWarehouse.setVisible(false);
 		    		  newInterm.setVisible(false);
 		    		  newLobby.setVisible(true);
+		    		  table2.setEnabled(false);
 		    	
 		    	  }
-		    	  System.out.println(":::::::::::"+tab.getTitleAt(tab.getSelectedIndex()));
 		      }});
 		
-		newWarehouse.addMouseListener(new MouseAdapter(){
+		
+		modifty.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				 defaultModel1.addRow(new  Vector());
+				  if(tab.getTitleAt(tab.getSelectedIndex()).equals("中转中心") ){
+					  table1.setEnabled(true);
+					  table11.setEnabled(true);
+		    		  table2.setEnabled(false);
+				  }
+		
+		    	  else if(tab.getTitleAt(tab.getSelectedIndex()).equals("营业厅")){
+					  table1.setEnabled(false);
+					  table11.setEnabled(false);
+		    		  table2.setEnabled(true);
+			}
+			}
+		});
+		
+		newInterm.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+			
+				tableData1 = getInterm();
+				for(int i=0;i<tableData1.length;i++){
+					for(int j=0;j<tableData1[0].length;j++){
+						table1.setValueAt(tableData1[i][j], i, j);
+					}
+				}
+				tableData11 = getWarehouse();
+				for(int i=0;i<tableData11.length;i++){
+					for(int j=0;j<tableData11[0].length;j++){
+						table11.setValueAt(tableData11[i][j], i,j);
+					}
+				}	
+				
+				table1.setEnabled(true);
+				table11.setEnabled(true);
 			}
 		});
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				 defaultModel2.addRow(new  Vector());
+				 table2.setEnabled(true);
+			}
+		});
+		save.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				table1.setEnabled(false);
+				table11.setEnabled(false);
+				table2.setEnabled(false);
 			}
 		});
 		
+		
+		table1.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				 int row = table1.rowAtPoint(e.getPoint());
+				 int column=table1.columnAtPoint(e.getPoint());  
+				 System.out.println("?????"+row+" "+column+"");
+				
+			}
+		});
+			
+		
 	}
+
+	 private class FloatingColumnTableModel extends AbstractTableModel {  
+	  
+	        private static final long serialVersionUID = -2481466672947191281L;  
+	          
+	        @Override  
+	        public boolean isCellEditable(int row, int column) {  
+	            return true;  
+	        }  
+	  
+	        @Override  
+	        public int getRowCount() {  
+	            return tableValueV.size();  
+	        }  
+	  
+	        @Override  
+	        public int getColumnCount() {  
+	            return columnNameV.size() - fixedColumn;  
+	        }  
+	  
+	        @Override  
+	        public Object getValueAt(int rowIndex, int columnIndex) {  
+	            return tableValueV.get(rowIndex).get(columnIndex + fixedColumn);  
+	        }  
+	  
+	        @Override  
+	        public String getColumnName(int columnIndex) {  
+	            return columnNameV.get(columnIndex + fixedColumn);  
+	        }  
+	    }
+	 
 }

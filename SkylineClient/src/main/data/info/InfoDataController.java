@@ -18,7 +18,6 @@ import main.socketservice.Client;
 public class InfoDataController implements InfoDataService {
 
 	Client client;
-
 	@Override
 	public StaffListPO readStaff(String unitCode) {
 		StaffListPO poList = new StaffListPO();
@@ -29,6 +28,7 @@ public class InfoDataController implements InfoDataService {
 		client.writeReceipt(poList);
 		return (StaffListPO)client.getResponse();
 	}
+
 	@Override
 	public boolean createNewStaff(WorkerPO workerPO) {
 		// TODO Auto-generated method stub
