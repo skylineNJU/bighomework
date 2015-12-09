@@ -7,6 +7,7 @@ import  main.po.InstitutionPO;
 import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;
+import main.po.StaffListPO;
 import  main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
 import main.po.WarehouseInfo;
@@ -15,17 +16,7 @@ import  main.po.WorkerPO;
 
 public class InfoDataService_Stub implements InfoDataService{
 	//--------------机构管理--------------------
-	@Override
-	public boolean readStaff(String unitCode) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delStaff(WorkerPO workerPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public boolean addLobby(LobbyInfo po) {
@@ -161,6 +152,12 @@ public class InfoDataService_Stub implements InfoDataService{
 	//查询车辆信息，输入车辆代号 数据库中查询该代号的车辆信息
 	@Override
 	public VehicleListPO readVehicle(VehicleListPO vehiclelist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public StaffListPO readStaff(String unitCode) {
 		// TODO Auto-generated method stub
 		return null;
 	}

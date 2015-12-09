@@ -27,10 +27,10 @@ public class InfoDataService_Driver {
 	String unitNum="23333";
 	String account="141250029";
 	public void drive(InfoDataService service){
-		if(service.readStaff(unitNum)){
+		if(service.readStaff(unitNum) != null){
 			System.out.println("---------Read Staff Success!-----------");
 		}
-		if(service.delStaff(worker)){
+		if(service.deleteStaff("sa")){
 			System.out.println("---------Delete Staff Success!-----------");
 		}
 		if(service.addLobby(lobbyInfo)){

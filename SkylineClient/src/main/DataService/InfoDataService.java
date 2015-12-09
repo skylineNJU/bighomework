@@ -2,17 +2,10 @@ package main.dataservice;
 
 import main.po.DriverInfoPO;
 import main.po.DriverList;
-<<<<<<< HEAD
-import main.po.InstitutionPO;
 import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;
 import main.po.StaffListPO;
-=======
-import main.po.IntermediateInfo;
-import main.po.LobbyInfo;
-import main.po.LobbyInfoList;
->>>>>>> origin/master
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
 import main.po.WarehouseInfo;
