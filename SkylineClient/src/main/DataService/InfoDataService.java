@@ -15,6 +15,10 @@ public interface InfoDataService {
 
 	//--------------机构管理--------------------
 	
+	public boolean readStaff(String unitCode);
+	
+	public boolean delStaff(WorkerPO workerPO);
+	
 	//从数据库里面读取某类别的机构信息
 	//category 为机构的类别
 	public boolean readInstitution(String code,InstitutionPO institutionPO);

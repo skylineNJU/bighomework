@@ -6,7 +6,6 @@ public class WarehouseuiController {
 	private CheckInventoryPanel checkInventory;
 	private ShowInventoryPanel showInventory;
 	private EmployeeInforPanel employeeInfor;
-	private ModifyPasswordPanel modifyPassword;
 	public void select(Warehouseui ui){
 		switch(ui){
 		case AddWarehouseInReceipt:
@@ -28,10 +27,6 @@ public class WarehouseuiController {
 		case EmployeeInfor:
 			employeeInfor=new EmployeeInforPanel();
 			employeeInfor.init();
-			break;
-		case ModifyPassword:
-			modifyPassword=new ModifyPasswordPanel();
-			modifyPassword.init();
 			break;
 		default:
 			break;

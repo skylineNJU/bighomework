@@ -14,13 +14,14 @@ import main.presentation.mainui.MainController;
 import main.vo.BankAccountVO;
 
 public class BalancePanel {
-	
+
 	private int panelWidth;
 	private int panelHeight;
 	private JPanel panel;
 	private JLabel title;
 	private JScrollPane scrollPane;
 	private JTable table;
+
 	//银行账户的信息,需要从数据库中读取
 	private String[][] bankAccountMessage;
 	//列表中的标题
@@ -70,6 +71,7 @@ public class BalancePanel {
 			scrollPane.setBounds(panelWidth/6, panelHeight/3, panelWidth*2/3, (table.getRowCount()+1)*table.getRowHeight());
 		}
 		scrollPane.setVisible(true);
+
 		panel.add(scrollPane);
 	}
 	

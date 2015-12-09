@@ -30,6 +30,7 @@ public class InfoDataController implements InfoDataService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 
 	@Override
 	public boolean modifyInstitution(InstitutionPO institutionPO) {
@@ -142,6 +143,18 @@ public class InfoDataController implements InfoDataService {
 		po.setKey("Delete");
 		client=MainController.getClient();
 		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean readStaff(String unitCode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delStaff(WorkerPO workerPO) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

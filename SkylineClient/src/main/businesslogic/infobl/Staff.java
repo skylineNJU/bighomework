@@ -1,5 +1,7 @@
 package main.businesslogic.infobl;
 
+import java.util.ArrayList;
+
 import main.data.info.InfoDataController;
 import main.dataservice.InfoDataService;
 import main.po.WorkerPO;
@@ -37,6 +39,11 @@ public class Staff {
 		po=service.inquireStaff(po);
 		return true;
 	}
+	private ArrayList<StaffVO> readWorkerList(String unitCode){
+		
+		return null;
+	}
+	
 	public boolean saveInfo(){
 		po=new WorkerPO(this.name,this.job,this.unit,this.workage,this.code);
 		InfoDataService service=new InfoDataController();
