@@ -57,12 +57,12 @@ public class LoadingPanel extends JPanel {
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 		dayBox=new JComboBox<String>(days);
 		timeLabel.setBounds(this.PANEL_WIDTH/20,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
-		yearBox.setBounds(timeLabel.getX()+this.PANEL_WIDTH/10,this.PANEL_WIDTH/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
-		yearLabel.setBounds(yearBox.getX()+this.PANEL_WIDTH/10+10,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/20,this.PANEL_HIGHT/20);
-		monthBox.setBounds(yearLabel.getX()+this.PANEL_WIDTH/10,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
-		monthLabel.setBounds(monthBox.getX()+this.PANEL_WIDTH/10+10,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/20,this.PANEL_HIGHT/20);
-		dayBox.setBounds(monthLabel.getX()+this.PANEL_WIDTH/10,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
-		dayLabel.setBounds(dayBox.getX()+10+this.PANEL_WIDTH/10,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
+		yearBox.setBounds(timeLabel.getX()+this.PANEL_WIDTH/10, this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
+		yearLabel.setBounds(yearBox.getX()+this.PANEL_WIDTH/10+10, this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/20,this.PANEL_HIGHT/20);
+		monthBox.setBounds(yearLabel.getX()+this.PANEL_WIDTH/10, this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
+		monthLabel.setBounds(monthBox.getX()+this.PANEL_WIDTH/10+10, this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/20,this.PANEL_HIGHT/20);
+		dayBox.setBounds(monthLabel.getX()+this.PANEL_WIDTH/10, this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
+		dayLabel.setBounds(dayBox.getX()+10+this.PANEL_WIDTH/10, this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
 		inquireButton=new JButton("≤È—Ø");
 		inquireButton.setBounds(dayLabel.getX()+this.PANEL_WIDTH/10+10,this.PANEL_HIGHT/10-15,this.PANEL_WIDTH/10,this.PANEL_HIGHT/20);
 		this.add(dayBox);

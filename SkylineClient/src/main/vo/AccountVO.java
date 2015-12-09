@@ -1,6 +1,5 @@
 package main.vo;
 
-import main.businesslogic.infobl.Institution;
 import main.businesslogic.rightbl.Account;
 import main.po.Rights;
 

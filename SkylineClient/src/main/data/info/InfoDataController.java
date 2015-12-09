@@ -3,9 +3,12 @@ package main.data.info;
 import main.dataservice.InfoDataService;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
-import main.po.InstitutionPO;
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
+import main.po.WarehouseInfo;
 import main.po.WorkerPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -13,29 +16,7 @@ import main.socketservice.Client;
 public class InfoDataController implements InfoDataService {
 
 	Client client;
-	@Override
-	public boolean readInstitution(String code, InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean addInstitution(InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delInstitution(String code) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean modifyInstitution(InstitutionPO institutionPO) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	@Override
 	public boolean createNewStaff(WorkerPO workerPO) {
@@ -138,6 +119,98 @@ public class InfoDataController implements InfoDataService {
 
 	@Override
 	public boolean deleteVehicle(VehicleInfoPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Delete");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+
+	@Override
+	public boolean addIntermediate(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Save");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+
+	@Override
+	public boolean addWarehouse(WarehouseInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Save");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean addLobby(LobbyInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Save");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public LobbyInfoList inquireLobby(LobbyInfoList po) {
+		// TODO Auto-generated method stub
+		po.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return (LobbyInfoList) client.getResponse();
+	}
+
+	@Override
+	public IntermediateInfo inquireInterm(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return (IntermediateInfo) client.getResponse();
+	}
+
+	@Override
+	public boolean modifyIntermediate(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Modify");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean modifyLobby(LobbyInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Modify");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean deleteIntermediate(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Delete");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean deleteLobby(LobbyInfo po) {
+		// TODO Auto-generated method stub
+		po.setKey("Delete");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return false;
+	}
+
+	@Override
+	public boolean deleteWarehouse(WarehouseInfo po) {
 		// TODO Auto-generated method stub
 		po.setKey("Delete");
 		client=MainController.getClient();

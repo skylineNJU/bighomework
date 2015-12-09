@@ -55,6 +55,7 @@ public class CreatePlane extends CreatePanel {
 						CodeText.getText(),StartText.getText(),ArriveText.getText(),
 						MontiorText.getText(),ContainerText.getText(),wp.getBelong()+" "+LoadAreaText.getText(),
 						Double.parseDouble(FeeText.getText()));
+				vo.setBelong(wp.getBelong());
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
 				intermRservice.saveAirLoadCode(memory.getUserName(), code);
 				memory.setAirLoadCode(memory.getAirLoadCode()+" "+code);

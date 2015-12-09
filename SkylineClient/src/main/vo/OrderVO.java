@@ -24,7 +24,7 @@ public class OrderVO extends ReceiptVO{
 	private double weight;
 	private double volumn;
 	private String orderCode;
-	
+
 
 
 	public OrderVO(String co, String senderName, String senderAddress, String senderCom, String senderMobile,

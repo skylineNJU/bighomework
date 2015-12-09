@@ -37,7 +37,7 @@ public class OrderInputPanel {
 	private JLabel kind;
 	private JLabel packageKind;
 	private JLabel size;
-	private JLabel feeLabel;
+	private JLabel cargoNameLabel;
 	private JButton cancleButton;
 	private JButton saveButton;
 	private JTextField nameText1;
@@ -57,7 +57,7 @@ public class OrderInputPanel {
 	private JTextField widthSizeText;
 	private JTextField heightSizeText;
 	private JTextField highSizeText;
-	private JTextField feeText;
+	private JTextField cargoNameText;
 	private JLabel widthLabel;
 	private JLabel heightLabel;
 	private JLabel highLabel;
@@ -99,7 +99,7 @@ public class OrderInputPanel {
 		kind = new JLabel("快递种类");
 		packageKind = new JLabel("包装种类");
 		size = new JLabel("快递尺寸");
-		feeLabel = new JLabel("总费用");
+		cargoNameLabel = new JLabel("寄件名称");
 		cancleButton = new JButton("取消");
 		saveButton = new JButton("保存");
 		senderCom=new JLabel("寄件人单位");
@@ -126,7 +126,7 @@ public class OrderInputPanel {
 		widthSizeText = new JTextField();
 		heightSizeText = new JTextField();
 		highSizeText = new JTextField();
-		feeText = new JTextField();
+		cargoNameText = new JTextField();
 		widthLabel = new JLabel("长");
 		heightLabel = new JLabel("宽");
 		highLabel = new JLabel("高");
@@ -149,7 +149,7 @@ public class OrderInputPanel {
 		panel.add(kind);
 		panel.add(packageKind);
 		panel.add(size);
-		panel.add(feeLabel);
+		panel.add(cargoNameLabel);
 		panel.add(cancleButton);
 		panel.add(saveButton);
 		panel.add(nameText1);
@@ -170,7 +170,7 @@ public class OrderInputPanel {
 		panel.add(widthLabel);
 		panel.add(heightLabel);
 		panel.add(highLabel);
-		panel.add(feeText);
+		panel.add(cargoNameText);
 		panel.add(weight);
 		panel.add(weightText);
 		panel.add(senderCom);
@@ -218,15 +218,15 @@ public class OrderInputPanel {
 		heightLabel.setBounds(panelWidth*2/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
 		highLabel.setBounds(panelWidth*3/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
 		
-		feeLabel.setBounds(panelWidth*13/20, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
-		feeText.setBounds(panelWidth*3/4, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		cargoNameLabel.setBounds(panelWidth*13/20, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		cargoNameText.setBounds(panelWidth*3/4, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
 		weight.setBounds(size.getX(), size.getY()+size.getHeight()+INTER,panelWidth/10, name1.getHeight());
 		weightText.setBounds(panelWidth/4, weight.getY(), panelWidth/10, name1.getHeight());
 		num.setBounds(weightText.getX()+weight.getWidth()+INTER/3,weight.getY(),panelWidth/10, name1.getHeight());
 		numText.setBounds(heightSizeText.getX(),weight.getY(),panelWidth/10, name1.getHeight());
 		
-		cancleButton.setBounds(panelWidth*11/20, feeLabel.getY()+feeLabel.getHeight()+INTER, panelWidth/10, name1.getHeight());
-		saveButton.setBounds(panelWidth*3/4, feeText.getY()+feeText.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		cancleButton.setBounds(panelWidth*11/20, cargoNameLabel.getY()+cargoNameLabel.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		saveButton.setBounds(panelWidth*3/4, cargoNameText.getY()+cargoNameText.getHeight()+INTER, panelWidth/10, name1.getHeight());
 		
 		
 		saveButton.addMouseListener(new MouseAdapter(){
@@ -287,10 +287,10 @@ public class OrderInputPanel {
 						receivorComText.getText(),
 						phoneText2.getText(),
 						Integer.parseInt(numText.getText()),
-						Integer.parseInt(feeText.getText()),
+						0,
 						packageCost,
 						type, size,
-						addressText2.getText(),
+						cargoNameText.getText(),
 						Double.parseDouble(weightText.getText()),
 						volum);
 				service1.createNewOrder(vo);

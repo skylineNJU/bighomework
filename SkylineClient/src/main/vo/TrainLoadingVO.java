@@ -10,7 +10,7 @@ public class TrainLoadingVO extends ReceiptVO{
 	private String store;//押送员
 	private String shipment;//装箱托运区号
 	private double freight;//运费
-
+	private String belong;
 	
 	
 
@@ -112,6 +112,14 @@ public class TrainLoadingVO extends ReceiptVO{
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
 	}
 
 

@@ -72,6 +72,7 @@ public class CreateCar extends CreatePanel {
 				VehicleLoadingVO vo=new VehicleLoadingVO(code,time,LoadCodeText.getText(),CodeText.getText(),
 						StartText.getText(),ArriveText.getText(),MontiorText.getText(),Container.getText(),
 						wp.getBelong()+" "+LoadAreaText.getText(),Double.parseDouble(FeeText.getText()));
+				vo.setBelong(wp.getBelong());
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
 				intermRservice.saveRoadLoadCode(memory.getRoadLoadCode(), code);
 				memory.setRoadLoadCode(memory.getRoadLoadCode()+" "+code);

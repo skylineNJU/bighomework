@@ -8,6 +8,8 @@ public class PlaneLoadingVO extends ReceiptVO{
 	private String destination;//到达地
 	private String monitor;//监装员
 	private String store;//押送员
+	private String belong;
+	
 	public String getStore() {
 		return store;
 	}
@@ -120,5 +122,13 @@ public class PlaneLoadingVO extends ReceiptVO{
 
 	public void setFreight(double freight) {
 		this.freight = freight;
+	}
+
+	public String getBelong() {
+		return belong;
+	}
+
+	public void setBelong(String belong) {
+		this.belong = belong;
 	}
 }
