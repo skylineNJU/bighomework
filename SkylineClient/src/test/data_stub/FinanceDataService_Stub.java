@@ -5,26 +5,35 @@ import java.util.List;
 
 import main.dataservice.FinanceDataService;
 import main.po.BankAccountPO;
+import main.po.BankList;
 import main.po.CollectionPO;
+import main.po.CollectionPOList;
 import main.po.CostPO;
+import main.po.CostPOList;
+import main.po.DistancePO;
+import main.po.FeePO;
+import main.po.LobbyEarnPO;
+import main.po.SalaryPO;
 
 public class FinanceDataService_Stub implements FinanceDataService{
 	List<CostPO> costlist =new ArrayList<CostPO>();
 	CostPO readCost;
+	CostPOList costPOList=new CostPOList();
 	List<CollectionPO> Collectionlist = new ArrayList<CollectionPO>();
 	CollectionPO collectionPO;
+	CollectionPOList collList=new CollectionPOList();
 	BankAccountPO bankAccountPO;
-	
+	FeePO feePO=new FeePO(0, 0, 0);
 	@Override
 	//读取成本收益表
 	//成本项目为枚举类型
 	//根据其类型查找在数据库里的成本具体信息
-	public boolean readCost(String Date,List<CostPO> costList) {
+	public CostPOList readCost(String date) {
 		// TODO Auto-generated method stub
-		readCost = new CostPO("工资",2007,"10",Date,60000,"6172271990182736654","01","无");
+		readCost = new CostPO("111111","20","fast",date,"","","");
 		costlist.clear();
 		costlist.add(readCost);
-		return true;
+		return costPOList;
 	}
 
 	@Override
@@ -35,19 +44,12 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		return true;
 	}
 
-	@Override
-	//删除成本信息
-	public boolean delCost(CostPO costPO) {
-		// TODO Auto-generated method stub
-		System.out.println("-----------------Delect Success!-----------------");
-		return true;
-	}
 
 	@Override
 	//修改成本信息
 	public boolean modifiyCost(CostPO costPO) {
 		// TODO Auto-generated method stub
-		costPO = new CostPO("工资",2007,"10","24",60000,"6172271990182736654","B公司","无");
+		costPO = new CostPO("111111","20","fast","","","","");
 		return true;
 	}
 
@@ -55,31 +57,15 @@ public class FinanceDataService_Stub implements FinanceDataService{
 	//读取收入信息
 	//收入项目应该为枚举类型
 	//根据其类型在数据库里查找收入的具体信息
-	public boolean readCollection(List<CollectionPO> Collectionlist) {
+	public CollectionPOList readCollection(String date) {
 		// TODO Auto-generated method stub
-		collectionPO = new CollectionPO(2006,"12","09","01","6154434569087098711",91000,"无");
+		collectionPO = new CollectionPO("2333","12","66666","2003", 3,"6154434569087098711","无");
 		Collectionlist.clear();
 		Collectionlist.add(collectionPO);
-		return true;
+		return collList;
 	}
 
-	@Override
-	public boolean readCollection(String lobbyCode,List<CollectionPO> Collectionlist) {
-		// TODO Auto-generated method stub
-		collectionPO = new CollectionPO(2007,"12","09",lobbyCode,"6154434569087098711",91000,"无");	
-		Collectionlist.clear();
-		Collectionlist.add(collectionPO);
-		return true;
-	}
 
-	@Override
-	public boolean readCollection(String date1, String date2,List<CollectionPO> Collectionlist) {
-		// TODO Auto-generated method stub
-	    collectionPO = new CollectionPO(2008,"12","09","01","6154434569087098711",91000,"无");
-		Collectionlist.clear();
-		Collectionlist.add(collectionPO);
-		return true;
-	}
 
 	@Override
 	//将收入信息存储进数据库
@@ -93,18 +79,11 @@ public class FinanceDataService_Stub implements FinanceDataService{
 	//修改收款信息
 	public boolean modifiyCollection(CollectionPO collectionPO) {
 		// TODO Auto-generated method stub
-		collectionPO = new CollectionPO(2006,"12","09","01","6154434569087098711",10000,"无");
+		collectionPO = new CollectionPO("2333","12","66666","2003", 3,"6154434569087098711","无");
 		return true;
 	}
 
-	@Override
-	//从数据库里读取银行账户信息
-	//根据银行账户的账户查找
-	public boolean readBankAccount(String bankAccount,BankAccountPO account) {
-		// TODO Auto-generated method stub
-	    bankAccountPO=new BankAccountPO(bankAccount,10000000);
-		return true;
-	}
+	
 
 	@Override
 	//写信息
@@ -114,10 +93,90 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		return false;
 	}
 
+
 	@Override
-	public boolean delBankAccount(BankAccountPO bankAccountPO) {
+	public boolean delFee(FeePO feePO) {
 		// TODO Auto-generated method stub
-		System.out.println("-----------------Delect Scuccess!-----------------");
+		
+		return false;
+	}
+
+	@Override
+	public boolean delCollection(CollectionPO collectionPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delDistance(DistancePO distancePO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteCost(CostPO costPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyBalance(BankAccountPO bankPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public SalaryPO readSalary() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delSalary(SalaryPO salaryPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public FeePO readFee() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LobbyEarnPO readLobbyEarn(String date, String unit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//从数据库里读取银行账户信息
+		//根据银行账户的账户查找
+	@Override
+	public BankList readBankAccount() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean writeSalary(SalaryPO salaryPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public DistancePO readDistance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean writeFee(FeePO feePO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean writeDistance(DistancePO distancePO) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

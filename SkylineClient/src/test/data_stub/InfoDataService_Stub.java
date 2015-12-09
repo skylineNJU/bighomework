@@ -2,123 +2,168 @@ package test.data_stub;
 
 import  main.dataservice.InfoDataService;
 import  main.po.DriverInfoPO;
+import main.po.DriverList;
 import  main.po.InstitutionPO;
+import main.po.IntermediateInfo;
+import main.po.LobbyInfo;
+import main.po.LobbyInfoList;
 import  main.po.VehicleInfoPO;
+import main.po.VehicleListPO;
+import main.po.WarehouseInfo;
 import  main.po.WorkerPO;
 
 
 public class InfoDataService_Stub implements InfoDataService{
 	//--------------机构管理--------------------
-	
-		//从数据库里面读取某类别的机构信息
-		//category 为机构的类别
-		public InstitutionPO readInstitution(String code) {
-			System.out.println("read Succeed!\n");
-			InstitutionPO institutionPO = new InstitutionPO("123", "日天大元帅", "叶良辰", code);
-			return institutionPO;
-		}
-		
-		//增加某类别的机构
-		//新建一个机构，输入机构类别，名称，地理位置，编号
-		//数据库存储该机构信息
-		public boolean addInstitution(InstitutionPO institutionPO) {
-			System.out.println("add Succeed!\n");
-			return true;
-		}
-		
-		//删除某机构
-		//输入机构的编码，数据库将删除该机构
-		public boolean delInstitution(String code) {
-			System.out.println("delete Succeed!\n");
-			return true;
-		}
-		
-		//修改某机构的信息，（个人认为不能修改机构的等级，即不能将营业厅改为中转中心，其他信息可修改）
-		//String name,String position,String code表示要修改的部分，如果不修改，则和之前的信息一样
-		public InstitutionPO modifyInstitution(InstitutionPO institutionPO) {
-			System.out.println("modify Succeed!\n");
-			return institutionPO;
-		}
-		
-		//新建职工档案，输入职工名称，职位，所在单位，职工年龄以及编号
-		//数据库将保存该员工信息
-		public boolean createNewStaff(WorkerPO workerPO) {
-			System.out.println("creat Succeed!\n");
-			return true;
-		}
-			
-		//数据库删除该员工信息
-		//account为员工的账户
-		public boolean deleteStaff(String account) {
-			System.out.println("delete Succeed!\n");
-			return true;		
-		}
-			
-		//数据库返回该账户的信息
-		//account为该员工的账户
-		public WorkerPO inquireStaff(String account) {
-			System.out.println("Succeed!\n");
-			WorkerPO workerPO = new WorkerPO("赵日天", "日天大元帅", "123", 18);
-			return workerPO;
-		}
-			
-		//修改职工信息
-		//account为该员工的账户，account不可以被修改
-		//String modifyName,String modifyJob,String modifyUnit,String modifyWorkage表示要修改的内容
-		public WorkerPO modifyStaff(WorkerPO workerPO) {
-			System.out.println("modify Succeed!\n");
-			return workerPO;
-			
-		}
-			
-		//将新添的车辆信息保存至数据库，输入车牌号（name），车辆代号（code），以及服役时间
-		public boolean createNewVehicle(VehicleInfoPO vehicleInfoPO) {
-			System.out.println("add Succeed!\n");
-			return true;	
-		}
-			
-		//删除车辆信息
-		//code表示车辆代号
-		public boolean deleteVehicle(String code) {
-			System.out.println("delete Succeed!\n");
-			return true;
-		}
-			
-		//查询车辆信息，输入车辆代号 数据库中查询该代号的车辆信息
-		public VehicleInfoPO readVehicle(String code) {
-			System.out.println("read Succeed!\n");
-			VehicleInfoPO vehicleInfoPO = new VehicleInfoPO(0, 0, 0, 0, code, 0);
-			return vehicleInfoPO;
-		}
-		
-		//修改车辆信息
-		public VehicleInfoPO modifyVehicle(VehicleInfoPO vehicleInfoPO) {
-			System.out.println("modify Succeed!/n");
-			return vehicleInfoPO;
-		}
-			
-		//新建一个司机信息，输入司机编号、姓名、出生日期、身份证号、手机 、性别、行驶证期限
-		public boolean createNewDriver(DriverInfoPO driveInfoPO) {
-			System.out.println("creat Succeed!\n");
-			return true;	
-		}
-			
-		//删除司机信息
-		public void deleteDriver(){
-			System.out.println("删除刘钦成功!\n");
-		}
-			
-		//查询司机信息，输入司机编号
-		public DriverInfoPO inquireDriver(String code) {
-			System.out.println("inquire Succeed!\n");
-			DriverInfoPO driverInfoPO = new DriverInfoPO(0, "刘钦", "1986-04-16", "43023222266666666", "13813813813", "南京大学", "男", "2012-12-12");
-			return driverInfoPO;
-		}
-			
-		//修改司机信息
-		public DriverInfoPO modifyDriver(DriverInfoPO driveInfoPO) {
-			System.out.println("modify Succeed!\n");
-			DriverInfoPO driverInfoPO = new DriverInfoPO(0, "刘钦", "1986-04-16", "43023222266666666", "13813813813", "南京大学", "男", "2012-12-12");
-			return driverInfoPO;
-		}
+	@Override
+	public boolean readStaff(String unitCode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delStaff(WorkerPO workerPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addLobby(LobbyInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public LobbyInfoList inquireLobby(LobbyInfoList po) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IntermediateInfo inquireInterm(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean addIntermediate(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addWarehouse(WarehouseInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyIntermediate(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyLobby(LobbyInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteIntermediate(IntermediateInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteLobby(LobbyInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteWarehouse(WarehouseInfo po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//新建职工档案，输入职工名称，职位，所在单位，职工年龄以及编号
+	//数据库将保存该员工信息
+	@Override
+	public boolean createNewStaff(WorkerPO workerPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//数据库删除该员工信息
+	//account为员工的账户
+	@Override
+	public boolean deleteStaff(String account) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//修改职工信息
+	//account为该员工的账户，account不可以被修改
+	//String modifyName,String modifyJob,String modifyUnit,String modifyWorkage表示要修改的内容
+	@Override
+	public boolean modifyStaff(WorkerPO workerPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//将新添的车辆信息保存至数据库，输入车牌号（name），车辆代号（code），以及服役时间
+	@Override
+	public boolean createNewVehicle(VehicleInfoPO vehicleInfoPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//删除车辆信息
+	//code表示车辆代号
+	@Override
+	public boolean deleteVehicle(VehicleInfoPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean modifyVehicle(VehicleInfoPO vehicleInfoPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//新建一个司机信息，输入司机编号、姓名、出生日期、身份证号、手机 、性别、行驶证期限
+	@Override
+	public boolean createNewDriver(DriverInfoPO driveInfoPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteDriver(DriverInfoPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//查询司机信息，输入司机编号
+	@Override
+	public DriverList inquireDriver(DriverList driverlist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyDriver(DriverInfoPO driveInfoPO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	//数据库返回该账户的信息
+	//account为该员工的账户
+	@Override
+	public WorkerPO inquireStaff(WorkerPO workerPO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	//查询车辆信息，输入车辆代号 数据库中查询该代号的车辆信息
+	@Override
+	public VehicleListPO readVehicle(VehicleListPO vehiclelist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
