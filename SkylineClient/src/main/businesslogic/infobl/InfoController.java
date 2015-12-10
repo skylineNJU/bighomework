@@ -129,7 +129,7 @@ public class InfoController implements InfoBLService {
 	public ArrayList<LobbyInfoVO> inquireLobby(String cityName) {
 		// TODO Auto-generated method stub
 		LobbyInfoBL bl=new LobbyInfoBL(cityName);
-		
+		System.out.println("city name:"+cityName);
 		return bl.inquire();
 	}
 
