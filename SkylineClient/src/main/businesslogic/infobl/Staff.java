@@ -48,7 +48,6 @@ public class Staff {
 		 ArrayList<WorkerPO> poList = staffListPO.getList();
 		 ArrayList<StaffVO> voList = new ArrayList<StaffVO>();
 		 for(WorkerPO workerPO:poList){
-//			 String na,String jo,String un,String wo,String co
 			 StaffVO staffVO = new StaffVO(workerPO.getName(), workerPO.getPosition(),
 					 workerPO.getBelong(), workerPO.getAge(), workerPO.getCode()
 			 );
@@ -64,11 +63,23 @@ public class Staff {
 		return true;
 	}
 	
-	public boolean modify(){
+	public boolean saveStaff(StaffVO staffvo){
+		WorkerPO workerpo = new WorkerPO(staffvo.getName(),staffvo.getJob(),staffvo.getUnit(),
+				staffvo.getWorkage(),staffvo.getCode()
+		);
+		InfoDataService service=new InfoDataController();
+		service.createNewStaff(workerpo);
+		return true;
+	}
+	public boolean modify(StaffVO staffvo){
+		delete(staffvo.getCode());
+		saveStaff(staffvo);
 		return true;
 	}
 	
 	public static boolean delete(String staffcode){
+		InfoDataService service=new InfoDataController();
+		service.deleteStaff(staffcode);
 		return true;
 	}
 	public String getName() {

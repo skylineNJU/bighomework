@@ -49,7 +49,6 @@ public class InfoDataController implements InfoDataService {
 
 	@Override
 	public WorkerPO inquireStaff(WorkerPO workerPO) {
-		// TODO Auto-generated method stub
 		client=MainController.getClient();
 		workerPO.setKey("Inquire");
 		client.writeReceipt(workerPO);
