@@ -173,7 +173,7 @@ public class Account {
 
 	public static boolean delete(String accountName) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 	
 }
