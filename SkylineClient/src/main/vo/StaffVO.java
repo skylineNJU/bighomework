@@ -9,14 +9,18 @@ public class StaffVO {
 	private String workage;
 	private String code;
 	
-	public StaffVO(String na,String jo,String un,String wo,String co){
-		name=na;
-		job=jo;
-		unit=un;
-		workage=wo;
-		code=co;
-	}
 	
+	
+	public StaffVO(String name, String job, String unit, String workage,
+			String code) {
+		super();
+		this.name = name;
+		this.job = job;
+		this.unit = unit;
+		this.workage = workage;
+		this.code = code;
+	}
+
 	public boolean writeStaffInfo(Staff staffInfo){
 		this.name=staffInfo.getName();
 		this.job=staffInfo.getJob();

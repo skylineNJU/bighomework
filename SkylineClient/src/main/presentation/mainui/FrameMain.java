@@ -75,18 +75,6 @@ public class FrameMain extends JFrame{
 				System.exit(0);
 			}
 		});
-//		min.addMouseListener(new MouseAdapter(){
-//			public void mouseClicked(MouseEvent e){
-//				frame.setExtendedState(Frame.ICONIFIED);
-//			}
-//			public void mouseEntered(MouseEvent e){
-//				min.setIcon(AllImage.smallestEnterImg);
-//			}
-//			
-//			public void mouseExited(MouseEvent e){
-//				min.setIcon(AllImage.smallestImg);
-//			}
-//		});
 		min.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				frame.setExtendedState(Frame.ICONIFIED);

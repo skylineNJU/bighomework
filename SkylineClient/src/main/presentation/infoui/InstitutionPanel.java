@@ -17,13 +17,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.vo.IntermediateInfoVO;
 import main.vo.LobbyInfoVO;
 import main.vo.WarehouseInfoVO;
+
 
 public class InstitutionPanel {
 
@@ -59,12 +59,15 @@ public class InstitutionPanel {
 	private Vector<String> columnNameV; // declare the table column name vector  
 	private Vector<Vector<Object>> tableValueV; // declare the table value     // vector  
 	private int fixedColumn = 1; // the fixed column number                                
+	private int oldLobbyNum=0;
+	private int oldInstitutionNum=0;
 	private JTextField stuffNumText=new JTextField();
 	private JTextField earaText=new JTextField();
 	private JLabel stuffNumLabel=new JLabel("员工数目");
 	private JLabel earaLabel=new JLabel("占地面积");
 	private String[] warhouseEara={"航运区","铁路区","汽运区","机动区"};
 	
+
 	
 	public InstitutionPanel(){
 		panel=MainController.getWritepanel();
@@ -256,6 +259,7 @@ public class InstitutionPanel {
 	
 	
 	public void Listener(){
+
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				InfoBLService service=ConstructFactory.InfoFactory();
@@ -291,6 +295,7 @@ public class InstitutionPanel {
 			}
 		});
 		
+
 		save.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				switch(tab.getSelectedIndex()){
@@ -317,6 +322,7 @@ public class InstitutionPanel {
 						InfoBLService service=ConstructFactory.InfoFactory();
 						service.addNewIntermediate(vo);
 					}
+
 					break;
 				case 1:
 					int row=table2.getRowCount();
@@ -329,6 +335,7 @@ public class InstitutionPanel {
 					InfoBLService service=ConstructFactory.InfoFactory();
 					service.addNewLobby(vo);
 					System.out.println("save a lobby");
+
 				    stuffNumLabel.setVisible(false);
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
@@ -417,6 +424,9 @@ public class InstitutionPanel {
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				stuffNumText.setText(null);
+				stuffNumLabel.setText(null);
+				stuffNumText.setText(null);
+				earaLabel.setText(null);
 				earaText.setText(null);
 				stuffNumLabel.setVisible(true);
 				stuffNumText.setVisible(true);
