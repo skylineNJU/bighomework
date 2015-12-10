@@ -23,7 +23,7 @@ public class LobbyInfo extends Message {
 		this.area = area;
 	}
 	
-	public void writeInfoDatabase(){
+	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
 		String content="'"+this.city+"','"+this.lobbyCode+"',"+staffNum+","+area;
 		

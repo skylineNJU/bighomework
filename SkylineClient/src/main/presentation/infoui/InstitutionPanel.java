@@ -3,6 +3,7 @@ package main.presentation.infoui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -20,7 +21,9 @@ import javax.swing.table.DefaultTableModel;
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.IntermediateInfoVO;
 import main.vo.LobbyInfoVO;
+import main.vo.WarehouseInfoVO;
 
 public class InstitutionPanel {
 
@@ -56,12 +59,12 @@ public class InstitutionPanel {
 	private Vector<String> columnNameV; // declare the table column name vector  
 	private Vector<Vector<Object>> tableValueV; // declare the table value     // vector  
 	private int fixedColumn = 1; // the fixed column number                                
-	private int oldLobbyNum=0;
-	private int oldInstitutionNum=0;
 	private JTextField stuffNumText=new JTextField();
 	private JTextField earaText=new JTextField();
 	private JLabel stuffNumLabel=new JLabel("员工数目");
 	private JLabel earaLabel=new JLabel("占地面积");
+	private String[] warhouseEara={"航运区","铁路区","汽运区","机动区"};
+	
 	
 	public InstitutionPanel(){
 		panel=MainController.getWritepanel();
@@ -93,6 +96,7 @@ public class InstitutionPanel {
 		
 	}
 	
+	@SuppressWarnings("serial")
 	public void initIntermTable(){
 	
 		tableTitle11 = new String[]{"所属城市","中转中心编号","机构员工数","占地面积/m^2"};
@@ -115,8 +119,8 @@ public class InstitutionPanel {
 		scrollPane11.setVisible(true);
 	
 		
-		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库警戒值"};
-		tableData1=new String[][]{{"航运区","50","500","90%"},{"铁路区","50","600","90%"},{"汽运区","50","500","90%"},{"机动区","50","508","90%"}};	
+		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库警戒值/%"};
+		tableData1=new String[][]{{"航运区","","","100%"},{"铁路区","","","100%"},{"汽运区","","","100%"},{"机动区","","","100%"}};	
 		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
 	        return true;  
 	     } } ;
@@ -184,9 +188,8 @@ public class InstitutionPanel {
 	
 	public String[][] getInterm(){
 		String[][] content =new String[1][4];
-		for(int x=0;x<1;x++)
 			for(int y=0;y<4;y++)
-				content[x][y]=null;
+				content[0][y]=null;
 		return content;
 	}
 	
@@ -246,11 +249,74 @@ public class InstitutionPanel {
 		panel.add(message);
 	}
 	
+	public boolean intermIsEmpty(){
+		return false;
+		
+	}
+	
+	
 	public void Listener(){
+		ok.addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				InfoBLService service=ConstructFactory.InfoFactory();
+				IntermediateInfoVO vo=service.inquireInterm(city.getText());
+				table11.setValueAt(vo.getCity(),0,0);
+				table11.setValueAt(vo.getInstitutionCode(),0,1);
+				table11.setValueAt(vo.getStaffNum(),0,2);
+				table11.setValueAt(vo.getArea(),0,3);
+				ArrayList<WarehouseInfoVO> voList=vo.getWarehouseInfoList();
+				int x=0;
+				for(WarehouseInfoVO warVO:voList){
+					//"仓库区","总员工数","占地面积/m^2","仓库警戒值/%"
+					table1.setValueAt(warVO.getArea(),x,0);
+					table1.setValueAt(warVO.getStaffNum(),x,1);
+					table1.setValueAt(warVO.getAcreage(),x,2);
+					table1.setValueAt(warVO.getAlert(),x,3);
+					x++;
+				}
+				
+				ArrayList<LobbyInfoVO> lobbyList=service.inquireLobby(city.getText());
+				String[][] lobbyData=new String[lobbyList.size()][3];
+				x=0;
+				//"营业厅编号","机构员工数","占地面积/m^2"
+				for(LobbyInfoVO lobbyInfo:lobbyList){
+					lobbyData[x][0]=lobbyInfo.getLobbyCode();
+					lobbyData[x][1]=lobbyInfo.getStaffNum()+"";
+					lobbyData[x][2]=lobbyInfo.getArea()+"";
+					x++;
+					System.out.println("get a lobbyData");
+				}
+				defaultModel2.setDataVector(lobbyData, tableTitle2);
+				
+			}
+		});
+		
 		save.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				switch(tab.getSelectedIndex()){
 				case 0:
+					if(!intermIsEmpty()){
+						IntermediateInfoVO vo=new IntermediateInfoVO(
+								//"所属城市","中转中心编号","机构员工数","占地面积/m^2"
+							city.getText(),
+							(String)table11.getValueAt(0,1),
+							Double.parseDouble((String)table11.getValueAt(0,3)),
+							Integer.parseInt((String)table11.getValueAt(0,2))
+							);
+						for(int x=0;x<4;x++){
+							//"仓库区","总员工数","占地面积/m^2","仓库警戒值"
+							WarehouseInfoVO warVO=new WarehouseInfoVO(
+									city.getText(),
+									Integer.parseInt((String)table1.getValueAt(x,1)),
+									Double.parseDouble((String)table1.getValueAt(x,2)),
+									warhouseEara[x],
+									Double.parseDouble((String)table1.getValueAt(x,3))			
+									);
+							vo.addWarehouse(warVO);
+						}
+						InfoBLService service=ConstructFactory.InfoFactory();
+						service.addNewIntermediate(vo);
+					}
 					break;
 				case 1:
 					int row=table2.getRowCount();
@@ -262,6 +328,7 @@ public class InstitutionPanel {
 							Double.parseDouble(earaText.getText()));
 					InfoBLService service=ConstructFactory.InfoFactory();
 					service.addNewLobby(vo);
+					System.out.println("save a lobby");
 				    stuffNumLabel.setVisible(false);
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
@@ -293,12 +360,33 @@ public class InstitutionPanel {
 		modifty.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				  if(tab.getTitleAt(tab.getSelectedIndex()).equals("中转中心") ){
+					  InfoBLService service=ConstructFactory.InfoFactory();
+						IntermediateInfoVO vo=new IntermediateInfoVO(
+								//"所属城市","中转中心编号","机构员工数","占地面积/m^2"
+							city.getText(),
+							(String)table11.getValueAt(0,1),
+							Double.parseDouble((String)table11.getValueAt(0,3)),
+							Integer.parseInt((String)table11.getValueAt(0,2))
+							);
+						for(int x=0;x<4;x++){
+							//"仓库区","总员工数","占地面积/m^2","仓库警戒值"
+							WarehouseInfoVO warVO=new WarehouseInfoVO(
+									city.getText(),
+									Integer.parseInt((String)table1.getValueAt(x,1)),
+									Double.parseDouble((String)table1.getValueAt(x,2)),
+									warhouseEara[x],
+									Double.parseDouble((String)table1.getValueAt(x,3))			
+									);
+							vo.addWarehouse(warVO);
+						}
+						service.modifyIntermediate(vo);
 					  table1.setEnabled(true);
 					  table11.setEnabled(true);
 		    		  table2.setEnabled(false);
 				  }
 		
 		    	  else if(tab.getTitleAt(tab.getSelectedIndex()).equals("营业厅")){
+		    		  
 					  table1.setEnabled(false);
 					  table11.setEnabled(false);
 		    		  table2.setEnabled(true);
@@ -309,16 +397,16 @@ public class InstitutionPanel {
 		newInterm.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 			
-				tableData1 = getInterm();
+				//tableData1 = getInterm();
 				for(int i=0;i<tableData1.length;i++){
-					for(int j=0;j<tableData1[0].length;j++){
-						table1.setValueAt(tableData1[i][j], i, j);
+					for(int j=1;j<tableData1[0].length;j++){
+						table1.setValueAt("", i, j);
 					}
 				}
-				tableData11 = getWarehouse();
+				//tableData11 = getWarehouse();
 				for(int i=0;i<tableData11.length;i++){
 					for(int j=0;j<tableData11[0].length;j++){
-						table11.setValueAt(tableData11[i][j], i,j);
+						table11.setValueAt("", i,j);
 					}
 				}	
 				
@@ -328,9 +416,7 @@ public class InstitutionPanel {
 		});
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				stuffNumLabel.setText(null);
 				stuffNumText.setText(null);
-				earaLabel.setText(null);
 				earaText.setText(null);
 				stuffNumLabel.setVisible(true);
 				stuffNumText.setVisible(true);
@@ -359,7 +445,8 @@ public class InstitutionPanel {
 		
 	}
 
-	 private class FloatingColumnTableModel extends AbstractTableModel {  
+	 @SuppressWarnings("unused")
+	private class FloatingColumnTableModel extends AbstractTableModel {  
 	  
 	        private static final long serialVersionUID = -2481466672947191281L;  
 	          
