@@ -35,7 +35,6 @@ public class LobbyInfoBL {
 		service.modifyLobby(info);
 	}
 	public ArrayList<LobbyInfoVO> inquire(){
-		System.out.println("Start inquire lobby");
 		InfoDataService service=new InfoDataController();
 		infoList=service.inquireLobby(infoList);
 		ArrayList<LobbyInfo> poList=infoList.getLobbyList();

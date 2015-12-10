@@ -40,8 +40,6 @@ public class IntermediateInfoBL {
 	public IntermediateInfoVO inquire(){
 		InfoDataService service=new InfoDataController();
 		intermInfo=service.inquireInterm(intermInfo);
-		System.out.println(intermInfo.getCity());
-		System.out.println(intermInfo.getInstitutionCode());
 		IntermediateInfoVO vo=new IntermediateInfoVO(
 				intermInfo.getCity(),intermInfo.getInstitutionCode(),
 				intermInfo.getArea(),intermInfo.getStaffNum());

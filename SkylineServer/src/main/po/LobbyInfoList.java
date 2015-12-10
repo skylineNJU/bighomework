@@ -16,7 +16,6 @@ public class LobbyInfoList extends Message {
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("LobbyInfo");
 		while(reader.findNext("所属城市",city)){
-			System.out.println("find a lobby");
 			lobbyList.add(new LobbyInfo(city,reader.getString("机构编号"),
 					reader.getInt("员工人数"),reader.getDouble("占地面积")));
 		}
