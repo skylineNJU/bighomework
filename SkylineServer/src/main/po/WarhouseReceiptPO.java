@@ -33,7 +33,7 @@ public class WarhouseReceiptPO extends Message{
 		this.getDataFromBase();
 		this.deleteFromDatabase();
 		String content="'"+username+"','"+warehouseInCode+"','"+warehouseOutCode+"','"+
-		belong+"','"+warehouseInDate+"','"+warehouseOutDate+"'";
+		belong+"','"+warehouseInDate+"','"+warehouseOutDate+"','"+"Œ¥…Û≈˙"+"'";
 		System.out.println("_))))))))))))))):::"+content);
 		writer.writeIntoSql("WarhouseReceipt", content);
 	}

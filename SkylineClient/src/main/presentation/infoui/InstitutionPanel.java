@@ -27,7 +27,6 @@ import main.vo.WarehouseInfoVO;
 
 public class InstitutionPanel {
 
-	
 	private JPanel panel;
 	private JPanel IntermPanel;
 	private JPanel LobbyPanel;
@@ -122,7 +121,7 @@ public class InstitutionPanel {
 		scrollPane11.setVisible(true);
 	
 		
-		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库警戒值/%"};
+		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库总容量","仓库警戒值/%"};
 		tableData1=new String[][]{{"航运区","","","100%"},{"铁路区","","","100%"},{"汽运区","","","100%"},{"机动区","","","100%"}};	
 		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
 	        return true;  
@@ -212,7 +211,6 @@ public class InstitutionPanel {
 		return content;
 	} 
 	
-	
 	public void Button(){
 		//可用符号代替
 		newWarehouse = new JLabel("新增仓库");
@@ -252,11 +250,9 @@ public class InstitutionPanel {
 		panel.add(message);
 	}
 	
-	public boolean intermIsEmpty(){
+	public boolean intermIsEmpty(){		
 		return false;
-		
 	}
-	
 	
 	public void Listener(){
 

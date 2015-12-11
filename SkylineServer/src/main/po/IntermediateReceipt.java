@@ -39,7 +39,7 @@ public class IntermediateReceipt extends Message {
 		this.deleteFromDatabase();
 		String content="'"+accountName+"','"+intermReceiptCode+"','"+airLoadCode+"','"
 				+railLoadCode+"','"+roadLoadCode+"','"+airLoadDate+"','"+railLoadDate+"','"
-				+roadLoadDate+"','"+intermDate+"'";
+				+roadLoadDate+"','"+intermDate+"','"+"Œ¥…Û≈˙"+"'";
 		writer.writeIntoSql("IntermediateReceipt", content);
 	}
 	
