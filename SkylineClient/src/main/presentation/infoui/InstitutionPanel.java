@@ -293,10 +293,7 @@ public class InstitutionPanel {
 			}
 		});
 		
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 		save.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				switch(tab.getSelectedIndex()){
@@ -323,10 +320,7 @@ public class InstitutionPanel {
 						InfoBLService service=ConstructFactory.InfoFactory();
 						service.addNewIntermediate(vo);
 					}
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 					break;
 				case 1:
 					int row=table2.getRowCount();
@@ -339,10 +333,7 @@ public class InstitutionPanel {
 					InfoBLService service=ConstructFactory.InfoFactory();
 					service.addNewLobby(vo);
 					System.out.println("save a lobby");
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 				    stuffNumLabel.setVisible(false);
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
@@ -430,11 +421,10 @@ public class InstitutionPanel {
 		});
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-<<<<<<< HEAD
-=======
+
 				stuffNumText.setText(null);
 				stuffNumLabel.setText(null);
->>>>>>> origin/master
+
 				stuffNumText.setText(null);
 				earaText.setText(null);
 				stuffNumLabel.setVisible(true);
