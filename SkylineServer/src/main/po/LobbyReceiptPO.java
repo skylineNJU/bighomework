@@ -22,7 +22,7 @@ public class LobbyReceiptPO extends Message {
 		getDataFromBase();
 		this.deleteFromDatabase();
 		String content="'"+accountName+"','"+receiveCode+"','"+earnCode+"','"
-				+receiveDate+"','"+earnDate+"','"+lobbyLoading+"'";
+				+receiveDate+"','"+earnDate+"','"+lobbyLoading+"','"+"Œ¥…Û≈˙"+"'";
 		writer.writeIntoSql("LobbyReceipt", content);
 	}
 

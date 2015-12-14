@@ -17,7 +17,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
@@ -25,9 +24,9 @@ import main.vo.IntermediateInfoVO;
 import main.vo.LobbyInfoVO;
 import main.vo.WarehouseInfoVO;
 
+
 public class InstitutionPanel {
 
-	
 	private JPanel panel;
 	private JPanel IntermPanel;
 	private JPanel LobbyPanel;
@@ -119,7 +118,9 @@ public class InstitutionPanel {
 		scrollPane11.setVisible(true);
 	
 		
-		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库警戒值/%"};
+
+		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库总容量","仓库警戒值/%"};
+
 		tableData1=new String[][]{{"航运区","","","100%"},{"铁路区","","","100%"},{"汽运区","","","100%"},{"机动区","","","100%"}};	
 		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
 	        return true;  
@@ -209,7 +210,6 @@ public class InstitutionPanel {
 		return content;
 	} 
 	
-	
 	public void Button(){
 		//可用符号代替
 		newWarehouse = new JLabel("新增仓库");
@@ -249,13 +249,15 @@ public class InstitutionPanel {
 		panel.add(message);
 	}
 	
-	public boolean intermIsEmpty(){
+
+
+	public boolean intermIsEmpty(){		
 		return false;
-		
 	}
 	
-	
 	public void Listener(){
+
+
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				InfoBLService service=ConstructFactory.InfoFactory();
@@ -291,6 +293,10 @@ public class InstitutionPanel {
 			}
 		});
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 		save.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				switch(tab.getSelectedIndex()){
@@ -317,6 +323,10 @@ public class InstitutionPanel {
 						InfoBLService service=ConstructFactory.InfoFactory();
 						service.addNewIntermediate(vo);
 					}
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 					break;
 				case 1:
 					int row=table2.getRowCount();
@@ -329,6 +339,10 @@ public class InstitutionPanel {
 					InfoBLService service=ConstructFactory.InfoFactory();
 					service.addNewLobby(vo);
 					System.out.println("save a lobby");
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 				    stuffNumLabel.setVisible(false);
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
@@ -416,6 +430,11 @@ public class InstitutionPanel {
 		});
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
+<<<<<<< HEAD
+=======
+				stuffNumText.setText(null);
+				stuffNumLabel.setText(null);
+>>>>>>> origin/master
 				stuffNumText.setText(null);
 				earaText.setText(null);
 				stuffNumLabel.setVisible(true);
