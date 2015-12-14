@@ -78,11 +78,12 @@ public class WarehouseOutPO extends Receipt implements Serializable{
 		
 	
 			SqlReader reader1 = new SqlReader("WarhouseIn");
-			reader1.findNext("¶©µ¥µ¥ºÅ",this.getBar());
+			if(reader1.findNext("¶©µ¥µ¥ºÅ",this.getBar())){
 			this.area = reader1.getString("ÇøºÅ");
 			this.row = reader1.getInt("ÅÅºÅ");
 			this.shelf = reader1.getInt("¼ÜºÅ");
 			this.position = reader1.getInt("Î»ºÅ");
+			}
 			reader1.close();
 		
 		}

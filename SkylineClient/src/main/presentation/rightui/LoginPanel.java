@@ -28,14 +28,14 @@ import main.presentation.mainui.memory.CourrierMemory;
 import main.presentation.mainui.memory.FinanceMemory;
 import main.presentation.mainui.memory.IntermediateMemory;
 import main.presentation.mainui.memory.LobbyMemory;
-import main.presentation.mainui.memory.ManagerMemory;
+import main.presentation.mainui.memory.ReceiptRecordMemory;
 import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.AccountVO;
-import main.vo.ApprovalVO;
 import main.vo.CorrierReceiptVO;
 import main.vo.FinanceReceiptVO;
 import main.vo.IntermediateReciptVO;
 import main.vo.LobbyReceiptVO;
+import main.vo.ReceiptRecordVO;
 import main.vo.WarhouseReceiptVO;
 
 
@@ -259,8 +259,8 @@ public class LoginPanel{
 						break;
 					case MANAGER:
 						SubmitReceipt manager=ConstructFactory.SubMitFactory();
-						ApprovalVO manvo=manager.getApproval();
-						MainController.getWritepanel().setMemory(new ManagerMemory(username,password,manvo.getKinds(),manvo.getCode()));
+						ReceiptRecordVO manvo=manager.inquireReceiptRecord();
+						MainController.getWritepanel().setMemory(new ReceiptRecordMemory(username,password,manvo));
 
 						removeA();
 

@@ -11,6 +11,7 @@ import main.po.CourrierReceiptPO;
 import main.po.FinanceReceipt;
 import main.po.IntermediateReceipt;
 import main.po.LobbyReceiptPO;
+import main.po.ReceiptRecordPO;
 import main.po.WarhouseReceiptPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
@@ -117,6 +118,28 @@ LobbyReceiptDataService,ApprovalReceiptDataService,WarehouseReceiptDataService{
 		client.writeReceipt(po);
 		po=(WarhouseReceiptPO) client.getResponse();
 		return po;
+	}
+	@Override
+	public void saveReceiptRecord(ReceiptRecordPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Save");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+	}
+	@Override
+	public ReceiptRecordPO inquireReceiptRecord(ReceiptRecordPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(po);
+		return (ReceiptRecordPO) client.getResponse();
+	}
+	@Override
+	public void approveReceipt(ReceiptRecordPO po) {
+		// TODO Auto-generated method stub
+		po.setKey("Modify");
+		client=MainController.getClient();
+		client.writeReceipt(po);
 	}
 
 }

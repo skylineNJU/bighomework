@@ -4,7 +4,11 @@ import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
-public class ReceiptRecordPO {
+public class ReceiptRecordPO extends Message{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String courrierCode;
 	private String lobbyCode;
 	private String intermediateCode;
@@ -17,6 +21,7 @@ public class ReceiptRecordPO {
 		SqlWriter writer=new SqlWriter();
 		String content="'"+"总经理"+"','"+courrierCode+"','"+lobbyCode+"','"+intermediateCode+"','"
 				+warehouseCode+"','"+financeCode+"'";
+		writer.writeIntoSql("ReceiptRecord", content);
 	}
 	
 	public void getDataFromBase(){
@@ -29,6 +34,15 @@ public class ReceiptRecordPO {
 			financeCode=reader.getString("财务单号");
 		}
 		reader.close();
+	}
+	
+	public void modifyTheDate(){
+		this.deleteFromDatabase();
+		SqlWriter writer=new SqlWriter();
+		String content="'"+"总经理"+"','"+courrierCode+"','"+lobbyCode+"','"+intermediateCode+"','"
+				+warehouseCode+"','"+financeCode+"'";
+		System.out.println("save info");
+		writer.writeIntoSql("ReceiptRecord", content);
 	}
 	
 	public void peekDataFromBase(){

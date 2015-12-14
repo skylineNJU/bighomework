@@ -12,8 +12,7 @@ public class BankList extends Message {
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("BankAccount");
 		bank.clear();
-		String key = "1";
-		while(reader.findNext("账户编号", key)){
+		while(reader.hasNext()){
 			BankAccountPO bankPO =new BankAccountPO(reader.getString("银行账户名"), reader.getDouble("余额"));
 			bank.add(bankPO);
 		}
