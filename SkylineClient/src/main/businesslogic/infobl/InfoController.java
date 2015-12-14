@@ -40,7 +40,7 @@ public class InfoController implements InfoBLService {
 	public boolean modifyStaff(StaffVO staffInfo) {
 		// TODO Auto-generated method stub
 		Staff staff=new Staff(staffInfo);
-		return staff.modify();
+		return staff.modify(staffInfo);
 	}
 
 	@Override

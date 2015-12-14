@@ -21,6 +21,7 @@ public class BalancePanel {
 	private JLabel title;
 	private JScrollPane scrollPane;
 	private JTable table;
+	
 
 	//银行账户的信息,需要从数据库中读取
 	private String[][] bankAccountMessage;
