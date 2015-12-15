@@ -98,6 +98,7 @@ public class Order {
 			}
 		}
 		double juLi=distance[x][y];
+		System.out.println("distance:"+juLi+" x,y"+x+""+y);
 		Fee fee=new Fee();
 		FeeVO fvo=fee.getFee();
 		double per=0;
@@ -115,6 +116,7 @@ public class Order {
 			break;
 		
 		}
+		System.out.println("per:"+per);
 		switch(this.size){
 		case large:
 			this.sum=juLi*per*this.volume/5000;

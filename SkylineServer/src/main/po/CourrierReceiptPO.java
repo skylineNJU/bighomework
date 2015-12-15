@@ -32,7 +32,7 @@ public class CourrierReceiptPO extends Message{
 		getDataFromBase();
 		deleteFromDatabase();
 		String content="'"+account+"','"+orderCode+"','"+buildDate+"','"
-				+receiveCode+"','"+receiveDate+"','"+distributeCode+"','"+"Œ¥…Û≈˙"+"'";
+				+receiveCode+"','"+receiveDate+"','"+distributeCode+"'";
 		writer.writeIntoSql("CourrierReceipt", content);
 	}
 	

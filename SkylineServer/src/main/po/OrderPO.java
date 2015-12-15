@@ -57,6 +57,8 @@ public class OrderPO extends Receipt implements Serializable{
 						  +"','"+receivorCom
 						  +"'";
 			writer.writeIntoSql("OrderReceive", content);
+			LocusPO po=new LocusPO(this.orderCode,this.senderAddress,this.receivorAddress);
+			po.writeIntoDataBase();
 		}
 		
 		public void getDataFromBase(){
