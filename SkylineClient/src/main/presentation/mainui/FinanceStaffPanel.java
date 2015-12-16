@@ -19,6 +19,7 @@ public class FinanceStaffPanel extends GuidePanel{
 	private JButton earnManager = new JButton("结算管理");
 	private JButton bankAccountManager = new JButton("账户管理");
 	private JButton StatisticsManager = new JButton("查看统计报表");
+	private JButton InitialAccount = new JButton("期初建账");
 	private JButton back = new JButton("注销");
 	private JPanel panel;
 	
@@ -33,6 +34,7 @@ public class FinanceStaffPanel extends GuidePanel{
 		this.add(earnManager);
 		this.add(bankAccountManager);
 		this.add(StatisticsManager);
+		this.add(InitialAccount);
 		this.add(back);
 		
 		//设置按钮组件大小
@@ -41,6 +43,7 @@ public class FinanceStaffPanel extends GuidePanel{
 		earnManager.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		bankAccountManager.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		StatisticsManager.setSize(this.getWidth()/4*3,this.getHeight()/15);
+		InitialAccount.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		back.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		
 		//设置按钮组件位置
@@ -49,7 +52,8 @@ public class FinanceStaffPanel extends GuidePanel{
 		earnManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*2);
 		bankAccountManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*3);
 		StatisticsManager.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*4);
-		back.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*5);
+		InitialAccount.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*5);
+		back.setLocation(this.getWidth()/8, this.getHeight()/4 + this.getHeight()/10*6);
 		
 		//------设置按钮组件的监听--------
 		//修改密码
@@ -87,7 +91,12 @@ public class FinanceStaffPanel extends GuidePanel{
 				MainController.jumpToFinanceui(Financeui.StatisticsListui);
 			}
 		});
-		
+		InitialAccount.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e){
+				removeAllComponent();
+				MainController.jumpToFinanceui(Financeui.InitialAccountui);
+			}
+		});
 		//-------返回登陆界面---------
 		back.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){

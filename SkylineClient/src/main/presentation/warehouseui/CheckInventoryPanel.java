@@ -2,11 +2,18 @@ package main.presentation.warehouseui;
 
 
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -17,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 
 import main.businesslogicservice.WarehouseBLService;
 import main.constructfactory.ConstructFactory;
@@ -106,6 +114,18 @@ public class CheckInventoryPanel {
 		export.setBounds(panel.getWidth()*15/20,panel.getHeight()*7/8, panel.getWidth()/11, panel.getHeight()/15);
 		export.setVisible(true);
 
+		export.addActionListener(new ActionListener() {  
+		        public void actionPerformed(ActionEvent evt) {  
+		             try {  
+		                 ExcelExporter exp = new ExcelExporter();  
+		                 exp.exportTable(table, new File("C:/Users/QiHan/Desktop/InventoryInfo.xlsx"));  
+		              } catch (IOException ex) {  
+		                  System.out.println(ex.getMessage());  
+		                  ex.printStackTrace();  
+		              }  
+		            }  
+		        });  
+	
 		panel.add(ok);
 		panel.add(export);
 		panel.add(ddl);		

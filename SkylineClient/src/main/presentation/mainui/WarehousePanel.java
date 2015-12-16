@@ -100,8 +100,7 @@ public class WarehousePanel extends GuidePanel{
 	}
 	
 	public void remove(){
-		
-		
+	
 	}
 	
 }

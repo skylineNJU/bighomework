@@ -18,7 +18,7 @@ public class IntermediateInfoBL {
 		ArrayList<WarehouseInfoVO> voList=intermvo.getWarehouseInfoList();
 		for(WarehouseInfoVO vo:voList){
 			intermInfo.addWarehouse(new WarehouseInfo(vo.getCity(),vo.getStaffNum()
-					,vo.getAcreage(),vo.getArea(),vo.getAlert()));
+					,vo.getAcreage(),vo.getArea(),vo.getVolume(),vo.getAlert()));
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class IntermediateInfoBL {
 		ArrayList<WarehouseInfo> poList=intermInfo.getWarehouseInfoList();
 		for(WarehouseInfo po:poList){
 			vo.addWarehouse(new WarehouseInfoVO(po.getCity(),po.getStaffNum()
-					,po.getAcreage(),po.getArea(),po.getAlert()));
+					,po.getAcreage(),po.getArea(),po.getVolume(),po.getAlert()));
 		}
 		return vo;
 		

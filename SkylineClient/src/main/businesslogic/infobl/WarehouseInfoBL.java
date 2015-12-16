@@ -10,7 +10,7 @@ public class WarehouseInfoBL {
 	
 	public WarehouseInfoBL(WarehouseInfoVO vo){
 		info=new WarehouseInfo(vo.getCity(),vo.getStaffNum()
-				,vo.getAcreage(),vo.getArea(),vo.getAlert());
+				,vo.getAcreage(),vo.getArea(),vo.getVolume(),vo.getAlert());
 	}
 	public void saveInfo(){
 		InfoDataService service=new InfoDataController();

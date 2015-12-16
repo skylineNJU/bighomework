@@ -9,6 +9,7 @@ public class FinanceuiControl {
 	private StatisticsListPanel statisticsListPanel;
 	private FeeStrategyPanel feeStrategy;
 	private SalaryPanel salaryPanel;
+	private InitialAccountPanel initialAccount;
 	
 	public void select(Financeui ui){
 		switch(ui){
@@ -39,6 +40,10 @@ public class FinanceuiControl {
 		case SalaryStrategyui:
 			salaryPanel = new SalaryPanel();
 			salaryPanel.init();
+			break;
+		case InitialAccountui:
+			initialAccount = new InitialAccountPanel();
+			initialAccount.init();
 			break;
 		default:
 			break;

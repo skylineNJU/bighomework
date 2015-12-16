@@ -82,7 +82,7 @@ public class AddWarehouseInReceiptPanel {
 		listPanel.setLayout(null);
 		listPanel.setBounds(panel.getWidth()*10/80, panel.getHeight()/13, panel.getWidth()*57/80, panel.getHeight()*18/20);
 		listPanel.setBorder(BorderFactory.createMatteBorder(1, 10, 1, 1, Color.GRAY));//top,left,bottom,right
-		tip();
+	//	tip();
 		content();
 		listPanel.setVisible(true);
 		panel.add(listPanel);	

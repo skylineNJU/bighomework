@@ -30,7 +30,7 @@ public class IntermediateInfo extends Message {
 		reader=new SqlReader("WarehouseInfo");
 		while(reader.findNext("所在城市",city)){
 			WarehouseInfo info=new WarehouseInfo(city,reader.getInt("员工人数"),reader.getDouble("仓库面积"),
-					reader.getString("区号"),reader.getDouble("警戒值"));
+					reader.getString("区号"),reader.getDouble("仓库总容量"),reader.getDouble("警戒值"));
 			warehouseInfoList.add(info);
 		}
 	}

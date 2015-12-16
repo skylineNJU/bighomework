@@ -6,15 +6,29 @@ public class WarehouseInfoVO {
 	private double acreage;
 	private String area;
 	private double alert;
+	private double volume;
 	
-	public WarehouseInfoVO(String city, int staffNum, double acreage, String area, double alert) {
+	public WarehouseInfoVO(String city, int staffNum, double acreage, String area,double volume, double alert) {
 		super();
 		this.setCity(city);
 		this.setStaffNum(staffNum);
 		this.setAcreage(acreage);
 		this.setArea(area);
+		this.setVolume(volume);
 		this.setAlert(alert);
+		
 	}
+
+	
+	public double getVolume() {
+		return volume;
+	}
+
+
+	public void setVolume(double volume) {
+		this.volume = volume;
+	}
+
 
 	public String getCity() {
 		return city;

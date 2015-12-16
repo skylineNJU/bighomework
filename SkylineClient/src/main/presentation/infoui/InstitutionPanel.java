@@ -50,6 +50,8 @@ public class InstitutionPanel {
 	private JLabel save;
 	private JLabel newLobby;
 	private JLabel ok;
+	private JLabel delete;
+	private JLabel deleteW;
 	private JTextField city;
 	private JLabel message;
 	private	DefaultTableModel   defaultModel11 ;
@@ -121,8 +123,8 @@ public class InstitutionPanel {
 		scrollPane11.setVisible(true);
 	
 		
-		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库总容量","仓库警戒值/%"};
-		tableData1=new String[][]{{"航运区","","","100%"},{"铁路区","","","100%"},{"汽运区","","","100%"},{"机动区","","","100%"}};	
+		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库总容量/件","仓库警戒值/%"};
+		tableData1=new String[][]{{"航运区","","","","100%"},{"铁路区","","","","100%"},{"汽运区","","","","100%"},{"机动区","","","","100%"}};	
 		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
 	        return true;  
 	     } } ;
@@ -224,6 +226,8 @@ public class InstitutionPanel {
 		modifty.setBounds(panel.getWidth()*75/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
 		save.setBounds(panel.getWidth()*85/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
 		
+		delete = new JLabel("删除");
+		delete.setBounds(panel.getWidth()*20/100,panel.getHeight()*53/60, panel.getWidth()/10, panel.getHeight()/15);
 		
 		message = new JLabel("请输入要查看的机构所在城市：");
 		message.setBounds(panel.getWidth()*8/100,panel.getHeight()*2/60, panel.getWidth()/3, panel.getHeight()/15);
@@ -267,11 +271,12 @@ public class InstitutionPanel {
 				ArrayList<WarehouseInfoVO> voList=vo.getWarehouseInfoList();
 				int x=0;
 				for(WarehouseInfoVO warVO:voList){
-					//"仓库区","总员工数","占地面积/m^2","仓库警戒值/%"
+					//"仓库区","总员工数","占地面积/m^2","仓库总容量","仓库警戒值/%"
 					table1.setValueAt(warVO.getArea(),x,0);
 					table1.setValueAt(warVO.getStaffNum(),x,1);
 					table1.setValueAt(warVO.getAcreage(),x,2);
-					table1.setValueAt(warVO.getAlert(),x,3);
+					table1.setValueAt(warVO.getVolume(),x,3);
+					table1.setValueAt(warVO.getAlert(),x,4);
 					x++;
 				}
 				
@@ -299,19 +304,22 @@ public class InstitutionPanel {
 					if(!intermIsEmpty()){
 						IntermediateInfoVO vo=new IntermediateInfoVO(
 								//"所属城市","中转中心编号","机构员工数","占地面积/m^2"
-							city.getText(),
+								(String)table11.getValueAt(0,0),
+								//	city.getText(),
 							(String)table11.getValueAt(0,1),
 							Double.parseDouble((String)table11.getValueAt(0,3)),
 							Integer.parseInt((String)table11.getValueAt(0,2))
 							);
 						for(int x=0;x<4;x++){
-							//"仓库区","总员工数","占地面积/m^2","仓库警戒值"
+							//"仓库区","总员工数","占地面积/m^2","仓库总容量","仓库警戒值"
 							WarehouseInfoVO warVO=new WarehouseInfoVO(
-									city.getText(),
+									(String)table11.getValueAt(0,0),
+									//city.getText(),
 									Integer.parseInt((String)table1.getValueAt(x,1)),
 									Double.parseDouble((String)table1.getValueAt(x,2)),
 									warhouseEara[x],
-									Double.parseDouble((String)table1.getValueAt(x,3))			
+									Double.parseDouble((String)table1.getValueAt(x,3)),
+									Double.parseDouble((String)table1.getValueAt(x,4))			
 									);
 							vo.addWarehouse(warVO);
 						}
@@ -378,7 +386,8 @@ public class InstitutionPanel {
 									Integer.parseInt((String)table1.getValueAt(x,1)),
 									Double.parseDouble((String)table1.getValueAt(x,2)),
 									warhouseEara[x],
-									Double.parseDouble((String)table1.getValueAt(x,3))			
+									Double.parseDouble((String)table1.getValueAt(x,3)),			
+									Double.parseDouble((String)table1.getValueAt(x,4))
 									);
 							vo.addWarehouse(warVO);
 						}
