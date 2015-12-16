@@ -35,7 +35,7 @@ public class CreateCar extends CreatePanel {
 		Arrive.setText("到达地");
 		Montior.setText("监装员");
 		Container.setText("押运员");
-		LoadArea.setText("托运区号");
+		LoadArea.setText("托运架号");
 		Fee.setText("费用");
 	}
 	
@@ -71,7 +71,7 @@ public class CreateCar extends CreatePanel {
 				String time=format.format(dt);
 				VehicleLoadingVO vo=new VehicleLoadingVO(code,time,LoadCodeText.getText(),CodeText.getText(),
 						StartText.getText(),ArriveText.getText(),MontiorText.getText(),Container.getText(),
-						wp.getBelong()+" "+LoadAreaText.getText(),Double.parseDouble(FeeText.getText()));
+						wp.getBelong()+" "+"汽运区"+"  "+LoadAreaText.getText(),Double.parseDouble(FeeText.getText()));
 				vo.setBelong(wp.getBelong());
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();
 				intermRservice.saveRoadLoadCode(memory.getRoadLoadCode(), code);

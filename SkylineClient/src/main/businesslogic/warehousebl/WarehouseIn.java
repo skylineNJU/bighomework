@@ -75,12 +75,16 @@ public class WarehouseIn {
 		WarehouseInlist=service.inquireWarehouseIn(WarehouseInlist);
 		ArrayList<WarehouseInVO> warehouseInInfo=new ArrayList<WarehouseInVO>();
 		for(WarehouseInPO p:WarehouseInlist.getlist()){
-			System.out.println(p.getCode());
-			 warehouseInInfo.add(new WarehouseInVO(p.getCode(),
+			 warehouseInInfo.add(new WarehouseInVO(
+					 				p.getBar(),
+					 				p.getCode(),
+					 				p.getInDate(),
+					 				p.getDestination(),
 									p.getArea(),
 									p.getRow(),
 									p.getShelf(),
-									p.getPosition()
+									p.getPosition(),
+									p.getDamageCondition()
 									));
 		}
 		return  warehouseInInfo;

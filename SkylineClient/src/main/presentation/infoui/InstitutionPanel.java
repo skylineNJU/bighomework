@@ -60,15 +60,12 @@ public class InstitutionPanel {
 	private Vector<String> columnNameV; // declare the table column name vector  
 	private Vector<Vector<Object>> tableValueV; // declare the table value     // vector  
 	private int fixedColumn = 1; // the fixed column number                                
-	private int oldLobbyNum=0;
-	private int oldInstitutionNum=0;
 	private JTextField stuffNumText=new JTextField();
 	private JTextField earaText=new JTextField();
 	private JLabel stuffNumLabel=new JLabel("员工数目");
 	private JLabel earaLabel=new JLabel("占地面积");
-	private String[] warhouseEara={"航运区","铁路区","汽运区","机动区"};
+	private String[] warhouseEara={"航运区","铁运区","汽运区","机动区"};
 	
-
 	
 	public InstitutionPanel(){
 		panel=MainController.getWritepanel();
@@ -125,6 +122,7 @@ public class InstitutionPanel {
 		
 		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库总容量/件","仓库警戒值/%"};
 		tableData1=new String[][]{{"航运区","","","","100%"},{"铁路区","","","","100%"},{"汽运区","","","","100%"},{"机动区","","","","100%"}};	
+
 		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
 	        return true;  
 	     } } ;
@@ -254,11 +252,14 @@ public class InstitutionPanel {
 		panel.add(message);
 	}
 	
+
+
 	public boolean intermIsEmpty(){		
 		return false;
 	}
 	
 	public void Listener(){
+
 
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
@@ -329,11 +330,18 @@ public class InstitutionPanel {
 
 					break;
 				case 1:
-					int row=table2.getRowCount();
+					int row=0;
+					if(table2.getRowCount()==0){
+						
+					}else{
+					row=Integer.parseInt(((String)table2.getValueAt(table2.getRowCount()-1,0)).split(" ")[1]);
+					}
 					//"所属城市","营业厅编号","机构员工数","占地面积/m^2"
+					String insCode=PinYin.getPinyin(city.getText()+"营");
+					insCode=insCode.toUpperCase();
 					LobbyInfoVO vo=new LobbyInfoVO(
 							city.getText(),
-							String.format("%3d",row),
+							insCode+" "+(row+1),
 							Integer.parseInt(stuffNumText.getText()),
 							Double.parseDouble(earaText.getText()));
 					InfoBLService service=ConstructFactory.InfoFactory();
@@ -344,7 +352,7 @@ public class InstitutionPanel {
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
 					earaText.setVisible(false);
-					defaultModel2.addRow(new String[]{String.format("%3d",row),stuffNumText.getText(),earaText.getText()});
+					defaultModel2.addRow(new String[]{insCode+" "+(row+1),stuffNumText.getText(),earaText.getText()});
 				}
 			}
 		});
@@ -429,9 +437,6 @@ public class InstitutionPanel {
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				stuffNumText.setText(null);
-				stuffNumLabel.setText(null);
-				stuffNumText.setText(null);
-				earaLabel.setText(null);
 				earaText.setText(null);
 				stuffNumLabel.setVisible(true);
 				stuffNumText.setVisible(true);

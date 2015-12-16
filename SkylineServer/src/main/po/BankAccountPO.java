@@ -29,7 +29,7 @@ public class BankAccountPO extends Message{
 
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'"+account+"','"+money+"'";
+		String content="'"+account+"','"+money+"','"+"1"+"','"+"'";
 		writer.writeIntoSql("BankAccount", content);
 	}
 	

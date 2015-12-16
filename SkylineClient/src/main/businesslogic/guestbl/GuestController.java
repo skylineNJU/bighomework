@@ -7,11 +7,11 @@ public class GuestController implements GuestBLService {
 
 	
 	@Override
-	public boolean showHistory(String code, HistoryVO history) {
+	public HistoryVO showHistory(String code) {
 		// TODO Auto-generated method stub
 		History his=new History(code);
 		
-		return false;
+		return his.inquire();
 	}
 
 	

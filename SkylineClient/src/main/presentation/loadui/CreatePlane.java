@@ -36,7 +36,7 @@ public class CreatePlane extends CreatePanel {
 		Arrive.setText("到达地");
 		Montior.setText("监装员");
 		Container.setText("押运员");
-		LoadArea.setText("托运区号");
+		LoadArea.setText("托运架号");
 		Fee.setText("费用");
 	}
 	
@@ -53,7 +53,7 @@ public class CreatePlane extends CreatePanel {
 				String time=format.format(dt);
 				PlaneLoadingVO vo=new PlaneLoadingVO(code,time,LoadCodeText.getText(),
 						CodeText.getText(),StartText.getText(),ArriveText.getText(),
-						MontiorText.getText(),ContainerText.getText(),wp.getBelong()+" "+LoadAreaText.getText(),
+						MontiorText.getText(),ContainerText.getText(),wp.getBelong()+" "+"航运区"+"  "+LoadAreaText.getText(),
 						Double.parseDouble(FeeText.getText()));
 				vo.setBelong(wp.getBelong());
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();

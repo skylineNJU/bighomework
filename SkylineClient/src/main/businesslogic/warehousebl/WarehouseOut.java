@@ -80,6 +80,14 @@ public class WarehouseOut {
 		for(WarehouseOutPO p:WarehouseOutlist.getlist()){
 			System.out.println(p.getCode());
 			 warehouseOutInfo.add(new WarehouseOutVO(p.getCode(),
+					 				p.getBar(),
+					 				p.getCode(),
+									p.getDestination(),
+									p.getTType(),
+									p.getOutDate(),
+									p.getTransferCode(),
+									p.getVehicleCode(),
+									p.getDamageCondition(),
 									p.getArea(),
 									p.getRow(),
 									p.getShelf(),

@@ -1,37 +1,79 @@
 package main.vo;
-import main.businesslogic.guestbl.History;
 public class HistoryVO {
-	private String code;
-	private OrderVO order;
-	private LobbyReceptionVO lobby1;
-	private LobbyReceptionVO lobby2;
-	private TransitReceptionVO interm1;
-	private TransitReceptionVO interm2;
+	private String orderCode;
+	private int arriveLobby1=0;
+	private int arriveInterm1=0;
+	private int arriveInterm2=0;
+	private int arriveLobby2=0;
+	private int isReceived=0;
+	private String beginCity="";
+	private String endCity="";
 	
-	public HistoryVO(){}
-	public HistoryVO(String code){
-		this.code=code;
+	
+	
+	public HistoryVO(String orderCode, int arriveLobby1, int arriveInterm1, int arriveInterm2, int arriveLobby2,
+			int isReceived, String beginCity, String endCity) {
+		super();
+		this.orderCode = orderCode;
+		this.arriveLobby1 = arriveLobby1;
+		this.arriveInterm1 = arriveInterm1;
+		this.arriveInterm2 = arriveInterm2;
+		this.arriveLobby2 = arriveLobby2;
+		this.isReceived = isReceived;
+		this.setBeginCity(beginCity);
+		this.setEndCity(endCity);
 	}
-	public String getCode() {
-		return code;
-	}
-	public boolean writeHistory(History history){
+	public HistoryVO(){
 		
-		return true;
 	}
-	public OrderVO getOrder() {
-		return order;
+	public String getOrderCode() {
+		return orderCode;
 	}
-	public LobbyReceptionVO getLobby1() {
-		return lobby1;
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
 	}
-	public LobbyReceptionVO getLobby2() {
-		return lobby2;
+	public int getArriveLobby1() {
+		return arriveLobby1;
 	}
-	public TransitReceptionVO getInterm1() {
-		return interm1;
+	public void setArriveLobby1(int arriveLobby1) {
+		this.arriveLobby1 = arriveLobby1;
 	}
-	public TransitReceptionVO getInterm2() {
-		return interm2;
+	public int getArriveInterm1() {
+		return arriveInterm1;
 	}
+	public void setArriveInterm1(int arriveInterm1) {
+		this.arriveInterm1 = arriveInterm1;
+	}
+	public int getArriveInterm2() {
+		return arriveInterm2;
+	}
+	public void setArriveInterm2(int arriveInterm2) {
+		this.arriveInterm2 = arriveInterm2;
+	}
+	public int getArriveLobby2() {
+		return arriveLobby2;
+	}
+	public void setArriveLobby2(int arriveLobby2) {
+		this.arriveLobby2 = arriveLobby2;
+	}
+	public int getIsReceived() {
+		return isReceived;
+	}
+	public void setIsReceived(int isReceived) {
+		this.isReceived = isReceived;
+	}
+	public String getBeginCity() {
+		return beginCity;
+	}
+	public void setBeginCity(String beginCity) {
+		this.beginCity = beginCity;
+	}
+	public String getEndCity() {
+		return endCity;
+	}
+	public void setEndCity(String endCity) {
+		this.endCity = endCity;
+	}
+	
+	
 }

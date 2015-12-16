@@ -25,4 +25,10 @@ public class Balance {
 		FinanceDataService finance = new FinanceDataController();
 		return finance.modifyBalance(bankPO);
 	}
+	
+	public boolean addBankAccount(BankAccountVO bank) {
+		FinanceDataService finance = new FinanceDataController();
+		BankAccountPO bankpo = new BankAccountPO(bank.getCode(),bank.getBalance());
+		return finance.addBankAccount(bankpo);
+	}
 }

@@ -6,6 +6,7 @@ import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;
 import main.po.StaffListPO;
+import main.po.UnitPO;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
 import main.po.WarehouseInfo;
@@ -16,6 +17,8 @@ import main.po.WorkerPO;
 	//车辆信息管理
 	//驾驶员信息管理
 public interface InfoDataService {
+	
+	public UnitPO getUnit();
 	
 	public StaffListPO readStaff(String unitCode);
 	

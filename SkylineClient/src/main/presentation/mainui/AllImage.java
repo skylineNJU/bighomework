@@ -1,14 +1,13 @@
 package main.presentation.mainui;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 public class AllImage {
 	
-	//构造方法私有化
+	//构造方法私有化,为了防止构造函数
 	private AllImage(){}
-	
+
+	//生成图片数组的方法,写static代码块
 	
 		//用户界面背景图
 		public static ImageIcon background = new ImageIcon("graphics/B.png");

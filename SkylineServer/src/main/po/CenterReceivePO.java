@@ -31,6 +31,8 @@ public class CenterReceivePO extends Receipt implements Serializable{
 		String content="'"+receiveYear+"/"+receiveMonth+"/"
 				+receiveDay+"','"+centerNumber+"','"+bar+"','"+this.getCode()+"'";
 		writer.writeIntoSql("TransReceive",content);
+		LocusPO po=new LocusPO(bar);
+		po.arriveIntermedate();
 	}
 	
 	public String readOrderCode(String area){

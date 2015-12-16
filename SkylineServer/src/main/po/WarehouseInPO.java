@@ -59,10 +59,12 @@ public class WarehouseInPO extends Receipt implements Serializable{
 			this.setKey("success");
 		}
 	}
-	
+	//getDataFromBase()
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("WarhouseIn");
-		reader.findNext("入库单单号",this.getCode());
+		System.out.println("+++++++++++++++++");
+		if(reader.findNext("入库单单号",this.getCode())){
+			System.out.println("find a code");
 		this.bar=reader.getString("订单单号");
 		this.area=reader.getString("区号");
 		this.damageCondition=reader.getString("损坏情况");
@@ -71,8 +73,9 @@ public class WarehouseInPO extends Receipt implements Serializable{
 		this.row=reader.getInt("排号");
 		this.shelf=reader.getInt("架号");
 		this.position=reader.getInt("位号");
+		}
 		reader.close();
-	
+		System.out.println("+++++++++++++++++");
 	}
 	
 	public boolean hasCargo(){

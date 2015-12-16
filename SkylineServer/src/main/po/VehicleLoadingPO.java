@@ -30,7 +30,9 @@ public class VehicleLoadingPO  extends Receipt implements Serializable{
 	public String readOrderCode(String area){
 		String content="";
 		SqlReader reader=new SqlReader("InventoryInfo");
-		while(reader.findNext("ÇøºÅ",area)){
+		String position[]=area.split("  ");
+		while(reader.findNext("ÇøºÅ",position[0])){
+			if(reader.getString("¼ÜºÅ").equals(position[1]))
 			content=content+reader.getString("¶©µ¥ºÅ")+" ";
 		}
 		reader.close();

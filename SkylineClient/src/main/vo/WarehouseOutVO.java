@@ -20,6 +20,25 @@ public class WarehouseOutVO extends ReceiptVO{
 	
 	
 	
+	public WarehouseOutVO(String co, String bar, String code, String destination, TransType type, String outDate,
+			String transferCode, String vehicleCode, String damageCondition, String area, int row, int shelf,
+			int position) {
+		super(co);
+		this.bar = bar;
+		this.code = code;
+		this.destination = destination;
+		this.type = type;
+		this.outDate = outDate;
+		this.transferCode = transferCode;
+		this.vehicleCode = vehicleCode;
+		this.damageCondition = damageCondition;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+	}
+
+
 	public WarehouseOutVO(String b,String co,String c,String k,TransType t,String d,String e,String f){
 		super(co);//outdata
 		bar=b;

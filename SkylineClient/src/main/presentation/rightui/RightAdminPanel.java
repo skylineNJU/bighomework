@@ -6,23 +6,20 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
+import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.RightBLService;
 import main.constructfactory.ConstructFactory;
 import main.po.Rights;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.vo.AccountVO;
+import main.vo.DistanceVO;
+import main.vo.IntermediateInfoVO;
 
 public class RightAdminPanel {
 	private JPanel panel;
@@ -39,17 +36,21 @@ public class RightAdminPanel {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private String[] identityString;
+	private String[] institutionString;
+	private String[]cityString;
 	DefaultTableModel model ;
 	//writePanel上的组件
 	private JLabel accountLabel;//账号标签
 	private JLabel codeLabel;//密码标签
 	private JLabel identityLabel;//身份标签
-	//private JLabel institutionLabel;//机构标签
+	private JLabel cityLabel;//城市标签
+	private JLabel institutionLabel;//机构标签
 	
 	private JTextField accountText;
 	private JTextField codeText;
 	private JComboBox<String> identity;
-	//private JTextField institutionText;
+	private JComboBox<String > institution;
+	private JComboBox<String > city;
 	private boolean[] selectRow;
 	
 	private JLabel title;
@@ -280,35 +281,56 @@ public class RightAdminPanel {
 		accountLabel = new JLabel("账号");
 		codeLabel= new JLabel("密码");
 		identityLabel = new JLabel("身份");
-		//institutionLabel = new JLabel("机构");
+		institutionLabel = new JLabel("机构");
+		cityLabel =new JLabel("城市");
 		
 		accountText = new JTextField();
 		codeText = new JTextField();
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
-		//institutionText = new JTextField();
-		identity = new JComboBox<String>(identityString);
+		institutionString=new String[]{"","",""};
+		institution =new JComboBox<String>(institutionString);
 		
+		identity = new JComboBox<String>(identityString);
+		InfoBLService service = ConstructFactory.InfoFactory();		
+		IntermediateInfoVO intermediateInfoVO = service.inquire();		
+		ArrayList<IntermediateInfoVO> volist2=null;
+		volist2=service.inquireInterm(city);
+		cityString =new String[2];
+		for(int x=0;x<2;x++)
+			cityString[x]=null;	
+		if(volist2!=null){
+		int counter=0;		
+		for(IntermediateInfoVO vo:volist2){
+			cityString[0]=vo.getCity();
+			cityString[1]=vo.getInstitutionCode();			
+			counter++;
+		}
+		}
+		city=new JComboBox<String>(cityString);
 		
 		
 		accountLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
 		codeLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
 		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+codeLabel.getY(), panelWidth*3/20, panelHeight/20);
-		//institutionLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
-		
+		cityLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
+		institutionLabel.setBounds(panelWidth*3/5,panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
 		
 		accountText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
 		codeText.setBounds(panelWidth/4, panelHeight*3/40+accountText.getY(), panelWidth*9/20, panelHeight/20);
 		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+codeText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		
-		//institutionText.setBounds(panelWidth/4, panelHeight*3/40+identity.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
+		city.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+		institution.setBounds(panelWidth*3/5+panelWidth/4,panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+	
 		writePanel.add(accountLabel);
 		writePanel.add(codeLabel);
 		writePanel.add(identityLabel);
-		//writePanel.add(institutionLabel);
+		writePanel.add(institutionLabel);
 		writePanel.add(accountText);
 		writePanel.add(codeText);
 		writePanel.add(identity);
-		//writePanel.add(institutionText);
+		writePanel.add(institution);
+		writePanel.add(city);
+		writePanel.add(cityLabel);
 		
 		
 	}
@@ -326,4 +348,4 @@ public class RightAdminPanel {
 			return true;
 		}
     }
-}
+	}

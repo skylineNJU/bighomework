@@ -15,6 +15,8 @@ import main.po.SalaryPO;
 //财务管理
 public interface FinanceDataService {
 	
+	public boolean addBankAccount(BankAccountPO bankpo);
+	
 	public boolean delFee(FeePO feePO);
 	
 	public boolean delCollection(CollectionPO collectionPO);

@@ -60,7 +60,42 @@ public class AccountPO extends Message implements Serializable{
 		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";
 		System.out.println(content);
 		writer.writeIntoSql("AccountInfo", content);
+		this.createRcord(right);
 	}
+	
+	public void createRcord(Rights right){
+		switch(right){
+		case COURIER:
+			CourrierReceiptPO po=new CourrierReceiptPO(
+					ID,"0","0","1","0","2");
+			po.writeIntoDatabase();
+			break;
+		case FINANCE:
+			FinanceReceipt po1=new FinanceReceipt(
+					ID,"1","2");
+			po1.writeIntoDatabase();
+			break;
+		case INTERMEDIATE:
+			IntermediateReceipt po2=new IntermediateReceipt(
+					ID,"1","2","3","4","0","0","0","0");
+			po2.writeIntoDatabase();
+			break;
+		case LOBBY:
+			LobbyReceiptPO po3=new LobbyReceiptPO(
+					ID,"1","2","0","0","3");
+			po3.writeIntoDatabase();
+			break;
+		case STOREHOUSE:
+			WarhouseReceiptPO po4=new WarhouseReceiptPO(
+					"1","2","0","0",this.belong,ID);
+			po4.writeIntoDatabase();
+			break;
+		default:
+			break;
+		
+		}
+	}
+	
 	public String readAccount(String ID){
 		String content="";
 		SqlReader reader=new SqlReader("AccountInfo");
@@ -80,12 +115,23 @@ public class AccountPO extends Message implements Serializable{
 		reader.close();
 		if(job.equals(right)){
 			this.deleteFromDatabase();
-			this.writeIntoDatabase();
+			this.writeInfo();
 		}else{
 			System.out.println("can't do it");
 		}
 	}
 
+	public void writeInfo(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";
+		System.out.println(content);
+		writer.writeIntoSql("AccountInfo", content);
+		if(right.equals(Rights.STOREHOUSE)){
+			WarhouseReceiptPO po4=new WarhouseReceiptPO(
+					"1","2","0","0",this.belong,ID);
+			po4.info();;
+		}
+	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("AccountInfo");
 		System.out.println(this.ID);
