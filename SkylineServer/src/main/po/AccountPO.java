@@ -60,6 +60,36 @@ public class AccountPO extends Message implements Serializable{
 		String content="'"+ID+"','"+code+"','"+right.name()+"','"+belong+"'";
 		System.out.println(content);
 		writer.writeIntoSql("AccountInfo", content);
+		switch(right){
+		case COURIER:
+			CourrierReceiptPO po=new CourrierReceiptPO(
+					ID,"0","0","1","0","2");
+			po.writeIntoDatabase();
+			break;
+		case FINANCE:
+			FinanceReceipt po1=new FinanceReceipt(
+					ID,"1","2");
+			po1.writeIntoDatabase();
+			break;
+		case INTERMEDIATE:
+			IntermediateReceipt po2=new IntermediateReceipt(
+					ID,"1","2","3","4","0","0","0","0");
+			po2.writeIntoDatabase();
+			break;
+		case LOBBY:
+			LobbyReceiptPO po3=new LobbyReceiptPO(
+					ID,"1","2","0","0","3");
+			po3.writeIntoDatabase();
+			break;
+		case STOREHOUSE:
+			WarhouseReceiptPO po4=new WarhouseReceiptPO(
+					ID,"1","2",this.belong,"0","0");
+			po4.writeIntoDatabase();
+			break;
+		default:
+			break;
+		
+		}
 	}
 	public String readAccount(String ID){
 		String content="";

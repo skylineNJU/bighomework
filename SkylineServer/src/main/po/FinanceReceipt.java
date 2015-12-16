@@ -36,7 +36,7 @@ public class FinanceReceipt extends Message{
 	
 	public void getDataFromeBase(){
 		SqlReader reader=new SqlReader("FinanceReceipt");
-		reader.findNext("账号",accountName);
+		if(reader.findNext("账号",accountName)){
 		if(costCode!=null)
 			this.costCode=reader.getString("支出单单号")+" "+costCode;
 		else
@@ -45,5 +45,6 @@ public class FinanceReceipt extends Message{
 			this.earnCode=reader.getString("入款单单号")+" "+earnCode;
 		else
 			this.earnCode=reader.getString("入款单单号");
+		}
 	}
 }

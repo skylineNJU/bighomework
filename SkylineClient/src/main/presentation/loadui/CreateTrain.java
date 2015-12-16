@@ -36,7 +36,7 @@ public class CreateTrain extends CreatePanel {
 		Arrive.setText("到达地");
 		Montior.setText("监装员");
 		Container.setText("押运员");
-		LoadArea.setText("托运区号");
+		LoadArea.setText("托运架号");
 		Fee.setText("费用");
 	}
 	
@@ -52,7 +52,7 @@ public class CreateTrain extends CreatePanel {
 				String time=format.format(dt);
 				TrainLoadingVO vo=new TrainLoadingVO(code,time,LoadCodeText.getText(),
 						CodeText.getText(),StartText.getText(),ArriveText.getText(),
-						MontiorText.getText(),Container.getText(),panel.getBelong()+" "+LoadAreaText.getText(),
+						MontiorText.getText(),Container.getText(),panel.getBelong()+" "+"铁运区"+"  "+LoadAreaText.getText(),
 						Double.parseDouble(FeeText.getText()));
 				vo.setBelong(panel.getBelong());
 				IntermediateReceipt intermRservice=ConstructFactory.IntermediateFactory();

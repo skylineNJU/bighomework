@@ -30,6 +30,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		CourrierReceiptCode receiptCode=new CourrierReceiptCode(userName,orderCode,time,null,null,null);
 		receiptCode.saveInfo();
+		this.submitCourrierReceipt(orderCode);
 	}
 
 	@Override
@@ -87,7 +88,8 @@ ReceiptCode{
 		SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 		String time=format.format(dt);
 		IntermediateReceiptCode interm=new IntermediateReceiptCode(userName,code,null,null,null,null,null,null,time);
-		interm.saveInfo();;
+		interm.saveInfo();
+		this.submitIntermediateReceipt(code);
 	}
 
 	@Override
@@ -98,6 +100,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		IntermediateReceiptCode interm=new IntermediateReceiptCode(userName,null,code,null,null,time,null,null,null);
 		interm.saveInfo();
+		this.submitIntermediateReceipt(code);
 	}
 
 	@Override
@@ -108,6 +111,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		IntermediateReceiptCode interm=new IntermediateReceiptCode(userName,null,null,null,code,null,null,time,null);
 		interm.saveInfo();
+		this.submitIntermediateReceipt(code);
 	}
 
 	@Override
@@ -118,6 +122,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		IntermediateReceiptCode interm=new IntermediateReceiptCode(userName,null,null,code,null,null,time,null,null);
 		interm.saveInfo();
+		this.submitIntermediateReceipt(code);
 	}
 
 	@Override
@@ -136,6 +141,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,code,null,time,null,null);
 		lobby.saveInfo();
+		this.submitLobbyReceipt(code);
 	}
 
 	@Override
@@ -146,6 +152,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		LobbyReceiptCode lobby=new LobbyReceiptCode(userName,null,code,null,time,null);
 		lobby.saveInfo();
+		this.submitLobbyReceipt(code);
 	}
 
 	@Override
@@ -189,6 +196,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(code,time,null,null,null,username);
 		warehouse.saveInfo();
+		this.submitWarhouseReceipt(code);
 	}
 
 	@Override
@@ -199,6 +207,7 @@ ReceiptCode{
 		String time=format.format(dt);
 		WarehouseReceiptCode warehouse=new WarehouseReceiptCode(null,null,code,time,null,username);
 		warehouse.saveInfo();
+		this.submitWarhouseReceipt(code);
 	}
 
 	@Override

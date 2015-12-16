@@ -28,7 +28,7 @@ public class TransitListBL {
 					po.getReceiveMonth(),
 					po.getReceiveDay(),
 					po.getCenterNumber(),
-					po.getCenterNumber(),
+					po.getBar(),
 					po.getCode());
 		
 			voList.add(vo);

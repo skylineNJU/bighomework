@@ -39,7 +39,7 @@ public class IntermediateReceipt extends Message {
 		this.deleteFromDatabase();
 		String content="'"+accountName+"','"+intermReceiptCode+"','"+airLoadCode+"','"
 				+railLoadCode+"','"+roadLoadCode+"','"+airLoadDate+"','"+railLoadDate+"','"
-				+roadLoadDate+"','"+intermDate+"','"+"未审批"+"'";
+				+roadLoadDate+"','"+intermDate+"'";
 		writer.writeIntoSql("IntermediateReceipt", content);
 	}
 	
@@ -50,7 +50,7 @@ public class IntermediateReceipt extends Message {
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("IntermediateReceipt");
-		reader.findNext("账户名",accountName);
+		if(reader.findNext("账户名",accountName)){
 		if(intermReceiptCode!=null)
 			this.intermReceiptCode=reader.getString("中转接收单单号")+" "+this.intermReceiptCode;
 		else
@@ -90,5 +90,6 @@ public class IntermediateReceipt extends Message {
 			this.intermDate=reader.getString("中转接收单生成时间")+" "+this.intermDate;
 		else
 			this.intermDate=reader.getString("中转接收单生成时间");
+		}
 	}
 }

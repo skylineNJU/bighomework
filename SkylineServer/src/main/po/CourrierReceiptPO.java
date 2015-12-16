@@ -44,7 +44,7 @@ public class CourrierReceiptPO extends Message{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("CourrierReceipt");
-		reader.findNext("账户名",account);
+		if(reader.findNext("账户名",account)){
 		if(orderCode!=null)
 			orderCode=reader.getString("订单单号")+" "+orderCode;
 		else
@@ -70,6 +70,7 @@ public class CourrierReceiptPO extends Message{
 		else
 			distributeCode=reader.getString("派件单单号");
 		reader.close();
+		}
 	}
 
 	public void modify() {

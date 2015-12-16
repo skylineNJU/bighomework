@@ -62,7 +62,7 @@ public class InstitutionPanel {
 	private JTextField earaText=new JTextField();
 	private JLabel stuffNumLabel=new JLabel("员工数目");
 	private JLabel earaLabel=new JLabel("占地面积");
-	private String[] warhouseEara={"航运区","铁路区","汽运区","机动区"};
+	private String[] warhouseEara={"航运区","铁运区","汽运区","机动区"};
 	
 	
 	public InstitutionPanel(){
@@ -325,9 +325,11 @@ public class InstitutionPanel {
 				case 1:
 					int row=table2.getRowCount();
 					//"所属城市","营业厅编号","机构员工数","占地面积/m^2"
+					String insCode=PinYin.getPinyin(city.getText()+"营");
+					insCode=insCode.toUpperCase();
 					LobbyInfoVO vo=new LobbyInfoVO(
 							city.getText(),
-							String.format("%3d",row),
+							insCode+row,
 							Integer.parseInt(stuffNumText.getText()),
 							Double.parseDouble(earaText.getText()));
 					InfoBLService service=ConstructFactory.InfoFactory();
@@ -338,7 +340,7 @@ public class InstitutionPanel {
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
 					earaText.setVisible(false);
-					defaultModel2.addRow(new String[]{String.format("%3d",row),stuffNumText.getText(),earaText.getText()});
+					defaultModel2.addRow(new String[]{insCode+row,stuffNumText.getText(),earaText.getText()});
 				}
 			}
 		});
@@ -421,10 +423,6 @@ public class InstitutionPanel {
 		});
 		newLobby.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-
-				stuffNumText.setText(null);
-				stuffNumLabel.setText(null);
-
 				stuffNumText.setText(null);
 				earaText.setText(null);
 				stuffNumLabel.setVisible(true);

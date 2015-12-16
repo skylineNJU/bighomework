@@ -27,6 +27,7 @@ import main.vo.OrderVO;
 import main.vo.PlaneLoadingVO;
 import main.vo.ReceiptRecordVO;
 import main.vo.TrainLoadingVO;
+import main.vo.TransitReceptionVO;
 import main.vo.VehicleLoadingVO;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
@@ -441,7 +442,14 @@ public class ExamAllOrderPanel {
 					switch((String)intermeTable.getValueAt(x,1)){
 					case "中转接收单":
 						System.out.println("中转接收单");
-						
+						ReceiveBLService service0=ConstructFactory.ReceiveFactory();
+						TransitReceptionVO vo0=service0.inquireTransitReception(selectCode).get(0);
+						String content0="接收日期："+vo0.getReceiveYear()+"/"
+								+vo0.getReceiveMonth()+"/"+vo0.getReceiveDay()+"<br>"+
+								"中转中心编号："+vo0.getCenterNumber()+"<br>"+
+								"订单号："+vo0.getBar();
+						content0=hmlc.CovertDestionString(content0);
+						intermeTable.setToolTipText(content0);
 						break;
 					case "飞机装运单":
 						System.out.println("飞机装运单");

@@ -33,7 +33,7 @@ public class WarhouseReceiptPO extends Message{
 		this.getDataFromBase();
 		this.deleteFromDatabase();
 		String content="'"+username+"','"+warehouseInCode+"','"+warehouseOutCode+"','"+
-		belong+"','"+warehouseInDate+"','"+warehouseOutDate+"','"+"未审批"+"'";
+		belong+"','"+warehouseInDate+"','"+warehouseOutDate+"'";
 		System.out.println("_))))))))))))))):::"+content);
 		writer.writeIntoSql("WarhouseReceipt", content);
 	}
@@ -46,7 +46,7 @@ public class WarhouseReceiptPO extends Message{
 	public void getDataFromBase(){
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>:::"+warehouseInCode+" "+warehouseInDate+" "+warehouseOutCode+" "+warehouseOutDate+" "+belong);
 		SqlReader reader=new SqlReader("WarhouseReceipt");
-		reader.findNext("账户名",username);
+		if(reader.findNext("账户名",username)){
 		if(this.warehouseInCode==null)
 			warehouseInCode=reader.getString("入库单单号");
 		else
@@ -72,7 +72,7 @@ public class WarhouseReceiptPO extends Message{
 			belong=reader.getString("仓库编号");
 		else
 			belong=reader.getString("仓库编号")+" "+belong;
-		
+		}
 	}
 	
 	

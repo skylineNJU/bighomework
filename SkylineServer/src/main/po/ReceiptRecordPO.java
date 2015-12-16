@@ -15,7 +15,7 @@ public class ReceiptRecordPO extends Message{
 	private String warehouseCode;
 	private String financeCode;
 	
-	public void writeIntoDataBase(){
+	public void writeIntoDatabase(){
 		this.peekDataFromBase();
 		this.deleteFromDatabase();
 		SqlWriter writer=new SqlWriter();
@@ -47,12 +47,13 @@ public class ReceiptRecordPO extends Message{
 	
 	public void peekDataFromBase(){
 		SqlReader reader=new SqlReader("ReceiptRecord");
+		if(reader.hasNext()){
 		if(courrierCode!=null){
 			courrierCode=reader.getString("快递员单号")+" "+courrierCode;
 		}else{
 			courrierCode=reader.getString("快递员单号");
 		}
-		if(courrierCode!=null){
+		if(lobbyCode!=null){
 			lobbyCode=reader.getString("营业厅单号")+" "+lobbyCode;
 		}else{
 			lobbyCode=reader.getString("营业厅单号");
@@ -74,6 +75,7 @@ public class ReceiptRecordPO extends Message{
 			financeCode=reader.getString("财务单号")+" "+financeCode;
 		}else{
 			financeCode=reader.getString("财务单号");	
+		}
 		}
 	}
 	public void deleteFromDatabase(){
