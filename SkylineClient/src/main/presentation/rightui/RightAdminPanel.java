@@ -39,17 +39,21 @@ public class RightAdminPanel {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private String[] identityString;
+	private String[] institutionString;
+	private String[]cityString;
 	DefaultTableModel model ;
 	//writePanel上的组件
 	private JLabel accountLabel;//账号标签
 	private JLabel codeLabel;//密码标签
 	private JLabel identityLabel;//身份标签
-	//private JLabel institutionLabel;//机构标签
+	private JLabel cityLabel;//城市标签
+	private JLabel institutionLabel;//机构标签
 	
 	private JTextField accountText;
 	private JTextField codeText;
 	private JComboBox<String> identity;
-	//private JTextField institutionText;
+	private JComboBox<String > institution;
+	private JComboBox<String > city;
 	private boolean[] selectRow;
 	
 	private JLabel title;
@@ -280,11 +284,15 @@ public class RightAdminPanel {
 		accountLabel = new JLabel("账号");
 		codeLabel= new JLabel("密码");
 		identityLabel = new JLabel("身份");
-		//institutionLabel = new JLabel("机构");
+		institutionLabel = new JLabel("机构");
+		cityLabel =new JLabel("城市");
 		
 		accountText = new JTextField();
 		codeText = new JTextField();
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
+		cityString=new String[]{"北京","上海","南京","广州"};
+		institutionString=new String[]{"","",""};
+		institution =new JComboBox<String>();
 		//institutionText = new JTextField();
 		identity = new JComboBox<String>(identityString);
 		
