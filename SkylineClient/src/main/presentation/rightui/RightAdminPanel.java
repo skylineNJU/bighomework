@@ -6,23 +6,18 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
 import main.businesslogicservice.RightBLService;
 import main.constructfactory.ConstructFactory;
 import main.po.Rights;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.vo.AccountVO;
+import main.vo.DistanceVO;
 
 public class RightAdminPanel {
 	private JPanel panel;
@@ -290,12 +285,14 @@ public class RightAdminPanel {
 		accountText = new JTextField();
 		codeText = new JTextField();
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
-		cityString=new String[]{"北京","上海","南京","广州"};
 		institutionString=new String[]{"","",""};
 		institution =new JComboBox<String>(institutionString);
-		city=new JComboBox<String>(cityString);
-		identity = new JComboBox<String>(identityString);
 		
+		identity = new JComboBox<String>(identityString);
+		FinanceBLService service = ConstructFactory.FinanceFactory();
+		DistanceVO distanceVO = service.getDistance();
+		cityString=distanceVO.getCity();
+		city=new JComboBox<String>(cityString);
 		
 		
 		accountLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
