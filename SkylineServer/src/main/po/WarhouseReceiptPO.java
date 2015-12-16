@@ -38,6 +38,14 @@ public class WarhouseReceiptPO extends Message{
 		writer.writeIntoSql("WarhouseReceipt", content);
 	}
 	
+	public void info(){
+		SqlWriter writer=new SqlWriter();
+		String content="'"+username+"','"+warehouseInCode+"','"+warehouseOutCode+"','"+
+				belong+"','"+warehouseInDate+"','"+warehouseOutDate+"'";
+				System.out.println("_))))))))))))))):::"+content);
+				writer.writeIntoSql("WarhouseReceipt", content);
+	}
+	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
 		deleter.deleteData("WarhouseReceipt","账户名",username);
@@ -67,11 +75,10 @@ public class WarhouseReceiptPO extends Message{
 			warehouseOutDate=reader.getString("出库时间");
 		else
 			warehouseOutDate=reader.getString("出库时间")+" "+warehouseOutDate;
-		
+	
 		if(this.belong==null)
 			belong=reader.getString("仓库编号");
-		else
-			belong=reader.getString("仓库编号")+" "+belong;
+
 		}
 	}
 	

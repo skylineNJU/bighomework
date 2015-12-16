@@ -22,7 +22,7 @@ public class DistributePOList extends Message{
 		System.out.println("the courrier accountName is:"+key);
 		distributeList.clear();
 		while(reader.findNext("快递员账号",key)){
-			DistributePO distributePO = new DistributePO(reader.getString("单号"),
+			DistributePO distributePO = new DistributePO(reader.getString("派送单号"),
 					reader.getString("订单号"),
 					reader.getString("收件人姓名"),
 					reader.getString("收件人地址"),

@@ -292,8 +292,8 @@ public class RightAdminPanel {
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
 		cityString=new String[]{"北京","上海","南京","广州"};
 		institutionString=new String[]{"","",""};
-		institution =new JComboBox<String>();
-		//institutionText = new JTextField();
+		institution =new JComboBox<String>(institutionString);
+		city=new JComboBox<String>(cityString);
 		identity = new JComboBox<String>(identityString);
 		
 		
@@ -301,22 +301,25 @@ public class RightAdminPanel {
 		accountLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
 		codeLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
 		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+codeLabel.getY(), panelWidth*3/20, panelHeight/20);
-		//institutionLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
-		
+		cityLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
+		institutionLabel.setBounds(panelWidth*3/5,panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
 		
 		accountText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
 		codeText.setBounds(panelWidth/4, panelHeight*3/40+accountText.getY(), panelWidth*9/20, panelHeight/20);
 		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+codeText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		
-		//institutionText.setBounds(panelWidth/4, panelHeight*3/40+identity.getY()+panelHeight/80, panelWidth*9/20, panelHeight/20);
+		city.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+		institution.setBounds(panelWidth*3/5+panelWidth/4,panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+	
 		writePanel.add(accountLabel);
 		writePanel.add(codeLabel);
 		writePanel.add(identityLabel);
-		//writePanel.add(institutionLabel);
+		writePanel.add(institutionLabel);
 		writePanel.add(accountText);
 		writePanel.add(codeText);
 		writePanel.add(identity);
-		//writePanel.add(institutionText);
+		writePanel.add(institution);
+		writePanel.add(city);
+		writePanel.add(cityLabel);
 		
 		
 	}
