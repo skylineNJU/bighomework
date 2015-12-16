@@ -11,6 +11,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.FinanceBLService;
+import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.RightBLService;
 import main.constructfactory.ConstructFactory;
 import main.po.Rights;
@@ -18,6 +19,7 @@ import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.vo.AccountVO;
 import main.vo.DistanceVO;
+import main.vo.IntermediateInfoVO;
 
 public class RightAdminPanel {
 	private JPanel panel;
@@ -289,9 +291,21 @@ public class RightAdminPanel {
 		institution =new JComboBox<String>(institutionString);
 		
 		identity = new JComboBox<String>(identityString);
-		FinanceBLService service = ConstructFactory.FinanceFactory();
-		DistanceVO distanceVO = service.getDistance();
-		cityString=distanceVO.getCity();
+		InfoBLService service = ConstructFactory.InfoFactory();		
+		IntermediateInfoVO intermediateInfoVO = service.inquire();		
+		ArrayList<IntermediateInfoVO> volist2=null;
+		volist2=service.inquireInterm(city);
+		cityString =new String[2];
+		for(int x=0;x<2;x++)
+			cityString[x]=null;	
+		if(volist2!=null){
+		int counter=0;		
+		for(IntermediateInfoVO vo:volist2){
+			cityString[0]=vo.getCity();
+			cityString[1]=vo.getInstitutionCode();			
+			counter++;
+		}
+		}
 		city=new JComboBox<String>(cityString);
 		
 		
@@ -334,4 +348,4 @@ public class RightAdminPanel {
 			return true;
 		}
     }
-}
+	}
