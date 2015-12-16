@@ -24,6 +24,8 @@ public class LobbyReceivePO extends Receipt implements Serializable{
 		String content="'"+receiveYear+"/"+receiveMonth+"/"+receiveDay+"','"
 				+condition+"','"+expressBar+"','"+this.getCode()+"'";
 		writer.writeIntoSql("LobbyReceive",content);
+		LocusPO po=new LocusPO(this.expressBar);
+		po.arriveLobby();
 	}
 	
 	public void getDataFromBase(){

@@ -2,6 +2,7 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
+import main.vo.EarnVO;
 import main.vo.LobbyReceptionVO;
 import main.vo.OrderVO;
 import main.vo.TransitReceptionVO;
@@ -26,6 +27,8 @@ public interface ReceiveBLService {
 	public boolean createNewTransitReception(TransitReceptionVO transitReceptionInfo);
 	
 	public ArrayList<TransitReceptionVO> inquireTransitReception(String codeList);//查询中转到达单
+	
+	public ArrayList<TransitReceptionVO> showTransitReception(String date,String unit);
 	
 	/*营业厅业务员输入
 	 * 到达日期，订单号，出发地，货物到达状态（损坏，完整，丢失）

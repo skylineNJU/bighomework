@@ -1,6 +1,8 @@
 package main.presentation.loadui;
 
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -13,12 +15,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import main.businesslogicservice.FinanceBLService;
 import main.businesslogicservice.LoadBLService;
 import main.businesslogicservice.ReceiveBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.IntermediateMemory;
+import main.vo.EarnVO;
 import main.vo.PlaneLoadingVO;
 import main.vo.TransitReceptionVO;
 
@@ -28,6 +32,7 @@ public class ReceiveListPanel {
 	private String[] monthString;
 	private String[] dayString;//31天
 	private JPanel panel;
+	private JPanel lookPanel;
 	private JLabel title;
 	private JLabel timeLabel;//装运日期
 	private JComboBox<String> yearBox;//表示年份的组合框
@@ -58,7 +63,11 @@ public class ReceiveListPanel {
  public	void init(){
 		
 	    title();
-		setTime();
+	    lookPanel=new JPanel();
+	    lookPanel.setBounds(0, 0, panel.getWidth()*9/10, panel.getHeight()*4/5);
+	    lookPanel.setLayout(null);
+	    initTime();
+	    initLookPanel();
 		initReceiveTable(panel,table);
 		delButton = new JButton("删除");
 		saveButton = new JButton("保存");
@@ -70,47 +79,102 @@ public class ReceiveListPanel {
 		panel.repaint();
 	}
  
- public void title(){
+ private void initLookPanel() {
+	// TODO Auto-generated method stub 
+	 getData();
+	 table = new JTable(tableData,tableTitle);
+		scrollPane = new JScrollPane(table);
+		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
+		table.setRowHeight(panelWidth/20);//设置列宽
+		table.setDragEnabled(false);//设置不可拖动
+		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
+		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
+		if(tableData.length<=9){
+			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
+		}else{
+			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, 10*table.getRowHeight());
+		}
+		panel.add(scrollPane);
+		lookPanel.repaint();
+	
+}
+private void initTime() {
+	// TODO Auto-generated method stub
+	Calendar calendar = Calendar.getInstance();
+	year = calendar.get(Calendar.YEAR);
+	timeLabel = new JLabel("接收日期");
+	yearLabel = new JLabel("年");
+	monthLabel = new JLabel("月");
+	dayLabel = new JLabel("日");
+	ensureButton = new JButton("确认");
+	
+	yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
+	monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
+	dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+			"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+	timeLabel.setBounds(panelWidth/20, panelHeight/10-15, panelWidth/10, panelHeight/20);
+	yearBox = new JComboBox<String>(yearString);
+	yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+	yearLabel.setBounds(yearBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
+	monthBox = new JComboBox<String>(monthString);
+	monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+	monthLabel.setBounds(monthBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
+	dayBox = new JComboBox<String>(dayString);
+	dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10-15,  panelWidth/10, panelHeight/20);
+	dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+	ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/10, panelHeight/20);
+	
+	panel.add(ensureButton);
+	panel.add(timeLabel);
+	panel.add(yearLabel);
+	panel.add(monthLabel);
+	panel.add(dayLabel);
+	panel.add(yearBox);
+	panel.add(monthBox);
+	panel.add(dayBox);
+	ensureButton.addMouseListener(new MouseAdapter() {
+		public void mouseClicked(MouseEvent e){
+			scrollPane.remove(table);
+			lookPanel.remove(scrollPane);
+			initLookPanel();
+			lookPanel.repaint();
+		}
+	});
+}
+
+
+public void getData(){
+	int counter = 0;
+	tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
+	ReceiveBLService receive = ConstructFactory.ReceiveFactory();
+	String date = yearBox.getSelectedItem()+"/"+monthBox.getSelectedItem()+"/"+dayBox.getSelectedItem();
+	ArrayList<TransitReceptionVO> voList =receive.inquireTransitReception(date);	
+	if(voList.size()==0){
+		tableData = new String[1][tableTitle.length];
+		tableData[0][0] = "   no data";
+		tableData[0][1] = "   no data";
+		tableData[0][2] = "   no data";
+		
+	}else{
+		tableData = new String[voList.size()][tableTitle.length];
+	}
+	for(TransitReceptionVO transitReceptionVO:voList){
+		tableData[counter][0] =transitReceptionVO.getCode();
+		tableData[counter][1] =transitReceptionVO.getBar();
+		tableData[counter][2] = transitReceptionVO.getCenterNumber();
+		
+		counter++;
+	}
+	
+}
+
+
+public void title(){
 		title = new JLabel("接收单列表");
 		title.setBounds(panelWidth/3, 10, panelWidth/6, 40);
 		panel.add(title);
 	}
  
- public void setTime(){
-		
-		Calendar calendar = Calendar.getInstance();
-		year = calendar.get(Calendar.YEAR);
-		timeLabel = new JLabel("接收日期");
-		yearLabel = new JLabel("年");
-		monthLabel = new JLabel("月");
-		dayLabel = new JLabel("日");
-		ensureButton = new JButton("确认");
-		
-		yearString = new String[]{String.valueOf(year-2), String.valueOf(year-1), String.valueOf(year), String.valueOf(year+1)};
-		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
-		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
-				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
-		timeLabel.setBounds(panelWidth/20, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		yearBox = new JComboBox<String>(yearString);
-		yearBox.setBounds(timeLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		yearLabel.setBounds(yearBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
-		monthBox = new JComboBox<String>(monthString);
-		monthBox.setBounds(yearLabel.getX()+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		monthLabel.setBounds(monthBox.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/20, panelHeight/20);
-		dayBox = new JComboBox<String>(dayString);
-		dayBox.setBounds(monthLabel.getX()+panelWidth/10, panelHeight/10-15,  panelWidth/10, panelHeight/20);
-		dayLabel.setBounds(dayBox.getX()+10+panelWidth/10, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		ensureButton.setBounds(dayLabel.getX()+panelWidth/10+10, panelHeight/10-15, panelWidth/10, panelHeight/20);
-		
-		panel.add(ensureButton);
-		panel.add(timeLabel);
-		panel.add(yearLabel);
-		panel.add(monthLabel);
-		panel.add(dayLabel);
-		panel.add(yearBox);
-		panel.add(monthBox);
-		panel.add(dayBox);
-	}
  
  public String[][] getReceiveTableData(){
 		IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
@@ -143,19 +207,7 @@ public class ReceiveListPanel {
 	    tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
 	    tableData = new String[][]{{"1416191089", "333333", "888888"}};
 	    tableData = this.getReceiveTableData();
-		table = new JTable(tableData,tableTitle);
-		scrollPane = new JScrollPane(table);
-		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
-		table.setRowHeight(panelWidth/20);//设置列宽
-		table.setDragEnabled(false);//设置不可拖动
-		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
-		table.getTableHeader().setResizingAllowed(true);//设置列宽不可变
-		if(tableData.length<=9){
-			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, (table.getRowCount()+1)*table.getRowHeight());
-		}else{
-			scrollPane.setBounds(panelWidth/12, panelHeight/5-15, panelWidth/6*5, 10*table.getRowHeight());
-		}
-		panel.add(scrollPane);
+		
 	}
  
  

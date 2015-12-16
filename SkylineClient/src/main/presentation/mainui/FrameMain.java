@@ -37,6 +37,7 @@ public class FrameMain extends JFrame{
 		min.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		title.setSize(frame.getWidth()-(int)((double)frame.getWidth()*18/490)*2,(int)((double)frame.getHeight()*22/490));
 		title.setLocation(0,0);
+		title.setOpaque(false);
 		exit.setLocation(frame.getWidth()-exit.getWidth(),0);
 		min.setLocation(frame.getWidth()-2*min.getWidth(),0);
 		frame.setContentPane(panel);
@@ -44,6 +45,7 @@ public class FrameMain extends JFrame{
 		panel.add(exit);
 		panel.add(min);
 		panel.add(title);
+		panel.setOpaque(false);
 		frame.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {  //按下（mousePressed 不是点击，而是鼠标被按下没有抬起）
             	 if(e.getY()<=(int)((double)frame.getHeight()*22/490)){

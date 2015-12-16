@@ -6,10 +6,7 @@ public class InventoryPO extends Message implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-/*	椋╋拷	
- * 閸戯拷/閸忋儱绨遍弫浼村櫤閿涘苯鍤崗銉ョ氨鐠愌呭⒖閻ㄥ嫯顓归崡鏇炲娇閿涘本宕崸蹇斿剰閸愮绱濋崚鍡楀隘閸欓攱甯撻崣閿嬬仸閸欒渹缍呴崣鍑ょ礉閸掓媽鎻弮銉︽埂,閻╊喚娈戦崷锟�
- * 
-*/
+
 	 	private	int inNum;
 	 	private int outNum;
 	 	private String bar;

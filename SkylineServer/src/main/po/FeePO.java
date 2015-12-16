@@ -34,7 +34,7 @@ public class FeePO extends Message {
 	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
-		deleter.deleteData("Fee","ID","");//删除所有的,这个地方没有写完
+		deleter.deleteData("Fee","ID","1");//删除所有的,这个地方没有写完
 	}
 
 	public double getRoadFee() {

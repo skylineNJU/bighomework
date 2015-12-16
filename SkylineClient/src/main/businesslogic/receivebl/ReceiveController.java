@@ -2,6 +2,7 @@ package main.businesslogic.receivebl;
 
 import java.util.ArrayList;
 
+import main.businesslogic.financebl.LobbyEarn;
 import main.businesslogic.loadbl.TransitReceiveListBL;
 import main.businesslogicservice.ReceiveBLService;
 import main.vo.LobbyReceptionVO;
@@ -48,7 +49,17 @@ public class ReceiveController implements ReceiveBLService {
 	@Override
 	public ArrayList<TransitReceptionVO> inquireTransitReception(String codeList) {
 		// TODO Auto-generated method stub
-		return null;
+		TransitListBL bl=new TransitListBL(codeList);
+		return bl.inquire();
+	}
+
+	@Override
+	public ArrayList<TransitReceptionVO> showTransitReception(String date,
+			String unit) {
+				return null;
+		// TODO Auto-generated method stub
+		
+		
 	}
 
 }

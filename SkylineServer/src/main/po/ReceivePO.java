@@ -35,6 +35,8 @@ public class ReceivePO extends Receipt implements Serializable{
 				+receiveDate+"','"+receivorPhone+"','"+courierCode+"'";
 		writer.writeIntoSql("Receive", content);
 		this.setKey("success");
+		LocusPO po=new LocusPO(courierCode);
+		po.isReceived();
 		}
 	}
 	

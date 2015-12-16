@@ -26,6 +26,7 @@ public class SearchPanel{
 	private JLabel aboutusPane=new JLabel(AllImage.aboutus);//关于我们 弹框
 	private JLabel aboutusClose=new JLabel("");
 	private JLabel welcome_none;
+	private static LocusPanel locus;
 	public SearchPanel(){
 		this.frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
@@ -88,6 +89,7 @@ public class SearchPanel{
 		search.setLocation(565*w,236*h);
 		
 		
+		
 		aboutUs.setOpaque(false);
 		aboutUs.setBorder(null);
 		aboutUs.setSize(54*w,15*h);
@@ -118,9 +120,12 @@ public class SearchPanel{
 		panel.add(version);
 		panel.add(welcome);
 		panel.add(welcome_none);
+
 		search.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				removeA();
+				panel.repaint();
+				locus=new LocusPanel(searchField.getText());
 			}
 			public void mouseEntered(MouseEvent e){
 				welcome.setIcon(AllImage.welcome_input2);
