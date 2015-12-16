@@ -392,6 +392,7 @@ public class ShowInventoryPanel {
 		WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
 		
 		//得到date1,date2,判断memory中d是否在这之前，如果在，则取得相对应的入库单号号再从db入库单里提出区排架位
+		System.out.println("???????????:::::::::::::::"+memory.getWarehouseInDate());
 		String date=memory.getWarehouseInDate().substring(2);
 		String[] dates =date.split(" ");
 		String code = memory.getWarehouseInCode().substring(2);

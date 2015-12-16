@@ -1,6 +1,6 @@
 package main.presentation.warehouseui;
 
-import java.awt.event.*;  
+/*import java.awt.event.*;  
 import java.io.*;  
 import javax.swing.*;  
 import javax.swing.table.*;  
@@ -11,7 +11,7 @@ import jxl.write.biff.RowsExceededException;
  * 
  * @author Administrator 
  */  
-public class ExcelExporter {  
+/*public class ExcelExporter {  
     public ExcelExporter() {  
     }  
     public void exportTable(JTable table, File file) throws IOException {  
@@ -56,5 +56,5 @@ public class ExcelExporter {
         } catch (FileNotFoundException e) {  
             JOptionPane.showMessageDialog(null, "导入数据前请关闭工作表");  
         }  
-    }
-}
+    }}
+    */

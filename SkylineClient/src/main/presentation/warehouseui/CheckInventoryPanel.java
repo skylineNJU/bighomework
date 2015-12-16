@@ -114,7 +114,7 @@ public class CheckInventoryPanel {
 		export.setBounds(panel.getWidth()*15/20,panel.getHeight()*7/8, panel.getWidth()/11, panel.getHeight()/15);
 		export.setVisible(true);
 
-		export.addActionListener(new ActionListener() {  
+/*		export.addActionListener(new ActionListener() {  
 		        public void actionPerformed(ActionEvent evt) {  
 		             try {  
 		                 ExcelExporter exp = new ExcelExporter();  
@@ -125,7 +125,7 @@ public class CheckInventoryPanel {
 		              }  
 		            }  
 		        });  
-	
+	*/
 		panel.add(ok);
 		panel.add(export);
 		panel.add(ddl);		
