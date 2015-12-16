@@ -140,5 +140,10 @@ public class FinanceController implements FinanceBLService {
 		writeSalary(salaryVO);
 		return false;
 	}
+
+	@Override
+	public boolean addBankAccount(BankAccountVO bankvo) {
+		return new Balance().addBankAccount(bankvo);
+	}
 	
 }

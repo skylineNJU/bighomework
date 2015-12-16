@@ -63,8 +63,6 @@ public class SqlReader {
 		try {
 			if(rs.next())
 				return true;
-			else
-				return false;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

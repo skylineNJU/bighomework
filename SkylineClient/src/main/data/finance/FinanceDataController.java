@@ -193,4 +193,12 @@ public class FinanceDataController implements FinanceDataService{
 		client.writeReceipt(salaryPO);
 		return true;
 	}
+
+	@Override
+	public boolean addBankAccount(BankAccountPO bankpo) {
+		client=MainController.getClient();
+		bankpo.setKey("Save");
+		client.writeReceipt(bankpo);
+		return true;
+	}
 }

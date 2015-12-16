@@ -8,6 +8,7 @@ import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;
 import main.po.StaffListPO;
+import main.po.UnitPO;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
 import main.po.WarehouseInfo;
@@ -227,6 +228,14 @@ public class InfoDataController implements InfoDataService {
 	public boolean modifyStaff(WorkerPO workerPO) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public UnitPO getUnit() {
+		UnitPO unitPO = new UnitPO();
+		unitPO.setKey("Inquire");
+		client=MainController.getClient();
+		client.writeReceipt(unitPO);
+		return (UnitPO) client.getResponse();
 	}
 
 }

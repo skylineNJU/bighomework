@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -57,36 +55,13 @@ public class ManagerStaffPanel {
 	private String[][] tableData;
 	private JButton ensureButton;
 	private JComboBox<String> unitBox;
-	private String[] allUnit;
 	private JLabel unitLable;
 	private JButton delButton;
 	private JButton sButton;
-	private JPopupMenu popMenu;
+
+	//新增员工界面
 	private String[] allJob = {"快递员","营业厅业务员","司机","中转中西业务员","仓库管理人员","财务人员",
 			"总经理","账户管理人员"};
-	private JMenuItem[] menuItem;
-//	//查询员工组件
-//	private JLabel dataLabel;
-//	private JLabel inquirePosition;//职位
-//	private JLabel inquireStaffCode;//编号
-//	private JLabel inquireCompany;//单位
-//	private JLabel inquireName;//员工姓名
-//	private JLabel inquireStartWorkTime;//入职时间
-//	private JTextField inquirePositionText;//职位
-//	private JTextField inquireStaffCodeText;//编号
-//	private JTextField inquireCompanyText;//单位
-//	private JTextField inquireNameText;//员工姓名
-//	private JTextField inquireStartWorkTimeText;//入职时间
-//	private JButton inquireSaveButton;
-//	private JButton inquireCancleButton;
-//	private JButton backButton;
-//	
-//	private JLabel label;
-//	private JLabel inquire;
-//	private JTextField inquireText;
-//	private JButton inquireButton;
-	
-
 	
 	public ManagerStaffPanel(){
 		panel = MainController.getWritepanel();
@@ -100,16 +75,12 @@ public class ManagerStaffPanel {
 		tabWidth = tab.getWidth();
 		tabHeight = tab.getHeight();
 		addPanel = new JPanel();
-//		inquirePanel = new JPanel();
 		inquirePane = new JPanel();
 		addPanel.setLayout(null);
-	//	inquirePanel.setLayout(null);
 		inquirePane.setLayout(null);
 		tab.addTab("新增员工", addPanel);
-//		tab.addTab("查询员工", inquirePanel);
 		tab.addTab("查询员工",inquirePane);
 		initAddPanel();
-		//initInquirePanel();
 		initTable();
 		initButton();
 		panel.repaint();
@@ -175,12 +146,11 @@ public class ManagerStaffPanel {
 	}
 	
 	//此处获得所有员工的信息
-	private void initData() {
+	private void initData(String unit) {
 		tableTitle =new String[]{"员工姓名","职位","所属单位","入职时间","员工账号"};
-		tableData = new String[1][tableTitle.length];
 		InfoBLService service = ConstructFactory.InfoFactory();
-		ArrayList<StaffVO> staffList = service.readStaff(String.valueOf(unitBox.getSelectedItem()));
-		tableData = new String[staffList.size()+1][tableTitle.length];
+		ArrayList<StaffVO> staffList = service.readStaff(unit);
+		tableData = new String[staffList.size()][tableTitle.length];
 		for(int i =0;i<tableTitle.length;i++){
 			tableData[i][0] = staffList.get(i).getName();
 			tableData[i][1] = staffList.get(i).getJob();
@@ -188,13 +158,16 @@ public class ManagerStaffPanel {
 			tableData[i][3] = staffList.get(i).getWorkage();
 			tableData[i][4] = staffList.get(i).getCode();
 		}
-		for(int i = 0;i<tableTitle.length;i++){
-			tableData[tableTitle.length][i] = " ";
-		}
 	}
 	
-	private void getUnit(){
+	private String[] getUnit(){
 		InfoBLService service = ConstructFactory.InfoFactory();
+		ArrayList<String> unit = service.readUnit();
+		String allUnit[] = new String[unit.size()];
+		for(int i = 0;i<unit.size();i++){
+			allUnit[i] = unit.get(i);
+		}
+		return allUnit;
 	}
 	
 	public void initButton(){
@@ -223,6 +196,7 @@ public class ManagerStaffPanel {
 			public void mouseClicked(MouseEvent e){	
 				if(delStaffCode.indexOf(tableData[table.getSelectedRow()][4])!=-1){//需要加人机交互部分
 					delStaffCode.add(tableData[table.getSelectedRow()][4]);
+					((DefaultTableModel)table.getModel()).removeRow(table.getSelectedRow());
 				}
 			}
 		});
@@ -248,42 +222,14 @@ public class ManagerStaffPanel {
 				for(int i = 0; i<delStaffCode.size(); i++){//删除
 					service.deleteStaff(delStaffCode.get(i));
 				}
-				if(isRight()) {
-					StaffVO vo = new StaffVO(String.valueOf(table.getModel().getValueAt(tableData.length,0)), 
-							String.valueOf(table.getModel().getValueAt(tableData.length,1)), 
-							String.valueOf(table.getModel().getValueAt(tableData.length,2)), 
-							String.valueOf(table.getModel().getValueAt(tableData.length,3)), 
-							String.valueOf(table.getModel().getValueAt(tableData.length,4)));
-					service.createNewStaff(vo);
-				}else{//输入不正确时的人机交互
-					
-				}
 			}
 		});
 	}
 	
-	private boolean isRight() {//判断输入是否准确
-//		if(table.getModel().getValueAt(tableData.length,0)!=null
-//				&&){
-//			
-//		}
-		return true;
-	}
 	//查询员工
 	private void initTable() {
-//		initData();
-//		getUnit();
-		popMenu = new JPopupMenu();
-		menuItem = new JMenuItem[allJob.length];
-		for(int i = 0;i<allJob.length;i++){
-			menuItem[i] = new JMenuItem(allJob[i]);
-			popMenu.add(menuItem[i]);
-		}
-		tableTitle =new String[]{"员工姓名","职位","所属单位","入职时间","员工账号"};
-		tableData = new String[][]{{"员工姓名","职位","所属单位","入职时间","员工账号"},{"员工姓名","职位","所属单位","入职时间","员工账号"},
-				{"员工姓名","职位","所属单位","入职时间","员工账号"},{"员工姓名","职位","所属单位","入职时间","员工账号"}};
-		allUnit = new String[]{"员工姓名","职位","所属单位","入职时间","员工账号"};
-		unitBox = new JComboBox<String>(allUnit);
+		unitBox = new JComboBox<String>(getUnit());
+		initData(String.valueOf(unitBox.getSelectedItem()));
 		table = new JTable(tableData,tableTitle);
 		scroll = new JScrollPane(table);
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -310,92 +256,4 @@ public class ManagerStaffPanel {
 		unitBox.setBounds(tabWidth*3/20, tabHeight/20, tabWidth*3/20, tabHeight/16);
 		inquirePane.repaint();
 	}
-	
-//	public void initInquirePanel(){
-//		
-//		label  = new JLabel();
-//		dataLabel = new JLabel();
-//		inquirePosition = new JLabel("职位");//职位
-//		inquireStaffCode = new JLabel("编号");//编号
-//		inquireCompany = new JLabel("单位");//单位
-//		inquireName = new JLabel("员工姓名");//员工姓名
-//		inquireStartWorkTime = new JLabel("入职时间");//入职时间
-//		inquirePositionText = new JTextField();//职位
-//		inquireStaffCodeText = new JTextField();//编号
-//		inquireCompanyText = new JTextField();//单位
-//		inquireNameText = new JTextField();//员工姓名
-//		inquireStartWorkTimeText = new JTextField();//入职时间
-//		inquireSaveButton = new JButton("保存");
-//		inquireCancleButton = new JButton("取消");
-//		backButton = new JButton("返回");
-//		backButton.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e){
-//				label.setVisible(true);
-//				dataLabel.setVisible(false);
-//			}
-//		});
-//		
-//		inquire = new JLabel("查询");
-//		inquireText = new JTextField();
-//		inquireButton = new JButton("查询");
-//		inquireButton.addMouseListener(new MouseAdapter() {
-//			public void mouseClicked(MouseEvent e){
-//				InfoBLService service=ConstructFactory.InfoFactory();
-//				System.out.println(inquireText.getText());
-//				StaffVO vo=service.inquireStaff(inquireText.getText());
-//				inquirePositionText.setText(vo.getJob());
-//				inquireStaffCodeText.setText(vo.getCode());
-//				inquireCompanyText.setText(vo.getUnit());
-//				inquireNameText.setText(vo.getName());
-//				inquireStartWorkTimeText.setText(vo.getWorkage());
-//				dataLabel.setVisible(true);
-//				label.setVisible(false);
-//			}
-//		});
-//		
-//		inquirePanel.add(label);
-//		inquirePanel.add(dataLabel);
-//		label.setBounds(0, 0, tabWidth, tabHeight);
-//		dataLabel.setBounds(0, 0, tabWidth, tabHeight);
-//		label.setVisible(true);
-//		dataLabel.setVisible(false);
-//		
-//		dataLabel.add(inquirePosition);//职位
-//		dataLabel.add(inquireStaffCode);//编号
-//		dataLabel.add(inquireCompany);//单位
-//		dataLabel.add(inquireName);//员工姓名
-//		dataLabel.add(inquireStartWorkTime);//入职时间
-//		dataLabel.add(inquirePositionText);//职位
-//		dataLabel.add(inquireStaffCodeText);//编号
-//		dataLabel.add(inquireCompanyText);//单位
-//		dataLabel.add(inquireNameText);//员工姓名
-//		dataLabel.add(inquireStartWorkTimeText);//入职时间
-//		dataLabel.add(inquireSaveButton);
-//		dataLabel.add(inquireCancleButton);
-//		dataLabel.add(backButton);
-//		
-//		label.add(inquire);
-//		label.add(inquireText);
-//		label.add(inquireButton);
-//		
-//		final int INTER = tabHeight*3/35;
-//		
-//		inquirePosition.setBounds(tabWidth/10, INTER, tabWidth/10, tabHeight/15);//职位
-//		inquireStaffCode.setBounds(tabWidth/10, INTER+inquirePosition.getY()+inquirePosition.getHeight(), tabWidth/10, tabHeight/15);//编号
-//		inquireCompany.setBounds(inquirePosition.getX(), INTER+inquireStaffCode.getY()+inquireStaffCode.getHeight(), tabWidth/10, tabHeight/15);//单位
-//		inquireName.setBounds(inquirePosition.getX(), INTER+inquireCompany.getY()+inquireCompany.getHeight(), tabWidth/10, tabHeight/15);//员工姓名
-//		inquireStartWorkTime.setBounds(inquirePosition.getX(),INTER+inquireName.getY()+inquireName.getHeight(), tabWidth/10, tabHeight/15);//入职时间
-//		inquirePositionText.setBounds(tabWidth/4, INTER, tabWidth*11/20, tabHeight/15);//职位
-//		inquireStaffCodeText.setBounds(tabWidth/4, INTER+inquirePosition.getY()+inquirePosition.getHeight(), tabWidth*11/20, tabHeight/15);//编号
-//		inquireCompanyText.setBounds(tabWidth/4, INTER+inquireStaffCode.getY()+inquireStaffCode.getHeight(), tabWidth*11/20, tabHeight/15);//单位
-//		inquireNameText.setBounds(tabWidth/4, INTER+inquireCompany.getY()+inquireCompany.getHeight(), tabWidth*11/20, tabHeight/15);//员工姓名
-//		inquireStartWorkTimeText.setBounds(tabWidth/4, INTER+inquireName.getY()+inquireName.getHeight(), tabWidth*11/20, tabHeight/15);//入职时间
-//		inquireCancleButton.setBounds(tabWidth*19/40, INTER+inquireStartWorkTimeText.getY()+inquireStartWorkTimeText.getHeight(), tabWidth/8, tabHeight/15);
-//		inquireSaveButton.setBounds(tabWidth*27/40, INTER+inquireStartWorkTimeText.getY()+inquireStartWorkTimeText.getHeight(), tabWidth/8, tabHeight/15);
-//		backButton.setBounds(2*inquireCancleButton.getX()-inquireSaveButton.getX(), inquireSaveButton.getY(), tabWidth/8, tabHeight/15);
-//		
-//		inquire.setBounds(tabWidth/10-tabWidth/40,tabHeight*2/5,tabWidth/10, tabHeight/15);
-//		inquireText.setBounds(tabWidth*3/20, tabHeight*2/5, tabWidth*3/5, tabHeight/15);
-//		inquireButton.setBounds(tabWidth*4/5, tabHeight*2/5, tabWidth/8, tabHeight/15);
-//	}
 }

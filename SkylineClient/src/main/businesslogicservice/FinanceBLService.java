@@ -11,6 +11,8 @@ import main.vo.SalaryVO;
 
 public interface FinanceBLService {
 	
+	public boolean addBankAccount(BankAccountVO bankvo);
+	
 	public boolean delSalary(SalaryVO salaryVO);
 	
 	public boolean modifySalary(SalaryVO salaryVO);

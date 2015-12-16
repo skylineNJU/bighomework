@@ -3,6 +3,8 @@ package main.businesslogic.infobl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.InfoBLService;
+import main.data.info.InfoDataController;
+import main.po.UnitPO;
 import main.vo.DriverVO;
 import main.vo.IntermediateInfoVO;
 import main.vo.LobbyInfoVO;
@@ -40,7 +42,7 @@ public class InfoController implements InfoBLService {
 	public boolean modifyStaff(StaffVO staffInfo) {
 		// TODO Auto-generated method stub
 		Staff staff=new Staff(staffInfo);
-		return staff.modify();
+		return staff.modify(staffInfo);
 	}
 
 	@Override
@@ -184,5 +186,12 @@ public class InfoController implements InfoBLService {
 	@Override
 	public ArrayList<StaffVO> readStaff(String unitCode) {
 		return new Staff().readWorkerList(unitCode);
+	}
+
+	@Override
+	public ArrayList<String> readUnit() {
+		InfoDataController service = new InfoDataController();
+		UnitPO unitPO = service.getUnit();
+		return unitPO.getPoList();
 	}
 }
