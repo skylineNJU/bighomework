@@ -323,13 +323,18 @@ public class InstitutionPanel {
 
 					break;
 				case 1:
-					int row=table2.getRowCount();
+					int row=0;
+					if(table2.getRowCount()==0){
+						
+					}else{
+					row=Integer.parseInt(((String)table2.getValueAt(table2.getRowCount()-1,0)).split(" ")[1]);
+					}
 					//"所属城市","营业厅编号","机构员工数","占地面积/m^2"
 					String insCode=PinYin.getPinyin(city.getText()+"营");
 					insCode=insCode.toUpperCase();
 					LobbyInfoVO vo=new LobbyInfoVO(
 							city.getText(),
-							insCode+row,
+							insCode+" "+(row+1),
 							Integer.parseInt(stuffNumText.getText()),
 							Double.parseDouble(earaText.getText()));
 					InfoBLService service=ConstructFactory.InfoFactory();
@@ -340,7 +345,7 @@ public class InstitutionPanel {
 					stuffNumText.setVisible(false);
 					earaLabel.setVisible(false);
 					earaText.setVisible(false);
-					defaultModel2.addRow(new String[]{insCode+row,stuffNumText.getText(),earaText.getText()});
+					defaultModel2.addRow(new String[]{insCode+" "+(row+1),stuffNumText.getText(),earaText.getText()});
 				}
 			}
 		});
