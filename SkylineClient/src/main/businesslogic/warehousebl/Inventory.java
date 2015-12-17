@@ -2,14 +2,19 @@ package main.businesslogic.warehousebl;
 
 import java.util.ArrayList;
 
+import main.data.finance.FinanceDataController;
 import main.data.info.InfoDataController;
 import main.data.warehouse.WarehouseDataController;
+import main.dataservice.FinanceDataService;
 import main.dataservice.InfoDataService;
 import main.dataservice.WarehouseDataService;
+import main.po.BankAccountPO;
+import main.po.BankList;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
+import main.vo.BankAccountVO;
 import main.vo.DriverVO;
 import main.vo.InventoryVO;
 
@@ -19,6 +24,8 @@ public class Inventory {
 	private	String orderCode;
 	private	String damageCondition;
 	private	String area;
+ 	private String receiptType;
+ 	private String cityCode;
 	private	int row;
 	private	int shelf;
 	private	int position;
@@ -26,6 +33,8 @@ public class Inventory {
 	private	String arriveDate;
 	private InventoryPO po;
 
+	public Inventory(){}
+	
 	public Inventory(InventoryVO vo){
 		this.inNum=vo.getInNum();
 		this.outNum=vo.getOutNum();
@@ -37,6 +46,8 @@ public class Inventory {
 		this.position=vo.getPosition();
 		this.destination=vo.getDestination();
 		this.arriveDate=vo.getArriveDate();
+		this.receiptType = receiptType;
+		this.cityCode=cityCode;
 	}
 	
 	public Inventory(String Code){
@@ -73,7 +84,7 @@ public class Inventory {
 		Inventorylist.add(po);
 		Inventorylist=service.inquireInventory(Inventorylist);
 		ArrayList<InventoryVO> inventoryinfo=new ArrayList<InventoryVO>();
-		for(InventoryPO p:Inventorylist.getlist()){
+		for(InventoryPO p:Inventorylist.getList()){
 			System.out.println(p.getOrderCode());
 			inventoryinfo.add(new InventoryVO(p.getOrderCode(),
 									p.getArriveDate(),
@@ -86,7 +97,17 @@ public class Inventory {
 		}
 		return inventoryinfo;
 	}
-	
+	//ÆÚ³õ½¨ÕË
+	public ArrayList<InventoryVO> readWarehouseList(){
+		ArrayList<InventoryVO> inventoryVOList = new ArrayList<InventoryVO>();
+		WarehouseDataService dataService = new WarehouseDataController();
+		InventoryList inventoryList = dataService.readInventory();
+		for(InventoryPO po: inventoryList .getList()){
+			inventoryVOList.add(new InventoryVO(po.getOrderCode(),po.getReceiptType(),po.getCityCode(),po.getArriveDate(),
+					po.getDestination(),po.getArea(),po.getRow(),po.getShelf(),po.getPosition(),po.getDamageCondition()));
+		}
+		return inventoryVOList;
+	}
 	
 	public static boolean delete(String driverCode){
 		return true;

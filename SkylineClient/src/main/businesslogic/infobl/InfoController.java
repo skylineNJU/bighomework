@@ -2,6 +2,7 @@ package main.businesslogic.infobl;
 
 import java.util.ArrayList;
 
+import main.businesslogic.financebl.Balance;
 import main.businesslogicservice.InfoBLService;
 import main.data.info.InfoDataController;
 import main.po.UnitPO;
@@ -205,6 +206,12 @@ public class InfoController implements InfoBLService {
 		InfoDataController service = new InfoDataController();
 		UnitPO unitPO = service.getUnit();
 		return unitPO.getPoList();
+	}
+
+	@Override
+	public ArrayList<VehicleVO> showVehicalList() {
+		// TODO Auto-generated method stub
+		return new Vehicle().readVehicalList();
 	}
 
 

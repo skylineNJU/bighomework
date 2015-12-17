@@ -2,10 +2,15 @@ package main.businesslogic.infobl;
 
 import java.util.ArrayList;
 
+import main.data.finance.FinanceDataController;
 import main.data.info.InfoDataController;
+import main.dataservice.FinanceDataService;
 import main.dataservice.InfoDataService;
+import main.po.BankAccountPO;
+import main.po.BankList;
 import main.po.VehicleInfoPO;
 import main.po.VehicleListPO;
+import main.vo.BankAccountVO;
 import main.vo.VehicleVO;
 
 public class Vehicle {
@@ -16,6 +21,8 @@ public class Vehicle {
 	private String boughtTime;//购买时间
 	private String usedTime;//服役时间
 	private VehicleInfoPO po;
+	
+	public Vehicle(){}
 	
 	public Vehicle(VehicleVO vo){
 		this.carID=vo.getCarID();
@@ -30,6 +37,7 @@ public class Vehicle {
 	public Vehicle(String vehicleCode){
 		po=new VehicleInfoPO(vehicleCode, vehicleCode, vehicleCode, vehicleCode, vehicleCode, vehicleCode);
 	}
+	
 	public ArrayList<VehicleVO> inquire(){
 		ArrayList<VehicleVO> vehicleList=new ArrayList<VehicleVO>();
 		VehicleListPO list=new VehicleListPO();
@@ -46,6 +54,19 @@ public class Vehicle {
 			vehicleList.add(vo);
 		}
 		return vehicleList;
+	}
+	
+	public ArrayList<VehicleVO> readVehicalList(){
+		ArrayList<VehicleVO> vehicalVOList = new ArrayList<VehicleVO>();
+		InfoDataService dataService = new InfoDataController();
+		VehicleListPO vehicleList = dataService.readVehicleVO();
+		for(VehicleInfoPO po:vehicleList.getList()){
+			vehicalVOList.add(new VehicleVO(po.getCarID(), po.getEngineID(), po.getCarNum(),
+					   po.getUnderpanID(),
+					  po.getBoughtTime(),
+					   po.getUsedTime()));
+		}
+		return vehicalVOList;
 	}
 	
 	public boolean saveInfo(){

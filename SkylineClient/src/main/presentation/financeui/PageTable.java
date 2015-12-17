@@ -149,8 +149,8 @@ public class PageTable extends JTable{
 			   model=new DefaultTableModel(getPageData(),tableTitle); 
 			  }else{
 			   //如果结果集中没有数据，那么就用空来代替数据集中的每一行
-			  // String[][] nothing=tableData;
-			   model=new DefaultTableModel(tableData , tableTitle);
+			   String[][] nothing=null;
+			   model=new DefaultTableModel(nothing , tableTitle);
 			   totalRowCount=0;
 			  }
 			  this.setModel(model);

@@ -13,6 +13,8 @@ public class InventoryPO extends Message implements Serializable{
 	 	private String orderCode;
 	 	private String damageCondition;
 	 	private String area;
+	 	private String receiptType;
+	 	private String cityCode;
 		private int row;
 		private int shelf;
 		private int position;
@@ -23,6 +25,22 @@ public class InventoryPO extends Message implements Serializable{
 		public InventoryPO(String area) {
 			super();
 			this.area = area;
+		}
+		//期初建账
+		public InventoryPO(String orderCode, String receiptType,String cityCode,
+				String arriveDate,String destination, String area, int row, int shelf,
+				int position, String damageCondition) {
+			super();
+			this.orderCode = orderCode;
+			this.receiptType = receiptType;
+			this.cityCode=cityCode;
+			this.area = area;
+			this.row = row;
+			this.shelf = shelf;
+			this.position = position;
+			this.destination = destination;
+			this.arriveDate = arriveDate;
+			this.damageCondition = damageCondition;
 		}
 
 		public InventoryPO( String orderCode, String arriveDate, String destination, String area, int row, int shelf, int position){
@@ -50,6 +68,21 @@ public class InventoryPO extends Message implements Serializable{
 			arriveDate=j;
 		}
 
+		public String getCityCode() {
+			return cityCode;
+		}
+		public void setCityCode(String cityCode) {
+			this.cityCode = cityCode;
+		}
+		public static long getSerialversionuid() {
+			return serialVersionUID;
+		}
+		public String getBar() {
+			return bar;
+		}
+		public String getReceiptType() {
+			return receiptType;
+		}
 		public int getInNum() {
 			return inNum;
 		}

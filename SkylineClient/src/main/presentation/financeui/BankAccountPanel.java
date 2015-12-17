@@ -3,6 +3,7 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -78,7 +79,8 @@ public class BankAccountPanel {
 		int counter = 0;
 		for(BankAccountVO bankVO:bankListVO){
 			tableData[counter][0] = bankVO.getCode();
-			tableData[counter][1] = String.valueOf(bankVO.getBalance());
+			BigDecimal bigDecimal = new BigDecimal(bankVO.getBalance());
+			tableData[counter][1] = bigDecimal.toString();
 			counter++;
 		}
 	}

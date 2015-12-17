@@ -20,7 +20,17 @@ public class VehicleInfoPO extends Message implements Serializable{
     private String usedTime;//服役时间
 
  
-    public String gerCarNum(){
+    public VehicleInfoPO(String carID, String engineID, String carNum,
+			String underpanID, String boughtTime, String usedTime) {
+		super();
+		this.carID = carID;
+		this.engineID = engineID;
+		this.carNum = carNum;
+		this.underpanID = underpanID;
+		this.boughtTime = boughtTime;
+		this.usedTime = usedTime;
+	}
+	public String gerCarNum(){
     	return carNum;
     }
     public void writeIntoDatabase(){
@@ -38,23 +48,14 @@ public class VehicleInfoPO extends Message implements Serializable{
 
     public void getDataFromBase(){
     	SqlReader reader=new SqlReader("VehicleInfo");
-    	reader.findNext("车辆代号",carNum);
+    	if(reader.findNext("车辆代号",carNum)){
     	this.carID=reader.getString("车牌号");
     	this.engineID=reader.getString("引擎代号");
+    	this.carNum=reader.getString("车辆代号");
     	this.underpanID=reader.getString("底盘代号");
     	this.usedTime=reader.getString("服役时间");
     	this.boughtTime=reader.getString("购买时间");
+    	}
     	reader.close();
     }
-
-	public VehicleInfoPO(String carID, String engineID, String carNum, String underpanID, String boughtTime,
-			String usedTime) {
-		super();
-		this.carID = carID;
-		this.engineID = engineID;
-		this.carNum = carNum;
-		this.underpanID = underpanID;
-		this.boughtTime = boughtTime;
-		this.usedTime = usedTime;
-	}
 }

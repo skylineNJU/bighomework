@@ -11,7 +11,7 @@ public class InventoryList extends Message{
 		Inventorylist.add(po);
 	}
 	
-	public ArrayList<InventoryPO> getlist(){
+	public ArrayList<InventoryPO> getList(){
 		return Inventorylist;	
 	}
 }

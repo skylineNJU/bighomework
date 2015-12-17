@@ -1,6 +1,7 @@
 package main.data.info;
 
 import main.dataservice.InfoDataService;
+import main.po.BankList;
 import main.po.CityPO;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
@@ -247,6 +248,22 @@ public class InfoDataController implements InfoDataService {
 		client.writeReceipt(unitPO);
 		System.out.println("waiting response");
 		return (UnitPO) client.getResponse();
+	}
+
+	@Override
+	public StaffListPO showStaffInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public VehicleListPO readVehicleVO() {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		VehicleListPO vehicleList = new VehicleListPO();
+		vehicleList.setKey("Inquire");
+		client.writeReceipt(vehicleList);
+		return (VehicleListPO) client.getResponse();
 	}
 
 }

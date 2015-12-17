@@ -3,6 +3,7 @@ package main.data.warehouse;
 import java.util.ArrayList;
 
 import main.dataservice.WarehouseDataService;
+import main.po.BankList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
 import main.po.Message;
@@ -63,7 +64,7 @@ public class WarehouseDataController implements WarehouseDataService{
 	public InventoryList inquireInventory(InventoryList Inventorylist) {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
-		System.out.println(Inventorylist.getlist().get(0).getOrderCode());
+		System.out.println(Inventorylist.getList().get(0).getOrderCode());
 		Inventorylist.setKey("Inquire");
 		client.writeReceipt(Inventorylist);
 		Inventorylist=(InventoryList) client.getResponse();
@@ -89,6 +90,15 @@ public class WarehouseDataController implements WarehouseDataService{
 		client.writeReceipt(warehouseOutList);
 		warehouseOutList=(WarehouseOutList) client.getResponse();
 		return warehouseOutList;
+	}
+	@Override
+	public InventoryList readInventory() {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		InventoryList list = new InventoryList();
+		list .setKey("Inquire");
+		client.writeReceipt(list);
+		return (InventoryList) client.getResponse();
 	}
 
 }

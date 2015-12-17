@@ -2,6 +2,7 @@ package main.dataservice;
 
 import java.util.ArrayList;
 
+import main.po.BankList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
 import main.po.WarehouseInList;
@@ -33,5 +34,6 @@ public interface WarehouseDataService {
 	public WarehouseInList inquireWarehouseIn(WarehouseInList warehouseInList);
 	
 	public WarehouseOutList inquireWarehouseOut(WarehouseOutList warehouseOutList);
-	
+
+	public InventoryList readInventory();
 }

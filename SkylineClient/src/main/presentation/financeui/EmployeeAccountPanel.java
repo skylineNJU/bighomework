@@ -41,6 +41,7 @@ public class EmployeeAccountPanel {
 		tab.setSize(panel.getWidth()*16/18,panel.getHeight()/100*90);
 		tab.setLocation(panel.getWidth()/18,panel.getHeight()*2/20);
 		panel.add(tab);
+		getEmployeeAccountData();
 		employeePanel();
 		button();
 		Listener();
@@ -67,10 +68,12 @@ public class EmployeeAccountPanel {
 		scrollPane.setVisible(true);		
 		employee.add(scrollPane);
 	}
+	
 	public void getEmployeeAccountData(){
 		InfoBLService service = ConstructFactory.InfoFactory();
 		ArrayList<StaffVO> staffList = service.showStaffInfo();
-		tableData = new String[staffList.size()][tableTitle.length];
+		System.out.println(":::::::::Employee:::::"+staffList.size());
+		tableData = new String[staffList.size()][7];
 		for(int i =0;i<tableTitle.length;i++){
 			tableData[i][0] = staffList.get(i).getCode();
 			tableData[i][1] = staffList.get(i).getName();

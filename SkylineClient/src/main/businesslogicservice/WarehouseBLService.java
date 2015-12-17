@@ -35,6 +35,6 @@ public interface WarehouseBLService {
 	//库存盘点 通过入库单得到
 	ArrayList<InventoryVO> checkInventory(String code);
 	
-	
+	ArrayList<InventoryVO> showWarehouseList();
 	
 }

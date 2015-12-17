@@ -27,5 +27,11 @@ public class InventoryList extends Message {
 				Inventorylist.add(inventoryinfo);
 				System.out.println("get a bar "+bar);
 			}
+		//ÆÚ³õ½¨ÕË
+			for(InventoryPO po:Inventorylist){
+				   po.getDataFromBase();
+				}
+		
+		
 		}
 	}

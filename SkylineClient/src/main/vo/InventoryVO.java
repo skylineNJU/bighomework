@@ -6,9 +6,11 @@ public class InventoryVO {
 	private int inNum;
  	private int outNum;
  	private String orderCode;
+ 	private String receiptType;
  	private String bar;
  	private String damageCondition;
  	private String area;
+ 	private String cityCode;
 	private int row;
 	private int shelf;
 	private int position;
@@ -26,6 +28,21 @@ public class InventoryVO {
 		this.position = position;
 	}
 	
+	public InventoryVO(String orderCode, String receiptType,String cityCode,
+			String arriveDate,String destination, String area, int row, int shelf,
+			int position, String damageCondition) {
+		super();
+		this.orderCode = orderCode;
+		this.receiptType = receiptType;
+		this.cityCode=cityCode;
+		this.area = area;
+		this.row = row;
+		this.shelf = shelf;
+		this.position = position;
+		this.destination = destination;
+		this.arriveDate = arriveDate;
+		this.damageCondition = damageCondition;
+	}
 
 	public InventoryVO(int a,int b,String c,String d,String e,int f,int g,int h,String i,String j){
 		inNum=a;
@@ -41,6 +58,22 @@ public class InventoryVO {
 	}
 	
 	
+	public String getReceiptType() {
+		return receiptType;
+	}
+
+	public void setReceiptType(String receiptType) {
+		this.receiptType = receiptType;
+	}
+
+	public String getCityCode() {
+		return cityCode;
+	}
+
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
+	}
+
 	public boolean writeInentoryInfo(Inventory it){
 		this.inNum=it.getInNum();
 		this.outNum=it.getOutNum();

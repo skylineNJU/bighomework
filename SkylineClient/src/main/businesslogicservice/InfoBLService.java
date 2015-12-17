@@ -2,6 +2,7 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
+import main.vo.BankAccountVO;
 import main.vo.CityVO;
 import main.vo.DriverVO;
 import main.vo.IntermediateInfoVO;
@@ -48,6 +49,9 @@ public interface InfoBLService {
 	//修改职工信息，系统显示修改后的职工信息
 	public boolean modifyStaff(StaffVO staffInfo);
 	
+	//查询所有车辆信息
+	public ArrayList<VehicleVO> showVehicalList();
+
 	//新添车辆信息，输入车牌号（name），车辆代号（code），以及服役时间
 	public boolean createNewVehicle(VehicleVO vehicleInfo);
 	

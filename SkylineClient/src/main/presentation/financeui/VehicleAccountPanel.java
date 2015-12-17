@@ -52,7 +52,7 @@ public class VehicleAccountPanel {
 	}
 	
 	public void vehiclePanel(){
-		tableTitle =  new String[]{"车牌号","引擎代号","底盘号","购买时间","服役时间","购买金额/元"};
+		tableTitle =  new String[]{"车牌号","引擎代号","车辆代号","底盘号","购买时间","服役时间"};
 	//	tableData = new String[][]{{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
 	//			{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
 	//			{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""}};	
@@ -68,7 +68,7 @@ public class VehicleAccountPanel {
 		scrollPane = new JScrollPane(table);
 
 //		if(tableData.length>=10){
-				scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
+		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
 			//}else{
 		//		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), (table.getRowCount()+1)*table.getRowHeight());
 		//	}
@@ -82,19 +82,19 @@ public class VehicleAccountPanel {
 	
 	public void getTableData(){
 		InfoBLService service=ConstructFactory.InfoFactory();
-		ArrayList<VehicleVO> list=service.inquireVehicle(((WritePanel) panel).getBelong());
+		ArrayList<VehicleVO> list=service.showVehicalList();
+		System.out.println("}}}}}::::::"+list.size());
 		tableData = new String[list.size()][6];
 		int counter=0;
 		for(VehicleVO vo:list){
 			tableData[counter][0]=vo.getCarID();
 			tableData[counter][1]=vo.getEngineID();
-			tableData[counter][2]=vo.getUnderpanID();
-			tableData[counter][3]=vo.getBoughtTime();
-			tableData[counter][4]=vo.getUsedTime();
-			tableData[counter][5]=null;
+			tableData[counter][2]=vo.getCarNum();
+			tableData[counter][3]=vo.getUnderpanID();
+			tableData[counter][4]=vo.getBoughtTime();
+			tableData[counter][5]=vo.getUsedTime();
 			counter++;
 		}
-		
 	}
 	
 	

@@ -3,6 +3,7 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,7 +11,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.InfoBLService;
+import main.businesslogicservice.WarehouseBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.IntermediateInfoVO;
+import main.vo.InventoryVO;
+import main.vo.LobbyInfoVO;
+import main.vo.WarehouseInfoVO;
 
 public class InstitutionAccountPanel {
 	private JPanel panel;
@@ -22,6 +30,7 @@ public class InstitutionAccountPanel {
 	private String[][] tableData;
 	private JLabel next,previous,add,delete;
 	private JLabel label1,label2,title,update,save,back;
+	private int x=0;
 	
 	public InstitutionAccountPanel (){
 		panel = MainController.getWritepanel();
@@ -38,6 +47,7 @@ public class InstitutionAccountPanel {
 		tab.setSize(panel.getWidth()*16/18,panel.getHeight()/100*90);
 		tab.setLocation(panel.getWidth()/18,panel.getHeight()*2/20);
 		panel.add(tab);
+		getInsititutionAcountData();
 		institutionPanel();
 	//	initTableData();
 		button();
@@ -47,10 +57,10 @@ public class InstitutionAccountPanel {
 	}
 	
 	public void institutionPanel(){
-		tableTitle =  new String[]{"机构类型","编号","所在城市","总员工数","占地面积/m^2","建立日期"};
-		tableData = new String[][]{{"","1","","","",""},{"","2","","","",""},{"","3","","","",""},{"","4","","","",""},
-				{"","5","","","",""},{"","6","","","",""},{"","7","","","",""},{"","8","","","",""},
-				{"","9","","","",""},{"","10","","","",""},{"","11","","","",""},{"","12","","","",""}};	
+		tableTitle =  new String[]{"机构类型","编号","所在城市","总员工数","占地面积/m^2"};
+//		tableData = new String[][]{{"","1","","","",""},{"","2","","","",""},{"","3","","","",""},{"","4","","","",""},
+	//			{"","5","","","",""},{"","6","","","",""},{"","7","","","",""},{"","8","","","",""},
+	//			{"","9","","","",""},{"","10","","","",""},{"","11","","","",""},{"","12","","","",""}};	
 
 		table = new PageTable(tableTitle,tableData);
 		table.setEnabled(false);//设置不可编辑内容
@@ -74,19 +84,88 @@ public class InstitutionAccountPanel {
 	}
 
 
-	 private void initTableData() {
-	 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-	 }
+	public void getInsititutionAcountData(){
+		//先得到所有城市 再传参数进行
+		InfoBLService service=ConstructFactory.InfoFactory();
+		IntermediateInfoVO vo=service.inquireInterm("南京");
+		ArrayList<WarehouseInfoVO> voList=vo.getWarehouseInfoList();
+		ArrayList<LobbyInfoVO> lobbyList=service.inquireLobby("南京");
+		IntermediateInfoVO vo1=service.inquireInterm("北京");
+		ArrayList<WarehouseInfoVO> voList1=vo1.getWarehouseInfoList();
+		ArrayList<LobbyInfoVO> lobbyList1=service.inquireLobby("北京");	
+		tableData = new String[1+1+lobbyList.size()+1+1+lobbyList1.size()][5];
+		tableData[x][0] = "中转中心";
+		tableData[x][1] = vo.getInstitutionCode();
+		tableData[x][2] = vo.getCity();
+		tableData[x][3] = vo.getStaffNum()+"";
+		tableData[x][4] = vo.getArea()+"";
+		x++;
+		int StaffNum=0;
+		double Acreage=0;
+	//	String city="";
+		
+		for(WarehouseInfoVO warVO:voList){
+			StaffNum = StaffNum + warVO.getStaffNum();
+			 Acreage = Acreage + warVO.getAcreage();
+			tableData[x][2] =warVO.getCity();
+			}	
+		tableData[x][0] = "仓库";
+		tableData[x][1] = vo.getInstitutionCode();
+	
+		tableData[x][3] = StaffNum+"";
+		tableData[x][4] = Acreage+"";
+		x++;
+		
+	
+	//	String[][] lobbyData=new String[lobbyList.size()][3];
+		for(LobbyInfoVO lobbyInfo:lobbyList){
+			tableData[x][0]="营业厅";
+			tableData[x][1]=lobbyInfo.getLobbyCode();
+			tableData[x][2]=lobbyInfo.getCity();
+			tableData[x][3]=lobbyInfo.getStaffNum()+"";
+			tableData[x][4]=lobbyInfo.getArea()+"";
+			x++;
+			System.out.println("get a lobbyData");
+		}
+		
+	//////////////
+		tableData[x][0] = "中转中心";
+		tableData[x][1] = vo1.getInstitutionCode();
+		tableData[x][2] = vo1.getCity();
+		tableData[x][3] = vo1.getStaffNum()+"";
+		tableData[x][4] = vo1.getArea()+"";
+		x++;
+		int StaffNum1=0;
+		double Acreage1=0;
+	//	String city="";
+		
+		for(WarehouseInfoVO warVO:voList1){
+			StaffNum1 = StaffNum1 + warVO.getStaffNum();
+			 Acreage1 = Acreage1 + warVO.getAcreage();
+			tableData[x][2] =warVO.getCity();
+			}	
+		tableData[x][0] = "仓库";
+		tableData[x][1] = vo1.getInstitutionCode();
+	
+		tableData[x][3] = StaffNum+"";
+		tableData[x][4] = Acreage+"";
+		x++;
+		
+	
+	//	String[][] lobbyData=new String[lobbyList.size()][3];
+		for(LobbyInfoVO lobbyInfo:lobbyList1){
+			tableData[x][0]="营业厅";
+			tableData[x][1]=lobbyInfo.getLobbyCode();
+			tableData[x][2]=lobbyInfo.getCity();
+			tableData[x][3]=lobbyInfo.getStaffNum()+"";
+			tableData[x][4]=lobbyInfo.getArea()+"";
+			x++;
+			System.out.println("get a lobbyData");
+		}
+		
+}
+	
+	
 
 	  // TODO Auto-generated method stub
 	public void button(){

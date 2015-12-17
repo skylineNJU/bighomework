@@ -3,6 +3,8 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +13,12 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
+import main.businesslogicservice.WarehouseBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.BankAccountVO;
+import main.vo.InventoryVO;
 
 public class WarehouseAccountPanel {
 	private JPanel panel;
@@ -37,6 +44,7 @@ public class WarehouseAccountPanel {
 		tab.setSize(panel.getWidth()*16/18,panel.getHeight()/100*90);
 		tab.setLocation(panel.getWidth()/18,panel.getHeight()*2/20);
 		panel.add(tab);
+		getWarehouseAcountData();
 		warehousePanel();
 		button();
 		Listener();
@@ -47,10 +55,10 @@ public class WarehouseAccountPanel {
 	
 	
 	public void warehousePanel(){
-		tableTitle =  new String[]{"订单号","单据种类","生成时间","费用/元","详细信息"};
-		tableData = new String[][]{{"1","","","",""},{"2","","","",""},{"3","","","",""},
-				{"4","","","",""},{"5","","","",""},{"6","","","",""},{"7","","","",""},
-				{"8","","","",""},{"9","","","",""},{"10","","","",""},{"11","","","",""}};	
+		tableTitle =  new String[]{"订单号","单据种类","货物所在城市编号","生成时间","区","排号","架号","位号","目的地","损坏情况"};
+	//tableData = new String[][]{{"1","","","",""},{"2","","","",""},{"3","","","",""},
+	//			{"4","","","",""},{"5","","","",""},{"6","","","",""},{"7","","","",""},
+	//			{"8","","","",""},{"9","","","",""},{"10","","","",""},{"11","","","",""}};	
 		table = new PageTable(tableTitle,tableData);
 
 		table.setEnabled(false);//设置不可编辑内容
@@ -60,18 +68,36 @@ public class WarehouseAccountPanel {
 		table.setDragEnabled(false);
 		table.setVisible(true);
 		scrollPane = new JScrollPane(table);
-
-//		if(tableData.length>=10){
-				scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
-			//}else{
-		//		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), (table.getRowCount()+1)*table.getRowHeight());
-		//	}
-	//	table.getColumnModel().getColumn(0).setPreferredWidth(scrollPane.getWidth()/5);;
-	//	table.getColumnModel().getColumn(1).setPreferredWidth(scrollPane.getWidth()/6);;
+		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane.setVisible(true);		
 		warehouse.add(scrollPane);
 	}
+	
+	public void getWarehouseAcountData(){
+		WarehouseBLService service = ConstructFactory.WarehouseFactory();
+		ArrayList<InventoryVO> Inventory = service.showWarehouseList();
+		tableData = new String[Inventory.size()][10];
+		System.out.println("++++++WarehouseAccount++++++:::"+Inventory.size());
+		int counter = 0;
+		for(InventoryVO vo:Inventory){
+			tableData[counter][0] = vo.getOrderCode();
+			tableData[counter][1] = vo.getReceiptType();
+			tableData[counter][2] = vo.getArea().substring(0, 3);//0100 航运区 //得到 "010"
+			tableData[counter][3] = vo.getArriveDate();
+			tableData[counter][4] = vo.getDestination();
+			tableData[counter][5] = vo.getArea().substring(5);//得到  "航运区"
+			tableData[counter][6] = vo.getRow()+"";
+			tableData[counter][7] = vo.getShelf()+"";
+			tableData[counter][8] = vo.getPosition()+"";
+			tableData[counter][9] = vo.getDamageCondition();
+			counter++;
+		}
+	}
+	
+	
+	
+	
 	public void button(){
 		  title = new JLabel("仓库账目");
 		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
