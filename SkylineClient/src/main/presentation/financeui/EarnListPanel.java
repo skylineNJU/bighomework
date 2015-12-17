@@ -101,39 +101,28 @@ public class EarnListPanel {
 				allData[i][j] = String.valueOf(table.getModel().getValueAt(i, j));
 			}
 		}
-		FinanceBLService service = ConstructFactory.FinanceFactory();
-		ArrayList<BankAccountVO> bankListVO = service.showBalance();
-		String[][] bank = new String[bankListVO.size()][2];//获得银行账户的数据
-		ArrayList<Integer> modifyEarn = new ArrayList<Integer>();//记录被改过的收款数据
-		for(int i = 0;i<bank.length;i++){
-			bank[i][0] = bankListVO.get(i).getCode();
-			bank[i][1] = String.valueOf(bankListVO.get(i).getBalance());
-		}
+		FinanceBLService service=ConstructFactory.FinanceFactory();
+		
 		for(int i = 0;i<allData.length; i++) {
+			//"收款单单号", "收款金额", "收入单位", "收入日期","收入账户","是否结算","备注"
 			if(allData[i][5].equals("未结算")){
-				modifyEarn.add(i);//记录结算的行
-				for(int j = 0; j<bank.length; j++){
-					if(bank[j][0].equals(String.valueOf(allData[j][4]))) {//找到相应的银行账户
-						bank[j][1] = String.valueOf(Double.valueOf(bank[j][1]) + Double.valueOf(allData[i][1]));
-					}
-				}
+				BankAccountVO bankVO = new BankAccountVO(allData[i][4],Double.valueOf(allData[i][1]));
+				service.modifyBalance(bankVO);
 				allData[i][5] = "已结算";
 				table.getModel().setValueAt("已结算", i, 5);
+				EarnVO vo=new EarnVO(
+						allData[i][0],
+						allData[i][3],
+						allData[i][2],
+						allData[i][4],
+						Double.valueOf(allData[i][1]),
+						allData[i][6],
+						allData[i][5]);
+				service.modifyCollection(vo);
 			}
 			
 		}
-		for(int i = 0;i<bank.length;i++){//更新银行账户
-			BankAccountVO bankVO = new BankAccountVO(bank[i][0],Double.valueOf(bank[i][1]));
-			service.modifyBalance(bankVO);
-		}
-		for(int i = 0; i<modifyEarn.size();i++){//更新收款信息
-			EarnVO earnVO = new EarnVO(allData[modifyEarn.get(i)][0],allData[modifyEarn.get(i)][3],
-					allData[modifyEarn.get(i)][2],allData[modifyEarn.get(i)][4],
-					Double.valueOf(allData[modifyEarn.get(i)][1]),allData[modifyEarn.get(i)][6],
-					allData[modifyEarn.get(i)][5]
-							);
-			service.modifyCollection(earnVO);
-		}
+		
 	}
 	//设置时间的框
 	public void setTime(){

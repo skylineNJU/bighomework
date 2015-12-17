@@ -21,21 +21,57 @@ public class BankAccountPO extends Message{
 	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("BankAccount");
-		reader.findNext("账户编号","1");
+		if(reader.findNext("银行账户名",this.account)){
 		this.account = reader.getString("银行账户名");
 		this.money=reader.getDouble("余额");
+		}
 		reader.close();
 	}
 
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'"+account+"','"+money+"','"+"1"+"','"+"'";
+		String content="'"+account+"',"+money;
 		writer.writeIntoSql("BankAccount", content);
 	}
 	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
 		deleter.deleteData("BankAccount","银行账户名",account);
+	}
+	
+	public void modifyTheDate(){
+		SqlReader reader=new SqlReader("BankAccount");
+		if(reader.findNext("银行账户名",this.account)){
+			this.money=reader.getDouble("余额")+this.money;
+		}
+		String ac=this.account;
+		if(this.changeAccount()){
+			this.money=0;
+			this.account=ac;
+		}
+		
+		reader.close();
+		this.deleteFromDatabase();
+		this.writeIntoDatabase();
+	}
+	
+	private boolean changeAccount(){
+		if(money>=0){
+			return false;
+		}else{
+			SqlReader reader=new SqlReader("BankAccount");
+			double x=this.money;
+			while(reader.hasNext()){
+				if((x+=reader.getDouble("余额"))>=0){
+					this.account=reader.getString("银行账户名");
+					this.money=x;
+					this.deleteFromDatabase();
+					this.writeIntoDatabase();
+					return true;
+				}
+			}
+			return true;
+		}
 	}
 	
 	public String getAccount() {

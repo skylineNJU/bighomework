@@ -15,11 +15,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import main.businesslogic.financebl.Balance;
-import main.businesslogic.financebl.UpdateBank;
 import main.businesslogicservice.FinanceBLService;
+import main.businesslogicservice.receiptblService.FinanceReceipt;
+import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.FinanceMemory;
 import main.vo.BankAccountVO;
 import main.vo.CostVO;
 
@@ -148,7 +150,7 @@ public class CostListPanel {
 	}
 	
 	public void updateCost(){
-		UpdateBank updateBank = new UpdateBank();
+//		UpdateBank updateBank = new UpdateBank();
 		String[][] allData = new String[tableData.length][tableData[0].length];
 		for(int i = 0; i<tableData.length; i++) {//拿到表中的数据
 			for(int j = 0; j<tableData[i].length; j++){
@@ -161,16 +163,18 @@ public class CostListPanel {
 				table.getModel().setValueAt("已结算", i, 5);
 				CostVO costVO = new CostVO(allData[i][4],allData[i][0],
 						allData[i][3],Double.valueOf(allData[i][1]),
-						allData[i][6],allData[i][2],allData[i][5]
+						allData[i][6],allData[i][2],"已结算"
 								);
 				service.modifyCost(costVO);
-				updateBank.updateMoney(allData[i][3], Double.valueOf(allData[i][1]));
+			    service.modifyBalance(new BankAccountVO(allData[i][3],0-Double.valueOf(allData[i][1])));
+//				updateBank.updateMoney(allData[i][3],0-Double.valueOf(allData[i][1]));
 			}
 		}
-		ArrayList<BankAccountVO> voList = updateBank.getBankList();
-		for(int i = 0; i<voList.size(); i++){
-			service.modifyBalance(voList.get(i));
-		}
+		
+//		ArrayList<BankAccountVO> voList = updateBank.getBankList();
+//		for(int i = 0; i<voList.size(); i++){
+//			service.modifyBalance(voList.get(i));   在知道账号的情况下，这些操作是不必要的
+//		}
 		panel.repaint();
 	}
 	
@@ -239,6 +243,12 @@ public class CostListPanel {
 		}
 		
 	}
+	
+	public void refreshTable(){
+		this.setData();
+		DefaultTableModel model=(DefaultTableModel) table.getModel();
+		model.setDataVector(tableData,tableTitle);
+	}
 	//成本管理列表
 	@SuppressWarnings("serial")
 	public void initTable(){
@@ -284,6 +294,25 @@ public class CostListPanel {
 	}
 	
 	public boolean isLegal(){//判断是否可以存储
+		
+		String str=feeText.getText();
+		if(str==null||str.equals("")){
+			feeText.setText("请输入正确的费用");
+		}
+		for(int x=0;x<str.length();x++){
+			char c=str.charAt(x);
+			if(!Character.isDigit(c)){
+				feeText.setText("请输入正确的费用");
+				return false;
+			}
+		}
+		if(Double.valueOf(str)<=0){
+			feeText.setText("请输入正确的费用");
+			return false;
+		}else if(bankBox.getSelectedItem()==null||bankBox.getSelectedItem().equals("没有可以使用的银行账户")){
+			bankBox.addItem("没有可以使用的银行账户");
+			return false;
+		}
 		return true;
 	}
 	public void initAddPanel(){
@@ -301,7 +330,7 @@ public class CostListPanel {
 		addYearBox = new JComboBox<String>(yearString);
 		addMonthBox = new JComboBox<String>(monthString);
 		addDayBox = new JComboBox<String>(dayString);
-		codeText = new JTextField();
+		codeText = new JTextField("这个文本框是不用的");
 		feeText = new JTextField();
 		typeBox = new JComboBox<String>(paidType);
 		bankBox = new JComboBox<String>(bankType);
@@ -317,14 +346,26 @@ public class CostListPanel {
 				commentText.setText(null);
 				addPanel.setVisible(false);
 				lookPanel.setVisible(true);
+				refreshTable();
 			}
 		});
 		
 		addButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				if(isLegal()){
+					WritePanel wp=(WritePanel)panel;
+					FinanceMemory memory=(FinanceMemory) wp.getMemory();
+					String code=memory.getCostCode();
+					System.out.println(code);
+					ReceiptCode service0=ConstructFactory.calculateCode();
+					code=service0.calculCode(code, memory.getUserName());
+					memory.setCostCode(memory.getCostCode()+" "+code);;
+					
+					FinanceReceipt service1=ConstructFactory.FinanceReceiptFactory();
+					service1.saveCostCode( memory.getUserName(),code);
+					
 					String date = addYearBox.getSelectedItem()+"/"+addMonthBox.getSelectedItem()+"/"+addDayBox.getSelectedItem();
-					CostVO costVO = new CostVO(date, codeText.getText(), 
+					CostVO costVO = new CostVO(date,code, 
 							String.valueOf(bankBox.getSelectedItem()), Double.valueOf(feeText.getText()), 
 							commentText.getText(), String.valueOf(typeBox.getSelectedItem()), 
 							String.valueOf(isPaidBox.getSelectedItem()));

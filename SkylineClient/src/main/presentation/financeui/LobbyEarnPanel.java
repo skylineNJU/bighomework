@@ -16,8 +16,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import main.businesslogicservice.FinanceBLService;
+import main.businesslogicservice.receiptblService.LobbyReceipt;
+import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.LobbyMemory;
 import main.vo.BankAccountVO;
 import main.vo.EarnVO;
 
@@ -147,7 +151,9 @@ public class LobbyEarnPanel {
 		tableTitle = new String[]{"收款单单号", "收款金额", "收入单位", "收入日期","收入账户","是否结算","备注"};
 		FinanceBLService finance = ConstructFactory.FinanceFactory();
 		String date = yearBox.getSelectedItem()+"/"+monthBox.getSelectedItem()+"/"+dayBox.getSelectedItem();
-		ArrayList<EarnVO> voList = finance.showLobbyEarn(date, "001");		
+		WritePanel wp=(WritePanel) panel;
+		
+		ArrayList<EarnVO> voList = finance.showLobbyEarn(date,wp.getBelong());		
 		if(voList.size()==0){
 			tableData = new String[1][tableTitle.length];
 			tableData[0][0] = "   no data";
@@ -203,6 +209,29 @@ public class LobbyEarnPanel {
 		}
 	}
 	
+	
+	public boolean check(){
+		String str=feeText.getText();
+		if(str==null||str.equals("")){
+			feeText.setText("请输入正确的费用");
+		}
+		for(int x=0;x<str.length();x++){
+			char c=str.charAt(x);
+			if(!Character.isDigit(c)){
+				feeText.setText("请输入正确的费用");
+				return false;
+			}
+		}
+		if(Double.valueOf(str)<=0){
+			feeText.setText("请输入正确的费用");
+			return false;
+		}else if(bankBox.getSelectedItem()==null||bankBox.getSelectedItem().equals("没有可以使用的银行账户")){
+			bankBox.addItem("没有可以使用的银行账户");
+			return false;
+		}
+		return true;
+	}
+	
 	public void initWritePanel(){
 		
 		getBank();
@@ -219,9 +248,9 @@ public class LobbyEarnPanel {
 		addYearBox = new JComboBox<String>(yearString);
 		addMonthBox = new JComboBox<String>(monthString);
 		addDayBox = new JComboBox<String>(dayString);
-		codeText = new JTextField();
+		codeText = new JTextField("改文本框多余");
 		feeText = new JTextField();
-		unitBox = new JComboBox<String>(paidType);
+		unitBox = new JComboBox<String>();//多余了
 		bankBox = new JComboBox<String>(bankType);
 		isPaidBox = new JComboBox<String>(isPaidType);
 		commentText = new JTextField();
@@ -230,6 +259,7 @@ public class LobbyEarnPanel {
 		
 		blankButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				
 				addYearBox.setSelectedIndex(0);
 				addMonthBox.setSelectedIndex(0);
 				addDayBox.setSelectedIndex(0);
@@ -242,20 +272,34 @@ public class LobbyEarnPanel {
 			}
 		});
 		
+		
 		addButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				if(check()){
+				WritePanel wp=(WritePanel) panel;
+				LobbyMemory memory=(LobbyMemory)wp.getMemory();
+				String code=memory.getEarnCode();
+				ReceiptCode service=ConstructFactory.calculateCode();
+				code=service.calculCode(code,memory.getUserName());
+				memory.setCode(memory.getCode()+" "+code);
+				
 				String date = addYearBox.getSelectedItem()+"/"+addMonthBox.getSelectedItem()+"/"+
 						addDayBox.getSelectedItem();
-				EarnVO earnVO = new EarnVO(codeText.getText(), date, String.valueOf(unitBox.getSelectedItem()), 
+				memory.setEarnDate(memory.getEarnDate()+" "+date);
+				EarnVO earnVO = new EarnVO(code, date,wp.getBelong(), 
 						String.valueOf(bankBox.getSelectedItem()), Double.valueOf(feeText.getText()), 
 						commentText.getText(), String.valueOf(isPaidBox.getSelectedItem())
 						);
+				LobbyReceipt service2=ConstructFactory.LobbyReceiptFactory();
+				service2.SaveEarnCode(memory.getUserName(), code);
 				FinanceBLService finance = ConstructFactory.FinanceFactory();
 				if(finance.writeEarn(earnVO)){//存储成功时,人机交互部分
 					
-				}else{//存储失败时
+					}else{//存储失败时
 					
+					}
 				}
+				
 			}
 		});
 		

@@ -28,8 +28,8 @@ public class CollectionPO extends Receipt{
 	}
 	public void writeIntoDatabase(){
 		SqlWriter writer=new SqlWriter();
-		String content="'"+collectionCode+"','"+date+"','"+money+"','"
-				+unit+"','"+bankAccount+"','"+remark+"','"+isPaid+"'";
+		String content="'"+collectionCode+"','"+date+"','"+unit+"','"+bankAccount+"',"+money+",'"
+				+remark+"','"+isPaid+"'";
 		writer.writeIntoSql("Collection", content);
 	}
 	

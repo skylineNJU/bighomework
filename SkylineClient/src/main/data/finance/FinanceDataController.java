@@ -148,9 +148,8 @@ public class FinanceDataController implements FinanceDataService{
 	@Override
 	public boolean modifyBalance(BankAccountPO bankPO) {
 		client=MainController.getClient();
-		bankPO.setKey("Delete");
+		bankPO.setKey("Modify");
 		client.writeReceipt(bankPO);
-		writeBankAccount(bankPO);
 		return true;
 	}
 

@@ -21,7 +21,7 @@ public class FinanceReceipt extends Message{
 	}
 	
 	public void writeIntoDatabase(){
-		this.getDataFromeBase();
+		this.getDataFromBase();
 		this.deleteFromDatabase();
 		SqlWriter writer=new SqlWriter();
 		String content="'"+accountName+"','"+costCode+"','"+earnCode+"'";
@@ -31,10 +31,10 @@ public class FinanceReceipt extends Message{
 	
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
-		deleter.deleteData("CourrierReceipt","’À∫≈",accountName);
+		deleter.deleteData("FinanceReceipt","’À∫≈",accountName);
 	}
 	
-	public void getDataFromeBase(){
+	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("FinanceReceipt");
 		if(reader.findNext("’À∫≈",accountName)){
 		if(costCode!=null)
@@ -46,5 +46,8 @@ public class FinanceReceipt extends Message{
 		else
 			this.earnCode=reader.getString("»ÎøÓµ•µ•∫≈");
 		}
+		System.out.println("---------------------"+costCode);
+		System.out.println("---------------------"+earnCode);
+		reader.close();
 	}
 }
