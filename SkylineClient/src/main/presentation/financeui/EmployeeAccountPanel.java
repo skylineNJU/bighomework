@@ -3,6 +3,7 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +12,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.InfoBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.StaffVO;
 
 public class EmployeeAccountPanel {
 	private JPanel panel;
@@ -48,7 +52,7 @@ public class EmployeeAccountPanel {
 		tableTitle =  new String[]{"员工账号","员工姓名","职位","所属单位","入职时间","工资/月","提成"};
 		tableData = new String[][]{{"1","","","","","",""},{"2","","","","","",""},{"3","","","","","",""},
 				{"4","5","","","","",""},{"6","","","","","",""},{"7","","","","","",""},{"8","","","","","",""},
-				{"9","","","","","",""},{"10","","","","","",""},{"11","","","","","",""},{"12","","","","","",""}};	
+				{"9","","","","","",""},{"10","","","","","",""},{"11","","","","","",""}};	
 		table = new PageTable(tableTitle,tableData);
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panel.getWidth()/20);//设置列宽
@@ -58,17 +62,31 @@ public class EmployeeAccountPanel {
 		table.setVisible(true);
 		scrollPane = new JScrollPane(table);
 
-//		if(tableData.length>=10){
-				scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
-			//}else{
-		//		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), (table.getRowCount()+1)*table.getRowHeight());
-		//	}
-	//	table.getColumnModel().getColumn(0).setPreferredWidth(scrollPane.getWidth()/5);;
-	//	table.getColumnModel().getColumn(1).setPreferredWidth(scrollPane.getWidth()/6);;
+		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane.setVisible(true);		
 		employee.add(scrollPane);
 	}
+	public void getEmployeeAccountData(){
+		InfoBLService service = ConstructFactory.InfoFactory();
+		ArrayList<StaffVO> staffList = service.showStaffInfo();
+		tableData = new String[staffList.size()][tableTitle.length];
+		for(int i =0;i<tableTitle.length;i++){
+			tableData[i][0] = staffList.get(i).getCode();
+			tableData[i][1] = staffList.get(i).getName();
+			tableData[i][2] = staffList.get(i).getJob();
+			tableData[i][3] = staffList.get(i).getUnit();
+			tableData[i][4] = staffList.get(i).getWorkage();
+			tableData[i][5] = staffList.get(i).getCode();
+			tableData[i][6] = staffList.get(i).getCode();
+		
+		}
+	}
+	
+	
+	
+	
+	
 	public void button(){
 		  title = new JLabel("员工账目");
 		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);

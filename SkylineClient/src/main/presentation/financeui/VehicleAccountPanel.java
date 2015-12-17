@@ -3,6 +3,7 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +12,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.InfoBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.vo.VehicleVO;
 
 public class VehicleAccountPanel {
 	private JPanel panel;
@@ -38,6 +43,7 @@ public class VehicleAccountPanel {
 		tab.setSize(panel.getWidth()*16/18,panel.getHeight()/100*90);
 		tab.setLocation(panel.getWidth()/18,panel.getHeight()*2/20);
 		panel.add(tab);
+		getTableData();
 		vehiclePanel();
 		button();
 		Listener();
@@ -46,10 +52,11 @@ public class VehicleAccountPanel {
 	}
 	
 	public void vehiclePanel(){
-		tableTitle =  new String[]{"车牌号","引擎代号","车辆代号","底盘号","购买时间","服役时间","购买金额/元"};
-		tableData = new String[][]{{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
-				{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
-				{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""}};	
+		tableTitle =  new String[]{"车牌号","引擎代号","底盘号","购买时间","服役时间","购买金额/元"};
+	//	tableData = new String[][]{{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
+	//			{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
+	//			{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""}};	
+		
 		table = new PageTable(tableTitle,tableData);
 
 		table.setEnabled(false);//设置不可编辑内容
@@ -71,6 +78,26 @@ public class VehicleAccountPanel {
 		scrollPane.setVisible(true);		
 		vehicle.add(scrollPane);
 	}
+	
+	
+	public void getTableData(){
+		InfoBLService service=ConstructFactory.InfoFactory();
+		ArrayList<VehicleVO> list=service.inquireVehicle(((WritePanel) panel).getBelong());
+		tableData = new String[list.size()][6];
+		int counter=0;
+		for(VehicleVO vo:list){
+			tableData[counter][0]=vo.getCarID();
+			tableData[counter][1]=vo.getEngineID();
+			tableData[counter][2]=vo.getUnderpanID();
+			tableData[counter][3]=vo.getBoughtTime();
+			tableData[counter][4]=vo.getUsedTime();
+			tableData[counter][5]=null;
+			counter++;
+		}
+		
+	}
+	
+	
 	public void button(){
 		  title = new JLabel("车辆账目");
 		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);

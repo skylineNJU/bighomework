@@ -3,6 +3,7 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +12,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.BankAccountVO;
 
 public class BankAccountPanel {
 	private JPanel panel;
@@ -23,7 +27,7 @@ public class BankAccountPanel {
 	private String[][] tableData;
 	private JLabel next,previous,add,delete;
 	private JLabel label1,label2,title,update,save,back;
-	
+	private int account=0;
 	public BankAccountPanel (){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
@@ -37,16 +41,22 @@ public class BankAccountPanel {
 		tab.setSize(panel.getWidth()*16/18,panel.getHeight()/100*90);
 		tab.setLocation(panel.getWidth()/18,panel.getHeight()*2/20);
 		panel.add(tab);
+		getBankAcountData();
 		bankaccountPanel();
+		account++;
 		button();
 		Listener();
 		tab.repaint();
 		panel.repaint();
 	}
+	
 	public void bankaccountPanel(){
 		tableTitle =  new String[]{"银行账户","金额/元"};
-		tableData = new String[][]{{"航运区","","","","100%"},{"铁路区","","","","100%"},{"汽运区","","","","100%"},{"机动区","","","","100%"}};	
-		table = new PageTable(tableTitle,tableData);
+	//	tableData = new String[][]{{"航运区","","","","100%"},{"铁路区","","","","100%"},{"汽运区","","","","100%"},{"机动区","","","","100%"}};	
+		
+		if(account==0){
+			table = new PageTable(tableTitle,tableData);
+		}
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panel.getWidth()/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panel.getWidth()/20));//设置表头高度
@@ -54,18 +64,25 @@ public class BankAccountPanel {
 		table.setDragEnabled(false);
 		table.setVisible(true);
 		scrollPane = new JScrollPane(table);
-		
-	//	if(tableData.length>=10){
-			scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
-		//}else{
-	//		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), (table.getRowCount()+1)*table.getRowHeight());
-	//	}
-	//	table.getColumnModel().getColumn(0).setPreferredWidth(scrollPane.getWidth()/5);;
-	//	table.getColumnModel().getColumn(1).setPreferredWidth(scrollPane.getWidth()/6);;
+		scrollPane.setBounds(tab.getX()-panel.getWidth()/18, tab.getY()-panel.getWidth()/50,tab.getWidth(), 10*table.getRowHeight());
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane.setVisible(true);		
 		bankaccount.add(scrollPane);
+		
 	}
+	
+	public void getBankAcountData(){
+		FinanceBLService service = ConstructFactory.FinanceFactory();
+		ArrayList<BankAccountVO> bankListVO = service.showBalance();
+		tableData = new String[bankListVO.size()][2];
+		int counter = 0;
+		for(BankAccountVO bankVO:bankListVO){
+			tableData[counter][0] = bankVO.getCode();
+			tableData[counter][1] = String.valueOf(bankVO.getBalance());
+			counter++;
+		}
+	}
+	
 	public void button(){
 		  title = new JLabel("银行账户账目");
 		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
@@ -117,7 +134,7 @@ public class BankAccountPanel {
 		 /**
 		  * 按钮事件
 		  */
-		 public void Listener() {
+	public void Listener() {
 		  previous.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent e){
 				System.out.println("previousPage!!!!!");
@@ -145,34 +162,12 @@ public class BankAccountPanel {
 					InitialAccountPanel Initial = new InitialAccountPanel();
 					Initial.init();
 			}});
-		/* if(button.equals(delete)){
-		   int i=table.getSelectedRow();
-		   if(i==-1)return ;
-		   Integer id=(Integer) table.getValueAt(i,0);
-		   if(id==null)return ;
-		   Student s=null;
-		   for(Student stu:Student.students){
-		    if(stu.getId().equals(id))
-		     s=stu;
-		   }
-		   int index=Student.students.indexOf(s);
-		   Student.students.remove(index);
-		   table.initTable();
-		   label1.setText("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
-		   return;
-		  }
-		  if(button.equals(add)){
-		   Integer id=0;
-		   for(Student stu:Student.students){
-		    if(stu.getId()>id)id=stu.getId();
-		   }
-		   Student student=new Student(id+1,"wuming"+(id+1),"男",22);
-		   Student.students.add(student);
-		   table.initTable();
-		   label1.setText("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
-		   return;
-		  }
-		  */
-		
-		 }
+		  
+		  update.addMouseListener(new MouseAdapter(){
+				public void mouseClicked(MouseEvent e){
+					account=0;
+					table = new PageTable(tableTitle,tableData);
+					
+			}});
+	}
 }

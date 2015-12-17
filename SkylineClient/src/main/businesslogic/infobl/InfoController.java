@@ -38,7 +38,11 @@ public class InfoController implements InfoBLService {
 		return vo;
 		
 	}
-
+	@Override
+	public ArrayList<StaffVO> showStaffInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	@Override
 	public boolean modifyStaff(StaffVO staffInfo) {
 		// TODO Auto-generated method stub
@@ -202,4 +206,6 @@ public class InfoController implements InfoBLService {
 		UnitPO unitPO = service.getUnit();
 		return unitPO.getPoList();
 	}
+
+
 }

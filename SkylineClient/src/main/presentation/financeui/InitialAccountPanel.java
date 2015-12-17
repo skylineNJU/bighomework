@@ -128,7 +128,7 @@ public class InitialAccountPanel {
 		employee.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				remove();
-				InstitutionAccountPanel panel  = new InstitutionAccountPanel();
+				EmployeeAccountPanel panel  = new EmployeeAccountPanel();
 				panel.init();
 			}
 		});
