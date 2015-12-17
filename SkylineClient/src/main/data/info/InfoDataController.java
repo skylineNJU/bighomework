@@ -27,6 +27,7 @@ public class InfoDataController implements InfoDataService {
 		poList.add(workerPO);
 		client=MainController.getClient();
 		poList.setKey("Inquire");
+		System.out.println("-----------------");
 		client.writeReceipt(poList);
 		return (StaffListPO)client.getResponse();
 	}
@@ -244,6 +245,7 @@ public class InfoDataController implements InfoDataService {
 		unitPO.setKey("Inquire");
 		client=MainController.getClient();
 		client.writeReceipt(unitPO);
+		System.out.println("waiting response");
 		return (UnitPO) client.getResponse();
 	}
 

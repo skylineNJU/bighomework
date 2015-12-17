@@ -21,7 +21,7 @@ public class FrameMain extends JFrame{
 	private static Point origin = new Point();
 	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private FrameMain(){
-	
+		
 	}
 	
 	public static FrameMain getFrame(){
@@ -33,6 +33,7 @@ public class FrameMain extends JFrame{
 				,(int)(scrSize.getHeight()/2-(int)((double)scrSize.getHeight()*3/4/2)));
 		frame.setUndecorated(true);
 		frame.setResizable(false);
+		frame.setOpacity((float) 0.8);
 		exit.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		min.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		title.setSize(frame.getWidth()-(int)((double)frame.getWidth()*18/490)*2,(int)((double)frame.getHeight()*22/490));

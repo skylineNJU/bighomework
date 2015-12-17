@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import main.socketservice.SqlReader;
 
-public class StaffPOList extends Message {
+public class StaffListPO extends Message {
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<WorkerPO> poList = new ArrayList<WorkerPO>();
