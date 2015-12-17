@@ -1,6 +1,7 @@
 package main.data.info;
 
 import main.dataservice.InfoDataService;
+import main.po.CityPO;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.InstitutionPO;
@@ -47,6 +48,14 @@ public class InfoDataController implements InfoDataService {
 		client.writeReceipt(workerPO);
 		return true;
 	}
+	@Override
+	public CityPO inquireCity(CityPO cityPO){
+		client=MainController.getClient();
+		cityPO.setKey("Inquire");
+		client.writeReceipt(cityPO);
+		return (CityPO)client.getResponse();
+	}
+	
 
 	@Override
 	public WorkerPO inquireStaff(WorkerPO workerPO) {

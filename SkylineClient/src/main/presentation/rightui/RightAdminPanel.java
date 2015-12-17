@@ -1,6 +1,8 @@
 package main.presentation.rightui;
 
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import main.po.Rights;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.vo.AccountVO;
+import main.vo.CityVO;
 import main.vo.DistanceVO;
 import main.vo.IntermediateInfoVO;
 
@@ -37,7 +40,7 @@ public class RightAdminPanel {
 	private JScrollPane scrollPane;
 	private String[] identityString;
 	private String[] institutionString;
-	private String[]cityString;
+	private String[] cityString;
 	DefaultTableModel model ;
 	//writePanel上的组件
 	private JLabel accountLabel;//账号标签
@@ -64,7 +67,7 @@ public class RightAdminPanel {
 										Rights.STOREHOUSE,
 										Rights.FINANCE,
 										Rights.ACCOUNT};
-	
+	private ArrayList<String>array;
 	public RightAdminPanel(){
 		panel=MainController.getWritepanel();
 		panel.setLayout(null);
@@ -94,10 +97,7 @@ public class RightAdminPanel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				// TODO Auto-generated method stub
-				switch(tab.getSelectedIndex()){
-				case 0:
-					refresh();
-				}
+			
 				
 			}
 			
@@ -287,27 +287,44 @@ public class RightAdminPanel {
 		accountText = new JTextField();
 		codeText = new JTextField();
 		identityString = new String[]{"快递员","营业厅业务员","中转中心业务员","总经理","仓库管理人员","财务人员","管理员"};
-		institutionString=new String[]{"","",""};
-		institution =new JComboBox<String>(institutionString);
 		
+		institution =new JComboBox<String>();
+		//institution.setVisible(false);
 		identity = new JComboBox<String>(identityString);
 		InfoBLService service = ConstructFactory.InfoFactory();		
-		IntermediateInfoVO intermediateInfoVO = service.inquire();		
-		ArrayList<IntermediateInfoVO> volist2=null;
-		volist2=service.inquireInterm(city);
-		cityString =new String[2];
-		for(int x=0;x<2;x++)
-			cityString[x]=null;	
-		if(volist2!=null){
-		int counter=0;		
-		for(IntermediateInfoVO vo:volist2){
-			cityString[0]=vo.getCity();
-			cityString[1]=vo.getInstitutionCode();			
-			counter++;
-		}
+		CityVO cityVO = service.inquireCity();	
+		
+		
+	
+		if(cityVO!=null){
+		
+	
+			cityString=cityVO.getCityName().split(" ");
+			
+			array=new ArrayList<String>();
+			array=cityVO.getInsititutionNum();
+			
+		System.out.println(cityString[0]);
+			//cityString[counter][1]=vo.getInsititutionNum();		
+			
+	
 		}
 		city=new JComboBox<String>(cityString);
-		
+		city.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO Auto-generated method stub
+				String args=array.get(city.getSelectedIndex()-1);
+				String[] insNum=args.split(" ");
+				institution.removeAllItems();
+				for(int x=0;x<insNum.length;x++){
+					institution.addItem(insNum[x]);
+				}
+				institution.setVisible(true);
+			}
+			
+		});
 		
 		accountLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
 		codeLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
@@ -319,7 +336,7 @@ public class RightAdminPanel {
 		codeText.setBounds(panelWidth/4, panelHeight*3/40+accountText.getY(), panelWidth*9/20, panelHeight/20);
 		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+codeText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
 		city.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		institution.setBounds(panelWidth*3/5+panelWidth/4,panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+		institution.setBounds(panelWidth*3/5+panelWidth/10,panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
 	
 		writePanel.add(accountLabel);
 		writePanel.add(codeLabel);

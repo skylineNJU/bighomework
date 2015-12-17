@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import main.businesslogicservice.InfoBLService;
 import main.data.info.InfoDataController;
 import main.po.UnitPO;
+import main.vo.CityVO;
 import main.vo.DriverVO;
 import main.vo.IntermediateInfoVO;
 import main.vo.LobbyInfoVO;
@@ -141,6 +142,13 @@ public class InfoController implements InfoBLService {
 		IntermediateInfoBL bl=new IntermediateInfoBL(new IntermediateInfoVO(city, city, 0, 0));
 		
 		return bl.inquire();
+	}
+	@Override
+	public CityVO inquireCity(){
+		ArrayList<String>insititutionNum=new ArrayList<String>();
+		CityInfoBL bl=new CityInfoBL(new CityVO("",insititutionNum));
+		return bl.iniquire();
+		
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public void getDataFromBase(){
 public String readLobbyInfo(String city){
 	SqlReader reader=new SqlReader("LobbyInfo");
 	String result="";
-	while(reader.findNext("所在城市", city)){
+	while(reader.findNext("所属城市", city)){
 		result=result+" "+reader.getString("机构编号");
 	}
 	return result;

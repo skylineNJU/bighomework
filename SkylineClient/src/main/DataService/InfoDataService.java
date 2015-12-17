@@ -1,5 +1,6 @@
 package main.dataservice;
 
+import main.po.CityPO;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
 import main.po.IntermediateInfo;
@@ -89,6 +90,8 @@ public interface InfoDataService {
 	public WorkerPO inquireStaff(WorkerPO workerPO);
 
 	public VehicleListPO readVehicle(VehicleListPO vehiclelist);
+
+	CityPO inquireCity(CityPO cityPO);
 
 
 }

@@ -2,6 +2,7 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
+import main.vo.CityVO;
 import main.vo.DriverVO;
 import main.vo.IntermediateInfoVO;
 import main.vo.LobbyInfoVO;
@@ -70,4 +71,6 @@ public interface InfoBLService {
 	StaffVO inquireStaff(String staffCode);
 
 	ArrayList<VehicleVO> inquireVehicle(String code);
+
+	CityVO inquireCity();
 }
