@@ -54,6 +54,7 @@ public class AllImage {
 		public static ImageIcon login_forget=new ImageIcon("graphics/login_forget.png");
 		public static ImageIcon login_login=new ImageIcon("graphics/login_login.png");
 		public static ImageIcon login_show=new ImageIcon("graphics/login_show.png");
+		public static ImageIcon login_wrong=new ImageIcon("graphics/login_wrong.png");
 		
 		//首页界面
 		public static ImageIcon welcome=new ImageIcon("graphics/welcome/welcome.png");
@@ -82,8 +83,9 @@ public class AllImage {
 		public static ImageIcon save2=new ImageIcon("graphics/button/save2.png");
 		public static ImageIcon save3=new ImageIcon("graphics/button/save3.png");
 		
+		
 		//关于我们  及 版本号
 		public static ImageIcon aboutus=new ImageIcon("graphics/welcome/aboutus.png");
-		public static ImageIcon wrong_password=new ImageIcon("graphics/wrong.png");
+	
 		
 }

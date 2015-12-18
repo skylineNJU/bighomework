@@ -52,8 +52,8 @@ public class LoginPanel{
 	private JLabel login;
 	private JLabel show=new JLabel("");//显示密码标记
 	private JLabel forget=new JLabel("");//忘记密码
-	private JLabel wrongPassword=new JLabel();
-      
+	
+
 	
 	public LoginPanel(){
 		frame=FrameMain.getFrame();
@@ -70,7 +70,7 @@ public class LoginPanel{
 		AllImage.login_password.setImage(AllImage.login_password.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		AllImage.login_show.setImage(AllImage.login_show.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		AllImage.login_forget.setImage(AllImage.login_forget.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
-	
+		AllImage.login_wrong.setImage(AllImage.login_wrong.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		userName.setOpaque(false);
 		userName.setBorder(null);
 		userName.setFont(new Font("黑体",Font.PLAIN,18));
@@ -84,11 +84,13 @@ public class LoginPanel{
 				login.setIcon(AllImage.login);
 				panel.repaint();
 			}
+			public void mouseClicked(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
 		});
 		
-		wrongPassword =new JLabel(AllImage.wrong_password);
-		wrongPassword.setOpaque(false);
-		wrongPassword.setBorder(null);
+		
 		
 		passWord.setEchoChar('*');
 		passWord.setOpaque(false);
@@ -101,6 +103,10 @@ public class LoginPanel{
 				panel.repaint();
 			}
 			public void mouseExited(MouseEvent e){
+				login.setIcon(AllImage.login);
+				panel.repaint();
+			}
+			public void mouseClicked(MouseEvent e){
 				login.setIcon(AllImage.login);
 				panel.repaint();
 			}
@@ -148,8 +154,6 @@ public class LoginPanel{
 		userName.setLocation(w*293/851,h*234/576);
 		passWord.setSize(w*152/851,h*38/576);
 		passWord.setLocation(w*293/851,h*317/576);
-		wrongPassword.setSize(w*42/851,h*38/576);
-		wrongPassword.setLocation(w*510/851,h*317/576);
 		
 		
 		back.setOpaque(false);
@@ -166,7 +170,9 @@ public class LoginPanel{
 		panel.add(confirm);
 		panel.add(forget);
 		panel.add(show);
+		
 		panel.add(login);
+		
 		panel.repaint();
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
@@ -198,15 +204,21 @@ public class LoginPanel{
 				String password=passWord.getText();
 				System.out.println();
 				System.out.println("username: "+username);
+				
 				AccountVO account=	new AccountVO(username, password);
 				RightBLService  service  = ConstructFactory.RightFactory();
+				
+				
 				service.login(account);
-				System.out.println("get login message");
+				if(account.getRight()==null){
+					login.setIcon(AllImage.login_wrong);
+					panel.repaint();
+				}
+				
+				else
 				switch(account.getRight()){	
 					case ACCOUNT:
-
 						removeA();
-
 						panel.repaint();
 						MainController.goToRightAdminStaffui(account.getBelong());
 						break;
@@ -298,6 +310,7 @@ public class LoginPanel{
 		panel.remove(passWord);
 		panel.remove(confirm);
 		panel.remove(userName);
+		
 	}
 }
 
