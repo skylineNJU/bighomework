@@ -46,8 +46,8 @@ public class WarehouseAccountPanel {
 		panel.add(tab);
 		getWarehouseAcountData();
 		warehousePanel();
-//		button();
-//		Listener();
+		button();
+		Listener();
 		tab.repaint();
 		panel.repaint();
 	}
@@ -105,90 +105,87 @@ public class WarehouseAccountPanel {
 	
 	
 	
-//	public void button(){
-//		  title = new JLabel("仓库账目");
-//		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-//			
-//			
-//		  previous=new JLabel("上一页");
-//		  previous.setBounds(panel.getWidth()*50/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
-//		  next=new JLabel("下一页");
-//		  next.setBounds(panel.getWidth()*60/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
-//		  delete=new JLabel("删除");
-//		  delete.setBounds(panel.getWidth()*73/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
-//		  add=new JLabel("添加");
-//		  add.setBounds(panel.getWidth()*80/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
-//		  label1=new JLabel("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
-//		  label1.setBounds(institution.getWidth()*9/100,panel.getHeight()*71/100, panel.getWidth()/5, panel.getHeight()/20);
-//		
-//		  
-//		  previous=new JLabel("上一页");
-//		  previous.setBounds(panel.getWidth()*70/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
-//		  next=new JLabel("下一页");
-//		  next.setBounds(panel.getWidth()*80/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
-//		   delete=new JLabel("删除");
-//		  delete.setBounds(panel.getWidth()*73/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-//		  add=new JLabel("添加");
-//		  add.setBounds(panel.getWidth()*80/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-//		  label1=new JLabel("总共"+table.totalPage+"页|当前第"+table.currentPage+"页");
-//		  label1.setBounds(panel.getWidth()*50/100,panel.getHeight()*71/100, panel.getWidth()/4, panel.getHeight()/20); 
-//		  label2=new JLabel("总共"+table.totalRowCount+"条记录"); 
-//		  label2.setBounds(panel.getWidth()*2/100,panel.getHeight()*71/100, panel.getWidth()/4, panel.getHeight()/20);
-//		  update = new JLabel("新建账目");
-//		  update.setBounds(panel.getWidth()*78/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-//		  save = new JLabel("存档");
-//		  save.setBounds(panel.getWidth()*70/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-//		  back = new JLabel("返回");
-//		  back.setBounds(panel.getWidth()*62/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-//		  
-//		  warehouse.add(previous);
-//		  warehouse.add(next);
-// 		  institution.add(add);
-//     	  institution.add(delete);
-//		  warehouse.add(label1);
-//		  warehouse.add(label2);
-//		  warehouse.add(update);
-//		  warehouse.add(save);
-//		  warehouse.add(back);
-//		  institution.add(title);
-//		  
-//		  
-//		 }
-//
-//		 /**
-//		  * 按钮事件
-//		  */
-//		 public void Listener() {
-//		  previous.addMouseListener(new MouseAdapter(){
-//				public void mouseClicked(MouseEvent e){
-//				System.out.println("previousPage!!!!!");
-//					int i=table.getPreviousPage();
-//					DefaultTableModel model=new DefaultTableModel(table.getPageData(),tableTitle);
-//					table.setModel(model);
-//					label1.setText("总共"+table.totalPage+"页|当前第"+table.currentPage+"页");
-//					label2.setText("总共"+table.totalRowCount+"条记录");
-//					if(i==-1)return;
-//		  }});
-//		  
-//		  next.addMouseListener(new MouseAdapter(){
-//				public void mouseClicked(MouseEvent e){
-//					System.out.println("nextPage!!!!!");
-//					int i=table.getNextPage();
-//					DefaultTableModel model=new DefaultTableModel(table.getPageData(),tableTitle);
-//					table.setModel(model);
-//					label1.setText("总共"+table.totalPage+"页|当前第"+table.currentPage+"页");
-//					label2.setText("总共"+table.totalRowCount+"条记录");
-//					if(i==-1)return;
-//		  }});
-//		  back.addMouseListener(new MouseAdapter(){
-//				public void mouseClicked(MouseEvent e){
-//					panel.removeAll();
-//					InitialAccountPanel Initial = new InitialAccountPanel();
-//					Initial.init();
-//			}});
-//		  
-//		 
-//		  
-//		
-//		 }
+	public void button(){
+		  title = new JLabel("仓库账目");
+		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
+			
+			
+	/*	  previous=new JLabel("上一页");
+		  previous.setBounds(panel.getWidth()*50/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
+		  next=new JLabel("下一页");
+		  next.setBounds(panel.getWidth()*60/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
+		  delete=new JLabel("删除");
+		  delete.setBounds(panel.getWidth()*73/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
+		  add=new JLabel("添加");
+		  add.setBounds(panel.getWidth()*80/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
+		  label1=new JLabel("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
+		  label1.setBounds(institution.getWidth()*9/100,panel.getHeight()*71/100, panel.getWidth()/5, panel.getHeight()/20);
+		
+		*/  
+		  previous=new JLabel("上一页");
+		  previous.setBounds(panel.getWidth()*70/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
+		  next=new JLabel("下一页");
+		  next.setBounds(panel.getWidth()*80/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
+		   delete=new JLabel("删除");
+		  delete.setBounds(panel.getWidth()*73/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
+		  add=new JLabel("添加");
+		  add.setBounds(panel.getWidth()*80/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
+		  label1=new JLabel("总共"+table.totalPage+"页|当前第"+table.currentPage+"页");
+		  label1.setBounds(panel.getWidth()*50/100,panel.getHeight()*71/100, panel.getWidth()/4, panel.getHeight()/20); 
+		  label2=new JLabel("总共"+table.totalRowCount+"条记录"); 
+		  label2.setBounds(panel.getWidth()*2/100,panel.getHeight()*71/100, panel.getWidth()/4, panel.getHeight()/20);
+		  update = new JLabel("新建账目");
+		  update.setBounds(panel.getWidth()*78/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
+		  save = new JLabel("存档");
+		  save.setBounds(panel.getWidth()*70/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
+		  back = new JLabel("返回");
+		  back.setBounds(panel.getWidth()*62/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
+		  
+		  warehouse.add(previous);
+		  warehouse.add(next);
+ 	//	  institution.add(add);
+    // 	  institution.add(delete);
+		  warehouse.add(label1);
+		  warehouse.add(label2);
+		  warehouse.add(update);
+		  warehouse.add(save);
+		  warehouse.add(back);
+	//	  institution.add(title);
+		  
+		  
+		 }
+
+		 /**
+		  * 按钮事件
+		  */
+		 public void Listener() {
+		  previous.addMouseListener(new MouseAdapter(){
+				public void mouseClicked(MouseEvent e){
+				System.out.println("previousPage!!!!!");
+					int i=table.getPreviousPage();
+					DefaultTableModel model=new DefaultTableModel(table.getPageData(),tableTitle);
+					table.setModel(model);
+					label1.setText("总共"+table.totalPage+"页|当前第"+table.currentPage+"页");
+					label2.setText("总共"+table.totalRowCount+"条记录");
+					if(i==-1)return;
+		  }});
+		  
+		  next.addMouseListener(new MouseAdapter(){
+				public void mouseClicked(MouseEvent e){
+					System.out.println("nextPage!!!!!");
+					int i=table.getNextPage();
+					DefaultTableModel model=new DefaultTableModel(table.getPageData(),tableTitle);
+					table.setModel(model);
+					label1.setText("总共"+table.totalPage+"页|当前第"+table.currentPage+"页");
+					label2.setText("总共"+table.totalRowCount+"条记录");
+					if(i==-1)return;
+		  }});
+		  back.addMouseListener(new MouseAdapter(){
+				public void mouseClicked(MouseEvent e){
+					panel.removeAll();
+					InitialAccountPanel Initial = new InitialAccountPanel();
+					Initial.init();
+			}});
+
+		 }
 }
