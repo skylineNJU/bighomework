@@ -35,8 +35,8 @@ public class WarehouseAccountPanel {
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
 	}
-	
-	public void init(){
+}
+/*	public void init(){
 		warehouse = new JPanel();
 		warehouse.setLayout(null);
 		tab=new JTabbedPane(JTabbedPane.TOP);
@@ -120,7 +120,7 @@ public class WarehouseAccountPanel {
 		  label1=new JLabel("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
 		  label1.setBounds(institution.getWidth()*9/100,panel.getHeight()*71/100, panel.getWidth()/5, panel.getHeight()/20);
 		*/  
-		  
+		  /*
 		  previous=new JLabel("上一页");
 		  previous.setBounds(panel.getWidth()*70/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
 		  next=new JLabel("下一页");
@@ -151,10 +151,12 @@ public class WarehouseAccountPanel {
 		  warehouse.add(back);
 		//  institution.add(title);
 		  
+		  
 		 }
+*/
 		 /**
 		  * 按钮事件
-		  */
+		  *//*
 		 public void Listener() {
 		  previous.addMouseListener(new MouseAdapter(){
 				public void mouseClicked(MouseEvent e){
@@ -183,6 +185,7 @@ public class WarehouseAccountPanel {
 					InitialAccountPanel Initial = new InitialAccountPanel();
 					Initial.init();
 			}});
+		  */
 		/* if(button.equals(delete)){
 		   int i=table.getSelectedRow();
 		   if(i==-1)return ;
@@ -211,6 +214,7 @@ public class WarehouseAccountPanel {
 		   return;
 		  }
 		  */
-		
+		/*
 		 }
 }
+*/
