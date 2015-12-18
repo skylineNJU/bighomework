@@ -3,6 +3,7 @@ package main.dataservice;
 import java.util.ArrayList;
 
 import main.po.BankList;
+import main.po.CargoList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
 import main.po.WarehouseInList;
@@ -13,6 +14,7 @@ import main.po.WarehouseOutPO;
 //仓库
 public interface WarehouseDataService {
 	
+	public CargoList readCargo();
 	//入库时，系统需要将入库的订单号保存至相应仓库的数据库
 	public boolean storage(WarehouseInPO warehouseInPO);
 	

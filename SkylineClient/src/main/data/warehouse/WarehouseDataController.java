@@ -3,7 +3,7 @@ package main.data.warehouse;
 import java.util.ArrayList;
 
 import main.dataservice.WarehouseDataService;
-import main.po.BankList;
+import main.po.CargoList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
 import main.po.Message;
@@ -99,6 +99,14 @@ public class WarehouseDataController implements WarehouseDataService{
 		list .setKey("Inquire");
 		client.writeReceipt(list);
 		return (InventoryList) client.getResponse();
+	}
+	@Override
+	public CargoList readCargo() {
+		// TODO Auto-generated method stub
+		CargoList po=new CargoList();
+		po.setKey("Inquire");
+		client.writeReceipt(po);
+		return (CargoList) client.getResponse();
 	}
 
 }

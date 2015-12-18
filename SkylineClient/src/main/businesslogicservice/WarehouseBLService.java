@@ -29,12 +29,12 @@ public interface WarehouseBLService {
 	 */
 	//库存查看 
 	public boolean showInventory(String startdate,String enddate,InventoryVO inventoryInfo);
-	ArrayList<WarehouseInVO> showWarehouseInInfo(String code);
-	ArrayList<WarehouseOutVO> showWarehouseOutInfo(String code);
+	public ArrayList<WarehouseInVO> showWarehouseInInfo(String code);
+	public ArrayList<WarehouseOutVO> showWarehouseOutInfo(String code);
 	
 	//库存盘点 通过入库单得到
-	ArrayList<InventoryVO> checkInventory(String code);
+	public ArrayList<InventoryVO> checkInventory(String code);
 	
-	ArrayList<InventoryVO> showWarehouseList();
-	
+	public ArrayList<InventoryVO> showWarehouseList();
+	public ArrayList<InventoryVO> readCargoList();
 }

@@ -3,13 +3,9 @@ package main.businesslogic.warehousebl;
 
 import java.util.ArrayList;
 
-import main.po.InventoryList;
-import main.vo.DriverVO;
 import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
-import main.businesslogic.financebl.Balance;
-import main.businesslogic.infobl.Driver;
 import main.businesslogicservice.WarehouseBLService;
 
 public class WarehouseController implements WarehouseBLService {
@@ -64,6 +60,12 @@ public class WarehouseController implements WarehouseBLService {
 	public ArrayList<InventoryVO> showWarehouseList() {
 		// TODO Auto-generated method stub
 		return new Inventory().readWarehouseList();
+	}
+
+	@Override
+	public ArrayList<InventoryVO> readCargoList() {
+		// TODO Auto-generated method stub
+		return new Inventory().getAllCargo();
 	}
 
 }

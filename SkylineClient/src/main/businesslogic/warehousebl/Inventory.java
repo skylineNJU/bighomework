@@ -2,20 +2,11 @@ package main.businesslogic.warehousebl;
 
 import java.util.ArrayList;
 
-import main.data.finance.FinanceDataController;
-import main.data.info.InfoDataController;
 import main.data.warehouse.WarehouseDataController;
-import main.dataservice.FinanceDataService;
-import main.dataservice.InfoDataService;
 import main.dataservice.WarehouseDataService;
-import main.po.BankAccountPO;
-import main.po.BankList;
-import main.po.DriverInfoPO;
-import main.po.DriverList;
+import main.po.CargoList;
 import main.po.InventoryList;
 import main.po.InventoryPO;
-import main.vo.BankAccountVO;
-import main.vo.DriverVO;
 import main.vo.InventoryVO;
 
 public class Inventory {
@@ -46,8 +37,8 @@ public class Inventory {
 		this.position=vo.getPosition();
 		this.destination=vo.getDestination();
 		this.arriveDate=vo.getArriveDate();
-		this.receiptType = receiptType;
-		this.cityCode=cityCode;
+		this.receiptType = vo.getReceiptType();
+		this.cityCode=vo.getCityCode();
 	}
 	
 	public Inventory(String Code){
@@ -76,6 +67,29 @@ public class Inventory {
 	public boolean modify(){
 		return true;
 	}
+	
+	public ArrayList<InventoryVO> getAllCargo(){
+		ArrayList<InventoryVO> voList=new ArrayList<InventoryVO>();
+		WarehouseDataService service=new WarehouseDataController();
+		CargoList po=service.readCargo();
+		ArrayList<InventoryPO> polist=po.getInventorylist();
+		for(InventoryPO p:polist){
+			System.out.println(p.getDamageCondition());
+			voList.add(new InventoryVO(p.getOrderCode(),
+									p.getReceiptType(),
+									p.getCityCode(),
+									p.getArriveDate(),
+									p.getDestination(),
+									p.getArea(),
+									p.getRow(),
+									p.getShelf(),
+									p.getPosition(),			
+									p.getDamageCondition()
+									));
+		}
+		return voList;
+	}
+	
 	
 	public ArrayList<InventoryVO> inquire(String Code){
 		WarehouseDataService service=new WarehouseDataController();
