@@ -10,6 +10,7 @@ import main.po.LobbyInfoList;
 import main.po.StaffListPO;
 import main.po.UnitPO;
 import main.po.VehicleInfoPO;
+import main.po.VehicleList2PO;
 import main.po.VehicleListPO;
 import main.po.WarehouseInfo;
 import main.po.WorkerPO;
@@ -95,5 +96,5 @@ public interface InfoDataService {
 
 	CityPO inquireCity(CityPO cityPO);
 
-	public VehicleListPO readVehicleVO();
+	public VehicleList2PO readVehicleVO();
 }

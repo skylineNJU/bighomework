@@ -12,6 +12,7 @@ import main.po.LobbyInfoList;
 import main.po.StaffListPO;
 import main.po.UnitPO;
 import main.po.VehicleInfoPO;
+import main.po.VehicleList2PO;
 import main.po.VehicleListPO;
 import main.po.WarehouseInfo;
 import main.po.WorkerPO;
@@ -257,13 +258,13 @@ public class InfoDataController implements InfoDataService {
 	}
 
 	@Override
-	public VehicleListPO readVehicleVO() {
+	public VehicleList2PO readVehicleVO() {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
-		VehicleListPO vehicleList = new VehicleListPO();
+		VehicleList2PO vehicleList = new VehicleList2PO();
 		vehicleList.setKey("Inquire");
 		client.writeReceipt(vehicleList);
-		return (VehicleListPO) client.getResponse();
+		return (VehicleList2PO) client.getResponse();
 	}
 
 }

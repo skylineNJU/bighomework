@@ -14,7 +14,9 @@ import javax.swing.table.DefaultTableModel;
 import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.WarehouseBLService;
 import main.constructfactory.ConstructFactory;
+import main.po.CityPO;
 import main.presentation.mainui.MainController;
+import main.vo.CityVO;
 import main.vo.IntermediateInfoVO;
 import main.vo.InventoryVO;
 import main.vo.LobbyInfoVO;
@@ -86,8 +88,14 @@ public class InstitutionAccountPanel {
 
 	public void getInsititutionAcountData(){
 		//先得到所有城市 再传参数进行
-		String[] city = new String[]{"上海","北京","南京","广州"};	
-		InfoBLService service=ConstructFactory.InfoFactory();
+		InfoBLService service = ConstructFactory.InfoFactory();		
+		CityVO cityVO = service.inquireCity();	
+		if(cityVO!=null){
+		String citys=cityVO.getCityName().substring(1);
+		
+		System.out.println("==========citys==========="+citys);
+		
+		String[] city = citys.split(" "); 
 		for(int i=0;i<city.length;i++){
 			ArrayList<LobbyInfoVO> lobbyList=service.inquireLobby(city[i]);
 			size = lobbyList.size()+1+1+size;
@@ -128,7 +136,15 @@ public class InstitutionAccountPanel {
 			}
 			System.out.println("========lobbyx========"+x);
 		}
-	
+		}
+		
+		else{
+				tableData = new String[10][5];
+				for(int x=0;x<10;x++)
+					for(int y=0;y<5;y++)
+						tableData[x][y]=null;
+			
+		}
 }
 	
 	

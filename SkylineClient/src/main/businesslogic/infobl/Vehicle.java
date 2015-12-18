@@ -9,6 +9,7 @@ import main.dataservice.InfoDataService;
 import main.po.BankAccountPO;
 import main.po.BankList;
 import main.po.VehicleInfoPO;
+import main.po.VehicleList2PO;
 import main.po.VehicleListPO;
 import main.vo.BankAccountVO;
 import main.vo.VehicleVO;
@@ -59,7 +60,7 @@ public class Vehicle {
 	public ArrayList<VehicleVO> readVehicalList(){
 		ArrayList<VehicleVO> vehicalVOList = new ArrayList<VehicleVO>();
 		InfoDataService dataService = new InfoDataController();
-		VehicleListPO vehicleList = dataService.readVehicleVO();
+		VehicleList2PO vehicleList = dataService.readVehicleVO();
 		for(VehicleInfoPO po:vehicleList.getList()){
 			vehicalVOList.add(new VehicleVO(po.getCarID(), po.getEngineID(), po.getCarNum(),
 					   po.getUnderpanID(),

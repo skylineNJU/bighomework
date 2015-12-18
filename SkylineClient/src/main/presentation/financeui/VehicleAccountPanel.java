@@ -16,6 +16,7 @@ import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
+import main.vo.CityVO;
 import main.vo.VehicleVO;
 
 public class VehicleAccountPanel {
@@ -24,10 +25,11 @@ public class VehicleAccountPanel {
 	private JTabbedPane tab;
 	private PageTable table;
 	private JScrollPane scrollPane;
-	private String[] tableTitle;
+	private String[] tableTitle,city;
 	private String[][] tableData;
 	private JLabel next,previous,add,delete;
 	private JLabel label1,label2,title,update,save,back;
+	private ArrayList<String> array;
 	
 	
 	public VehicleAccountPanel (){
@@ -52,7 +54,7 @@ public class VehicleAccountPanel {
 	}
 	
 	public void vehiclePanel(){
-		tableTitle =  new String[]{"车牌号","引擎代号","车辆代号","底盘号","购买时间","服役时间"};
+		tableTitle =  new String[]{"车牌号","所属机构编号","引擎代号","底盘号","购买时间","服役时间"};
 	//	tableData = new String[][]{{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
 	//			{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},
 	//			{"","","","","","",""},{"","","","","","",""},{"","","","","","",""},{"","","","","","",""}};	
@@ -81,6 +83,53 @@ public class VehicleAccountPanel {
 	
 	
 	public void getTableData(){
+	
+		
+	/*	InfoBLService service = ConstructFactory.InfoFactory();		
+		CityVO cityVO = service.inquireCity();	
+		if(cityVO!=null){
+		
+			city=cityVO.getCityName().substring(1).split(" ");
+			array = cityVO.getInsititutionNum();
+			String[][]  InsititutionName=new String[city.length][];
+			int x=0;
+			for(String s:array){
+				 InsititutionName[x]=s.split(" "); 
+				 x++;
+			}
+			
+			int counter=0;
+			int a=0;
+			for(int i=0;i<city.length;i++){
+				for(int j=0;j<InsititutionName[i].length;j++){
+					ArrayList<VehicleVO> list=service.inquireVehicle(InsititutionName[i][j]);
+					a=a+list.size();
+				}
+			}
+				tableData = new String[a][6];	
+				for(int i1=0;i1<city.length;i1++){
+					for(int j=0;j<InsititutionName[i1].length;j++){
+						ArrayList<VehicleVO> list=service.inquireVehicle(InsititutionName[i1][j]);
+					for(VehicleVO vo:list){
+						tableData[counter][0]=vo.getCarID();
+						tableData[counter][1]=vo.getEngineID();
+						tableData[counter][2]=vo.getCarNum();
+						tableData[counter][3]=vo.getUnderpanID();
+						tableData[counter][4]=vo.getBoughtTime();
+						tableData[counter][5]=vo.getUsedTime();
+						counter++;
+					}
+					}
+			}
+		}else{
+				tableData = new String[10][6];
+				for(int x=0;x<10;x++)
+					for(int y=0;y<6;y++)
+						tableData[x][y]=null;
+			
+		}
+
+		*/
 		InfoBLService service=ConstructFactory.InfoFactory();
 		ArrayList<VehicleVO> list=service.showVehicalList();
 		System.out.println("}}}}}::::::"+list.size());
@@ -101,14 +150,14 @@ public class VehicleAccountPanel {
 			tableData[counter][5]=vo.getUsedTime();
 			counter++;
 		}
+		
 	}
 	
 	
 	public void button(){
 		  title = new JLabel("车辆账目");
 		  title .setBounds(panel.getWidth()*40/100,panel.getHeight()*1/60, panel.getWidth()/10, panel.getHeight()/20);
-			
-			
+
 	/*	  previous=new JLabel("上一页");
 		  previous.setBounds(panel.getWidth()*50/100,panel.getHeight()*71/100, panel.getWidth()/10, panel.getHeight()/20);
 		  next=new JLabel("下一页");
