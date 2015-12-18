@@ -59,6 +59,7 @@ public class Vehicle {
 	
 	public ArrayList<VehicleVO> readVehicalList(){
 		ArrayList<VehicleVO> vehicalVOList = new ArrayList<VehicleVO>();
+		
 		InfoDataService dataService = new InfoDataController();
 		VehicleList2PO vehicleList = dataService.readVehicleVO();
 		for(VehicleInfoPO po:vehicleList.getList()){
