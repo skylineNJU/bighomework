@@ -17,17 +17,17 @@ public class MyFrame extends JFrame {
 	private int height;
 	
 	public MyFrame(int width, int height){
+		this.setLayout(null);
 		this.width = width;
 		this.height = height;
 		setSize(width,height);
 		setUndecorated(true);
-		addMoveListener();
-		initLabel();
 	}
-	private void addMoveListener() {
-		addMouseListener(new MouseAdapter() {
+	public void init() {
+		origin = new Point();
+		this.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				if(e.getY()<=(int)((double)getHeight()/20)){
+				if(e.getY()<=(int)((double)getHeight()/10)){
 					move=true;
 					origin.x = e.getX();
 					origin.y = e.getY();
@@ -38,7 +38,7 @@ public class MyFrame extends JFrame {
 			} 
       
 		});
-		addMouseMotionListener(new MouseMotionAdapter() {
+		this.addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				if(move){
 					Point nowPoint = getLocation();
@@ -46,14 +46,12 @@ public class MyFrame extends JFrame {
 				}
 			}
 		});
-	}
-	private void initLabel() {
 		exitLabel = new MyButton();
 		minLabel = new MyButton();
-		exitLabel.setBounds(width-40, 0, 40, 40);
-		minLabel.setBounds(width-90, 0, 40, 40);
-		getContentPane().add(exitLabel);
-		getContentPane().add(minLabel);
+		this.add(exitLabel);
+		this.add(minLabel);
+		minLabel.setBounds(width-62, 0, 30, 30);
+		exitLabel.setBounds(width-30, 0, 30, 30);
 		exitLabel.setIMG(AllImage.exitEnterImg, AllImage.exitImg, AllImage.exitClicking);
 		minLabel.setIMG(AllImage.minMove, AllImage.minMin, AllImage.minClick);
 		exitLabel.addMouseListener(new MouseAdapter() {
@@ -66,6 +64,6 @@ public class MyFrame extends JFrame {
 				setExtendedState(Frame.ICONIFIED);
 			}
 		});
-		repaint();
+		this.repaint();
 	}
 }

@@ -1,10 +1,15 @@
 package main.socketservice;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import main.serverFrame.MyButton;
+import javax.swing.JButton;
+
 import main.serverFrame.MyFrame;
 
 public class Server {
@@ -29,11 +34,20 @@ public class Server {
 	}
 	
 	public static void main(String args[]){
-		MyFrame frame = new MyFrame(400,200);
-		MyButton button = new MyButton();
-		button.setIMG(imgEnter, imgExit, imgPress);
-		Server se=new Server();
-		se.start();
-	
+//		MyFrame frame = new MyFrame(400,200);
+//		frame.setLocation(200,300);
+//		frame.init();
+//		frame.setVisible(true);
+//		JButton button = new JButton("¿ªÆô");
+//		frame.add(button);
+//		button.setBounds(frame.getWidth()/4, frame.getHeight()/4, frame.getWidth()/2, frame.getHeight()/2);
+//		button.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+				Server se=new Server();
+				se.start();
+//			}
+//		});
+//		frame.repaint();
 	}
 }
