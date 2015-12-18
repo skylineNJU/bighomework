@@ -1,4 +1,5 @@
 package main.presentation.mainui;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -8,6 +9,9 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.plaf.FontUIResource;
+
+import com.alee.laf.WebLookAndFeel;
 
 
 @SuppressWarnings("serial")
@@ -21,7 +25,14 @@ public class FrameMain extends JFrame{
 	private static Point origin = new Point();
 	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private FrameMain(){
-		
+		WebLookAndFeel.globalControlFont  = new FontUIResource("楷书",Font.PLAIN, 13);
+		WebLookAndFeel.globalTextFont = new FontUIResource("楷书",Font.PLAIN, 13);
+		WebLookAndFeel.globalTooltipFont = new FontUIResource("楷书",Font.PLAIN, 13);              
+		WebLookAndFeel.globalAlertFont = new FontUIResource("楷书",Font.PLAIN, 13);            
+		WebLookAndFeel.globalMenuFont = new FontUIResource("楷书",Font.PLAIN, 13);             
+		WebLookAndFeel.globalAcceleratorFont = new FontUIResource("楷书",Font.PLAIN, 13);           
+		WebLookAndFeel.globalTitleFont = new FontUIResource("楷书",Font.PLAIN, 13);
+		 WebLookAndFeel.install ();
 	}
 	
 	public static FrameMain getFrame(){
@@ -33,7 +44,6 @@ public class FrameMain extends JFrame{
 				,(int)(scrSize.getHeight()/2-(int)((double)scrSize.getHeight()*3/4/2)));
 		frame.setUndecorated(true);
 		frame.setResizable(false);
-		frame.setOpacity((float) 0.8);
 		exit.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		min.setSize((int)((double)frame.getWidth()*18/490),(int)((double)frame.getHeight()*22/490));
 		title.setSize(frame.getWidth()-(int)((double)frame.getWidth()*18/490)*2,(int)((double)frame.getHeight()*22/490));
