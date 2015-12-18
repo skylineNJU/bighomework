@@ -2,6 +2,7 @@ package main.presentation.financeui;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -91,6 +92,84 @@ public class SalaryPanel {
 		managerCommission.setText(String.valueOf(salaryVO.getManagerCommission()));
 	}
 	
+	public boolean isRightNumber(String str){
+		if(!str.matches("^[0-9]+([.]{0,1}[0-9]+){0,1}$")){
+			return false;
+		}
+		if(Double.parseDouble(str)<=0){
+			return false;
+		}
+		return true;		
+	}
+	public boolean check(){
+		boolean result=true;
+		if(!this.isRightNumber(adminerBasic.getText())){
+			result=false;
+			adminerBasic.setText("请输入正确的数字");
+		}
+		if(!this.isRightNumber(adminerCommission.getText())){
+			result=false;
+			adminerCommission.setText("请输入正确的数字");
+		}
+		if(!this.isRightNumber(courierBasic.getText())){
+			courierBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(courierCommission.getText())){
+			courierCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(driverBasic.getText())){
+			driverBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(driverCommission.getText())){
+			driverCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(financerBasic.getText())){
+			financerBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(financerCommission.getText())){
+			financerCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(IntermeBasic.getText())){
+			IntermeBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(IntermeCommission.getText())){
+			IntermeCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(lobbyerBasic.getText())){
+			lobbyerBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(lobbyerCommission.getText())){
+			lobbyerCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(managerBasic.getText())){
+			managerBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(managerCommission.getText())){
+			managerCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(wareHouserBasic.getText())){
+			wareHouserBasic.setText("请输入正确的数字");
+			result=false;
+		}
+		if(!this.isRightNumber(wareHouserCommission.getText())){
+			wareHouserCommission.setText("请输入正确的数字");
+			result=false;
+		}
+		return result;		
+	}
+	
 	public void initLabel(){
 		
 		InterWidth = panelWidth/40;
@@ -126,6 +205,7 @@ public class SalaryPanel {
 		
 		saveButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
+				if(check()){
 				FinanceBLService finance = ConstructFactory.FinanceFactory();
 				SalaryVO salaryVO = new SalaryVO();
 				salaryVO.setAdminSalary(Double.valueOf(adminerBasic.getText()));
@@ -148,6 +228,7 @@ public class SalaryPanel {
 					
 				}else{//保存失败
 					
+				}
 				}
 			}
 		});

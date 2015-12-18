@@ -18,7 +18,7 @@ public class InventoryList extends Message {
 			while(reader.findNext("区号",key)){
 				InventoryPO inventoryinfo=new InventoryPO(
 						bar=reader.getString("订单号"),
-						reader.getString("入库时间"),
+						reader.getString("到达时间"),
 						reader.getString("目的地"),
 						key,
 						Integer.parseInt(reader.getString("排号")),

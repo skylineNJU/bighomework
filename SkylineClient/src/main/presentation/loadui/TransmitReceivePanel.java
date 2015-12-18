@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -81,7 +82,7 @@ int panelHeight=0;
 		transmitCenterNumLabel=new JLabel("中转中心编号");
 		orderNumLabel=new JLabel("订单单号");
 		receiveTimeLabel=new JLabel("接收时间");
-		transmitCenterNum=new JTextField("请输入中转中心编号");
+		transmitCenterNum=new JTextField("这个文本框是不需要的");
 		receiveTimeLabel.setSize(panelWidth*20/69,panelWidth*10/69);
 		receiveTimeLabel.setLocation(panelWidth*3/69,panelHeight*185/550);
 		orderNumLabel.setSize(panelWidth*20/69,panelWidth*10/69);
@@ -119,6 +120,8 @@ int panelHeight=0;
 		
 		saveButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
+				String belong= ((WritePanel)panel).getBelong();
+				Date dt=new Date();				
 				ReceiveBLService service=ConstructFactory.ReceiveFactory();
 				String code=null;
 				IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();
@@ -131,7 +134,7 @@ int panelHeight=0;
 				TransitReceptionVO transitReceptionInfo=new TransitReceptionVO(Integer.parseInt((String)yearBox.getSelectedItem())
 												,Integer.parseInt((String)monthBox.getSelectedItem())
 												,Integer.parseInt((String)dayBox.getSelectedItem())
-												,transmitCenterNum.getText()
+												,belong
 												,orderNum.getText()											
 												,code);
 				service.createNewTransitReception(transitReceptionInfo);

@@ -440,7 +440,11 @@ public class ShowInventoryPanel {
 }
 	
 	public String[][] initOutTableData(){
-		
+		String[][] content =new String[20][5];
+		 for(int x=0;x<20;x++)
+ 			for(int y=0;y<5;y++)
+ 				content[x][y]=null;
+		 
 		y1=year1.getSelectedIndex()+2000;
 		m1=month1.getSelectedIndex()+1;
 		d1=day1.getSelectedIndex()+1;
@@ -451,22 +455,22 @@ public class ShowInventoryPanel {
 		System.out.println("/////////////////////////:::"+y1+" "+m1+" "+d1+" "+y2+" "+m2+" "+d2);
 		
 		WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
-		
+		System.out.println("the date is:"+memory.getWarehouseOutDate());
 		//得到date1,date2,判断memory中d是否在这之前，如果在，则取出库单号在WarehouseOut里找到对应的订单号，通过database访问warehouseIn得到区排架位
-		String date=memory.getWarehouseOutDate().substring(2);
+		String date=memory.getWarehouseOutDate();
 		String[] dates =date.split(" ");
-		String code = memory.getWarehouseOutCode().substring(2);
+		
+		if(dates.length==1){
+			return content;
+		}
+		String code = memory.getWarehouseOutCode();
 		String[] codes =code.split(" ");
-		System.out.println("::::::::::11:::::::::"+date);
-		System.out.println("::::::::::22:::::::::"+code);
 		Date date1 = new Date(y1-1900,m1-1,d1);
         Date date2 = new Date(y2-1900,m2-1,d2);
         assert(date2.after(date1));
-        String[][] content =new String[20][5];
+        
         String Code="";
-        for(int x=0;x<20;x++)
-        			for(int y=0;y<5;y++)
-        				content[x][y]=null;
+       
         int counter = 0;
         InNum = 0;
         for(int i=0;i<dates.length;i++){

@@ -49,7 +49,7 @@ public class SalaryPO extends Message implements Serializable{
         	this.managerSalary=reader.getDouble("总经理薪水");
         	this.adminSalary = reader.getDouble("账户管理人员薪水");
         	
-        	this.courierCommission=reader.getDouble("快递员提成");
+        	this.courierCommission=reader.getDouble("表现提成");
         	this.driverCommission=reader.getDouble("司机提成");
         	this.lobbyCommission=reader.getDouble("营业厅业务员提成");
         	this.intermediateCommission=reader.getDouble("中转中心业务员提成");

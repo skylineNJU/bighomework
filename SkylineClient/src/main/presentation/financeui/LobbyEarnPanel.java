@@ -211,25 +211,23 @@ public class LobbyEarnPanel {
 	
 	
 	public boolean check(){
+		boolean result=true;
 		String str=feeText.getText();
 		if(str==null||str.equals("")){
 			feeText.setText("请输入正确的费用");
+			result=false;
 		}
-		for(int x=0;x<str.length();x++){
-			char c=str.charAt(x);
-			if(!Character.isDigit(c)){
-				feeText.setText("请输入正确的费用");
-				return false;
-			}
+		if(!str.matches("^[0-9]+([.]{0,1}[0-9]+){0,1}$")){
+			result=false;
 		}
 		if(Double.valueOf(str)<=0){
 			feeText.setText("请输入正确的费用");
-			return false;
+			result=false;
 		}else if(bankBox.getSelectedItem()==null||bankBox.getSelectedItem().equals("没有可以使用的银行账户")){
 			bankBox.addItem("没有可以使用的银行账户");
-			return false;
+			result=false;
 		}
-		return true;
+		return result;
 	}
 	
 	public void initWritePanel(){
