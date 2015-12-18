@@ -79,6 +79,12 @@ public class WarehouseAccountPanel {
 		ArrayList<InventoryVO> Inventory = service.showWarehouseList();
 		tableData = new String[Inventory.size()][10];
 		System.out.println("++++++WarehouseAccount++++++:::"+Inventory.size());
+		if(Inventory.size()==0){
+			tableData = new String[10][10];
+			for(int x=0;x<10;x++)
+				for(int y=0;y<10;y++)
+					tableData[x][y]=null;
+		}
 		int counter = 0;
 		for(InventoryVO vo:Inventory){
 			tableData[counter][0] = vo.getOrderCode();

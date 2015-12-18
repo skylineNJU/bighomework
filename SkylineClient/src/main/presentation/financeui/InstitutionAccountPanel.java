@@ -30,7 +30,7 @@ public class InstitutionAccountPanel {
 	private String[][] tableData;
 	private JLabel next,previous,add,delete;
 	private JLabel label1,label2,title,update,save,back;
-	private int x=0;
+	private int x=0,size=0;
 	
 	public InstitutionAccountPanel (){
 		panel = MainController.getWritepanel();
@@ -86,83 +86,49 @@ public class InstitutionAccountPanel {
 
 	public void getInsititutionAcountData(){
 		//先得到所有城市 再传参数进行
+		String[] city = new String[]{"上海","北京","南京","广州"};	
 		InfoBLService service=ConstructFactory.InfoFactory();
-		IntermediateInfoVO vo=service.inquireInterm("南京");
-		ArrayList<WarehouseInfoVO> voList=vo.getWarehouseInfoList();
-		ArrayList<LobbyInfoVO> lobbyList=service.inquireLobby("南京");
-		IntermediateInfoVO vo1=service.inquireInterm("北京");
-		ArrayList<WarehouseInfoVO> voList1=vo1.getWarehouseInfoList();
-		ArrayList<LobbyInfoVO> lobbyList1=service.inquireLobby("北京");	
-		tableData = new String[1+1+lobbyList.size()+1+1+lobbyList1.size()][5];
-		tableData[x][0] = "中转中心";
-		tableData[x][1] = vo.getInstitutionCode();
-		tableData[x][2] = vo.getCity();
-		tableData[x][3] = vo.getStaffNum()+"";
-		tableData[x][4] = vo.getArea()+"";
-		x++;
-		int StaffNum=0;
-		double Acreage=0;
-	//	String city="";
-		
-		for(WarehouseInfoVO warVO:voList){
-			StaffNum = StaffNum + warVO.getStaffNum();
-			 Acreage = Acreage + warVO.getAcreage();
-			tableData[x][2] =warVO.getCity();
-			}	
-		tableData[x][0] = "仓库";
-		tableData[x][1] = vo.getInstitutionCode();
-	
-		tableData[x][3] = StaffNum+"";
-		tableData[x][4] = Acreage+"";
-		x++;
-		
-	
-	//	String[][] lobbyData=new String[lobbyList.size()][3];
-		for(LobbyInfoVO lobbyInfo:lobbyList){
-			tableData[x][0]="营业厅";
-			tableData[x][1]=lobbyInfo.getLobbyCode();
-			tableData[x][2]=lobbyInfo.getCity();
-			tableData[x][3]=lobbyInfo.getStaffNum()+"";
-			tableData[x][4]=lobbyInfo.getArea()+"";
-			x++;
-			System.out.println("get a lobbyData");
+		for(int i=0;i<city.length;i++){
+			ArrayList<LobbyInfoVO> lobbyList=service.inquireLobby(city[i]);
+			size = lobbyList.size()+1+1+size;
 		}
-		
-	//////////////
-		tableData[x][0] = "中转中心";
-		tableData[x][1] = vo1.getInstitutionCode();
-		tableData[x][2] = vo1.getCity();
-		tableData[x][3] = vo1.getStaffNum()+"";
-		tableData[x][4] = vo1.getArea()+"";
-		x++;
-		int StaffNum1=0;
-		double Acreage1=0;
-	//	String city="";
-		
-		for(WarehouseInfoVO warVO:voList1){
-			StaffNum1 = StaffNum1 + warVO.getStaffNum();
-			 Acreage1 = Acreage1 + warVO.getAcreage();
-			tableData[x][2] =warVO.getCity();
-			}	
-		tableData[x][0] = "仓库";
-		tableData[x][1] = vo1.getInstitutionCode();
-	
-		tableData[x][3] = StaffNum+"";
-		tableData[x][4] = Acreage+"";
-		x++;
-		
-	
-	//	String[][] lobbyData=new String[lobbyList.size()][3];
-		for(LobbyInfoVO lobbyInfo:lobbyList1){
-			tableData[x][0]="营业厅";
-			tableData[x][1]=lobbyInfo.getLobbyCode();
-			tableData[x][2]=lobbyInfo.getCity();
-			tableData[x][3]=lobbyInfo.getStaffNum()+"";
-			tableData[x][4]=lobbyInfo.getArea()+"";
+		tableData = new String[size][5];
+		for(int i=0;i<city.length;i++){
+			IntermediateInfoVO vo=service.inquireInterm(city[i]);
+			ArrayList<WarehouseInfoVO> voList=vo.getWarehouseInfoList();
+			ArrayList<LobbyInfoVO> lobbyList=service.inquireLobby(city[i]);		
+			tableData[x][0] = "中转中心";
+			tableData[x][1] = vo.getInstitutionCode();
+			tableData[x][2] = vo.getCity();
+			tableData[x][3] = vo.getStaffNum()+"";
+			tableData[x][4] = vo.getArea()+"";
 			x++;
-			System.out.println("get a lobbyData");
+			int StaffNum=0;
+			double Acreage=0;
+
+			for(WarehouseInfoVO warVO:voList){
+				StaffNum = StaffNum + warVO.getStaffNum();
+				Acreage = Acreage + warVO.getAcreage();
+				tableData[x][2] =warVO.getCity();
+				}	
+			tableData[x][0] = "仓库";
+			tableData[x][1] = vo.getInstitutionCode();
+			tableData[x][3] = StaffNum+"";
+			tableData[x][4] = Acreage+"";
+			x++;
+			
+			for(LobbyInfoVO lobbyInfo:lobbyList){
+				tableData[x][0]="营业厅";
+				tableData[x][1]=lobbyInfo.getLobbyCode();
+				tableData[x][2]=lobbyInfo.getCity();
+				tableData[x][3]=lobbyInfo.getStaffNum()+"";
+				tableData[x][4]=lobbyInfo.getArea()+"";
+				x++;
+				System.out.println("get a lobbyData");
+			}
+			System.out.println("========lobbyx========"+x);
 		}
-		
+	
 }
 	
 	

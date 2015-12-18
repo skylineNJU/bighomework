@@ -85,6 +85,12 @@ public class VehicleAccountPanel {
 		ArrayList<VehicleVO> list=service.showVehicalList();
 		System.out.println("}}}}}::::::"+list.size());
 		tableData = new String[list.size()][6];
+		if(list.size()==0){
+			tableData = new String[10][6];
+			for(int x=0;x<10;x++)
+				for(int y=0;y<6;y++)
+					tableData[x][y]=null;
+		}
 		int counter=0;
 		for(VehicleVO vo:list){
 			tableData[counter][0]=vo.getCarID();

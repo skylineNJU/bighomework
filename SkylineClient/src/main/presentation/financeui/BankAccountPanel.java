@@ -76,6 +76,12 @@ public class BankAccountPanel {
 		FinanceBLService service = ConstructFactory.FinanceFactory();
 		ArrayList<BankAccountVO> bankListVO = service.showBalance();
 		tableData = new String[bankListVO.size()][2];
+		if(bankListVO.size()==0){
+			tableData = new String[10][2];
+			for(int x=0;x<10;x++)
+				for(int y=0;y<2;y++)
+					tableData[x][y]=null;
+		}
 		int counter = 0;
 		for(BankAccountVO bankVO:bankListVO){
 			tableData[counter][0] = bankVO.getCode();
