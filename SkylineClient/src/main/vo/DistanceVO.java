@@ -1,7 +1,5 @@
 package main.vo;
 
-import java.util.ArrayList;
-
 public class DistanceVO {
 	
 	String[] city;//表示城市名

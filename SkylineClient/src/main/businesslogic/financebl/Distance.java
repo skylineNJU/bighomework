@@ -19,16 +19,30 @@ public class Distance {
 		cityNumber = (int) Math.sqrt(distanceList.size());
 		double[][] distance = new double[cityNumber][cityNumber];
 		String[] cityName = new String[cityNumber];//假定数据库是正确的
-		for(String[] string:distanceList){
-			cityName[counter] = string[0];
-			distance[counter][cityNumCounter] = Double.valueOf(string[2]);
-			cityNumCounter++;
-			if(cityNumCounter<cityNumber){}//表格没有换行
-			else{
-				counter++;
-				cityNumCounter = 0;
+		ArrayList<String> allCityName = new ArrayList<String>();
+		for(String[] string:distanceList) {
+			if(!allCityName.contains(string[0])) {
+				allCityName.add(string[0]);
+				cityName[cityNumCounter] = string[0];
+				cityNumCounter++;
 			}
 		}
+		int row = 0; int column = 0;
+		for(String[] string:distanceList) {
+			row = allCityName.indexOf(string[0]);
+			column = allCityName.indexOf(string[1]);
+			distance[row][column] = Double.valueOf(string[2]);
+		}
+//		for(String[] string:distanceList){
+//			cityName[counter] = string[0];
+//			distance[counter][cityNumCounter] = Double.valueOf(string[2]);
+//			cityNumCounter++;
+//			if(cityNumCounter<cityNumber){}//表格没有换行
+//			else{
+//				counter++;
+//				cityNumCounter = 0;
+//			}
+//		}
 		return new DistanceVO(cityName, distance);
 	}
 	

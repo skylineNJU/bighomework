@@ -134,7 +134,7 @@ public class FeeStrategyPanel {
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		
 		cityDistance.setBounds(panelWidth/10, panelHeight*23/60, panelWidth/4, panelHeight/20);
-		scrollPane.setBounds(panelWidth/10, panelHeight*9/20, panelWidth*4/5, panelHeight*31/100);
+		scrollPane.setBounds(panelWidth/10, panelHeight*9/20, panelWidth*4/5, panelWidth/20*(table.getRowCount()+1));
 		saveButton.setBounds(panelWidth*4/5, panelHeight*17/20, panelWidth/10, panelHeight/20);
 		
 		saveButton.addMouseListener(new MouseAdapter() {
