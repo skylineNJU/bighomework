@@ -103,7 +103,5 @@ public class FrameMain extends JFrame{
 	public static JPanel getContentPanel(){
 		return panel;
 	}
-	
-		
 
 }

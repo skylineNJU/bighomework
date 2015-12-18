@@ -3,10 +3,9 @@ package main.socketservice;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Date;
-import java.util.Timer;
 
-import main.timetask.TimerTask;
+import main.serverFrame.MyButton;
+import main.serverFrame.MyFrame;
 
 public class Server {
 	private ServerSocket ss;
@@ -30,6 +29,9 @@ public class Server {
 	}
 	
 	public static void main(String args[]){
+		MyFrame frame = new MyFrame(400,200);
+		MyButton button = new MyButton();
+		button.setIMG(imgEnter, imgExit, imgPress);
 		Server se=new Server();
 		se.start();
 	
