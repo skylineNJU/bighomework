@@ -54,6 +54,7 @@ public class MyFrame extends JFrame {
 		exitLabel.setBounds(width-30, 0, 30, 30);
 		exitLabel.setIMG(AllImage.exitEnterImg, AllImage.exitImg, AllImage.exitClicking);
 		minLabel.setIMG(AllImage.minMove, AllImage.minMin, AllImage.minClick);
+		exitLabel.setToolTipText("ÍË³öÏµÍ³");
 		exitLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);

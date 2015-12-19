@@ -12,9 +12,10 @@ import javax.swing.JButton;
 
 import main.serverFrame.MyFrame;
 
-public class Server {
+public class Server extends Thread {
 	private ServerSocket ss;
-	public void start(){
+	private static boolean startServer = false;
+	public void startServer(){
 		try {
 //			Timer timer=new Timer();
 //			timer.schedule(new TimerTask(),new Date());
@@ -34,20 +35,30 @@ public class Server {
 	}
 	
 	public static void main(String args[]){
-//		MyFrame frame = new MyFrame(400,200);
-//		frame.setLocation(200,300);
-//		frame.init();
-//		frame.setVisible(true);
-//		JButton button = new JButton("¿ªÆô");
-//		frame.add(button);
-//		button.setBounds(frame.getWidth()/4, frame.getHeight()/4, frame.getWidth()/2, frame.getHeight()/2);
-//		button.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-				Server se=new Server();
-				se.start();
-//			}
-//		});
-//		frame.repaint();
+		MyFrame frame = new MyFrame(400,200);
+		frame.setLocation(200,300);
+		frame.init();
+		frame.setVisible(true);
+		JButton button = new JButton();
+		frame.add(button);
+		button.setBounds(frame.getWidth()/4, frame.getHeight()/4, frame.getWidth()/2, frame.getHeight()/2);
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				startServer = !startServer;
+				if(startServer) {
+					Server server = new Server();
+					server.start();
+				}else{
+					System.exit(0);
+				}
+			}
+		});
+		frame.repaint();
+	}
+
+	@Override
+	public void run() {
+		startServer();
 	}
 }
