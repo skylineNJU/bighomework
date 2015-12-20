@@ -57,8 +57,6 @@ public class WorkerPO extends Message implements Serializable{
 		reader.close();
 		
 		
-		
-		
 	}
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();

@@ -37,9 +37,6 @@ public class WorkerPO extends Message implements Serializable{
 		this.commission = commission;
 	}
 
-
-
-
 	public String getSalary() {
 		return salary;
 	}

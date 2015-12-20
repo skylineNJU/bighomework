@@ -51,9 +51,9 @@ public class EmployeeAccountPanel {
 	
 	public void employeePanel(){
 		tableTitle =  new String[]{"员工账号","员工姓名","职位","所属单位","入职时间","工资/月","提成"};
-		tableData = new String[][]{{"1","","","","","",""},{"2","","","","","",""},{"3","","","","","",""},
-				{"4","5","","","","",""},{"6","","","","","",""},{"7","","","","","",""},{"8","","","","","",""},
-				{"9","","","","","",""},{"10","","","","","",""},{"11","","","","","",""}};	
+	//	tableData = new String[][]{{"1","","","","","",""},{"2","","","","","",""},{"3","","","","","",""},
+	//			{"4","5","","","","",""},{"6","","","","","",""},{"7","","","","","",""},{"8","","","","","",""},
+	//			{"9","","","","","",""},{"10","","","","","",""},{"11","","","","","",""}};	
 		table = new PageTable(tableTitle,tableData);
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panel.getWidth()/20);//设置列宽
@@ -87,8 +87,8 @@ public class EmployeeAccountPanel {
 			tableData[counter][2] = vo.getJob();
 			tableData[counter][3] = vo.getUnit();
 			tableData[counter][4] = vo.getWorkage();
-			tableData[counter][5] = vo.getSalary();
-			tableData[counter][6] = vo.getCommission();
+			tableData[counter][5] = null;
+			tableData[counter][6] = null;
 		counter++;
 		}
 	}
