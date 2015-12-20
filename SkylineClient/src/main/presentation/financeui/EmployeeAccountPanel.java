@@ -12,9 +12,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.vo.SalaryVO;
 import main.vo.StaffVO;
 
 public class EmployeeAccountPanel {
@@ -72,6 +74,7 @@ public class EmployeeAccountPanel {
 	public void getEmployeeAccountData(){
 		InfoBLService service = ConstructFactory.InfoFactory();
 		ArrayList<StaffVO> staffList = service.showStaffList();
+		
 		System.out.println(":::::::::Employee:::::"+staffList.size());
 		tableData = new String[staffList.size()][7];
 		if(staffList.size()==0){
@@ -80,15 +83,33 @@ public class EmployeeAccountPanel {
 				for(int y=0;y<7;y++)
 					tableData[x][y]=null;
 		}
+		FinanceBLService service1 = ConstructFactory.FinanceFactory();
+		SalaryVO salary = service1.readSalary();
+		String[] salarys = new String[]{salary.getManagerSalary()+"", salary.getFinanceSalary()+"",
+				salary.getCourierSalary()+"",salary.getAdminSalary()+"", salary.getWarehouseSalary()+"",
+				salary.getLobbySalary()+"", salary.getIntermediateSalary()+""};
+		String[] commissions = new String[]{salary.getManagerCommission()+"",salary.getFinanceCommission()+"",
+				salary.getCourierCommission()+"",salary.getAdminCommission()+"",salary.getWareHouseCommission()+"",
+				 salary.getLobbyCommission()+"",salary.getIntermediateCommission()+""};
+		String[] jobs = new String[]{"MANAGER","FINANCE","COURIER","ACCOUNT","STOREHOUSE","LOBBY","INTERMEDIATE"};
+		
 		int counter=0;
 		for(StaffVO vo: staffList){
 			tableData[counter][0] = vo.getCode();
+		//	SalaryVO commission = service1.;
 			tableData[counter][1] = vo.getName();
 			tableData[counter][2] = vo.getJob();
 			tableData[counter][3] = vo.getUnit();
 			tableData[counter][4] = vo.getWorkage();
-			tableData[counter][5] = null;
+			tableData[counter][5] =null;
 			tableData[counter][6] = null;
+			for(int i=0;i<jobs.length;i++){
+				if( vo.getJob().equals(jobs[i])){
+					tableData[counter][5] = salarys[i];
+					tableData[counter][6] = commissions[i];
+					break;
+				}
+			}
 		counter++;
 		}
 	}

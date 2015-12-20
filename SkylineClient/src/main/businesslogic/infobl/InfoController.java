@@ -34,7 +34,7 @@ public class InfoController implements InfoBLService {
 	public StaffVO inquireStaff(String staffCode) {
 		// TODO Auto-generated method stub
 		Staff staff=new Staff(staffCode);
-		StaffVO vo=new StaffVO(null,null,null,null,null);
+		StaffVO vo=new StaffVO(null,null,null,null,staffCode);
 		vo.writeStaffInfo(staff);
 		return vo;
 		
