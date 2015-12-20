@@ -8,6 +8,8 @@ public class StaffVO {
 	private String unit;
 	private String workage;
 	private String code;
+	private String salary;
+	private String commission;
 	
 	
 	
@@ -21,6 +23,18 @@ public class StaffVO {
 		this.code = code;
 	}
 
+	public StaffVO(String name, String job, String unit, String workage,
+			String code, String salary, String commission) {
+		super();
+		this.name = name;
+		this.job = job;
+		this.unit = unit;
+		this.workage = workage;
+		this.code = code;
+		this.salary = salary;
+		this.commission = commission;
+	}
+
 	public boolean writeStaffInfo(Staff staffInfo){
 		this.name=staffInfo.getName();
 		this.job=staffInfo.getJob();
@@ -30,6 +44,22 @@ public class StaffVO {
 		return true;
 	}
 	
+	public String getSalary() {
+		return salary;
+	}
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+	public String getCommission() {
+		return commission;
+	}
+
+	public void setCommission(String commission) {
+		this.commission = commission;
+	}
+
 	public String getName() {
 		return name;
 	}

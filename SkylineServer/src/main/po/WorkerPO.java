@@ -16,6 +16,8 @@ public class WorkerPO extends Message implements Serializable{
 	private String belong;
 	private String age;
 	private String code;
+	private String salary;
+	private String commission;
 	
 	
 	public void writeIntoDatabase(){
@@ -26,6 +28,18 @@ public class WorkerPO extends Message implements Serializable{
 		writer.writeIntoSql("StaffInfo", content);
 	}
 	
+	
+	public WorkerPO(String name, String position, String belong, String age,
+			String code, String salary, String commission) {
+		super();
+		this.name = name;
+		this.position = position;
+		this.belong = belong;
+		this.age = age;
+		this.code = code;
+		this.salary = salary;
+		this.commission = commission;
+	}
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("StaffInfo");
 		if(reader.findNext("职工账号",code)){
@@ -41,6 +55,10 @@ public class WorkerPO extends Message implements Serializable{
 		}
 		System.out.println(this.name);
 		reader.close();
+		
+		
+		
+		
 	}
 	public void deleteFromDatabase(){
 		SqlDeleter deleter=new SqlDeleter();
@@ -56,6 +74,26 @@ public class WorkerPO extends Message implements Serializable{
 		this.age = age;
 	}
 	
+	public String getSalary() {
+		return salary;
+	}
+
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+
+	public String getCommission() {
+		return commission;
+	}
+
+
+	public void setCommission(String commission) {
+		this.commission = commission;
+	}
+
+
 	//-------------------
 	//获取和修改职工的名字
 	public String getName() {

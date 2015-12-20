@@ -71,18 +71,25 @@ public class EmployeeAccountPanel {
 	
 	public void getEmployeeAccountData(){
 		InfoBLService service = ConstructFactory.InfoFactory();
-		ArrayList<StaffVO> staffList = service.showStaffInfo();
+		ArrayList<StaffVO> staffList = service.showStaffList();
 		System.out.println(":::::::::Employee:::::"+staffList.size());
 		tableData = new String[staffList.size()][7];
-		for(int i =0;i<tableTitle.length;i++){
-			tableData[i][0] = staffList.get(i).getCode();
-			tableData[i][1] = staffList.get(i).getName();
-			tableData[i][2] = staffList.get(i).getJob();
-			tableData[i][3] = staffList.get(i).getUnit();
-			tableData[i][4] = staffList.get(i).getWorkage();
-			tableData[i][5] = staffList.get(i).getCode();
-			tableData[i][6] = staffList.get(i).getCode();
-		
+		if(staffList.size()==0){
+			tableData = new String[10][7];
+			for(int x=0;x<10;x++)
+				for(int y=0;y<7;y++)
+					tableData[x][y]=null;
+		}
+		int counter=0;
+		for(StaffVO vo: staffList){
+			tableData[counter][0] = vo.getCode();
+			tableData[counter][1] = vo.getName();
+			tableData[counter][2] = vo.getJob();
+			tableData[counter][3] = vo.getUnit();
+			tableData[counter][4] = vo.getWorkage();
+			tableData[counter][5] = vo.getSalary();
+			tableData[counter][6] = vo.getCommission();
+		counter++;
 		}
 	}
 	
@@ -169,34 +176,5 @@ public class EmployeeAccountPanel {
 					InitialAccountPanel Initial = new InitialAccountPanel();
 					Initial.init();
 			}});
-		/* if(button.equals(delete)){
-		   int i=table.getSelectedRow();
-		   if(i==-1)return ;
-		   Integer id=(Integer) table.getValueAt(i,0);
-		   if(id==null)return ;
-		   Student s=null;
-		   for(Student stu:Student.students){
-		    if(stu.getId().equals(id))
-		     s=stu;
-		   }
-		   int index=Student.students.indexOf(s);
-		   Student.students.remove(index);
-		   table.initTable();
-		   label1.setText("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
-		   return;
-		  }
-		  if(button.equals(add)){
-		   Integer id=0;
-		   for(Student stu:Student.students){
-		    if(stu.getId()>id)id=stu.getId();
-		   }
-		   Student student=new Student(id+1,"wuming"+(id+1),"男",22);
-		   Student.students.add(student);
-		   table.initTable();
-		   label1.setText("总共"+table.totalRowCount+"记录|当前第"+table.currentPage+"页");
-		   return;
-		  }
-		  */
-		
 		 }
 }

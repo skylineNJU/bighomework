@@ -40,9 +40,9 @@ public class InfoController implements InfoBLService {
 		
 	}
 	@Override
-	public ArrayList<StaffVO> showStaffInfo() {
+	public ArrayList<StaffVO> showStaffList() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Staff().readStaffList();
 	}
 	@Override
 	public boolean modifyStaff(StaffVO staffInfo) {

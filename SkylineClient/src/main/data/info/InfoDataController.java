@@ -9,6 +9,7 @@ import main.po.InstitutionPO;
 import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;
+import main.po.StaffList2PO;
 import main.po.StaffListPO;
 import main.po.UnitPO;
 import main.po.VehicleInfoPO;
@@ -265,6 +266,16 @@ public class InfoDataController implements InfoDataService {
 		vehicleList.setKey("Inquire");
 		client.writeReceipt(vehicleList);
 		return (VehicleList2PO) client.getResponse();
+	}
+
+	@Override
+	public StaffList2PO readStaffVO() {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		StaffList2PO staffList = new StaffList2PO();
+		staffList.setKey("Inquire");
+		client.writeReceipt(staffList);
+		return (StaffList2PO) client.getResponse();
 	}
 
 }
