@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
@@ -71,7 +73,9 @@ public class BalancePanel {
 	public void initTable(){
 		tableTitle = new String[]{"银行账户","余额"};
 		getBankAcount();
-		table = new JTable(bankAccountMessage,tableTitle);
+		DefaultTableModel model=new DefaultTableModel();
+		model.setDataVector(bankAccountMessage,tableTitle);
+		table = new JTable(model);
 		table.setEnabled(false);//设置不可编辑内容
 		table.setRowHeight(panelWidth/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
@@ -125,15 +129,53 @@ public class BalancePanel {
 		});
 		saveButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if(check()){
 				BankAccountVO bankvo = new BankAccountVO(accountText.getText(), Double.valueOf(balanceText.getText()));
 				FinanceBLService service = ConstructFactory.FinanceFactory();
 				if(service.addBankAccount(bankvo)){
 					addLabel.setVisible(false);
+					TableModel model=table.getModel();
+					((DefaultTableModel) model).addRow(new String[]{accountText.getText(),balanceText.getText()});
 				}else{
 					
-				}	
+				}
+				}
 			}
 		});
 	}
 
+	public boolean check(){
+		boolean result=true;
+		String str=accountText.getText();
+		if(str==null||str.equals("")){
+			accountText.setText("请输入正确的账户");
+			result=false;
+		}
+		if(!str.matches("^[0-9]+([.]{0,1}[0-9]+){0,1}$")){
+			accountText.setText("请输入正确的账户，19位数字");
+			result=false;
+		}
+		if(Double.parseDouble(str)<0){
+			accountText.setText("请输入正确的账户，19位数字");
+			result=false;
+		}
+		if(str.length()!=19){
+			accountText.setText("请输入正确的账户，19位数字");
+			result=false;
+		}
+		str=balanceText.getText();
+		if(str==null||str.equals("")){
+			balanceText.setText("请输入正确的余额");
+			result=false;
+		}
+		if(!str.matches("^[0-9]+([.]{0,1}[0-9]+){0,1}$")){
+			balanceText.setText("请输入正确的余额");
+			result=false;
+		}
+		if(Double.parseDouble(str)<0){
+			balanceText.setText("请输入正确的余额");
+			result=false;
+		}
+		return result;
+	}
 }

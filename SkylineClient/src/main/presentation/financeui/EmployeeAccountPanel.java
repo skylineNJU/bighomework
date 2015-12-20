@@ -96,6 +96,7 @@ public class EmployeeAccountPanel {
 		int counter=0;
 		for(StaffVO vo: staffList){
 			tableData[counter][0] = vo.getCode();
+			System.out.println(vo.getCode());
 		//	SalaryVO commission = service1.;
 			tableData[counter][1] = vo.getName();
 			tableData[counter][2] = vo.getJob();

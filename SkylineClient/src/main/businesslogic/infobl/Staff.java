@@ -64,8 +64,8 @@ public class Staff {
 		InfoDataService dataService = new InfoDataController();
 		StaffList2PO staffList = dataService.readStaffVO();
 		for(WorkerPO po:staffList.getList()){
-			staffVOList.add(new StaffVO(po.getCode(),po.getName(),po.getPosition(),
-					po.getBelong(),po.getAge(),po.getSalary(),po.getCommission()));
+			staffVOList.add(new StaffVO(po.getName(),po.getPosition(),po.getBelong(),
+					po.getAge(),po.getCode(),po.getSalary(),po.getCommission()));
 		}
 		return staffVOList;
 	}
