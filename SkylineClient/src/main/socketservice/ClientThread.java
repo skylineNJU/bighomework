@@ -41,7 +41,7 @@ public class ClientThread implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(socket.isClosed());
+				
 				}
 			}
 		} catch (ClassNotFoundException | IOException e) {
