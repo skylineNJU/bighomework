@@ -11,15 +11,23 @@ public class DriverInfoPO extends Message implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String driverID;//司机编号
-	String name;//姓名
-	String birthDay;//出生日期
-	String idCard;//身份证号
-	String phoneNum;//电话号码
-	String sex;//性别
-	String dueDate;//行驶证期限
-	String carunit;
+	private String driverID;//司机编号
+	private String name;//姓名
+	private String birthDay;//出生日期
+	private String idCard;//身份证号
+	private String phoneNum;//电话号码
+	private String sex;//性别
+	private String dueDate;//行驶证期限
+	private String carunit;
 	
+	public String getCarunit() {
+		return carunit;
+	}
+
+	public void setCarunit(String carunit) {
+		this.carunit = carunit;
+	}
+
 	public DriverInfoPO(String driverID, String name, String birthDay, String idCard, String phoneNum, String sex,
 			String dueDate, String carunit) {
 		super();

@@ -3,6 +3,7 @@ package main.socketservice;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SqlBuilder {
@@ -25,7 +26,22 @@ public class SqlBuilder {
 	}
 	
 	public boolean createTable(String[] listName){
-		String query="create table "+tableName;
-		return false;
+		String query="create table "+tableName+"(";
+		for(int x=0;x<listName.length-1;x++){
+			query=query+listName[x]+",";
+		}
+		query=query+listName[listName.length-1];
+		query=query+")";
+		try {
+			stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 }

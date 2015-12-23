@@ -26,6 +26,7 @@ public class ClientThread implements Runnable {
 			reader=new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
+			MainController.getClient().buildNet();
 			e1.printStackTrace();
 		}
 		try {
@@ -45,7 +46,7 @@ public class ClientThread implements Runnable {
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
-			MainController.getClient().buildNet();;
+			MainController.getClient().buildNet();
 		}
 	}
 
