@@ -1,5 +1,6 @@
 package main.presentation.guestui;
 
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,12 +11,14 @@ import javax.swing.JTextField;
 
 import main.businesslogicservice.GuestBLService;
 import main.constructfactory.ConstructFactory;
+import main.presentation.mainui.AllImage;
 import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.vo.HistoryVO;
 
 public class LocusPanel {
 	private JPanel panel;
+	private JLabel background;
 	private JLabel label[]=new JLabel[6];
 	private String orderCode;
 	private HistoryVO vo;
@@ -28,6 +31,7 @@ public class LocusPanel {
 		for(int x=0;x<6;x++){
 			label[x]=new JLabel();
 		}
+
 		int w=FrameMain.getFrame().getWidth()/851;
 		int h=FrameMain.getFrame().getHeight()/576;
 		this.panel=FrameMain.getContentPanel();	
@@ -35,6 +39,9 @@ public class LocusPanel {
 		searchField.setSize(w*290,h*54);
 		searchField.setLocation(w*240,searchField.getHeight());
 		searchField.setText(orderCode);
+		background=new JLabel(AllImage.backGround);
+		background.setSize(panel.getWidth(),panel.getHeight());
+		background.setLocation(0,0);
 		label[5].setText("	²éÑ¯");
 		label[5].setSize(58*w,62*h);
 		label[5].setLocation(searchField.getX()+searchField.getWidth(),searchField.getY());
@@ -58,6 +65,7 @@ public class LocusPanel {
 		panel.add(back);
 		panel.add(progressBar);
 		panel.add(searchField);
+		panel.add(background);
 		panel.repaint();
 		this.init();
 	}
@@ -76,7 +84,7 @@ public class LocusPanel {
 	public boolean searchInfo(){	
 		int frameWidth=FrameMain.getFrame().getWidth();
 		int frameHeight=FrameMain.getFrame().getHeight();
-		
+		AllImage.backGround.setImage(AllImage.backGround.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		int w=frameWidth/851;
 		int h=frameHeight/576;
 		
@@ -136,5 +144,6 @@ public class LocusPanel {
 		panel.remove(back);
 		panel.remove(progressBar);
 		panel.remove(searchField);
+		panel.remove(background);
 	}
 }

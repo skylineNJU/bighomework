@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -23,11 +24,17 @@ import main.presentation.mainui.MainController;
  */
 public class InitialAccountPanel {
 		private JPanel panel;
+		private JPanel initialAccountPanel;
 		private JButton institution;
 		private JButton employee;
 		private JButton vehicle;
 		private JButton warehouse;
 		private JButton bankaccount;
+		private JLabel label;
+		private JScrollPane scrollPane;
+		private JTable table;
+		private String[] tableTitle;
+		private String[][] tableData;
 /*		private JPanel institution;
 		private JPanel employee;
 		private JPanel vehicle;
@@ -62,6 +69,13 @@ public class InitialAccountPanel {
 	}
 	
 	public void init(){
+		initialAccountPanel=new JPanel();
+		initialAccountPanel.setLayout(null);
+		initialAccountPanel.setSize(panel.getWidth()*554/689,panel.getHeight()*372/552);
+		initialAccountPanel.setLocation(panel.getWidth()*41/689,panel.getHeight()*136/552);
+		label=new JLabel("历史账目");
+		label.setSize(panel.getWidth()*110/689,panel.getHeight()*30/552);
+		label.setLocation(panel.getWidth()*267/689,panel.getHeight()*138/552);
 /*		institution = new JPanel();
 		employee = new JPanel();
 		vehicle = new JPanel();
@@ -91,11 +105,39 @@ public class InitialAccountPanel {
 		bankaccountPanel();
 		tab.repaint();
 */
+		panel.add(label);
+		
+		table();
+		
+		panel.add(initialAccountPanel);
 		button();
 		Listener();
+		initialAccountPanel.repaint();
 		panel.repaint();
 	}
 
+	
+    public void table(){
+    	tableTitle = new String[]{"创建者","创建时间"};
+    	tableData=new String[][]{{"null","null"}};
+    	table =new JTable (tableData,tableTitle);
+    	table.setSize(panel.getWidth()*514/689,panel.getHeight()*332/552);
+    	table.setLocation(panel.getWidth()*180/689,panel.getHeight()*163/552);
+    	table.setEnabled(false);//设置不可编辑内容
+		table.setRowHeight(panel.getWidth()/20);//设置列宽
+		table.getTableHeader().setPreferredSize(new Dimension(1, panel.getWidth()/20));//设置表头高度
+		table.getTableHeader().setReorderingAllowed(false);//表头不可移动
+		table.setDragEnabled(false);
+		table.setVisible(true);
+
+		scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(initialAccountPanel.getX()-panel.getWidth()/18+panel.getWidth()*38/689, initialAccountPanel.getY()-panel.getWidth()/50+panel.getWidth()*37/552,initialAccountPanel.getWidth(), 10*table.getRowHeight());
+		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
+		scrollPane.setVisible(true);		
+    	panel.add(scrollPane);
+    }
+	
+	
 	public void button(){
 		institution = new JButton("机构账目");
 		employee = new JButton("员工账目");
@@ -103,11 +145,11 @@ public class InitialAccountPanel {
 		warehouse = new JButton("仓库账目");
 		bankaccount = new JButton("银行账户账目");
 		
-		institution.setBounds(panel.getWidth()/3,panel.getHeight()/4, panel.getWidth()/5, panel.getHeight()/10);
-		employee.setBounds(institution.getX(),institution.getY()+panel.getHeight()/8, panel.getWidth()/5, panel.getHeight()/10);
-		vehicle.setBounds(institution.getX(),employee.getY()+panel.getHeight()/8, panel.getWidth()/5, panel.getHeight()/10);
-		warehouse.setBounds(institution.getX(),vehicle.getY()+panel.getHeight()/8, panel.getWidth()/5, panel.getHeight()/10);
-		bankaccount.setBounds(institution.getX(),warehouse.getY()+panel.getHeight()/8, panel.getWidth()/5, panel.getHeight()/10);
+		institution.setBounds(panel.getWidth()*40/689,panel.getHeight()*60/552,panel.getWidth()/7, panel.getHeight()/10);
+		employee.setBounds(institution.getX()+panel.getWidth()/6,institution.getY(), panel.getWidth()/7, panel.getHeight()/10);
+		vehicle.setBounds(employee.getX()+panel.getWidth()/6,institution.getY(), panel.getWidth()/7, panel.getHeight()/10);
+		warehouse.setBounds(vehicle.getX()+panel.getWidth()/6,institution.getY(),panel.getWidth()/7, panel.getHeight()/10);
+		bankaccount.setBounds(warehouse.getX()+panel.getWidth()/6,institution.getY(), panel.getWidth()/7, panel.getHeight()/10);
 		
 		panel.add(institution);
 		panel.add(employee);
@@ -161,5 +203,8 @@ public class InitialAccountPanel {
 		panel.remove(vehicle);
 		panel.remove(warehouse);
 		panel.remove(bankaccount);
+		panel.remove(initialAccountPanel);
+		panel.remove(label);
+		panel.remove(table);
 	}
 }
