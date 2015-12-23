@@ -114,18 +114,13 @@ public class CheckInventoryPanel {
 		export.setBounds(panel.getWidth()*15/20,panel.getHeight()*7/8, panel.getWidth()/11, panel.getHeight()/15);
 		export.setVisible(true);
 
-/*		export.addActionListener(new ActionListener() {  
+		export.addActionListener(new ActionListener() {  
 		        public void actionPerformed(ActionEvent evt) {  
-		             try {  
-		                 ExcelExporter exp = new ExcelExporter();  
-		                 exp.exportTable(table, new File("C:/Users/QiHan/Desktop/InventoryInfo.xlsx"));  
-		              } catch (IOException ex) {  
-		                  System.out.println(ex.getMessage());  
-		                  ex.printStackTrace();  
-		              }  
+		            ExportExcel ex=new ExportExcel(table);
+		            ex.export();
 		            }  
 		        });  
-	*/
+
 		panel.add(ok);
 		panel.add(export);
 		panel.add(ddl);		

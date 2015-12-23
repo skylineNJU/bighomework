@@ -39,7 +39,7 @@ public class PlaneLoading{
 		LoadDataService service=new LoadDataController();
 		service.writePlaneLoadBase(po);
 
-		UpdateBank updateBank=new UpdateBank();
-		updateBank.updateMoney(belong, freight);
+//		UpdateBank updateBank=new UpdateBank();
+//		updateBank.updateMoney(belong, freight);
 	}
 }

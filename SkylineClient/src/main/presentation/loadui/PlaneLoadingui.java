@@ -28,7 +28,7 @@ public class PlaneLoadingui extends LoadingPanel{
 	
 
 	protected void initTable(){
-		String[] tableTitle = new String[]{"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运区号","运费","装运日期"};
+		String[] tableTitle = new String[]{"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运单号","运费","装运日期"};
 		String[][] tableData=this.initTableData();
 		this.lookTable=new JTable(tableData,tableTitle);
 		addButton.setSize(75,35);

@@ -52,6 +52,7 @@ public class PlaneLoadingPO  extends Receipt implements Serializable{
 		this.monitor=reader.getString("监装员");
 		this.freight=reader.getDouble("运费");
 		this.loadingDate=reader.getString("单据生成时间");
+		this.shipment=reader.getString("所有的订单号");
 		}
 		reader.close();
 	}

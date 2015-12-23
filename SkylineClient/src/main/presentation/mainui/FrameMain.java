@@ -9,9 +9,7 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.plaf.FontUIResource;
 
-import com.alee.laf.WebLookAndFeel;
 
 
 @SuppressWarnings("serial")
