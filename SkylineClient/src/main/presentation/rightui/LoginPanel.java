@@ -71,6 +71,8 @@ public class LoginPanel{
 		AllImage.login_show.setImage(AllImage.login_show.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		AllImage.login_forget.setImage(AllImage.login_forget.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
 		AllImage.login_wrong.setImage(AllImage.login_wrong.getImage().getScaledInstance(panel.getWidth(), panel.getHeight(), Image.SCALE_DEFAULT));
+		
+		
 		userName.setOpaque(false);
 		userName.setBorder(null);
 		userName.setFont(new Font("ºÚÌå",Font.PLAIN,18));
@@ -150,6 +152,7 @@ public class LoginPanel{
 		login=new JLabel(AllImage.login);
 		login.setSize(panel.getWidth(),panel.getHeight());
 		login.setLocation(0,0);
+		
 		userName.setSize(w*152/851,h*38/576);
 		userName.setLocation(w*293/851,h*234/576);
 		passWord.setSize(w*152/851,h*38/576);
