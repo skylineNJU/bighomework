@@ -18,10 +18,14 @@ public class SqlBuilder {
 			Class.forName(JDriver);
 			con=DriverManager.getConnection(connectDB);
 			stmt=con.createStatement();
-			rs=stmt.executeQuery("select * from "+tableName);
 			this.tableName=tableName;
 		}catch(Exception ex){
 			System.err.println(ex);
 		}
+	}
+	
+	public boolean createTable(String[] listName){
+		String query="create table "+tableName;
+		return false;
 	}
 }
