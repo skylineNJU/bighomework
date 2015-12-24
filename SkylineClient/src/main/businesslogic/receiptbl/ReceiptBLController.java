@@ -10,7 +10,6 @@ import main.businesslogicservice.receiptblService.LobbyReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.businesslogicservice.receiptblService.SubmitReceipt;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
-import main.po.ReceiptRecordPO;
 import main.vo.ApprovalVO;
 import main.vo.CorrierReceiptVO;
 import main.vo.FinanceReceiptVO;

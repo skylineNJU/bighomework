@@ -1,6 +1,7 @@
 package main.po;
 
 import main.socketservice.SqlBuilder;
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -39,6 +40,26 @@ public class InventoryTableCreater {
 						+"'";
 				writer.writeIntoSql(tableName, content);
 			}
+		}
+	}
+	
+	public void writeTable(){
+		String tableName1="InventoryInfo";
+		SqlReader reader=new SqlReader(tableName);
+		SqlWriter writer=new SqlWriter();
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.clearTable(tableName1);
+		while(reader.hasNext()){
+			String content="'"+reader.getString("订单号")+
+					"','"+reader.getString("损坏情况")+
+					"','"+reader.getString("区号")+
+					"',"+reader.getInt("排号")+
+					","+reader.getInt("架号")+
+					","+reader.getInt("位号")+
+					",'"+reader.getString("目的地")
+					+"','"+reader.getString("到达时间")
+					+"'";
+			writer.writeIntoSql(tableName1, content);
 		}
 	}
 }

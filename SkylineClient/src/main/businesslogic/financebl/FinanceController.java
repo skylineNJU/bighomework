@@ -150,7 +150,7 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public BuildAccountVO inquireAccount() {
 		// TODO Auto-generated method stub
-		BuildAccountBL bl=new BuildAccountBL();
+		BuildAccountBL bl=new BuildAccountBL(0);
 		return bl.inquireAccount();
 	}
 
@@ -164,7 +164,7 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public void loadAccount(BuildAccountVO vo) {
 		// TODO Auto-generated method stub
-		BuildAccountBL bl=new BuildAccountBL(vo);
+		BuildAccountBL bl=new BuildAccountBL(vo.getId());
 		bl.loadAccount();
 	}
 	

@@ -8,11 +8,13 @@ import main.vo.BuildAccountVO;
 public class BuildAccountBL {
 	private BuildAccountPO po=new BuildAccountPO();
 	
-	public BuildAccountBL(){}
+	public BuildAccountBL(int x){
+		po.setId(x);
+	}
 	
 	public BuildAccountBL(BuildAccountVO vo){
 		po.addAccount(vo.getName().getFirst(),
-				vo.getName().getFirst(),
+				vo.getDate().getFirst(),
 				vo.getId());
 	}
 	
@@ -28,8 +30,9 @@ public class BuildAccountBL {
 	
 	public BuildAccountVO inquireAccount(){
 		FinanceDataService service=new FinanceDataController();
-		service.getAccount(po);
+		po=service.getAccount(po);
 		BuildAccountVO vo=new BuildAccountVO();
+		System.out.println(po.getName().size());
 		vo.setName(po.getName());
 		vo.setDate(po.getDate());
 		return vo;

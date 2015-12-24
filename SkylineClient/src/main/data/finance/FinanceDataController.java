@@ -222,7 +222,9 @@ public class FinanceDataController implements FinanceDataService{
 	public BuildAccountPO getAccount(BuildAccountPO po) {
 		// TODO Auto-generated method stub
 		client=MainController.getClient();
+		System.out.println("别卡在这里");
 		po.setKey("Inquire");
+		client.writeReceipt(po);
 		po=(BuildAccountPO) client.getResponse();
 		return po;
 	}

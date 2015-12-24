@@ -3,6 +3,10 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,8 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
+import main.businesslogicservice.FinanceBLService;
+import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
+import main.presentation.mainui.WritePanel;
+import main.presentation.mainui.memory.FinanceMemory;
+import main.vo.BuildAccountVO;
 // 期初建账
 //机构、人员、车辆、库存、 银行账户信息（名称，余额）
 /*
@@ -35,6 +45,8 @@ public class InitialAccountPanel {
 		private JTable table;
 		private String[] tableTitle;
 		private String[][] tableData;
+		private JLabel buildAccount=new JLabel("建账");
+		private JLabel loadAccount=new JLabel("载入历史版本");
 /*		private JPanel institution;
 		private JPanel employee;
 		private JPanel vehicle;
@@ -116,25 +128,57 @@ public class InitialAccountPanel {
 		panel.repaint();
 	}
 
+	public void initTableData(){
+		FinanceBLService service=ConstructFactory.FinanceFactory();
+		BuildAccountVO vo=service.inquireAccount();
+		int size=vo.getName().size();
+		System.out.println("size is:"+size);
+		ListIterator<String> name=vo.getName().listIterator();
+		ListIterator<String> date=vo.getDate().listIterator();
+		
+		tableData=new String[size][2];
+		int x=0;
+		while(name.hasNext()){
+			tableData[x][0]=name.next();
+			tableData[x][1]=date.next();
+			x++;
+		}
+	}
 	
     public void table(){
     	tableTitle = new String[]{"创建者","创建时间"};
-    	tableData=new String[][]{{"null","null"}};
-    	table =new JTable (tableData,tableTitle);
+    	this.initTableData();
+    	DefaultTableModel model=new DefaultTableModel(tableData,tableTitle);
+    	table =new JTable (model){/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+		public boolean isCellEditable(int row,int column){return false;}
+		};
     	table.setSize(panel.getWidth()*514/689,panel.getHeight()*332/552);
     	table.setLocation(panel.getWidth()*180/689,panel.getHeight()*163/552);
-    	table.setEnabled(false);//设置不可编辑内容
+   //设置不可编辑内容
 		table.setRowHeight(panel.getWidth()/20);//设置列宽
 		table.getTableHeader().setPreferredSize(new Dimension(1, panel.getWidth()/20));//设置表头高度
 		table.getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.setDragEnabled(false);
 		table.setVisible(true);
 
+		buildAccount.setSize(panel.getWidth()/8, panel.getHeight()/20);
+		loadAccount.setSize(panel.getWidth()/8, panel.getHeight()/20);
+		
 		scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(initialAccountPanel.getX()-panel.getWidth()/18+panel.getWidth()*38/689, initialAccountPanel.getY()-panel.getWidth()/50+panel.getWidth()*37/552,initialAccountPanel.getWidth(), 10*table.getRowHeight());
+		
+		buildAccount.setLocation(scrollPane.getX()+scrollPane.getWidth()/2,scrollPane.getY()+scrollPane.getHeight());
+		loadAccount.setLocation(buildAccount.getX()+buildAccount.getWidth()/4*5,buildAccount.getY());
+		
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		scrollPane.setVisible(true);		
     	panel.add(scrollPane);
+    	panel.add(buildAccount);
+    	panel.add(loadAccount);
     }
 	
 	
@@ -193,6 +237,29 @@ public class InitialAccountPanel {
 				remove();
 				BankAccountPanel panel  = new BankAccountPanel();
 				panel.init();
+			}
+		});
+		this.buildAccount.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e){
+				FinanceBLService service=ConstructFactory.FinanceFactory();
+				Date date=new Date();
+				SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+				String time=format.format(date);
+				BuildAccountVO vo=new BuildAccountVO();
+				WritePanel wp=(WritePanel) panel;
+				FinanceMemory memory=(FinanceMemory) wp.getMemory();
+				vo.addAccount(memory.getUserName(),time,table.getRowCount());
+				service.buildAccount(vo);
+			}
+		});
+		
+		this.loadAccount.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e){
+				FinanceBLService service=ConstructFactory.FinanceFactory();
+				int x=table.getSelectedRow();
+				BuildAccountVO vo=new BuildAccountVO();
+				vo.setId(x);
+				service.loadAccount(vo);
 			}
 		});
 	}

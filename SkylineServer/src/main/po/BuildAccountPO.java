@@ -27,6 +27,7 @@ public class BuildAccountPO extends Message{
 		while(reader.hasNext()){
 			name.add(reader.getString("建账人"));
 			date.add(reader.getString("建账时间"));
+			System.out.println("get a message");
 		}
 	}
 	
@@ -58,12 +59,12 @@ public class BuildAccountPO extends Message{
 		VehicleTableCreater vc=new VehicleTableCreater(id);
 		WarehouseTableCreater wc=new WarehouseTableCreater(id);
 		InventoryTableCreater inc=new InventoryTableCreater(id);
-		bc.createTable();
-		ic.createTable();
-		lc.createTable();
-		sc.creatTable();
-		vc.createTable();
-		wc.createTable();
-		inc.createTable();
+		bc.writeTable();
+		ic.writeTable();
+		lc.writeTable();
+		sc.writeTable();
+		vc.writeTable();
+		wc.writeTable();
+		inc.writeTable();
 	}
 }
