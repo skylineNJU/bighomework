@@ -7,6 +7,7 @@ import main.po.DriverList;
 import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;
+import main.po.StaffList2PO;
 import main.po.StaffListPO;
 import main.po.UnitPO;
 import main.po.VehicleInfoPO;
@@ -95,6 +96,8 @@ public interface InfoDataService {
 	public VehicleListPO readVehicle(VehicleListPO vehiclelist);
 
 	CityPO inquireCity(CityPO cityPO);
-
+	
+	public StaffList2PO readStaffVO();
+	
 	public VehicleList2PO readVehicleVO();
 }

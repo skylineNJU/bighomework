@@ -150,9 +150,7 @@ public class VehicleAccountPanel {
 			tableData[counter][5]=vo.getUsedTime();
 			counter++;
 		}
-		
 	}
-	
 	
 	public void button(){
 		  title = new JLabel("³µÁ¾ÕËÄ¿");

@@ -392,34 +392,38 @@ public class ShowInventoryPanel {
 		WarehouseMemory memory=(WarehouseMemory) ((WritePanel)panel).getMemory();
 		
 		//得到date1,date2,判断memory中d是否在这之前，如果在，则取得相对应的入库单号号再从db入库单里提出区排架位
-		System.out.println("???????????:::::::::::::::"+memory.getWarehouseInDate());
-		String date=memory.getWarehouseInDate().substring(2);
+		String[][] content =new String[20][5];
+		String date=memory.getWarehouseInDate();
 		String[] dates =date.split(" ");
-		String code = memory.getWarehouseInCode().substring(2);
+		if(dates.length==1){
+			  for(int x=0;x<20;x++)
+      			for(int y=0;y<5;y++)
+      				content[x][y]=null;
+			  return content;
+		}
+		String code = memory.getWarehouseInCode();
 		String[] codes =code.split(" ");
 		System.out.println("::::::::::1:::::::::"+date);
 		System.out.println("::::::::::2:::::::::"+code);
 		Date date1 = new Date(y1-1900,m1-1,d1);
         Date date2 = new Date(y2-1900,m2-1,d2);
         assert(date2.after(date1));
-        String[][] content =new String[20][5];
+        
         for(int x=0;x<20;x++)
         			for(int y=0;y<5;y++)
         				content[x][y]=null;
         int counter = 0;
         InNum = 0;
-        for(int i=0;i<dates.length;i++){
+        for(int i=1;i<dates.length;i++){
         	System.out.println(":::::::::3::::::::::"+dates[0]);
-        	String[] yAmAd=dates[i].split("\\/");
+        	String[] yAmAd=dates[i].split("/");
         	int year = Integer.parseInt(yAmAd[0]);
         	int month = Integer.parseInt(yAmAd[1]);
         	int day = Integer.parseInt(yAmAd[2]);
         	System.out.println(":::::::::3::::::::::"+year+" "+month+" "+day);
         	Date d = new Date(year-1900,month-1,day);
         	if(d.after(date1)&&d.before(date2)){
-        		InNum++;
-        		System.out.println("InNumNumNum:::"+InNum);
-        	
+        		InNum++;        	
         		String c = codes[i];
         		if(c!=null){
     				WarehouseBLService service = ConstructFactory.WarehouseFactory();

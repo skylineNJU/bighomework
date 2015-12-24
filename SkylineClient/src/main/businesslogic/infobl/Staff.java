@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 import main.data.info.InfoDataController;
 import main.dataservice.InfoDataService;
+import main.po.StaffList2PO;
 import main.po.StaffListPO;
+import main.po.VehicleInfoPO;
+import main.po.VehicleList2PO;
 import main.po.WorkerPO;
 import main.vo.StaffVO;
+import main.vo.VehicleVO;
 
 public class Staff {
 	private String name;//ÐÕÃû
@@ -55,7 +59,16 @@ public class Staff {
 		 }
 		return voList;
 	}
-	
+	public ArrayList<StaffVO> readStaffList(){
+		ArrayList<StaffVO> staffVOList = new ArrayList<StaffVO>();
+		InfoDataService dataService = new InfoDataController();
+		StaffList2PO staffList = dataService.readStaffVO();
+		for(WorkerPO po:staffList.getList()){
+			staffVOList.add(new StaffVO(po.getName(),po.getPosition(),po.getBelong(),
+					po.getAge(),po.getCode(),po.getSalary(),po.getCommission()));
+		}
+		return staffVOList;
+	}
 	public boolean saveInfo(){
 		po=new WorkerPO(this.name,this.job,this.unit,this.workage,this.code);
 		InfoDataService service=new InfoDataController();

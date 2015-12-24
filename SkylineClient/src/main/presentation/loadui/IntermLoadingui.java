@@ -2,6 +2,8 @@ package main.presentation.loadui;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
@@ -30,6 +32,15 @@ public class IntermLoadingui {
 		carUI=new CarLoadingui(ccr, tabbedPane,(WritePanel)panel);
 		ctr=new CreateTrain(tabbedPane, panel);
 		trainUI=new TrainLoadingui(ctr, tabbedPane, (WritePanel) panel);
+		tabbedPane.addChangeListener(new ChangeListener(){
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 	
 }

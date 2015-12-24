@@ -12,6 +12,8 @@ public class WorkerPO extends Message implements Serializable{
 	private String belong;
 	private String age;
 	private String code;
+	private String salary;
+	private String commission;
 	
 	public WorkerPO(String name, String position, String belong, String age, String code) {
 		super();
@@ -21,6 +23,48 @@ public class WorkerPO extends Message implements Serializable{
 		this.age = age;
 		this.code = code;
 	}
+	
+	
+	public WorkerPO(String name, String position, String belong, String age,
+			String code, String salary, String commission) {
+		super();
+		this.name = name;
+		this.position = position;
+		this.belong = belong;
+		this.age = age;
+		this.code = code;
+		this.salary = salary;
+		this.commission = commission;
+	}
+
+	public String getSalary() {
+		return salary;
+	}
+
+
+
+
+	public void setSalary(String salary) {
+		this.salary = salary;
+	}
+
+
+
+
+	public String getCommission() {
+		return commission;
+	}
+
+
+
+
+	public void setCommission(String commission) {
+		this.commission = commission;
+	}
+
+
+
+
 	//-------------------
 	//获取和修改职工的年龄
 	public String getAge() {

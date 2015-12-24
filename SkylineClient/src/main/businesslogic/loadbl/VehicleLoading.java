@@ -41,7 +41,7 @@ public class VehicleLoading{
 		LoadDataService service=new LoadDataController();
 		service.writeVehicleLoadBase(po);
 		
-		UpdateBank updateBank=new UpdateBank();
-		updateBank.updateMoney(belong, freight);
+//		UpdateBank updateBank=new UpdateBank();
+//		updateBank.updateMoney(belong, freight);
 	}
 }

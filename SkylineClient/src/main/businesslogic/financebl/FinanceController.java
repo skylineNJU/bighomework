@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import main.businesslogicservice.FinanceBLService;
 import main.po.CollectionPO;
 import main.vo.BankAccountVO;
+import main.vo.BuildAccountVO;
 import main.vo.CostVO;
 import main.vo.DistanceVO;
 import main.vo.EarnVO;
@@ -144,6 +145,27 @@ public class FinanceController implements FinanceBLService {
 	@Override
 	public boolean addBankAccount(BankAccountVO bankvo) {
 		return new Balance().addBankAccount(bankvo);
+	}
+
+	@Override
+	public BuildAccountVO inquireAccount() {
+		// TODO Auto-generated method stub
+		BuildAccountBL bl=new BuildAccountBL();
+		return bl.inquireAccount();
+	}
+
+	@Override
+	public void buildAccount(BuildAccountVO vo) {
+		// TODO Auto-generated method stub
+		BuildAccountBL bl=new BuildAccountBL(vo);
+		bl.saveAccount();
+	}
+
+	@Override
+	public void loadAccount(BuildAccountVO vo) {
+		// TODO Auto-generated method stub
+		BuildAccountBL bl=new BuildAccountBL(vo);
+		bl.loadAccount();
 	}
 	
 }

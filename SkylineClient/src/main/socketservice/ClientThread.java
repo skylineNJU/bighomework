@@ -7,12 +7,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import main.po.Message;
+import main.presentation.mainui.MainController;
 
 public class ClientThread implements Runnable {
 	private ObjectInputStream reader; 
 	private Message message;
 	private BlockingQueue<Message> messageList=new LinkedBlockingQueue<Message>();
 	private Socket socket;
+	private Client client;
 	public ClientThread(Socket socket){
 		this.socket=socket;
 	}
@@ -24,6 +26,7 @@ public class ClientThread implements Runnable {
 			reader=new ObjectInputStream(socket.getInputStream());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
+			MainController.getClient().buildNet();
 			e1.printStackTrace();
 		}
 		try {
@@ -38,12 +41,12 @@ public class ClientThread implements Runnable {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(socket.isClosed());
+				
 				}
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			MainController.getClient().buildNet();
 		}
 	}
 

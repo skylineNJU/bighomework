@@ -1,6 +1,5 @@
 package main.businesslogic.loadbl;
 
-import main.businesslogic.financebl.UpdateBank;
 import main.data.load.LoadDataController;
 import main.dataservice.LoadDataService;
 import main.po.TrainLoadingPO;
@@ -40,7 +39,7 @@ public class TrainLoading{
 		po.setCode(code);
 		LoadDataService service=new LoadDataController();
 		service.writeTrainLoadBase(po);
-		UpdateBank updateBank=new UpdateBank();
-		updateBank.updateMoney(belong, freight);
+//		UpdateBank updateBank=new UpdateBank();
+//		updateBank.updateMoney(belong, freight);
 	}
 }
