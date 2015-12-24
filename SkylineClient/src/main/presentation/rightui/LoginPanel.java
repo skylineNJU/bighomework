@@ -52,9 +52,7 @@ public class LoginPanel{
 	private JLabel login;
 	private JLabel show=new JLabel("");//œ‘ æ√‹¬Î±Íº«
 	private JLabel forget=new JLabel("");//Õ¸º«√‹¬Î
-	
-
-	
+		
 	public LoginPanel(){
 		frame=FrameMain.getFrame();
 		panel=FrameMain.getContentPanel();
@@ -89,8 +87,6 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
-		
-		
 		
 		passWord.setEchoChar('*');
 		passWord.setOpaque(false);
@@ -140,11 +136,7 @@ public class LoginPanel{
 				panel.repaint();
 			}
 		});
-		
-	
-		
-		
-		
+
 		
 //±≥æ∞
 		login=new JLabel(AllImage.login);

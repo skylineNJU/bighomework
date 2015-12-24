@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -69,6 +70,8 @@ public class AddWarehouseInReceiptPanel {
 	private JTextField postext;
 	private JScrollPane scrollPane;
 	private TipFrame a ;
+	private ButtonGroup condition;
+	private ButtonGroup areaGroup;
 	
 	public AddWarehouseInReceiptPanel(){
 		panel = MainController.getWritepanel();
@@ -164,6 +167,9 @@ public class AddWarehouseInReceiptPanel {
 		damage.setFont(font);
 		damage.setBounds(good.getX()+panel.getWidth()/8,damageCondition.getY()+panel.getHeight()/45,panel.getWidth()/12, panel.getHeight()/20);
 		
+		condition = new ButtonGroup();
+		condition.add(good);
+		condition.add(damage);
 		
 		area=new JLabel("Çø:");
 		area.setFont(font);
@@ -206,8 +212,12 @@ public class AddWarehouseInReceiptPanel {
 		RailwayArea .setBounds(ShippingArea.getX()+panel.getWidth()/8,area.getY()+panel.getWidth()/50,panel.getWidth()/8, panel.getHeight()/20);
 		AutoArea .setBounds(ShippingArea.getX(),ShippingArea.getY()+panel.getWidth()/20,panel.getWidth()/8, panel.getHeight()/20);
 		MotorArea.setBounds(RailwayArea.getX(),ShippingArea.getY()+panel.getWidth()/20,panel.getWidth()/8, panel.getHeight()/20);
-		 
 		
+		areaGroup = new ButtonGroup();
+		areaGroup.add(ShippingArea);
+		areaGroup.add(RailwayArea);
+		areaGroup.add(AutoArea);
+		areaGroup.add(MotorArea);
 		
 		rowtext = new JTextField();
 		rowtext.setBounds(row.getX()+panel.getWidth()/8,row.getY()+panel.getWidth()/50,panel.getWidth()/15, panel.getHeight()/20);

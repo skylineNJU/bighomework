@@ -39,7 +39,7 @@ public class Server extends Thread {
 		frame.setLocation(200,300);
 		frame.init();
 		frame.setVisible(true);
-		JButton button = new JButton();
+		JButton button = new JButton("¿ª¹Ø°´Å¥");
 		frame.add(button);
 		button.setBounds(frame.getWidth()/4, frame.getHeight()/4, frame.getWidth()/2, frame.getHeight()/2);
 		button.addActionListener(new ActionListener() {

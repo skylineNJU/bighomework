@@ -228,7 +228,6 @@ public class LobbyLoadPanel {
 		tableData =this.initTableData();
 		table = new JTable(tableData,tableTitle);
 		table.setRowHeight(panelWidth/20);//设置列宽
-		table.getTableHeader().setPreferredSize(new Dimension(1, panelWidth/20));//设置表头高度
 		table .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		table.getTableHeader().setResizingAllowed(false);//设置列宽不可变
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//设置不可调整大小

@@ -25,14 +25,8 @@ public class FrameMain extends JFrame{
 	private static Point origin = new Point();
 	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private FrameMain(){
-		WebLookAndFeel.globalControlFont  = new FontUIResource("楷书",Font.PLAIN, 13);
-		WebLookAndFeel.globalTextFont = new FontUIResource("楷书",Font.PLAIN, 13);
-		WebLookAndFeel.globalTooltipFont = new FontUIResource("楷书",Font.PLAIN, 13);              
-		WebLookAndFeel.globalAlertFont = new FontUIResource("楷书",Font.PLAIN, 13);            
-		WebLookAndFeel.globalMenuFont = new FontUIResource("楷书",Font.PLAIN, 13);             
-		WebLookAndFeel.globalAcceleratorFont = new FontUIResource("楷书",Font.PLAIN, 13);           
-		WebLookAndFeel.globalTitleFont = new FontUIResource("楷书",Font.PLAIN, 13);
-		 WebLookAndFeel.install ();
+//		WebLookAndFeel.globalControlFont  = new FontUIResource("楷书",Font.PLAIN, 13);
+//		WebLookAndFeel.install ();
 	}
 	
 	public static FrameMain getFrame(){
