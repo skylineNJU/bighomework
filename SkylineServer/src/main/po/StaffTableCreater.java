@@ -3,6 +3,8 @@ package main.po;
 import java.util.ArrayList;
 
 import main.socketservice.SqlBuilder;
+import main.socketservice.SqlDeleter;
+import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
 public class StaffTableCreater {
@@ -34,6 +36,22 @@ public class StaffTableCreater {
 						       "','"+po.getCode()+"'";
 				writer.writeIntoSql(tableName, content);
 			}
+		}
+	}
+	
+	public void writeTable(){
+		String tableName1="StaffInfo";
+		SqlReader reader=new SqlReader(tableName);
+		SqlWriter writer=new SqlWriter();
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.clearTable(tableName1);
+		while(reader.hasNext()){
+			String content="'"+reader.getString("员工姓名")+
+				       "','"+reader.getString("职位")+
+				       "','"+reader.getString("所属单位")+
+				       "','"+reader.getString("入职时间")+
+				       "','"+reader.getString("职工账号")+"'";
+			writer.writeIntoSql(tableName1, content);
 		}
 	}
 }

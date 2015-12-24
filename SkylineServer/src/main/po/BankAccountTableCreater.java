@@ -3,6 +3,8 @@ package main.po;
 import java.util.ArrayList;
 
 import main.socketservice.SqlBuilder;
+import main.socketservice.SqlDeleter;
+import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
 public class BankAccountTableCreater {
@@ -30,4 +32,19 @@ public class BankAccountTableCreater {
 		}
 		
 	}
+	
+	public void writeTable(){
+		String tableName2="BankAccount";
+		String tableName1=tableName;
+		SqlWriter writer=new SqlWriter();
+		SqlReader reader=new SqlReader(tableName1);
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.clearTable(tableName2);
+		while(reader.hasNext()){
+			String content="'"+reader.getString("银行账户名")+"',"+
+					           reader.getDouble("余额");
+			writer.writeIntoSql(tableName2, content);
+		}
+	}
+	
 }

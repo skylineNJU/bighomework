@@ -51,6 +51,19 @@ public class BuildAccountPO extends Message{
 	}
 	
 	public void Load(){
-		
+		BankAccountTableCreater bc=new BankAccountTableCreater(id);
+		IntermediateTableCreater ic=new IntermediateTableCreater(id);
+		LobbyTableCreater lc=new LobbyTableCreater(id);
+		StaffTableCreater sc=new StaffTableCreater(id);
+		VehicleTableCreater vc=new VehicleTableCreater(id);
+		WarehouseTableCreater wc=new WarehouseTableCreater(id);
+		InventoryTableCreater inc=new InventoryTableCreater(id);
+		bc.createTable();
+		ic.createTable();
+		lc.createTable();
+		sc.creatTable();
+		vc.createTable();
+		wc.createTable();
+		inc.createTable();
 	}
 }

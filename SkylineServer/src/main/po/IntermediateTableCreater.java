@@ -1,6 +1,7 @@
 package main.po;
 
 import main.socketservice.SqlBuilder;
+import main.socketservice.SqlDeleter;
 import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
@@ -30,6 +31,22 @@ public class IntermediateTableCreater {
 				reader.getDouble("员工人数");
 				writer.writeIntoSql(tableName, content);
 			}
+		}
+	}
+	
+	public void writeTable(){
+		String tableName1="IntermediateInfo";
+		String tableName2=tableName;
+		SqlWriter writer=new SqlWriter();
+		SqlReader reader=new SqlReader(tableName2);
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.clearTable(tableName1);
+		while(reader.hasNext()){
+			String content="'"+reader.getString("所在城市")
+			+"','"+reader.getString("机构编号")+"',"+
+					reader.getDouble("占地面积")+","+
+			reader.getDouble("员工人数");
+			writer.writeIntoSql(tableName1, content);
 		}
 	}
 }

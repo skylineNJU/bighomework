@@ -41,6 +41,7 @@ public class ClientController {
     		AccountPO po=(AccountPO)message;
     		po.checkLogin();
     		response(po);
+    		break;
     	case "Load":
     		BuildAccountPO po1=(BuildAccountPO) message;
     		po1.Load();

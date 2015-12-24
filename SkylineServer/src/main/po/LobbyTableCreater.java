@@ -3,6 +3,8 @@ package main.po;
 import java.util.ArrayList;
 
 import main.socketservice.SqlBuilder;
+import main.socketservice.SqlDeleter;
+import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
 public class LobbyTableCreater {
@@ -33,6 +35,21 @@ public class LobbyTableCreater {
 						+","+po.getArea();
 				writer.writeIntoSql(tableName, content);
 			}
+		}
+	}
+	
+	public void writeTable(){
+		String tableName1="LobbyInfo";
+		SqlReader reader=new SqlReader(tableName);
+		SqlWriter writer=new SqlWriter();
+		SqlDeleter deleter=new SqlDeleter();
+		deleter.clearTable(tableName1);
+		while(reader.hasNext()){
+			String content="'"+reader.getString("所属城市")
+			+"','"+reader.getString("机构编号")+"',"
+			+reader.getInt("员工人数")+","
+			+reader.getDouble("占地面积");
+			writer.writeIntoSql(tableName1, content);
 		}
 	}
 }

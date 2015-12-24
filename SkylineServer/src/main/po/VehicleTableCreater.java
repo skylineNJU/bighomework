@@ -3,6 +3,8 @@ package main.po;
 import java.util.ArrayList;
 
 import main.socketservice.SqlBuilder;
+import main.socketservice.SqlDeleter;
+import main.socketservice.SqlReader;
 import main.socketservice.SqlWriter;
 
 public class VehicleTableCreater {
@@ -32,6 +34,19 @@ public class VehicleTableCreater {
 		    			+vpo.getUnderpanID()+"','"+vpo.getBoughtTime()+"','"+vpo.getUsedTime()+"'";
 		    	writer.writeIntoSql(tableName, content);
 			}
+		}
+	}
+	
+	public void writeTable(){
+		String tableName1="VehicleInfo";
+		SqlDeleter deleter=new SqlDeleter();
+		SqlWriter writer=new SqlWriter();
+		SqlReader reader=new SqlReader(tableName);
+		deleter.clearTable(tableName1);
+		while(reader.hasNext()){
+			String content="'"+reader.getString("车牌号")+"','"+reader.getString("引擎代号")+"','"+reader.getString("车辆代号")+"','"
+	    			+reader.getString("底盘代号")+"','"+reader.getString("服役时间")+"','"+reader.getString("购买时间")+"'";
+			writer.writeIntoSql(tableName1, content);
 		}
 	}
 }
