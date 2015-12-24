@@ -4,6 +4,7 @@ package main.data.finance;
 import main.dataservice.FinanceDataService;
 import main.po.BankAccountPO;
 import main.po.BankList;
+import main.po.BuildAccountPO;
 import main.po.CollectionPO;
 import main.po.CostPO;
 import main.po.CostPOList;
@@ -199,5 +200,30 @@ public class FinanceDataController implements FinanceDataService{
 		bankpo.setKey("Save");
 		client.writeReceipt(bankpo);
 		return true;
+	}
+
+	@Override
+	public void buildAccount(BuildAccountPO po) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		po.setKey("Save");
+		client.writeReceipt(po);
+	}
+
+	@Override
+	public void loadAccount(BuildAccountPO po) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		po.setKey("Load");
+		client.writeReceipt(po);
+	}
+
+	@Override
+	public BuildAccountPO getAccount(BuildAccountPO po) {
+		// TODO Auto-generated method stub
+		client=MainController.getClient();
+		po.setKey("Inquire");
+		po=(BuildAccountPO) client.getResponse();
+		return po;
 	}
 }

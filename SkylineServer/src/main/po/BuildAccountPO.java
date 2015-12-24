@@ -49,4 +49,8 @@ public class BuildAccountPO extends Message{
 		InventoryTableCreater inc=new InventoryTableCreater(id);
 		inc.createTable();
 	}
+	
+	public void Load(){
+		
+	}
 }

@@ -50,7 +50,7 @@ public class Client {
 		try {
 			writer.writeObject(receipt);
 			System.out.println("send successfully,and key is:"+receipt.getKey());
-			if(!receipt.getKey().equals("Save")){
+			if(!(receipt.getKey().equals("Save")||receipt.getKey().equals("Load"))){
 				thread.resume();
 			}
 			writer.flush();
