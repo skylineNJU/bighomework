@@ -7,13 +7,11 @@ import main.socketservice.SqlWriter;
 
 public class StaffTableCreater {
 	private StaffList2PO po;
-	private int tableID;
 	private String tableName;
 	public StaffTableCreater(int id){
 		po=new StaffList2PO();
-		tableID=id;
 		po.getDataFromBase();
-		tableName="StaffInfo"+tableID;
+		tableName="StaffInfo"+id;
 	}
 	
 	public void creatTable(){

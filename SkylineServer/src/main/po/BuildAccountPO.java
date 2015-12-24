@@ -13,12 +13,15 @@ public class BuildAccountPO extends Message{
 	private static final long serialVersionUID = 1L;
 	private LinkedList<String> name=new LinkedList<String>();
 	private LinkedList<String> date=new LinkedList<String>();
+	private int id=0;
 	
-	
-	public void addAccount(String name,String date){
+	public void addAccount(String name,String date,int id){
 		this.name.add(name);
 		this.date.add(date);
+		this.id=id;
 	}
+	
+
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("BuildAccount");
 		while(reader.hasNext()){
@@ -31,5 +34,19 @@ public class BuildAccountPO extends Message{
 		SqlWriter writer=new SqlWriter();
 		String content="'"+date.getLast()+"','"+name.getLast()+"'";
 		writer.writeIntoSql("BuildAccount", content);
+		BankAccountTableCreater bc=new BankAccountTableCreater(id);
+		bc.createTable();
+		IntermediateTableCreater ic=new IntermediateTableCreater(id);
+		ic.createTable();
+		LobbyTableCreater lc=new LobbyTableCreater(id);
+		lc.createTable();
+		StaffTableCreater sc=new StaffTableCreater(id);
+		sc.creatTable();
+		VehicleTableCreater vc=new VehicleTableCreater(id);
+		vc.createTable();
+		WarehouseTableCreater wc=new WarehouseTableCreater(id);
+		wc.createTable();
+		InventoryTableCreater inc=new InventoryTableCreater(id);
+		inc.createTable();
 	}
 }
