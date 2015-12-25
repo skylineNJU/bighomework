@@ -57,6 +57,7 @@ public class LocusPanel {
 		label[5].addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				setOrderCode(searchField.getText());
+				searchInfo();
 			}
 		});
 		for(int x=0;x<6;x++){
@@ -99,6 +100,7 @@ public class LocusPanel {
 		label[4].setText("已送达至收件人");
 		process=vo.getArriveInterm1()+vo.getArriveInterm2()+vo.getArriveLobby1()+vo.getArriveLobby2()
 		+vo.getIsReceived();
+		System.out.println("the process is:"+process);
 		for(int x=0;x<5;x++){
 		label[x].setSize(58*w*2,62*h);
 		}
