@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import main.po.BankAccountPO;
 import main.po.BankList;
+import main.po.BuildAccountPO;
 import main.po.CollectionPO;
 import main.po.CollectionPOList;
 import main.po.CostPO;
@@ -66,4 +67,10 @@ public interface FinanceDataService {
 	public boolean writeFee(FeePO feePO);
 	
 	public boolean writeDistance(DistancePO distancePO);
+	
+	public void buildAccount(BuildAccountPO po);
+	
+	public void loadAccount(BuildAccountPO po);
+	
+	public BuildAccountPO getAccount(BuildAccountPO po);
 }

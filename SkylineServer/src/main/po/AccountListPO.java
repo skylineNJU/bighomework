@@ -23,7 +23,6 @@ public class AccountListPO extends Message{
 	    			reader.getString("ËùÊôµ¥Î»"));
 	    	list.add(po);
 	    }
-	    System.out.println("°¡°¡°¡"+list.size());
 	    reader.close();
 	}
 }

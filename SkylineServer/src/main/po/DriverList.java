@@ -12,10 +12,18 @@ public class DriverList extends Message {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<DriverInfoPO> driverlist=new ArrayList<DriverInfoPO>();
 	
+	public ArrayList<DriverInfoPO> getDriverlist() {
+		return driverlist;
+	}
+
+	public void add(DriverInfoPO po){
+		driverlist.add(po);
+	}
+
 	public void getDataFromBase(){
 		System.out.println("inquire start");
 		SqlReader reader=new SqlReader("DriverInfo");
-		String key=driverlist.get(0).carunit;
+		String key=driverlist.get(0).getCarunit();
 		driverlist.clear();
 		String name;
 		while(reader.findNext("司机所在单位",key)){
@@ -32,4 +40,5 @@ public class DriverList extends Message {
 			System.out.println("get a driver "+name);
 		}
 	}
+
 }

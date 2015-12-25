@@ -36,4 +36,17 @@ public class SqlDeleter {
 		}
 		return true;
 	}
+	
+	public void clearTable(String tableName){
+		String query="DELETE FROM "+tableName;
+		try {
+			stmt.executeUpdate(query);
+			stmt.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("³ö´í");
+			e.printStackTrace();
+		}
+	}
 }

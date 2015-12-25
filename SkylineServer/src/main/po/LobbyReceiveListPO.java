@@ -15,4 +15,6 @@ public class LobbyReceiveListPO extends Message{
 			po.getDataFromBase();
 		}
 	}
+	
+
 }

@@ -19,6 +19,7 @@ public class IntermediateInfo extends Message {
 	private double area;
 	private int staffNum;
 	
+	
 	public void getDataFromBase(){
 		SqlReader reader=new SqlReader("IntermediateInfo");
 		if(reader.findNext("所在城市",this.city)){

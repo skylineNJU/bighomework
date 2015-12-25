@@ -20,25 +20,23 @@ public class PlaneLoadingui extends LoadingPanel{
 		this.tabbedPane.add(this,"飞机装运");
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	
 
 	protected void initTable(){
 		String[] tableTitle = new String[]{"航运编号", "航班号", "出发地", "到达地", "监装员", "货柜号","托运单号","运费","装运日期"};
 		String[][] tableData=this.initTableData();
-		this.lookTable=new JTable(tableData,tableTitle);
+		lookTable=new JTable(tableData,tableTitle);
 		addButton.setSize(75,35);
      	addButton.setLocation(PANEL_WIDTH*13/20,PANEL_HIGHT*72/85);
      	scrollPane = new JScrollPane(lookTable);
 		lookTable .getTableHeader().setReorderingAllowed(false);//表头不可移动
 		lookTable.setRowHeight(PANEL_WIDTH/20);//设置列宽
 		lookTable.setDragEnabled(false);//设置不可拖动
-		lookTable.getTableHeader().setPreferredSize(new Dimension(1, PANEL_WIDTH/20));//设置表头高度
+		lookTable.getTableHeader().setPreferredSize(new Dimension(10000, PANEL_WIDTH/20));//设置表头高度
 		lookTable.getTableHeader().setResizingAllowed(true);//设置列宽不可变
+		for(int i = 0;i<tableTitle.length;i++){
+			lookTable.getColumnModel().getColumn(i).setPreferredWidth(PANEL_WIDTH/8);
+		}
 		if(tableData.length<=9){
 			scrollPane.setBounds(PANEL_WIDTH/12, PANEL_HIGHT/5-15, PANEL_WIDTH/6*5, (lookTable.getRowCount()+1)*lookTable.getRowHeight());
 		}else{

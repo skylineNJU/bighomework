@@ -3,6 +3,7 @@ package main.businesslogicservice;
 import java.util.ArrayList;
 
 import main.vo.BankAccountVO;
+import main.vo.BuildAccountVO;
 import main.vo.CostVO;
 import main.vo.DistanceVO;
 import main.vo.EarnVO;
@@ -64,4 +65,10 @@ public interface FinanceBLService {
 	public boolean delDistance(DistanceVO distanceVO);
 	
 	public boolean modifyBalance(BankAccountVO bankVO);
+	
+	public BuildAccountVO inquireAccount();
+	
+	public void buildAccount(BuildAccountVO vo);
+	
+	public void loadAccount(BuildAccountVO vo);
 }

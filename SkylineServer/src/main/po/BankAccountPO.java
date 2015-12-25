@@ -13,6 +13,14 @@ public class BankAccountPO extends Message{
 	private String account;//银行账户ID
 	private double money;//余额
 	
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
 	//银行账户统一编号为1
 	public BankAccountPO(String account,double money){
 		this.account = account;

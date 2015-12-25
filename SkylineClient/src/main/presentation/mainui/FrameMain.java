@@ -9,6 +9,9 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.plaf.FontUIResource;
+
+import com.alee.laf.WebLookAndFeel;
 
 
 
@@ -24,13 +27,14 @@ public class FrameMain extends JFrame{
 	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private FrameMain(){
 //		WebLookAndFeel.globalControlFont  = new FontUIResource("楷书",Font.PLAIN, 13);
+//
 //		WebLookAndFeel.globalTextFont = new FontUIResource("楷书",Font.PLAIN, 13);
 //		WebLookAndFeel.globalTooltipFont = new FontUIResource("楷书",Font.PLAIN, 13);              
 //		WebLookAndFeel.globalAlertFont = new FontUIResource("楷书",Font.PLAIN, 13);            
 //		WebLookAndFeel.globalMenuFont = new FontUIResource("楷书",Font.PLAIN, 13);             
 //		WebLookAndFeel.globalAcceleratorFont = new FontUIResource("楷书",Font.PLAIN, 13);           
 //		WebLookAndFeel.globalTitleFont = new FontUIResource("楷书",Font.PLAIN, 13);
-//		 WebLookAndFeel.install ();
+//		WebLookAndFeel.install ();
 	}
 	
 	public static FrameMain getFrame(){

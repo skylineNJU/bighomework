@@ -30,6 +30,59 @@ public class VehicleInfoPO extends Message implements Serializable{
 		this.boughtTime = boughtTime;
 		this.usedTime = usedTime;
 	}
+    
+	public String getCarID() {
+		return carID;
+	}
+
+	public void setCarID(String carID) {
+		this.carID = carID;
+	}
+
+	public String getEngineID() {
+		return engineID;
+	}
+
+	public void setEngineID(String engineID) {
+		this.engineID = engineID;
+	}
+
+	public String getCarNum() {
+		return carNum;
+	}
+
+	public void setCarNum(String carNum) {
+		this.carNum = carNum;
+	}
+
+	public String getUnderpanID() {
+		return underpanID;
+	}
+
+	public void setUnderpanID(String underpanID) {
+		this.underpanID = underpanID;
+	}
+
+	public String getBoughtTime() {
+		return boughtTime;
+	}
+
+	public void setBoughtTime(String boughtTime) {
+		this.boughtTime = boughtTime;
+	}
+
+	public String getUsedTime() {
+		return usedTime;
+	}
+
+	public void setUsedTime(String usedTime) {
+		this.usedTime = usedTime;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String gerCarNum(){
     	return carNum;
     }

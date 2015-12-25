@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 import main.po.AccountPO;
+import main.po.BuildAccountPO;
 import main.po.Message;
 
 public class ClientController {
@@ -40,7 +41,10 @@ public class ClientController {
     		AccountPO po=(AccountPO)message;
     		po.checkLogin();
     		response(po);
-    	case "End":
+    		break;
+    	case "Load":
+    		BuildAccountPO po1=(BuildAccountPO) message;
+    		po1.Load();
     		break;
     	}
 
