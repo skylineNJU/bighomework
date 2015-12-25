@@ -44,7 +44,7 @@ public class WritePanel extends JPanel{
 
 	protected void paintComponent(Graphics g) {			
 	        super.paintComponent(g);
-	        g.drawImage(AllImage.writeback.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+	        g.drawImage(AllImage.back.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	    	searchLabel();
 	}
 
