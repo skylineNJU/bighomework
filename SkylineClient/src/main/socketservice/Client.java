@@ -21,7 +21,7 @@ public class Client {
 	
 	public void buildNet(){
 		try{
-			socket=new Socket("114.212.43.62",12345);
+			socket=new Socket("127.0.0.1",12345);
 			System.out.println("get connection success");
 			thread=new Thread(clth=new ClientThread(socket));
 

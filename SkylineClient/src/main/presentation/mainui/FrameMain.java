@@ -24,7 +24,7 @@ public class FrameMain extends JFrame{
 	private FrameMain(){
 		try
 	    {
-	        org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+	       // org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 	    }
 	    catch(Exception e)
 	    {
