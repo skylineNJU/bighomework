@@ -23,6 +23,12 @@ public class EarnVO extends ReceiptVO{
 		this.isPaid = isPaid;
 	}
 
+	
+	public EarnVO(String co) {
+		super(co);
+	}
+
+
 	public String getCollectionCode() {
 		return collectionCode;
 	}

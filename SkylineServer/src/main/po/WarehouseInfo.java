@@ -49,7 +49,7 @@ public class WarehouseInfo extends Message{
 		String content="'"+this.city+"',"
 				          +this.staffNum+","
 				          +this.acreage+","+
-				          +this.volume+","+
+//				          +this.volume+","+
 				          this.alert+",'"
 				          +this.area+"'";
 		writer.writeIntoSql("WarehouseInfo", content);

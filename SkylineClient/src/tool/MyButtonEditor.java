@@ -3,6 +3,7 @@ package tool;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.EventObject;
 
 import javax.swing.DefaultCellEditor;
@@ -24,18 +25,13 @@ public class MyButtonEditor extends DefaultCellEditor {
 	    public MyButtonEditor(JTextField checkBox) {  
 	        super(checkBox);  
 	        this.setClickCountToStart(1);  
-	        button = new JButton("移动到此处来查看详细信息");  
+	        button = new JButton();  
 	        button.setOpaque(true);  
-	        button.addActionListener(new ActionListener() {  
-	  
-	            public void actionPerformed(ActionEvent e) {  
-	                fireEditingStopped();  
-	                System.out.println("I am clicked");
-	            }  
-	        });  
-	  
 	    }  
 	  
+	    public void setListener(MouseAdapter e){
+	    	button.addMouseListener(e);
+	    }
 	    public Component getTableCellEditorComponent(final JTable table, Object value,  
 	            boolean isSelected,int row, int column) {  
 	        if (isSelected) {  

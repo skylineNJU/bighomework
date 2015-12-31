@@ -104,7 +104,7 @@ public class InstitutionPanel {
 		tableData11=new String[][]{{"上海","0210","400","1000"}};
 		defaultModel11   =  new   DefaultTableModel(tableData11,tableTitle11);;
 		table11 = new JTable(defaultModel11);
-		table11.setEnabled(false);//设置不可编辑内容
+//		table11.setEnabled(false);//设置不可编辑内容
 		table11.setRowHeight(panel.getWidth()/20);//设置列宽
 		table11.getTableHeader().setPreferredSize(new Dimension(1, panel.getWidth()/20));//设置表头高度
 		table11.getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -120,14 +120,14 @@ public class InstitutionPanel {
 		scrollPane11.setVisible(true);
 	
 		
-		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库总容量/件","仓库警戒值/%"};
-		tableData1=new String[][]{{"航运区","","","","100%"},{"铁路区","","","","100%"},{"汽运区","","","","100%"},{"机动区","","","","100%"}};	
+		tableTitle1 = new String[]{"仓库区","总员工数","占地面积/m^2","仓库警戒值/%"};
+		tableData1=new String[][]{{"航运区","","","100%"},{"铁路区","","","100%"},{"汽运区","","","100%"},{"机动区","","","100%"}};	
 
 		defaultModel1   =  new   DefaultTableModel(tableData1,tableTitle1){	public boolean isCellEditable(int row, int column) {  
 	        return true;  
 	     } } ;
 		table1 = new JTable(defaultModel1);
-		table1.setEnabled(false);//设置不可编辑内容
+//		table1.setEnabled(false);//设置不可编辑内容
 		table1.setRowHeight(panel.getWidth()/20);//设置列宽
 		table1.getTableHeader().setPreferredSize(new Dimension(1, panel.getWidth()/20));//设置表头高度
 		table1.getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -156,7 +156,7 @@ public class InstitutionPanel {
 		tableData2=new String[][]{};	
 		defaultModel2   =  new   DefaultTableModel(tableData2,tableTitle2);;
 		table2 = new JTable(defaultModel2);
-		table2.setEnabled(false);//设置不可编辑内容
+//		table2.setEnabled(false);//设置不可编辑内容
 		table2.setRowHeight(panel.getWidth()/20);//设置列宽
 		table2.getTableHeader().setPreferredSize(new Dimension(1, panel.getWidth()/20));//设置表头高度
 		table2.getTableHeader().setReorderingAllowed(false);//表头不可移动
@@ -276,8 +276,8 @@ public class InstitutionPanel {
 					table1.setValueAt(warVO.getArea(),x,0);
 					table1.setValueAt(warVO.getStaffNum(),x,1);
 					table1.setValueAt(warVO.getAcreage(),x,2);
-					table1.setValueAt(warVO.getVolume(),x,3);
-					table1.setValueAt(warVO.getAlert(),x,4);
+//					table1.setValueAt(warVO.getVolume(),x,3);
+					table1.setValueAt(warVO.getAlert(),x,3);
 					x++;
 				}
 				
@@ -319,7 +319,8 @@ public class InstitutionPanel {
 									Integer.parseInt((String)table1.getValueAt(x,1)),
 									Double.parseDouble((String)table1.getValueAt(x,2)),
 									warhouseEara[x],
-									Double.parseDouble((String)table1.getValueAt(x,3)),
+//									Double.parseDouble((String)table1.getValueAt(x,3)),
+									0,
 									Double.parseDouble((String)table1.getValueAt(x,4))			
 									);
 							vo.addWarehouse(warVO);
@@ -378,7 +379,8 @@ public class InstitutionPanel {
 		
 		modifty.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				  if(tab.getTitleAt(tab.getSelectedIndex()).equals("中转中心") ){
+				  if(tab.getSelectedIndex()==0){
+					  System.out.println("modify start");
 					  InfoBLService service=ConstructFactory.InfoFactory();
 						IntermediateInfoVO vo=new IntermediateInfoVO(
 								//"所属城市","中转中心编号","机构员工数","占地面积/m^2"
@@ -394,22 +396,23 @@ public class InstitutionPanel {
 									Integer.parseInt((String)table1.getValueAt(x,1)),
 									Double.parseDouble((String)table1.getValueAt(x,2)),
 									warhouseEara[x],
-									Double.parseDouble((String)table1.getValueAt(x,3)),			
-									Double.parseDouble((String)table1.getValueAt(x,4))
+//									Double.parseDouble((String)table1.getValueAt(x,3)),	
+									0,
+									Double.parseDouble((String)table1.getValueAt(x,3))
 									);
 							vo.addWarehouse(warVO);
 						}
 						service.modifyIntermediate(vo);
-					  table1.setEnabled(true);
-					  table11.setEnabled(true);
-		    		  table2.setEnabled(false);
+//					  table1.setEnabled(true);
+//					  table11.setEnabled(true);
+//		    		  table2.setEnabled(false);
 				  }
 		
 		    	  else if(tab.getTitleAt(tab.getSelectedIndex()).equals("营业厅")){
 		    		  
-					  table1.setEnabled(false);
-					  table11.setEnabled(false);
-		    		  table2.setEnabled(true);
+//					  table1.setEnabled(false);
+//					  table11.setEnabled(false);
+//		    		  table2.setEnabled(true);
 			}
 			}
 		});
@@ -457,7 +460,6 @@ public class InstitutionPanel {
 			public void mouseClicked(MouseEvent e){
 				 int row = table1.rowAtPoint(e.getPoint());
 				 int column=table1.columnAtPoint(e.getPoint());  
-				 System.out.println("?????"+row+" "+column+"");
 				
 			}
 		});
