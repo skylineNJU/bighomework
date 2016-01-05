@@ -63,10 +63,8 @@ public class RightController implements RightBLService{
 	public ArrayList<AccountVO> inquireAccount(String codeList) {
 		// TODO Auto-generated method stub
 		AccountListBL bl=new AccountListBL(codeList);		
-		
 		Account account=new Account(codeList);
 		ArrayList<AccountVO> volist=account.inquire(codeList);
-		
 		return bl.inquire();
 	}
 
@@ -87,10 +85,8 @@ public class RightController implements RightBLService{
 	public ArrayList<AccountVO> inquireAccount() {
 		// TODO Auto-generated method stub
 		AccountListBL bl=new AccountListBL();		
-		
 		Account account=new Account();
 		ArrayList<AccountVO> volist=account.inquire();
-		
 		return bl.inquire();
 		
 	}

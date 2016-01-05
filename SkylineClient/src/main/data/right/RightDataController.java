@@ -27,7 +27,7 @@ public class RightDataController implements RightDataService{
 		client=MainController.getClient();
 		po.setKey("Save");
 		client.writeReceipt(po);
-		return false;
+		return true;
 	}
 	@Override
 	public boolean delAccount(String account) {

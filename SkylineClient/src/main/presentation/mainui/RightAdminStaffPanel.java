@@ -22,7 +22,7 @@ public class RightAdminStaffPanel extends GuidePanel{
 	}
 	
 	public void init(){
-		this.add(passWordInit);
+	//	this.add(passWordInit);
 		this.add(rightAdmin);
 		this.add(back);
 	
@@ -51,13 +51,13 @@ public class RightAdminStaffPanel extends GuidePanel{
 				MainController.jumpToRightui(Rightui.RightAdmin);
 			}
 		});
-		passWordInit.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e){
-				removeAllComponent();
-				panel.repaint();
-				MainController.jumpToRightui(Rightui.PasswordInit);
-			}
-		});
+	//	passWordInit.addMouseListener(new MouseAdapter() {
+	//		public void mouseClicked(MouseEvent e){
+	//			removeAllComponent();
+	//			panel.repaint();
+	//			MainController.jumpToRightui(Rightui.PasswordInit);
+	//		}
+	//	});
 		panel.add(this);	
 		panel.repaint();
 		this.repaint();
