@@ -59,6 +59,7 @@ public class Client {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			this.buildNet();
+			this.writeReceipt(receipt);
 			return false;
 		}
 		return true;

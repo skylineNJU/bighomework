@@ -17,6 +17,14 @@ public class MyFrame extends JFrame {
 	private int height;
 	
 	public MyFrame(int width, int height){
+		try
+	    {
+	        org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+	    }
+	    catch(Exception e)
+	    {
+	        //TODO exception
+	    }
 		this.setLayout(null);
 		this.width = width;
 		this.height = height;

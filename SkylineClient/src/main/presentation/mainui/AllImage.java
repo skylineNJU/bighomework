@@ -9,6 +9,7 @@ public class AllImage {
 
 	//生成图片数组的方法,写static代码块
 	
+		public static ImageIcon back = new ImageIcon("graphics/background/iBook04.jpg");
 		//用户界面背景图
 		public static ImageIcon background = new ImageIcon("graphics/B.png");
 		public static ImageIcon guideback = new ImageIcon("graphics/guideback1.png");
@@ -56,6 +57,7 @@ public class AllImage {
 		public static ImageIcon login_show=new ImageIcon("graphics/login_show.png");
 		public static ImageIcon login_wrong=new ImageIcon("graphics/login_wrong.png");
 		
+		public static ImageIcon backGround=new ImageIcon("graphics/backGroung.png");
 		//首页界面
 		public static ImageIcon welcome=new ImageIcon("graphics/welcome/welcome.png");
 		public static ImageIcon welcome_version=new ImageIcon("graphics/welcome/welcome_version.png");

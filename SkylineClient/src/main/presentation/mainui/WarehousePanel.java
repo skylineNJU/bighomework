@@ -86,14 +86,7 @@ public class WarehousePanel extends GuidePanel{
 			}
 		});
 		
-		areashow.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				MainController.getWritepanel().removeAll();
-				panel.repaint();
-				MainController.jumpToWarehouseui(Warehouseui.AreaShow);
-			}
-		});
-		
+
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				panel.removeAll();
