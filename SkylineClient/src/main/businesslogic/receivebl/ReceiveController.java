@@ -2,8 +2,6 @@ package main.businesslogic.receivebl;
 
 import java.util.ArrayList;
 
-import main.businesslogic.financebl.LobbyEarn;
-import main.businesslogic.loadbl.TransitReceiveListBL;
 import main.businesslogicservice.ReceiveBLService;
 import main.vo.LobbyReceptionVO;
 import main.vo.OrderVO;

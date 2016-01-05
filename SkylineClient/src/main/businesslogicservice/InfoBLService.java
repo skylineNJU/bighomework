@@ -2,7 +2,6 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
-import main.vo.BankAccountVO;
 import main.vo.CityVO;
 import main.vo.DriverVO;
 import main.vo.IntermediateInfoVO;

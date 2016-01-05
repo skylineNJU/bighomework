@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 public class MyButton extends JLabel{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @param imgEnter 鼠标进入时的图片
 	 * @param imgExit 鼠标移出的图片
 	 * @param imgPress 鼠标按下去的图片

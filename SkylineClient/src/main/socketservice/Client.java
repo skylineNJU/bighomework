@@ -3,8 +3,6 @@ package main.socketservice;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 import main.po.Message;
@@ -65,6 +63,7 @@ public class Client {
 		return true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Message getResponse(){
 		Message message= clth.getResponseMessage();
 		thread.suspend();

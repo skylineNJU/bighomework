@@ -14,7 +14,6 @@ public class ClientThread implements Runnable {
 	private Message message;
 	private BlockingQueue<Message> messageList=new LinkedBlockingQueue<Message>();
 	private Socket socket;
-	private Client client;
 	public ClientThread(Socket socket){
 		this.socket=socket;
 	}

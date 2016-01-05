@@ -24,7 +24,6 @@ import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.WarehouseMemory;
-import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 
@@ -44,18 +43,16 @@ public class ShowInventoryPanel {
 	private JLabel inNum;
 	private JLabel outNum;
 	private JButton ok;
-	private JComboBox year1;
-	private JComboBox month1;
-	private JComboBox day1;
-	private JComboBox year2;
-	private JComboBox month2;
-	private JComboBox day2;
+	private JComboBox<String> year1;
+	private JComboBox<String> month1;
+	private JComboBox<String> day1;
+	private JComboBox<String> year2;
+	private JComboBox<String> month2;
+	private JComboBox<String> day2;
 	private JTable table1;
 	private JTable table2;
 	private JScrollPane scrollPane;
 	private JScrollPane scrollPane2;
-	private String  othertitle;//区排架位
-	private String  titlelist;
 	private int y1;
 	private int m1;
 	private int d1;
@@ -114,12 +111,12 @@ public class ShowInventoryPanel {
 		enddate.setVisible(true);
 		
 		
-		year1= new JComboBox();
-		month1= new JComboBox();
-		day1= new JComboBox();
-		year2= new JComboBox();
-		month2= new JComboBox();
-		day2= new JComboBox();
+		year1= new JComboBox<String>();
+		month1= new JComboBox<String>();
+		day1= new JComboBox<String>();
+		year2= new JComboBox<String>();
+		month2= new JComboBox<String>();
+		day2= new JComboBox<String>();
 
           
         //分别设置3个combobox内的值  
@@ -128,7 +125,7 @@ public class ShowInventoryPanel {
             arr1[i] = i+2000+"年";  
         }         
         
-        year1 = new JComboBox(arr1);  
+        year1 = new JComboBox<String>(arr1);  
         year1.setBounds(panel.getWidth()*3/18, startdate.getY(), panel.getWidth()/11, panel.getHeight()/20);
    
         String [] arr2 = new String[12];  
@@ -136,7 +133,7 @@ public class ShowInventoryPanel {
             arr2[i]=i+1+"月";  
         }  
     
-        month1 = new JComboBox(arr2);  
+        month1 = new JComboBox<String>(arr2);  
        
         month1.setBounds(year1.getX()+year1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         String[] arr30 = new String[31];  
@@ -144,7 +141,7 @@ public class ShowInventoryPanel {
              arr30[i]=i+1+"日";  
          }  
      
-        day1 = new JComboBox(arr30);  
+        day1 = new JComboBox<String>(arr30);  
         day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         panel.add(day1);
         
@@ -167,7 +164,7 @@ public class ShowInventoryPanel {
         				arr31[i]=i+1+"日";  
         			}  
         		
-        			day1 = new JComboBox(arr31);  
+        			day1 = new JComboBox<String>(arr31);  
         	        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         	        panel.add(day1);	
         	        break;
@@ -180,7 +177,7 @@ public class ShowInventoryPanel {
 		    				arr3[i]=i+1+"日";  
 		    			}  
 		        		
-		    			 day1 = new JComboBox(arr3);  
+		    			 day1 = new JComboBox<String>(arr3);  
 		    	        day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
 		    	        panel.add(day1);
 		    	        break;
@@ -191,7 +188,7 @@ public class ShowInventoryPanel {
 								arr33[i]=i+1+"日";  
 							}  
 		        		
-							day1 = new JComboBox(arr33);  
+							day1 = new JComboBox<String>(arr33);  
 							day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
 							panel.add(day1);
 						}
@@ -201,7 +198,7 @@ public class ShowInventoryPanel {
 		    				arr333[i]=i+1+"日";  
 							}  
 		        		
-							day1 = new JComboBox(arr333);  
+							day1 = new JComboBox<String>(arr333);  
 							day1.setBounds(month1.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
 							panel.add(day1);
 							
@@ -215,17 +212,17 @@ public class ShowInventoryPanel {
         	
         });
        
-        year2 = new JComboBox(arr1);  
+        year2 = new JComboBox<String>(arr1);  
         year2.setBounds(panel.getWidth()*10/18,  startdate.getY(), panel.getWidth()/11, panel.getHeight()/20);
       
-        month2 = new JComboBox(arr2);  
+        month2 = new JComboBox<String>(arr2);  
         month2.setBounds(year2.getX()+year2.getWidth()+panel.getWidth()/100,startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
  
         for(int i=0;i<31;i++){  
              arr30[i]=i+1+"日";  
          }  
      
-        day2 = new JComboBox(arr30);  
+        day2 = new JComboBox<String>(arr30);  
         day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100,startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
         panel.add(day2);
         month2.addItemListener(new ItemListener(){
@@ -248,7 +245,7 @@ public class ShowInventoryPanel {
              				
              			}  
              		
-             			day2 = new JComboBox(arr31);  
+             			day2 = new JComboBox<String>(arr31);  
              	        day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
              	        panel.add(day2);	
              	        break;
@@ -261,7 +258,7 @@ public class ShowInventoryPanel {
      		    				arr3[i]=i+1+"日";  
      		    			}  
      		        		
-     		    			 day2 = new JComboBox(arr3);  
+     		    			 day2 = new JComboBox<String>(arr3);  
      		    	        day2.setBounds(month2.getX()+month1.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
      		    	        panel.add(day2);
      		    	        break;
@@ -272,7 +269,7 @@ public class ShowInventoryPanel {
      								arr33[i]=i+1+"日";  
      							}  
      		        		
-     							day2 = new JComboBox(arr33);  
+     							day2 = new JComboBox<String>(arr33);  
      							day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
      							panel.add(day2);
      						}
@@ -282,7 +279,7 @@ public class ShowInventoryPanel {
      		    				arr333[i]=i+1+"日";  
      							}  
      		        		
-     							day2 = new JComboBox(arr333);  
+     							day2 = new JComboBox<String>(arr333);  
      							day2.setBounds(month2.getX()+month2.getWidth()+panel.getWidth()/100, startdate.getY(), panel.getWidth()/12, panel.getHeight()/20);
      							panel.add(day2);
      							
@@ -379,6 +376,7 @@ public class ShowInventoryPanel {
 		outInfo.add(scrollPane2);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public String[][] initInTableData(){
 		y1=year1.getSelectedIndex()+2000;
 		m1=month1.getSelectedIndex()+1;
@@ -443,6 +441,7 @@ public class ShowInventoryPanel {
         return content;
 }
 	
+	@SuppressWarnings("deprecation")
 	public String[][] initOutTableData(){
 		String[][] content =new String[20][5];
 		 for(int x=0;x<20;x++)

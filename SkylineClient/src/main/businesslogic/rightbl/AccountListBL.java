@@ -14,10 +14,7 @@ import main.vo.AccountVO;
 
 public class AccountListBL {
 	private AccountListPO po;
-	private String codeList;
-	
 	public AccountListBL(String codeList){
-		this.codeList=codeList;
 	}
 	
 	
@@ -25,7 +22,6 @@ public class AccountListBL {
 	public AccountListBL(AccountListPO po, String codeList) {
 		super();
 		this.po = po;
-		this.codeList = codeList;
 	}
 
 

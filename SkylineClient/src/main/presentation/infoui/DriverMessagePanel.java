@@ -14,11 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
@@ -183,8 +180,7 @@ public class DriverMessagePanel {
 								(String) table.getValueAt(x,7),
 								((WritePanel)panel).getBelong()
 								                );
-						InfoBLService service1=ConstructFactory.InfoFactory();
-						service1.modifyDriver(vo);
+						service.modifyDriver(vo);
 					}
 				}
 				refresh();

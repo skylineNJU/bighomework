@@ -1,12 +1,10 @@
 package main.presentation.receiptui;
 
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,7 +13,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import main.businesslogicservice.FinanceBLService;
 import main.businesslogicservice.LoadBLService;
 import main.businesslogicservice.ReceiveBLService;
 import main.businesslogicservice.WarehouseBLService;
@@ -24,7 +21,6 @@ import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.ReceiptRecordMemory;
-import main.vo.EarnVO;
 import main.vo.LobbyLoading;
 import main.vo.LobbyReceptionVO;
 import main.vo.OrderVO;

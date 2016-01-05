@@ -59,10 +59,6 @@ public class ManagerStaffPanel {
 	private JButton delButton;
 	private JButton sButton;
 
-	//新增员工界面
-	private String[] allJob = {"快递员","营业厅业务员","司机","中转中西业务员","仓库管理人员","财务人员",
-			"总经理","账户管理人员"};
-	
 	public ManagerStaffPanel(){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
@@ -151,12 +147,14 @@ public class ManagerStaffPanel {
 		InfoBLService service = ConstructFactory.InfoFactory();
 		ArrayList<StaffVO> staffList = service.readStaff(unit);
 		tableData = new String[staffList.size()][tableTitle.length];
-		for(int i =0;i<tableTitle.length;i++){
-			tableData[i][0] = staffList.get(i).getName();
-			tableData[i][1] = staffList.get(i).getJob();
-			tableData[i][2] = staffList.get(i).getUnit();
-			tableData[i][3] = staffList.get(i).getWorkage();
-			tableData[i][4] = staffList.get(i).getCode();
+		int x=0;
+		for(StaffVO staff:staffList){
+			tableData[x][0] = staff.getName();
+			tableData[x][1] = staff.getJob();
+			tableData[x][2] = staff.getUnit();
+			tableData[x][3] = staff.getWorkage();
+			tableData[x][4] = staff.getCode();
+			x++;
 		}
 	}
 	
@@ -185,11 +183,9 @@ public class ManagerStaffPanel {
 		sButton.setBounds(tabWidth*4/5, tabHeight*17/20, tabWidth/10, tabHeight/16);
 		ensureButton.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				inquirePane.remove(scroll);
-				inquirePane.remove(table);
-				inquirePane.remove(unitBox);
-				initTable();
-				inquirePane.repaint();
+				initData((String) unitBox.getSelectedItem());
+				DefaultTableModel model=(DefaultTableModel) table.getModel();
+				model.setDataVector(tableData,tableTitle);
 			}
 		});
 		delButton.addMouseListener(new MouseAdapter() {

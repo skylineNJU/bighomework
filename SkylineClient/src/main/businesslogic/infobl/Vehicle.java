@@ -2,16 +2,11 @@ package main.businesslogic.infobl;
 
 import java.util.ArrayList;
 
-import main.data.finance.FinanceDataController;
 import main.data.info.InfoDataController;
-import main.dataservice.FinanceDataService;
 import main.dataservice.InfoDataService;
-import main.po.BankAccountPO;
-import main.po.BankList;
 import main.po.VehicleInfoPO;
 import main.po.VehicleList2PO;
 import main.po.VehicleListPO;
-import main.vo.BankAccountVO;
 import main.vo.VehicleVO;
 
 public class Vehicle {

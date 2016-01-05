@@ -2,7 +2,6 @@ package main.businesslogic.infobl;
 
 import java.util.ArrayList;
 
-import main.businesslogic.financebl.Balance;
 import main.businesslogicservice.InfoBLService;
 import main.data.info.InfoDataController;
 import main.po.UnitPO;

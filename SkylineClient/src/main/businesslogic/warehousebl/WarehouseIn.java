@@ -4,11 +4,8 @@ import java.util.ArrayList;
 
 import main.data.warehouse.WarehouseDataController;
 import main.dataservice.WarehouseDataService;
-import main.po.InventoryList;
-import main.po.InventoryPO;
 import main.po.WarehouseInList;
 import main.po.WarehouseInPO;
-import main.vo.InventoryVO;
 import main.vo.WarehouseInVO;
 
 public class WarehouseIn {

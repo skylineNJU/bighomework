@@ -14,7 +14,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import main.State.TransType;
@@ -22,14 +21,12 @@ import main.businesslogicservice.WarehouseBLService;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
-import main.presentation.mainui.FrameMain;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.WarehouseOutVO;
 
 public class AddWarehouseOutReceiptPanel {
-	private FrameMain frame;
 	private JPanel panel;
 	private JPanel listpanel;
 	private JButton ok;
@@ -37,13 +34,9 @@ public class AddWarehouseOutReceiptPanel {
 	private JLabel outList;
 	private JLabel cargoinfo;
 	private JLabel bar;
-	private JLabel code;
-	private JLabel tip1;
-	private JLabel tip2;
 	private JLabel outDate;
 	private JLabel distination;	
 	private JLabel loadingtype;
-	private JLabel transfercode;
 	//汽运编号
 	private JLabel vehicleCode;
 	private JLabel damageCondition;
@@ -55,16 +48,12 @@ public class AddWarehouseOutReceiptPanel {
 	private JLabel line1;
 	private JLabel line2;
 	private JLabel line3;
-	private JComboBox year;
-	private JComboBox month;
-	private JComboBox day;
+	private JComboBox<?> year;
+	private JComboBox<?> month;
+	private JComboBox<?> day;
 	private JTextField bartext;
-	private JTextField codetext;
 	private JTextField distext;
 	private JTextField vehtext;
-	private JTextField transtext;
-	private JScrollPane scrollPane;
-	
 	public AddWarehouseOutReceiptPanel(){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);
@@ -201,15 +190,15 @@ public class AddWarehouseOutReceiptPanel {
 		
 		
 
-		year= new JComboBox();
-		month= new JComboBox();
-		day= new JComboBox();
+		year= new JComboBox<Object>();
+		month= new JComboBox<Object>();
+		day= new JComboBox<Object>();
 		String[] arr1=new String[1000];//数组时个对象,对象在使用前要初始化  
         for(int i=0;i<1000;i++){  
             arr1[i] = i+2000+"年";  
         }         
         
-        year = new JComboBox(arr1);  
+        year = new JComboBox<Object>(arr1);  
         Calendar calendar = Calendar.getInstance();
         
     	String	y = String.valueOf(calendar.get(Calendar.YEAR))+"年";
@@ -225,7 +214,7 @@ public class AddWarehouseOutReceiptPanel {
             arr2[i]=i+1+"月";  
         }  
     
-        month = new JComboBox(arr2);  
+        month = new JComboBox<Object>(arr2);  
         String	m = String.valueOf(calendar.get(Calendar.MONTH)+1)+"月";
     	for(String  m1: arr2){
     		if(m1.equals(m)){
@@ -239,7 +228,7 @@ public class AddWarehouseOutReceiptPanel {
              arr30[i]=i+1+"日";  
          }  
      
-        day = new JComboBox(arr30);  
+        day = new JComboBox<Object>(arr30);  
         
     	String	d = String.valueOf(calendar.get(Calendar.DATE))+"日";
     	for(String  d1: arr30){
@@ -269,7 +258,7 @@ public class AddWarehouseOutReceiptPanel {
         				
         			}  
         		
-        			day = new JComboBox(arr31);  
+        			day = new JComboBox<Object>(arr31);  
         	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,outDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
         	        listpanel.add(day);	
         	        break;
@@ -282,7 +271,7 @@ public class AddWarehouseOutReceiptPanel {
 		    				arr3[i]=i+1+"日";  
 		    			}  
 		        		
-		    			 day = new JComboBox(arr3);  
+		    			 day = new JComboBox<Object>(arr3);  
 		    	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,outDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 		    	        listpanel.add(day);
 		    	        break;
@@ -293,7 +282,7 @@ public class AddWarehouseOutReceiptPanel {
 								arr33[i]=i+1+"日";  
 							}  
 		        		
-							day = new JComboBox(arr33);  
+							day = new JComboBox<Object>(arr33);  
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,outDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 							listpanel.add(day);
 						}
@@ -303,7 +292,7 @@ public class AddWarehouseOutReceiptPanel {
 		    				arr333[i]=i+1+"日";  
 							}  
 		        		
-							day = new JComboBox(arr333);  
+							day = new JComboBox<Object>(arr333);  
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,outDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 							listpanel.add(day);
 							

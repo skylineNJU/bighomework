@@ -1,7 +1,5 @@
 package main.businesslogic.infobl;
 
-import java.util.ArrayList;
-
 import main.data.info.InfoDataController;
 import main.dataservice.InfoDataService;
 import main.po.CityPO;

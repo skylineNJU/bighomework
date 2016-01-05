@@ -1,19 +1,10 @@
 package main.presentation.guestui;
 
-import javax.swing.JPanel;
+public class AboutUsPanel {
 
-import main.presentation.mainui.FrameMain;
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
 
-public class AboutUsPanel {	
-	private FrameMain frame;
-	private JPanel panel;
-	
-	
- public AboutUsPanel(){
-	 this.frame=FrameMain.getFrame();
-		panel=FrameMain.getContentPanel();
- }
- public void init(){
-	 
- }
 }

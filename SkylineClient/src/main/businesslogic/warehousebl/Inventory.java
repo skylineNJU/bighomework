@@ -15,9 +15,7 @@ public class Inventory {
 	private	String orderCode;
 	private	String damageCondition;
 	private	String area;
- 	private String receiptType;
- 	private String cityCode;
-	private	int row;
+ 	private	int row;
 	private	int shelf;
 	private	int position;
 	private	String destination;
@@ -37,8 +35,8 @@ public class Inventory {
 		this.position=vo.getPosition();
 		this.destination=vo.getDestination();
 		this.arriveDate=vo.getArriveDate();
-		this.receiptType = vo.getReceiptType();
-		this.cityCode=vo.getCityCode();
+		vo.getReceiptType();
+		vo.getCityCode();
 	}
 	
 	public Inventory(String Code){

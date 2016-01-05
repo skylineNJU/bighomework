@@ -1,5 +1,4 @@
 package main.presentation.mainui;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -9,7 +8,6 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.plaf.FontUIResource;
 
 @SuppressWarnings("serial")
 public class FrameMain extends JFrame{
@@ -24,7 +22,7 @@ public class FrameMain extends JFrame{
 	private FrameMain(){
 		try
 	    {
-	       // org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+	      //org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
 	    }
 	    catch(Exception e)
 	    {

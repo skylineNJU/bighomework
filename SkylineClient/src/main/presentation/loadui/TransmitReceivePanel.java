@@ -4,26 +4,19 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Calendar;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import main.businesslogic.receiptbl.IntermediateReceiptCode;
-import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.ReceiveBLService;
 import main.businesslogicservice.receiptblService.IntermediateReceipt;
-import main.businesslogicservice.receiptblService.LobbyReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.IntermediateMemory;
-import main.presentation.mainui.memory.LobbyMemory;
-import main.vo.DriverVO;
 import main.vo.TransitReceptionVO;
 
 public class TransmitReceivePanel {
@@ -121,7 +114,6 @@ int panelHeight=0;
 		saveButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				String belong= ((WritePanel)panel).getBelong();
-				Date dt=new Date();				
 				ReceiveBLService service=ConstructFactory.ReceiveFactory();
 				String code=null;
 				IntermediateMemory memory=(IntermediateMemory) ((WritePanel)panel).getMemory();

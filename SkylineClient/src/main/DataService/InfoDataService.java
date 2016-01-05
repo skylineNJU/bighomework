@@ -1,6 +1,5 @@
 package main.dataservice;
 
-import main.po.BankList;
 import main.po.CityPO;
 import main.po.DriverInfoPO;
 import main.po.DriverList;

@@ -12,8 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;

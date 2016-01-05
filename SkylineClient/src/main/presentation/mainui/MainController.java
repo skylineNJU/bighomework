@@ -8,12 +8,8 @@ import main.presentation.guestui.Guestui;
 import main.presentation.guestui.GuestuiController;
 import main.presentation.infoui.Infoui;
 import main.presentation.infoui.InfouiControl;
-import main.presentation.loadui.LoadVehiclePanel;
 import main.presentation.loadui.Loadui;
 import main.presentation.loadui.LoaduiController;
-import main.presentation.loadui.ReceiveListPanel;
-import main.presentation.loadui.TransmitReceivePanel;
-import main.presentation.mainui.memory.WarehouseMemory;
 import main.presentation.receiptui.Receiptui;
 import main.presentation.receiptui.ReceiptuiControl;
 import main.presentation.receiveui.ReceiveController;
@@ -39,9 +35,6 @@ public class MainController {
 	private static ReceiptuiControl receiptuiControl = new ReceiptuiControl();
 	private static Client client;
 	
-	private static LoadVehiclePanel loadVehicle;
-	private static ReceiveListPanel receiveList;
-	private static TransmitReceivePanel transmitReceive;
 	private static CourierPanel courierpanel;
 	private static FinanceStaffPanel financeStaffPanel;
 	private static WritePanel writepanel;

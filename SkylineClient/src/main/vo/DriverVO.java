@@ -1,7 +1,5 @@
 package main.vo;
 
-import main.businesslogic.infobl.Driver;
-
 public class DriverVO {
 	private String name;
 	private String code;

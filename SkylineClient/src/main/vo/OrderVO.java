@@ -5,6 +5,10 @@ import main.po.OrderPO.Size;
 import main.po.Type;
 
 public class OrderVO extends ReceiptVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String senderName;
 	private String senderAddress;
 	private String senderCom;

@@ -12,7 +12,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
-import main.businesslogicservice.FinanceBLService;
 import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.RightBLService;
 import main.constructfactory.ConstructFactory;
@@ -21,8 +20,6 @@ import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.vo.AccountVO;
 import main.vo.CityVO;
-import main.vo.DistanceVO;
-import main.vo.IntermediateInfoVO;
 
 public class RightAdminPanel {
 	private JPanel panel;
@@ -39,7 +36,6 @@ public class RightAdminPanel {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private String[] identityString;
-	private String[] institutionString;
 	private String[] cityString;
 	DefaultTableModel model ;
 	//writePanel上的组件
@@ -168,7 +164,6 @@ public class RightAdminPanel {
 				for(int x=0;x<selectRow.length;x++){
 		//"账号"“密码”“权限”“机构”
 					if(selectRow[x]){
-						RightBLService service=ConstructFactory.RightFactory();
 						AccountVO vo=new AccountVO(Rights.valueOf((String)table.getValueAt(x,2)),
 								(String)table.getValueAt(x,0),
 								(String)table.getValueAt(x,1),

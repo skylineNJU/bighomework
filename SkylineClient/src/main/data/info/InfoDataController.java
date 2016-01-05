@@ -1,11 +1,9 @@
 package main.data.info;
 
 import main.dataservice.InfoDataService;
-import main.po.BankList;
 import main.po.CityPO;
 import main.po.DriverInfoPO;
 import main.po.DriverList;
-import main.po.InstitutionPO;
 import main.po.IntermediateInfo;
 import main.po.LobbyInfo;
 import main.po.LobbyInfoList;

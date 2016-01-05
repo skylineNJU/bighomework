@@ -12,13 +12,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.InfoBLService;
-import main.businesslogicservice.WarehouseBLService;
 import main.constructfactory.ConstructFactory;
-import main.po.CityPO;
 import main.presentation.mainui.MainController;
 import main.vo.CityVO;
 import main.vo.IntermediateInfoVO;
-import main.vo.InventoryVO;
 import main.vo.LobbyInfoVO;
 import main.vo.WarehouseInfoVO;
 

@@ -14,6 +14,10 @@ import main.presentation.rightui.Rightui;
 //总经理
 public class ManagerPanel extends GuidePanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JButton modifyPassWord = new JButton("修改密码");//修改密码
 	private JButton managerStaff = new JButton("人员管理");//人员管理

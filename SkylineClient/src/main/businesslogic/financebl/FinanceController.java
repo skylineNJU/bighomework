@@ -3,7 +3,6 @@ package main.businesslogic.financebl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.FinanceBLService;
-import main.po.CollectionPO;
 import main.vo.BankAccountVO;
 import main.vo.BuildAccountVO;
 import main.vo.CostVO;
@@ -15,6 +14,7 @@ import main.vo.SalaryVO;
 public class FinanceController implements FinanceBLService {
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public ArrayList<ArrayList> showStatisticsList(String date) {
 		return new StatisticsList().showStatisticsList(date);
 	}

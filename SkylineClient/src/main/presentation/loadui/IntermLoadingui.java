@@ -11,9 +11,6 @@ import main.presentation.mainui.WritePanel;
 public class IntermLoadingui {
 	private JPanel panel;
 	private JTabbedPane tabbedPane;
-	private PlaneLoadingui planeUI;
-	private CarLoadingui carUI;
-	private TrainLoadingui trainUI;
 	private CreateCar ccr;
 	private CreatePlane cpl;
 	private CreateTrain ctr;
@@ -27,11 +24,11 @@ public class IntermLoadingui {
 		tabbedPane.setLocation(panel.getWidth()/18,panel.getHeight()/12);
 		panel.add(tabbedPane);
 		cpl=new CreatePlane(tabbedPane, panel);
-		planeUI=new PlaneLoadingui(cpl, tabbedPane,(WritePanel) panel);
+		new PlaneLoadingui(cpl, tabbedPane,(WritePanel) panel);
 		ccr=new CreateCar(tabbedPane, panel);
-		carUI=new CarLoadingui(ccr, tabbedPane,(WritePanel)panel);
+		new CarLoadingui(ccr, tabbedPane,(WritePanel)panel);
 		ctr=new CreateTrain(tabbedPane, panel);
-		trainUI=new TrainLoadingui(ctr, tabbedPane, (WritePanel) panel);
+		new TrainLoadingui(ctr, tabbedPane, (WritePanel) panel);
 		tabbedPane.addChangeListener(new ChangeListener(){
 
 			@Override

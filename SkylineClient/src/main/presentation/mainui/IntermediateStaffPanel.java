@@ -7,14 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import main.presentation.financeui.Financeui;
 import main.presentation.loadui.Loadui;
-import main.presentation.loadui.LoaduiController;
 import main.presentation.rightui.Rightui;
 
 @SuppressWarnings("serial")
 public class IntermediateStaffPanel extends GuidePanel{
-	private static LoaduiController loaduiController;
 	private JButton transmitReceive=new JButton("中转接收");
 	private JButton loadAdmin=new JButton("装运管理");
 	private JButton receiveList=new JButton("接收单列表");

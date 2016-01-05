@@ -1,5 +1,4 @@
 package main.businesslogic.loadbl;
-import main.businesslogic.financebl.UpdateBank;
 import main.data.load.LoadDataController;
 import main.dataservice.LoadDataService;
 import main.po.PlaneLoadingPO;
@@ -16,8 +15,6 @@ public class PlaneLoading{
 	private double freight;//тк╥я
 	private String code;
 	private PlaneLoadingPO po;
-	private String belong;
-	
 	public PlaneLoading(PlaneLoadingVO loadInfo){
 		loadingDate=loadInfo.getLoadingDate();
 		this.flightNum=loadInfo.getCarTourNum();
@@ -29,7 +26,7 @@ public class PlaneLoading{
 		this.shipment=loadInfo.getShipment();
 		this.freight=loadInfo.getFreight();
 		this.code=loadInfo.getCode();
-		this.belong=loadInfo.getBelong();
+		loadInfo.getBelong();
 	}
 	
 	public void saveInfo(){

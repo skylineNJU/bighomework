@@ -16,7 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.FinanceBLService;
 import main.constructfactory.ConstructFactory;
-import main.po.CollectionPO;
 import main.presentation.mainui.MainController;
 import main.vo.BankAccountVO;
 import main.vo.EarnVO;

@@ -1,6 +1,10 @@
 package main.vo;
 
 public class TrainLoadingVO extends ReceiptVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String loadingDate;//装运日期
 	private String trainNum;//中转中心汽运编号
 	private String trainTourNum;//车次号

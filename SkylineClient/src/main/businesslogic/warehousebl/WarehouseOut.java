@@ -6,11 +6,8 @@ import java.util.ArrayList;
 import main.State.TransType;
 import main.data.warehouse.WarehouseDataController;
 import main.dataservice.WarehouseDataService;
-import main.po.WarehouseInList;
-import main.po.WarehouseInPO;
 import main.po.WarehouseOutList;
 import main.po.WarehouseOutPO;
-import main.vo.WarehouseInVO;
 import main.vo.WarehouseOutVO;
 
 public class WarehouseOut {
@@ -22,10 +19,6 @@ public class WarehouseOut {
 	private String transferCode;
 	private String vehicleCode;
 	private String damageCondition;
-	private String area;
-	private int row;
-	private int shelf;
-	private int position;
 	private WarehouseOutPO po;
 	
 	public WarehouseOut(WarehouseOutVO who){
@@ -37,10 +30,6 @@ public class WarehouseOut {
 		this.transferCode=who.getTransferCode();
 		this.vehicleCode=who.getVehicleCode();
 		this.damageCondition = who.getDamageCondition();
-		this.area=who.getArea();
-		this.row=who.getRow();
-		this.position=who.getPosition();
-		this.shelf=who.getShelf();
 	}
 	
 	public WarehouseOut(){

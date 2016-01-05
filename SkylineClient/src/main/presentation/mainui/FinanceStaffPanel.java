@@ -10,7 +10,7 @@ import main.presentation.financeui.Financeui;
 import main.presentation.rightui.Rightui;
 
 public class FinanceStaffPanel extends GuidePanel{
-	@SuppressWarnings("serial")
+
 	
 	private static final long serialVersionUID = 1L;
 	

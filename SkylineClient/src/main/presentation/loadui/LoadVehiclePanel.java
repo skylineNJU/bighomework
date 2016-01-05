@@ -17,9 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import main.businesslogicservice.LoadBLService;
 import main.businesslogicservice.receiptblService.IntermediateReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
@@ -45,12 +42,6 @@ public class LoadVehiclePanel {
 	private JComboBox<String> carYearBox;//表示年份的组合框
 	private JComboBox<String> carMonthBox;//表示月份的组合框
 	private JComboBox<String> carDayBox;//表示天的组合框
-	private JComboBox<String> planeYearBox;
-	private JComboBox<String> planeMonthBox;
-	private JComboBox<String> planeDayBox;
-	private JComboBox<String> TrainYearBox;
-	private JComboBox<String> TrainMonthBox;
-	private JComboBox<String> TrainDayBox;
 	private JTable planeTable;//飞机表格
 	private JTable trainTable;
 	private JTable carTable;

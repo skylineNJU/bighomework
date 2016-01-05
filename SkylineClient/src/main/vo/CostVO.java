@@ -3,6 +3,10 @@ package main.vo;
 //Ö§³öVO
 public class CostVO extends ReceiptVO{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String bankAccount;
 	private double cost;
 	private String comment;

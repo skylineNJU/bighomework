@@ -6,6 +6,11 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 public class PageTableModel extends AbstractTableModel implements TableModel,TableModelListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private TableModel baseModel;
 	
 	/**当前页，从0开始编号.

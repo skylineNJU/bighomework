@@ -1,11 +1,8 @@
 package main.data.right;
 
 import main.dataservice.RightDataService;
-import main.State.RightType;
 import main.po.AccountListPO;
 import main.po.AccountPO;
-import main.po.PlaneLoadingPO;
-import main.po.VehicleLoadListPO;
 import main.presentation.mainui.MainController;
 import main.socketservice.Client;
 

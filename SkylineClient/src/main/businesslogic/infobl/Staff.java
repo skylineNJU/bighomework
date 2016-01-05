@@ -6,11 +6,8 @@ import main.data.info.InfoDataController;
 import main.dataservice.InfoDataService;
 import main.po.StaffList2PO;
 import main.po.StaffListPO;
-import main.po.VehicleInfoPO;
-import main.po.VehicleList2PO;
 import main.po.WorkerPO;
 import main.vo.StaffVO;
-import main.vo.VehicleVO;
 
 public class Staff {
 	private String name;//ÐÕÃû

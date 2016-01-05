@@ -2,7 +2,6 @@ package main.businesslogicservice;
 
 import java.util.ArrayList;
 
-import main.vo.EarnVO;
 import main.vo.LobbyReceptionVO;
 import main.vo.OrderVO;
 import main.vo.TransitReceptionVO;

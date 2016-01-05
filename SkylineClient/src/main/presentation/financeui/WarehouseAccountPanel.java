@@ -3,21 +3,17 @@ package main.presentation.financeui;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import main.businesslogicservice.FinanceBLService;
 import main.businesslogicservice.WarehouseBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
-import main.vo.BankAccountVO;
 import main.vo.InventoryVO;
 
 public class WarehouseAccountPanel {

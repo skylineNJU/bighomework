@@ -32,6 +32,7 @@ public interface FinanceBLService {
 	
 	public DistanceVO getDistance();
 	
+	@SuppressWarnings("rawtypes")
 	public ArrayList<ArrayList> showStatisticsList(String date);
 	
 	public ArrayList<EarnVO> showLobbyEarn(String date,String unit);

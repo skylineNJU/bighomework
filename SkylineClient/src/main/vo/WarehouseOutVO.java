@@ -4,6 +4,10 @@ import main.businesslogic.warehousebl.WarehouseOut;
 import main.State.TransType;
 
 public class WarehouseOutVO extends ReceiptVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String bar;
 	private String code;
 	private String destination;

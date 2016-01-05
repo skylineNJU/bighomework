@@ -3,7 +3,6 @@ package main.businesslogic.receiptbl;
 import main.data.receipt.ReceiptController;
 import main.dataservice.receiptdataservice.LobbyReceiptDataService;
 import main.po.LobbyReceiptPO;
-import main.vo.LobbyLoading;
 import main.vo.LobbyReceiptVO;
 
 public class LobbyReceiptCode {

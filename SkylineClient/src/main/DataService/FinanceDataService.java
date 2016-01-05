@@ -1,7 +1,5 @@
 package main.dataservice;
 
-import java.util.ArrayList;
-
 import main.po.BankAccountPO;
 import main.po.BankList;
 import main.po.BuildAccountPO;

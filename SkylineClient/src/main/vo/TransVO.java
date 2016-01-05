@@ -3,6 +3,10 @@ package main.vo;
 import main.State.TransType;
 
 public class TransVO extends ReceiptVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TransType type;
 	private String Transcode;
 	private String Vehiclecode;

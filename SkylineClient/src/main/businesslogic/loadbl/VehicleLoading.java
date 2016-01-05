@@ -1,6 +1,5 @@
 package main.businesslogic.loadbl;
 
-import main.businesslogic.financebl.UpdateBank;
 import main.data.load.LoadDataController;
 import main.dataservice.LoadDataService;
 import main.po.VehicleLoadingPO;
@@ -18,8 +17,6 @@ public class VehicleLoading{
 	private double freight;//тк╥я
 	private String code;
 	private VehicleLoadingPO po;
-	private String belong;
-	
 	public VehicleLoading(VehicleLoadingVO loadingInfo){
 		this.loadingDate=loadingInfo.getLoadingDate();
 		this.carNum=loadingInfo.getCarNum();
@@ -31,7 +28,7 @@ public class VehicleLoading{
 		this.shipment=loadingInfo.getShipment();
 		this.freight=loadingInfo.getFreight();
 		this.code=loadingInfo.getCode();
-		this.belong=loadingInfo.getBelong();
+		loadingInfo.getBelong();
 	}
 	
 	public void saveInfo(){

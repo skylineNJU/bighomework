@@ -1,7 +1,5 @@
 package main.po;
 
-import java.util.List;
-
 //审批未通过单号
 public class ApprovalPO extends Message{
 

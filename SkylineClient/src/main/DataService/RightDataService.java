@@ -2,8 +2,6 @@ package main.dataservice;
 
 import main.po.AccountListPO;
 import main.po.AccountPO;
-import main.po.DriverInfoPO;
-import main.State.RightType;
 
 //权限管理数据接口
 public interface RightDataService {

@@ -2,18 +2,11 @@ package main.presentation.warehouseui;
 
 
 import java.awt.Dimension;
-import java.awt.FileDialog;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -24,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.TableModel;
-
 import main.businesslogicservice.WarehouseBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
@@ -42,7 +33,7 @@ public class CheckInventoryPanel {
 	private JLabel title;//标题
 	private JLabel ddl;
 	private JTextField areanumber;
-	private JComboBox area;
+	private JComboBox<String> area;
 	private String[] areas = new String[]{"航运区","铁运区","汽运区","机动区"};
  	private JScrollPane scrollPane;
 	private JTable table;
@@ -74,7 +65,7 @@ public class CheckInventoryPanel {
 		title.setBounds(panel.getWidth()/18, panel.getHeight()/11, panel.getWidth()/6, panel.getHeight()/20 );
 		panel.add(title);
 		
-		area = new JComboBox(areas);
+		area = new JComboBox<String>(areas);
 		area.setBounds(panel.getWidth()/8, panel.getHeight()/11, panel.getWidth()/10, panel.getHeight()/20 );
 		area.setVisible(true);
 		panel.add(area);

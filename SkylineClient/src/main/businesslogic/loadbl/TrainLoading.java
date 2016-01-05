@@ -17,8 +17,6 @@ public class TrainLoading{
 	private double freight;//тк╥я
 	private String code;
 	private TrainLoadingPO po;
-	private String belong;
-	
 	public TrainLoading(TrainLoadingVO vo){
 		this.loadingDate=vo.getLoadingDate();
 		this.trainNum=vo.getCarNum();
@@ -30,7 +28,7 @@ public class TrainLoading{
 		this.shipment=vo.getShipment();
 		this.freight=vo.getFreight();
 		this.code=vo.getCode();
-		this.belong=vo.getBelong();
+		vo.getBelong();
 	}
 	
 	public void saveInfo(){

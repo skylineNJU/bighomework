@@ -65,7 +65,8 @@ public class ExportExcel {
 		}
 	}
 	
-	 public void export() {
+	 @SuppressWarnings("deprecation")
+	public void export() {
 		 if(canExport){
 		    HSSFWorkbook wb = new HSSFWorkbook();
 		    HSSFSheet hs = wb.createSheet();

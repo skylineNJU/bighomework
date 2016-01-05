@@ -11,19 +11,12 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-
-import main.businesslogicservice.FinanceBLService;
-import main.businesslogicservice.LoadBLService;
 import main.businesslogicservice.ReceiveBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.IntermediateMemory;
-import main.vo.EarnVO;
-import main.vo.PlaneLoadingVO;
 import main.vo.TransitReceptionVO;
 
 public class ReceiveListPanel {
@@ -38,7 +31,6 @@ public class ReceiveListPanel {
 	private JComboBox<String> yearBox;//表示年份的组合框
 	private JComboBox<String> monthBox;//表示月份的组合框
 	private JComboBox<String> dayBox;//表示天的组合框
-	private JButton searchFromDate;//根据日期查询
 	private JTable table;
 	private JButton ensureButton;
 	private JLabel yearLabel;
@@ -202,9 +194,7 @@ public void title(){
 	}
  
  public void initReceiveTable(JPanel panel,JTable table){
-		int panelWidth=panel.getWidth()-26;
-	    int panelHeight=panel.getHeight()-26;
-	    tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
+		tableTitle = new String[]{"接收单单号", "订单单号", "中转中心编号"};
 	    tableData = new String[][]{{"1416191089", "333333", "888888"}};
 	    tableData = this.getReceiveTableData();
 		

@@ -5,7 +5,11 @@ import main.businesslogic.warehousebl.WarehouseIn;
 
 public class WarehouseInVO extends ReceiptVO{
 
-// TODO Auto-generated constructor stub
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// TODO Auto-generated constructor stub
 	private String bar;//订单号
 	private String code;//入库单编号
 	private String destination;//目的地

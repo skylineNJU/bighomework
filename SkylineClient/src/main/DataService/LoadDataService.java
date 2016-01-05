@@ -1,7 +1,5 @@
 package main.dataservice;
 
-import java.util.List;
-
 import main.po.LoadingInfoPO;
 import main.po.LobbyLoadingList;
 import main.po.PlaneLoadingListPO;

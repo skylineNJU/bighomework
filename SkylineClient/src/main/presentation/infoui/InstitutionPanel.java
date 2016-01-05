@@ -43,15 +43,12 @@ public class InstitutionPanel {
 	private String[][] tableData1;
 	private String[][] tableData11;
 	private String[][] tableData2;
-	private JLabel citys;
-	private JLabel newWarehouse;
 	private JLabel newInterm;
 	private JLabel modifty;
 	private JLabel save;
 	private JLabel newLobby;
 	private JLabel ok;
 	private JLabel delete;
-	private JLabel deleteW;
 	private JTextField city;
 	private JLabel message;
 	private	DefaultTableModel   defaultModel11 ;
@@ -212,8 +209,7 @@ public class InstitutionPanel {
 	} 
 	
 	public void Button(){
-		//可用符号代替
-		newWarehouse = new JLabel("新增仓库");
+		new JLabel("新增仓库");
 		newInterm = new JLabel("新增中转中心");
 		save = new JLabel("保存");
 		newLobby = new JLabel("新增营业厅");
@@ -456,14 +452,6 @@ public class InstitutionPanel {
 		});
 		
 		
-		table1.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				 int row = table1.rowAtPoint(e.getPoint());
-				 int column=table1.columnAtPoint(e.getPoint());  
-				
-			}
-		});
-			
 		
 	}
 

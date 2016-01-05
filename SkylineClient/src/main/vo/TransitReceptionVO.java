@@ -1,6 +1,10 @@
 package main.vo;
 
 public class TransitReceptionVO extends ReceiptVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int receiveYear;//接收年份
 	private int receiveMonth;//接收月份
 	private int receiveDay;//接收天

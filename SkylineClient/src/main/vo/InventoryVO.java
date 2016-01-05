@@ -7,7 +7,6 @@ public class InventoryVO {
  	private int outNum;
  	private String orderCode;
  	private String receiptType;
- 	private String bar;
  	private String damageCondition;
  	private String area;
  	private String cityCode;

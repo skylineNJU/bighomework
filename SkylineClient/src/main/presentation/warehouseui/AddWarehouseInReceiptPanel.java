@@ -15,7 +15,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import main.businesslogicservice.WarehouseBLService;
@@ -37,7 +36,6 @@ public class AddWarehouseInReceiptPanel {
 	private JButton cancel;
 	private JLabel tip;
 	private JLabel ok;
-	private JLabel cL;
 	private JLabel inList;
 	private JLabel cargoinfo;
 	private JLabel bar;
@@ -51,25 +49,21 @@ public class AddWarehouseInReceiptPanel {
 	private JLabel line2;
 	private JLabel line3;
 	private JLabel damageCondition;
-	private JLabel search;
 	private JCheckBox good;
 	private JCheckBox damage;
-	private JComboBox year;
-	private JComboBox month;
-	private JComboBox day;
+	private JComboBox<String> year;
+	private JComboBox<String> month;
+	private JComboBox<String> day;
 	private JCheckBox ShippingArea;
 	private JCheckBox RailwayArea;
 	private JCheckBox AutoArea;
 	private JCheckBox MotorArea;
 	private JTextField bartext;
-	private JTextField codetext;
 	private JTextField distext;
 	//private JTextField areatext;
 	private JTextField rowtext;
 	private JTextField shelftext;
 	private JTextField postext;
-	private JScrollPane scrollPane;
-	private TipFrame a ;
 	private ButtonGroup condition;
 	private ButtonGroup areaGroup;
 	
@@ -232,7 +226,7 @@ public class AddWarehouseInReceiptPanel {
             arr1[i] = i+2000+"年";  
         }         
         
-        year = new JComboBox(arr1);  
+        year = new JComboBox<String>(arr1);  
     	Calendar calendar = Calendar.getInstance();
     
     	String	y = String.valueOf(calendar.get(Calendar.YEAR))+"年";
@@ -249,7 +243,7 @@ public class AddWarehouseInReceiptPanel {
             arr2[i]=i+1+"月";  
         }  
     
-        month = new JComboBox(arr2);  
+        month = new JComboBox<String>(arr2);  
        
     	String	m = String.valueOf(calendar.get(Calendar.MONTH)+1)+"月";
     	for(String  m1: arr2){
@@ -265,7 +259,7 @@ public class AddWarehouseInReceiptPanel {
              arr30[i]=i+1+"日";  
          }  
      
-        day = new JComboBox(arr30);  
+        day = new JComboBox<String>(arr30);  
         
     	String	d = String.valueOf(calendar.get(Calendar.DATE))+"日";
     	for(String  d1: arr30){
@@ -296,7 +290,7 @@ public class AddWarehouseInReceiptPanel {
         				
         			}  
         		
-        			day = new JComboBox(arr31);  
+        			day = new JComboBox<String>(arr31);  
 
         	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
         	        listPanel.add(day);	
@@ -310,7 +304,7 @@ public class AddWarehouseInReceiptPanel {
 		    				arr3[i]=i+1+"日";  
 		    			}  
 		        		
-		    			 day = new JComboBox(arr3);  
+		    			 day = new JComboBox<String>(arr3);  
 		    		
 		    		    
 		    	        day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
@@ -323,7 +317,7 @@ public class AddWarehouseInReceiptPanel {
 								arr33[i]=i+1+"日";  
 							}  
 		        		
-							day = new JComboBox(arr33);  
+							day = new JComboBox<String>(arr33);  
 						
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 							listPanel.add(day);
@@ -334,7 +328,7 @@ public class AddWarehouseInReceiptPanel {
 		    				arr333[i]=i+1+"日";  
 							}  
 		        		
-							day = new JComboBox(arr333);  
+							day = new JComboBox<String>(arr333);  
 					    	
 							day.setBounds(month.getX()+month.getWidth()+panel.getWidth()/100,inDate.getY()+panel.getWidth()/50, panel.getWidth()/12, panel.getHeight()/20);
 							listPanel.add(day);
@@ -440,7 +434,7 @@ public class AddWarehouseInReceiptPanel {
 				}catch(Exception ex){
 					ex.printStackTrace();
 					System.err.println("！！重复订单号！！");
-					a = new TipFrame("请输入正确的订单号");
+					new TipFrame("请输入正确的订单号");
 				}
 			}
 		});

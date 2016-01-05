@@ -1,6 +1,10 @@
 package main.vo;
 
 public class PlaneLoadingVO extends ReceiptVO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String loadingDate;//装运日期
 	private String flightNum;//航班号
 	private String planeNum;//飞机号

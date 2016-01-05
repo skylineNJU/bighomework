@@ -3,12 +3,7 @@ package main.businesslogic.rightbl;
 import java.util.ArrayList;
 
 import main.businesslogicservice.RightBLService;
-import main.data.right.RightDataController;
-import main.po.AccountListPO;
-import main.po.AccountPO;
 import main.vo.AccountVO;
-import main.vo.BankAccountVO;
-import main.vo.DriverVO;
 
 public class RightController implements RightBLService{
 	
@@ -39,12 +34,8 @@ public class RightController implements RightBLService{
 		Account ac=new Account(account);
 		System.out.println(account.getRight());
 		account=ac.login(account);
-		if(ac!=null){
-			System.out.println(account.getRight());
+		System.out.println(account.getRight());
 		return true;
-		}
-		else
-			return false;
 	}
 
 	@Override
@@ -58,9 +49,6 @@ public class RightController implements RightBLService{
 	public ArrayList<AccountVO> inquireAccount(String codeList) {
 		// TODO Auto-generated method stub
 		AccountListBL bl=new AccountListBL(codeList);		
-		
-		Account account=new Account(codeList);
-		ArrayList<AccountVO> volist=account.inquire(codeList);
 		
 		return bl.inquire();
 	}
@@ -82,9 +70,6 @@ public class RightController implements RightBLService{
 	public ArrayList<AccountVO> inquireAccount() {
 		// TODO Auto-generated method stub
 		AccountListBL bl=new AccountListBL();		
-		
-		Account account=new Account();
-		ArrayList<AccountVO> volist=account.inquire();
 		
 		return bl.inquire();
 		

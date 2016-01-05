@@ -6,9 +6,6 @@ import main.data.receive.ReceiveDataController;
 import main.dataservice.ReceiveDataService;
 import main.po.CenterReceiveListPO;
 import main.po.CenterReceivePO;
-import main.po.OrderListPO;
-import main.po.OrderPO;
-import main.vo.OrderVO;
 import main.vo.TransitReceptionVO;
 
 public class TransitListBL {

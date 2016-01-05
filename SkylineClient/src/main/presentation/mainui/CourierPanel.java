@@ -5,15 +5,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.presentation.distributeui.Distributeui;
 import main.presentation.receiptui.Receiptui;
-import main.presentation.receiveui.ReceiveController;
 import main.presentation.receiveui.Receiveui;
 import main.presentation.rightui.Rightui;
-import main.presentation.rightui.RightuiController;
 
 @SuppressWarnings("serial")
 

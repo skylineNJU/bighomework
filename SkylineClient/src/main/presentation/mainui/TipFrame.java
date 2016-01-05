@@ -8,7 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 public class TipFrame extends javax.swing.JFrame {
-    private JLabel text;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel text;
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension scrSize = tk.getScreenSize();
  

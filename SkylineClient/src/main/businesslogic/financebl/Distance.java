@@ -10,7 +10,6 @@ import main.vo.DistanceVO;
 public class Distance {
 	
 	public DistanceVO getDistance(){
-		int counter = 0;
 		int cityNumber;
 		int cityNumCounter = 0;
 		FinanceDataService finance = new FinanceDataController();

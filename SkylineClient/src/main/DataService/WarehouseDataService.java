@@ -2,7 +2,6 @@ package main.dataservice;
 
 import java.util.ArrayList;
 
-import main.po.BankList;
 import main.po.CargoList;
 import main.po.InventoryList;
 import main.po.InventoryPO;

@@ -1,8 +1,6 @@
 package main.businesslogic.receivebl;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
-
 import main.data.receive.ReceiveDataController;
 import main.dataservice.ReceiveDataService;
 import main.po.LobbyReceiveListPO;

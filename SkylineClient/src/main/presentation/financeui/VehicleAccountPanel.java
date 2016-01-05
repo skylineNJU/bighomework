@@ -9,14 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import main.businesslogicservice.InfoBLService;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
-import main.presentation.mainui.WritePanel;
-import main.vo.CityVO;
 import main.vo.VehicleVO;
 
 public class VehicleAccountPanel {
@@ -25,13 +22,10 @@ public class VehicleAccountPanel {
 	private JTabbedPane tab;
 	private PageTable table;
 	private JScrollPane scrollPane;
-	private String[] tableTitle,city;
+	private String[] tableTitle;
 	private String[][] tableData;
 	private JLabel next,previous,add,delete;
 	private JLabel label1,label2,title,update,save,back;
-	private ArrayList<String> array;
-	
-	
 	public VehicleAccountPanel (){
 		panel = MainController.getWritepanel();
 		panel.setLayout(null);

@@ -196,6 +196,7 @@ public class LoginPanel{
 			}
 			public void mouseClicked(MouseEvent e){
 				String username=userName.getText();
+				@SuppressWarnings("deprecation")
 				String password=passWord.getText();
 				System.out.println();
 				System.out.println("username: "+username);

@@ -1,6 +1,10 @@
 package main.vo;
 
 public class LobbyLoading extends ReceiptVO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String loadingDate;//装车日期
 	private String autoMobileNum;//营业厅汽运编号
 	private String departure;//出发地

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class StatisticsList {
 	
+	@SuppressWarnings("rawtypes")
 	public ArrayList<ArrayList> showStatisticsList(String date){
 		ArrayList<ArrayList> list = new ArrayList<ArrayList>();
 		list.add(new EarnList().readEarnList(date));

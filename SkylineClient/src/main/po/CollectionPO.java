@@ -1,7 +1,5 @@
 package main.po;
 
-import main.vo.ReceiptVO;
-
 //一项收入的收款单PO
 public class CollectionPO extends Receipt{
 	

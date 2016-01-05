@@ -71,7 +71,6 @@ public class LobbyEarnPanel {
 	private JTextField commentText;
 	private JButton blankButton;
 	private JButton addButton;
-	private String[] paidType = new String[]{"001"};//这个地方需要用memory获得其单位
 	private String[] isPaidType = new String[]{"已结算", "未结算"};
 	private String[] bankType;
 
