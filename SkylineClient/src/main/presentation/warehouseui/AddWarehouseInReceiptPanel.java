@@ -21,7 +21,7 @@ import main.businesslogicservice.WarehouseBLService;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.businesslogicservice.receiptblService.WarehouseReceipt;
 import main.constructfactory.ConstructFactory;
-import main.presentation.mainui.AllImage;
+
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.TipFrame;
 import main.presentation.mainui.WritePanel;
@@ -35,7 +35,10 @@ public class AddWarehouseInReceiptPanel {
 //	private JButton ok;
 	private JButton cancel;
 	private JLabel tip;
-	private JLabel ok;
+
+	private JButton ok;
+	
+
 	private JLabel inList;
 	private JLabel cargoinfo;
 	private JLabel bar;
@@ -115,8 +118,9 @@ public class AddWarehouseInReceiptPanel {
 		ok.setFont(font);
 		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
 	*/
-		ok=new JLabel();
-		ok.setIcon(AllImage.submit);
+		ok=new JButton("Ã·Ωª");
+	//	ok.setIcon(AllImage.submit);
+		ok.setFont(font);
 		ok.setBounds(listPanel.getX()+panel.getWidth()*2/5,listPanel.getY()+panel.getHeight()*30/40, panel.getWidth()/10, panel.getHeight()/20);
 		
 

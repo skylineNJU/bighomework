@@ -1,6 +1,8 @@
 package main.presentation.financeui;
 
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -16,21 +18,27 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import main.businesslogicservice.FinanceBLService;
+import main.businesslogicservice.InfoBLService;
 import main.businesslogicservice.receiptblService.LobbyReceipt;
 import main.businesslogicservice.receiptblService.ReceiptCode;
 import main.constructfactory.ConstructFactory;
 import main.presentation.mainui.MainController;
 import main.presentation.mainui.WritePanel;
 import main.presentation.mainui.memory.LobbyMemory;
+import main.presentation.mainui.memory.WarehouseMemory;
 import main.vo.BankAccountVO;
 import main.vo.EarnVO;
+import main.vo.StaffVO;
 
 public class LobbyEarnPanel {
 	
 	private int year;
 	private String[] yearString;
 	private String[] monthString;
-	private String[] dayString;
+	private String[] dayString;//31天
+	private String[] dayString1;//30天
+	private String[] dayString2;//29天
+	private String[] dayString3;//28天
 	private String[] tableTitle;
 	private String[][] tableData;
 	private JPanel panel;
@@ -54,7 +62,7 @@ public class LobbyEarnPanel {
 	private JLabel addYear;
 	private JLabel addMonth;
 	private JLabel addDay;
-	private JLabel codeLabel;
+//	private JLabel codeLabel;
 	private JLabel feeLabel;
 	private JLabel unitLabel;
 	private JLabel bankLabel;
@@ -63,9 +71,9 @@ public class LobbyEarnPanel {
 	private JComboBox<String> addYearBox;
 	private JComboBox<String> addMonthBox;
 	private JComboBox<String> addDayBox;
-	private JTextField codeText;
+//	private JTextField codeText;
 	private JTextField feeText;
-	private JComboBox<String> unitBox;
+	private JLabel unitBox;
 	private JComboBox<String> bankBox;
 	private JComboBox<String> isPaidBox;
 	private JTextField commentText;
@@ -110,6 +118,12 @@ public class LobbyEarnPanel {
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
 		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		dayString1 = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
+		dayString2 = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29"};
+		dayString3 = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28"};
 		date = new JLabel("日期");
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
@@ -117,6 +131,34 @@ public class LobbyEarnPanel {
 		yearBox = new JComboBox<String>(yearString);
 		monthBox = new JComboBox<String>(monthString);
 		dayBox = new JComboBox<String>(dayString);
+	//	lookPanel.add(dayBox);
+	/*    monthBox.addItemListener(new ItemListener(){
+ 			@Override
+ 			public void itemStateChanged(ItemEvent arg0) {
+ 				lookPanel.remove(dayBox);
+		String y =yearBox.getSelectedItem()+"" ;
+		String m =monthBox.getSelectedItem()+"";
+		System.out.println("year++++++::::"+y);
+		System.out.println("month++++++::::"+m);
+		if(m.equals("1")||m.equals("3")||m.equals("5")||m.equals("7")||m.equals("8")||m.equals("10")||m.equals("12")){
+			dayBox = new JComboBox<String>(dayString);
+			lookPanel.add(dayBox);
+		}
+		if(m.equals("4")||m.equals("9")||m.equals("11")||m.equals("6")){
+			dayBox = new JComboBox<String>(dayString1);
+			lookPanel.add(dayBox);
+			System.out.println("month++++++::::)))))");
+		}
+		if(isLeap(y)&&m.equals("2")){
+			dayBox = new JComboBox<String>(dayString2);
+			lookPanel.add(dayBox);
+		}
+		if(!isLeap(y)&&m.equals("2")){
+			dayBox = new JComboBox<String>(dayString3);
+			lookPanel.add(dayBox);
+		}
+ 		}});
+		*/
 		ensureButton = new JButton("确认");
 		lookPanel.add(date);
 		lookPanel.add(yearLabel);
@@ -236,8 +278,8 @@ public class LobbyEarnPanel {
 		addYear = new JLabel("年");
 		addMonth = new JLabel("月");
 		addDay = new JLabel("日");
-		codeLabel = new JLabel("收款单号");
-		feeLabel = new JLabel("收入额");
+	//	codeLabel = new JLabel("收款单号");
+		feeLabel = new JLabel("收入额/元");
 		unitLabel = new JLabel("收款单位");
 		bankLabel = new JLabel("收入账户");
 		isPaidLabel = new JLabel("是否结算");
@@ -245,9 +287,21 @@ public class LobbyEarnPanel {
 		addYearBox = new JComboBox<String>(yearString);
 		addMonthBox = new JComboBox<String>(monthString);
 		addDayBox = new JComboBox<String>(dayString);
-		codeText = new JTextField("改文本框多余");
+	//	codeText = new JTextField("改文本框多余");
 		feeText = new JTextField();
-		unitBox = new JComboBox<String>();//多余了
+		unitBox = new JLabel();//多余了
+		
+		LobbyMemory memory=(LobbyMemory) ((WritePanel)panel).getMemory();
+		String worker = memory.getUserName();
+		System.out.println("worker+++++:::::"+worker);
+		InfoBLService service = ConstructFactory.InfoFactory();
+		ArrayList<StaffVO> staffList = service.showStaffList();
+		for(StaffVO vo: staffList){
+			if(vo.getCode().equals(worker)){
+				unitBox.setText(vo.getUnit());
+				break;
+			}
+		}
 		bankBox = new JComboBox<String>(bankType);
 		isPaidBox = new JComboBox<String>(isPaidType);
 		commentText = new JTextField();
@@ -260,10 +314,9 @@ public class LobbyEarnPanel {
 				addYearBox.setSelectedIndex(0);
 				addMonthBox.setSelectedIndex(0);
 				addDayBox.setSelectedIndex(0);
-				codeText.setText(null);
+		//		codeText.setText(null);
 				feeText.setText(null);
 				commentText.setText(null);
-				unitBox.setSelectedIndex(0);
 				bankBox.setSelectedIndex(0);
 				isPaidBox.setSelectedIndex(0);
 			}
@@ -304,7 +357,7 @@ public class LobbyEarnPanel {
 		writePanel.add(addYear);
 		writePanel.add(addMonth);
 		writePanel.add(addDay);
-		writePanel.add(codeLabel);
+	//	writePanel.add(codeLabel);
 		writePanel.add(feeLabel);
 		writePanel.add(unitLabel);
 		writePanel.add(bankLabel);
@@ -313,7 +366,7 @@ public class LobbyEarnPanel {
 		writePanel.add(addYearBox);
 		writePanel.add(addMonthBox);
 		writePanel.add(addDayBox);
-		writePanel.add(codeText);
+	//	writePanel.add(codeText);
 		writePanel.add(feeText);
 		writePanel.add(unitBox);
 		writePanel.add(bankBox);
@@ -332,21 +385,31 @@ public class LobbyEarnPanel {
 		addDayBox.setBounds(addMonth.getX()+tab.getWidth()/8, tab.getHeight()/20,  tab.getWidth()/10, tab.getHeight()/20);
 		addDay.setBounds(addDayBox.getX()+tab.getWidth()/40+addDayBox.getWidth(), tab.getHeight()/20, tab.getWidth()/10, tab.getHeight()/20);
 		
-		codeLabel.setBounds(tab.getWidth()/20, addTime.getY()+addTime.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
-		feeLabel.setBounds(tab.getWidth()/2, codeLabel.getY(), tab.getWidth()/10, tab.getHeight()/16);
-		unitLabel.setBounds(codeLabel.getX(), codeLabel.getY()+codeLabel.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
-		bankLabel.setBounds(tab.getWidth()/2, unitLabel.getY(), tab.getWidth()/10, tab.getHeight()/16);
-		isPaidLabel.setBounds(codeLabel.getX(), unitLabel.getY()+unitLabel.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
-		commentLabel.setBounds(tab.getWidth()/2, isPaidLabel.getY(), tab.getWidth()/10, tab.getHeight()/16);
-		codeText.setBounds(codeLabel.getX()+codeLabel.getWidth(), addTime.getY()+addTime.getHeight()+HINTER, tab.getWidth()*3/10, tab.getHeight()/16);
-		feeText.setBounds(feeLabel.getX()+feeLabel.getWidth(), codeLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
-		unitBox.setBounds(unitLabel.getX()+unitLabel.getWidth(), codeLabel.getY()+codeLabel.getHeight()+HINTER, tab.getWidth()*3/10, tab.getHeight()/16);
-		bankBox.setBounds(bankLabel.getX()+bankLabel.getWidth(), unitLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
-		isPaidBox.setBounds(isPaidLabel.getX()+isPaidLabel.getWidth(), unitLabel.getY()+unitLabel.getHeight()+HINTER, tab.getWidth()*3/10, tab.getHeight()/16);
-		commentText.setBounds(commentLabel.getX()+commentLabel.getWidth(), isPaidLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
+	//	codeLabel.setBounds(tab.getWidth()/20, addTime.getY()+addTime.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
+		feeLabel.setBounds(tab.getWidth()/20, addTime.getY()+addTime.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
+		unitLabel.setBounds(feeLabel.getX(), feeLabel.getY()+feeLabel.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
+		bankLabel.setBounds(tab.getWidth()/2, feeLabel.getY(), tab.getWidth()/10, tab.getHeight()/16);
+		isPaidLabel.setBounds(tab.getWidth()/2, unitLabel.getY(), tab.getWidth()/10, tab.getHeight()/16);
+		commentLabel.setBounds(feeLabel.getX(), unitLabel.getY()+unitLabel.getHeight()+HINTER, tab.getWidth()/10, tab.getHeight()/16);
+	//	codeText.setBounds(codeLabel.getX()+codeLabel.getWidth(), addTime.getY()+addTime.getHeight()+HINTER, tab.getWidth()*3/10, tab.getHeight()/16);
+		feeText.setBounds(feeLabel.getX()+feeLabel.getWidth(), feeLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
+		unitBox.setBounds(unitLabel.getX()+unitLabel.getWidth(), feeLabel.getY()+feeLabel.getHeight()+HINTER, tab.getWidth()*3/10, tab.getHeight()/16);
+		bankBox.setBounds(bankLabel.getX()+bankLabel.getWidth(), feeLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
+		isPaidBox.setBounds(isPaidLabel.getX()+isPaidLabel.getWidth(), unitLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
+		commentText.setBounds(commentLabel.getX()+commentLabel.getWidth(), commentLabel.getY(), tab.getWidth()*3/10, tab.getHeight()/16);
 		blankButton.setBounds(tab.getWidth()*3/5, tab.getHeight()*4/5, tab.getWidth()/10, tab.getHeight()/16);
 		addButton.setBounds(tab.getWidth()*3/5+blankButton.getWidth()*2, tab.getHeight()*4/5, tab.getWidth()/10, tab.getHeight()/16);
 		
 		writePanel.repaint();
 	}
+	static public boolean isLeap(String a){
+		a=a.substring(0,4);
+		int year = Integer.parseInt(a);
+		if( year % 400 == 0 || ( year % 100 != 0 && year % 4 == 0)){
+		  return true;
+		}
+		else
+			return false;
+		
+	} 
 }

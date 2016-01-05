@@ -104,7 +104,7 @@ public class OrderInputPanel {
 		saveButton = new JButton("保存");
 		senderCom=new JLabel("寄件人单位");
 		receivorCom=new JLabel("收件人单位");
-		num=new JLabel("寄件数量");
+		num=new JLabel("寄件数量/件");
 		
 		snederComText=new JTextField();
 		receivorComText=new JTextField();
@@ -127,10 +127,10 @@ public class OrderInputPanel {
 		heightSizeText = new JTextField();
 		highSizeText = new JTextField();
 		cargoNameText = new JTextField();
-		widthLabel = new JLabel("长");
-		heightLabel = new JLabel("宽");
-		highLabel = new JLabel("高");
-		weight = new JLabel("快递总重量");
+		widthLabel = new JLabel("dm长");
+		heightLabel = new JLabel("dm宽");
+		highLabel = new JLabel("dm高");
+		weight = new JLabel("快递总重量/kg");
 		weightText = new JTextField();
 		
 		kindGroup.add(kindRadio1);
@@ -218,9 +218,9 @@ public class OrderInputPanel {
 		heightLabel.setBounds(panelWidth*2/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
 		highLabel.setBounds(panelWidth*3/4+panelWidth/9, size.getY(), panelWidth/20, name1.getHeight());
 		
-		cargoNameLabel.setBounds(panelWidth*13/20, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
+		cargoNameLabel.setBounds(panelWidth*13/20, size.getY()+size.getHeight()+INTER, panelWidth/8, name1.getHeight());
 		cargoNameText.setBounds(panelWidth*3/4, size.getY()+size.getHeight()+INTER, panelWidth/10, name1.getHeight());
-		weight.setBounds(size.getX(), size.getY()+size.getHeight()+INTER,panelWidth/10, name1.getHeight());
+		weight.setBounds(size.getX(), size.getY()+size.getHeight()+INTER,panelWidth/8, name1.getHeight());
 		weightText.setBounds(panelWidth/4, weight.getY(), panelWidth/10, name1.getHeight());
 		num.setBounds(weightText.getX()+weight.getWidth()+INTER/3,weight.getY(),panelWidth/10, name1.getHeight());
 		numText.setBounds(heightSizeText.getX(),weight.getY(),panelWidth/10, name1.getHeight());

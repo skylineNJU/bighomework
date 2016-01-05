@@ -15,6 +15,7 @@ public class WarehousePanel extends GuidePanel{
 	private JButton showInventory=new JButton("库存查看");
 	private JButton checkInventory=new JButton("库存盘点");
 	private JButton modifyPassword=new JButton("密码修改");
+	private JButton areashow=new JButton("各区储存量");
 	private JLabel back=new JLabel("注销");
 	private JPanel panel;
 	public WarehousePanel(){
@@ -29,12 +30,14 @@ public class WarehousePanel extends GuidePanel{
 		this.add(showInventory);
 		this.add(checkInventory);
 		this.add(modifyPassword);
+		this.add(areashow);
 		this.add(back);
 		
 		addWarehouseInReceipt.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		addWarehouseOutReceipt.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		showInventory.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		checkInventory.setSize(this.getWidth()/4*3,this.getHeight()/15);
+		areashow.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		back.setSize(this.getWidth()/4*3,this.getHeight()/15);
 		
 		addWarehouseInReceipt.setLocation((this.getWidth()-addWarehouseInReceipt.getWidth())/2
@@ -45,8 +48,10 @@ public class WarehousePanel extends GuidePanel{
 				,addWarehouseOutReceipt.getY()+addWarehouseOutReceipt.getHeight()*3/2);
 		checkInventory.setLocation((this.getWidth()-addWarehouseInReceipt.getWidth())/2
 				,showInventory.getY()+showInventory.getHeight()*3/2);
-		back.setLocation((this.getWidth()-addWarehouseInReceipt.getWidth())/2
+		areashow.setLocation((this.getWidth()-addWarehouseInReceipt.getWidth())/2
 				,checkInventory.getY()+checkInventory.getHeight()*3/2);
+		back.setLocation((this.getWidth()-addWarehouseInReceipt.getWidth())/2
+				,areashow.getY()+areashow.getHeight()*3/2);
 		
 		
 		addWarehouseInReceipt.addMouseListener(new MouseAdapter(){
@@ -81,8 +86,7 @@ public class WarehousePanel extends GuidePanel{
 			}
 		});
 		
-		
-		
+
 		back.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				panel.removeAll();

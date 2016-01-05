@@ -34,6 +34,9 @@ public class EarnListPanel {
 	private String[] yearString;
 	private String[] monthString;
 	private String[] dayString;//31天
+	private String[] dayString1;//30天
+	private String[] dayString2;//29天
+	private String[] dayString3;//28天
 	private JComboBox<String> yearBox;//表示年份的组合框
 	private JComboBox<String> monthBox;//表示月份的组合框
 	private JComboBox<String> dayBox;//表示天的组合框
@@ -57,7 +60,6 @@ public class EarnListPanel {
 		setTime();
 		initTable();
 		initButton();
-		
 		panel.repaint();
 	}
 	public void title(){
@@ -131,6 +133,12 @@ public class EarnListPanel {
 		monthString = new String[]{"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"};
 		dayString = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
 				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
+		dayString1 = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
+		dayString2 = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28","29"};
+		dayString3 = new String[]{"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
+				"16","17","18","19","20","21","22","23","24","25","26","27","28"};
 		timeLabel = new JLabel("时间");
 		yearLabel = new JLabel("年");
 		monthLabel = new JLabel("月");
@@ -138,7 +146,20 @@ public class EarnListPanel {
 		yearBox = new JComboBox<String>(yearString);
 		monthBox = new JComboBox<String>(monthString);
 		dayBox = new JComboBox<String>(dayString);
-		
+	/*	String y =yearBox.getSelectedItem()+"" ;
+		String m =monthBox.getSelectedItem()+"";
+		System.out.println("year++++++::::"+y);
+		System.out.println("month++++++::::"+m);
+		if(m.equals("4")||m.equals("9")||m.equals("11")||m.equals("6")){
+			dayBox = new JComboBox<String>(dayString1);
+		}
+		if(isLeap(y)&&m.equals("2")){
+			dayBox = new JComboBox<String>(dayString2);
+		}
+		if(!isLeap(y)&&m.equals("2")){
+			dayBox = new JComboBox<String>(dayString3);
+		}
+		*/
 		panel.add(timeLabel);
 		panel.add(yearLabel);
 		panel.add(monthLabel);
@@ -213,4 +234,16 @@ public class EarnListPanel {
 		});
 		panel.add(scrollPane);
 	}
+	
+	
+	static public boolean isLeap(String a){
+		a=a.substring(0,4);
+		int year = Integer.parseInt(a);
+		if( year % 400 == 0 || ( year % 100 != 0 && year % 4 == 0)){
+		  return true;
+		}
+		else
+			return false;
+		
+	} 
 }

@@ -20,6 +20,8 @@ public class FrameMain extends JFrame{
 	private static Point origin = new Point();
 	private static java.awt.Dimension scrSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	private FrameMain(){
+
+
 		try
 	    {
 	      //org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();

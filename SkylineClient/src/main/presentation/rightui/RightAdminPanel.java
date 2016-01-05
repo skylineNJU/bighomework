@@ -1,6 +1,10 @@
 package main.presentation.rightui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -44,7 +48,7 @@ public class RightAdminPanel {
 	private JLabel identityLabel;//身份标签
 	private JLabel cityLabel;//城市标签
 	private JLabel institutionLabel;//机构标签
-	
+	private JLabel tip; 
 	private JTextField accountText;
 	private JTextField codeText;
 	private JComboBox<String> identity;
@@ -86,7 +90,7 @@ public class RightAdminPanel {
 		tab.add("查看账号",lookPanel);
 		tab.add("新增账号",writePanel);
 		panel.add(tab);	
-		tab.setBounds(panelWidth/10, panelHeight/10, panelWidth*4/5, panelHeight*4/5);
+		tab.setBounds(panelWidth/20, panelHeight/10, panelWidth*8/9, panelHeight*4/5);
 		tab.setVisible(true);
 		tab.addChangeListener(new ChangeListener(){
 
@@ -121,8 +125,8 @@ public class RightAdminPanel {
 	public void initButton(){
 		cancelButton = new JButton("取消");
 		saveButton = new JButton("保存");
-		cancelButton.setBounds(panelWidth*2/5, panelHeight*13/20, panelWidth/10, panelHeight/20);
-		saveButton.setBounds(panelWidth*6/10,  panelHeight*13/20, panelWidth/10, panelHeight/20);
+		cancelButton.setBounds(panelWidth*9/20, panelHeight*12/20, panelWidth/10, panelHeight/20);
+		saveButton.setBounds(panelWidth*12/20,  panelHeight*12/20, panelWidth/10, panelHeight/20);
 		writePanel.add(cancelButton);
 		writePanel.add(saveButton);
 		cancelButton.addMouseListener(new MouseAdapter(){
@@ -143,19 +147,35 @@ public class RightAdminPanel {
 		saveButton.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
 				Rights staffIdentity=right[identity.getSelectedIndex()];
+				if(codeText.getText().equals("")){		
+					codeText.setText("请输入密码");
+					codeText.addMouseListener(new MouseAdapter(){
+						public void mouseClicked(MouseEvent e){
+							codeText.setText("");
+					}});
+				}
 				
+				if(accountText.getText().equals("")){
+					accountText.setText("请输入账号");
+					accountText.addMouseListener(new MouseAdapter(){
+						public void mouseClicked(MouseEvent e){
+							accountText.setText("");
+					}});
+				}
+				
+				else{
 				AccountVO accountInfo=new AccountVO(staffIdentity
 												,accountText.getText()
 												,codeText.getText()
 												,((WritePanel) panel).getBelong());
 				RightBLService service=ConstructFactory.RightFactory();
 				service.createNewAccount(accountInfo);
-			}
+			}}
 		});
 		lookDeleteButton = new JButton("删除");
 		lookModifyButton = new JButton("修改");
-		lookDeleteButton.setBounds(panelWidth*9/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
-		lookModifyButton.setBounds(panelWidth*13/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookDeleteButton.setBounds(panelWidth*12/20, panelHeight*27/40, panelWidth/10, panelHeight/20);
+		lookModifyButton.setBounds(panelWidth*15/20,  panelHeight*27/40, panelWidth/10, panelHeight/20);
 		lookPanel.add(lookDeleteButton);
 		lookPanel.add(lookModifyButton);
 		
@@ -218,11 +238,14 @@ public class RightAdminPanel {
 		table.getTableHeader().setPreferredSize(new Dimension(10000,panelWidth/20));
 		scrollPane = new JScrollPane(table);
 		if(tableData.length>9){
-			scrollPane.setBounds(panelWidth/40, panelHeight/40, panelWidth*3/4, 10*table.getRowHeight());
+			scrollPane.setBounds(panelWidth/41, panelHeight/40, panelWidth*86/100, 10*table.getRowHeight());
 		}else{
-			scrollPane.setBounds(panelWidth/40, panelHeight/40, panelWidth*3/4, (table.getRowCount()+1)*table.getRowHeight());
+			scrollPane.setBounds(panelWidth/41, panelHeight/40, panelWidth*86/100, (table.getRowCount()+1)*table.getRowHeight());
 		}
 		scrollPane.setVisible(true);
+	//	table.getColumnModel().getColumn(0).setPreferredWidth(scrollPane.getWidth()/5);
+	//	table.getColumnModel().getColumn(1).setPreferredWidth(scrollPane.getWidth()/6);
+		table.getColumnModel().getColumn(3).setPreferredWidth(scrollPane.getWidth()/7);
 		lookPanel.add(scrollPane);
 		table.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
@@ -273,11 +296,17 @@ public class RightAdminPanel {
 	}
 	
 	public void writeTabel(){
+		Font font= new Font("宋体", Font.BOLD, 20);
 		accountLabel = new JLabel("账号");
+		accountLabel.setFont(font);
 		codeLabel= new JLabel("密码");
+		codeLabel.setFont(font);
 		identityLabel = new JLabel("身份");
+		identityLabel.setFont(font);
 		institutionLabel = new JLabel("机构");
+		institutionLabel.setFont(font);
 		cityLabel =new JLabel("城市");
+		cityLabel.setFont(font);
 		
 		accountText = new JTextField();
 		codeText = new JTextField();
@@ -294,7 +323,7 @@ public class RightAdminPanel {
 		if(cityVO!=null){
 		
 	
-			cityString=cityVO.getCityName().split(" ");
+			cityString=cityVO.getCityName().substring(1).split(" ");
 			
 			array=new ArrayList<String>();
 			array=cityVO.getInsititutionNum();
@@ -310,29 +339,34 @@ public class RightAdminPanel {
 			@Override
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
-				String args=array.get(city.getSelectedIndex()-1);
+				String args=array.get(city.getSelectedIndex());
 				String[] insNum=args.split(" ");
 				institution.removeAllItems();
 				for(int x=0;x<insNum.length;x++){
 					institution.addItem(insNum[x]);
 				}
+				institutionLabel.setVisible(true);
 				institution.setVisible(true);
 			}
 			
 		});
 		
-		accountLabel.setBounds(panelWidth/10, panelHeight/20, panelWidth*3/20, panelHeight/20);
-		codeLabel.setBounds(panelWidth/10, panelHeight*3/40+accountLabel.getY(), panelWidth*3/20, panelHeight/20);
-		identityLabel.setBounds(panelWidth/10, panelHeight*3/40+codeLabel.getY(), panelWidth*3/20, panelHeight/20);
-		cityLabel.setBounds(panelWidth/10, panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
-		institutionLabel.setBounds(panelWidth*3/5,panelHeight*3/40+identityLabel.getY(), panelWidth*3/20, panelHeight/20);
+		accountLabel.setBounds(panelWidth/10, panelHeight/17, panelWidth/5, panelHeight/20);
+		codeLabel.setBounds(accountLabel.getX(), panelHeight/10+accountLabel.getY(), panelWidth/5, panelHeight/20);
+		identityLabel.setBounds(accountLabel.getX(), panelHeight/10+codeLabel.getY(), panelWidth*3/20, panelHeight/20);
+		cityLabel.setBounds(accountLabel.getX(), panelHeight/10+identityLabel.getY(),panelWidth*3/20, panelHeight/20);
+		institutionLabel.setBounds(panelWidth*9/20,panelHeight/10+identityLabel.getY(),panelWidth*3/20, panelHeight/20);
 		
-		accountText.setBounds(panelWidth/4, panelHeight/20, panelWidth*9/20, panelHeight/20);
-		codeText.setBounds(panelWidth/4, panelHeight*3/40+accountText.getY(), panelWidth*9/20, panelHeight/20);
-		identity.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+codeText.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		city.setBounds(panelWidth/4+panelWidth/10, panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
-		institution.setBounds(panelWidth*3/5+panelWidth/10,panelHeight*3/40+identity.getY()-panelHeight/80, panelWidth*3/40, panelHeight*3/40);
+		accountText.setBounds(accountLabel.getX()+panel.getWidth()/8,accountLabel.getY(), panelWidth/3, panelHeight/20);
+		codeText.setBounds(accountText.getX(), panelHeight/10+accountText.getY(), panelWidth/3, panelHeight/20);
+		identity.setBounds(identityLabel.getX()+panel.getWidth()/8, identityLabel.getY(), panelWidth/10, panelHeight/20);
+		city.setBounds(cityLabel.getX()+panel.getWidth()/8,cityLabel.getY(), panelWidth/10, panelHeight/20);
+		institution.setBounds(institutionLabel.getX()+panel.getWidth()/8,institutionLabel.getY(),  panelWidth/10, panelHeight/20);
 	
+		
+		institutionLabel.setVisible(false);
+		institution.setVisible(false);
+		
 		writePanel.add(accountLabel);
 		writePanel.add(codeLabel);
 		writePanel.add(identityLabel);
